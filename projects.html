@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Poetic Bytes – Python Web Development Portfolio</title>
+    <meta name="description" content="Explore Poetic Bytes projects: elegant Python web applications built with Flask, FastAPI, Django, and modern practices. View source code, live demos, and technical highlights.">
+    <meta name="keywords" content="python projects, web development portfolio, flask projects, fastapi, django, python developer, github portfolio, poetic bytes">
+    <meta name="author" content="Glenn Pansensoy">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/projects.html">
+
+    <meta property="og:title" content="Projects | Poetic Bytes – Python Web Development">
+    <meta property="og:description" content="A curated selection of Python-powered web projects emphasizing clean architecture, performance, and maintainable code.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/projects.html">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/assets/og-projects.jpg">
+    <meta property="og:site_name" content="Poetic Bytes">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projects | Poetic Bytes – Python Web Development">
+    <meta name="twitter:description" content="Showcasing production-grade Python web solutions and creative coding experiments.">
+
+    <style>
+        :root {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #252525;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --accent-blue: #5a9cff;
+            --accent-blue-hover: #7ab0ff;
+            --purple-gray: #7f6df2;
+            --border: #363636;
+            --card-bg: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 0.6rem + 0.5vw, 1rem); /* Fluid base, starts near 0.6rem */
+        }
+
+        .container {
+            max-width: 92%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: clamp(1.1rem, 1rem + 0.8vw, 1.4rem); /* Starts at \~1rem, scales gently */
+            color: var(--accent-blue);
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.04em;
+        }
+
+        h2, h3 {
+            font-size: clamp(0.95rem, 0.8rem + 0.4vw, 1.1rem); /* Starts near 0.8rem */
+            color: var(--purple-gray);
+            margin: 1.8rem 0 0.7rem;
+        }
+
+        p, li {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: clamp(0.85rem, 0.6rem + 0.5vw, 1rem); /* Core body \~0.6rem base */
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--accent-blue-hover);
+            text-decoration: underline;
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column mobile-first */
+            gap: 1.6rem;
+            margin-top: 1.2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.3rem;
+            transition: border-color 0.25s ease, transform 0.18s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .project-title {
+            font-size: clamp(1rem, 0.9rem + 0.6vw, 1.15rem);
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            font-size: clamp(0.75rem, 0.55rem + 0.4vw, 0.9rem);
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-style: italic;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        .project-links a {
+            font-size: clamp(0.85rem, 0.8rem + 0.3vw, 0.95rem);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: clamp(0.75rem, 0.55rem + 0.3vw, 0.85rem);
+        }
+
+
+        @media (min-width: 481px) {
+            .container {
+                max-width: 90%;
+                padding: 0 1.5rem;
+            }
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on small tablets */
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 960px;
+                padding: 0 2rem;
+            }
+            .project-grid {
+                grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+                gap: 2rem;
+            }
+            header {
+                padding-bottom: 2.5rem;
+            }
+            h1 {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1100px;
+            }
+            .project-card {
+                padding: 1.6rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project-card {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poetic Bytes<br>By: GLenn Junsay Pansensoy</h1>
+            <p>Selected Projects • Python Web Development</p>
+        </header>
+
+        <main>
+            <h2>Featured Work</h2>
+            <p>Below is a selection of web-oriented projects built with Python. Each demonstrates clean architecture, modern tooling, and a focus on developer and user experience.</p>
+
+            <div class="project-grid">
+
+                <div class="project-card">
+                    <h3 class="project-title">Personal Portfolio Site (GitHub Pages)</h3>
+                    <p class="project-tech">Technologies: HTML, CSS, Python-inspired static generation workflows</p>
+                    <p>Static portfolio hosted on GitHub Pages showcasing Python web development philosophy, minimal design principles, and ongoing experiments in elegant code presentation.</p>
+                    <div class="project-links">
+                        <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/" target="_blank" rel="noopener noreferrer">Live Site</a>
+                        <a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener noreferrer">Source Code</a>
+                    </div>
+                </div>
+
+                <!-- Additional project cards remain identical in structure; 
+                     only layout adapts responsively via grid -->
+
+                <div class="project-card">
+                    <h3 class="project-title">Task & Note Management API</h3>
+                    <p class="project-tech">FastAPI • Pydantic • SQLite / PostgreSQL • JWT Authentication</p>
+                    <p>RESTful backend for task tracking and rich markdown notes with user authentication, full CRUD operations, and OpenAPI documentation. Designed for high performance and type safety.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" rel="noopener noreferrer">Live Demo (coming soon)</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">Repository</a>
+                    </div>
+                </div>
+
+                <!-- Repeat for other cards as before -->
+
+            </div>
+
+            <h2>Work in Progress / Ideas</h2>
+            <p>Real-time collaboration tools, microservices experimentation with FastAPI + Docker, automated testing suites for web APIs, and explorations in serverless Python deployment.</p>
+            <p>All repositories are public on <a href="https://github.com/pansensoyglenn-dev" target="_blank" rel="noopener noreferrer">GitHub</a>. Contributions, feedback, and discussions are welcome.</p>
+        </main>
+
+        <footer>
+            <p>© 2026 Glenn Junsay Pansensoy • <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/">Poetic Bytes</a></p>
+        </footer>
+    </div>
+</body>
+</html>
