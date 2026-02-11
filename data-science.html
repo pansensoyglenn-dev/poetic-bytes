@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete guide to Data Science with Python - Libraries, Techniques, Projects and Real-world Applications">
+    <meta name="keywords" content="data science python, machine learning, pandas, numpy, scikit-learn, data visualization, python programming">
+    <meta name="author" content="Glenn Junsay Pansensoy">
+    
+    <meta property="og:title" content="Data Science in Python: Complete Guide">
+    <meta property="og:description" content="Master Data Science with Python - from basics to advanced machine learning techniques">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/data-science.html">
+    
+    <title>Data Science in Python | Complete Guide</title>
+    
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>">
+    
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --python-blue: #306998;
+            --python-light-blue: #4B8BBE;
+            --python-yellow: #FFD43B;
+            --obsidian-dark: #0d1117;
+            --obsidian-darker: #06090f;
+            --obsidian-card: #161b22;
+            --obsidian-border: #30363d;
+            --obsidian-text: #c9d1d9;
+            --obsidian-text-light: #8b949e;
+            --success-color: #238636;
+            --warning-color: #daaa3f;
+            --info-color: #1f6feb;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            width: 100%;
+            overflow-x: hidden;
+            font-size: 16px;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--obsidian-text);
+            background: var(--obsidian-dark);
+            min-height: 100vh;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+    
+        h1, .title {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--python-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        h2, .subtitle {
+            font-size: 0.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--python-light-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        h3 {
+            font-size: .8rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--python-blue);
+        }
+        
+        h4 {
+            font-size: .8rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--python-light-blue);
+        }
+        
+        h5 {
+            font-size: .8rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: var(--obsidian-text);
+        }
+        
+        p, .paragraph {
+            font-size: 0.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--obsidian-text-light);
+            line-height: 1.8;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+        
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--obsidian-darker);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--obsidian-border);
+            max-width: 100vw;
+        }
+        
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1002;
+        }
+        
+        .logo-icon {
+            font-size: 1.5rem;
+            color: var(--python-yellow);
+        }
+        
+
+        .desktop-nav {
+            display: flex;
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--obsidian-text);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid transparent;
+            transition: var(--transition);
+            font-size: 0.6rem;
+            white-space: nowrap;
+        }
+        
+        .nav-link:hover {
+            background: var(--python-blue);
+            color: white;
+            border-color: var(--python-light-blue);
+        }
+        
+      
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--obsidian-text);
+            padding: 0.5rem;
+            z-index: 1002;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--python-yellow);
+        }
+        
+        .mobile-menu-btn.active {
+            color: var(--python-yellow);
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(6, 9, 15, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 5rem 1.5rem 2rem;
+            z-index: 1001;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .mobile-nav-list .nav-link {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            background: var(--obsidian-card);
+            border: 1px solid var(--obsidian-border);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-list .nav-link:hover {
+            background: var(--python-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--obsidian-border);
+        }
+        
+        .mobile-menu-title {
+            color: var(--python-yellow);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 2rem;
+            position: relative;
+            overflow-x: hidden; 
+        }
+        
+        .main-content {
+            background: var(--obsidian-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            border: 1px solid var(--obsidian-border);
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden; /* Prevent content overflow */
+        }
+        
+      
+        .page-header {
+            text-align: center;
+            padding: 2rem 0 3rem;
+            position: relative;
+            max-width: 100%;
+        }
+        
+        .python-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            color: var(--python-yellow);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+    
+        .section-nav {
+            position: sticky;
+            top: 80px;
+            background: var(--obsidian-card);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            z-index: 999;
+            border: 1px solid var(--obsidian-border);
+            width: 100%;
+            max-width: 100%;
+        }
+        
+
+        .code-container {
+            background: var(--obsidian-darker);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            border: 1px solid var(--obsidian-border);
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--obsidian-border);
+            width: 100%;
+        }
+        
+        .code-title {
+            color: var(--python-yellow);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+        }
+        
+        .copy-btn {
+            background: var(--python-blue);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        
+        .copy-btn:hover {
+            background: var(--python-light-blue);
+        }
+        
+        pre[class*="language-"] {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+        
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+        
+        /* Library Cards Grid - FIX WIDTH */
+        .libraries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            width: 100%;
+        }
+        
+        .library-card {
+            background: var(--obsidian-darker);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border-left: 4px solid var(--python-blue);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            border: 1px solid var(--obsidian-border);
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .library-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-color: var(--python-light-blue);
+        }
+        
+        .library-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--python-light-blue);
+        }
+        
+        /* Workflow Steps - FIX WIDTH */
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            width: 100%;
+        }
+        
+        .workflow::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--python-blue);
+            opacity: 0.3;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            position: relative;
+            width: 100%;
+        }
+        
+        .step-number {
+            background: var(--python-blue);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 0.5rem;
+            width: calc(100% - 75px);
+        }
+        
+    
+        .project-example {
+            background: var(--obsidian-darker);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border: 1px solid var(--obsidian-border);
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        /* Table - FIX OVERFLOW */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.7rem;
+            border: 1px solid var(--obsidian-border);
+            max-width: 100%;
+            display: block;
+            overflow-x: auto; /* Allow horizontal scroll only for table */
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .data-table table {
+            width: 100%;
+            min-width: 600px;
+        }
+        
+        .data-table th {
+            background: var(--python-blue);
+            color: white;
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.75rem;
+            border: 1px solid var(--obsidian-border);
+            white-space: nowrap;
+        }
+        
+        .data-table td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid var(--obsidian-border);
+            border-right: 1px solid var(--obsidian-border);
+            word-break: break-word;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: rgba(48, 105, 152, 0.1);
+        }
+        
+        .data-table tr:hover {
+            background: rgba(48, 105, 152, 0.2);
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        
+        ul li, ol li {
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+            color: var(--obsidian-text-light);
+            line-height: 1.6;
+            max-width: 100%;
+        }
+        
+        /* Callout Boxes - FIX WIDTH */
+        .tip-box {
+            background: rgba(35, 134, 54, 0.1);
+            border-left: 4px solid var(--success-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(35, 134, 54, 0.2);
+            width: 100%;
+        }
+        
+        .tip-box .paragraph {
+            margin-bottom: 0;
+            color: #3fb950;
+        }
+        
+        .warning-box {
+            background: rgba(218, 170, 63, 0.1);
+            border-left: 4px solid var(--warning-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(218, 170, 63, 0.2);
+            width: 100%;
+        }
+        
+        .warning-box .paragraph {
+            margin-bottom: 0;
+            color: #e3b341;
+        }
+        
+        .info-box {
+            background: rgba(31, 111, 235, 0.1);
+            border-left: 4px solid var(--info-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(31, 111, 235, 0.2);
+            width: 100%;
+        }
+        
+        .info-box .paragraph {
+            margin-bottom: 0;
+            color: #58a6ff;
+        }
+        
+        /* Footer - FIX WIDTH */
+        .page-footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: var(--obsidian-text-light);
+            border-top: 1px solid var(--obsidian-border);
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        /* Links */
+        a {
+            color: var(--python-light-blue);
+            text-decoration: none;
+            transition: var(--transition);
+            word-break: break-word;
+        }
+        
+        a:hover {
+            color: var(--python-yellow);
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design - FIX MOBILE WIDTH */
+        @media (max-width: 1200px) {
+            .header-container,
+            .container {
+                max-width: 95%;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                padding: 6rem 1rem 2rem;
+                max-width: 100%;
+            }
+            
+            .main-content {
+                padding: 2rem;
+                max-width: 100%;
+            }
+            
+            .libraries-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* Hide desktop nav, show mobile menu button */
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .container {
+                padding: 5rem 1rem 1rem;
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+                margin: 0;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                width: 100%;
+            }
+            
+            .section-nav {
+                position: relative;
+                top: 0;
+                margin-bottom: 1.5rem;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                width: 100%;
+            }
+            
+            .page-header {
+                padding: 1rem 0 2rem;
+                width: 100%;
+            }
+            
+            .python-logo {
+                font-size: 3rem;
+            }
+            
+            h3 {
+                font-size: 1.4rem;
+                margin: 2rem 0 1rem;
+            }
+            
+            h4 {
+                font-size: 1.2rem;
+            }
+            
+            .workflow::before {
+                left: 25px;
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 0.9rem;
+            }
+            
+            .step-content {
+                width: calc(100% - 65px);
+            }
+            
+            .libraries-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .data-table {
+                font-size: 0.65rem;
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+                width: 100%;
+            }
+            
+            .data-table table {
+                min-width: 100%;
+            }
+            
+            .code-container {
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                padding: 1rem;
+                margin: 1rem 0;
+                width: 100%;
+            }
+            
+            .library-card {
+                border-radius: 4px;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 5rem 0.5rem 1rem;
+                width: 100%;
+            }
+            
+            .header-container {
+                padding: 0 1rem;
+                width: 100%;
+            }
+            
+            .main-content {
+                padding: 1rem;
+                width: 100%;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
+            
+            h4 {
+                font-size: 1.1rem;
+            }
+            
+            h5 {
+                font-size: 1rem;
+            }
+            
+            .python-logo {
+                font-size: 2.5rem;
+            }
+            
+            .step-number {
+                width: 45px;
+                height: 45px;
+                font-size: 0.85rem;
+            }
+            
+            .step-content {
+                width: calc(100% - 60px);
+            }
+            
+            .workflow::before {
+                left: 22.5px;
+            }
+            
+            .library-card {
+                padding: 1.25rem;
+                width: 100%;
+            }
+            
+            .workflow-step {
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            pre[class*="language-"] {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-link, .copy-btn {
+                padding: 0.75rem 1rem;
+                min-height: 44px;
+            }
+            
+            .step-number {
+                width: 70px;
+                height: 70px;
+                font-size: 1.1rem;
+            }
+            
+            .step-content {
+                width: calc(100% - 85px);
+            }
+            
+            .mobile-nav-list .nav-link {
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+        /* FIX FOR HORIZONTAL SCROLL - CRITICAL */
+        img, video, iframe, canvas {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Prevent any element from causing horizontal scroll */
+        * {
+            max-width: 100vw;
+        }
+        
+        /* Ensure body doesn't allow horizontal scroll */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">🐍</span>
+                <h1 class="title">Data Science Python</h1>
+            </div>
+            
+            <nav class="desktop-nav">
+                <ul class="nav-list">
+                    <li><a href="#overview" class="nav-link">Overview</a></li>
+                    <li><a href="#libraries" class="nav-link">Libraries</a></li>
+                    <li><a href="#workflow" class="nav-link">Workflow</a></li>
+                    <li><a href="#examples" class="nav-link">Examples</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#resources" class="nav-link">Resources</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                ☰
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">Navigation Menu</div>
+            <button class="mobile-menu-btn active" id="mobileMenuClose" aria-label="Close menu">
+                ✕
+            </button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="#overview" class="nav-link">Overview</a></li>
+            <li><a href="#libraries" class="nav-link">Libraries</a></li>
+            <li><a href="#workflow" class="nav-link">Workflow</a></li>
+            <li><a href="#examples" class="nav-link">Examples</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#resources" class="nav-link">Resources</a></li>
+        </ul>
+        <div style="margin-top: 3rem; text-align: center;">
+            <p style="color: var(--obsidian-text-light); font-size: 0.8rem;">
+                Created by Glenn Pansensoy<br>
+                <a href="mailto:pansensoyglenn@gmail.com" style="color: var(--python-light-blue);">pansensoyglenn@gmail.com</a>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sticky Section Navigation -->
+        <nav class="section-nav">
+            <ul class="nav-list">
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#libraries" class="nav-link">Libraries</a></li>
+                <li><a href="#workflow" class="nav-link">Workflow</a></li>
+                <li><a href="#examples" class="nav-link">Examples</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+            </ul>
+        </nav>
+        
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="overview">
+                <div class="page-header">
+                    <div class="python-logo">🐍</div>
+                    <h1 class="title">Data Science Guide</h1>
+                    <h2 class="subtitle">Data Science in Python</h2>
+                    <p class="paragraph text-center">Complete guide to mastering data science using Python - from fundamentals to advanced techniques</p>
+                </div>
+                
+                <h3>Why Python for Data Science?</h3>
+                <p class="paragraph">Python has become the dominant language for data science due to its simplicity, extensive library ecosystem, and strong community support. Its readable syntax allows data scientists to focus on solving problems rather than wrestling with complex code.</p>
+                
+                <div class="info-box">
+                    <p class="paragraph"><strong>Key Advantages:</strong> Easy to learn, extensive libraries (NumPy, pandas, scikit-learn), strong visualization tools (Matplotlib, Seaborn), excellent community support, and integration with big data tools.</p>
+                </div>
+            </section>
+            
+            <!-- Essential Libraries Section -->
+            <section id="libraries" class="mt-4">
+                <h3>Essential Python Libraries</h3>
+                <p class="paragraph">Python's strength in data science comes from its rich ecosystem of specialized libraries.</p>
+                
+                <div class="libraries-grid">
+                    <!-- NumPy -->
+                    <div class="library-card">
+                        <div class="library-icon">🔢</div>
+                        <h4>NumPy</h4>
+                        <p class="paragraph">Fundamental package for numerical computing in Python. Provides support for large, multi-dimensional arrays and matrices.</p>
+                        <div class="code-container mt-2">
+                            <div class="code-header">
+                                <span class="code-title">Basic Usage</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                            <pre><code class="language-python">import numpy as np
+
+# Create arrays
+arr = np.array([1, 2, 3, 4, 5])
+matrix = np.array([[1, 2], [3, 4]])
+
+# Array operations
+mean = np.mean(arr)
+std_dev = np.std(arr)</code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- pandas -->
+                    <div class="library-card">
+                        <div class="library-icon">🐼</div>
+                        <h4>pandas</h4>
+                        <p class="paragraph">Powerful data manipulation and analysis library. Provides DataFrame structures for handling structured data.</p>
+                        <div class="code-container mt-2">
+                            <div class="code-header">
+                                <span class="code-title">Data Manipulation</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                            <pre><code class="language-python">import pandas as pd
+
+# Create DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'Salary': [50000, 60000, 70000]
+})
+
+# Data operations
+df_filtered = df[df['Age'] > 25]
+mean_salary = df['Salary'].mean()</code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Matplotlib -->
+                    <div class="library-card">
+                        <div class="library-icon">📊</div>
+                        <h4>Matplotlib & Seaborn</h4>
+                        <p class="paragraph">Comprehensive plotting libraries for creating static, animated, and interactive visualizations.</p>
+                        <div class="code-container mt-2">
+                            <div class="code-header">
+                                <span class="code-title">Visualization</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                            <pre><code class="language-python">import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Basic plot
+plt.figure(figsize=(10, 6))
+plt.plot(x, y, 'b-', label='Data')
+plt.xlabel('X Axis')
+plt.ylabel('Y Axis')
+plt.title('Sample Plot')
+plt.legend()
+plt.show()</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Data Science Workflow -->
+            <section id="workflow" class="mt-4">
+                <h3>Data Science Workflow</h3>
+                <p class="paragraph">A typical data science project follows these systematic steps:</p>
+                
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h5>Problem Definition</h5>
+                            <p class="paragraph">Understand the business problem, define objectives, and determine success metrics.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Data Collection</h5>
+                            <p class="paragraph">Gather data from various sources - databases, APIs, files, web scraping.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h5>Data Cleaning</h5>
+                            <p class="paragraph">Handle missing values, remove outliers, normalize data, and engineer features.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h5>Exploratory Analysis</h5>
+                            <p class="paragraph">Visualize data, compute statistics, identify patterns and relationships.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h5>Model Building</h5>
+                            <p class="paragraph">Select algorithms, train models, and tune hyperparameters.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h5>Deployment</h5>
+                            <p class="paragraph">Deploy model to production, create APIs, and monitor performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Examples Section -->
+            <section id="examples" class="mt-4">
+                <h3>Practical Examples</h3>
+                
+                <div class="project-example">
+                    <h4>Example: Customer Segmentation</h4>
+                    <p class="paragraph">Using K-Means clustering to segment customers based on purchasing behavior.</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Customer Segmentation Code</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                        <pre><code class="language-python">import pandas as pd
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+# Load customer data
+df = pd.read_csv('customer_data.csv')
+
+# Select features for clustering
+features = ['Annual_Income', 'Spending_Score', 'Age']
+X = df[features]
+
+# Scale the features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Apply K-Means
+kmeans = KMeans(n_clusters=5, random_state=42)
+clusters = kmeans.fit_predict(X_scaled)
+
+# Add clusters to dataframe
+df['Cluster'] = clusters</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Project Ideas -->
+            <section id="projects" class="mt-4">
+                <h3>Data Science Project Ideas</h3>
+                
+                <div class="libraries-grid">
+                    <div class="library-card">
+                        <h5>Beginner Projects</h5>
+                        <ul>
+                            <li>House Price Prediction</li>
+                            <li>Iris Flower Classification</li>
+                            <li>Titanic Survival Prediction</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="library-card">
+                        <h5>Intermediate Projects</h5>
+                        <ul>
+                            <li>Customer Churn Prediction</li>
+                            <li>Sentiment Analysis</li>
+                            <li>Credit Risk Assessment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="library-card">
+                        <h5>Advanced Projects</h5>
+                        <ul>
+                            <li>Image Classification</li>
+                            <li>Real-time Anomaly Detection</li>
+                            <li>Natural Language Generation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Resources -->
+            <section id="resources" class="mt-4">
+                <h3>Learning Resources</h3>
+                
+                <div class="libraries-grid">
+                    <div class="library-card">
+                        <div class="library-icon">📚</div>
+                        <h5>Online Courses</h5>
+                        <ul>
+                            <li>Coursera: Data Science with Python</li>
+                            <li>edX: Data Science MicroMasters</li>
+                            <li>DataCamp: Data Scientist Track</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="library-card">
+                        <div class="library-icon">📖</div>
+                        <h5>Books</h5>
+                        <ul>
+                            <li>Python for Data Analysis</li>
+                            <li>Hands-On Machine Learning</li>
+                            <li>Data Science from Scratch</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="library-card">
+                        <div class="library-icon">🌐</div>
+                        <h5>Communities</h5>
+                        <ul>
+                            <li>Kaggle: Competitions</li>
+                            <li>GitHub: Open-source</li>
+                            <li>Stack Overflow: Q&A</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="page-footer">
+            <h2 class="subtitle">Start Your Journey Today</h2>
+            <p class="paragraph">Created by Glenn Pansensoy | <a href="mailto:pansensoyglenn@gmail.com">pansensoyglenn@gmail.com</a></p>
+            <p class="paragraph mt-1">Visit my portfolio: <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/">Glenn Junsay Pansensoy</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    
+    <script>
+    
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuBtn.classList.add('active');
+            mobileMenuBtn.innerHTML = '✕';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuBtn.innerHTML = '☰';
+            document.body.style.overflow = 'auto';
+        }
+        
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+        
+  
+        mobileMenuClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeMobileMenu();
+        });
+        
+        document.querySelectorAll('.mobile-nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                e.target !== mobileMenuBtn) {
+                closeMobileMenu();
+            }
+        });
+      
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+        
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const codeBlock = this.closest('.code-container').querySelector('code');
+                const textArea = document.createElement('textarea');
+                textArea.value = codeBlock.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const originalText = this.textContent;
+                this.textContent = 'Copied!';
+                this.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                }, 2000);
+            });
+        });
+        
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.body.addEventListener('wheel', function(e) {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            window.scrollTo(0, 0);
+            
+            setInterval(() => {
+                if (window.scrollX !== 0) {
+                    window.scrollTo(0, window.scrollY);
+                }
+            }, 100);
+        });
+        
+        let startX = 0;
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', function(e) {
+            const currentX = e.touches[0].clientX;
+            const diffX = Math.abs(currentX - startX);
+            const target = e.target;
+            
+            const isScrollableElement = target.closest('.code-container') || 
+                                       target.closest('.data-table') ||
+                                       target.tagName === 'PRE' || 
+                                       target.tagName === 'CODE';
+            
+            if (diffX > 10 && !isScrollableElement) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        mobileMenuBtn.innerHTML = '☰';
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>
