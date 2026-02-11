@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheat Sheet | Poetic Bytes – Python Web Development Quick Reference</title>
+    <meta name="description" content="Concise Python web development cheat sheet: FastAPI, Flask, Pydantic, SQLModel, authentication, deployment commands, and common patterns – ideal for quick reference.">
+    <meta name="keywords" content="python cheat sheet, fastapi cheat sheet, flask quick reference, pydantic models, sqlmodel, python web development, api patterns, deployment commands, poetic bytes">
+    <meta name="author" content="Glenn Junsay Pansensoy">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/cheat-sheet.html">
+
+    <meta property="og:title" content="Cheat Sheet | Poetic Bytes – Python Web Quick Reference">
+    <meta property="og:description" content="One-page reference for modern Python web development patterns, commands, and best-practice snippets.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/cheat-sheet.html">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/assets/og-cheatsheet.jpg">
+    <meta property="og:site_name" content="Poetic Bytes">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cheat Sheet | Poetic Bytes – Python Web Quick Reference">
+    <meta name="twitter:description" content="Fast lookup for FastAPI, Flask, Pydantic, deployment, and Python web essentials.">
+
+    <style>
+        :root {
+            --bg-primary:    #1e1e1e;
+            --bg-secondary:  #252525;
+            --text-primary:  #e0e0e0;
+            --text-secondary:#b0b0b0;
+            --accent-blue:   #5a9cff;
+            --accent-blue-hover: #7ab0ff;
+            --purple-gray:   #7f6df2;
+            --border:        #363636;
+            --card-bg:       #2a2a2a;
+            --code-bg:       #1a1a1a;
+            --code-border:   #404040;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: clamp(0.94rem, 0.6rem + 0.9vw, 1.04rem);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 5vw, 2rem);
+        }
+
+        header {
+            text-align: center;
+            padding: 2.4rem 0 1.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.35rem);
+            color: var(--purple-gray);
+            margin: 2.8rem 0 1.1rem;
+        }
+
+        h3 {
+            font-size: clamp(1rem, 0.82rem + 0.6vw, 1.18rem);
+            color: var(--accent-blue);
+            margin: 2rem 0 0.8rem;
+        }
+
+        p, li {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.18s ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--accent-blue-hover);
+            text-decoration: underline;
+        }
+
+        .cheat-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: clamp(1.2rem, 4vw, 1.7rem);
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 8px;
+            padding: clamp(1rem, 3vw, 1.3rem);
+            margin: 1.1rem 0;
+            overflow-x: auto;
+            max-width: 100%;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: clamp(0.84rem, 0.7rem + 0.55vw, 0.98rem);
+            line-height: 1.55;
+            white-space: pre;
+            word-wrap: normal;
+            overflow-wrap: normal;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.96em;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+        }
+
+        .grid-2 > div {
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        footer {
+            text-align: center;
+            margin: 5.5rem 0 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: clamp(0.82rem, 0.55rem + 0.45vw, 0.92rem);
+        }
+
+        /* ────────────────────────────────────────────────
+           Breakpoints – mobile-first
+        ──────────────────────────────────────────────── */
+
+        @media (min-width: 520px) {
+            .container { padding-left: 1.6rem; padding-right: 1.6rem; }
+        }
+
+        @media (min-width: 720px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .cheat-card { padding: 1.9rem; }
+            pre { padding: 1.4rem; }
+        }
+
+        @media (min-width: 980px) {
+            .container { padding-left: 2.2rem; padding-right: 2.2rem; }
+            h1 { font-size: clamp(1.5rem, 1.2rem + 0.9vw, 2rem); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poetic Bytes</h1>
+            <p>Python Web Development Cheat Sheet</p>
+        </header>
+
+        <main>
+            <h2>FastAPI Essentials</h2>
+            <div class="cheat-card">
+                <h3>Basic App & Typed Endpoint</h3>
+                <pre><code>from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+@app.post("/items/")
+async def create(item: Item):
+    return item</code></pre>
+
+                <h3>Query & Path Parameters</h3>
+                <pre><code>@app.get("/items/{item_id}")
+async def read(item_id: int, q: str | None = None, skip: int = 0):
+    return {"item_id": item_id, "q": q, "skip": skip}</code></pre>
+            </div>
+
+            <h2>Pydantic & Validation</h2>
+            <div class="cheat-card grid-2">
+                <div>
+                    <h3>Common Field Types</h3>
+                    <pre><code>name: str
+age: int
+price: float
+active: bool
+tags: list[str]
+config: dict[str, Any]
+email: EmailStr
+url: AnyHttpUrl</code></pre>
+                </div>
+
+                <div>
+                    <h3>Validators & Defaults</h3>
+                    <pre><code>from pydantic import field_validator, Field
+
+price: float = Field(gt=0, description="Must be positive")
+
+@field_validator("name")
+@classmethod
+def name_not_empty(cls, v: str):
+    if not v.strip():
+        raise ValueError("Name cannot be empty")
+    return v.title()</code></pre>
+                </div>
+            </div>
+
+            <h2>Database (SQLModel)</h2>
+            <div class="cheat-card">
+                <h3>Model & Session Dependency</h3>
+                <pre><code>from sqlmodel import SQLModel, Field, Session, create_engine
+from typing import Annotated
+from fastapi import Depends
+
+class Hero(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    name: str
+    secret_name: str
+
+engine = create_engine("sqlite:///database.db")
+
+def get_session() -> Session:
+    with Session(engine) as session:
+        yield session
+
+SessionDep = Annotated[Session, Depends(get_session)]</code></pre>
+            </div>
+
+            <h2>Common CLI & Deployment</h2>
+            <div class="cheat-card grid-2">
+                <div>
+                    <h3>uv / pipx / Poetry</h3>
+                    <pre><code># New project
+uv init myproject
+cd myproject
+uv add fastapi "uvicorn[standard]" sqlmodel
+
+# Run dev server
+uv run uvicorn main:app --reload
+
+# Production
+uvicorn main:app --host 0.0.0.0 --port $PORT</code></pre>
+                </div>
+
+                <div>
+                    <h3>Docker (minimal)</h3>
+                    <pre><code>FROM python:3.11-slim
+WORKDIR /app
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+COPY pyproject.toml uv.lock* ./
+RUN uv sync --frozen --no-install-project
+COPY . .
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</code></pre>
+                </div>
+            </div>
+
+            <h2>Quick Reminders</h2>
+            <div class="cheat-card">
+                <ul>
+                    <li><code>response_model_exclude_unset=True</code> → clean responses</li>
+                    <li><code>status_code=201</code> for resource creation</li>
+                    <li><code>raise HTTPException(404, "Not found")</code></li>
+                    <li><code>BackgroundTasks</code> for fire-and-forget tasks</li>
+                    <li><code>Depends()</code> → dependency injection</li>
+                    <li>Common: <code>Annotated[Type, Query() / Body() / Header()]</code></li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 Glenn Junsay Pansensoy • <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/">Poetic Bytes</a></p>
+        </footer>
+    </div>
+</body>
+</html>
