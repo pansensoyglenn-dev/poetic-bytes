@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Poetic Bytes – Python Web Development Guides & References</title>
+    <meta name="description" content="Technical documentation, setup guides, architecture overviews, and best practices for Python web projects hosted on Poetic Bytes. Explore code structure, APIs, deployment workflows, and more.">
+    <meta name="keywords" content="python documentation, web development guides, flask documentation, fastapi reference, python best practices, api docs, deployment guide, poetic bytes">
+    <meta name="author" content="Glenn Junsay Pansensoy">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/documentation.html">
+
+    <meta property="og:title" content="Documentation | Poetic Bytes – Python Web Development">
+    <meta property="og:description" content="In-depth technical documentation and guides for elegant, maintainable Python web applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/documentation.html">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/assets/og-docs.jpg">
+    <meta property="og:site_name" content="Poetic Bytes">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Documentation | Poetic Bytes – Python Web Development">
+    <meta name="twitter:description" content="Detailed references and guides to support clean, performant Python web solutions.">
+
+    <style>
+        :root {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #252525;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --accent-blue: #5a9cff;
+            --accent-blue-hover: #7ab0ff;
+            --purple-gray: #7f6df2;
+            --border: #363636;
+            --card-bg: #2a2a2a;
+            --code-bg: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 0.6rem + 0.5vw, 1rem);
+        }
+
+        .container {
+            max-width: 92%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: clamp(1.1rem, 1rem + 0.8vw, 1.4rem);
+            color: var(--accent-blue);
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.04em;
+        }
+
+        h2, h3 {
+            font-size: clamp(0.95rem, 0.8rem + 0.4vw, 1.1rem);
+            color: var(--purple-gray);
+            margin: 2rem 0 0.8rem;
+        }
+
+        p, li {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: clamp(0.85rem, 0.6rem + 0.5vw, 1rem);
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--accent-blue-hover);
+            text-decoration: underline;
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.4rem;
+            margin: 1.6rem 0;
+        }
+
+        pre, code {
+            background-color: var(--code-bg);
+            border-radius: 6px;
+            padding: 0.8rem;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: clamp(0.8rem, 0.7rem + 0.4vw, 0.95rem);
+            overflow-x: auto;
+        }
+
+        code {
+            padding: 0.2rem 0.4rem;
+        }
+
+        ul, ol {
+            margin-left: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: clamp(0.75rem, 0.55rem + 0.3vw, 0.85rem);
+        }
+
+        @media (min-width: 481px) {
+            .container { max-width: 90%; padding: 0 1.5rem; }
+        }
+
+        @media (min-width: 768px) {
+            .container { max-width: 960px; padding: 0 2rem; }
+            .section-card { padding: 1.8rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .container { max-width: 1100px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poetic Bytes</h1>
+            <p>Technical Documentation • Guides & References</p>
+        </header>
+
+        <main>
+            <h2>Overview</h2>
+            <p>This section collects technical documentation for projects and tools developed under Poetic Bytes. Emphasis is placed on clarity, reproducibility, and maintainable architecture in Python web development.</p>
+
+            <div class="section-card">
+                <h3>Project Setup & Environment</h3>
+                <p>Recommended environment configuration for consistent development and deployment.</p>
+                <ul>
+                    <li>Python ≥ 3.10</li>
+                    <li>Virtual environments via <code>venv</code> or <code>poetry</code></li>
+                    <li>Dependency management: <code>requirements.txt</code> or <code>pyproject.toml</code></li>
+                </ul>
+                <pre><code># Example: Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Unix/macOS
+# or
+.venv\Scripts\activate     # Windows
+
+pip install -r requirements.txt</code></pre>
+            </div>
+
+            <div class="section-card">
+                <h3>API Design Guidelines</h3>
+                <p>Standards applied across RESTful services (FastAPI / Flask):</p>
+                <ul>
+                    <li>Use Pydantic models for request/response validation</li>
+                    <li>Implement proper HTTP status codes and error handling</li>
+                    <li>Include OpenAPI/Swagger documentation automatically</li>
+                    <li>Version APIs via URL prefix (<code>/v1/</code>)</li>
+                </ul>
+                <p>For detailed endpoint specifications, refer to individual project repositories.</p>
+            </div>
+
+            <div class="section-card">
+                <h3>Deployment Workflows</h3>
+                <p>Common deployment patterns used in Poetic Bytes projects:</p>
+                <ol>
+                    <li>Static sites → GitHub Pages (as with this portfolio)</li>
+                    <li>Flask/FastAPI apps → Render, Railway, or Fly.io</li>
+                    <li>Containerization with Docker for production consistency</li>
+                    <li>CI/CD via GitHub Actions (linting, testing, deployment)</li>
+                </ol>
+            </div>
+
+            <div class="section-card">
+                <h3>Code Style & Best Practices</h3>
+                <p>Adhered conventions for readability and maintainability:</p>
+                <ul>
+                    <li>PEP 8 / Black formatting</li>
+                    <li>Type hints everywhere feasible</li>
+                    <li>Comprehensive docstrings (Google or NumPy style)</li>
+                    <li>Modular structure: separate concerns (routes, services, models)</li>
+                </ul>
+            </div>
+
+            <h2>Additional Resources</h2>
+            <p>For project-specific documentation, consult the <code>README.md</code> and <code>/docs</code> folders in each repository on <a href="https://github.com/pansensoyglenn-dev" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+            <p>Questions or suggestions regarding these guidelines are welcome via issues or direct contact.</p>
+        </main>
+
+        <footer>
+            <p>© 2026 Glenn Pansensoy • <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/">Poetic Bytes</a></p>
+        </footer>
+    </div>
+</body>
+</html>
