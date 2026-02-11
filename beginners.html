@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Free Python tutorial for beginners with interactive examples. Learn Python programming basics, syntax, variables, functions, and control flow in a beginner-friendly environment.">
+    <meta name="keywords" content="Python tutorial, Python for beginners, learn Python, Python programming, Python basics, Python interactive tutorial">
+    <meta name="author" content="Glenn Junsay Pansensoy">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Python Tutorial for Beginners | Interactive Python Learning">
+    <meta property="og:description" content="Learn Python programming with interactive examples. Perfect for beginners starting their coding journey.">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/">
+    <meta property="og:type" content="website">
+    
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/">
+    
+    <link rel="icon" type="image/x-icon" href="https://pansensoyglenn-dev.github.io/poetic-bytes/favicon.ico">
+    
+    <title>Python Tutorial for Beginners | Learn Python Programming with Interactive Examples</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Python Tutorial for Beginners",
+      "description": "Interactive Python programming tutorial for beginners with live code examples",
+      "provider": {
+        "@type": "Person",
+        "name": "Glenn Junsay Pansensoy",
+        "email": "pansensoyglenn@gmail.com",
+        "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/"
+      },
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "Beginner programmer"
+      },
+      "teaches": ["Python programming", "Programming basics", "Coding fundamentals"]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --python-blue: #3776ab;
+            --python-light-blue: #4b8bbe;
+            --python-yellow: #ffd43b;
+            --python-dark-blue: #306998;
+            --obsidian-dark: #0a0e14;
+            --obsidian-medium: #1c2026;
+            --obsidian-light: #2d3138;
+            --code-bg: #0d1117;
+            --text-light: #e6e6e6;
+            --text-muted: #b0b0b0;
+            --accent-green: #50fa7b;
+            --accent-orange: #ffb86c;
+            --accent-purple: #bd93f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background-color: var(--obsidian-dark);
+            color: var(--text-light);
+            line-height: 1.5;
+            padding-bottom: 30px;
+            font-size: 16px;
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 12px;
+            width: 100%;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--obsidian-medium) 0%, var(--obsidian-dark) 100%);
+            padding: 12px 0;
+            border-bottom: 3px solid var(--python-blue);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--python-light-blue);
+        }
+
+        .logo i {
+            color: var(--python-yellow);
+            font-size: 1.4rem;
+        }
+
+        .tagline {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-left: 2px solid var(--python-blue);
+            padding-left: 8px;
+            line-height: 1.3;
+        }
+
+        nav {
+            background-color: var(--obsidian-light);
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 10px;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 6px;
+            justify-content: flex-start;
+            min-width: fit-content;
+            padding: 2px 0;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            background-color: rgba(55, 118, 171, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        nav a:hover, nav a:active {
+            background-color: var(--python-blue);
+            color: white;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .section {
+            background-color: var(--obsidian-medium);
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 3px solid var(--python-blue);
+            margin-bottom: 15px;
+            width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .section h2 {
+            color: var(--python-light-blue);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--obsidian-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            line-height: 1.3;
+        }
+
+        .section h2 i {
+            color: var(--python-yellow);
+            font-size: 1.2rem;
+        }
+
+        .section p {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .code-example {
+            background-color: var(--code-bg);
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            overflow-x: auto;
+            border: 1px solid var(--obsidian-light);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .code-example h3 {
+            color: var(--accent-green);
+            margin-bottom: 6px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .code-example h3 i {
+            color: var(--python-yellow);
+        }
+
+        pre {
+            margin: 0;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        code.hljs {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.85rem;
+            white-space: pre;
+        }
+
+        .sidebar {
+            background-color: var(--obsidian-medium);
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 3px solid var(--python-yellow);
+            width: 100%;
+            order: -1;
+        }
+
+        .sidebar h3 {
+            color: var(--python-yellow);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.1rem;
+        }
+
+        .topic-list {
+            list-style: none;
+        }
+
+        .topic-list li {
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            background-color: var(--obsidian-light);
+            border-radius: 5px;
+            border-left: 2px solid var(--python-blue);
+        }
+
+        .topic-list a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .topic-list i {
+            color: var(--python-yellow);
+            font-size: 0.8rem;
+        }
+
+        .interactive-example {
+            background-color: var(--code-bg);
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid var(--obsidian-light);
+            width: 100%;
+        }
+
+        .code-editor {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Consolas, monospace;
+            padding: 12px;
+            border-radius: 5px;
+            min-height: 160px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            tab-size: 2;
+            overflow-x: auto;
+            border: 1px solid #444;
+            font-size: 0.9rem;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            resize: vertical;
+        }
+
+        .code-editor:focus {
+            outline: 2px solid var(--python-blue);
+            outline-offset: 1px;
+        }
+
+        .editor-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        /* Buttons */
+        button {
+            background-color: var(--python-blue);
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: calc(50% - 4px);
+            min-height: 44px;
+            touch-action: manipulation;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:hover {
+            background-color: var(--python-light-blue);
+        }
+
+        .btn-secondary {
+            background-color: var(--obsidian-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: #3a3f4a;
+        }
+
+        .btn-success {
+            background-color: var(--accent-green);
+            color: #000;
+        }
+
+        .btn-success:hover {
+            background-color: #41d967;
+        }
+
+        .output-panel {
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            padding: 12px;
+            margin-top: 12px;
+            min-height: 80px;
+            border: 1px solid #444;
+            font-family: 'Courier New', Consolas, monospace;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            max-height: 250px;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .output-title {
+            color: var(--accent-green);
+            margin-bottom: 6px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1rem;
+        }
+
+        .tip-box {
+            background-color: rgba(80, 250, 123, 0.1);
+            border-left: 3px solid var(--accent-green);
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip-box h4 {
+            color: var(--accent-green);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1rem;
+        }
+
+        .tip-box p {
+            font-size: 0.9rem;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .concept-card {
+            background-color: var(--obsidian-light);
+            padding: 14px;
+            border-radius: 6px;
+            border-top: 3px solid var(--python-blue);
+        }
+
+        .concept-card h4 {
+            color: var(--python-light-blue);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1rem;
+        }
+
+        .concept-card i {
+            color: var(--python-yellow);
+            font-size: 0.9rem;
+        }
+
+        .concept-card p {
+            font-size: 0.85rem;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            color: var(--text-muted);
+            padding-top: 15px;
+            border-top: 1px solid var(--obsidian-light);
+            width: 100%;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .footer-links a {
+            color: var(--python-light-blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 4px 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--python-yellow);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .python-keyword {
+            color: var(--accent-purple);
+            font-weight: bold;
+        }
+
+        .python-string {
+            color: var(--accent-orange);
+        }
+
+        .python-comment {
+            color: #6a9955;
+        }
+
+        .python-function {
+            color: #dcdcaa;
+        }
+
+        /* Adjustments for larger screens */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 20px;
+                max-width: 95%;
+            }
+            
+            header {
+                padding: 15px 0;
+            }
+            
+            .logo-area {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+                padding-left: 12px;
+                border-left-width: 3px;
+            }
+            
+            nav {
+                padding: 10px;
+            }
+            
+            nav ul {
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+            
+            main {
+                flex-direction: row;
+                gap: 25px;
+            }
+            
+            .main-content {
+                flex: 2;
+            }
+            
+            .sidebar {
+                flex: 1;
+                order: 2;
+                position: sticky;
+                top: 100px;
+                align-self: flex-start;
+                max-width: 300px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .section h2 {
+                font-size: 1.4rem;
+            }
+            
+            .concept-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            button {
+                flex: none;
+                min-width: auto;
+            }
+            
+            .footer-links {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                max-width: 1200px;
+                padding: 0 30px;
+            }
+            
+            .concept-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 767px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .concept-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            button {
+                min-width: calc(33.33% - 6px);
+            }
+            
+            .footer-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .tagline {
+                font-size: 0.85rem;
+            }
+            
+            nav a {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .section {
+                padding: 14px;
+            }
+            
+            .section h2 {
+                font-size: 1.2rem;
+            }
+            
+            button {
+                padding: 10px;
+                font-size: 0.85rem;
+                min-width: calc(50% - 4px);
+            }
+            
+            .code-editor {
+                font-size: 0.85rem;
+                padding: 10px;
+                min-height: 140px;
+            }
+        }
+
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        p, li, td, th {
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a, button {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body itemscope itemtype="https://schema.org/WebPage">
+    <header>
+        <div class="container">
+            <div class="logo-area">
+                <div class="logo" itemprop="headline">
+                    <i class="fab fa-python"></i>
+                    <span>Python Beginner's Guide</span>
+                </div>
+                <div class="tagline" itemprop="description">
+                    Learn Python programming with interactive examples
+                </div>
+            </div>
+            
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="#basics"><i class="fas fa-play-circle"></i> Start</a></li>
+                    <li><a href="#syntax"><i class="fas fa-code"></i> Syntax</a></li>
+                    <li><a href="#variables"><i class="fas fa-memory"></i> Variables</a></li>
+                    <li><a href="#control"><i class="fas fa-sitemap"></i> Control</a></li>
+                    <li><a href="#functions"><i class="fas fa-cogs"></i> Functions</a></li>
+                    <li><a href="#interactive"><i class="fas fa-terminal"></i> Play</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+          
+            <aside class="sidebar">
+                <h3><i class="fas fa-bookmark"></i> Python Topics</h3>
+                <ul class="topic-list">
+                    <li><a href="#basics">Getting Started <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#syntax">Basic Syntax <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#variables">Variables & Data Types <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#operators">Operators <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#control">Control Flow <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#functions">Functions <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#lists">Lists & Tuples <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#dictionaries">Dictionaries <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="#loops">Loops <i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+                
+                <h3 style="margin-top: 20px;"><i class="fas fa-key"></i> Python Keywords</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
+                    <span style="background-color: rgba(189, 147, 249, 0.2); color: var(--accent-purple); padding: 5px 8px; border-radius: 4px; font-size: 0.8rem;">if</span>
+                    <span style="background-color: rgba(189, 147, 249, 0.2); color: var(--accent-purple); padding: 5px 8px; border-radius: 4px; font-size: 0.8rem;">else</span>
+                    <span style="background-color: rgba(189, 147, 249, 0.2); color: var(--accent-purple); padding: 5px 8px; border-radius: 4px; font-size: 0.8rem;">for</span>
+                    <span style="background-color: rgba(189, 147, 249, 0.2); color: var(--accent-purple); padding: 5px 8px; border-radius: 4px; font-size: 0.8rem;">while</span>
+                    <span style="background-color: rgba(189, 147, 249, 0.2); color: var(--accent-purple); padding: 5px 8px; border-radius: 4px; font-size: 0.8rem;">def</span>
+                    <span style="background-color: rgba(189, 147, 249, 0.2); color: var(--accent-purple); padding: 5px 8px; border-radius: 4px; font-size: 0.8rem;">class</span>
+                </div>
+                
+                <h3 style="margin-top: 20px;"><i class="fas fa-download"></i> Next Steps</h3>
+                <p style="margin-top: 8px; font-size: 0.9rem;">After learning the basics:</p>
+                <ul style="margin-top: 8px; padding-left: 16px; color: var(--text-muted); font-size: 0.85rem;">
+                    <li style="margin-bottom: 4px;">Install Python on your computer</li>
+                    <li style="margin-bottom: 4px;">Work on small projects</li>
+                    <li style="margin-bottom: 4px;">Explore Python libraries</li>
+                    <li>Join Python communities</li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Basics Section -->
+                <section id="basics" class="section" itemprop="hasPart" itemscope itemtype="https://schema.org/Course">
+                    <h2><i class="fas fa-play-circle"></i> <span itemprop="name">Getting Started with Python</span></h2>
+                    <p>Python is a high-level, interpreted programming language known for its simplicity and readability. It's perfect for beginners and used widely in web development, data science, AI, and more.</p>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-lightbulb"></i> Why Python?</h4>
+                        <p>Python has a clean syntax that looks like plain English, making it easier to learn than many other programming languages. It also has a huge community and extensive libraries.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3><i class="fas fa-code"></i> Your First Python Program</h3>
+                        <pre><code class="language-python"># This is a comment in Python
+print("Hello, World!")  # This prints text to the console
+
+# Simple arithmetic
+result = 5 + 3
+print("5 + 3 =", result)</code></pre>
+                    </div>
+                </section>
+                
+                <!-- Syntax Section -->
+                <section id="syntax" class="section" itemprop="hasPart" itemscope itemtype="https://schema.org/Course">
+                    <h2><i class="fas fa-code"></i> <span itemprop="name">Python Syntax Basics</span></h2>
+                    <p>Python uses indentation to define code blocks instead of curly braces. This makes Python code very readable.</p>
+                    
+                    <div class="code-example">
+                        <h3><i class="fas fa-indent"></i> Indentation Matters</h3>
+                        <pre><code class="language-python"># Correct indentation
+if 5 > 2:
+    print("Five is greater than two!")
+    print("This is also inside the if block")
+
+print("This is always printed")</code></pre>
+                    </div>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <h4><i class="fas fa-comment"></i> Comments</h4>
+                            <p>Use <span class="python-keyword">#</span> for single-line comments. Comments are ignored by Python.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4><i class="fas fa-quote-right"></i> Strings</h4>
+                            <p>Text can be in single <span class="python-string">'quotes'</span> or double <span class="python-string">"quotes"</span>.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4><i class="fas fa-arrow-right"></i> Variables</h4>
+                            <p>No need to declare variable types. Just assign values: <span class="python-keyword">x = 5</span></p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Variables Section -->
+                <section id="variables" class="section" itemprop="hasPart" itemscope itemtype="https://schema.org/Course">
+                    <h2><i class="fas fa-memory"></i> <span itemprop="name">Variables and Data Types</span></h2>
+                    <p>In Python, you don't need to declare variable types. Python automatically determines the type based on the value assigned.</p>
+                    
+                    <div class="code-example">
+                        <h3><i class="fas fa-database"></i> Basic Data Types</h3>
+                        <pre><code class="language-python"># Integer
+age = 25
+
+# Float (decimal number)
+price = 19.99
+
+# String (text)
+name = "Alice"
+
+# Boolean (True or False)
+is_student = True
+
+# List
+fruits = ["apple", "banana", "cherry"]
+
+# Dictionary
+person = {"name": "Bob", "age": 30}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- Control Flow Section -->
+                <section id="control" class="section" itemprop="hasPart" itemscope itemtype="https://schema.org/Course">
+                    <h2><i class="fas fa-sitemap"></i> <span itemprop="name">Control Flow</span></h2>
+                    <p>Control flow statements let you execute code conditionally or repeatedly.</p>
+                    
+                    <div class="code-example">
+                        <h3><i class="fas fa-project-diagram"></i> If-Else Statements</h3>
+                        <pre><code class="language-python"># If statement
+temperature = 25
+
+if temperature > 30:
+    print("It's hot outside!")
+elif temperature > 20:
+    print("It's warm outside.")
+else:
+    print("It's cool outside.")</code></pre>
+                    </div>
+                </section>
+                
+                <!-- Functions Section -->
+                <section id="functions" class="section" itemprop="hasPart" itemscope itemtype="https://schema.org/Course">
+                    <h2><i class="fas fa-cogs"></i> <span itemprop="name">Functions</span></h2>
+                    <p>Functions are reusable blocks of code that perform a specific task. They help organize code and avoid repetition.</p>
+                    
+                    <div class="code-example">
+                        <h3><i class="fas fa-cube"></i> Defining and Calling Functions</h3>
+                        <pre><code class="language-python"># Define a function
+def greet(name):
+    """This function greets a person"""
+    return f"Hello, {name}!"
+
+# Call the function
+message = greet("Alice")
+print(message)  # Output: Hello, Alice!</code></pre>
+                    </div>
+                </section>
+                
+                <!-- Interactive Section -->
+                <section id="interactive" class="section">
+                    <h2><i class="fas fa-terminal"></i> Interactive Python Playground</h2>
+                    <p>Try writing and running Python code right here in your browser! This is a safe environment to experiment with Python.</p>
+                    
+                    <div class="interactive-example">
+                        <h3><i class="fas fa-edit"></i> Python Code Editor</h3>
+                        <div class="code-editor" id="python-editor" contenteditable="true" spellcheck="false"># Write your Python code here
+print("Welcome to Python Playground!")
+
+# Calculate area of a circle
+radius = 5
+area = 3.14159 * radius ** 2
+print(f"Area of circle: {area:.2f}")
+
+# List operations
+numbers = [1, 2, 3, 4, 5]
+print(f"Numbers: {numbers}")</div>
+                        
+                        <div class="editor-controls">
+                            <button id="run-btn" class="btn-success"><i class="fas fa-play"></i> Run</button>
+                            <button id="clear-btn" class="btn-secondary"><i class="fas fa-broom"></i> Clear</button>
+                            <button id="example1-btn" class="btn-secondary"><i class="fas fa-code"></i> Example 1</button>
+                            <button id="example2-btn" class="btn-secondary"><i class="fas fa-code"></i> Example 2</button>
+                        </div>
+                        
+                        <div class="output-title"><i class="fas fa-terminal"></i> Output:</div>
+                        <div class="output-panel" id="python-output">
+                            Output will appear here after running code.
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Python Tutorial for Beginners | Created by <span itemprop="author">Glenn Junsay Pansensoy</span></p>
+            <div class="footer-links">
+                <a href="https://www.python.org/" target="_blank" rel="noopener">Python.org</a>
+                <a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">Docs</a>
+                <a href="https://www.w3schools.com/python/" target="_blank" rel="noopener">W3Schools</a>
+                <a href="mailto:pansensoyglenn@gmail.com" itemprop="email">Contact</a>
+            </div>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <i class="fab fa-python" style="color: var(--python-blue);"></i> 
+                Educational Python tutorial with browser-based code execution.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Interactive code execution functionality
+            document.getElementById('run-btn').addEventListener('click', runPythonCode);
+            
+            document.getElementById('clear-btn').addEventListener('click', function() {
+                document.getElementById('python-output').textContent = 'Output cleared.';
+            });
+            
+            document.getElementById('example1-btn').addEventListener('click', function() {
+                document.getElementById('python-editor').textContent = `# Basic calculations
+a = 15
+b = 4
+
+print(f"a = {a}, b = {b}")
+print(f"a + b = {a + b}")
+print(f"a - b = {a - b}")
+print(f"a * b = {a * b}")
+print(f"a / b = {a / b}")
+
+# Working with strings
+name = "John Doe"
+print(f"Name: {name}")
+print(f"Uppercase: {name.upper()}")
+print(f"Length: {len(name)}")`;
+                highlightCode();
+            });
+            
+            document.getElementById('example2-btn').addEventListener('click', function() {
+                document.getElementById('python-editor').textContent = `# Control flow example
+numbers = [1, 2, 3, 4, 5, 6]
+
+print("Even/Odd Check:")
+for num in numbers:
+    if num % 2 == 0:
+        print(f"  {num} is even")
+    else:
+        print(f"  {num} is odd")
+
+# List operations
+fruits = ["apple", "banana", "orange"]
+print(f"\\nOriginal: {fruits}")
+
+fruits.append("grape")
+print(f"After append: {fruits}")
+
+fruits.sort()
+print(f"Sorted: {fruits}")`;
+                highlightCode();
+            });
+            
+          
+            document.querySelectorAll('nav a, .topic-list a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 70,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            function highlightCode() {
+                const editor = document.getElementById('python-editor');
+                const code = editor.textContent;
+                editor.innerHTML = code;
+            }
+            
+            highlightCode();
+        });
+        
+      
+        function runPythonCode() {
+            const editor = document.getElementById('python-editor');
+            const outputPanel = document.getElementById('python-output');
+            
+            
+            let code = editor.textContent;
+            
+          
+            outputPanel.textContent = '';
+            
+            try {
+                
+                const originalLog = console.log;
+                let output = '';
+                
+                console.log = function(...args) {
+                    output += args.join(' ') + '\n';
+                    originalLog.apply(console, args);
+                };
+                
+                const safeEval = new Function(`
+                    "use strict";
+                    ${convertPythonToJS(code)}
+                `);
+                
+                safeEval();
+                
+                console.log = originalLog;
+                outputPanel.textContent = output || 'Code executed successfully (no output).';
+                outputPanel.style.color = '#e6e6e6';
+            } catch (error) {
+                // Display error
+                outputPanel.textContent = `Error: ${error.message}`;
+                outputPanel.style.color = '#ff6b6b';
+            }
+        }
+        
+    
+        function convertPythonToJS(pythonCode) {
+            let jsCode = pythonCode;
+            
+            
+            jsCode = jsCode.replace(/print\s*\((.*)\)/g, function(match, content) {
+                
+                if (content.includes('f"') || content.includes("f'")) {
+                  
+                    content = content.replace(/f(['"])(.*?)\1/g, function(match, quote, str) {
+                        return '`' + str.replace(/\{([^}]+)\}/g, '${$1}') + '`';
+                    });
+                }
+                return `console.log(${content})`;
+            });
+            
+            
+            jsCode = jsCode.replace(/#(.*)/g, '// $1');
+            
+            jsCode = jsCode.replace(/(\w+)\s*\*\*\s*(\w+)/g, 'Math.pow($1, $2)');
+            
+            jsCode = jsCode.replace(/(\w+)\s*\/\/\s*(\w+)/g, 'Math.floor($1 / $2)');
+            
+            jsCode = jsCode.replace(/elif/g, 'else if');
+            
+            jsCode = jsCode.replace(/def\s+(\w+)\s*\((.*?)\)\s*:/g, 'function $1($2) {');
+            
+            const openingBraces = (jsCode.match(/{/g) || []).length;
+            const closingBraces = (jsCode.match(/}/g) || []).length;
+            
+            if (openingBraces > closingBraces) {
+                jsCode += '}'.repeat(openingBraces - closingBraces);
+            }
+            
+            jsCode = jsCode.replace(/for\s+(\w+)\s+in\s+range\s*\((\d+)\)\s*:/g, 'for (let $1 = 0; $1 < $2; $1++) {');
+            jsCode = jsCode.replace(/for\s+(\w+)\s+in\s+(\w+)\s*:/g, 'for (let $1 of $2) {');
+            
+            jsCode = jsCode.replace(/while\s+(.*?)\s*:/g, 'while ($1) {');
+            
+            jsCode = jsCode.replace(/if\s+(.*?)\s*:/g, 'if ($1) {');
+            jsCode = jsCode.replace(/else\s*:/g, 'else {');
+            
+            return jsCode;
+        }
+    </script>
+</body>
+</html>
