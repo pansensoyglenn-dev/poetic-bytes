@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete AI and Machine Learning tutorial with Python examples. Learn data preprocessing, model training, evaluation, and deployment.">
+    <meta name="keywords" content="AI, Machine Learning, Python, ML tutorial, artificial intelligence, Python ML, data science">
+    <meta name="author" content="Glenn Junsay Pansensoy">
+    
+    <meta property="og:title" content="AI & ML Python Tutorial - Poetic Bytes">
+    <meta property="og:description" content="Learn Artificial Intelligence and Machine Learning with Python through practical examples and projects.">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/ai-ml-tutorial">
+    
+    <title>AI & ML Python Tutorial - Poetic Bytes</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #0c0c14;
+            background-image: linear-gradient(to bottom, #0c0c14 0%, #121225 100%);
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+    
+        header {
+            background-color: rgba(10, 10, 20, 0.95);
+            padding: 15px 0;
+            border-bottom: 2px solid #1a5fb4;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #62a0ea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: #99c1f1;
+        }
+        
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            justify-content: space-between;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+        
+        .hamburger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #62a0ea;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-menu.active span:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+        
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active span:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+        
+        nav {
+            display: flex;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            color: #99c1f1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        nav a:hover {
+            color: #62a0ea;
+            background-color: rgba(98, 160, 234, 0.1);
+        }
+        
+        nav a.active {
+            color: #62a0ea;
+            background-color: rgba(98, 160, 234, 0.15);
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 20, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid #1a5fb4;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .mobile-nav.active {
+            display: block;
+            max-height: 500px;
+        }
+        
+        .mobile-nav ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-nav a {
+            color: #99c1f1;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 12px 15px;
+            display: block;
+            border-radius: 6px;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: #62a0ea;
+            background-color: rgba(98, 160, 234, 0.1);
+            border-left-color: #1a5fb4;
+        }
+        
+        main {
+            padding: 40px 0;
+        }
+        
+        h1 {
+            font-size: 1rem;
+            color: #62a0ea;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 4px solid #1a5fb4;
+            padding-left: 15px;
+        }
+        
+        h2 {
+            font-size: 0.8rem;
+            color: #99c1f1;
+            margin: 30px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(98, 160, 234, 0.3);
+        }
+        
+        p {
+            font-size: 0.6rem;
+            margin-bottom: 15px;
+            color: #c0c0c0;
+        }
+        
+        .intro {
+            background: rgba(20, 25, 40, 0.7);
+            border-left: 4px solid #1a5fb4;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .content-section {
+            background: rgba(15, 20, 35, 0.7);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(98, 160, 234, 0.1);
+        }
+        
+        .code-block {
+            background-color: #0a0a16;
+            border: 1px solid #1a5fb4;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(98, 160, 234, 0.2);
+        }
+        
+        .code-title {
+            font-size: 0.7rem;
+            color: #99c1f1;
+            font-weight: bold;
+        }
+        
+        .copy-btn {
+            background-color: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.6rem;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #62a0ea;
+        }
+        
+        pre {
+            font-size: 0.6rem;
+            line-height: 1.4;
+            color: #e0e0e0;
+        }
+        
+        .keyword {
+            color: #ff79c6; /* Pink for keywords */
+        }
+        
+        .function {
+            color: #50fa7b; /* Green for functions */
+        }
+        
+        .string {
+            color: #f1fa8c; /* Yellow for strings */
+        }
+        
+        .comment {
+            color: #6272a4; /* Gray-blue for comments */
+        }
+        
+        .class-name {
+            color: #8be9fd; /* Cyan for class names */
+        }
+        
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.6rem;
+        }
+        
+        th {
+            background-color: rgba(26, 95, 180, 0.3);
+            color: #99c1f1;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgba(98, 160, 234, 0.2);
+        }
+        
+        td {
+            padding: 10px;
+            border: 1px solid rgba(98, 160, 234, 0.1);
+            color: #c0c0c0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(20, 25, 40, 0.3);
+        }
+        
+        /* Sidebar styles */
+        .sidebar {
+            background: rgba(15, 20, 35, 0.7);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(98, 160, 234, 0.1);
+        }
+        
+        .sidebar h3 {
+            font-size: 0.8rem;
+            color: #62a0ea;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(98, 160, 234, 0.3);
+            padding-bottom: 8px;
+        }
+        
+        .sidebar ul {
+            list-style-type: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar a {
+            color: #99c1f1;
+            text-decoration: none;
+            font-size: 0.6rem;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px 0;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+        
+        .sidebar a:hover {
+            color: #62a0ea;
+            border-left-color: #1a5fb4;
+        }
+        
+        /* Footer styles */
+        footer {
+            background-color: rgba(10, 10, 20, 0.9);
+            padding: 30px 0;
+            border-top: 2px solid #1a5fb4;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 0.8rem;
+            color: #62a0ea;
+            margin-bottom: 15px;
+        }
+        
+        .footer-section p, .footer-section a {
+            font-size: 0.6rem;
+            color: #c0c0c0;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: #62a0ea;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(98, 160, 234, 0.2);
+            font-size: 0.6rem;
+            color: #999;
+        }
+        
+        .note {
+            background-color: rgba(26, 95, 180, 0.1);
+            border-left: 4px solid #1a5fb4;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .note p {
+            color: #99c1f1;
+            margin: 0;
+        }
+        
+        .step {
+            counter-increment: step-counter;
+            margin-bottom: 25px;
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .step:before {
+            content: counter(step-counter);
+            background-color: #1a5fb4;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.6rem;
+        }
+        
+        .highlight {
+            background-color: rgba(26, 95, 180, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #99c1f1;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1a5fb4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.6rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #62a0ea;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .hamburger-menu {
+                display: flex;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .header-content {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .content-section, .sidebar {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+            
+            .code-block {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            h1 {
+                font-size: 0.9rem;
+            }
+            
+            h2 {
+                font-size: 0.75rem;
+            }
+            
+            p, .sidebar a, .footer-section p, .footer-section a, .copyright {
+                font-size: 0.55rem;
+            }
+            
+            .code-title, .copy-btn, pre, th, td {
+                font-size: 0.55rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/" class="logo">Poetic Bytes</a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#intro" class="active">Intro to AI/ML</a></li>
+                    <li><a href="#python-basics">Python Basics</a></li>
+                    <li><a href="#data-preprocessing">Data Preprocessing</a></li>
+                    <li><a href="#models">ML Models</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="#intro" class="active">Intro to AI/ML</a></li>
+                <li><a href="#python-basics">Python Basics</a></li>
+                <li><a href="#data-preprocessing">Data Preprocessing</a></li>
+                <li><a href="#models">ML Models</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+                <li><a href="#contact">Contact & Resources</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <div class="container">
+        <main>
+            <h1>Complete AI & Machine Learning Tutorial with Python</h1>
+            
+            <div class="intro">
+                <p>Welcome to this comprehensive tutorial on Artificial Intelligence and Machine Learning with Python. This guide will take you from the basics to implementing practical ML models. We'll cover essential concepts, Python libraries, and hands-on examples to get you started in the field of AI.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 id="intro">Introduction to AI and Machine Learning</h2>
+                <p>Artificial Intelligence (AI) is the broader concept of machines being able to carry out tasks in a way that we would consider "smart". Machine Learning (ML) is a subset of AI that enables machines to learn from data without being explicitly programmed.</p>
+                
+                <p>Machine Learning can be categorized into three main types:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Supervised Learning</td>
+                            <td>Models learn from labeled training data</td>
+                            <td>Classification, Regression</td>
+                        </tr>
+                        <tr>
+                            <td>Unsupervised Learning</td>
+                            <td>Models find patterns in unlabeled data</td>
+                            <td>Clustering, Dimensionality Reduction</td>
+                        </tr>
+                        <tr>
+                            <td>Reinforcement Learning</td>
+                            <td>Models learn through trial and error with rewards</td>
+                            <td>Game AI, Robotics</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="note">
+                    <p><strong>Note:</strong> This tutorial focuses on practical implementation using Python, the most popular language for AI/ML development.</p>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 id="python-basics">Python Basics for AI/ML</h2>
+                <p>Python is the preferred language for AI and ML due to its simplicity and rich ecosystem of libraries. Let's start with installing essential libraries:</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-title">Installing Python ML Libraries</div>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre><code><span class="comment"># Install essential ML libraries using pip</span>
+<span class="keyword">pip install</span> numpy pandas matplotlib scikit-learn tensorflow keras</code></pre>
+                </div>
+                
+                <p>Now let's look at a simple Python example for data manipulation with NumPy and Pandas:</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-title">Python Data Manipulation Example</div>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+
+<span class="comment"># Create a simple dataset</span>
+data = {
+    <span class="string">'Age'</span>: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70],
+    <span class="string">'Income'</span>: [40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000],
+    <span class="string">'Purchased'</span>: [0, 0, 0, 0, 1, 1, 1, 1, 1, 1]  <span class="comment"># 0 = No, 1 = Yes</span>
+}
+
+<span class="comment"># Create a pandas DataFrame</span>
+df = pd.DataFrame(data)
+<span class="function">print</span>(<span class="string">"Dataset:"</span>)
+<span class="function">print</span>(df)
+<span class="function">print</span>(<span class="string">"\nDataset Info:"</span>)
+<span class="function">print</span>(df.info())
+<span class="function">print</span>(<span class="string">"\nStatistical Summary:"</span>)
+<span class="function">print</span>(df.describe())</code></pre>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 id="data-preprocessing">Data Preprocessing for ML</h2>
+                <p>Data preprocessing is a crucial step in any ML pipeline. It involves cleaning and transforming raw data into a format that ML algorithms can work with effectively.</p>
+                
+                <div class="step">
+                    <p><strong>Step 1:</strong> Handling Missing Values</p>
+                </div>
+                
+                <div class="step">
+                    <p><strong>Step 2:</strong> Encoding Categorical Data</p>
+                </div>
+                
+                <div class="step">
+                    <p><strong>Step 3:</strong> Feature Scaling</p>
+                </div>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-title">Data Preprocessing Example</div>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <pre><code><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder, StandardScaler
+<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+<span class="keyword">from</span> sklearn.impute <span class="keyword">import</span> SimpleImputer
+
+<span class="comment"># Sample dataset with missing values and categorical data</span>
+data = {
+    <span class="string">'Age'</span>: [25, 30, np.nan, 40, 45, 50, 55, 60, 65, 70],
+    <span class="string">'Salary'</span>: [40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000],
+    <span class="string">'Country'</span>: [<span class="string">'USA'</span>, <span class="string">'UK'</span>, <span class="string">'USA'</span>, <span class="string">'Germany'</span>, <span class="string">'UK'</span>, <span class="string">'Germany'</span>, <span class="string">'USA'</span>, <span class="string">'UK'</span>, <span class="string">'Germany'</span>, <span class="string">'USA'</span>],
+    <span class="string">'Purchased'</span>: [<span class="string">'No'</span>, <span class="string">'No'</span>, <span class="string">'Yes'</span>, <span class="string">'No'</span>, <span class="string">'Yes'</span>, <span class="string">'Yes'</span>, <span class="string">'No'</span>, <span class="string">'Yes'</span>, <span class="string">'Yes'</span>, <span class="string">'Yes'</span>]
+}
+
+df = pd.DataFrame(data)
+
+<span class="comment"># 1. Handle missing values</span>
+imputer = SimpleImputer(strategy=<span class="string">'mean'</span>)
+df[[<span class="string">'Age'</span>]] = imputer.fit_transform(df[[<span class="string">'Age'</span>]])
+
+<span class="comment"># 2. Encode categorical data</span>
+label_encoder = LabelEncoder()
+df[<span class="string">'Purchased'</span>] = label_encoder.fit_transform(df[<span class="string">'Purchased'</span>])
+
+<span class="comment"># One-hot encoding for Country column</span>
+df = pd.get_dummies(df, columns=[<span class="string">'Country'</span>], prefix=<span class="string">'Country'</span>)
+
+<span class="comment"># 3. Feature scaling</span>
+scaler = StandardScaler()
+df[[<span class="string">'Age'</span>, <span class="string">'Salary'</span>]] = scaler.fit_transform(df[[<span class="string">'Age'</span>, <span class="string">'Salary'</span>]])
+
+<span class="function">print</span>(<span class="string">"Processed Dataset:"</span>)
+<span class="function">print</span>(df.head())</code></pre>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 id="models">Implementing Machine Learning Models</h2>
+                <p>Now let's implement some common ML models. We'll start with a simple linear regression model and then move to a classification model.</p>
+                
+                <h3>1. Linear Regression</h3>
+                <p>Linear regression is used for predicting continuous values based on the linear relationship between features and target variable.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-title">Linear Regression Example</div>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+<pre><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression
+<span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error, r2_score
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+
+<span class="comment"># Generate sample data</span>
+np.random.seed(42)
+X = np.random.rand(100, 1) * 10  <span class="comment"># Feature</span>
+y = 2.5 * X + np.random.randn(100, 1) * 2  <span class="comment"># Target with noise</span>
+
+<span class="comment"># Create and train the model</span>
+model = LinearRegression()
+model.fit(X, y)
+
+<span class="comment"># Make predictions</span>
+y_pred = model.predict(X)
+
+<span class="comment"># Evaluate the model</span>
+mse = mean_squared_error(y, y_pred)
+r2 = r2_score(y, y_pred)
+
+<span class="function">print</span>(<span class="string">f"Linear Regression Results:"</span>)
+<span class="function">print</span>(<span class="string">f"Slope (Coefficient): {model.coef_[0][0]:.4f}"</span>)
+<span class="function">print</span>(<span class="string">f"Intercept: {model.intercept_[0]:.4f}"</span>)
+<span class="function">print</span>(<span class="string">f"Mean Squared Error: {mse:.4f}"</span>)
+<span class="function">print</span>(<span class="string">f"R-squared Score: {r2:.4f}"</span>)
+
+<span class="comment"># Visualize the results</span>
+plt.figure(figsize=(8, 6))
+plt.scatter(X, y, color='blue', alpha=0.6, label='Actual Data')
+plt.plot(X, y_pred, color='red', linewidth=2, label='Regression Line')
+plt.xlabel('X (Feature)')
+plt.ylabel('y (Target)')
+plt.title('Linear Regression Example')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()</code></pre>
+                </div>
+                
+                <h3>2. Classification with Random Forest</h3>
+                <p>Random Forest is an ensemble learning method that can be used for both classification and regression tasks.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-title">Random Forest Classifier Example</div>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+<pre><code><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier
+<span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris
+<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+<span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> classification_report, confusion_matrix, accuracy_score
+<span class="keyword">import</span> seaborn <span class="keyword">as</span> sns
+
+<span class="comment"># Load the Iris dataset</span>
+iris = load_iris()
+X = iris.data
+y = iris.target
+feature_names = iris.feature_names
+target_names = iris.target_names
+
+<span class="comment"># Split the data</span>
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+<span class="comment"># Create and train the Random Forest classifier</span>
+rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_classifier.fit(X_train, y_train)
+
+<span class="comment"># Make predictions</span>
+y_pred = rf_classifier.predict(X_test)
+
+<span class="comment"># Evaluate the model</span>
+accuracy = accuracy_score(y_test, y_pred)
+<span class="function">print</span>(<span class="string">f"Random Forest Classifier Results:"</span>)
+<span class="function">print</span>(<span class="string">f"Accuracy: {accuracy:.4f}"</span>)
+<span class="function">print</span>(<span class="string">"\nClassification Report:"</span>)
+<span class="function">print</span>(classification_report(y_test, y_pred, target_names=target_names))
+
+<span class="comment"># Feature importance</span>
+<span class="function">print</span>(<span class="string">"\nFeature Importance:"</span>)
+<span class="keyword">for</span> name, importance <span class="keyword">in</span> zip(feature_names, rf_classifier.feature_importances_):
+    <span class="function">print</span>(<span class="string">f"{name}: {importance:.4f}"</span>)</code></pre>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <h3>Quick Navigation</h3>
+                <ul>
+                    <li><a href="#intro">Introduction to AI/ML</a></li>
+                    <li><a href="#python-basics">Python Basics</a></li>
+                    <li><a href="#data-preprocessing">Data Preprocessing</a></li>
+                    <li><a href="#models">ML Models</a></li>
+                    <li><a href="#next-steps">Next Steps</a></li>
+                    <li><a href="#contact">Contact & Resources</a></li>
+                </ul>
+                
+                <h3>Popular ML Libraries</h3>
+                <ul>
+                    <li><span class="highlight">NumPy</span> - Numerical computing</li>
+                    <li><span class="highlight">Pandas</span> - Data manipulation</li>
+                    <li><span class="highlight">Scikit-learn</span> - ML algorithms</li>
+                    <li><span class="highlight">TensorFlow</span> - Deep learning</li>
+                    <li><span class="highlight">PyTorch</span> - Deep learning</li>
+                    <li><span class="highlight">Matplotlib</span> - Data visualization</li>
+                </ul>
+                
+                <h3>Next Topics to Explore</h3>
+                <ul>
+                    <li>Neural Networks & Deep Learning</li>
+                    <li>Natural Language Processing (NLP)</li>
+                    <li>Computer Vision with OpenCV</li>
+                    <li>Model Deployment with Flask</li>
+                    <li>MLOps Practices</li>
+                </ul>
+            </aside>
+            
+            <div class="content-section">
+                <h2 id="next-steps">Next Steps in Your AI/ML Journey</h2>
+                <p>Now that you've learned the basics, here are some recommended next steps:</p>
+                
+                <ol style="padding-left: 20px; font-size: 0.6rem; color: #c0c0c0;">
+                    <li style="margin-bottom: 10px;">Practice with real-world datasets from Kaggle or UCI Machine Learning Repository</li>
+                    <li style="margin-bottom: 10px;">Explore deep learning with TensorFlow or PyTorch</li>
+                    <li style="margin-bottom: 10px;">Learn about model evaluation metrics in depth</li>
+                    <li style="margin-bottom: 10px;">Study feature engineering techniques</li>
+                    <li style="margin-bottom: 10px;">Experiment with different ML algorithms</li>
+                    <li style="margin-bottom: 10px;">Learn to deploy ML models as web services</li>
+                </ol>
+                
+                <div class="note">
+                    <p><strong>Pro Tip:</strong> The key to mastering AI/ML is consistent practice. Try to implement at least one ML model per week with different datasets to build your skills.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Poetic Bytes</h3>
+                    <p>Your journey into AI, Machine Learning, and creative coding starts here. Explore tutorials, projects, and insights at the intersection of technology and creativity.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 id="contact">Contact Information</h3>
+                    <p>Email: <a href="mailto:pansensoyglenn@gmail.com">pansensoyglenn@gmail.com</a></p>
+                    <p>Website: <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/">https://pansensoyglenn-dev.github.io/poetic-bytes/</a></p>
+                    <p>GitHub: <a href="https://github.com/pansensoyglenn-dev">pansensoyglenn-dev</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Additional Resources</h3>
+                    <a href="https://scikit-learn.org/">Scikit-learn Documentation</a>
+                    <a href="https://www.tensorflow.org/">TensorFlow Documentation</a>
+                    <a href="https://pandas.pydata.org/">Pandas Documentation</a>
+                    <a href="https://www.kaggle.com/">Kaggle for Datasets</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Poetic Bytes. All rights reserved. Created by Glenn Pansensoy.</p>
+                <p>This tutorial is for educational purposes. Feel free to use and share the code with attribution.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Hamburger Menu Functionality
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        const desktopNavLinks = document.querySelectorAll('.desktop-nav a');
+        
+        // Toggle mobile navigation
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            
+            // Toggle aria-expanded attribute for accessibility
+            const isExpanded = hamburgerMenu.getAttribute('aria-expanded') === 'true';
+            hamburgerMenu.setAttribute('aria-expanded', !isExpanded);
+        });
+        
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                hamburgerMenu.setAttribute('aria-expanded', 'false');
+                
+                // Update active link
+                updateActiveLink(link.getAttribute('href'));
+            });
+        });
+        
+        // Update active link for desktop navigation
+        desktopNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                updateActiveLink(targetId);
+                
+                // Smooth scroll to section
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active link function
+        function updateActiveLink(targetId) {
+            // Update desktop nav links
+            desktopNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === targetId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Update mobile nav links
+            mobileNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === targetId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const isClickInsideNav = mobileNav.contains(e.target) || hamburgerMenu.contains(e.target);
+            
+            if (!isClickInsideNav && mobileNav.classList.contains('active')) {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                hamburgerMenu.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Function to copy code to clipboard
+        function copyCode(button) {
+            const codeBlock = button.parentElement.nextElementSibling;
+            const textToCopy = codeBlock.innerText;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Visual feedback
+                const originalText = button.innerText;
+                button.innerText = "Copied!";
+                button.style.backgroundColor = "#50fa7b";
+                button.style.color = "#000";
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.backgroundColor = "#1a5fb4";
+                    button.style.color = "#fff";
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                button.innerText = "Error!";
+                button.style.backgroundColor = "#ff5555";
+                
+                setTimeout(() => {
+                    button.innerText = "Copy Code";
+                    button.style.backgroundColor = "#1a5fb4";
+                }, 2000);
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.content-section, .intro');
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    updateActiveLink(`#${sectionId}`);
+                }
+            });
+        });
+        
+        // Syntax highlighting for code blocks (simple version)
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('pre code');
+            
+            codeBlocks.forEach(block => {
+                let code = block.innerHTML;
+                
+                // Simple keyword highlighting
+                const keywords = ['import', 'from', 'as', 'def', 'class', 'return', 'if', 'else', 'elif', 'for', 'in', 'while', 'try', 'except', 'with', 'as', 'and', 'or', 'not', 'True', 'False', 'None'];
+                const functions = ['print', 'len', 'range', 'str', 'int', 'float', 'list', 'dict', 'set', 'tuple'];
+                
+                keywords.forEach(keyword => {
+                    const regex = new RegExp(`\\b${keyword}\\b`, 'g');
+                    code = code.replace(regex, `<span class="keyword">${keyword}</span>`);
+                });
+                
+                functions.forEach(func => {
+                    const regex = new RegExp(`\\b${func}\\(`, 'g');
+                    code = code.replace(regex, `<span class="function">${func}</span>(`);
+                });
+                
+                // String highlighting
+                code = code.replace(/(['"])(.*?)\1/g, '<span class="string">$1$2$1</span>');
+                
+                // Comment highlighting
+                code = code.replace(/(#.*)/g, '<span class="comment">$1</span>');
+                
+                // Class name highlighting
+                code = code.replace(/(class\s+)(\w+)/g, '$1<span class="class-name">$2</span>');
+                
+                block.innerHTML = code;
+            });
+            
+            // Set initial active link
+            updateActiveLink('#intro');
+        });
+    </script>
+</body>
+</html>
