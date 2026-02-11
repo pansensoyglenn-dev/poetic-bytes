@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poetic Bytes | Python Development & Creative Coding</title>
+    <meta name="description" content="Explore the intersection of Python programming, creative coding, and poetic expression. Tutorials, projects, and insights from a Python developer.">
+    <meta name="keywords" content="Python, web development, programming, creative coding, poetry, algorithms, coding tutorials">
+    <meta name="author" content="Glenn Junsay Pansensoy">
+    
+    <meta property="og:title" content="Poetic Bytes | Python Development & Creative Coding">
+    <meta property="og:description" content="Explore the intersection of Python programming, creative coding, and poetic expression.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/images/poetic-bytes-og.jpg">
+    
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/">
+    
+    <link rel="icon" type="image/x-icon" href="https://pansensoyglenn-dev.github.io/poetic-bytes/favicon.ico">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+      
+            --python-blue: #306998;
+            --python-light-blue: #4B8BBE;
+            --python-yellow: #FFD43B;
+            --obsidian-dark: #0A0A0F;
+            --obsidian-darker: #050507;
+            --obsidian-light: #1A1A24;
+            --obsidian-lighter: #2A2A35;
+            --text-primary: #E8E8F2;
+            --text-secondary: #B0B0C0;
+            --text-accent: #FFD43B;
+            
+            
+            --font-title: 1rem;
+            --font-subtitle: 0.8rem;
+            --font-paragraph: 0.6rem;
+            
+          
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Border Radius */
+            --border-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--obsidian-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px; /* Base size for responsive scaling */
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+        
+        header {
+            background-color: var(--obsidian-darker);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 2px solid var(--python-blue);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .logo-icon {
+            color: var(--python-blue);
+            font-size: 1.5rem;
+        }
+        
+        .logo-text {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            font-size: var(--font-title);
+            color: var(--text-primary);
+        }
+        
+        .logo-text span {
+            color: var(--python-blue);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+        
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--font-subtitle);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--python-blue);
+        }
+        
+        nav a.active {
+            color: var(--python-blue);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--python-blue);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(to bottom, var(--obsidian-darker), var(--obsidian-dark));
+            text-align: center;
+            border-bottom: 1px solid var(--obsidian-light);
+        }
+        
+        .hero h1 {
+            font-size: calc(var(--font-title) * 2.5);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--python-blue);
+        }
+        
+        .hero p {
+            font-size: var(--font-subtitle);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--python-blue);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--font-subtitle);
+            transition: all 0.3s;
+            border: 2px solid var(--python-blue);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--python-blue);
+        }
+        
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-title {
+            font-size: var(--font-title);
+            color: var(--python-blue);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-subtitle {
+            font-size: var(--font-subtitle);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+        
+        .about-text p {
+            font-size: var(--font-paragraph);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+        }
+        
+        .about-image {
+            background: linear-gradient(45deg, var(--python-blue), var(--obsidian-light));
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .code-snippet {
+            font-family: 'Fira Code', monospace;
+            text-align: left;
+            color: var(--text-primary);
+            font-size: 0.7rem;
+        }
+        
+        .code-snippet .keyword {
+            color: var(--python-blue);
+        }
+        
+        .code-snippet .function {
+            color: var(--python-yellow);
+        }
+        
+        .code-snippet .string {
+            color: #98c379;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .project-card {
+            background-color: var(--obsidian-light);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--obsidian-lighter);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--python-blue);
+        }
+        
+        .project-card h3 {
+            font-size: var(--font-subtitle);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .project-card p {
+            font-size: var(--font-paragraph);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: var(--spacing-sm);
+        }
+        
+        .project-tag {
+            background-color: var(--obsidian-darker);
+            color: var(--python-blue);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.5rem;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: var(--spacing-sm);
+            background-color: var(--obsidian-light);
+            border: 1px solid var(--obsidian-lighter);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: var(--font-paragraph);
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--python-blue);
+        }
+        
+        .contact-form button {
+            background-color: var(--python-blue);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: var(--font-subtitle);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background-color: var(--python-light-blue);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .contact-icon {
+            background-color: var(--obsidian-light);
+            color: var(--python-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .contact-text h4 {
+            font-size: var(--font-subtitle);
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+        
+        .contact-text p {
+            font-size: var(--font-paragraph);
+            color: var(--text-secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--obsidian-darker);
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-top: 2px solid var(--python-blue);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+        
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--python-blue);
+        }
+        
+        .copyright {
+            font-size: var(--font-paragraph);
+            color: var(--text-secondary);
+        }
+        
+        .copyright a {
+            color: var(--python-blue);
+            text-decoration: none;
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+              
+                --font-title: 1.1rem;
+                --font-subtitle: 0.9rem;
+                --font-paragraph: 0.7rem;
+            }
+            
+            .header-content {
+                position: relative;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--obsidian-darker);
+                padding: var(--spacing-sm);
+                display: none;
+                border-top: 1px solid var(--obsidian-light);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            nav li {
+                width: 100%;
+            }
+            
+            nav a {
+                display: block;
+                padding: var(--spacing-sm) 0;
+                border-bottom: 1px solid var(--obsidian-light);
+            }
+            
+            nav a:last-child {
+                border-bottom: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: calc(var(--font-title) * 2);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                text-align: left;
+            }
+            
+            .section-subtitle {
+                text-align: left;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+  
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <div class="logo-text">Poetic<span>Bytes</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <main>
+      
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Where <span>Python Code</span> Meets Poetic Expression</h1>
+                <p>Exploring the beauty of algorithms, the elegance of clean code, and the artistry of programming. A digital notebook of Python projects, creative coding experiments, and technical insights.</p>
+                <a href="#projects" class="cta-button">Explore My Work</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Poetic Bytes</h2>
+                <p class="section-subtitle">A fusion of technical precision and creative exploration in the world of Python development.</p>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Welcome to Poetic Bytes, a digital space where programming meets poetry, and algorithms dance with artistry. As a Python developer with a passion for creative expression, I explore the intersection of clean code and elegant design.</p>
+                        <p>This platform serves as both a portfolio of my technical projects and a creative outlet where I document my journey through the world of software development, data science, and algorithmic art.</p>
+                        <p>Through tutorials, project breakdowns, and code experiments, I aim to demonstrate that programming is not just a technical skill but also a form of creative expression with its own rhythm, structure, and beauty.</p>
+                    </div>
+                    
+                    <div class="about-image">
+                        <div class="code-snippet">
+                            <pre><span class="keyword">def</span> <span class="function">poetic_bytes</span>():
+    <span class="string">"""Where code meets creativity."""</span>
+    poetry = <span class="string">"elegant algorithms"</span>
+    code = <span class="string">"clean functions"</span>
+    
+    <span class="keyword">while</span> inspiration:
+        project = compose(poetry, code)
+        share(project)
+        learn()
+    
+    <span class="keyword">return</span> growth</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">A collection of Python projects that blend technical functionality with creative expression.</p>
+                
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Algorithmic Poetry Generator</h3>
+                        <p>A Python program that uses natural language processing and Markov chains to generate poetry from classic literature datasets.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Machine Learning</span>
+                            <span class="project-tag">Creative Coding</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Data Visualization Art</h3>
+                        <p>Transforming complex datasets into visual art using Matplotlib and custom algorithms to find patterns and beauty in data.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Data Science</span>
+                            <span class="project-tag">Matplotlib</span>
+                            <span class="project-tag">Pandas</span>
+                            <span class="project-tag">Visualization</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Web Scraper to Storyteller</h3>
+                        <p>A Python tool that scrapes news articles and uses text analysis to generate narrative summaries and thematic insights.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Web Scraping</span>
+                            <span class="project-tag">BeautifulSoup</span>
+                            <span class="project-tag">Text Analysis</span>
+                            <span class="project-tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Have a project idea, collaboration proposal, or just want to talk about Python and creative coding?</p>
+                
+                <div class="contact-content">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Your Email" required>
+                            <input type="text" placeholder="Subject" required>
+                            <textarea rows="5" placeholder="Your Message" required></textarea>
+                            <button type="submit">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>pansensoyglenn@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">🌐</div>
+                            <div class="contact-text">
+                                <h4>Website</h4>
+                                <p>pansensoyglenn-dev.github.io/poetic-bytes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-text">
+                                <h4>GitHub Portfolio</h4>
+                                <p>github.com/pansensoyglenn-dev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <div class="logo-icon">🐍</div>
+                    <div class="logo-text">Poetic<span>Bytes</span></div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/pansensoyglenn-dev" aria-label="GitHub">🐙</a>
+                    <a href="mailto:pansensoyglenn@gmail.com" aria-label="Email">📧</a>
+                    <a href="https://pansensoyglenn-dev.github.io/poetic-bytes" aria-label="Website">🌐</a>
+                </div>
+                
+                <p class="copyright">© 2023 Poetic Bytes. All rights reserved. | Created by <a href="mailto:pansensoyglenn@gmail.com">Glenn Junsay Pansensoy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="visually-hidden">
+        <h1>Poetic Bytes - Python Development & Creative Coding Portfolio</h1>
+        <h2>Python programming, web development, creative coding, algorithmic art, data visualization</h2>
+        <p>Explore Python tutorials, creative coding projects, and programming insights from developer Glenn Junsay Pansensoy. Learn about web development, data science, and algorithmic poetry generation.</p>
+        <p>Contact: pansensoyglenn@gmail.com | Website: https://pansensoyglenn-dev.github.io/poetic-bytes/</p>
+    </div>
+
+    <script>
+  
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+    
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+            });
+        });
+        
+    
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+        
+    
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
