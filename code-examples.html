@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Examples | Poetic Bytes – Python Web Development Snippets</title>
+    <meta name="description" content="Curated Python code examples for web development: FastAPI endpoints, Flask routes, Pydantic models, error handling, and deployment patterns. Clean, modern, and production-ready snippets.">
+    <meta name="keywords" content="python code examples, fastapi snippets, flask examples, python web development, api code snippets, pydantic models, python best practices, poetic bytes">
+    <meta name="author" content="Glenn Pansensoy">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/code-examples.html">
+
+    <meta property="og:title" content="Code Examples | Poetic Bytes – Python Web Snippets">
+    <meta property="og:description" content="Practical, well-commented Python code examples focused on elegant web development with FastAPI, Flask, and related tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/code-examples.html">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/assets/og-code.jpg">
+    <meta property="og:site_name" content="Poetic Bytes">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Code Examples | Poetic Bytes – Python Web Snippets">
+    <meta name="twitter:description" content="Showcasing clean, idiomatic Python code for modern web applications.">
+
+    <style>
+        :root {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #252525;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --accent-blue: #5a9cff;
+            --accent-blue-hover: #7ab0ff;
+            --purple-gray: #7f6df2;
+            --border: #363636;
+            --card-bg: #2a2a2a;
+            --code-bg: #1a1a1a;
+            --code-border: #404040;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 0.6rem + 0.5vw, 1rem);
+        }
+
+        .container {
+            max-width: 92%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: clamp(1.1rem, 1rem + 0.8vw, 1.4rem);
+            color: var(--accent-blue);
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.04em;
+        }
+
+        h2, h3 {
+            font-size: clamp(0.95rem, 0.8rem + 0.4vw, 1.1rem);
+            color: var(--purple-gray);
+            margin: 2.2rem 0 0.9rem;
+        }
+
+        p, li {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: clamp(0.85rem, 0.6rem + 0.5vw, 1rem);
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--accent-blue-hover);
+            text-decoration: underline;
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+        }
+
+        .snippet-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.4rem;
+            margin: 1.8rem 0;
+        }
+
+        .snippet-title {
+            font-size: clamp(1rem, 0.9rem + 0.6vw, 1.15rem);
+            color: var(--accent-blue);
+            margin-bottom: 0.7rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: clamp(0.8rem, 0.7rem + 0.4vw, 0.95rem);
+            margin: 1rem 0;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: clamp(0.75rem, 0.55rem + 0.3vw, 0.85rem);
+        }
+
+        @media (min-width: 481px) {
+            .container { max-width: 90%; padding: 0 1.5rem; }
+        }
+
+        @media (min-width: 768px) {
+            .container { max-width: 960px; padding: 0 2rem; }
+            .snippet-card { padding: 1.8rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .container { max-width: 1100px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poetic Bytes</h1>
+            <p>Curated Code Examples • Python Web Development</p>
+        </header>
+
+        <main>
+            <h2>Overview</h2>
+            <p>Selected, production-oriented Python code snippets demonstrating modern web development patterns. Emphasis is placed on clarity, type safety, error handling, and performance — drawn from frameworks such as FastAPI, Flask, and supporting libraries.</p>
+
+            <div class="snippet-card">
+                <h3 class="snippet-title">FastAPI – Basic Typed Endpoint with Pydantic</h3>
+                <p>Simple GET/POST endpoints with automatic validation and OpenAPI documentation.</p>
+                <pre><code>from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import Optional
+
+app = FastAPI(title="Poetic Bytes API Example")
+
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int, q: Optional[str] = None):
+    return {"item_id": item_id, "q": q}
+
+@app.post("/items/")
+async def create_item(item: Item):
+    if item.price < 0:
+        raise HTTPException(status_code=400, detail="Price cannot be negative")
+    return item</code></pre>
+            </div>
+
+            <div class="snippet-card">
+                <h3 class="snippet-title">Flask – RESTful Resource with Blueprint</h3>
+                <p>Modular route organization using Blueprints for larger applications.</p>
+                <pre><code>from flask import Blueprint, jsonify, request
+
+bp = Blueprint('api', __name__, url_prefix='/api/v1')
+
+@bp.route('/users', methods=['GET'])
+def get_users():
+    # In real app: fetch from database
+    users = [{"id": 1, "name": "Alice"}, {"id": 2, "name": "Bob"}]
+    return jsonify(users)
+
+@bp.route('/users', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    if not data or 'name' not in data:
+        return jsonify({"error": "Name required"}), 400
+    # In real app: save to database
+    return jsonify({"message": "User created", "name": data['name']}), 201
+
+# Register in main app: app.register_blueprint(bp)</code></pre>
+            </div>
+
+            <div class="snippet-card">
+                <h3 class="snippet-title">Global Exception Handler (FastAPI)</h3>
+                <p>Centralized error handling for consistent API responses.</p>
+                <pre><code>from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+
+app = FastAPI()
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=422,
+        content={
+            "detail": exc.errors(),
+            "message": "Validation error – check request body"
+        }
+    )
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error"}
+    )</code></pre>
+            </div>
+
+            <div class="snippet-card">
+                <h3 class="snippet-title">Dependency Injection – Database Session (FastAPI)</h3>
+                <p>Reusable database session management with context manager.</p>
+                <pre><code>from fastapi import Depends, FastAPI
+from sqlmodel import Session, create_engine, SQLModel
+from typing import Generator
+
+DATABASE_URL = "sqlite:///./test.db"
+engine = create_engine(DATABASE_URL, echo=True)
+
+def get_session() -> Generator[Session, None, None]:
+    with Session(engine) as session:
+        yield session
+
+app = FastAPI()
+
+@app.get("/health")
+def health_check(session: Session = Depends(get_session)):
+    # Example usage of injected session
+    return {"status": "healthy", "db_connected": True}</code></pre>
+            </div>
+
+            <h2>Usage Notes</h2>
+            <p>These snippets follow PEP 8, use type hints extensively, and prioritize readability. They can be copied directly into prototypes or expanded into full features.</p>
+            <p>Explore complete implementations in the <a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener noreferrer">repository</a> or individual project folders.</p>
+        </main>
+
+        <footer>
+            <p>© 2026 Glenn Junsay Pansensoy • <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/">Poetic Bytes</a></p>
+        </footer>
+    </div>
+</body>
+</html>
