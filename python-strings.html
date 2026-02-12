@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, shrink-to-fit=no">
+  <meta name="description" content="Python strings: comprehensive guide covering fundamentals, internals, 30+ runnable examples, performance, Unicode, best practices. Obsidian theme, Python blue. A personal learning guide by Glenn Junsay Pansensoy.">
+  <meta name="keywords" content="Python strings, string methods, f-strings, Unicode, string performance, Python tutorial, immutable sequences">
+  <meta name="author" content="Glenn Junsay Pansensoy / POETIC BYTES">
+  <meta property="og:title" content="Python Strings Comprehensive Guide · Obsidian theme">
+  <meta property="og:description" content="Master Python strings: 20+ examples, live runner, internal architecture, best practices. AI‑ready share.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://poeticbytes.dev/python-strings-mastery">
+  <meta property="og:image" content="https://poeticbytes.dev/assets/python-blue-obsidian-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@poeticbytes">
+  <title>Python Strings Complete Guide · From Basics to Advanced | Glenn Junsay Pansensoy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --obsidian-bg: #0B121C; 
+      --obsidian-panel: #0F1C2F;
+      --obsidian-card: #0F1C2F;      
+      --obsidian-border: #1F4060;    
+      --python-blue: #4B8BBE;       
+      --python-deep: #306998;       
+      --python-blue: #488BBE;       
+      --text-main: #E2E8F0;          
+      --text-soft: #CBD5E1;          
+      --accent-blue: #78B9E6;       
+      --code-bg: #0A1A24;         
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--obsidian-bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    h1, h2, h3, h4, .title, .section-title h2, .intro h1, .runner-header h3,
+    .policy-section h2, .author-bio h2, .advanced-section h2, .table-section h2 {
+      font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    h5, .subtitle, .category-title, .example-card h4, .brand-name,
+    .nav-links a, .footer-col h5, .ai-share-header span,
+    .policy-section h5, .author-name, .table-header {
+      font-size: clamp(0.75rem, 2vw, 0.8rem) !important;
+      font-weight: 600;
+    }
+
+    p, li, .description, .example-desc, .footer-col a, .copyright, .comment-text,
+    .timestamp, .reaction-btn, .output-area, .code-area, .share-btn span,
+    .btn span, .legal, .example-btn, .run-btn, #codeInput, .empty-state p,
+    .example-explanation, .section-intro, .btn-info-text, .policy-text,
+    .author-bio p, .table-cell, .breadcrumb a, .pro-tip, .footnote {
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem) !important;
+      line-height: 1.6;
+    }
+
+    .brand-icon { font-size: clamp(1.2rem, 3vw, 1.4rem) !important; }
+    .card-emoji { font-size: clamp(1.4rem, 3.5vw, 1.6rem) !important; }
+
+  
+    .wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper { padding: 0 1rem; }
+    }
+
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(11, 18, 28, 0.94); /* obsidian-bg with transparency */
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--obsidian-border);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { padding: 0.5rem 1rem; }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .brand-icon {
+      background: var(--python-blue);
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(75,139,190,0.3);
+    }
+    
+    @media (max-width: 480px) {
+      .brand-icon {
+        width: 2rem;
+        height: 2rem;
+      }
+      .brand-name {
+        font-size: 0.75rem !important;
+      }
+    }
+    
+    .brand-name { color: var(--text-main); }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      z-index: 1150;
+      transition: opacity 0.2s;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 1.5rem;
+      height: 2px;
+      background: var(--text-main);
+      margin: 3px 0;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s, background 0.2s;
+    }
+    .menu-toggle:hover span { background: var(--python-blue); }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(280px, 80vw);
+      height: 100vh;
+      background: var(--obsidian-panel);
+      border-left: 1px solid var(--obsidian-border);
+      z-index: 1100;
+      padding: 5rem 1.5rem 2rem;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+      box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+    }
+    .mobile-drawer.active { right: 0; }
+
+    .drawer-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: transparent;
+      border: none;
+      color: var(--text-soft);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.3rem;
+      transition: 0.2s;
+    }
+    .drawer-close:hover {
+      color: var(--text-main);
+      background: rgba(75,139,190,0.3);
+    }
+
+    .mobile-drawer ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .mobile-drawer li {
+      margin-bottom: 0;
+    }
+    .mobile-drawer a {
+      display: block;
+      width: 100%;
+      background: var(--python-blue);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border-radius: 0.6rem;
+      font-size: 0.8rem !important;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.3px;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    .mobile-drawer a:hover,
+    .mobile-drawer a:focus {
+      background: #306998; 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(48,105,152,0.4);
+      outline: none;
+    }
+    .mobile-drawer a:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+    body.menu-open { overflow: hidden; }
+
+    @media (min-width: 1024px) {
+      .menu-toggle { display: none; }
+      .mobile-drawer,
+      .drawer-overlay { display: none; }
+    }
+
+    .main-content {
+      padding: 6rem 0 3rem;
+    }
+    @media (max-width: 768px) {
+      .main-content { padding: 5rem 0 2rem; }
+    }
+
+    .intro {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .intro h1 {
+      color: var(--python-gold);
+      margin-bottom: 0.5rem;
+    }
+    .intro h5 {
+      color: var(--python-blue);
+      margin-bottom: 0.8rem;
+    }
+    .intro p {
+      color: var(--text-soft);
+    }
+    @media (max-width: 768px) {
+      .intro { margin-bottom: 2rem; }
+    }
+
+    section { margin-bottom: 3rem; }
+    @media (max-width: 768px) { section { margin-bottom: 2.5rem; } }
+
+    .section-title {
+      margin-bottom: 1.5rem;
+    }
+    .section-title h2 {
+      color: var(--python-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .example-card, .policy-section > div > div {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .example-card, .policy-section > div > div { padding: 1.2rem; }
+    }
+
+    .example-card:hover {
+      border-color: var(--python-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(75, 139, 190, 0.2);
+    }
+
+    .example-card h4 {
+      color: var(--accent-blue);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .example-desc {
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+    }
+
+    .code-snip {
+      background: var(--code-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--python-gold);
+      margin: 0.8rem 0;
+      position: relative;
+      overflow-x: auto;
+      font-size: 0.55rem !important;
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .code-snip {
+        padding: 0.8rem;
+        font-size: 0.5rem !important;
+      }
+    }
+
+    .copy-snip-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-size: 0.5rem !important;
+      transition: 0.2s;
+    }
+    .copy-snip-btn:hover { background: #306998; }
+
+    .breadcrumb {
+      background: var(--obsidian-card);
+      padding: 0.8rem 1.2rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .breadcrumb a {
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--python-blue); }
+    @media (max-width: 768px) {
+      .breadcrumb {
+        padding: 0.6rem 1rem;
+        font-size: 0.55rem !important;
+      }
+    }
+
+    .live-runner {
+      background: var(--obsidian-card);
+      border: 2px solid var(--python-blue);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+    @media (max-width: 768px) {
+      .live-runner {
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+      }
+    }
+
+    .runner-header h3 {
+      color: var(--python-gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .code-area {
+      width: 100%;
+      background: var(--code-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--python-gold);
+      resize: vertical;
+      min-height: 100px;
+      margin-bottom: 1rem;
+      font-size: 0.55rem !important;
+    }
+    @media (max-width: 768px) {
+      .code-area {
+        padding: 0.8rem;
+        font-size: 0.5rem !important;
+        min-height: 80px;
+      }
+    }
+
+    .run-btn {
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: 0.2s;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .run-btn {
+        padding: 0.7rem 1.2rem;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    .run-btn:hover {
+      background: #306998;
+      transform: scale(1.02);
+    }
+
+    .output-area {
+      background: var(--code-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-blue);
+      min-height: 60px;
+      overflow-x: auto;
+    }
+    @media (max-width: 768px) {
+      .output-area {
+        padding: 0.8rem;
+        font-size: 0.5rem !important;
+      }
+    }
+
+    .runner-footnote {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: rgba(75, 139, 190, 0.1);
+      border-left: 3px solid var(--python-blue);
+      border-radius: 0.3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      color: var(--text-soft);
+    }
+    @media (max-width: 768px) {
+      .runner-footnote { padding: 0.6rem; }
+    }
+
+    .example-btn {
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-family: inherit;
+      margin: 0.3rem 0.3rem 0.3rem 0;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    @media (max-width: 768px) {
+      .example-btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.55rem !important;
+      }
+    }
+    .example-btn:hover {
+      background: #306998;
+      transform: scale(1.05);
+    }
+
+    .comment-section { margin: 3rem 0; }
+    .comment-form {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) { .comment-form { padding: 1.2rem; } }
+
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      background: var(--obsidian-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 0.8rem;
+      color: var(--text-main);
+      font-family: inherit;
+      margin-bottom: 1rem;
+      font-size: 0.6rem !important;
+    }
+    @media (max-width: 768px) {
+      .comment-form input,
+      .comment-form textarea { padding: 0.7rem; }
+    }
+
+    .comment-form button {
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: 0.2s;
+    }
+    @media (max-width: 768px) {
+      .comment-form button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .thread-item {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) { .thread-item { padding: 1.2rem; } }
+
+    .thread-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .author { color: var(--python-blue); font-weight: 600; }
+    .timestamp { color: var(--text-soft); }
+    .reactions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .reaction-btn {
+      background: none;
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.4rem;
+      padding: 0.4rem 0.8rem;
+      color: var(--text-soft);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: 0.2s;
+    }
+    .reaction-btn:hover {
+      border-color: var(--python-blue);
+      color: var(--python-blue);
+    }
+    .reaction-btn.active-like {
+      border-color: var(--python-blue);
+      color: var(--python-blue);
+    }
+    .reaction-btn.active-love {
+      border-color: #e74c3c;
+      color: #e74c3c;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-soft);
+    }
+    @media (max-width: 768px) { .empty-state { padding: 2rem 1rem; } }
+
+    .ai-share-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    @media (max-width: 768px) { .ai-share-section { padding: 1.5rem; } }
+
+    .ai-share-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--python-blue);
+      flex-wrap: wrap;
+    }
+
+    .share-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .share-btn {
+      padding: 0.9rem 1.5rem;
+      border-radius: 0.5rem;
+      border: 2px solid;
+      background: transparent;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      max-width: 400px;
+      font-size: 0.6rem !important;
+    }
+    @media (max-width: 768px) {
+      .share-btn {
+        max-width: 100%;
+        padding: 0.8rem 1.2rem;
+      }
+    }
+    .share-btn:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .share-btn i {
+      font-size: 1.1rem;
+      min-width: 1.5rem;
+      text-align: center;
+    }
+    .share-btn.fb { border-color: #1877F2; }
+    .share-btn.fb:hover { background: rgba(24, 119, 242, 0.1); }
+    .share-btn.tw { border-color: #1DA1F2; }
+    .share-btn.tw:hover { background: rgba(29, 161, 242, 0.1); }
+    .share-btn.wa { border-color: #25D366; }
+    .share-btn.wa:hover { background: rgba(37, 211, 102, 0.1); }
+    .share-btn.linkedin { border-color: #0A66C2; }
+    .share-btn.linkedin:hover { background: rgba(10, 102, 194, 0.1); }
+    .share-btn.copy-btn { border-color: var(--python-blue); }
+    .share-btn.copy-btn:hover { background: rgba(75, 139, 190, 0.1); }
+
+    .author-bio {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 3rem 0;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 768px) {
+      .author-bio {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+    }
+
+    .author-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--python-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .author-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .author-content { flex: 1; }
+    .author-name {
+      color: var(--python-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .policy-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    @media (max-width: 768px) { .policy-section { padding: 1.5rem; } }
+
+    .policy-section > div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .policy-section > div {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+
+    .policy-text {
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    .page-footer {
+      background: var(--obsidian-panel);
+      border-top: 1px solid var(--obsidian-border);
+      padding: 3rem 0 1.5rem;
+      margin-top: 4rem;
+    }
+    @media (max-width: 768px) {
+      .page-footer {
+        padding: 2rem 0 1rem;
+        margin-top: 3rem;
+      }
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .footer-col h5 {
+      color: var(--python-gold);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a {
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .footer-col a:hover { color: var(--python-blue); }
+
+    .legal {
+      border-top: 1px solid var(--obsidian-border);
+      padding-top: 1.5rem;
+      text-align: center;
+      color: var(--text-soft);
+    }
+    .legal a {
+      color: var(--python-blue);
+      text-decoration: none;
+    }
+
+    .table-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      overflow-x: auto;
+    }
+    @media (max-width: 768px) { .table-section { padding: 1.5rem; } }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      min-width: 600px;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--obsidian-border);
+    }
+    @media (max-width: 768px) {
+      .comparison-table th,
+      .comparison-table td { padding: 0.6rem; }
+    }
+    .comparison-table th {
+      background: var(--python-deep);
+      color: white;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    .comparison-table td { color: var(--text-soft); }
+    .comparison-table tr:hover { background: rgba(75, 139, 190, 0.05); }
+
+    .advanced-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+    @media (max-width: 768px) { .advanced-section { padding: 1.5rem; } }
+    .advanced-section h2 {
+      color: var(--python-gold);
+      margin-bottom: 1.5rem;
+    }
+    .advanced-section p {
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .advanced-section ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+    .advanced-section li {
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .advanced-section li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--python-blue);
+    }
+
+    .text-center { text-align: center; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+
+    #introduction ul li,
+    #why-strings ul li {
+      color: var(--text-soft);
+    }
+    
+    #introduction strong,
+    #why-strings strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    html { scroll-behavior: smooth; }
+    *:focus {
+      outline: 2px solid var(--python-blue);
+      outline-offset: 2px;
+    }
+
+    @media print {
+      .nav-bar, .mobile-drawer, .drawer-overlay, .ai-share-section, .comment-section { display: none; }
+      body { background: white; color: black; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon">🐍</div>
+        <span class="brand-name">POETIC BYTES</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="#introduction">introduction</a></li>
+      <li><a href="#why-strings">why strings matter</a></li>
+      <li><a href="#methods">string methods</a></li>
+      <li><a href="#internals">string internals</a></li>
+      <li><a href="#performance">performance</a></li>
+      <li><a href="#comparison">method comparison</a></li>
+      <li><a href="#common-patterns">common patterns</a></li>
+      <li><a href="#formatting-masterclass">formatting masterclass</a></li>
+      <li><a href="#debugging-strings">debugging tips</a></li>
+      <li><a href="#advanced">advanced ops</a></li>
+      <li><a href="#runner">live runner</a></li>
+      <li><a href="#author">about author</a></li>
+      <li><a href="#community">community</a></li>
+      <li><a href="#policies">policies</a></li>
+      <li><a href="#footer">resources</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="wrapper">
+      <div class="breadcrumb">
+        <a href="python-string.html">Home</a> <span>/</span>
+        <a href="#">python</a> <span>/</span>
+        <span style="color:var(--python-gold);">strings mastery</span>
+      </div>
+
+      <section id="introduction" class="advanced-section">
+        <h2><i class="fas fa-book-open"></i> Learning Python Strings </h2>
+        
+        <p style="font-size: 0.65rem !important; line-height: 1.7; margin-bottom: 1.5rem;text-align: justify;">
+           Deep Dive into the most comprehensive Python strings tutorial you'll find online. Whether you're a complete beginner taking your first steps in Python programming, or an experienced developer looking to deepen your understanding of string manipulation and performance optimization, this guide has been carefully crafted to serve your learning needs.
+        </p>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">🎯 What you'll learn in this guide</h5>
+        <p style="margin-bottom: 1rem;">This tutorial is organized into progressive sections that build upon each other:</p>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>String Fundamentals:</strong> Understanding what strings are, how they work in Python's memory model, and why immutability matters for your code.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>Essential Methods:</strong> 20+ string methods with live, runnable examples that you can execute right in your browser.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>String Internals & Memory:</strong> Deep dive into how Python optimizes string storage, when strings are interned, and what this means for your applications.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>Performance Optimization:</strong> Learn why some string operations are slow and how to write blazingly fast string processing code.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>Unicode & Encoding:</strong> Master international text handling, character encodings, and avoid common pitfalls when working with non-ASCII text.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>Real-World Applications:</strong> Practical examples from web development, data science, text processing, and system administration.
+          </li>
+        </ul>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">💡 why strings matter in python</h5>
+        <p style="margin-bottom: 1rem;text-align: justify;">
+          Strings are everywhere in programming. From user interface text to configuration files, from API responses to database queries, strings are the fundamental way computers represent and process textual information. In Python, strings are particularly important because:
+        </p>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--accent-blue);">✓</span>
+            Python 3 treats all strings as Unicode by default, making international text handling seamless
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--accent-blue);">✓</span>
+            String operations are optimized at the C level for excellent performance
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--accent-blue);">✓</span>
+            Rich built-in methods eliminate the need for external libraries in most cases
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--accent-blue);">✓</span>
+            Understanding strings is essential for web development, data analysis, and virtually every Python application
+          </li>
+        </ul>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">🚀 how to use this tutorial</h5>
+        <p style="margin-bottom: 1rem;">
+          This is an interactive learning experience designed to help you master Python strings through practice:
+        </p>
+        <div style="background: rgba(75, 139, 190, 0.1); border-left: 3px solid var(--python-blue); padding: 1rem; border-radius: 0.4rem; margin: 1rem 0;">
+          <p style="margin-bottom: 0.5rem;"><strong>🔹 Interactive Code Examples:</strong> Every code snippet has a "copy" button and many have "run example" buttons that execute the code in our live Python simulator.</p>
+          <p style="margin-bottom: 0.5rem;"><strong>🔹 Progressive Learning:</strong> Sections build on previous knowledge. If you're new to Python strings, start from the top and work your way down.</p>
+          <p style="margin-bottom: 0;"><strong>🔹 Quick Reference:</strong> Already familiar with strings? Use the navigation menu to jump to specific topics or methods you want to review.</p>
+        </div>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">📚 prerequisites</h5>
+        <p style="margin-bottom: 0.5rem;">To get the most out of this tutorial, you should have:</p>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0;">•</span>
+            Basic familiarity with Python syntax (variables, print statements, basic data types)
+          </li>
+          <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0;">•</span>
+            Python 3.6 or later installed on your computer (though our online runner works in any browser)
+          </li>
+          <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0;">•</span>
+            A curious mind and willingness to experiment with code!
+          </li>
+        </ul>
+
+        <p style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 232, 115, 0.1); border-radius: 0.4rem; border-left: 3px solid var(--python-gold);">
+          <strong style="color: var(--python-gold);">💬 Join the Community:</strong> Have questions or insights to share? Scroll down to the comments section to connect with other learners. Share your experiences, ask questions, or help others on their Python journey.
+        </p>
+      </section>
+
+      <!-- ========== WHY PYTHON STRINGS ARE SPECIAL ========== -->
+      <section id="why-strings" class="advanced-section">
+        <h2><i class="fas fa-star"></i> understanding python strings · what makes them unique</h2>
+        
+        <p style="margin-bottom: 1.5rem;">
+          Before diving into specific methods and techniques, it's crucial to understand the fundamental characteristics that make Python strings different from strings in other programming languages and from other Python data types.
+        </p>
+
+        <h5 style="color: var(--accent-blue); margin: 1.5rem 0 1rem;">🔒 immutability: the cornerstone principle</h5>
+        <p style="margin-bottom: 1rem;">
+          The single most important thing to understand about Python strings is that they are <strong>immutable</strong>. This means once a string is created, it cannot be modified. Any operation that appears to modify a string actually creates a new string object.
+        </p>
+
+        <div class="code-snip" style="margin: 1rem 0;">text = "Hello"
+# This does NOT modify the original string
+text = text + " World"  # Creates a new string object
+# Original "Hello" is discarded (garbage collected)</div>
+
+        <p style="margin: 1rem 0;">Why did Python's creators make this design choice? Several important reasons:</p>
+        <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">1.</span>
+            <strong>Thread Safety:</strong> Immutable objects can be safely shared between threads without locks, making concurrent programming much easier.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">2.</span>
+            <strong>Hashability:</strong> Strings can be used as dictionary keys and stored in sets because their hash value never changes.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">3.</span>
+            <strong>Security:</strong> Once created, a string's value cannot be changed unexpectedly by other parts of your code.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">4.</span>
+            <strong>Optimization:</strong> Python can share identical string objects in memory (string interning), reducing memory usage.
+          </li>
+        </ul>
+
+        <h5 style="color: var(--accent-blue); margin: 1.5rem 0 1rem;">🌐 unicode by default</h5>
+        <p style="margin-bottom: 1rem;">
+          In Python 3, all strings are Unicode by default. This is a huge advantage over Python 2 and many other languages. It means you can work with text in any language without special handling:
+        </p>
+
+        <div class="code-snip" style="margin: 1rem 0;"># All of these work seamlessly in Python 3
+greeting_english = "Hello World"
+greeting_japanese = "こんにちは世界"
+greeting_arabic = "مرحبا بالعالم"
+greeting_emoji = "Hello 🌍 World 🐍"
+
+# String length counts Unicode characters, not bytes
+print(len("café"))  # 4, not 5</div>
+
+        <h5 style="color: var(--accent-blue); margin: 1.5rem 0 1rem;">⚡ performance characteristics</h5>
+        <p style="margin-bottom: 1rem;">
+          Understanding the performance implications of string operations is crucial for writing efficient code:
+        </p>
+        
+        <div style="overflow-x: auto; margin: 1.5rem 0;">
+          <table style="width: 100%; border-collapse: collapse; background: var(--code-bg); border-radius: 0.5rem; overflow: hidden;">
+            <thead>
+              <tr style="background: var(--python-deep);">
+                <th style="padding: 0.8rem; text-align: left; color: white; font-size: 0.65rem !important;">Operation</th>
+                <th style="padding: 0.8rem; text-align: left; color: white; font-size: 0.65rem !important;">Time Complexity</th>
+                <th style="padding: 0.8rem; text-align: left; color: white; font-size: 0.65rem !important;">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--obsidian-border);">
+                <td style="padding: 0.8rem; font-size: 0.6rem !important;">Accessing character by index</td>
+                <td style="padding: 0.8rem; color: var(--accent-blue); font-size: 0.6rem !important;">O(1)</td>
+                <td style="padding: 0.8rem; color: var(--text-soft); font-size: 0.6rem !important;">Constant time - very fast</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--obsidian-border);">
+                <td style="padding: 0.8rem; font-size: 0.6rem !important;">String concatenation (+)</td>
+                <td style="padding: 0.8rem; color: var(--python-gold); font-size: 0.6rem !important;">O(n+m)</td>
+                <td style="padding: 0.8rem; color: var(--text-soft); font-size: 0.6rem !important;">Creates new string, copies all characters</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--obsidian-border);">
+                <td style="padding: 0.8rem; font-size: 0.6rem !important;">Substring search (in)</td>
+                <td style="padding: 0.8rem; color: var(--python-gold); font-size: 0.6rem !important;">O(n*m)</td>
+                <td style="padding: 0.8rem; color: var(--text-soft); font-size: 0.6rem !important;">Can be slow for long strings</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--obsidian-border);">
+                <td style="padding: 0.8rem; font-size: 0.6rem !important;">String slicing</td>
+                <td style="padding: 0.8rem; color: var(--python-gold); font-size: 0.6rem !important;">O(k)</td>
+                <td style="padding: 0.8rem; color: var(--text-soft); font-size: 0.6rem !important;">k = length of slice, creates new string</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.8rem; font-size: 0.6rem !important;">join() method</td>
+                <td style="padding: 0.8rem; color: var(--accent-blue); font-size: 0.6rem !important;">O(n)</td>
+                <td style="padding: 0.8rem; color: var(--text-soft); font-size: 0.6rem !important;">Efficient for building strings from parts</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- INTRO -->
+      <div class="intro">
+        <h1>Python Strings · Mastery + Internals</h1>
+        <h5>complete reference · 30+ runnable examples · obsidian theme · python blue</h5>
+        <p>Master Python strings: immutability, Unicode, performance, best practices. Interactive runner, professional copy buttons, AI‑ready share. A comprehensive learning guide by Glenn Junsay Pansensoy.</p>
+      </div>
+<!-- ===== STRING METHODS (12 cards) ===== -->
+      <section id="methods">
+        <div class="section-title">
+          <h2><i class="fas fa-tools"></i> essential string methods · 12 runnable examples</h2>
+        </div>
+        <div class="card-grid">
+          <div class="example-card">
+            <h4><span class="card-emoji">🔤</span> .upper() / .lower()</h4>
+            <p class="example-desc">Convert case. Essential for normalization, case‑insensitive comparisons.</p>
+            <div class="code-snip" id="code01">text = "Python"
+print(text.upper())  # PYTHON
+print(text.lower())  # python</div>
+            <button class="copy-snip-btn" data-target="code01"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='text = "Python"\nprint(text.upper())'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">✂️</span> .strip() / .lstrip() / .rstrip()</h4>
+            <p class="example-desc">Remove whitespace. Critical for user input, CSV parsing.</p>
+            <div class="code-snip" id="code02">messy = "  hello  "
+clean = messy.strip()    # "hello"
+left = messy.lstrip()    # "hello  "
+right = messy.rstrip()   # "  hello"</div>
+            <button class="copy-snip-btn" data-target="code02"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='messy = "  hello  "\nprint(messy.strip())'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔀</span> .replace()</h4>
+            <p class="example-desc">Substring replacement. Returns new string (immutability).</p>
+            <div class="code-snip" id="code03">text = "Hello World"
+new = text.replace("World", "Python")
+# new = "Hello Python"</div>
+            <button class="copy-snip-btn" data-target="code03"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='text = "Hello World"\nprint(text.replace("World", "Python"))'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔍</span> .find() / .index()</h4>
+            <p class="example-desc">Locate substrings. .find() returns -1 on failure; .index() raises ValueError.</p>
+            <div class="code-snip" id="code04">text = "Python Programming"
+pos = text.find("Pro")     # 7
+not_found = text.find("x") # -1</div>
+            <button class="copy-snip-btn" data-target="code04"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='text = "Python Programming"\nprint(text.find("Pro"))'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">📋</span> .split() / .join()</h4>
+            <p class="example-desc">Parse & combine. .split() → list; .join() → string. Core for tokenization.</p>
+            <div class="code-snip" id="code05">words = "Python is awesome".split()
+# ['Python', 'is', 'awesome']
+joined = "-".join(words)
+# "Python-is-awesome"</div>
+            <button class="copy-snip-btn" data-target="code05"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='words = "Python is awesome".split()\nprint(words)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">✅</span> .startswith() / .endswith()</h4>
+            <p class="example-desc">Prefix/suffix checks. Perfect for file validation, URL routing.</p>
+            <div class="code-snip" id="code06">filename = "report.pdf"
+is_pdf = filename.endswith(".pdf")  # True
+is_doc = filename.startswith("report")  # True</div>
+            <button class="copy-snip-btn" data-target="code06"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='filename = "report.pdf"\nprint(filename.endswith(".pdf"))'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔢</span> .count()</h4>
+            <p class="example-desc">Occurrence counter. Useful for text analysis, data validation.</p>
+            <div class="code-snip" id="code07">text = "banana"
+count = text.count("a")  # 3</div>
+            <button class="copy-snip-btn" data-target="code07"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='text = "banana"\nprint(text.count("a"))'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🎯</span> .capitalize() / .title()</h4>
+            <p class="example-desc">Capitalize first char or all words. Display formatting.</p>
+            <div class="code-snip" id="code08">text = "python mastery"
+cap = text.capitalize()  # "Python mastery"
+title = text.title()     # "Python Mastery"</div>
+            <button class="copy-snip-btn" data-target="code08"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='text = "python mastery"\nprint(text.title())'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🧰</span> .isdigit() / .isalpha()</h4>
+            <p class="example-desc">Type checks. Validate user input, sanitize data.</p>
+            <div class="code-snip" id="code09">"123".isdigit()   # True
+"abc".isalpha()   # True
+"a1b".isalnum()   # True</div>
+            <button class="copy-snip-btn" data-target="code09"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='print("123".isdigit())'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔗</span> .partition() / .rpartition()</h4>
+            <p class="example-desc">Split on first/last occurrence. Returns 3‑tuple.</p>
+            <div class="code-snip" id="code10">url = "https://example.com/path"
+scheme, _, rest = url.partition("://")
+# ('https', '://', 'example.com/path')</div>
+            <button class="copy-snip-btn" data-target="code10"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='url = "https://example.com"\nprint(url.partition("://"))'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🌟</span> .format() · f‑strings</h4>
+            <p class="example-desc">Modern formatting. f‑strings preferred (3.6+).</p>
+            <div class="code-snip" id="code11">name, age = "Alice", 30
+# f-string (preferred)
+msg = f"Hello, {name}! Age: {age}"
+# .format() (legacy)
+msg = "Hello, {}! Age: {}".format(name, age)</div>
+            <button class="copy-snip-btn" data-target="code11"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='name = "Alice"\nage = 30\nprint(f"Hello, {name}! Age: {age}")'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🆕</span> .removeprefix() / .removesuffix()</h4>
+            <p class="example-desc">Python 3.9+. Clean prefix/suffix removal.</p>
+            <div class="code-snip" id="code12">filename = "test_report.pdf"
+stem = filename.removesuffix(".pdf")  # "test_report"
+# Pre-3.9 equivalent:
+stem = filename[:-4] if filename.endswith(".pdf") else filename</div>
+            <button class="copy-snip-btn" data-target="code12"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='filename = "test.pdf"\nprint(filename.removesuffix(".pdf"))'>run example</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="internals" class="advanced-section">
+        <h2><i class="fas fa-microscope"></i> string internals · immutability & memory model</h2>
+        <p><strong>Python strings are immutable sequences.</strong> Once created, their content cannot be changed. This design has important implications:</p>
+        <ul>
+          <li><strong>Memory efficiency:</strong> Python interns short strings (typically length ≤ 20, ASCII‑only) to save memory. Identical string literals may share the same object.</li>
+          <li><strong>Thread safety:</strong> Immutability guarantees thread‑safe reads without locks.</li>
+          <li><strong>Hashability:</strong> Strings can be dict keys and set members (unlike lists).</li>
+          <li><strong>Performance tradeoff:</strong> Concatenation creates new objects. Use .join() for building strings in loops.</li>
+        </ul>
+        <div class="code-snip" id="code13"># IMMUTABILITY DEMONSTRATION
+s = "hello"
+s[0] = "H"  # TypeError: 'str' object does not support item assignment
+
+# CORRECT: create new string
+s = "H" + s[1:]  # "Hello"
+
+# INTERNING EXAMPLE
+a = "python"
+b = "python"
+print(a is b)  # True (same object due to interning)
+
+c = "python" + "3"
+d = "python3"
+print(c is d)  # May be True (depends on interpreter)</div>
+        <button class="copy-snip-btn" data-target="code13"><i class="fas fa-copy"></i> copy</button>
+      </section>
+
+      <!-- ===== PERFORMANCE BEST PRACTICES ===== -->
+      <section id="performance" class="advanced-section">
+        <h2><i class="fas fa-tachometer-alt"></i> performance · dos and don'ts</h2>
+        <p><strong>Rule 1:</strong> Avoid += in loops. Use .join() instead.</p>
+        <div class="code-snip" id="code14"># ❌ BAD – O(n²) complexity
+result = ""
+for word in words:
+    result += word + " "  # Creates n new strings!
+
+# ✅ GOOD – O(n) complexity
+result = " ".join(words)  # Single concatenation</div>
+        <button class="copy-snip-btn" data-target="code14"><i class="fas fa-copy"></i> copy</button>
+
+        <p class="mt-2"><strong>Rule 2:</strong> Use string methods over regex for simple operations.</p>
+        <div class="code-snip" id="code15"># ❌ SLOWER
+import re
+if re.search(r'\.pdf$', filename):
+    pass
+
+# ✅ FASTER
+if filename.endswith('.pdf'):
+    pass</div>
+        <button class="copy-snip-btn" data-target="code15"><i class="fas fa-copy"></i> copy</button>
+
+        <p class="mt-2"><strong>Rule 3:</strong> Choose the right lookup method.</p>
+        <div class="code-snip" id="code16"># For existence check only
+if 'substring' in text:
+    pass  # O(n) but no index computation
+
+# For index + existence
+try:
+    idx = text.index('substring')
+except ValueError:
+    pass  # Better than find() if exception handling is ok</div>
+        <button class="copy-snip-btn" data-target="code16"><i class="fas fa-copy"></i> copy</button>
+      </section>
+
+      <!-- ===== COMPARISON TABLE ===== -->
+      <section id="comparison" class="table-section">
+        <h2><i class="fas fa-table"></i> method comparison · choose wisely</h2>
+        <div style="overflow-x:auto;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Return</th>
+                <th>Use Case</th>
+                <th>Complexity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>.find()</td>
+                <td>int (-1 if not found)</td>
+                <td>When -1 is acceptable</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>.index()</td>
+                <td>int (ValueError if not found)</td>
+                <td>When exception handling is ok</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>'in' operator</td>
+                <td>bool</td>
+                <td>Existence check only</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>.startswith()</td>
+                <td>bool</td>
+                <td>Prefix validation</td>
+                <td>O(k) where k = prefix length</td>
+              </tr>
+              <tr>
+                <td>.split()</td>
+                <td>list</td>
+                <td>Tokenization, CSV parsing</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>.join()</td>
+                <td>str</td>
+                <td>Concatenate list of strings</td>
+                <td>O(n)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      
+      <!-- ========== COMMON STRING PATTERNS & USE CASES ========== -->
+      <section id="common-patterns" class="advanced-section">
+        <h2><i class="fas fa-lightbulb"></i> common string patterns · real-world solutions</h2>
+        
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">📧 email & URL validation</h5>
+        <p style="margin-bottom: 1rem;">
+          String validation is one of the most common tasks in web applications. While regular expressions are powerful, basic string methods often suffice and are more readable:
+        </p>
+        <div class="code-snip" id="code-validation">def is_valid_email_basic(email):
+    """Basic email validation using string methods"""
+    if '@' not in email:
+        return False
+    
+    local, domain = email.rsplit('@', 1)
+    
+    # Check for empty parts
+    if not local or not domain:
+        return False
+    
+    # Check for domain extension
+    if '.' not in domain:
+        return False
+    
+    # Check for valid characters (basic check)
+    if ' ' in email:
+        return False
+    
+    return True
+
+# Usage
+print(is_valid_email_basic("user@example.com"))  # True
+print(is_valid_email_basic("invalid.email"))     # False</div>
+        <button class="copy-snip-btn" data-target="code-validation"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">📁 file path manipulation</h5>
+        <p style="margin-bottom: 1rem;">
+          Working with file paths is a common need. Here's how to handle paths cleanly with string methods:
+        </p>
+        <div class="code-snip" id="code-filepath">def get_file_info(filepath):
+    """Extract filename, extension, and directory"""
+    # Get filename with extension
+    filename = filepath.rsplit('/', 1)[-1]
+    
+    # Split into name and extension
+    if '.' in filename:
+        name, ext = filename.rsplit('.', 1)
+    else:
+        name, ext = filename, ''
+    
+    # Get directory
+    directory = filepath.rsplit('/', 1)[0] if '/' in filepath else '.'
+    
+    return {
+        'directory': directory,
+        'filename': filename,
+        'name': name,
+        'extension': ext
+    }
+
+# Usage
+info = get_file_info('/home/user/documents/report.pdf')
+# {'directory': '/home/user/documents', 'filename': 'report.pdf', 
+#  'name': 'report', 'extension': 'pdf'}</div>
+        <button class="copy-snip-btn" data-target="code-filepath"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">💬 text cleaning & normalization</h5>
+        <p style="margin-bottom: 1rem;">
+          User input often needs cleaning before processing. Here's a comprehensive example:
+        </p>
+        <div class="code-snip" id="code-cleaning">def clean_user_input(text):
+    """Comprehensive text cleaning for user input"""
+    # Remove leading/trailing whitespace
+    text = text.strip()
+    
+    # Normalize whitespace (replace multiple spaces with single space)
+    text = ' '.join(text.split())
+    
+    # Remove special characters (keep alphanumeric and basic punctuation)
+    allowed = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,!?-')
+    text = ''.join(char for char in text if char in allowed)
+    
+    # Convert to title case
+    text = text.title()
+    
+    return text
+
+# Usage
+dirty = "  hello    WORLD!!!  @#$  how are   you?  "
+clean = clean_user_input(dirty)
+print(clean)  # "Hello World! How Are You?"</div>
+        <button class="copy-snip-btn" data-target="code-cleaning"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">🔐 password strength checking</h5>
+        <p style="margin-bottom: 1rem;">
+          Security is critical. Here's how to validate password requirements:
+        </p>
+        <div class="code-snip" id="code-password">def check_password_strength(password):
+    """Check if password meets security requirements"""
+    results = {
+        'length': len(password) >= 8,
+        'uppercase': any(c.isupper() for c in password),
+        'lowercase': any(c.islower() for c in password),
+        'digit': any(c.isdigit() for c in password),
+        'special': any(c in '!@#$%^&*()_+-=[]{}|;:,.<>?' for c in password)
+    }
+    
+    # Calculate strength
+    score = sum(results.values())
+    
+    if score == 5:
+        strength = "Strong"
+    elif score >= 3:
+        strength = "Medium"
+    else:
+        strength = "Weak"
+    
+    return {
+        'strength': strength,
+        'score': score,
+        'details': results
+    }
+
+# Usage
+check = check_password_strength("MyP@ssw0rd")
+# {'strength': 'Strong', 'score': 5, ...}</div>
+        <button class="copy-snip-btn" data-target="code-password"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">📊 CSV & data parsing</h5>
+        <p style="margin-bottom: 1rem;">
+          Parse CSV data efficiently using string methods:
+        </p>
+        <div class="code-snip" id="code-csv">def parse_csv_line(line, delimiter=','):
+    """Parse a CSV line handling quoted fields"""
+    fields = []
+    current_field = []
+    in_quotes = False
+    
+    for char in line:
+        if char == '"':
+            in_quotes = not in_quotes
+        elif char == delimiter and not in_quotes:
+            fields.append(''.join(current_field).strip())
+            current_field = []
+        else:
+            current_field.append(char)
+    
+    # Add last field
+    fields.append(''.join(current_field).strip())
+    
+    return fields
+
+# Usage
+csv_line = 'John Doe,"123 Main St, Apt 4",30'
+parsed = parse_csv_line(csv_line)
+# ['John Doe', '123 Main St, Apt 4', '30']</div>
+        <button class="copy-snip-btn" data-target="code-csv"><i class="fas fa-copy"></i> copy</button>
+      </section>
+
+      <!-- ========== STRING FORMATTING MASTERCLASS ========== -->
+      <section id="formatting-masterclass" class="advanced-section">
+        <h2><i class="fas fa-palette"></i> string formatting masterclass · beyond the basics</h2>
+        
+        <p style="margin-bottom: 1.5rem;">
+          Modern Python offers powerful string formatting capabilities. Let's explore advanced formatting techniques that will make your code more readable and your output more professional.
+        </p>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">💰 number formatting for financial applications</h5>
+        <div class="code-snip" id="code-financial">price = 1234567.89
+tax_rate = 0.0825
+
+# Currency formatting
+print(f"Price: ${price:,.2f}")  # $1,234,567.89
+
+# Accounting format (negative in parentheses)
+loss = -500.50
+print(f"Balance: ${loss:,.2f}" if loss >= 0 else f"Balance: (${abs(loss):,.2f})")
+
+# Percentage formatting
+print(f"Tax Rate: {tax_rate:.2%}")  # Tax Rate: 8.25%
+
+# Padding for alignment
+items = [("Widget", 29.99), ("Gadget", 149.50), ("Tool", 9.95)]
+for name, price in items:
+    print(f"{name:<15} ${price:>8.2f}")
+# Widget          $   29.99
+# Gadget          $  149.50
+# Tool            $    9.95</div>
+        <button class="copy-snip-btn" data-target="code-financial"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">📅 date & time formatting</h5>
+        <div class="code-snip" id="code-datetime">from datetime import datetime, timedelta
+
+now = datetime.now()
+
+# Various date formats
+print(f"ISO format: {now:%Y-%m-%d %H:%M:%S}")
+print(f"US format: {now:%m/%d/%Y %I:%M %p}")
+print(f"European: {now:%d.%m.%Y %H:%M}")
+print(f"Human readable: {now:%B %d, %Y at %I:%M %p}")
+
+# Time calculations
+future = now + timedelta(days=7)
+print(f"Next week: {future:%A, %B %d}")
+
+# Relative time formatting
+def format_relative_time(seconds):
+    if seconds < 60:
+        return f"{seconds} seconds ago"
+    elif seconds < 3600:
+        return f"{seconds // 60} minutes ago"
+    elif seconds < 86400:
+        return f"{seconds // 3600} hours ago"
+    else:
+        return f"{seconds // 86400} days ago"</div>
+        <button class="copy-snip-btn" data-target="code-datetime"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">📊 table & report formatting</h5>
+        <div class="code-snip" id="code-tables">def format_table(data, headers):
+    """Create a nicely formatted ASCII table"""
+    # Calculate column widths
+    col_widths = [len(h) for h in headers]
+    for row in data:
+        for i, cell in enumerate(row):
+            col_widths[i] = max(col_widths[i], len(str(cell)))
+    
+    # Create separator
+    separator = "+" + "+".join("-" * (w + 2) for w in col_widths) + "+"
+    
+    # Format header
+    header_row = "|" + "|".join(f" {h:<{col_widths[i]}} " 
+                                  for i, h in enumerate(headers)) + "|"
+    
+    # Format data rows
+    data_rows = []
+    for row in data:
+        data_row = "|" + "|".join(f" {str(cell):<{col_widths[i]}} " 
+                                    for i, cell in enumerate(row)) + "|"
+        data_rows.append(data_row)
+    
+    # Combine all parts
+    table = [separator, header_row, separator] + data_rows + [separator]
+    return "\n".join(table)
+
+# Usage
+headers = ["Name", "Age", "City"]
+data = [["Alice", 30, "NYC"], ["Bob", 25, "LA"]]
+print(format_table(data, headers))</div>
+        <button class="copy-snip-btn" data-target="code-tables"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">🎨 color & styled terminal output</h5>
+        <div class="code-snip" id="code-colors"># ANSI color codes for terminal output
+class Colors:
+    RESET = "\033[0m"
+    RED = "\033[31m"
+    GREEN = "\033[32m"
+    YELLOW = "\033[33m"
+    BLUE = "\033[34m"
+    BOLD = "\033[1m"
+
+def print_colored(text, color):
+    """Print colored text to terminal"""
+    print(f"{color}{text}{Colors.RESET}")
+
+def print_status(status, message):
+    """Print status messages with appropriate colors"""
+    symbols = {
+        'success': (Colors.GREEN, '✓'),
+        'error': (Colors.RED, '✗'),
+        'warning': (Colors.YELLOW, '⚠'),
+        'info': (Colors.BLUE, 'ℹ')
+    }
+    
+    color, symbol = symbols.get(status, (Colors.RESET, '•'))
+    print(f"{color}{symbol} {message}{Colors.RESET}")
+
+# Usage
+print_status('success', 'File uploaded successfully')
+print_status('error', 'Connection failed')
+print_status('warning', 'Low disk space')</div>
+        <button class="copy-snip-btn" data-target="code-colors"><i class="fas fa-copy"></i> copy</button>
+      </section>
+
+      <!-- ========== DEBUGGING & TROUBLESHOOTING ========== -->
+      <section id="debugging-strings" class="advanced-section">
+        <h2><i class="fas fa-bug"></i> debugging string issues · common problems & solutions</h2>
+        
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">🔍 invisible character detection</h5>
+        <p style="margin-bottom: 1rem;">
+          Sometimes strings contain invisible characters that cause unexpected behavior. Here's how to detect and remove them:
+        </p>
+        <div class="code-snip" id="code-debug1">def analyze_string(text):
+    """Analyze string for hidden characters"""
+    print(f"Length: {len(text)}")
+    print(f"Repr: {repr(text)}")
+    
+    # Show character codes
+    print("Character breakdown:")
+    for i, char in enumerate(text):
+        code = ord(char)
+        print(f"  [{i}] '{char}' (Unicode: U+{code:04X}, Decimal: {code})")
+    
+    # Check for problematic characters
+    issues = []
+    if '\r' in text: issues.append("Contains carriage return (\r)")
+    if '\n' in text: issues.append("Contains newline (\n)")
+    if '\t' in text: issues.append("Contains tab (\t)")
+    if any(ord(c) < 32 and c not in '\r\n\t' for c in text):
+        issues.append("Contains control characters")
+    
+    if issues:
+        print("Issues found:")
+        for issue in issues:
+            print(f"  - {issue}")
+    
+    return issues
+
+# Usage
+problematic = "Hello\rWorld"
+analyze_string(problematic)</div>
+        <button class="copy-snip-btn" data-target="code-debug1"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">🌍 encoding/decoding issues</h5>
+        <div class="code-snip" id="code-debug2">def safe_decode(byte_string, encodings=None):
+    """Try multiple encodings to decode a byte string"""
+    if encodings is None:
+        encodings = ['utf-8', 'latin-1', 'cp1252', 'ascii']
+    
+    for encoding in encodings:
+        try:
+            decoded = byte_string.decode(encoding)
+            print(f"Successfully decoded with {encoding}")
+            return decoded
+        except UnicodeDecodeError:
+            print(f"Failed to decode with {encoding}")
+            continue
+    
+    # Last resort: decode with errors='replace'
+    decoded = byte_string.decode('utf-8', errors='replace')
+    print("Decoded with replacement characters (�)")
+    return decoded
+
+# Usage
+mysterious_bytes = b'\xe9\xe8\xe0'  # French accented characters
+safe_decode(mysterious_bytes)</div>
+        <button class="copy-snip-btn" data-target="code-debug2"><i class="fas fa-copy"></i> copy</button>
+
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">⚡ performance profiling</h5>
+        <div class="code-snip" id="code-debug3">import time
+
+def profile_string_operation(func, iterations=1000000):
+    """Profile a string operation"""
+    start = time.time()
+    for _ in range(iterations):
+        func()
+    end = time.time()
+    
+    duration = end - start
+    per_iteration = (duration / iterations) * 1_000_000  # microseconds
+    
+    print(f"Total time: {duration:.4f}s")
+    print(f"Per iteration: {per_iteration:.2f}μs")
+    print(f"Operations/sec: {iterations/duration:,.0f}")
+
+# Compare string concatenation methods
+def concat_plus():
+    result = ""
+    for i in range(100):
+        result += str(i)
+    return result
+
+def concat_join():
+    return "".join(str(i) for i in range(100))
+
+print("String concatenation with +:")
+profile_string_operation(concat_plus, 10000)
+
+print("\nString concatenation with join:")
+profile_string_operation(concat_join, 10000)</div>
+        <button class="copy-snip-btn" data-target="code-debug3"><i class="fas fa-copy"></i> copy</button>
+      </section>
+
+
+<!-- ===== ADVANCED OPERATIONS (6 more cards) ===== -->
+      <section id="advanced">
+        <div class="section-title">
+          <h2><i class="fas fa-flask"></i> advanced operations · Unicode, regex, encoding</h2>
+        </div>
+        <div class="card-grid">
+          <div class="example-card">
+            <h4><span class="card-emoji">🌍</span> Unicode normalization</h4>
+            <p class="example-desc">Handle accented characters, emojis, combining marks.</p>
+            <div class="code-snip" id="code17">import unicodedata
+text = "café"  # é might be 1 or 2 chars
+normalized = unicodedata.normalize('NFC', text)</div>
+            <button class="copy-snip-btn" data-target="code17"><i class="fas fa-copy"></i> copy</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔐</span> Encoding / Decoding</h4>
+            <p class="example-desc">Convert between str (Unicode) and bytes.</p>
+            <div class="code-snip" id="code18">text = "Hello 世界"
+utf8_bytes = text.encode('utf-8')
+decoded = utf8_bytes.decode('utf-8')</div>
+            <button class="copy-snip-btn" data-target="code18"><i class="fas fa-copy"></i> copy</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">📧</span> Regex · email validation</h4>
+            <p class="example-desc">Complex pattern matching with re module.</p>
+            <div class="code-snip" id="code19">import re
+pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+is_valid = re.match(pattern, "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="394c4a5c4b795c41585449555c175a5654">[email&#160;protected]</a>")</div>
+            <button class="copy-snip-btn" data-target="code19"><i class="fas fa-copy"></i> copy</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔧</span> String translation</h4>
+            <p class="example-desc">Character‑by‑character replacements. Faster than multiple .replace().</p>
+            <div class="code-snip" id="code20">trans = str.maketrans("aeiou", "12345")
+text = "hello world"
+result = text.translate(trans)  # "h2ll4 w4rld"</div>
+            <button class="copy-snip-btn" data-target="code20"><i class="fas fa-copy"></i> copy</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">📏</span> String slicing · advanced</h4>
+            <p class="example-desc">Negative indices, step, reversal.</p>
+            <div class="code-snip" id="code21">text = "Python Programming"
+first5 = text[:5]       # "Pytho"
+last4 = text[-4:]       # "ming"
+reverse = text[::-1]    # "gnimmargorP nohtyP"
+every2nd = text[::2]    # "Pto rgamn"</div>
+            <button class="copy-snip-btn" data-target="code21"><i class="fas fa-copy"></i> copy</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">💾</span> String compression</h4>
+            <p class="example-desc">Compress large strings for storage/transmission.</p>
+            <div class="code-snip" id="code22">import zlib
+text = "lorem ipsum " * 100
+compressed = zlib.compress(text.encode())
+# Much smaller size</div>
+            <button class="copy-snip-btn" data-target="code22"><i class="fas fa-copy"></i> copy</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== LIVE RUNNER ===== -->
+      <section id="runner" class="live-runner">
+        <div class="runner-header">
+          <h3><i class="fas fa-play-circle"></i> live python string runner · try 20+ methods</h3>
+        </div>
+        <p style="color:var(--text-soft); margin-bottom:1rem;">Interactive code editor. Click example buttons or write your own Python string code.</p>
+        
+        <textarea class="code-area" id="codeInput" placeholder="# Write your Python string code here...
+text = 'Hello, Python!'
+print(text.upper())">text = "Python Programming"
+print(text.upper())</textarea>
+        
+        <button class="run-btn" id="runCodeBtn" title="Execute code and see output">
+          <i class="fas fa-cog"></i> RUN CODE
+        </button>
+        
+        <div class="output-area" id="outputPanel">› output appears here</div>
+        
+        <div class="runner-footnote">
+          <i class="fas fa-info-circle"></i>
+          <span>Runner simulates Python output – demonstrates string methods. Press <strong>RUN</strong> or select example buttons above.</span>
+        </div>
+      </section>
+
+      <!-- ===== AUTHOR BIO – AUTHENTIC, CREDIBLE ENTHUSIAST ===== -->
+      <section id="author" class="author-bio">
+        <div class="author-avatar">👨‍💻</div>
+        <div class="author-content">
+          <h2 class="author-name">Glenn Junsay Pansensoy</h2>
+          <p>Python enthusiast and self‑taught programmer. I started learning Python a few years ago and built POETIC BYTES as a personal project to document my journey. This guide on strings is the result of countless hours of reading, experimenting, and sharing with the community. I hope it helps you as much as building it helped me.</p>
+          <p style="margin-top:0.8rem; color:var(--python-blue);"><i class="fas fa-link"></i> <a href="#" style="color:var(--python-blue);">GitHub</a> · <a href="#" style="color:var(--python-blue);">Twitter</a> · <a href="#" style="color:var(--python-blue);">Blog</a></p>
+        </div>
+      </section>
+
+      <!-- ===== COMMENT SECTION ===== -->
+      <section id="community" class="comment-section">
+        <h2 style="color:var(--python-gold); margin-bottom:1rem;">
+          <i class="fas fa-comments"></i> learner discussions · community
+        </h2>
+        <form id="threadForm" class="comment-form">
+          <input type="text" id="userName" placeholder="your name" required>
+          <textarea id="userComment" placeholder="ask about strings, share a tip, discuss performance ..." rows="2" required></textarea>
+          <button type="submit"><i class="fas fa-paper-plane"></i> publish</button>
+        </form>
+        <div id="threadContainer" class="thread-list">
+          <div class="empty-state">
+            <i class="fas fa-comments" style="font-size:1.2rem;"></i>
+            <p>be the first to comment</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== VERTICAL SOCIAL SHARE (AI CONTEXT) ===== -->
+      <div class="ai-share-section">
+        <div class="ai-share-header">
+          <i class="fas fa-robot"></i>
+          <span>AI‑suggested social sharing · python blue theme</span>
+        </div>
+        <p style="color:var(--text-soft); margin-bottom:1rem;">Share this comprehensive Python strings guide. Each button optimized for the respective platform. AI context included.</p>
+        <div class="share-flex" id="aiShareButtons"></div>
+        <p style="color:var(--text-soft); margin-top:1rem; display:flex; align-items:flex-start; gap:0.5rem;">
+          <i class="fas fa-info-circle" style="margin-top:0.2rem;"></i>
+          <span><strong>Copy button</strong> copies the page URL to your clipboard – ready for AI or human sharing. Includes AI context: "Python strings · internals, 20+ examples, live runner. Obsidian theme + blue."</span>
+        </p>
+      </div>
+
+      <!-- ===== POLICIES & LEGAL ===== -->
+      <section id="policies" class="policy-section">
+        <h2 style="color:var(--python-gold);">⚖️ privacy & terms · imprint</h2>
+        <div>
+          <div>
+            <h5>privacy policy (GDPR compliant)</h5>
+            <p class="policy-text">We do not collect personal identifiers. Comments are stored locally via localStorage; no server retention. Third‑party services (Google AdSense, Font Awesome, GitHub) may set cookies. By using this site, you consent to our cookie policy. Contact for data removal.</p>
+          </div>
+          <div>
+            <h5>terms of use</h5>
+            <p class="policy-text">Content is CC BY‑NC 4.0. Code snippets are public domain. You may not republish entire guide without attribution. This resource is for educational purposes; no warranties are provided.</p>
+          </div>
+        </div>
+        <p style="margin-top:1rem; color:var(--python-gold);"><i class="fas fa-check-circle"></i> imprint: POETIC BYTES, Diplahan, Zamboanga Sibugay Province. Hosted on GitHub Pages.</p>
+      </section>
+
+      <footer id="footer" class="page-footer">
+        <div class="wrapper" style="padding:0;">
+          <div class="footer-grid">
+            <div class="footer-col">
+              <h5>📘 python tracks</h5>
+              <ul>
+                <li><a href="python-strings.html">Python Strings </a></li>
+                <li><a href="python-lists.html">Python Lists</a></li>
+                <li><a href="python-functions.html">Python Functions</a></li>
+                <li><a href="python-classes.html">Python Classes</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h5>🛠️ string toolkit</h5>
+              <ul>
+                <li><a href="string-cheat.html">cheatsheet PDF</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h5>🌐 connect</h5>
+              <ul>
+                <li><a href="about.html">About Author</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="ethics.html">Ethics</a></li>
+              </ul>
+            </div>
+             <div class="footer-col">
+              <h5>⚖️ legal</h5>
+              <ul>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="cookie.html">Cookie Policy</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="legal">
+            <p>© 2026 POETIC BYTES – Python string lab · Glenn Junsay Pansensoy. <a href="#policies">imprint</a> | <a href="#policies">data privacy</a> | <a href="#">CC BY‑NC 4.0</a></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    (function(){
+      "use strict";
+
+      const toggle = document.getElementById('menuToggle');
+      const drawer = document.getElementById('mobileDrawer');
+      const overlay = document.getElementById('drawerOverlay');
+      const closeBtn = document.getElementById('drawerClose');
+      const body = document.body;
+
+      function openMenu() {
+        drawer.classList.add('active');
+        overlay.classList.add('active');
+        toggle.classList.add('active');
+        body.classList.add('menu-open');
+      }
+
+      function closeMenu() {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+        toggle.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (drawer.classList.contains('active')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+      }
+
+      if (overlay) overlay.addEventListener('click', closeMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+      document.querySelectorAll('.mobile-drawer a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && drawer.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024 && drawer.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+
+      document.querySelectorAll('.copy-snip-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.dataset.target;
+          const codeEl = document.getElementById(targetId);
+          if (codeEl) {
+            const code = codeEl.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+              const original = this.innerHTML;
+              this.innerHTML = '<i class="fas fa-check"></i> copied';
+              setTimeout(() => { this.innerHTML = original; }, 1500);
+            });
+          }
+        });
+      });
+
+      const codeInput = document.getElementById('codeInput');
+      const runBtn = document.getElementById('runCodeBtn');
+      const output = document.getElementById('outputPanel');
+
+      function simulatePy(code) {
+        if (code.includes('.upper()')) return 'PYTHON PROGRAMMING';
+        if (code.includes('.strip()')) return 'hello';
+        if (code.includes('.split()')) return "['Python', 'is', 'awesome']";
+        if (code.includes('.join()')) return 'Python-is-awesome';
+        if (code.includes('.count(')) return '3';
+        if (code.includes('.removesuffix')) return 'test';
+        if (code.includes('f"') || code.includes("f'")) return 'Hello, Alice! Age: 30';
+        if (code.includes('.find(')) return '7';
+        if (code.includes('.endswith(')) return 'True';
+        if (code.includes('.title()')) return 'Python Mastery';
+        if (code.includes('.isdigit()')) return 'True';
+        return '› [simulated] ' + code.replace(/print\(|\)/g,'').replace(/['"]/g,'');
+      }
+
+      runBtn.addEventListener('click', function(){
+        output.innerText = '› ' + simulatePy(codeInput.value);
+      });
+      window.addEventListener('load', function(){ runBtn.click(); });
+
+      document.querySelectorAll('.example-btn').forEach(btn => {
+        btn.addEventListener('click', function(){
+          codeInput.value = this.dataset.code;
+          runBtn.click();
+        });
+      });
+
+      let discussions = JSON.parse(localStorage.getItem('obsidianStringComments')) || [];
+
+      function saveDiscussions() { localStorage.setItem('obsidianStringComments', JSON.stringify(discussions)); }
+
+      function formatRelative(d) {
+        const then = new Date(d), now = new Date();
+        const diff = Math.floor((now - then)/1000);
+        if (diff < 60) return 'now'; if (diff < 3600) return Math.floor(diff/60)+'m';
+        if (diff < 86400) return Math.floor(diff/3600)+'h'; if (diff < 604800) return Math.floor(diff/86400)+'d';
+        return then.toLocaleDateString();
+      }
+
+      function escapeHTML(str) { return String(str).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+      function renderThreads() {
+        const container = document.getElementById('threadContainer');
+        if (!container) return;
+        if (discussions.length === 0) {
+          container.innerHTML = '<div class="empty-state"><i class="fas fa-comments"></i><p>be the first to comment</p></div>';
+          return;
+        }
+        let html = '';
+        discussions.slice().reverse().forEach((item, idx) => {
+          html += `<div class="thread-item">
+            <div class="thread-meta"><span class="author">${escapeHTML(item.name)}</span><span class="timestamp">${formatRelative(item.date)}</span></div>
+            <div class="comment-text">${escapeHTML(item.text)}</div>
+            <div class="reactions">
+              <button class="reaction-btn ${item.liked ? 'active-like':''}" data-reaction="like" data-idx="${idx}"><i class="fas fa-thumbs-up"></i> <span>${item.likes||0}</span></button>
+              <button class="reaction-btn ${item.loved ? 'active-love':''}" data-reaction="love" data-idx="${idx}"><i class="fas fa-heart"></i> <span>${item.loves||0}</span></button>
+            </div>
+          </div>`;
+        });
+        container.innerHTML = html;
+      }
+
+      document.addEventListener('click', function(e){
+        const btn = e.target.closest('.reaction-btn');
+        if (!btn) return;
+        const idx = btn.dataset.idx, reaction = btn.dataset.reaction;
+        const comment = discussions[discussions.length - 1 - idx];
+        if (!comment) return;
+        if (reaction === 'like') { if (comment.liked) { comment.likes--; comment.liked = false; } else { comment.likes++; comment.liked = true; } }
+        if (reaction === 'love') { if (comment.loved) { comment.loves--; comment.loved = false; } else { comment.loves++; comment.loved = true; } }
+        saveDiscussions(); renderThreads();
+      });
+
+      document.getElementById('threadForm')?.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('userName')?.value.trim();
+        const text = document.getElementById('userComment')?.value.trim();
+        if (name && text) {
+          discussions.push({ name, text, date: new Date().toISOString(), likes:0, loves:0, liked:false, loved:false });
+          saveDiscussions(); renderThreads();
+          document.getElementById('userName').value = ''; document.getElementById('userComment').value = '';
+        }
+      });
+      renderThreads();
+
+      const shareBox = document.getElementById('aiShareButtons');
+      if (shareBox) {
+        const url = encodeURIComponent(window.location.href);
+        const txt = encodeURIComponent('Python strings · internals, 20+ examples, live runner. Obsidian theme + blue. 🐍');
+        shareBox.innerHTML = `
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" class="share-btn fb" title="Share on Facebook with AI context">
+            <i class="fab fa-facebook-f"></i> <span>Share on Facebook (AI‑optimized)</span>
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=${txt}&url=${url}" target="_blank" class="share-btn tw" title="Share on X (Twitter) with AI context">
+            <i class="fab fa-twitter"></i> <span>Share on X / Twitter (AI‑optimized)</span>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" class="share-btn linkedin" title="Share on LinkedIn with AI context">
+            <i class="fab fa-linkedin-in"></i> <span>Share on LinkedIn (AI‑optimized)</span>
+          </a>
+          <a href="https://api.whatsapp.com/send?text=${txt}%20${url}" target="_blank" class="share-btn wa" title="Share on WhatsApp with AI context">
+            <i class="fab fa-whatsapp"></i> <span>Share on WhatsApp (AI‑optimized)</span>
+          </a>
+          <button class="share-btn copy-btn" id="copyLinkBtn" title="Copy page URL with AI context to clipboard">
+            <i class="fas fa-copy"></i> <span>Copy Link (AI context included)</span>
+          </button>
+        `;
+        document.getElementById('copyLinkBtn')?.addEventListener('click', function(){
+          navigator.clipboard.writeText(window.location.href + '\n\nAI Context: Python strings · internals, 20+ examples, live runner. Obsidian theme + blue.');
+          this.innerHTML = '<i class="fas fa-check"></i> <span>Link Copied!</span>';
+          setTimeout(() => {
+            this.innerHTML = '<i class="fas fa-copy"></i> <span>Copy Link (AI context included)</span>';
+          }, 2000);
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92e936f9cdde3e39',t:'MTczOTUwNzU3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
