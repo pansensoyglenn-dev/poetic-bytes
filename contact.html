@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Contact</title>
+    <style>
+      
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0.75rem;
+            background: #0B121C;        /* deep obsidian */
+            color: #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contact-card {
+            max-width: 680px;
+            width: 100%;
+            background: #0F1C2F;        /* obsidian blue-black */
+            padding: 1.5rem 1.5rem;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.9), 0 0 0 1px #2C4F6E;
+            border: 1px solid #1F405C;
+            transition: padding 0.2s ease;
+            margin: 1rem 0;
+        }
+
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .site-title {
+            color: #5FA7D3;
+            font-weight: 700;
+            font-size: 0.6rem;
+            text-decoration: none;
+            border-bottom: 2px solid #306998;
+            padding-bottom: 0.2rem;
+        }
+
+        .nav-link {
+            color: #9AB8D9;
+            text-decoration: none;
+            margin-left: 0.8rem;
+            font-size: 0.6rem;
+        }
+        .nav-link:hover {
+            color: #78B9E6;
+            border-bottom: 1px dotted #4B8BBE;
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-top: 0.2rem;
+            margin-bottom: 0.75rem;
+            color: #5FA7D3;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 0.7rem;
+            text-shadow: 0 0 6px rgba(75,139,190,0.4);
+            word-break: break-word;
+        }
+
+        p, .intro, .contact-method {
+            font-size: 0.8rem;
+            color: #CBD5E1;
+            margin-bottom: 1rem;
+        }
+
+        .email-container {
+            background: #0A1A24;
+            border-left: 5px solid #4B8BBE;
+            padding: 1.2rem 1.2rem;
+            border-radius: 20px;
+            margin: 1.8rem 0;
+            box-shadow: inset 0 0 0 1px #2D4B6C;
+            word-break: break-all;
+        }
+
+        .email-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: #AACCE5;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .email-address {
+            font-size: 0.9rem;    
+            font-weight: 600;
+            background: #122B3A;
+            padding: 0.4rem 0.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            color: #D4E6F1;
+            text-decoration: none;
+            margin-top: 0.2rem;
+            transition: background 0.2s;
+        }
+        .email-address:hover {
+            background: #1E405A;
+            border-color: #78B9E6;
+            color: white;
+        }
+
+        .extra-contact {
+            font-size: 0.6rem;
+            color: #9AB8D9;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #1F4060;
+        }
+
+        .extra-contact a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .footer {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #1F4060;
+            color: #A0BEDB;
+            width: 100%;
+            max-width: 680px;
+        }
+        .footer p {
+            font-size: 0.6rem;
+            margin: 0.2rem 0;
+            color: #B8D4E9;
+        }
+
+        .rem-badge {
+            font-size: 0.6rem;
+            background: #0F2632;
+            color: #BCDFF5;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            margin: 1rem 0 0.2rem;
+        }
+
+        @media (min-width: 480px) {
+            body { margin: 1rem; }
+            .contact-card { padding: 2rem 2rem; }
+        }
+        @media (min-width: 640px) {
+            body { margin: 1.5rem; }
+            .contact-card { padding: 2.2rem 2.5rem; }
+        }
+        @media (max-width: 400px) {
+            .site-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+            .nav-link { margin-left: 0; margin-right: 0.8rem; }
+        }
+
+        a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #2C5F7A;
+        }
+        ::selection {
+            background: #1F4C6B;
+            color: #F0F9FF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-card">
+        <header class="site-header">
+            <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/" class="site-title">📦 poetic bytes</a>
+            <nav>
+                <a href="/.index.html" class="nav-link">HOME</a>
+                <a href="./blog.html" class="nav-link">BLOG</a>
+                <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/contact" class="nav-link" style="color:#5FA7D3; border-bottom:1px solid #4B8BBE;">CONTACT</a>
+            </nav>
+        </header>
+
+        <h1>📬 GET IN TOUCH</h1>
+        <p class="intro">Questions, ideas, or just want to say hello? I read every message. Reach out via email — I’ll get back to you as soon as I can.</p>
+
+        <div class="email-container">
+            <span class="email-label">📧 EMAIL (preferred)</span>
+            <a href="mailto:pansensoyglenn@gmail.com" class="email-address">
+                pansensoyglenn@gmail.com
+            </a>
+            <p style="font-size:0.65rem; margin-top:1rem; color:#B3D4EC;">✧ click to send a direct message – your email client will open</p>
+        </div>
+
+        <div class="extra-contact">
+            <span style="display:block; margin-bottom:0.3rem;">🕸️ same‑domain:</span>
+            <span style="background:#0F1C2F; padding:0.2rem 0.5rem; border-radius:20px;">
+                <code style="background:#1A2F3F;">https://pansensoyglenn-dev.github.io/poetic-bytes/</code>
+            </span>
+            <div class="rem-badge" style="margin-top:1.2rem;">
+                📐 REM: TITLE 1rem · BODY .8rem · META .6rem
+            </div>
+        </div>
+
+        
+        <p style="font-size:0.6rem; color:#6B95B3; margin-top:1.5rem; font-style:italic;">
+            Built By:Glenn Junsay Pansensoy 
+        </p>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 poetic bytes · Modern Python</p>
+        <p style="font-style: italic;">“Beautiful is better than ugly.” — Zen of Python</p>
+        <p>🐍 Contact Information</p>
+    </footer>
+</body>
+</html>
