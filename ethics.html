@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Ethics in Python · poetic bytes</title>
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0.75rem;
+            background: #0B121C;        
+            color: #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .ethics-card {
+            max-width: 780px;
+            width: 100%;
+            background: #0F1C2F;    
+            padding: 1.5rem 1.5rem;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.9), 0 0 0 1px #2C4F6E;
+            border: 1px solid #1F405C;
+            transition: padding 0.2s ease;
+            margin: 1rem 0;
+        }
+
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .site-title {
+            color: #5FA7D3;
+            font-weight: 700;
+            font-size: 0.6rem;
+            text-decoration: none;
+            border-bottom: 2px solid #306998;
+            padding-bottom: 0.2rem;
+        }
+
+        .nav-link {
+            color: #9AB8D9;
+            text-decoration: none;
+            margin-left: 0.8rem;
+            font-size: 0.6rem;
+        }
+        .nav-link:hover {
+            color: #78B9E6;
+            border-bottom: 1px dotted #4B8BBE;
+        }
+        .nav-link.active {
+            color: #5FA7D3;
+            border-bottom: 1px solid #4B8BBE;
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-top: 0.2rem;
+            margin-bottom: 0.75rem;
+            color: #5FA7D3;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 0.7rem;
+            text-shadow: 0 0 6px rgba(75,139,190,0.4);
+            word-break: break-word;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            font-weight: 650;
+            margin: 1.75rem 0 0.5rem;
+            color: #78B9E6;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 1px dashed #306998;
+            padding-bottom: 0.25rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin: 0 0 0.9rem 0;
+            color: #CBD5E1;
+        }
+
+        .meta {
+            font-size: 0.6rem;
+            color: #9AB8D9;
+            margin: 0.5rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .footer {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #1F4060;
+            color: #A0BEDB;
+            width: 100%;
+            max-width: 780px;
+        }
+        .footer p {
+            font-size: 0.6rem;
+            margin: 0.2rem 0;
+            color: #B8D4E9;
+        }
+
+        code {
+            background: #122B3A;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.73rem;
+            color: #D4E6F1;
+            border: 1px solid #2E5A77;
+            word-break: break-word;
+        }
+
+        pre {
+            background: #0A1A24;
+            border-left: 5px solid #4B8BBE;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.2rem 0;
+            box-shadow: 0 0 0 1px #2D4B6C, inset 0 0 8px rgba(0,0,0,0.7);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.73rem;
+            color: #E1EFF7;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        blockquote {
+            margin: 1.2rem 0;
+            padding: 0.5rem 1rem;
+            background: #0F2632;
+            border-left: 4px solid #306998;
+            font-size: 0.8rem;
+            color: #C9DCEB;
+            border-radius: 0 16px 16px 0;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        li {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: #C9DCEB;
+        }
+
+        a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #2C5F7A;
+        }
+
+        .rem-badge {
+            font-size: 0.6rem;
+            background: #0F2632;
+            color: #BCDFF5;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            margin: 0.6rem 0 0.2rem;
+        }
+
+        ::selection {
+            background: #1F4C6B;
+            color: #F0F9FF;
+        }
+
+        
+        @media (min-width: 480px) {
+            body { margin: 1rem; }
+            .ethics-card { padding: 2rem 2rem; }
+        }
+        @media (min-width: 640px) {
+            body { margin: 1.5rem; }
+            .ethics-card { padding: 2.2rem 2.5rem; }
+        }
+        @media (max-width: 400px) {
+            .site-header { flex-direction: column; align-items: flex-start; }
+            .nav-link { margin-left: 0; margin-right: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ethics-card">
+        <header class="site-header">
+            <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/" class="site-title">📦 poetic bytes</a>
+            <nav>
+                <a href="./python-strings.html" class="nav-link">HOME</a>
+                <a href="blog.html" class="nav-link">BLOG</a>
+                <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/ethics" class="nav-link active">ETHICS</a>
+                <a href="contact.html" class="nav-link">CONTACT</a>
+            </nav>
+        </header>
+
+        <h1>⚖️ ETHICS IN PYTHON: CODE WITH CONSCIENCE</h1>
+        <div class="meta">
+            <span>📅 FEB 15, 2026</span>
+            <span>⏱️ 10 MIN READ</span>
+            <span>👤 GLENN Junsay PANSENSOY</span>
+            <span>🏷️ ETHICS · RESPONSIBILITY</span>
+        </div>
+
+        <p style="font-size:0.8rem; font-style:italic; color:#B0D4F0;">“With great power comes great responsibility.” — Python empowers billions of devices, models, and decisions. Ethics isn’t an add‑on; it’s core to sustainable engineering.</p>
+        
+        <h2>✦ WHY ETHICS MATTER IN PYTHON</h2>
+        <p>Python is the language of AI, data science, and automation. Its simplicity lowers the barrier to entry—which means ethical pitfalls also become easier to stumble into. From biased datasets to opaque algorithms, Python developers shape the digital world. Ethical awareness is not about limiting innovation; it’s about steering it toward fairness, transparency, and human well‑being.</p>
+
+        <h2>✦ 1. RESPONSIBLE AI & MODEL GOVERNANCE</h2>
+        <p>Python dominates machine learning (TensorFlow, PyTorch, scikit‑learn). Responsible AI means documenting data provenance, auditing for bias, and ensuring explainability. A simple checklist can prevent harm:</p>
+        <ul>
+            <li><strong>Data provenance:</strong> Where does the training data come from? Is it licensed? Representative?</li>
+            <li><strong>Bias audits:</strong> Test model performance across demographic groups.</li>
+            <li><strong>Explainability:</strong> Use <code>shap</code> or <code>lime</code> to interpret predictions.</li>
+        </ul>
+        <pre><code># Example: bias audit with fairlearn
+from fairlearn.metrics import demographic_parity_difference
+import pandas as pd
+
+y_true = [1,0,1,1,0,1]
+y_pred = [1,0,0,1,0,1]
+sensitive = [0,0,1,1,0,1]  # e.g., gender
+
+dp_diff = demographic_parity_difference(y_true, y_pred, sensitive_features=sensitive)
+print(f"Demographic parity difference: {dp_diff:.2f}")</code></pre>
+
+        <h2>✦ 2. DATA PRIVACY & CONSENT</h2>
+        <p>Python's data ecosystem makes it easy to collect, store, and analyze personal information. Ethical code respects user consent and minimises collection. Techniques like differential privacy (via <code>diffprivlib</code>) and anonymisation are first‑class citizens.</p>
+        <blockquote>
+            🛡️ “Privacy is not an option, and it shouldn’t be the price we accept for getting services.” — often misattributed, but the principle stands.
+        </blockquote>
+        <pre><code># anonymise personal data with pandas
+import pandas as pd
+
+df = pd.DataFrame({
+    'name': ['Alice', 'Bob', 'Charlie'],
+    'email': ['alice@example.com', 'bob@example.com', 'charlie@example.com'],
+    'score': [85, 92, 78]
+})
+
+# drop identifiers, keep only aggregated insights
+df_anon = df.drop(columns=['name', 'email'])
+print(df_anon.describe())</code></pre>
+
+        <h2>✦ 3. OPEN SOURCE ETHICS & ATTRIBUTION</h2>
+        <p>Python thrives on open source. Using a library is not just a technical act—it’s a legal and ethical one. Respect licenses (MIT, GPL, Apache), give credit, and consider contributing back. Many projects survive on goodwill; don't be a taker only.</p>
+        <ul>
+            <li>Always include <code>LICENSE</code> and <code>NOTICE</code> files when redistributing.</li>
+            <li>Cite the libraries you use in documentation or <code>pyproject.toml</code>.</li>
+            <li>If you build a profitable product on free software, consider sponsoring maintainers.</li>
+        </ul>
+        <h2>✦ 4. BIAS – THE SILENT BUG</h2>
+        <p>Bias is not just “bad data”—it emerges from feature selection, label definitions, and even evaluation metrics. Python’s flexibility allows us to catch bias early. For example, a hiring model trained on historical data may encode gender bias.</p>
+        <pre><code># hypothetical fairness constraint in optimisation
+from scipy.optimize import linprog
+
+# objective: maximise accuracy subject to fairness constraints
+# (simplified illustration)</code></pre>
+        <p>Tools like <code>aif360</code> and <code>fairlearn</code> provide metrics and mitigation algorithms. Ethical Python means using them, not just treating fairness as an afterthought.</p>
+
+        <h2>✦ 5. CODE EFFICIENCY = PLANET CARE</h2>
+        <p>Python isn’t the fastest language, but efficient code reduces carbon emissions. Training a single large transformer emits as much CO₂ as five cars over their lifetime. Ethical Python includes writing efficient algorithms, using <code>__slots__</code>, choosing appropriate data structures, and turning off idle compute.</p>
+        <pre><code># inefficient vs efficient loop
+import time
+
+# O(n²) – avoid for large data
+def slow_search(lst, target):
+    for i in lst:
+        for j in lst:
+            if i == target and j == target:
+                return True
+    return False
+
+# O(n) – better
+def fast_search(lst, target):
+    return target in lst</code></pre>
+
+        <h2>✦ 6. INCLUSIVE COMMUNITIES</h2>
+        <p>Ethics goes beyond code. Python’s strength is its global, diverse community. Upholding the <a href="https://www.python.org/psf/conduct/">PSF Code of Conduct</a> is ethical practice. In your own projects, add a <code>CODE_OF_CONDUCT.md</code>, welcome contributions, and enforce respectful discourse.</p>
+        <blockquote>
+            “We reject harassment, bullying, and discrimination of any kind.” — Python Software Foundation.
+        </blockquote>
+
+        <h2>✦ 7. SECURITY AS ETHICS</h2>
+        <p>Shipping vulnerable code harms users. Ethical Python developers validate inputs, avoid <code>eval</code> on untrusted data, pin dependencies, and follow responsible disclosure. The <code>bandit</code> linter and <code>safety</code> tool help catch common flaws.</p>
+        <pre><code># insecure – never do this
+user_input = "__import__('os').system('rm -rf /')"
+# eval(user_input)  # catastrophic
+
+# secure – use literal_eval for trusted data only
+from ast import literal_eval
+safe_dict = literal_eval("{'key': 123}")</code></pre>
+
+        <h2>✦ 8. TEACHING ETHICS FROM DAY ONE</h2>
+        <p>Introductory Python courses should include ethical vignettes: web scraping without permission, bias in grade prediction, or facial recognition. Tools like <code>Jupyter</code> notebooks can embed reflective questions. Ethical awareness is a skill, not a lecture.</p>
+
+        <h2>✦ TOWARDS CONSCIENTIOUS CODE</h2>
+        <p>Ethics in Python is not a destination; it’s a continuous practice. It lives in code reviews, dependency updates, documentation, and the way we treat collaborators. As Pythonistas, we have the privilege to build tools that shape society. Let’s do it with intention, humility, and courage.</p>
+        <p style="border-left: 4px solid #4B8BBE; padding-left: 1rem; margin:1.5rem 0;">
+            📖 <em>“Beautiful is better than ugly. Explicit is better than implicit. … Now, add: <strong>Ethical is better than unethical.</strong>”</em>
+        </p>
+
+        <span class="rem-badge">📐 REM: TITLE 1rem · BODY .8rem · META .6rem</span>
+
+        <p style="font-size:0.55rem; color:#6B95B3; margin-top:1.5rem; text-align:right;">
+            <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/" style="color:#9AB8D9;">poetic‑bytes</a> · 
+            <a href="mailto:pansensoyglenn@gmail.com" style="color:#9AB8D9;">pansensoyglenn@gmail.com</a>
+        </p>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 poetic bytes — Glenn Junsay Pansensoy</p>
+        <p style="font-style: italic;">“Code is never neutral; it either reinforces or challenges power structures.”</p>
+        <p>🐍 ethics · responsibility · open source</p>
+    </footer>
+</body>
+</html>
