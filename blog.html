@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- responsive viewport – mobile first -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Modern Python</title>
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0.75rem;      
+            background: #0B121C;       
+            color: #E2E8F0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        article {
+            max-width: 780px;          
+            width: 100%;
+            background: #0F1C2
+            padding: 1.25rem 1.25rem;  
+            border-radius: 24px;
+            box-shadow: 0 15px 30px -8px rgba(0,0,0,0.9), 0 0 0 1px #2C4F6E;
+            border: 1px solid #1F405C;
+            transition: padding 0.2s ease, margin 0.2s ease;
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
+            color: #5FA7D3;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 0.75rem;
+            text-shadow: 0 0 6px rgba(75,139,190,0.5);
+            word-break: break-word;   
+        }
+
+        
+        h2, h3, p, li, .code-label, figcaption, pre, ul {
+            font-size: 0.8rem;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            font-weight: 650;
+            margin: 1.75rem 0 0.5rem;
+            color: #78B9E6;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 1px dashed #306998;
+            padding-bottom: 0.25rem;
+        }
+
+        p {
+            margin: 0 0 0.9rem 0;
+            color: #CBD5E1;
+        }
+
+        
+        .meta {
+            font-size: 0.6rem;
+            color: #9AB8D9;
+            margin: 0.5rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;          /* allows wrapping on mobile */
+            gap: 0.8rem 1.2rem;       /* responsive gap */
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .footer {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #1F4060;
+            color: #A0BEDB;
+        }
+
+        .footer p {
+            font-size: 0.6rem;
+            margin: 0.2rem 0;
+            color: #B8D4E9;
+        }
+
+        
+        code {
+            background: #122B3A;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.73rem;
+            color: #D4E6F1;
+            border: 1px solid #2E5A77;
+            word-break: break-word;
+        }
+
+        pre {
+            background: #0A1A24;
+            border-left: 5px solid #4B8BBE;
+            padding: 0.9rem 1rem;      /* reduced for mobile */
+            border-radius: 16px;
+            overflow-x: auto;           
+            -webkit-overflow-scrolling: touch;
+            margin: 1.2rem 0;
+            box-shadow: 0 0 0 1px #2D4B6C, inset 0 0 8px rgba(0,0,0,0.7);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.73rem;
+            color: #E1EFF7;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        .rem-badge {
+            font-size: 0.6rem;
+            background: #0F2632;
+            color: #BCDFF5;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            box-shadow: 0 0 12px rgba(75,139,190,0.2);
+            margin: 0.6rem 0 0.2rem;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: #C9DCEB;
+        }
+
+        a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #2C5F7A;
+            word-break: break-word;
+        }
+
+        ::selection {
+            background: #1F4C6B;
+            color: #F0F9FF;
+        }
+
+    
+        @media (min-width: 480px) {
+            body {
+                margin: 1rem;          /* slightly more space */
+            }
+            article {
+                padding: 1.5rem 1.8rem;
+            }
+        }
+
+        @media (min-width: 640px) {
+            body {
+                margin: 1.5rem;
+            }
+            article {
+                padding: 2rem 2.2rem;
+            }
+            h1 {
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            body {
+                margin: 2rem auto;
+            }
+            article {
+                padding: 2rem 2.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .meta {
+                gap: 0.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            pre {
+                padding: 0.7rem 0.8rem;
+            }
+        }
+
+        pre::-webkit-scrollbar {
+            height: 6px;
+            background: #0f1e28;
+        }
+        pre::-webkit-scrollbar-thumb {
+            background: #306998;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>🐍 MODERN PYTHON: SIX FEATURES YOU MUST MASTER (2026)</h1>
+            <div class="meta">
+                <span>📅 FEB 12, 2026</span>
+                <span>⏱️ 12 MIN READ</span>
+                <span>👤 ELENA VASQUEZ</span>
+                <span>🏷️ ADVANCED · TYPING · ASYNC</span>
+            </div>
+        </header>
+
+        
+        <section>
+            <h2>✦ 1. DATA CLASSES – LESS BOILERPLATE</h2>
+            <p>Introduced in Python 3.7, <code>@dataclass</code> automatically generates <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>, and more. It makes class definitions concise and readable, especially for data containers.</p>
+            <pre><code>from dataclasses import dataclass
+
+@dataclass
+class Developer:
+    name: str
+    language: str = "Python"
+    experience_years: int = 0
+
+dev = Developer("Dana")
+print(dev)   # Developer(name='Dana', language='Python', experience_years=0)</code></pre>
+            <p>Data classes work seamlessly with type hints and support immutable versions via <code>frozen=True</code>.</p>
+
+            <h2>✦ 2. TYPE HINTS – BEYOND BASICS</h2>
+            <p>Since Python 3.5+, type hints have become ubiquitous. Modern code uses <code>TypedDict</code>, <code>Literal</code>, <code>Union</code> (<code>|</code> syntax in 3.10+), and <code>TypeVar</code>. Static checkers like <code>mypy</code> and <code>pyright</code> catch bugs before runtime.</p>
+            <pre><code>from typing import Literal, TypedDict
+
+class Config(TypedDict):
+    env: Literal["dev", "prod"]
+    timeout: float | int   # union via |
+
+def set_config(cfg: Config) -> None:
+    print(f"Environment: {cfg['env']}")</code></pre>
+
+            <h2>✦ 3. CONTEXT MANAGERS – BEYOND WITH OPEN</h2>
+            <p>Custom context managers using <code>__enter__</code>/<code>__exit__</code> or <code>contextlib.contextmanager</code> simplify resource management. They’re perfect for database connections, locks, and temporary changes.</p>
+            <pre><code>from contextlib import contextmanager
+
+@contextmanager
+def temporary_alias(obj, new_name):
+    original = obj.__name__
+    obj.__name__ = new_name
+    try:
+        yield
+    finally:
+        obj.__name__ = original
+
+class Service: pass
+with temporary_alias(Service, "API"):
+    print(Service.__name__)   # API
+print(Service.__name__)       # Service</code></pre>
+
+            <h2>✦ 4. DECORATORS – POWERFUL & CLEAN</h2>
+            <p>Decorators extend callables without modifying them. They’re used for logging, caching, permissions, and more. Always use <code>functools.wraps</code> to preserve metadata.</p>
+            <pre><code>from functools import wraps
+import time
+
+def timer(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        print(f"{func.__name__} took {time.perf_counter()-start:.4f}s")
+        return result
+    return wrapper
+
+@timer
+def process_data():
+    return sum(i*i for i in range(10**6))</code></pre>
+
+            <h2>✦ 5. ASYNC/AWAIT – CONCURRENT PYTHON</h2>
+            <p>Asyncio (since 3.4/3.5) enables cooperative multitasking. Perfect for I/O-bound tasks. Modern frameworks like FastAPI and aiohttp are built on it.</p>
+            <pre><code>import asyncio
+
+async def fetch_data(delay, name):
+    await asyncio.sleep(delay)
+    return f"Data from {name}"
+
+async def main():
+    tasks = [
+        fetch_data(1, "API A"),
+        fetch_data(0.5, "API B")
+    ]
+    results = await asyncio.gather(*tasks)
+    print(results)
+
+asyncio.run(main())</code></pre>
+
+            <h2>✦ 6. STRUCTURAL PATTERN MATCHING (3.10+)</h2>
+            <p><code>match</code>/<code>case</code> brings destructuring and pattern matching to Python. It’s far more expressive than long <code>if/elif</code> chains, especially with data classes and sequences.</p>
+            <pre><code>def parse_command(cmd):
+    match cmd.split():
+        case ["quit"]:
+            return "Exiting"
+        case ["hello", name] if name.isalpha():
+            return f"Hi, {name}"
+        case ["load", filepath]:
+            return f"Loading {filepath}"
+        case _:
+            return "Unknown command"
+
+print(parse_command("hello Elena"))   # Hi, Elena</code></pre>
+
+            <span class="rem-badge">📐 Created By:Glenn Junsay Pansensoy</span>
+
+            <h2>✦ BONUS: FUTURE PYTHON – 3.12 & 3.13</h2>
+            <p>Newer versions bring more typing improvements (PEP 695), better error messages, and a JIT compiler. The ecosystem keeps evolving while maintaining backward compatibility – Python’s superpower.</p>
+            <ul>
+                <li><strong>PEP 695:</strong> Type parameter syntax (generics without <code>TypeVar</code>)</li>
+                <li><strong>PEP 701:</strong> F-string grammar formalisation (nesting!)</li>
+                <li><strong>PEP 709:</strong> Comprehension inlining (speed gains)</li>
+            </ul>
+
+            <h2>✦ WHY THESE FEATURES MATTER</h2>
+            <p>Python isn’t just a scripting language anymore. It powers massive distributed systems, AI training pipelines, and real‑time services. Mastering modern syntax and libraries makes you a more effective engineer and your code more maintainable. The Zen of Python says “There should be one—and preferably only one—obvious way to do it.” Modern features often become that obvious way.</p>
+
+            <div style="margin-top: 1.8rem; border-top: 1px dashed #1F4060; padding-top: 1rem;">
+                <p style="font-size: 0.6rem; color: #9CC0D9; text-align: center;">📱 Python Tutorial</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 PYTHON BLOG — DEEP DIVES</p>
+            <p style="font-style: italic; color: #B0D4F0;">“Simple is better than complex, but modern Python is still Python.”</p>
+            <p>🐍 Modern Python@2026</p>
+        </footer>
+    </article>
+</body>
+</html>
