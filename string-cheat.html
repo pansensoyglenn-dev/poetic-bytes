@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Python Strings · Cheat Sheet</title>
+    <style>
+        
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0.75rem;
+            background: #0B121C;        /* deep obsidian */
+            color: #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .cheat-card {
+            max-width: 780px;
+            width: 100%;
+            background: #0F1C2F;    
+            padding: 1.5rem 1.5rem;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.9), 0 0 0 1px #2C4F6E;
+            border: 1px solid #1F405C;
+            transition: padding 0.2s ease;
+            margin: 1rem 0;
+        }
+
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .site-title {
+            color: #5FA7D3;
+            font-weight: 700;
+            font-size: 0.6rem;
+            text-decoration: none;
+            border-bottom: 2px solid #306998;
+            padding-bottom: 0.2rem;
+        }
+
+        .nav-link {
+            color: #9AB8D9;
+            text-decoration: none;
+            margin-left: 0.8rem;
+            font-size: 0.6rem;
+        }
+        .nav-link:hover {
+            color: #78B9E6;
+            border-bottom: 1px dotted #4B8BBE;
+        }
+        .nav-link.active {
+            color: #5FA7D3;
+            border-bottom: 1px solid #4B8BBE;
+        }
+
+        
+        h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-top: 0.2rem;
+            margin-bottom: 0.75rem;
+            color: #5FA7D3;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 0.7rem;
+            text-shadow: 0 0 6px rgba(75,139,190,0.4);
+            word-break: break-word;
+        }
+
+        
+        h2 {
+            font-size: 0.8rem;
+            font-weight: 650;
+            margin: 1.8rem 0 0.4rem;
+            color: #78B9E6;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 1px dashed #306998;
+            padding-bottom: 0.25rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin: 0 0 0.8rem 0;
+            color: #CBD5E1;
+        }
+
+        .meta {
+            font-size: 0.6rem;
+            color: #9AB8D9;
+            margin: 0.5rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .footer {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #1F4060;
+            color: #A0BEDB;
+            width: 100%;
+            max-width: 780px;
+        }
+        .footer p {
+            font-size: 0.6rem;
+            margin: 0.2rem 0;
+            color: #B8D4E9;
+        }
+
+        code {
+            background: #122B3A;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.73rem;
+            color: #D4E6F1;
+            border: 1px solid #2E5A77;
+            word-break: break-word;
+        }
+
+        pre {
+            background: #0A1A24;
+            border-left: 5px solid #4B8BBE;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1rem 0;
+            box-shadow: 0 0 0 1px #2D4B6C, inset 0 0 8px rgba(0,0,0,0.7);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.73rem;
+            color: #E1EFF7;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.4rem 1rem;
+            margin: 0.8rem 0;
+            font-size: 0.8rem;
+        }
+        .method-item {
+            background: #0F2632;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            border: 1px solid #2C5F7A;
+            color: #C9DCEB;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        li {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: #C9DCEB;
+        }
+
+        .rem-badge {
+            font-size: 0.6rem;
+            background: #0F2632;
+            color: #BCDFF5;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #2C5F7A;
+        }
+
+        ::selection {
+            background: #1F4C6B;
+            color: #F0F9FF;
+        }
+
+        @media (min-width: 480px) {
+            body { margin: 1rem; }
+            .cheat-card { padding: 2rem 2rem; }
+        }
+        @media (min-width: 640px) {
+            body { margin: 1.5rem; }
+            .cheat-card { padding: 2.2rem 2.5rem; }
+        }
+        @media (max-width: 400px) {
+            .site-header { flex-direction: column; align-items: flex-start; }
+            .nav-link { margin-left: 0; margin-right: 0.8rem; }
+            .method-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cheat-card">
+        <header class="site-header">
+            <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/" class="site-title">📦 POETIC BYTES</a>
+            <nav>
+                <a href="./string-cheat.html" class="nav-link">HOME</a>
+                <a href="./blog.html" class="nav-link">BLOG</a>
+                <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/ethics.html" class="nav-link">ETHICS</a>
+                <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-strings.html" class="nav-link active">STRINGS</a>
+                <a href="contact.html" class="nav-link">CONTACT</a>
+            </nav>
+        </header>
+
+        <h1>🔤 PYTHON STRINGS · CHEAT SHEET</h1>
+        <div class="meta">
+            <span>📅 FEB 16, 2026</span>
+            <span>⏱️ 8 MIN REFERENCE</span>
+            <span>👤 GLENN JUNSAY PANSENSOY</span>
+            <span>🏷️ CHEATSHEET · STRINGS · ESSENTIALS</span>
+        </div>
+
+        <p style="font-style:italic; color:#B0D4F0;">Strings are immutable sequences of Unicode code points. Master them — they’re everywhere.</p>
+
+        <h2>✦ CREATION & LITERALS</h2>
+        <pre><code># quotes: single, double, triple (multi‑line)
+s1 = 'python'
+s2 = "python"
+s3 = '''multi
+line'''
+s4 = """also multi"""
+
+# raw strings – ignore escapes
+path = r'C:\Users\name'</code></pre>
+
+        <h2>✦ INDEXING & SLICING</h2>
+        <pre><code>text = "python"
+# index:       0 1 2 3 4 5   negative: -6 -5 -4 -3 -2 -1
+text[0]   # 'p'
+text[-1]  # 'n'
+text[1:4] # 'yth'
+text[:3]  # 'pyt'
+text[3:]  # 'hon'
+text[::-1] # 'nohtyp' (reverse)</code></pre>
+
+        <h2>✦ COMMON OPERATIONS</h2>
+        <pre><code>len("python")      # 6
+"py" + "thon"      # concatenation – 'python'
+"py" * 3           # repetition – 'pypypy'
+"th" in "python"   # True
+for ch in "abc":   # iteration
+    print(ch)</code></pre>
+
+        <h2>✦ CASE METHODS</h2>
+        <div class="method-grid">
+            <span class="method-item"><code>.upper()</code> → 'PYTHON'</span>
+            <span class="method-item"><code>.lower()</code> → 'python'</span>
+            <span class="method-item"><code>.title()</code> → 'Python'</span>
+            <span class="method-item"><code>.capitalize()</code> → 'Python'</span>
+            <span class="method-item"><code>.swapcase()</code> → 'PYTHON' ↔ 'python'</span>
+            <span class="method-item"><code>.casefold()</code> → aggressive lower (ß → ss)</span>
+        </div>
+
+        <h2>✦ STRIPPING & PADDING</h2>
+        <div class="method-grid">
+            <span class="method-item"><code>.strip()</code> – remove both sides</span>
+            <span class="method-item"><code>.lstrip()</span>
+            <span class="method-item"><code>.rstrip()</span>
+            <span class="method-item"><code>.zfill(5)</code> → '00042'</span>
+            <span class="method-item"><code>.ljust(10)</code> → 'python    '</span>
+            <span class="method-item"><code>.rjust(10)</code> → '    python'</span>
+            <span class="method-item"><code>.center(10)</code> → '  python  '</span>
+            <span class="method-item"><code>.expandtabs(4)</span>
+        </div>
+
+        <h2>✦ SEARCH & COUNT</h2>
+        <div class="method-grid">
+            <span class="method-item"><code>.find('th')</code> → 2</span>
+            <span class="method-item"><code>.rfind('n')</code> → 5</span>
+            <span class="method-item"><code>.index('th')</code> → 2 (raises if not found)</span>
+            <span class="method-item"><code>.count('p')</code> → 1</span>
+            <span class="method-item"><code>.startswith('py')</code> → True</span>
+            <span class="method-item"><code>.endswith('on')</code> → True</span>
+        </div>
+
+        <h2>✦ SPLIT & JOIN</h2>
+        <pre><code>"a,b,c".split(',')      → ['a','b','c']
+"a\nb".splitlines()      → ['a','b']
+",".join(['a','b','c'])  → 'a,b,c'</code></pre>
+
+        <h2>✦ REPLACE & TRANSLATE</h2>
+        <pre><code>"Hello world".replace("world", "Python") → 'Hello Python'
+# translate – remove vowels
+table = str.maketrans('', '', 'aeiou')
+"hello".translate(table) → 'hll'</code></pre>
+
+        <h2>✦ CHECK METHODS</h2>
+        <div class="method-grid">
+            <span class="method-item"><code>.isalpha()</code> → 'abc' True</span>
+            <span class="method-item"><code>.isdigit()</code> → '123' True</span>
+            <span class="method-item"><code>.isalnum()</code> → 'abc123' True</span>
+            <span class="method-item"><code>.isspace()</code></span>
+            <span class="method-item"><code>.islower()</code></span>
+            <span class="method-item"><code>.isupper()</code></span>
+            <span class="method-item"><code>.istitle()</code></span>
+            <span class="method-item"><code>.isnumeric()</code> – Ⅶ True</span>
+            <span class="method-item"><code>.isdecimal()</code></span>
+            <span class="method-item"><code>.isidentifier()</code> – valid variable?</span>
+            <span class="method-item"><code>.isprintable()</code></span>
+        </div>
+
+        <h2>✦ F-STRINGS (3.6+)</h2>
+        <pre><code>name = "Glenn"
+age = 42
+f"Hello, {name}! You are {age}."   # Hello, Glenn! You are 42.
+f"{age:.2f}"                        # '42.00'
+f"{2**10}"                          # '1024'</code></pre>
+
+        <h2>✦ OLDER FORMATTING</h2>
+        <pre><code>"%s %d" % ("answer", 42)      # %-format
+"{} {}".format("answer", 42)   # str.format()
+"{age} {name}".format(name="G", age=30)</code></pre>
+
+        <h2>✦ ESCAPE SEQUENCES</h2>
+        <div class="method-grid">
+            <span class="method-item"><code>\n</code> newline</span>
+            <span class="method-item"><code>\t</code> tab</span>
+            <span class="method-item"><code>\\</code> backslash</span>
+            <span class="method-item"><code>\'</code> single quote</span>
+            <span class="method-item"><code>\"</code> double quote</span>
+            <span class="method-item"><code>\r</code> carriage return</span>
+            <span class="method-item"><code>\b</code> backspace</span>
+        </div>
+
+        <h2>✦ UNICODE & ENCODING</h2>
+        <pre><code>"café".encode('utf-8')      # b'caf\xc3\xa9'
+b'caf\xc3\xa9'.decode()      # 'café'
+ord('€')                     # 8364
+chr(8364)                    # '€'</code></pre>
+
+        <h2>✦ USEFUL BUILT‑INS</h2>
+        <pre><code>import string
+string.ascii_lowercase  # 'abcdefghijklmnopqrstuvwxyz'
+string.digits           # '0123456789'
+string.punctuation      # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+str.whitespace          # space, newline, tab...</code></pre>
+
+        <!-- 9. PERFORMANCE TIP -->
+        <h2>✦ TIP – CONCATENATION</h2>
+        <pre><code># ❌ slow for many pieces:   s = s + 'x'
+# ✅ fast:                    parts = []; parts.append('x'); ''.join(parts)</code></pre>
+
+        <span class="rem-badge">📐 REM: TITLE 1rem · BODY .8rem · META .6rem</span>
+
+        <p style="font-size:0.55rem; color:#6B95B3; margin-top:1.8rem; text-align:right;">
+            <a href="mailto:pansensoyglenn@gmail.com" style="color:#9AB8D9;">pansensoyglenn@gmail.com</a> · 
+            <a href="https://pansensoyglenn-dev.github.io/poetic-bytes/" style="color:#9AB8D9;">POETIC BYTES s</a>
+        </p>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 poetic bytes — Glenn Junsay Pansensoy</p>
+        <p style="font-style: italic;">“Strings are the thread that weaves data into story.”</p>
+        <p>🐍 cheat sheet · strings · quick reference</p>
+    </footer>
+</body>
+</html>
