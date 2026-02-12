@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Backend Concepts</title>
+  <style>
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    
+    :root {
+      --obsidian-bg: #0a0c0e; 
+      --surface-1: #1a1d1f;     
+      --surface-2: #25292c;          
+      --border-dim: #2e3338;
+      --text-light: #e9edf0;    
+      --text-muted: #a3aaae;  
+      --python-blue: #3776ab;   
+      --python-glow: #4b8bbe;        
+      --code-bg: #15191c;
+      --success-dot: #6bbf5b;
+      --warning-dot: #f5b042;
+    }
+
+  
+    html {
+      font-size: 16px;  
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (max-width: 600px) {
+      html {
+        font-size: 20px;           
+      }
+    }
+
+    body {
+      background-color: var(--obsidian-bg);
+      color: var(--text-light);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dashboard {
+      max-width: 1280px;
+      width: 100%;
+    }
+
+    
+    h1, .title {
+      font-size: 1rem;             /* 1rem – title */
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--python-blue);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+
+    h2, h3, .subtitle {
+      font-size: 0.7rem;          /* 0.7rem – subtitle */
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.015em;
+      margin-bottom: 0.2rem;
+    }
+
+    p, .paragraph, .text, .card-desc, .stat-label, .footer-text {
+      font-size: 0.6rem;        
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    
+    .stat-value {
+      font-size: 1.2rem;        
+      font-weight: 600;
+      color: var(--text-light);
+      line-height: 1.2;
+    }
+
+    
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border-dim);
+      padding-bottom: 0.8rem;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .badge {
+      background: var(--surface-2);
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border: 0.5px solid var(--border-dim);
+      display: inline-block;
+    }
+
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .card {
+      background: var(--surface-1);
+      border-radius: 16px;
+      padding: 1rem 0.9rem;
+      border: 0.5px solid var(--border-dim);
+      transition: border 0.1s ease;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+
+    .card:hover {
+      border-color: var(--python-blue);
+    }
+
+    .card-title {
+      font-size: 0.7rem;          /* subtitle size */
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    
+    .dot-blue {
+      width: 6px;
+      height: 6px;
+      background: var(--python-blue);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-success {
+      background: var(--success-dot);
+    }
+    .dot-warning {
+      background: var(--warning-dot);
+    }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-desc {
+      font-size: 0.6rem;          /* strict paragraph size */
+      color: var(--text-muted);
+    }
+
+    
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    @media (max-width: 680px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .api-list, .system-meta {
+      list-style: none;
+      padding: 0;
+    }
+
+    .api-list li, .meta-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 0.5px solid var(--border-dim);
+    }
+
+    .api-list li:last-child, .meta-item:last-child {
+      border-bottom: none;
+    }
+
+    .api-method {
+      font-size: 0.6rem;
+      background: var(--code-bg);
+      padding: 0.15rem 0.5rem;
+      border-radius: 12px;
+      color: var(--python-blue);
+      font-weight: 500;
+      border: 0.5px solid #3776ab40;
+    }
+
+    .api-path {
+      font-size: 0.6rem;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      color: var(--text-light);
+    }
+
+    
+    pre, .code-snip {
+      background: var(--code-bg);
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border-left: 3px solid var(--python-blue);
+      font-size: 0.6rem;        
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: #b5c5d2;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin: 0.6rem 0 0.2rem;
+      line-height: 1.5;
+    }
+
+  
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-dim);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer p {
+      margin-bottom: 0;
+    }
+
+    .mobile-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .blue-text {
+      color: var(--python-blue);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 0.5px solid var(--python-blue);
+      color: var(--python-blue);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.6rem;
+      font-weight: 500;
+      cursor: default;
+    }
+
+    .text-meta {
+      font-size: 0.6rem;
+    }
+
+    .card, .header, .footer, .stats-grid {
+
+    }
+
+    
+    ::selection {
+      background: #3776ab60;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+
+    <header class="header">
+      <div class="header-left">
+        <h1 class="title">⚙️ Backend Core</h1>
+        <span class="subtitle" style="margin-bottom: 0.1rem;">Python Educational Site</span>
+        <p class="paragraph" style="margin-top: 0.2rem; max-width: 70ch;">
+          Python runtime • 8 vCPU • 16 GB • service health: operational
+        </p>
+      </div>
+      <div class="badge" style="align-self: center;">
+        <span class="dot-blue" style="margin-right: 0.3rem;"></span> live · 42 ms
+      </div>
+    </header>
+
+    <div class="stats-grid">
+      <div class="card">
+        <div class="card-title">
+          <span class="dot-blue"></span> requests/s
+        </div>
+        <div class="stat-value">2,341</div>
+        <p class="card-desc">peak: 3.1k · 23% increase</p>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <span class="dot-blue"></span> db pool
+        </div>
+        <div class="stat-value">14/20</div>
+        <p class="card-desc">connections · 0 idle timeout</p>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <span class="dot-blue"></span> cache hit
+        </div>
+        <div class="stat-value">94%</div>
+        <p class="card-desc">redis · 2.1 ms avg</p>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <span class="dot-blue"></span> error rate
+        </div>
+        <div class="stat-value">0.02%</div>
+        <p class="card-desc">5xx · 0.001% 4xx</p>
+      </div>
+    </div>
+
+    <div class="main-grid">
+      <div class="card" style="padding: 1.2rem 1rem;">
+        <div class="section-header">
+          <h2 class="subtitle" style="color: var(--text-light); font-weight: 600;">📡 active endpoints</h2>
+          <span class="btn-ghost">6 routes</span>
+        </div>
+        <ul class="api-list">
+          <li>
+            <span class="api-method">GET</span>
+            <span class="api-path">/api/v1/users</span>
+            <span class="paragraph" style="color: #8bc34a;">200</span>
+          </li>
+          <li>
+            <span class="api-method">POST</span>
+            <span class="api-path">/api/v1/orders</span>
+            <span class="paragraph">201</span>
+          </li>
+          <li>
+            <span class="api-method">PUT</span>
+            <span class="api-path">/api/v1/inventory</span>
+            <span class="paragraph">202</span>
+          </li>
+          <li>
+            <span class="api-method">DELETE</span>
+            <span class="api-path">/api/v1/cache</span>
+            <span class="paragraph">204</span>
+          </li>
+        </ul>
+
+        <div style="margin-top: 1.2rem;">
+          <h3 class="subtitle" style="margin-bottom: 0.3rem;">⚡ recent task (celery)</h3>
+          <pre class="code-snip">@app.task(bind=True, rate_limit='10/m')
+def process_payment(self, payment_id):
+    logger.info(f"tx {payment_id}") 
+    # python blue in obsidian
+    return True</pre>
+          <p class="paragraph" style="margin-top: 0.3rem;">succeeded · 2.3s ago</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 1.2rem 1rem;">
+        <div class="section-header">
+          <h2 class="subtitle" style="color: var(--text-light); font-weight: 600;">🧠 system data</h2>
+          <span class="dot-success" style="width: 8px; height: 8px;"></span>
+        </div>
+
+        <ul class="system-meta" style="margin-bottom: 1rem;">
+          <li class="meta-item">
+            <span class="subtitle" style="color: var(--text-muted);">celery worker</span>
+            <span class="paragraph">4 active · 0.6 ld</span>
+          </li>
+          <li class="meta-item">
+            <span class="subtitle" style="color: var(--text-muted);">gunicorn</span>
+            <span class="paragraph">8 workers · 23 req</span>
+          </li>
+          <li class="meta-item">
+            <span class="subtitle" style="color: var(--text-muted);">nginx</span>
+            <span class="paragraph">up 14d · 0 err</span>
+          </li>
+          <li class="meta-item">
+            <span class="subtitle" style="color: var(--text-muted);">redis</span>
+            <span class="paragraph">hit 94% · 2.1 ms</span>
+          </li>
+        </ul>
+
+        <div style="background: var(--surface-2); padding: 0.8rem; border-radius: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
+            <span class="subtitle" style="color: var(--text-light);">background worker</span>
+            <span class="badge" style="font-size: 0.55rem;">PID 1923</span>
+          </div>
+          <p class="paragraph" style="margin-bottom: 0.1rem;">async report generator</p>
+          <p class="paragraph" style="color: var(--success-dot);">● running · 34%</p>
+          <div style="margin-top: 0.5rem; background: #2a3138; height: 4px; width: 100%; border-radius: 4px;">
+            <div style="background: var(--python-blue); width: 67%; height: 4px; border-radius: 4px;"></div>
+          </div>
+          <p class="paragraph" style="margin-top: 0.3rem;">67% · ETA 2.4s</p>
+        </div>
+
+        <p class="paragraph" style="margin-top: 1rem; color: #6f7a82;">
+          Last GC cycle: 12s ago · mem 1.2GB
+        </p>
+      </div>
+    </div>
+
+    <div class="mobile-stack" style="display: flex; gap: 1rem; margin-bottom: 0.5rem;">
+      <div class="card" style="flex: 1.5;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span class="dot-blue" style="width: 10px; height: 10px;"></span>
+          <h3 class="subtitle" style="color: var(--text-light);">event stream</h3>
+        </div>
+        <p class="paragraph" style="margin: 0.3rem 0 0.2rem;">
+          websocket: connected · 3 active topics
+        </p>
+        <pre style="background: #0e1215; border-left-color: #4b8bbe; font-size: 0.6rem; padding: 0.6rem;">{
+  "service": "notification",
+  "subscribers": 2041,
+  "throughput": "2.3 kb/s"
+}</pre>
+      </div>
+
+      <div class="card" style="flex: 1;">
+        <h3 class="subtitle" style="margin-bottom: 0.5rem;">🔐 certs & tls</h3>
+        <p class="paragraph">SSL expiry: 27d</p>
+        <p class="paragraph">handshake: 0.12ms</p>
+        <p class="paragraph" style="margin-bottom: 0;">cipher: TLS_AES_256</p>
+        <div style="margin-top: 0.6rem;">
+          <span class="badge" style="background: #3776ab20; color: var(--python-blue); border-color: #3776ab;">Python 3.11</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div>
+        <span class="subtitle" style="color: var(--text-light);">backend concepts</span>
+        <p class="paragraph" style="margin-top: 0.1rem;">© 2026 By:Glenn Junsay Pansensoy</p>
+      </div>
+      <div style="display: flex; gap: 0.8rem;">
+        <span class="paragraph" style="display: flex; align-items: center;"><span class="dot-blue" style="margin-right: 0.2rem;"></span> api stable</span>
+        <span class="paragraph" style="display: flex; align-items: center;"><span class="dot-success" style="margin-right: 0.2rem; background: var(--python-glow);"></span> Python Tutorial</span>
+      </div>
+    </footer>
+
+    <p class="paragraph" style="text-align: right; margin-top: 0.8rem; opacity: 0.7;">
+      Python OOP 
+    </p>
+  </div>
+  
+</body>
+</html>
