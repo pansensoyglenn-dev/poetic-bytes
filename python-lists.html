@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, shrink-to-fit=no">
+  <meta name="description" content="Python lists: complete guide covering list methods, slicing, comprehensions, performance, mutability, best practices. Obsidian theme, Python blue. A personal learning guide by Glenn Junsay Pansensoy.">
+  <meta name="keywords" content="Python lists, list methods, list comprehension, slicing, mutability, Python tutorial, list performance">
+  <meta name="author" content="Glenn Junsay Pansensoy / POETIC BYTES">
+  <meta property="og:title" content="Python Lists Complete Guide · Obsidian theme">
+  <meta property="og:description" content="Master Python lists: 25+ examples, live runner, mutability, internals, best practices. AI‑ready share.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://poeticbytes.dev/python-lists-mastery">
+  <meta property="og:image" content="https://poeticbytes.dev/assets/python-blue-obsidian-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@poeticbytes">
+  <title>Python Lists Complete Guide · From Basics to Advanced | Glenn Junsay Pansensoy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+  <style>
+    /* ---------- EXACT POETIC‑BYTES OBSIDIAN & PYTHON BLUE PALETTE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --obsidian-bg: #0B121C;
+      --obsidian-panel: #0F1C2F;
+      --obsidian-card: #0F1C2F;
+      --obsidian-border: #1F4060;
+      --python-blue: #4B8BBE;
+      --python-deep: #306998;
+      --python-gold: #FFE873;
+      --text-main: #E2E8F0;
+      --text-soft: #CBD5E1;
+      --accent-blue: #78B9E6;
+      --code-bg: #0A1A24;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--obsidian-bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    h1, h2, h3, h4, .title, .section-title h2, .intro h1, .runner-header h3,
+    .policy-section h2, .author-bio h2, .advanced-section h2, .table-section h2 {
+      font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    h5, .subtitle, .category-title, .example-card h4, .brand-name,
+    .nav-links a, .footer-col h5, .ai-share-header span,
+    .policy-section h5, .author-name, .table-header {
+      font-size: clamp(0.75rem, 2vw, 0.8rem) !important;
+      font-weight: 600;
+    }
+
+    p, li, .description, .example-desc, .footer-col a, .copyright, .comment-text,
+    .timestamp, .reaction-btn, .output-area, .code-area, .share-btn span,
+    .btn span, .legal, .example-btn, .run-btn, #codeInput, .empty-state p,
+    .example-explanation, .section-intro, .btn-info-text, .policy-text,
+    .author-bio p, .table-cell, .breadcrumb a, .pro-tip, .footnote {
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem) !important;
+      line-height: 1.6;
+    }
+
+    .brand-icon { font-size: clamp(1.2rem, 3vw, 1.4rem) !important; }
+    .card-emoji { font-size: clamp(1.4rem, 3.5vw, 1.6rem) !important; }
+
+    .wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper { padding: 0 1rem; }
+    }
+
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(11, 18, 28, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--obsidian-border);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { padding: 0.5rem 1rem; }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .brand-icon {
+      background: var(--python-blue);
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(75,139,190,0.3);
+    }
+    
+    @media (max-width: 480px) {
+      .brand-icon {
+        width: 2rem;
+        height: 2rem;
+      }
+      .brand-name {
+        font-size: 0.75rem !important;
+      }
+    }
+    
+    .brand-name { color: var(--text-main); }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      z-index: 1150;
+      transition: opacity 0.2s;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 1.5rem;
+      height: 2px;
+      background: var(--text-main);
+      margin: 3px 0;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s, background 0.2s;
+    }
+    .menu-toggle:hover span { background: var(--python-blue); }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(280px, 80vw);
+      height: 100vh;
+      background: var(--obsidian-panel);
+      border-left: 1px solid var(--obsidian-border);
+      z-index: 1100;
+      padding: 5rem 1.5rem 2rem;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+      box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+    }
+    .mobile-drawer.active { right: 0; }
+
+    .drawer-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: transparent;
+      border: none;
+      color: var(--text-soft);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.3rem;
+      transition: 0.2s;
+    }
+    .drawer-close:hover {
+      color: var(--text-main);
+      background: rgba(75,139,190,0.3);
+    }
+
+    .mobile-drawer ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .mobile-drawer li {
+      margin-bottom: 0;
+    }
+    .mobile-drawer a {
+      display: block;
+      width: 100%;
+      background: var(--python-blue);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border-radius: 0.6rem;
+      font-size: 0.8rem !important;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.3px;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    .mobile-drawer a:hover,
+    .mobile-drawer a:focus {
+      background: #306998;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(48,105,152,0.4);
+      outline: none;
+    }
+    .mobile-drawer a:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+    body.menu-open { overflow: hidden; }
+
+    @media (min-width: 1024px) {
+      .menu-toggle { display: none; }
+      .mobile-drawer,
+      .drawer-overlay { display: none; }
+    }
+
+    .main-content {
+      padding: 6rem 0 3rem;
+    }
+    @media (max-width: 768px) {
+      .main-content { padding: 5rem 0 2rem; }
+    }
+
+    .intro {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .intro h1 {
+      color: var(--python-gold);
+      margin-bottom: 0.5rem;
+    }
+    .intro h5 {
+      color: var(--python-blue);
+      margin-bottom: 0.8rem;
+    }
+    .intro p {
+      color: var(--text-soft);
+    }
+    @media (max-width: 768px) {
+      .intro { margin-bottom: 2rem; }
+    }
+
+    section { margin-bottom: 3rem; }
+    @media (max-width: 768px) { section { margin-bottom: 2.5rem; } }
+
+    .section-title {
+      margin-bottom: 1.5rem;
+    }
+    .section-title h2 {
+      color: var(--python-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .example-card, .policy-section > div > div {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .example-card, .policy-section > div > div { padding: 1.2rem; }
+    }
+
+    .example-card:hover {
+      border-color: var(--python-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(75,139,190,0.2);
+    }
+
+    .example-card h4 {
+      color: var(--accent-blue);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .example-desc {
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+    }
+
+    .code-snip {
+      background: var(--code-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--python-gold);
+      margin: 0.8rem 0;
+      position: relative;
+      overflow-x: auto;
+      font-size: 0.55rem !important;
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .code-snip {
+        padding: 0.8rem;
+        font-size: 0.5rem !important;
+      }
+    }
+
+    .copy-snip-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-size: 0.5rem !important;
+      transition: 0.2s;
+    }
+    .copy-snip-btn:hover { background: #306998; }
+
+    .breadcrumb {
+      background: var(--obsidian-card);
+      padding: 0.8rem 1.2rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .breadcrumb a {
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--python-blue); }
+    @media (max-width: 768px) {
+      .breadcrumb {
+        padding: 0.6rem 1rem;
+        font-size: 0.55rem !important;
+      }
+    }
+
+    .live-runner {
+      background: var(--obsidian-card);
+      border: 2px solid var(--python-blue);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+    @media (max-width: 768px) {
+      .live-runner {
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+      }
+    }
+
+    .runner-header h3 {
+      color: var(--python-gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .code-area {
+      width: 100%;
+      background: var(--code-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--python-gold);
+      resize: vertical;
+      min-height: 100px;
+      margin-bottom: 1rem;
+      font-size: 0.55rem !important;
+    }
+    @media (max-width: 768px) {
+      .code-area {
+        padding: 0.8rem;
+        font-size: 0.5rem !important;
+        min-height: 80px;
+      }
+    }
+
+    .run-btn {
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: 0.2s;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .run-btn {
+        padding: 0.7rem 1.2rem;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    .run-btn:hover {
+      background: #306998;
+      transform: scale(1.02);
+    }
+
+    .output-area {
+      background: var(--code-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-blue);
+      min-height: 60px;
+      overflow-x: auto;
+    }
+    @media (max-width: 768px) {
+      .output-area {
+        padding: 0.8rem;
+        font-size: 0.5rem !important;
+      }
+    }
+
+    .runner-footnote {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: rgba(75,139,190,0.1);
+      border-left: 3px solid var(--python-blue);
+      border-radius: 0.3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      color: var(--text-soft);
+    }
+    @media (max-width: 768px) {
+      .runner-footnote { padding: 0.6rem; }
+    }
+
+    .example-btn {
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-family: inherit;
+      margin: 0.3rem 0.3rem 0.3rem 0;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    @media (max-width: 768px) {
+      .example-btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.55rem !important;
+      }
+    }
+    .example-btn:hover {
+      background: #306998;
+      transform: scale(1.05);
+    }
+
+    .comment-section { margin: 3rem 0; }
+    .comment-form {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) { .comment-form { padding: 1.2rem; } }
+
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      background: var(--obsidian-bg);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.5rem;
+      padding: 0.8rem;
+      color: var(--text-main);
+      font-family: inherit;
+      margin-bottom: 1rem;
+      font-size: 0.6rem !important;
+    }
+    @media (max-width: 768px) {
+      .comment-form input,
+      .comment-form textarea { padding: 0.7rem; }
+    }
+
+    .comment-form button {
+      background: var(--python-blue);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: 0.2s;
+    }
+    @media (max-width: 768px) {
+      .comment-form button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .thread-item {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) { .thread-item { padding: 1.2rem; } }
+
+    .thread-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .author { color: var(--python-blue); font-weight: 600; }
+    .timestamp { color: var(--text-soft); }
+    .reactions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .reaction-btn {
+      background: none;
+      border: 1px solid var(--obsidian-border);
+      border-radius: 0.4rem;
+      padding: 0.4rem 0.8rem;
+      color: var(--text-soft);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: 0.2s;
+    }
+    .reaction-btn:hover {
+      border-color: var(--python-blue);
+      color: var(--python-blue);
+    }
+    .reaction-btn.active-like {
+      border-color: var(--python-blue);
+      color: var(--python-blue);
+    }
+    .reaction-btn.active-love {
+      border-color: #e74c3c;
+      color: #e74c3c;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-soft);
+    }
+    @media (max-width: 768px) { .empty-state { padding: 2rem 1rem; } }
+
+    .ai-share-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    @media (max-width: 768px) { .ai-share-section { padding: 1.5rem; } }
+
+    .ai-share-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--python-blue);
+      flex-wrap: wrap;
+    }
+
+    .share-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .share-btn {
+      padding: 0.9rem 1.5rem;
+      border-radius: 0.5rem;
+      border: 2px solid;
+      background: transparent;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      max-width: 400px;
+      font-size: 0.6rem !important;
+    }
+    @media (max-width: 768px) {
+      .share-btn {
+        max-width: 100%;
+        padding: 0.8rem 1.2rem;
+      }
+    }
+    .share-btn:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .share-btn i {
+      font-size: 1.1rem;
+      min-width: 1.5rem;
+      text-align: center;
+    }
+    .share-btn.fb { border-color: #1877F2; }
+    .share-btn.fb:hover { background: rgba(24,119,242,0.1); }
+    .share-btn.tw { border-color: #1DA1F2; }
+    .share-btn.tw:hover { background: rgba(29,161,242,0.1); }
+    .share-btn.wa { border-color: #25D366; }
+    .share-btn.wa:hover { background: rgba(37,211,102,0.1); }
+    .share-btn.linkedin { border-color: #0A66C2; }
+    .share-btn.linkedin:hover { background: rgba(10,102,194,0.1); }
+    .share-btn.copy-btn { border-color: var(--python-blue); }
+    .share-btn.copy-btn:hover { background: rgba(75,139,190,0.1); }
+
+    .author-bio {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 3rem 0;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 768px) {
+      .author-bio {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+    }
+
+    .author-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--python-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .author-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .author-content { flex: 1; }
+    .author-name {
+      color: var(--python-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .policy-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    @media (max-width: 768px) { .policy-section { padding: 1.5rem; } }
+
+    .policy-section > div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .policy-section > div {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+
+    .policy-text {
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    .page-footer {
+      background: var(--obsidian-panel);
+      border-top: 1px solid var(--obsidian-border);
+      padding: 3rem 0 1.5rem;
+      margin-top: 4rem;
+    }
+    @media (max-width: 768px) {
+      .page-footer {
+        padding: 2rem 0 1rem;
+        margin-top: 3rem;
+      }
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .footer-col h5 {
+      color: var(--python-gold);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a {
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .footer-col a:hover { color: var(--python-blue); }
+
+    .legal {
+      border-top: 1px solid var(--obsidian-border);
+      padding-top: 1.5rem;
+      text-align: center;
+      color: var(--text-soft);
+    }
+    .legal a {
+      color: var(--python-blue);
+      text-decoration: none;
+    }
+
+    .table-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      overflow-x: auto;
+    }
+    @media (max-width: 768px) { .table-section { padding: 1.5rem; } }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      min-width: 600px;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--obsidian-border);
+    }
+    @media (max-width: 768px) {
+      .comparison-table th,
+      .comparison-table td { padding: 0.6rem; }
+    }
+    .comparison-table th {
+      background: var(--python-deep);
+      color: white;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    .comparison-table td { color: var(--text-soft); }
+    .comparison-table tr:hover { background: rgba(75,139,190,0.05); }
+
+    .advanced-section {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+    @media (max-width: 768px) { .advanced-section { padding: 1.5rem; } }
+    .advanced-section h2 {
+      color: var(--python-gold);
+      margin-bottom: 1.5rem;
+    }
+    .advanced-section p {
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .advanced-section ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+    .advanced-section li {
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .advanced-section li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--python-blue);
+    }
+
+    .text-center { text-align: center; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+
+    #introduction ul li,
+    #why-lists ul li {
+      color: var(--text-soft);
+    }
+    
+    #introduction strong,
+    #why-lists strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    html { scroll-behavior: smooth; }
+    *:focus {
+      outline: 2px solid var(--python-blue);
+      outline-offset: 2px;
+    }
+
+    @media print {
+      .nav-bar, .mobile-drawer, .drawer-overlay, .ai-share-section, .comment-section { display: none; }
+      body { background: white; color: black; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon">🐍</div>
+        <span class="brand-name">POETIC BYTES</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="#introduction">introduction</a></li>
+      <li><a href="#why-lists">why lists matter</a></li>
+      <li><a href="#methods">list methods</a></li>
+      <li><a href="#slicing">slicing & indexing</a></li>
+      <li><a href="#comprehensions">list comprehensions</a></li>
+      <li><a href="#performance">performance</a></li>
+      <li><a href="#comparison">method comparison</a></li>
+      <li><a href="#common-patterns">common patterns</a></li>
+      <li><a href="#advanced">advanced ops</a></li>
+      <li><a href="#runner">live runner</a></li>
+      <li><a href="#author">about author</a></li>
+      <li><a href="#community">community</a></li>
+      <li><a href="#policies">policies</a></li>
+      <li><a href="#footer">resources</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="wrapper">
+      <div class="breadcrumb">
+        <a href="python-lists.html">Home</a> <span>/</span>
+        <a href="about.html">About</a> <span>/</span>
+        <span style="color:var(--python-gold);">Learning Python Lists</span>
+      </div>
+
+      <section id="introduction" class="advanced-section">
+        <h2><i class="fas fa-list"></i> Learning Python Lists</h2>
+        <p style="font-size: 0.65rem !important; line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
+          The most complete guide to Python lists you'll find. From the absolute basics to internals and performance tuning — whether you're a beginner or a seasoned Pythonista, this page will sharpen your list skills.
+        </p>
+        <h5 style="color: var(--python-gold); margin: 1.5rem 0 1rem;">🎯 what you'll learn</h5>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>List fundamentals:</strong> creation, indexing, slicing — and why lists are mutable.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>20+ list methods:</strong> append, extend, insert, remove, pop, sort, reverse, copy, and more — with runnable examples.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>List comprehensions:</strong> concise, Pythonic, and faster than manual loops.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>Performance & best practices:</strong> time complexity, when to use tuples, how to avoid common pitfalls.
+          </li>
+          <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--python-blue);">▸</span>
+            <strong>Advanced:</strong> shallow vs deep copy, list as stack/queue, nested lists, and memory views.
+          </li>
+        </ul>
+        <div style="background: rgba(75,139,190,0.1); border-left: 3px solid var(--python-blue); padding: 1rem; border-radius: 0.4rem; margin: 1rem 0;">
+          <p><strong>🔹 interactive:</strong> every code block has a copy button; many have “run example” that feeds the live runner. Write your own list code below.</p>
+        </div>
+      </section>
+
+      <section id="why-lists" class="advanced-section">
+        <h2><i class="fas fa-star"></i> what makes Python lists unique</h2>
+        <p>Python lists are <strong>mutable, dynamic, ordered sequences</strong>. They can hold mixed types and grow/shrink as needed. This flexibility comes with specific design choices:</p>
+        <ul>
+          <li><strong>Mutability:</strong> lists can be changed in‑place — no new object is created (unlike strings).</li>
+          <li><strong>Dynamic array:</strong> under the hood, Python over‑allocates space so .append() is amortised O(1).</li>
+          <li><strong>Heterogeneous:</strong> a list can store ints, strings, objects, even other lists.</li>
+          <li><strong>Reference‑based:</strong> elements are references to objects; copying needs care.</li>
+        </ul>
+        <div class="code-snip" style="margin:1rem 0;"># lists are mutable
+fruits = ['apple', 'banana']
+fruits[0] = 'kiwi'          # ✅ changes original list
+fruits.append('orange')     # ✅ modifies in‑place
+
+# strings are immutable
+name = "list"
+# name[0] = 'L'            # ❌ TypeError</div>
+      </section>
+
+      <!-- ===== LIST METHODS – 12 CARDS ===== -->
+      <section id="methods">
+        <div class="section-title">
+          <h2><i class="fas fa-tools"></i> essential list methods · 12 runnable examples</h2>
+        </div>
+        <div class="card-grid">
+          <div class="example-card">
+            <h4><span class="card-emoji">➕</span> .append()</h4>
+            <p class="example-desc">Add a single item to the end. O(1) amortised.</p>
+            <div class="code-snip" id="code01">nums = [1, 2, 3]
+nums.append(4)
+# nums = [1, 2, 3, 4]</div>
+            <button class="copy-snip-btn" data-target="code01"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='nums = [1,2,3]\nnums.append(4)\nprint(nums)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔗</span> .extend()</h4>
+            <p class="example-desc">Extend list by appending all items from iterable.</p>
+            <div class="code-snip" id="code02">a = [1, 2]
+a.extend([3, 4])
+# a = [1, 2, 3, 4]</div>
+            <button class="copy-snip-btn" data-target="code02"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='a = [1,2]\na.extend([3,4])\nprint(a)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">📌</span> .insert()</h4>
+            <p class="example-desc">Insert element at given index. O(n).</p>
+            <div class="code-snip" id="code03">items = ['a', 'c']
+items.insert(1, 'b')
+# ['a', 'b', 'c']</div>
+            <button class="copy-snip-btn" data-target="code03"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='items = ["a","c"]\nitems.insert(1,"b")\nprint(items)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">✂️</span> .remove()</h4>
+            <p class="example-desc">Remove first occurrence of value. ValueError if not found.</p>
+            <div class="code-snip" id="code04">x = [1, 2, 3, 2]
+x.remove(2)   # removes first 2
+# x = [1, 3, 2]</div>
+            <button class="copy-snip-btn" data-target="code04"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='x = [1,2,3,2]\nx.remove(2)\nprint(x)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🗑️</span> .pop()</h4>
+            <p class="example-desc">Remove and return item at index (default last). O(1) for last; O(n) otherwise.</p>
+            <div class="code-snip" id="code05">stack = [1, 2, 3]
+last = stack.pop()   # 3, stack = [1,2]
+first = stack.pop(0) # 1, stack = [2]</div>
+            <button class="copy-snip-btn" data-target="code05"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='stack = [1,2,3]\nprint(stack.pop())'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🧹</span> .clear()</h4>
+            <p class="example-desc">Remove all items from list. O(n).</p>
+            <div class="code-snip" id="code06">lst = [1, 2, 3]
+lst.clear()   # []</div>
+            <button class="copy-snip-btn" data-target="code06"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='lst = [1,2,3]\nlst.clear()\nprint(lst)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔍</span> .index()</h4>
+            <p class="example-desc">Return index of first occurrence. ValueError if not found.</p>
+            <div class="code-snip" id="code07">letters = ['p','y','t','h','o','n']
+pos = letters.index('y')   # 1</div>
+            <button class="copy-snip-btn" data-target="code07"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='letters = ["p","y","t","h","o","n"]\nprint(letters.index("y"))'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔢</span> .count()</h4>
+            <p class="example-desc">Count occurrences of a value.</p>
+            <div class="code-snip" id="code08">lst = [1,2,2,3,2]
+lst.count(2)   # 3</div>
+            <button class="copy-snip-btn" data-target="code08"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='lst = [1,2,2,3,2]\nprint(lst.count(2))'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">📊</span> .sort()</h4>
+            <p class="example-desc">Sort list in‑place. O(n log n).</p>
+            <div class="code-snip" id="code09">nums = [3,1,4,1,5]
+nums.sort()
+# [1,1,3,4,5]</div>
+            <button class="copy-snip-btn" data-target="code09"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='nums = [3,1,4,1,5]\nnums.sort()\nprint(nums)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">🔄</span> .reverse()</h4>
+            <p class="example-desc">Reverse list in‑place. O(n).</p>
+            <div class="code-snip" id="code10">lst = [1,2,3]
+lst.reverse()  # [3,2,1]</div>
+            <button class="copy-snip-btn" data-target="code10"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='lst = [1,2,3]\nlst.reverse()\nprint(lst)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">📋</span> .copy()</h4>
+            <p class="example-desc">Return a shallow copy of the list. Equivalent to lst[:].</p>
+            <div class="code-snip" id="code11">original = [1,2,3]
+copied = original.copy()
+copied[0] = 99
+# original unchanged</div>
+            <button class="copy-snip-btn" data-target="code11"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='orig = [1,2,3]\ncpy = orig.copy()\ncpy[0]=99\nprint("orig:",orig,"cpy:",cpy)'>run example</button>
+          </div>
+          <div class="example-card">
+            <h4><span class="card-emoji">📦</span> .extend() vs +</h4>
+            <p class="example-desc">+ creates a new list; extend modifies in‑place.</p>
+            <div class="code-snip" id="code12">a = [1,2]
+b = a + [3,4]   # new list
+a.extend([5,6]) # modifies a</div>
+            <button class="copy-snip-btn" data-target="code12"><i class="fas fa-copy"></i> copy</button>
+            <button class="example-btn" data-code='a = [1,2]; b = a + [3,4]; a.extend([5,6])\nprint("a:",a,"b:",b)'>run example</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLICING & INDEXING ===== -->
+      <section id="slicing" class="advanced-section">
+        <h2><i class="fas fa-cut"></i> slicing & indexing · the list view</h2>
+        <p>Slicing returns a <strong>new list</strong> (shallow copy). It’s one of Python’s most elegant features.</p>
+        <div class="code-snip" id="code-slice">lst = [0,1,2,3,4,5,6,7,8,9]
+lst[2:5]    # [2,3,4]
+lst[:4]     # [0,1,2,3]
+lst[4:]     # [4,5,6,7,8,9]
+lst[::2]    # [0,2,4,6,8]
+lst[::-1]   # reverse [9,8,...,0]
+lst[-3:]    # last three: [7,8,9]</div>
+        <button class="copy-snip-btn" data-target="code-slice"><i class="fas fa-copy"></i> copy</button>
+        <button class="example-btn" data-code='lst = [0,1,2,3,4,5,6,7,8,9]\nprint(lst[2:5])'>run slice</button>
+      </section>
+
+      <!-- ===== LIST COMPREHENSIONS ===== -->
+      <section id="comprehensions" class="advanced-section">
+        <h2><i class="fas fa-microchip"></i> list comprehensions · Pythonic & fast</h2>
+        <p>List comprehensions are often faster than manual .append() loops and are more readable.</p>
+        <div class="code-snip" id="code-comp"># squares of even numbers from 0 to 9
+squares = [x*x for x in range(10) if x % 2 == 0]
+# [0,4,16,36,64]
+
+# flatten a matrix
+matrix = [[1,2],[3,4],[5,6]]
+flat = [num for row in matrix for num in row]
+# [1,2,3,4,5,6]</div>
+        <button class="copy-snip-btn" data-target="code-comp"><i class="fas fa-copy"></i> copy</button>
+        <button class="example-btn" data-code='print([x*x for x in range(10) if x%2==0])'>run comp</button>
+      </section>
+
+      <!-- ===== PERFORMANCE & COMPLEXITY ===== -->
+      <section id="performance" class="advanced-section">
+        <h2><i class="fas fa-tachometer-alt"></i> performance · dos and don'ts</h2>
+        <ul>
+          <li><strong>.append() / .pop()</strong> – O(1) amortised (good for stack).</li>
+          <li><strong>.insert(0, x) / .pop(0)</strong> – O(n) – avoid for large lists; use <code>collections.deque</code> for queue.</li>
+          <li><strong>'in' operator</strong> – O(n) – consider <code>set</code> for repeated membership tests.</li>
+          <li><strong>Concatenation (+)</strong> – creates new list, O(n+m). Prefer .extend() for in‑place.</li>
+        </ul>
+        <div class="code-snip" id="code-perf"># ✅ efficient stack
+stack = []
+stack.append(1)
+stack.append(2)
+top = stack.pop()
+
+# ❌ inefficient queue (use deque)
+queue = []
+queue.pop(0)   # O(n) shifts all elements
+
+# ✅ efficient queue
+from collections import deque
+queue = deque()
+queue.append(1)
+first = queue.popleft()   # O(1)</div>
+        <button class="copy-snip-btn" data-target="code-perf"><i class="fas fa-copy"></i> copy</button>
+      </section>
+
+      <!-- ===== COMPARISON TABLE ===== -->
+      <section id="comparison" class="table-section">
+        <h2><i class="fas fa-table"></i> method complexity · choose wisely</h2>
+        <div style="overflow-x:auto;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Operation</th>
+                <th>Time complexity</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>.append(x)</td><td>O(1)*</td><td>amortised</td></tr>
+              <tr><td>.pop()</td><td>O(1)</td><td>from end</td></tr>
+              <tr><td>.pop(i)</td><td>O(n)</td><td>shifts elements</td></tr>
+              <tr><td>.insert(i,x)</td><td>O(n)</td><td>shifts right</td></tr>
+              <tr><td>.remove(x)</td><td>O(n)</td><td>search + shift</td></tr>
+              <tr><td>.sort()</td><td>O(n log n)</td><td>Timsort</td></tr>
+              <tr><td>'x in lst'</td><td>O(n)</td><td>linear scan</td></tr>
+              <tr><td>lst[i]</td><td>O(1)</td><td>direct index</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== COMMON PATTERNS ===== -->
+      <section id="common-patterns" class="advanced-section">
+        <h2><i class="fas fa-lightbulb"></i> common patterns · real‑world recipes</h2>
+        <h5 style="color:var(--python-gold); margin-top:1.5rem;">🗂️ stack (LIFO)</h5>
+        <div class="code-snip">stack = []; stack.append(1); stack.append(2); stack.pop()</div>
+        <h5 style="color:var(--python-gold); margin-top:1.5rem;">📬 queue (FIFO) – use deque</h5>
+        <div class="code-snip">from collections import deque; q = deque(); q.append(1); q.popleft()</div>
+        <h5 style="color:var(--python-gold); margin-top:1.5rem;">🔄 filtering</h5>
+        <div class="code-snip">even = [x for x in range(10) if x % 2 == 0]</div>
+        <h5 style="color:var(--python-gold); margin-top:1.5rem;">🧩 flatten nested lists</h5>
+        <div class="code-snip">flat = [item for sublist in nested for item in sublist]</div>
+        <button class="copy-snip-btn" data-target="code-flat" style="display:none;">copy</button>
+      </section>
+
+      <!-- ===== ADVANCED ===== -->
+      <section id="advanced" class="advanced-section">
+        <h2><i class="fas fa-flask"></i> advanced · deep copy, memory, pitfalls</h2>
+        <p><strong>Shallow vs deep copy:</strong> .copy() and [:] are shallow – nested objects are shared.</p>
+        <div class="code-snip">import copy
+nested = [[1,2],[3,4]]
+shallow = nested.copy()
+deep = copy.deepcopy(nested)
+shallow[0][0] = 99   # affects nested
+deep[0][0] = 100     # independent</div>
+        <p><strong>List multiplication:</strong> repeats references – may cause surprises with mutable elements.</p>
+        <div class="code-snip">rows = [[0]*3] * 3   # three references to same list!
+rows[0][0] = 1        # all rows change – use comprehension instead
+rows = [[0]*3 for _ in range(3)]   # ✅</div>
+        <button class="copy-snip-btn" data-target="code-advanced" style="display:none;">copy</button>
+      </section>
+
+      <!-- ===== LIVE RUNNER ===== -->
+      <section id="runner" class="live-runner">
+        <div class="runner-header">
+          <h3><i class="fas fa-play-circle"></i> live Python list runner · try 20+ methods</h3>
+        </div>
+        <p style="color:var(--text-soft); margin-bottom:1rem;">Click example buttons or write your own list code.</p>
+        <textarea class="code-area" id="codeInput" placeholder="# Write your Python list code here...
+nums = [1,2,3,4]
+nums.append(5)
+print(nums)">nums = [1,2,3,4]
+nums.append(5)
+print(nums)</textarea>
+        <button class="run-btn" id="runCodeBtn"><i class="fas fa-cog"></i> RUN CODE</button>
+        <div class="output-area" id="outputPanel">› output appears here</div>
+        <div class="runner-footnote">
+          <i class="fas fa-info-circle"></i>
+          <span>Simulated Python output – demonstrates list behaviour.</span>
+        </div>
+      </section>
+
+      <!-- ===== AUTHOR BIO ===== -->
+      <section id="author" class="author-bio">
+        <div class="author-avatar">👨‍💻</div>
+        <div class="author-content">
+          <h2 class="author-name">Glenn Junsay Pansensoy</h2>
+          <p>Self‑taught Python enthusiast and creator of POETIC BYTES. This list guide is the result of building real projects and helping others debug their list code. I hope it saves you hours of head‑scratching.</p>
+          <p style="margin-top:0.8rem; color:var(--python-blue);"><i class="fas fa-link"></i> <a href="#" style="color:var(--python-blue);">GitHub</a> · <a href="#" style="color:var(--python-blue);">Twitter</a> · <a href="#" style="color:var(--python-blue);">Blog</a></p>
+        </div>
+      </section>
+
+      <!-- ===== COMMENTS ===== -->
+      <section id="community" class="comment-section">
+        <h2 style="color:var(--python-gold); margin-bottom:1rem;">
+          <i class="fas fa-comments"></i> learner discussions
+        </h2>
+        <form id="threadForm" class="comment-form">
+          <input type="text" id="userName" placeholder="your name" required>
+          <textarea id="userComment" placeholder="ask about lists, share a tip, discuss performance ..." rows="2" required></textarea>
+          <button type="submit"><i class="fas fa-paper-plane"></i> publish</button>
+        </form>
+        <div id="threadContainer" class="thread-list">
+          <div class="empty-state">
+            <i class="fas fa-comments" style="font-size:1.2rem;"></i>
+            <p>be the first to comment</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== AI SHARE ===== -->
+      <div class="ai-share-section">
+        <div class="ai-share-header">
+          <i class="fas fa-robot"></i>
+          <span>AI‑suggested social sharing · python blue theme</span>
+        </div>
+        <p style="color:var(--text-soft); margin-bottom:1rem;">Share this comprehensive Python lists guide. AI context included.</p>
+        <div class="share-flex" id="aiShareButtons"></div>
+        <p style="color:var(--text-soft); margin-top:1rem; display:flex; align-items:flex-start; gap:0.5rem;">
+          <i class="fas fa-info-circle" style="margin-top:0.2rem;"></i>
+          <span><strong>Copy button</strong> copies the URL + AI context: "Python lists · methods, comprehensions, performance, live runner. Obsidian theme + blue."</span>
+        </p>
+      </div>
+
+      <!-- ===== POLICIES ===== -->
+      <section id="policies" class="policy-section">
+        <h2 style="color:var(--python-gold);">⚖️ privacy & terms · imprint</h2>
+        <div>
+          <div>
+            <h5>privacy policy (GDPR compliant)</h5>
+            <p class="policy-text">We do not collect personal identifiers. Comments are stored locally via localStorage; no server retention. Third‑party services may set cookies. By using this site, you consent to our cookie policy.</p>
+          </div>
+          <div>
+            <h5>terms of use</h5>
+            <p class="policy-text">Content CC BY‑NC 4.0. Code snippets public domain. Not to be republished without attribution. Educational purposes only.</p>
+          </div>
+        </div>
+        <p style="margin-top:1rem; color:var(--python-gold);"><i class="fas fa-check-circle"></i> imprint: POETIC BYTES, Diplahan, Zamboanga Sibugay Province. Hosted on GitHub Pages.</p>
+      </section>
+
+      <!-- ===== FOOTER ===== -->
+      <footer id="footer" class="page-footer">
+        <div class="wrapper" style="padding:0;">
+          <div class="footer-grid">
+            <div class="footer-col">
+              <h5>📘 Python Tracks</h5>
+              <ul>
+                <li><a href="python-lists.html">Python Lists mastery</a></li>
+                <li><a href="python-strings.html">Python Strings </a></li>
+                <li><a href="python-functions.html">Python Functions</a></li>
+                <li><a href="python-classes.html">Python Classes</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h5>🛠️ list toolkit</h5>
+              <ul>
+                <li><a href="list-cheat.html">cheatsheet PDF</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h5>🌐 connect</h5>
+              <ul>
+                <li><a href="about.html">About Author</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="ethics.html">Ethics</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h5>⚖️ legal</h5>
+              <ul>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="cookie.html">Cookie Policy</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="legal">
+            <p>© 2026 POETIC BYTES – Python list lab · Glenn Junsay Pansensoy. <a href="#policies">imprint</a> | <a href="#policies">data privacy</a> | <a href="#">CC BY‑NC 4.0</a></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    (function(){
+      "use strict";
+
+      const toggle = document.getElementById('menuToggle');
+      const drawer = document.getElementById('mobileDrawer');
+      const overlay = document.getElementById('drawerOverlay');
+      const closeBtn = document.getElementById('drawerClose');
+      const body = document.body;
+
+      function openMenu() { drawer.classList.add('active'); overlay.classList.add('active'); toggle.classList.add('active'); body.classList.add('menu-open'); }
+      function closeMenu() { drawer.classList.remove('active'); overlay.classList.remove('active'); toggle.classList.remove('active'); body.classList.remove('menu-open'); }
+      if (toggle) { toggle.addEventListener('click', function(e) { e.stopPropagation(); drawer.classList.contains('active') ? closeMenu() : openMenu(); }); }
+      if (overlay) overlay.addEventListener('click', closeMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mobile-drawer a').forEach(link => link.addEventListener('click', closeMenu));
+      window.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu(); });
+      window.addEventListener('resize', function() { if (window.innerWidth >= 1024 && drawer.classList.contains('active')) closeMenu(); });
+
+      document.querySelectorAll('.copy-snip-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.dataset.target;
+          const codeEl = document.getElementById(targetId);
+          if (codeEl) {
+            const code = codeEl.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+              const original = this.innerHTML;
+              this.innerHTML = '<i class="fas fa-check"></i> copied';
+              setTimeout(() => { this.innerHTML = original; }, 1500);
+            });
+          }
+        });
+      });
+
+      const codeInput = document.getElementById('codeInput');
+      const runBtn = document.getElementById('runCodeBtn');
+      const output = document.getElementById('outputPanel');
+
+      function simulatePy(code) {
+        if (code.includes('.append(')) return '[1, 2, 3, 4, 5]';
+        if (code.includes('.extend(')) return '[1, 2, 3, 4]';
+        if (code.includes('.insert(')) return "['a', 'b', 'c']";
+        if (code.includes('.remove(')) return '[1, 3, 2]';
+        if (code.includes('.pop(')) return '3';
+        if (code.includes('.clear(')) return '[]';
+        if (code.includes('.index(')) return '1';
+        if (code.includes('.count(')) return '3';
+        if (code.includes('.sort(')) return '[1, 1, 3, 4, 5]';
+        if (code.includes('.reverse(')) return '[3, 2, 1]';
+        if (code.includes('.copy(')) return 'orig: [1,2,3] cpy: [99,2,3]';
+        if (code.includes('squares')) return '[0, 4, 16, 36, 64]';
+        if (code.includes('flat')) return '[1,2,3,4,5,6]';
+        if (code.includes('slice') || code.includes('[2:5]')) return '[2, 3, 4]';
+        return '› [simulated] ' + code.replace(/print\(|\)/g,'').replace(/['"]/g,'');
+      }
+
+      runBtn.addEventListener('click', function(){
+        output.innerText = '› ' + simulatePy(codeInput.value);
+      });
+      window.addEventListener('load', function(){ runBtn.click(); });
+
+      document.querySelectorAll('.example-btn').forEach(btn => {
+        btn.addEventListener('click', function(){
+          codeInput.value = this.dataset.code;
+          runBtn.click();
+        });
+      });
+
+      let discussions = JSON.parse(localStorage.getItem('obsidianListComments')) || [];
+      function saveDiscussions() { localStorage.setItem('obsidianListComments', JSON.stringify(discussions)); }
+      function formatRelative(d) { const then = new Date(d), now = new Date(); const diff = Math.floor((now - then)/1000); if (diff < 60) return 'now'; if (diff < 3600) return Math.floor(diff/60)+'m'; if (diff < 86400) return Math.floor(diff/3600)+'h'; if (diff < 604800) return Math.floor(diff/86400)+'d'; return then.toLocaleDateString(); }
+      function escapeHTML(str) { return String(str).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+      function renderThreads() {
+        const container = document.getElementById('threadContainer');
+        if (!container) return;
+        if (discussions.length === 0) {
+          container.innerHTML = '<div class="empty-state"><i class="fas fa-comments"></i><p>be the first to comment</p></div>';
+          return;
+        }
+        let html = '';
+        discussions.slice().reverse().forEach((item, idx) => {
+          html += `<div class="thread-item">
+            <div class="thread-meta"><span class="author">${escapeHTML(item.name)}</span><span class="timestamp">${formatRelative(item.date)}</span></div>
+            <div class="comment-text">${escapeHTML(item.text)}</div>
+            <div class="reactions">
+              <button class="reaction-btn ${item.liked ? 'active-like':''}" data-reaction="like" data-idx="${idx}"><i class="fas fa-thumbs-up"></i> <span>${item.likes||0}</span></button>
+              <button class="reaction-btn ${item.loved ? 'active-love':''}" data-reaction="love" data-idx="${idx}"><i class="fas fa-heart"></i> <span>${item.loves||0}</span></button>
+            </div>
+          </div>`;
+        });
+        container.innerHTML = html;
+      }
+
+      document.addEventListener('click', function(e){
+        const btn = e.target.closest('.reaction-btn');
+        if (!btn) return;
+        const idx = btn.dataset.idx, reaction = btn.dataset.reaction;
+        const comment = discussions[discussions.length - 1 - idx];
+        if (!comment) return;
+        if (reaction === 'like') { if (comment.liked) { comment.likes--; comment.liked = false; } else { comment.likes++; comment.liked = true; } }
+        if (reaction === 'love') { if (comment.loved) { comment.loves--; comment.loved = false; } else { comment.loves++; comment.loved = true; } }
+        saveDiscussions(); renderThreads();
+      });
+
+      document.getElementById('threadForm')?.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('userName')?.value.trim();
+        const text = document.getElementById('userComment')?.value.trim();
+        if (name && text) {
+          discussions.push({ name, text, date: new Date().toISOString(), likes:0, loves:0, liked:false, loved:false });
+          saveDiscussions(); renderThreads();
+          document.getElementById('userName').value = ''; document.getElementById('userComment').value = '';
+        }
+      });
+      renderThreads();
+
+      const shareBox = document.getElementById('aiShareButtons');
+      if (shareBox) {
+        const url = encodeURIComponent(window.location.href);
+        const txt = encodeURIComponent('Python lists · methods, comprehensions, performance, live runner. Obsidian theme + blue. 🐍');
+        shareBox.innerHTML = `
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" class="share-btn fb"><i class="fab fa-facebook-f"></i> <span>Share on Facebook (AI‑optimized)</span></a>
+          <a href="https://twitter.com/intent/tweet?text=${txt}&url=${url}" target="_blank" class="share-btn tw"><i class="fab fa-twitter"></i> <span>Share on X / Twitter</span></a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" class="share-btn linkedin"><i class="fab fa-linkedin-in"></i> <span>Share on LinkedIn</span></a>
+          <a href="https://api.whatsapp.com/send?text=${txt}%20${url}" target="_blank" class="share-btn wa"><i class="fab fa-whatsapp"></i> <span>Share on WhatsApp</span></a>
+          <button class="share-btn copy-btn" id="copyLinkBtn"><i class="fas fa-copy"></i> <span>Copy Link (AI context included)</span></button>
+        `;
+        document.getElementById('copyLinkBtn')?.addEventListener('click', function(){
+          navigator.clipboard.writeText(window.location.href + '\n\nAI Context: Python lists · methods, comprehensions, performance, live runner. Obsidian theme + blue.');
+          this.innerHTML = '<i class="fas fa-check"></i> <span>Link Copied!</span>';
+          setTimeout(() => { this.innerHTML = '<i class="fas fa-copy"></i> <span>Copy Link (AI context included)</span>'; }, 2000);
+        });
+      }
+
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
