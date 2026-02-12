@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+  <title>Python Standard Library</title>
+  <style>
+    :root {
+      --bg:        #0f1117;
+      --bg-alt:    #16181f;
+      --surface:   #1a1e26;
+      --text:      #e2e8f0;
+      --text-dim:  #94a3b8;
+      --accent:    #60a5fa;
+      --accent-dim:#3b82f6;
+      --python:    #3776ab;
+      --green:     #4ade80;
+      --purple:    #c084fc;
+      --orange:    #fb923c;
+      --border:    #2d3748;
+      --code-bg:   #0d1117;
+      --code-text: #c9d1d9;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header { text-align:center; margin-bottom:3rem; }
+    h1 { font-size:2.6rem; color:var(--python); font-weight:600; }
+    .subtitle { color:var(--text-dim); font-size:1.15rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 30px -10px rgba(59,130,246,.25);
+    }
+
+    .card-header {
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, #1e293b, #111827);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .card-header h2 { font-size:1.3rem; color:var(--accent); }
+    .badge {
+      font-size:0.75rem; padding:0.2em 0.65em; border-radius:999px;
+      background:rgba(59,130,246,0.15); color:var(--accent); font-weight:600;
+    }
+
+    .card-body { padding:1.25rem; }
+
+    ul { margin-bottom:1.25rem; }
+    li { margin:0.65rem 0; font-size:0.98rem; color:var(--text-dim); }
+    li strong { color:var(--text); font-weight:500; }
+    .module-name {
+      color: var(--green);
+      font-family: ui-monospace, monospace;
+    }
+
+    .example {
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--code-bg);
+    }
+    .example-header {
+      background: #111827;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+    }
+    pre {
+      margin:0;
+      padding:1rem;
+      overflow-x:auto;
+      font-family: ui-monospace, "Cascadia Mono", "SF Mono", monospace;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--code-text);
+    }
+    code { white-space: pre; }
+
+    footer {
+      text-align:center;
+      margin-top:4rem;
+      color:var(--text-dim);
+      font-size:0.9rem;
+    }
+
+    @media screen and (max-width: 640px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+
+  
+      h1 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem;
+      }
+      .subtitle {
+        font-size: 0.8rem !important;
+        line-height: 1.4;
+      }
+
+      .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem;
+      }
+
+      /* card headers – smaller */
+      .card-header {
+        padding: 0.7rem 1rem;
+      }
+      .card-header h2 {
+        font-size: 0.9rem;
+      }
+      .badge {
+        font-size: 0.6rem;
+        padding: 0.2em 0.6em;
+      }
+
+      .card-body {
+        padding: 1rem;
+      }
+      li, p, .card-body li, .card-body ul li, .module-name {
+        font-size: 0.7rem !important;
+        margin: 0.5rem 0;
+      }
+
+      pre {
+        padding: 0.75rem;
+        font-size: 0.7rem;
+        line-height: 1.4;
+        white-space: pre;
+        word-wrap: normal;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      code {
+        font-size: 0.7rem;
+      }
+      .example-header {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.7rem;
+      }
+
+      /* footer text */
+      footer {
+        margin-top: 2.5rem;
+        font-size: 0.7rem;
+      }
+    }
+
+    @media screen and (max-width: 380px) {
+      .container {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
+      .card-header {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>Python Standard Library</h1>
+    <p class="subtitle">Most useful modules • with short examples </p>
+  </header>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header"><h2>datetime</h2><span class="badge">core</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong class="module-name">datetime</strong> – dates, times, timezones</li>
+        </ul>
+        <div class="example">
+          <div class="example-header">Example</div>
+          <pre><code>from datetime import datetime, timedelta, timezone
+
+now = datetime.now()
+print(now.strftime("%Y-%m-%d %H:%M"))
+
+future = now + timedelta(days=30)
+print(future)
+
+utc = datetime.now(timezone.utc)
+print(utc)</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Files & OS -->
+    <div class="card">
+      <div class="card-header"><h2>Files &amp; OS</h2><span class="badge">essential</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong class="module-name">pathlib</strong> • <strong>os</strong> • <strong>shutil</strong> • <strong>glob</strong></li>
+        </ul>
+        <div class="example">
+          <div class="example-header">Example</div>
+          <pre><code>from pathlib import Path
+import shutil
+
+p = Path("data/report.json")
+print(p.exists(), p.parent)
+
+shutil.copy("src.txt", "dst.txt")
+for f in Path(".").glob("*.py"):
+    print(f)</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h2>Text processing</h2></div>
+      <div class="card-body">
+        <ul>
+          <li><strong class="module-name">re</strong> • <strong>string</strong> • <strong>textwrap</strong></li>
+        </ul>
+        <div class="example">
+          <div class="example-header">Example</div>
+          <pre><code>import re
+from textwrap import dedent
+
+text = "  Hello   world!  "
+clean = re.sub(r'\s+', ' ', text.strip())
+print(clean)
+
+print(dedent("""
+    This is a
+    multi-line string
+    that stays aligned.
+"""))</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data formats -->
+    <div class="card">
+      <div class="card-header"><h2>Data formats</h2></div>
+      <div class="card-body">
+        <ul>
+          <li><strong class="module-name">json</strong> • <strong>csv</strong> • <strong>pickle</strong></li>
+        </ul>
+        <div class="example">
+          <div class="example-header">Example</div>
+          <pre><code>import json
+import csv
+from io import StringIO
+
+data = {"name": "Alice", "score": 95}
+print(json.dumps(data, indent=2))
+
+csv_str = StringIO()
+writer = csv.DictWriter(csv_str, fieldnames=["name","score"])
+writer.writeheader()
+writer.writerow(data)
+print(csv_str.getvalue())</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concurrency -->
+    <div class="card">
+      <div class="card-header"><h2>Concurrency</h2></div>
+      <div class="card-body">
+        <ul>
+          <li><strong class="module-name">threading</strong> • <strong>asyncio</strong> • <strong>concurrent.futures</strong></li>
+        </ul>
+        <div class="example">
+          <div class="example-header">Example</div>
+          <pre><code>import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+async def fetch(url):
+    await asyncio.sleep(1)
+    return f"result from {url}"
+
+async def main():
+    async with asyncio.TaskGroup() as tg:
+        tasks = [tg.create_task(fetch(f"https://site{i}.com")) for i in range(3)]
+    print([t.result() for t in tasks])
+
+asyncio.run(main())</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Networking -->
+    <div class="card">
+      <div class="card-header"><h2>Networking</h2></div>
+      <div class="card-body">
+        <ul>
+          <li><strong class="module-name">urllib</strong> • <strong>http.client</strong> • <strong>socket</strong></li>
+        </ul>
+        <div class="example">
+          <div class="example-header">Example</div>
+          <pre><code>from urllib.request import urlopen
+from urllib.parse import urlencode, quote
+
+query = urlencode({"q": "python programming"})
+url = f"https://duckduckgo.com/html/?{query}"
+with urlopen(url) as resp:
+    print(resp.read(500).decode()[:300])</code></pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Python 3.9–3.13 • All examples are copy-paste ready
+  </footer>
+
+</div>
+
+</body>
+</html>
