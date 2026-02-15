@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Professional Reference</title>
+    <style>
+        :root {
+            --obsidian: #0b0e14;
+            --midnight-blue: #161b22;
+            --accent-blue: #58a6ff;
+            --text-main: #adbac7;
+            --text-bright: #f0f6fc;
+            --code-bg: #0d1117;
+            --border-color: #30363d;
+            --sidebar-width: 280px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--obsidian);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            line-height: 1.7;
+        }
+
+       
+        nav {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--midnight-blue);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+        }
+
+        #conceptSearch {
+            width: 100%;
+            padding: 10px;
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-bright);
+            outline: none;
+        }
+
+        #conceptSearch:focus { border-color: var(--accent-blue); }
+
+        nav h2 {
+            color: var(--text-bright);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav ul li { margin: 10px 0; }
+        nav ul li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: block;
+            padding: 5px 0;
+            transition: 0.2s;
+        }
+        nav ul li a:hover { color: var(--accent-blue); }
+
+        
+        main {
+            margin-left: var(--sidebar-width);
+            padding: 60px 10%;
+            width: 100%;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+        }
+
+        h1 { color: var(--text-bright); font-size: 1rem; margin: 0; }
+        .subtitle { color: var(--accent-blue); font-family: monospace; }
+
+        section { margin-bottom: 80px; scroll-margin-top: 40px; }
+        h3 { color: var(--text-bright); display: flex; align-items: center; }
+        h3::before {
+            content: ""; width: 4px; height: 20px; 
+            background: var(--accent-blue); margin-right: 15px;
+        }
+
+        
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        .keyword { color: #ff7b72; }
+        .func { color: #d2a8ff; }
+        .string { color: #a5d6ff; }
+        .comment { color: #8b949e; }
+        .decorator { color: #d2a8ff; font-weight: bold; }
+
+        footer { text-align: center; color: #484f58; padding: 40px 0; border-top: 1px solid var(--border-color); }
+
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; }
+            main { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="search-container">
+            <input type="text" id="conceptSearch" placeholder="Search concepts..." onkeyup="filterMenu()">
+        </div>
+        <h4>Core Modules</h4>
+        <ul id="menuList">
+            <li><a href="./data-structures">Data Types</a></li>
+            <li><a href="./python -functions">Functions</a></li>
+            <li><a href="/oop-intro">Object-Oriented</a></li>
+            <li><a href="#decorators">Decorators</a></li>
+            <li><a href="#exceptions">Error Handling</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <header>
+            <h4>Python Advanced Reference</h4>
+            <div class="subtitle">POETIC CODES</div>
+        </header>
+
+        <section id="data-types" class="content-section">
+            <h4>Dynamic Typing</h4>
+            <p>Python is strongly, dynamically typed. Objects have types, but variables are just names pointing to those objects.</p>
+            <pre><code>x = <span class="string">100</span>  <span class="comment"># x points to an int</span>
+x = <span class="string">"Now a string"</span>  <span class="comment"># x now points to a str</span></code></pre>
+        </section>
+
+        <section id="functions" class="content-section">
+            <h4>First-Class Functions</h4>
+            <p>Functions can be passed as arguments, returned from other functions, and assigned to variables.</p>
+            <pre><code><span class="keyword">def</span> <span class="func">greet</span>(name): <span class="keyword">return</span> f<span class="string">"Hello, {name}"</span>
+
+<span class="keyword">def</span> <span class="func">apply_func</span>(f, val): <span class="keyword">return</span> f(val)
+
+<span class="func">print</span>(apply_func(greet, <span class="string">"Dev"</span>))</code></pre>
+        </section>
+
+        <section id="oop" class="content-section">
+            <h4>Inheritance & Classes</h4>
+            <p>Encapsulate logic into reusable blueprints. Use inheritance to extend functionality without redundancy.</p>
+            [attachment_0](attachment)
+            <pre><code><span class="keyword">class</span> <span class="func">BaseAPI</span>:
+    <span class="keyword">def</span> <span class="func">connect</span>(self): <span class="func">print</span>(<span class="string">"Connecting..."</span>)
+
+<span class="keyword">class</span> <span class="func">UserAPI</span>(BaseAPI):
+    <span class="keyword">def</span> <span class="func">get_user</span>(self): <span class="keyword">return</span> {<span class="string">"id"</span>: <span class="string">1</span>}</code></pre>
+        </section>
+
+        <section id="decorators" class="content-section">
+            <h4>Python Decorators</h4>
+            <p>Decorators allow you to "wrap" another function to extend its behavior without permanently modifying it. This is a common pattern for logging, authentication, and timing.</p>
+            
+            <pre><code><span class="keyword">def</span> <span class="func">log_call</span>(func):
+    <span class="keyword">def</span> <span class="func">wrapper</span>(*args, **kwargs):
+        <span class="func">print</span>(f<span class="string">"Calling {func.__name__}"</span>)
+        <span class="keyword">return</span> func(*args, **kwargs)
+    <span class="keyword">return</span> wrapper
+
+<span class="decorator">@log_call</span>
+<span class="keyword">def</span> <span class="func">fetch_data</span>():
+    <span class="keyword">return</span> {<span class="string">"data"</span>: <span class="string">"secure"</span>}</code></pre>
+        </section>
+
+        <section id="exceptions" class="content-section">
+            <h4>Exception Lifecycle</h4>
+            <p>Handle runtime errors gracefully. The <code>finally</code> block ensures resources (like file handles) are released.</p>
+            
+            <pre><code><span class="keyword">try</span>:
+    perform_action()
+<span class="keyword">except</span> <span class="func">Exception</span> <span class="keyword">as</span> e:
+    <span class="func">print</span>(f<span class="string">"Error: {e}"</span>)
+<span class="keyword">finally</span>:
+    cleanup()</code></pre>
+        </section>
+
+        <footer>
+            &copy; 2026 Glenn Junsay Pansensoy. Prepared for global developers.
+        </footer>
+    </main>
+
+    <script>
+        function filterMenu() {
+            let input = document.getElementById('conceptSearch').value.toLowerCase();
+            let items = document.getElementById('menuList').getElementsByTagName('li');
+            let sections = document.getElementsByClassName('content-section');
+
+            for (let i = 0; i < items.length; i++) {
+                let text = items[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
