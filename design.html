@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Python Design Patterns | Technical Reference</title>
+    <style>
+        :root {
+            --obsidian: #05070a;
+            --midnight-blue: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --electric-blue: #58a6ff;
+            --python-gold: #ffd43b;
+            --text-muted: #8b949e;
+            --text-bright: #f0f6fc;
+            --code-bg: #010409;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background-color: var(--obsidian); 
+            color: var(--text-bright); 
+            margin: 0; 
+            line-height: 1.5;
+        }
+
+        .navbar {
+            background: var(--midnight-blue);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        .hero { margin-bottom: 60px; border-left: 4px solid var(--electric-blue); padding-left: 20px; }
+        .hero h4 { font-size: 1rem; margin: 0; letter-spacing: -1px; }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 800px; }
+
+        .section-title { 
+            display: flex; 
+            align-items: center; 
+            margin: 40px 0 20px; 
+            font-size: 1rem; 
+            color: var(--electric-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after { content: ""; flex: 1; height: 1px; background: var(--border-color); margin-left: 20px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; }
+
+        .card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 24px; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h4{ margin: 0 0 10px 0; font-size: 1rem; color: var(--text-bright); }
+        .card .intent { font-style: italic; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 15px; }
+        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+
+        pre { 
+            background: var(--code-bg); 
+            padding: 16px; 
+            border-radius: 6px; 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.85rem; 
+            color: #d2a8ff; 
+            overflow-x: auto; 
+            border: 1px solid #21262d;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--border-color);
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div style="font-weight: bold; color: var(--electric-blue);">
+    <div class="text-muted" style="font-size: 0.8rem;">@Glenn Junsay Pansensoy 2026</div>
+</nav>
+
+<div class="container">
+    <div class="hero">
+        <h4>Advanced Python Design Patterns</h4>
+        <p>Implementation details for scalable, maintainable, and decoupled Python systems. These patterns optimize for Python's dynamic nature while maintaining strict architectural integrity.</p>
+    </div>
+
+    <div class="section-title">Creational Patterns</div>
+    <div class="grid">
+        <div class="card">
+            <h4>Abstract Factory</h4>
+            <div class="intent">Intent: Provide an interface for creating families of related objects.</div>
+            <p>Useful when a system must be independent of how its products are created, or when you need to enforce a suite of products that work together.</p>
+            <pre>class UIFactory:
+    def create_button(self): pass
+    def create_menu(self): pass
+
+class DarkModeFactory(UIFactory):
+    def create_button(self): return DarkButton()</pre>
+        </div>
+
+        <div class="card">
+            <h4>Prototype</h4>
+            <div class="intent">Intent: Create new objects by copying an existing instance.</div>
+            <p>In Python, this is efficiently handled via the <code>copy</code> module. Useful when object creation is expensive.</p>
+            <pre>import copy
+
+class Registry:
+    def clone(self, obj):
+        return copy.deepcopy(obj)</pre>
+        </div>
+    </div>
+
+    <div class="section-title">Structural Patterns</div>
+    <div class="grid">
+        <div class="card">
+            <h4>Facade Pattern</h4>
+            <div class="intent">Intent: Provide a unified interface to a set of interfaces in a subsystem.</div>
+            <p>Crucial for simplifying complex library interactions into a single high-level API for the client.</p>
+            
+            <pre>class CloudFacade:
+    def deploy(self):
+        self.auth.login()
+        self.storage.upload()
+        self.compute.start()</pre>
+        </div>
+
+        <div class="card">
+            <h4>Proxy Pattern</h4>
+            <div class="intent">Intent: Provide a placeholder for another object to control access.</div>
+            <p>Commonly used for lazy initialization, logging, or managing access to sensitive resources.</p>
+            <pre>class RealImage:
+    def display(self): pass
+
+class ProxyImage:
+    def __init__(self):
+        self._real = None
+    def display(self):
+        if not self._real:
+            self._real = RealImage()
+        self._real.display()</pre>
+        </div>
+    </div>
+
+    <div class="section-title">Behavioral Patterns</div>
+    <div class="grid">
+        <div class="card">
+            <h4>Command Pattern</h4>
+            <div class="intent">Intent: Encapsulate a request as an object.</div>
+            <p>Allows for parameterization of clients with queues, undoable operations, and request logging.</p>
+            
+            <pre>class Command:
+    def execute(self): pass
+
+class SaveCommand(Command):
+    def execute(self):
+        editor.save()</pre>
+        </div>
+
+        <div class="card">
+            <h4>State Pattern</h4>
+            <div class="intent">Intent: Allow an object to alter its behavior when its internal state changes.</div>
+            <p>Avoids massive <code>if/else</code> or <code>match</code> statements by delegating behavior to state objects.</p>
+            <pre>class State:
+    def handle(self): pass
+
+class ProcessingState(State):
+    def handle(self):
+        return "Moving to Finished..."</pre>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
