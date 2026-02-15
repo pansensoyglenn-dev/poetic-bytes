@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="A visual history of programming languages & pioneers – from Ada Lovelace to modern AI.">
+    <title>History of Programming · Code Through Time</title>
+    <style>
+        html {
+            font-size: 14px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0.75rem;
+            background: #0B121C;       
+            color: #E2E8F0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        article {
+            max-width: 780px;
+            width: 100%;
+            background: #0F1C2A;        
+            padding: 1.25rem 1.25rem;
+            border-radius: 24px;
+            box-shadow: 0 15px 30px -8px rgba(0,0,0,0.9), 0 0 0 1px #2C4F6E;
+            border: 1px solid #1F405C;
+            transition: padding 0.2s ease, margin 0.2s ease;
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
+            color: #5FA7D3;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 0.75rem;
+            text-shadow: 0 0 6px rgba(75,139,190,0.5);
+            word-break: break-word;
+        }
+
+        h2, h3, p, li, .code-label, figcaption, pre, ul {
+            font-size: 0.8rem;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            font-weight: 650;
+            margin: 1.75rem 0 0.5rem;
+            color: #78B9E6;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 1px dashed #306998;
+            padding-bottom: 0.25rem;
+        }
+
+        p {
+            margin: 0 0 0.9rem 0;
+            color: #CBD5E1;
+        }
+
+        .meta {
+            font-size: 0.6rem;
+            color: #9AB8D9;
+            margin: 0.5rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .footer {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #1F4060;
+            color: #A0BEDB;
+        }
+
+        .footer p {
+            font-size: 0.6rem;
+            margin: 0.2rem 0;
+            color: #B8D4E9;
+        }
+
+        code {
+            background: #122B3A;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.73rem;
+            color: #D4E6F1;
+            border: 1px solid #2E5A77;
+            word-break: break-word;
+        }
+
+        pre {
+            background: #0A1A24;
+            border-left: 5px solid #4B8BBE;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.2rem 0;
+            box-shadow: 0 0 0 1px #2D4B6C, inset 0 0 8px rgba(0,0,0,0.7);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.73rem;
+            color: #E1EFF7;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        .rem-badge {
+            font-size: 0.6rem;
+            background: #0F2632;
+            color: #BCDFF5;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            box-shadow: 0 0 12px rgba(75,139,190,0.2);
+            margin: 0.6rem 0 0.2rem;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            font-size: 0.7rem;
+            margin-bottom: 0.25rem;
+            color: #C9DCEB;
+        }
+
+        a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #2C5F7A;
+            word-break: break-word;
+        }
+
+        ::selection {
+            background: #1F4C6B;
+            color: #F0F9FF;
+        }
+
+        @media (min-width: 480px) {
+            body { margin: 1rem; }
+            article { padding: 1.5rem 1.8rem; }
+        }
+        @media (min-width: 640px) {
+            body { margin: 1.5rem; }
+            article { padding: 2rem 2.2rem; }
+            h1 { letter-spacing: 3px; }
+        }
+        @media (min-width: 900px) {
+            body { margin: 2rem auto; }
+            article { padding: 2rem 2.5rem; }
+        }
+        @media (max-width: 400px) {
+            .meta {
+                gap: 0.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            pre { padding: 0.7rem 0.8rem; }
+        }
+
+        pre::-webkit-scrollbar {
+            height: 6px;
+            background: #0f1e28;
+        }
+        pre::-webkit-scrollbar-thumb {
+            background: #306998;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>⚙️ HISTORY OF PROGRAMMING · 1843 → 2026</h1>
+            <div class="meta">
+                <span>📅 FEB 13, 2026</span>
+                <span>⏱️ 14 MIN READ</span>
+                <span>👤 GLENN JUNSAY PANSENSOY</span>
+                <span>🏷️ HISTORY · LANGUAGES · PIONEERS</span>
+            </div>
+        </header>
+
+        <section>
+            <p style="font-size:0.8rem; color:#B0D4F0;">From punched cards to quantum circuits — programming languages are the invisible cathedrals of our civilisation. This timeline weaves together the people, the paradigms, and the one-liners that changed everything.</p>
+        </section>
+
+        <h4>✦ 1843–1940: THE FIRST ALGORITHM</h4>
+        <p style="text-align:justify;"><strong>Ada Lovelace</strong> writes the first algorithm intended for Charles Babbage’s Analytical Engine. She sees poetry in numbers: <em>“the engine might compose elaborate and scientific pieces of music of any degree of complexity or extent.”</em> A century later, Konrad Zuse builds the Z3 – the first programmable computer.</p>
+        <span class="rem-badge">📜 Ada’s note G – the very first ‘program’ (1843)</span>
+
+        <h4>✦ 1950s: ASSEMBLY · FORTRAN · COBOL</h4>
+        <p>Grace Hopper invents the first compiler (A-0). IBM releases FORTRAN (1957) – the first high‑level language. COBOL (1959) brings business data processing. Code becomes readable.</p>
+        <pre><code>C      FORTRAN II – HELLO WORLD (1958)
+      PRINT 10, 'HELLO, WORLD'
+10    FORMAT(A12)
+      END</code></pre>
+        <pre><code>;;  LISP 1.5 – LIST PROCESSING (1958)
+(defun factorial (n)
+  (if (<= n 1) 1
+      (* n (factorial (1- n)))))</code></pre>
+
+        <h2>✦ 1960s–70s: ALGOL · C · UNIX</h2>
+        <p>ALGOL 60 introduces blocks and nested scopes. Dennis Ritchie gives us <strong>C</strong> and UNIX – the operating system written in its own language. <code>if/else</code>, <code>while</code>, <code>for</code> become universal.</p>
+        <pre><code>/*  C – THE PRAYER OF K&R (1978)  */
+#include &lt;stdio.h&gt;
+int main() {
+    printf("hello, world\n");
+    return 0;
+}</code></pre>
+        <p>Smalltalk (1972) shows the world pure objects – everything is a message.</p>
+
+        <h2>✦ 1980s: C++ · OBJECTIVE‑C · PERL</h2>
+        <p>Bjarne Stroustrup grafts classes onto C → C++. Brad Cox and Tom Love create Objective‑C (later the soul of macOS/iOS). Larry Wall gives us Perl – the “Swiss Army chainsaw” of text.</p>
+        <pre><code>//  C++ WITH I/O STREAMS (1985)
+#include &lt;iostream&gt;
+int main() {
+    std::cout << "Hello, world!" << std::endl;
+    return 0;
+}</code></pre>
+
+        <h4>✦ 1990s: THE WEB RISES · JAVA · PYTHON</h4>
+        <p>Tim Berners-Lee creates HTML/HTTP. <strong>JavaScript</strong> (1995) is born in 10 days – now everywhere. Guido van Rossum’s Python (1991) emphasises readability. Ruby (1995) brings beauty.</p>
+        <pre><code>#  PYTHON 1.0 – SIMPLE IS BETTER (1994)
+def fib(n):
+    a, b = 0, 1
+    while a < n:
+        print(a, end=' ')
+        a, b = b, a+b
+fib(1000)</code></pre>
+        <pre><code>//  JAVA – WRITE ONCE, RUN EVERYWHERE (1995)
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, World");
+    }
+}</code></pre>
+
+        <h2>✦ 2000s: C# · GO · RUST</h2>
+        <p>Microsoft enters with C# and .NET. Andrey Hejlsberg crafts TypeScript (2012) – JavaScript with types. Google’s Go (2009) simplifies concurrency. Mozilla’s Rust (2010) guarantees memory safety without a garbage collector.</p>
+        <pre><code>//  RUST – SAFETY & SPEED (2010)
+fn main() {
+    let languages = vec!["Fortran", "Lisp", "C", "Rust"];
+    for lang in languages {
+        println!("{}", lang);
+    }
+}</code></pre>
+
+        <h4>✦ 2020s: AI GENERATION · WEBASSEMBLY</h4>
+        <p>Large Language Models generate code from plain English. WebAssembly runs near‑native speeds in browsers. Mojo aims to unify Python syntax with ML hardware acceleration.</p>
+        <span class="rem-badge">🤖 2026: 700+ programming languages exist – 80% are open source.</span>
+
+        <h4>✦ BONUS: MILESTONES IN ONE GLANCE</h4>
+        <ul>
+            <li><strong>1843</strong> – Ada Lovelace, first algorithm</li>
+            <li><strong>1936</strong> – Turing machine (universal computation)</li>
+            <li><strong>1957</strong> – FORTRAN (John Backus)</li>
+            <li><strong>1958</strong> – Lisp (John McCarthy)</li>
+            <li><strong>1972</strong> – C (Dennis Ritchie) / Smalltalk (Alan Kay)</li>
+            <li><strong>1983</strong> – C++ (Bjarne Stroustrup) / Objective-C</li>
+            <li><strong>1991</strong> – Python (Guido van Rossum)</li>
+            <li><strong>1995</strong> – JavaScript (Brendan Eich) / Java (James Gosling)</li>
+            <li><strong>2009</strong> – Go (Rob Pike, Ken Thompson) / Rust (Graydon Hoare)</li>
+            <li><strong>2014</strong> – Swift (Apple) / TensorFlow (Google Brain)</li>
+            <li><strong>2023+</strong> – Generative AI pair‑programmers</li>
+        </ul>
+
+        <h4>✦ WHY LOOK BACK?</h4>
+        <p>Every modern <code>async/await</code>, every garbage collector, every type system inherits ideas from Simula, C, Lisp, and ML. Knowing history turns syntax into meaning. As Grace Hopper said: <em>“The most damaging phrase in the language is: ‘We’ve always done it this way.’”</em></p>
+
+        <div style="margin-top: 1.8rem; border-top: 1px dashed #1F4060; padding-top: 1rem;">
+            <p style="font-size: 0.6rem; color: #9CC0D9; text-align: center;">📘 FROM PUNCH CARDS TO QUANTUM – 183 YEARS OF CODE</p>
+        </div>
+
+        <span class="rem-badge" style="margin-top:0.2rem;">📐 Created By: Glenn Junsay Pansensoy</span>
+
+        <footer class="footer">
+            <p>© 2026 CODE · PYTHON— DEEP DIVES</p>
+            <p style="font-style: italic; color: #B0D4F0;">“We build too many walls and not enough bridges.” – Isaac Asimov</p>
+            <p>🐍 · ☕ · 🦀 · ⚛️</p>
+        </footer>
+    </article>
+</body>
+</html>
