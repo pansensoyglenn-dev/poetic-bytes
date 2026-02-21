@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Python Sets: Complete University-Level Guide (2026) | 30+ Examples</title>
+    <meta name="description" content="Master Python sets with this comprehensive university-level guide. 30+ examples covering set creation, operations, frozenset, comprehensions, performance, and real-world patterns. Python 3.12+.">
+    <meta name="keywords" content="Python sets tutorial, Python set operations, Python frozenset, Python set comprehension, Python union intersection difference, Python set methods, Python hashable">
+    <meta name="author" content="POETIC BYTES Educational Division">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Python Sets: Complete University-Level Guide (2026) | 30+ Examples">
+    <meta property="og:description" content="Master Python sets — 30+ examples covering creation, operations, frozenset, comprehensions, and real-world patterns.">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/python-sets.html">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-02-21T08:00:00+00:00">
+    <meta property="article:author" content="POETIC BYTES Educational Division">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:label1" content="Est. Reading Time">
+    <meta name="twitter:data1" content="35 minutes">
+    <meta name="twitter:label2" content="Python Version">
+    <meta name="twitter:data2" content="3.12+">
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-sets.html">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Article","headline":"Python Sets: Complete University-Level Guide (2026)","author":{"@type":"Organization","name":"POETIC BYTES Educational Division"},"publisher":{"@type":"Organization","name":"POETIC BYTES"},"datePublished":"2026-02-21","educationalLevel":"Advanced","teaches":["Set Creation","Membership Testing","Union Intersection Difference","frozenset","Set Comprehensions","Hashability","Performance Analysis","Real-World Patterns"]}
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary-light:#3b82f6;--accent-teal:#2dd4bf;--card-bg:rgba(18,40,65,0.85);--border-color:#2d5580;--font-mono:'Fira Code','JetBrains Mono','Courier New',monospace;--font-main:'Inter','Segoe UI',Roboto,system-ui,sans-serif}
+        body{background:linear-gradient(145deg,#0c253a,#123a52);color:#fff;font-family:var(--font-main);line-height:1.6;min-height:100vh;overflow-x:hidden;-webkit-text-size-adjust:100%}
+        h1,h2,h3,h4,p,li,.quiz-question,.quiz-explanation,.tip-box p,.warning-box p{text-align:justify!important;word-break:break-word}
+        h1{font-size:1.4rem;font-weight:700;line-height:1.3;margin:1rem 0 0.6rem;text-transform:uppercase}
+        h2{font-size:1.2rem;font-weight:600;margin:1.5rem 0 0.6rem;border-left:4px solid var(--primary-light);padding-left:0.8rem;text-transform:uppercase}
+        h3{font-size:1.1rem;font-weight:600;margin:1.2rem 0 0.5rem}
+        h4{font-size:1rem;font-weight:600;margin:1rem 0 0.4rem}
+        p{font-size:0.9rem;margin-bottom:1rem;line-height:1.6}
+        li{font-size:0.9rem;margin-bottom:0.5rem}
+        .container{max-width:1600px;margin:0 auto;padding:0.8rem 0.5rem;width:100%;overflow-x:hidden;word-wrap:break-word}
+        pre{white-space:pre;overflow-x:auto;-webkit-overflow-scrolling:touch;background:#0a1d30;padding:1rem;margin:0;font-size:0.8rem}
+        code{font-family:var(--font-mono);color:#fff;font-size:0.85rem}
+        img{max-width:100%;height:auto}
+        ul,ol{margin-left:1.5rem;margin-bottom:1rem}
+        .reading-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--primary-light),var(--accent-teal));z-index:2000}
+        .navbar{background:rgba(5,25,45,0.98);backdrop-filter:blur(10px);padding:0.5rem 1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);position:sticky;top:0;z-index:1000;width:100%}
+        .logo{font-size:1.1rem;font-weight:700;white-space:nowrap}
+        .nav-links{display:flex;align-items:center}
+        .nav-links a{color:#fff;margin-left:1.5rem;text-decoration:none;font-weight:500;font-size:0.85rem;transition:color 0.2s;white-space:nowrap}
+        .nav-links a:hover{color:var(--accent-teal)}
+        .hamburger-btn{display:flex;flex-direction:column;justify-content:space-between;width:26px;height:18px;background:none;border:none;cursor:pointer;padding:0;z-index:1100;flex-shrink:0}
+        .hamburger-btn span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:all 0.3s ease;transform-origin:center}
+        .hamburger-btn.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+        .hamburger-btn.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+        .hamburger-btn.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+        .mobile-menu{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:rgba(5,20,38,0.99);backdrop-filter:blur(20px);border-left:1px solid var(--border-color);z-index:1000;padding:5rem 2rem 2rem;transition:right 0.35s cubic-bezier(0.4,0,0.2,1);overflow-y:auto}
+        .mobile-menu.open{right:0}
+        .mobile-menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1040;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+        .mobile-menu-overlay.open{opacity:1;pointer-events:all}
+        .mobile-menu-title{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-teal);margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border-color)}
+        .mobile-menu-section{margin-bottom:1.5rem}
+        .mobile-menu-section-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem}
+        .mobile-menu a{display:flex;align-items:center;gap:0.7rem;color:#fff;text-decoration:none;font-size:0.88rem;font-weight:500;padding:0.55rem 0.8rem;border-radius:10px;margin-bottom:0.2rem;transition:all 0.2s ease}
+        .mobile-menu a:hover{background:rgba(59,130,246,0.15);padding-left:1.1rem}
+        .mobile-menu a i{width:16px;text-align:center;font-size:0.75rem;color:var(--primary-light)}
+        .hero-section{background:rgba(0,30,55,0.7);backdrop-filter:blur(8px);border:1px solid var(--border-color);border-radius:16px;padding:1rem 0.75rem;margin:1rem 0 1.5rem}
+        .card{background:var(--card-bg);backdrop-filter:blur(8px);border:1px solid var(--border-color);border-radius:16px;padding:1rem 0.75rem;margin:1.2rem 0}
+        .code-example{background:var(--card-bg);border:1px solid var(--border-color);border-radius:16px;margin:1.2rem 0;overflow:hidden}
+        .code-header{background:#0a1f33;padding:0.6rem 1rem;border-bottom:1px solid var(--border-color)}
+        .code-header span{font-size:0.9rem;font-weight:500}
+        .kw{color:#d8a8ff}.fn{color:#8dd0c0}.str{color:#f9d77e}.bi{color:#7ec8e0}.cm{color:#8aa9c9}.nm{color:#f5b37c}.cl{color:#f8c56d}
+        .pitfalls-table{width:100%;border-collapse:separate;border-spacing:0;background:#0e314b;border-radius:16px;overflow:hidden;margin:1.5rem 0;font-size:0.85rem;display:block;overflow-x:auto}
+        .pitfalls-table th{background:#1d4e79;padding:0.7rem 0.8rem;text-align:left;font-weight:600;font-size:0.9rem;border-bottom:2px solid #2f6597}
+        .pitfalls-table td{padding:0.7rem 0.8rem;border-bottom:1px solid #1e4a6e;font-size:0.85rem;vertical-align:top;word-wrap:break-word}
+        .pitfalls-table td code{font-size:0.8rem;background:#0a1f33;padding:0.15rem 0.35rem;border-radius:4px}
+        .pitfalls-table tr:last-child td{border-bottom:none}
+        .back-to-top{position:fixed;bottom:20px;right:20px;background:var(--primary-light);width:40px;height:40px;border-radius:50%;border:none;color:#fff;font-size:1rem;cursor:pointer;opacity:0;visibility:hidden;transition:0.2s;z-index:999}
+        .back-to-top.visible{opacity:1;visibility:visible}
+        .quiz-item{background:#0f3450;border-radius:20px;padding:0.8rem 1rem;margin:1rem 0;border:1px solid #2f6597}
+        .quiz-question{font-size:0.9rem;font-weight:600;margin-bottom:0.8rem}
+        .quiz-answer{background:#1d4e79;padding:0.5rem 0.8rem;border-radius:30px;cursor:pointer;margin:0.4rem 0;font-size:0.8rem;transition:0.2s}
+        .quiz-answer:hover{background:#256aa0}
+        .quiz-explanation{margin-top:0.8rem;padding:0.6rem;background:#0a2640;border-radius:16px;font-size:0.8rem;display:none}
+        .quiz-explanation.show{display:block}
+        .tip-box{background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.3);border-left:4px solid var(--accent-teal);border-radius:12px;padding:0.6rem 0.8rem;margin:0.8rem 0}
+        .tip-box p{margin:0;font-size:0.85rem}
+        .tip-box strong{color:var(--accent-teal)}
+        .warning-box{background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.3);border-left:4px solid #fbbf24;border-radius:12px;padding:0.6rem 0.8rem;margin:0.8rem 0}
+        .warning-box p{margin:0;font-size:0.85rem}
+        .warning-box strong{color:#fbbf24}
+        .social-share-section{background:rgba(0,30,55,0.5);border:1px solid var(--border-color);border-radius:16px;padding:1rem 0.75rem;margin:1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+        .social-share-label{font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-teal);display:flex;align-items:center;gap:0.5rem}
+        .social-share-buttons{display:flex;flex-direction:column;align-items:center;gap:0.5rem;width:100%;max-width:320px}
+        .social-btn{display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.5rem 1rem;border-radius:40px;font-size:0.9rem;font-weight:600;text-decoration:none;color:#fff;transition:all 0.2s;border:1px solid rgba(255,255,255,0.1);width:100%}
+        .social-btn.facebook{background:#1877f2}.social-btn.twitter{background:#1da1f2}.social-btn.linkedin{background:#0a66c2}.social-btn.whatsapp{background:#25d366}.social-btn.telegram{background:#0088cc}
+        .social-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+        .subscription-section{background:linear-gradient(145deg,#0d2c44,#103e5c);border:1px solid var(--border-color);border-radius:16px;padding:1rem 0.75rem;margin:1.5rem 0}
+        .subscription-title{font-size:1rem;font-weight:700;margin-bottom:0.3rem;text-align:center}
+        .subscription-subtitle{font-size:0.8rem;text-align:center;margin-bottom:1rem}
+        .subscription-form{display:flex;flex-direction:column;gap:0.6rem;max-width:500px;margin:0 auto}
+        .form-group input[type="text"],.form-group input[type="email"]{width:100%;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.07);border:1px solid var(--border-color);border-radius:8px;color:#fff;font-size:0.85rem}
+        .form-group input::placeholder{color:rgba(255,255,255,0.5)}
+        .form-group.checkbox{display:flex;align-items:center;gap:0.5rem}
+        .form-group.checkbox label{font-size:0.75rem}
+        .subscribe-btn{background:var(--primary-light);color:#fff;border:none;padding:0.6rem 1.5rem;border-radius:30px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem}
+        .subscribe-btn:hover{background:#2563eb}
+        .subscription-message{font-size:0.8rem;text-align:center;padding:0.4rem;border-radius:8px;display:none}
+        .subscription-message.success{background:rgba(16,185,129,0.15);color:#10b981;display:block}
+        .subscription-message.error{background:rgba(239,68,68,0.15);color:#ef4444;display:block}
+        .comment-section{background:var(--card-bg);border:1px solid var(--border-color);border-radius:16px;padding:1rem 0.75rem;margin:1.2rem 0}
+        .comment-header{margin-bottom:1rem}
+        .comment-title{font-size:1rem;font-weight:700;display:flex;align-items:center;gap:0.5rem}
+        .comment-count{background:var(--primary-light);color:#fff;border-radius:20px;padding:0.1rem 0.5rem;font-size:0.75rem;font-weight:700}
+        .comment-form textarea{width:100%;background:rgba(255,255,255,0.07);border:1px solid var(--border-color);border-radius:10px;color:#fff;font-size:0.85rem;padding:0.7rem;min-height:100px;resize:vertical;font-family:var(--font-main);margin-bottom:0.6rem}
+        .comment-form-row{display:flex;gap:0.5rem;flex-wrap:wrap}
+        .comment-form-row input{flex:1;min-width:140px;padding:0.5rem 0.7rem;background:rgba(255,255,255,0.07);border:1px solid var(--border-color);border-radius:8px;color:#fff;font-size:0.8rem}
+        .comment-form-row input::placeholder{color:rgba(255,255,255,0.5)}
+        .comment-submit{background:var(--primary-light);color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;transition:0.2s;display:flex;align-items:center;gap:0.4rem;white-space:nowrap}
+        .comment-submit:hover{background:#2563eb}
+        .comments-list{margin-top:1rem}
+        .comment-item{background:#0f3450;border-radius:12px;padding:0.7rem 0.9rem;margin-bottom:0.7rem;border:1px solid #2f6597}
+        .comment-meta{display:flex;gap:0.8rem;font-size:0.75rem;color:var(--accent-teal);margin-bottom:0.4rem;flex-wrap:wrap}
+        .comment-content{font-size:0.85rem;line-height:1.5}
+        .no-comments{font-size:0.85rem;color:rgba(255,255,255,0.6);text-align:center;padding:1rem 0}
+        .return-home-wrap{text-align:center;padding:1rem 0}
+        .return-home-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--primary-light);color:#fff;text-decoration:none;padding:0.6rem 1.4rem;border-radius:30px;font-size:0.85rem;font-weight:600;transition:0.2s}
+        .return-home-btn:hover{background:#2563eb}
+        .footer-layer-1{background:#021525;border-top:1px solid #0f2436;padding:2.5rem 0.5rem}
+        .footer-l1-inner{max-width:1600px;margin:0 auto}
+        .footer-l1-heading{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-teal);text-align:center;margin-bottom:0.4rem}
+        .footer-l1-sub{font-size:0.8rem;text-align:center;margin-bottom:2rem}
+        .f1-col-title{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.9rem;padding-bottom:0.45rem;border-bottom:1px solid #1a3e5c;display:flex;align-items:center;gap:0.4rem}
+        .f1-col-title i{color:var(--accent-teal);font-size:0.7rem}
+        .f1-col ul{list-style:none;margin:0;padding:0}
+        .f1-col ul li{margin-bottom:0.45rem}
+        .f1-col ul li a{color:#fff;text-decoration:none;font-size:0.8rem;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s,padding-left 0.2s}
+        .f1-col ul li a:hover{color:var(--accent-teal);padding-left:4px}
+        .f1-col ul li a i{font-size:0.65rem;width:11px;color:var(--accent-teal);flex-shrink:0}
+        .footer-layer-2{background:#020d18;border-top:1px solid #0f2436;padding:2rem 0.5rem}
+        .footer-l2-main{max-width:1600px;margin:0 auto;display:grid;grid-template-columns:2.2fr 1fr;gap:1.5rem}
+        .footer-l2-cols-right{display:flex;flex-direction:column;gap:1.5rem}
+        .footer-logo{font-size:1.1rem;font-weight:700;margin-bottom:0.6rem}
+        .footer-tagline{font-size:0.75rem;line-height:1.7;margin-bottom:1rem}
+        .footer-brand-badges{display:flex;flex-wrap:wrap;gap:0.4rem}
+        .f-badge{background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);border-radius:20px;padding:0.2rem 0.6rem;font-size:0.7rem;display:flex;align-items:center;gap:0.3rem}
+        .f-badge i{color:var(--accent-teal);font-size:0.65rem}
+        .footer-l2-col-title{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.7rem}
+        .footer-l2-col ul{list-style:none;margin:0;padding:0}
+        .footer-l2-col ul li{margin-bottom:0.4rem}
+        .footer-l2-col ul li a{color:#fff;text-decoration:none;font-size:0.8rem;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
+        .footer-l2-col ul li a:hover{color:var(--accent-teal)}
+        .footer-l2-col ul li a i{font-size:0.65rem;color:var(--accent-teal)}
+        .footer-l2-divider{border:none;border-top:1px solid #0f2436;margin:1.5rem 0 1rem}
+        .footer-l2-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.8rem;padding-top:0.5rem}
+        .footer-l2-copyright{font-size:0.75rem}
+        .footer-l2-legal-links{display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap}
+        .footer-l2-legal-links .dot{color:rgba(255,255,255,0.3);font-size:0.6rem}
+        .footer-l2-legal-links a{color:#fff;text-decoration:none;font-size:0.75rem;transition:color 0.2s}
+        .footer-l2-legal-links a:hover{color:var(--accent-teal)}
+        .footer-l2-python{font-size:0.8rem;display:flex;align-items:center;gap:0.35rem}
+        .footer-l2-python i{color:var(--accent-teal)}
+        section,.card,.code-example,.hero-section,.comment-section,.subscription-section,.social-share-section{width:100%!important;box-sizing:border-box!important}
+        @media(max-width:900px){.footer-l2-main{grid-template-columns:1fr;gap:1.8rem}}
+        @media(max-width:768px){.nav-links{display:none}.footer-layer-1,.footer-layer-2{padding:1.5rem 0.25rem!important}.footer-l2-bottom{flex-direction:column;align-items:center}.footer-l2-legal-links .dot{display:none}}
+        @media(max-width:480px){.container{padding:0.4rem 0.15rem}h1{font-size:1.2rem}h2{font-size:1.05rem;padding-left:0.4rem}pre{font-size:0.7rem;padding:0.4rem}.pitfalls-table td,.pitfalls-table th{padding:0.4rem;font-size:0.75rem}}
+        @media(max-width:700px){.pitfalls-table,.pitfalls-table thead,.pitfalls-table tbody,.pitfalls-table th,.pitfalls-table td,.pitfalls-table tr{display:block;width:100%}.pitfalls-table thead{display:none}.pitfalls-table td{padding:0.5rem 0.6rem;border-bottom:1px solid #1e4a6e}.pitfalls-table td::before{content:attr(data-label);font-weight:700;font-size:0.7rem;color:var(--accent-teal);display:block;margin-bottom:0.2rem;text-transform:uppercase}.pitfalls-table tr{margin-bottom:0.75rem;border:1px solid #1e4a6e;border-radius:8px;overflow:hidden}}
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="progressBar"></div>
+    <div class="mobile-menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" role="navigation">
+        <div class="mobile-menu-title">📘 POETIC BYTES</div>
+        <div class="mobile-menu-section">
+            <div class="mobile-menu-section-label">Main Sections</div>
+            <a href="#introduction" class="menu-link"><i class="fas fa-home"></i> Introduction</a>
+            <a href="#creation" class="menu-link"><i class="fas fa-plus-circle"></i> Creating Sets</a>
+            <a href="#membership" class="menu-link"><i class="fas fa-search"></i> Membership Testing</a>
+            <a href="#operations" class="menu-link"><i class="fas fa-project-diagram"></i> Set Operations</a>
+            <a href="#methods" class="menu-link"><i class="fas fa-tools"></i> Set Methods</a>
+            <a href="#comprehensions" class="menu-link"><i class="fas fa-code"></i> Set Comprehensions</a>
+            <a href="#frozenset" class="menu-link"><i class="fas fa-lock"></i> frozenset</a>
+            <a href="#hashability" class="menu-link"><i class="fas fa-hashtag"></i> Hashability</a>
+            <a href="#performance" class="menu-link"><i class="fas fa-tachometer-alt"></i> Performance</a>
+            <a href="#type-hints" class="menu-link"><i class="fas fa-font"></i> Type Hints</a>
+            <a href="#real-world" class="menu-link"><i class="fas fa-briefcase"></i> Real-World Patterns</a>
+            <a href="#pitfalls" class="menu-link"><i class="fas fa-exclamation-triangle"></i> Common Pitfalls</a>
+            <a href="#cheatsheet" class="menu-link"><i class="fas fa-clipboard-list"></i> Cheat Sheet</a>
+            <a href="#quiz" class="menu-link"><i class="fas fa-question-circle"></i> Knowledge Quiz</a>
+        </div>
+    </div>
+    <nav class="navbar">
+        <div class="logo">📘 POETIC BYTES</div>
+        <div class="nav-links">
+            <a href="#introduction">Intro</a>
+            <a href="#creation">Create</a>
+            <a href="#membership">Membership</a>
+            <a href="#operations">Operations</a>
+            <a href="#methods">Methods</a>
+            <a href="#comprehensions">Comprehensions</a>
+            <a href="#frozenset">frozenset</a>
+            <a href="#performance">Performance</a>
+            <a href="#pitfalls">Pitfalls</a>
+            <a href="#cheatsheet">Cheat Sheet</a>
+            <a href="#quiz">Quiz</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+    <main class="container">
+
+        <section id="introduction" class="hero-section">
+            <h1>PYTHON SETS: A COMPLETE GUIDE (2026)</h1>
+            <h2>1.0 UNDERSTANDING SETS — THE MATHEMATICAL COLLECTION</h2>
+            <p>Python's <code>set</code> is one of the most powerful and underutilised built-in data structures. It implements the mathematical concept of a set: an unordered collection of unique elements. Two defining properties distinguish sets from all other Python containers: elements must be <em>hashable</em>, and each element appears at most once — duplicates are automatically discarded on insertion. These properties enable capabilities impossible with lists or tuples, most notably O(1) average-case membership testing and efficient implementations of union, intersection, and difference operations derived directly from mathematical set algebra.</p>
+            <p>Python provides two set types: the mutable <code>set</code> and the immutable <code>frozenset</code>. The mutable <code>set</code> supports adding and removing elements and is appropriate for dynamic collections where membership changes over time. The <code>frozenset</code> is immutable and hashable — it can be used as a dictionary key or as an element of another set, enabling a rich family of composite data structures. Together, they give Python a complete and directly usable set algebra.</p>
+            <h3>1.1 Why This Guide Exists</h3>
+            <p>This resource has been designed as a comprehensive educational tool for computer science students, self-directed learners, and professional developers who want to master Python sets beyond simple deduplication. Every explanation connects theory to practical software design: why is set lookup O(1)? When does a frozenset beat a tuple? What does hashability really mean? When should you use a set instead of a list, and when is a list still the right tool? These are the questions this guide answers with rigour and depth.</p>
+            <h3>1.2 Educational Objectives</h3>
+            <ul>
+                <li><strong>Create sets</strong> correctly using literals, the constructor, and comprehensions — and understand why <code>{}</code> creates a dict, not a set.</li>
+                <li><strong>Exploit O(1) membership testing</strong> and know exactly when to replace a list with a set for dramatic performance gains.</li>
+                <li><strong>Apply all four set operations</strong> — union, intersection, difference, symmetric difference — using both operators and methods, and understand the distinction between in-place and returning-new forms.</li>
+                <li><strong>Master all set mutation methods</strong>: <code>add</code>, <code>discard</code>, <code>remove</code>, <code>pop</code>, <code>update</code>, and <code>clear</code>.</li>
+                <li><strong>Write set comprehensions</strong> for concise, idiomatic construction from iterables with filtering.</li>
+                <li><strong>Use frozenset</strong> as an immutable, hashable set for dict keys, set elements, and memoisation.</li>
+                <li><strong>Understand hashability</strong> at a deep level — why lists cannot be set elements, and how <code>__hash__</code> and <code>__eq__</code> interact in Python's data model.</li>
+                <li><strong>Apply sets in real-world patterns</strong>: deduplication, graph traversal, access control, permission modeling, and data pipeline de-duplication.</li>
+                <li><strong>Avoid common pitfalls</strong> including the empty set gotcha, modifying a set while iterating, and confusing <code>remove</code> with <code>discard</code>.</li>
+            </ul>
+        </section>
+
+        <section id="creation" class="card">
+            <h2>2.0 CREATING SETS — SYNTAX, CONSTRUCTOR, AND GOTCHAS</h2>
+            <h3>2.1 Set Literals</h3>
+            <p>A non-empty set can be written as a comma-separated sequence of elements inside curly braces: <code>{1, 2, 3}</code>. Duplicates are silently removed at construction time — <code>{1, 2, 2, 3, 3, 3}</code> creates the set <code>{1, 2, 3}</code>. The order of elements in a set is unspecified and may change between Python runs; sets have no concept of indexing or slicing. You cannot access elements by position — you can only test membership, iterate, or convert to an ordered structure when ordering is needed.</p>
+            <h3>2.2 The Empty Set Gotcha</h3>
+            <p>The most common beginner mistake with sets is writing <code>{}</code> to create an empty set. This is wrong — Python interprets <code>{}</code> as an empty <em>dictionary</em>, not an empty set. To create an empty set, you must use the constructor: <code>set()</code>. This design decision was locked in because the dict literal syntax predates the set literal, and the bare <code>{}</code> form was already committed to dicts. The error reveals itself at runtime as <code>AttributeError: 'dict' object has no attribute 'add'</code> when you call set methods on it.</p>
+            <h3>2.3 The set() Constructor</h3>
+            <p>The <code>set(iterable)</code> constructor builds a set from any iterable: <code>set([1, 2, 2, 3])</code> converts a list with duplicates into a set; <code>set("banana")</code> creates a set of unique characters; <code>set(range(10))</code> builds a set of integers 0–9; <code>set(dict)</code> extracts the keys. When given an existing set, the constructor creates a shallow copy. The no-argument form <code>set()</code> creates an empty set.</p>
+            <div class="warning-box"><p><strong>⚠️ Empty Set Gotcha:</strong> <code>{}</code> creates an empty <code>dict</code>, not an empty <code>set</code>. Always use <code>set()</code>. Verify: <code>type({})</code> → <code>&lt;class 'dict'&gt;</code>. This is the most common set beginner error in Python.</p></div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 2.1 — Creating Sets: Literals, Constructor, and the Empty Set Gotcha</span></div>
+            <pre><code><span class="cm"># ── Set literals ──────────────────────────────────────────────────</span>
+primes = {<span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">5</span>, <span class="nm">7</span>, <span class="nm">11</span>, <span class="nm">13</span>}
+colors = {<span class="str">"red"</span>, <span class="str">"green"</span>, <span class="str">"blue"</span>}
+mixed  = {<span class="nm">1</span>, <span class="str">"hello"</span>, (<span class="nm">1</span>, <span class="nm">2</span>), <span class="nm">3.14</span>}   <span class="cm"># all elements must be hashable</span>
+
+<span class="cm"># ── Duplicates silently removed ───────────────────────────────────</span>
+dupes = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">3</span>, <span class="nm">3</span>}
+<span class="bi">print</span>(dupes)                        <span class="cm"># {1, 2, 3}</span>
+<span class="bi">print</span>(<span class="bi">len</span>(dupes))                   <span class="cm"># 3</span>
+
+<span class="cm"># ── No indexing — sets are unordered ──────────────────────────────</span>
+<span class="kw">try</span>:
+    primes[<span class="nm">0</span>]
+<span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"TypeError: {e}"</span>)         <span class="cm"># 'set' object is not subscriptable</span>
+
+<span class="cm"># ── CRITICAL: {} is an empty dict, not a set ──────────────────────</span>
+wrong = {}                           <span class="cm"># empty DICT</span>
+right = <span class="bi">set</span>()                        <span class="cm"># empty SET</span>
+<span class="bi">print</span>(<span class="bi">type</span>(wrong))                  <span class="cm"># &lt;class 'dict'&gt;</span>
+<span class="bi">print</span>(<span class="bi">type</span>(right))                  <span class="cm"># &lt;class 'set'&gt;</span>
+
+<span class="cm"># ── set() constructor from various iterables ──────────────────────</span>
+from_list   = <span class="bi">set</span>([<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">2</span>, <span class="nm">3</span>])       <span class="cm"># {1, 2, 3}</span>
+from_string = <span class="bi">set</span>(<span class="str">"banana"</span>)             <span class="cm"># {'b', 'a', 'n'} — unique chars</span>
+from_range  = <span class="bi">set</span>(<span class="bi">range</span>(<span class="nm">5</span>))             <span class="cm"># {0, 1, 2, 3, 4}</span>
+from_dict   = <span class="bi">set</span>({<span class="str">"x"</span>:<span class="nm">1</span>, <span class="str">"y"</span>:<span class="nm">2</span>})       <span class="cm"># {'x', 'y'} — keys only</span>
+<span class="bi">print</span>(from_string)                  <span class="cm"># {'b', 'a', 'n'}</span>
+
+<span class="cm"># ── Shallow copy patterns ─────────────────────────────────────────</span>
+original = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>}
+copy1 = <span class="bi">set</span>(original)               <span class="cm"># via constructor</span>
+copy2 = original.copy()              <span class="cm"># via method — identical result</span>
+copy1.add(<span class="nm">99</span>)
+<span class="bi">print</span>(original)                     <span class="cm"># {1, 2, 3}  — unaffected</span></code></pre>
+        </div>
+
+        <section id="membership" class="card">
+            <h2>3.0 MEMBERSHIP TESTING — O(1) LOOKUP AND THE HASH TABLE</h2>
+            <h3>3.1 The in Operator: O(1) vs O(n)</h3>
+            <p>The most important performance characteristic of a set is O(1) average-case membership testing. When you write <code>x in my_set</code>, Python computes <code>hash(x)</code>, uses it to jump directly to the appropriate bucket in the hash table, and performs at most a few equality comparisons. This is a constant-time operation: whether the set has 10 or 10,000,000 elements, the lookup takes approximately the same time. By contrast, <code>x in my_list</code> is O(n) — Python must scan each element linearly until it either finds a match or exhausts the list. For large collections with repeated membership tests, this difference is transformative.</p>
+            <h3>3.2 When to Convert a List to a Set for Lookup</h3>
+            <p>If you are performing many membership tests against the same collection, converting it to a set first pays for itself quickly. The conversion is O(n), but each subsequent lookup is O(1) instead of O(n). Even with just 5–10 lookups against a list of a few hundred elements, the set version is typically faster. This is one of the highest-leverage performance transformations in Python and is completely idiomatic — <code>allowed_set = set(allowed_list)</code> followed by <code>x in allowed_set</code> is a standard pattern in production code.</p>
+            <h3>3.3 Subset, Superset, and Disjoint Checks</h3>
+            <p>Beyond individual element membership, sets support relationship checks between entire sets. <code>A &lt;= B</code> (or <code>A.issubset(B)</code>) tests whether every element of A is also in B. <code>A &gt;= B</code> (or <code>A.issuperset(B)</code>) tests whether A contains all elements of B. <code>A &lt; B</code> is a proper subset check — A is a subset of B but not equal to B. <code>A.isdisjoint(B)</code> returns <code>True</code> if A and B share no common elements at all.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 3.1 — Membership Testing: O(1) Sets vs O(n) Lists + Relationship Checks</span></div>
+            <pre><code><span class="kw">import</span> timeit
+
+<span class="cm"># ── Basic membership testing ───────────────────────────────────────</span>
+allowed = {<span class="str">"alice"</span>, <span class="str">"bob"</span>, <span class="str">"carol"</span>, <span class="str">"dave"</span>}
+<span class="bi">print</span>(<span class="str">"alice"</span> <span class="kw">in</span> allowed)           <span class="cm"># True   — O(1)</span>
+<span class="bi">print</span>(<span class="str">"mallory"</span> <span class="kw">not</span> <span class="kw">in</span> allowed)     <span class="cm"># True   — O(1)</span>
+
+<span class="cm"># ── Performance: set vs list ──────────────────────────────────────</span>
+n = <span class="nm">100_000</span>
+big_list = <span class="bi">list</span>(<span class="bi">range</span>(n))
+big_set  = <span class="bi">set</span>(<span class="bi">range</span>(n))
+t_list = timeit.timeit(<span class="str">"99_999 in big_list"</span>, globals=<span class="bi">globals</span>(), number=<span class="nm">5_000</span>)
+t_set  = timeit.timeit(<span class="str">"99_999 in big_set"</span>,  globals=<span class="bi">globals</span>(), number=<span class="nm">5_000</span>)
+<span class="bi">print</span>(<span class="str">f"list: {t_list:.3f}s  |  set: {t_set:.5f}s"</span>)  <span class="cm"># set ~1000x faster</span>
+
+<span class="cm"># ── Convert-once, lookup-many pattern ────────────────────────────</span>
+STOP_WORDS = <span class="bi">set</span>([<span class="str">"the"</span>, <span class="str">"a"</span>, <span class="str">"an"</span>, <span class="str">"is"</span>, <span class="str">"in"</span>, <span class="str">"it"</span>, <span class="str">"of"</span>, <span class="str">"to"</span>])
+sentence   = <span class="str">"it is the best of times"</span>.split()
+content    = [w <span class="kw">for</span> w <span class="kw">in</span> sentence <span class="kw">if</span> w <span class="kw">not</span> <span class="kw">in</span> STOP_WORDS]
+<span class="bi">print</span>(content)                      <span class="cm"># ['best', 'times']</span>
+
+<span class="cm"># ── Subset, superset, disjoint checks ────────────────────────────</span>
+A = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>}
+B = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>}
+C = {<span class="nm">6</span>, <span class="nm">7</span>}
+
+<span class="bi">print</span>(A <= B)                       <span class="cm"># True  — A is subset of B</span>
+<span class="bi">print</span>(A < B)                        <span class="cm"># True  — A is proper subset (A != B)</span>
+<span class="bi">print</span>(B >= A)                       <span class="cm"># True  — B is superset of A</span>
+<span class="bi">print</span>(A == {<span class="nm">3</span>, <span class="nm">1</span>, <span class="nm">2</span>})              <span class="cm"># True  — order irrelevant for equality</span>
+<span class="bi">print</span>(A.isdisjoint(C))             <span class="cm"># True  — share no elements</span>
+<span class="bi">print</span>(A.isdisjoint(B))             <span class="cm"># False — share 1, 2, 3</span></code></pre>
+        </div>
+
+        <section id="operations" class="card">
+            <h2>4.0 SET OPERATIONS — UNION, INTERSECTION, DIFFERENCE, SYMMETRIC DIFFERENCE</h2>
+            <h3>4.1 The Four Fundamental Operations</h3>
+            <p>Python sets support all four classical set operations from mathematics. <strong>Union</strong> (<code>A | B</code> or <code>A.union(B)</code>) returns all elements appearing in either A or B or both. <strong>Intersection</strong> (<code>A &amp; B</code> or <code>A.intersection(B)</code>) returns only elements appearing in both A and B. <strong>Difference</strong> (<code>A - B</code> or <code>A.difference(B)</code>) returns elements in A that are not in B — note this is not commutative: <code>A - B != B - A</code> in general. <strong>Symmetric Difference</strong> (<code>A ^ B</code> or <code>A.symmetric_difference(B)</code>) returns elements appearing in exactly one of A or B — it is the union minus the intersection.</p>
+            <h3>4.2 Operators vs Methods — A Critical Distinction</h3>
+            <p>The operator forms (<code>|</code>, <code>&amp;</code>, <code>-</code>, <code>^</code>) require both operands to be sets. The method forms (<code>.union()</code>, <code>.intersection()</code>, etc.) accept any iterable as the argument, converting it to a set first. This means <code>s | [1, 2, 3]</code> raises <code>TypeError</code>, but <code>s.union([1, 2, 3])</code> works. The method forms also accept multiple arguments at once: <code>A.union(B, C, D)</code>. For code that may receive lists or other iterables, always prefer the method form for robustness.</p>
+            <h3>4.3 In-Place Update Versions</h3>
+            <p>All four operations have augmented assignment forms that modify the set in-place: <code>|=</code>, <code>&amp;=</code>, <code>-=</code>, and <code>^=</code>. These map to <code>.update()</code>, <code>.intersection_update()</code>, <code>.difference_update()</code>, and <code>.symmetric_difference_update()</code>. Use the in-place forms when you want to modify an existing set rather than create a new one — they are more memory-efficient for large sets since no intermediate copy is allocated.</p>
+            <div class="tip-box"><p><strong>💡 Operator Mnemonic:</strong> Set operators mirror bitwise operators: <code>|</code> (OR → union), <code>&amp;</code> (AND → intersection), <code>-</code> (minus → difference), <code>^</code> (XOR → symmetric difference). The same mental model applies to both.</p></div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 4.1 — All Four Set Operations: Operators, Methods, and In-Place Forms</span></div>
+            <pre><code>A = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>}
+B = {<span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>, <span class="nm">6</span>, <span class="nm">7</span>}
+
+<span class="cm"># ── Union ─────────────────────────────────────────────────────────</span>
+<span class="bi">print</span>(A | B)                        <span class="cm"># {1,2,3,4,5,6,7}</span>
+<span class="bi">print</span>(A.union(B))                   <span class="cm"># identical</span>
+
+<span class="cm"># ── Intersection ──────────────────────────────────────────────────</span>
+<span class="bi">print</span>(A & B)                        <span class="cm"># {3, 4, 5}</span>
+<span class="bi">print</span>(A.intersection(B))           <span class="cm"># identical</span>
+
+<span class="cm"># ── Difference (NOT commutative) ──────────────────────────────────</span>
+<span class="bi">print</span>(A - B)                        <span class="cm"># {1, 2}   — in A but not B</span>
+<span class="bi">print</span>(B - A)                        <span class="cm"># {6, 7}   — in B but not A</span>
+
+<span class="cm"># ── Symmetric Difference ─────────────────────────────────────────</span>
+<span class="bi">print</span>(A ^ B)                        <span class="cm"># {1, 2, 6, 7}  — in exactly one</span>
+<span class="bi">print</span>(A.symmetric_difference(B))   <span class="cm"># identical</span>
+
+<span class="cm"># ── Methods accept any iterable; operators require sets ───────────</span>
+<span class="bi">print</span>(A.union([<span class="nm">6</span>, <span class="nm">7</span>, <span class="nm">8</span>]))          <span class="cm"># works — list converted</span>
+<span class="kw">try</span>:
+    A | [<span class="nm">6</span>, <span class="nm">7</span>, <span class="nm">8</span>]
+<span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"TypeError: {e}"</span>)
+
+<span class="cm"># ── Multiple arguments with methods ──────────────────────────────</span>
+C = {<span class="nm">8</span>, <span class="nm">9</span>}
+<span class="bi">print</span>(A.union(B, C))               <span class="cm"># {1,2,3,4,5,6,7,8,9}</span>
+
+<span class="cm"># ── In-place forms ────────────────────────────────────────────────</span>
+s = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>}
+s |= {<span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>}  ;  <span class="bi">print</span>(s)        <span class="cm"># {1, 2, 3, 4, 5}</span>
+s &= {<span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>}  ;  <span class="bi">print</span>(s)        <span class="cm"># {2, 3, 4}</span>
+s -= {<span class="nm">3</span>}         ;  <span class="bi">print</span>(s)        <span class="cm"># {2, 4}</span>
+s ^= {<span class="nm">2</span>, <span class="nm">5</span>}      ;  <span class="bi">print</span>(s)        <span class="cm"># {4, 5}  — removed 2, added 5</span>
+
+<span class="cm"># ── Practical: tag comparison ─────────────────────────────────────</span>
+user_a = {<span class="str">"python"</span>, <span class="str">"django"</span>, <span class="str">"api"</span>}
+user_b = {<span class="str">"python"</span>, <span class="str">"flask"</span>, <span class="str">"api"</span>}
+<span class="bi">print</span>(<span class="str">f"Shared:  {user_a & user_b}"</span>)   <span class="cm"># {'python', 'api'}</span>
+<span class="bi">print</span>(<span class="str">f"Only A:  {user_a - user_b}"</span>)   <span class="cm"># {'django'}</span>
+<span class="bi">print</span>(<span class="str">f"Only B:  {user_b - user_a}"</span>)   <span class="cm"># {'flask'}</span></code></pre>
+        </div>
+
+        <section id="methods" class="card">
+            <h2>5.0 SET METHODS — MUTATION AND INTROSPECTION</h2>
+            <h3>5.1 Adding Elements: add() and update()</h3>
+            <p><code>add(element)</code> inserts a single hashable element. If the element is already present, the set is unchanged and no error is raised — this is the O(1) idempotent insert. <code>update(iterable)</code> adds all elements from one or more iterables, equivalent to <code>s |= set(iterable)</code>. Both are average O(1) for <code>add</code> and O(k) for <code>update</code> where k is the length of the iterable.</p>
+            <h3>5.2 Removing Elements: remove(), discard(), and pop()</h3>
+            <p>Three methods remove elements, with critically different behaviour on missing elements. <code>remove(element)</code> removes the element and raises <code>KeyError</code> if it is not present — use when the element must exist. <code>discard(element)</code> removes the element if present, silently does nothing if absent — use for safe removal. <code>pop()</code> removes and returns an arbitrary element, raises <code>KeyError</code> on an empty set. Because sets are unordered, <code>pop()</code> does not return the "first" element — which element is returned is unspecified.</p>
+            <h3>5.3 Other Methods</h3>
+            <p><code>clear()</code> removes all elements in-place. <code>copy()</code> returns a shallow copy. <code>len(s)</code> returns the number of elements in O(1) — the count is maintained as a field, not recomputed by scanning. To iterate over a set, use a <code>for</code> loop — but never add or remove elements while iterating, as this raises <code>RuntimeError: Set changed size during iteration</code>.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 5.1 — Set Methods: add, update, remove, discard, pop, clear</span></div>
+            <pre><code>s = {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>}
+
+<span class="cm"># ── add(): idempotent insert ──────────────────────────────────────</span>
+s.add(<span class="nm">4</span>)
+s.add(<span class="nm">2</span>)                            <span class="cm"># already present — silent no-op</span>
+<span class="bi">print</span>(s)                            <span class="cm"># {1, 2, 3, 4}</span>
+
+<span class="cm"># ── update(): add from multiple iterables ────────────────────────</span>
+s.update([<span class="nm">5</span>, <span class="nm">6</span>], {<span class="nm">7</span>, <span class="nm">8</span>})
+<span class="bi">print</span>(s)                            <span class="cm"># {1, 2, 3, 4, 5, 6, 7, 8}</span>
+
+<span class="cm"># ── remove(): raises KeyError if absent ──────────────────────────</span>
+s.remove(<span class="nm">8</span>)
+<span class="kw">try</span>:
+    s.remove(<span class="nm">99</span>)
+<span class="kw">except</span> <span class="bi">KeyError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"KeyError: {e}"</span>)          <span class="cm"># 99</span>
+
+<span class="cm"># ── discard(): safe removal — no error if absent ──────────────────</span>
+s.discard(<span class="nm">7</span>)                        <span class="cm"># removes 7</span>
+s.discard(<span class="nm">99</span>)                       <span class="cm"># silently does nothing</span>
+<span class="bi">print</span>(s)                            <span class="cm"># {1, 2, 3, 4, 5, 6}</span>
+
+<span class="cm"># ── pop(): removes and returns arbitrary element ──────────────────</span>
+elem = s.pop()
+<span class="bi">print</span>(<span class="str">f"Popped: {elem}"</span>)            <span class="cm"># unspecified which element</span>
+
+<span class="cm"># ── clear() modifies in-place; other refs also see empty set ──────</span>
+ref = s
+s.clear()
+<span class="bi">print</span>(ref)                          <span class="cm"># set()  — ref also sees the cleared set</span>
+
+s2 = {<span class="nm">10</span>, <span class="nm">20</span>}
+ref2 = s2
+s2 = <span class="bi">set</span>()                          <span class="cm"># rebind — ref2 still has {10, 20}</span>
+<span class="bi">print</span>(ref2)                         <span class="cm"># {10, 20}  — unaffected</span>
+
+<span class="cm"># ── Safe iteration pattern: iterate over a copy ───────────────────</span>
+tags = {<span class="str">"python"</span>, <span class="str">"draft"</span>, <span class="str">"api"</span>, <span class="str">"deprecated"</span>}
+<span class="kw">for</span> tag <span class="kw">in</span> <span class="bi">set</span>(tags):               <span class="cm"># iterate over a copy</span>
+    <span class="kw">if</span> tag <span class="kw">in</span> {<span class="str">"draft"</span>, <span class="str">"deprecated"</span>}:
+        tags.discard(tag)
+<span class="bi">print</span>(tags)                         <span class="cm"># {'python', 'api'}</span></code></pre>
+        </div>
+
+        <section id="comprehensions" class="card">
+            <h2>6.0 SET COMPREHENSIONS — CONCISE CONSTRUCTION FROM ITERABLES</h2>
+            <h3>6.1 Basic Syntax</h3>
+            <p>A set comprehension builds a set from an iterable using a compact expression. The syntax is <code>{expression for item in iterable}</code> — identical to a list comprehension but with curly braces. Duplicates produced by the expression are automatically eliminated. A filter clause can be added: <code>{expression for item in iterable if condition}</code>. Set comprehensions are more readable and often faster than <code>set(generator_expression)</code> because the Python VM can apply specific optimisations to the comprehension form.</p>
+            <h3>6.2 When to Use Set Comprehensions</h3>
+            <p>Use a set comprehension when building a set from a transformation of an iterable and only unique values are wanted. Prefer plain <code>set(iterable)</code> when no transformation is needed. Avoid deeply nested comprehensions with complex filters — explicit loops with <code>add()</code> calls are more readable. Never use a set comprehension when insertion order matters — lists preserve order, sets do not.</p>
+            <h3>6.3 Nested Comprehensions</h3>
+            <p>Like list comprehensions, set comprehensions support multiple <code>for</code> clauses: <code>{x*y for x in range(5) for y in range(5) if x != y}</code> generates unique products of distinct pairs. Duplicates are eliminated naturally. This pattern is powerful for generating unique combinations from multiple data sources without explicit deduplication code.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 6.1 — Set Comprehensions: Basic, Filtered, and Nested</span></div>
+            <pre><code><span class="cm"># ── Basic set comprehension ───────────────────────────────────────</span>
+squares = {x ** <span class="nm">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">10</span>)}
+<span class="bi">print</span>(squares)                      <span class="cm"># {0,1,4,9,16,25,36,49,64,81}</span>
+
+<span class="cm"># ── Deduplication via comprehension ──────────────────────────────</span>
+words = [<span class="str">"Hello"</span>, <span class="str">"hello"</span>, <span class="str">"HELLO"</span>, <span class="str">"World"</span>, <span class="str">"world"</span>]
+lower_unique = {w.lower() <span class="kw">for</span> w <span class="kw">in</span> words}
+<span class="bi">print</span>(lower_unique)                 <span class="cm"># {'hello', 'world'}</span>
+
+<span class="cm"># ── Filtered comprehension ────────────────────────────────────────</span>
+even_squares = {n**<span class="nm">2</span> <span class="kw">for</span> n <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">1</span>, <span class="nm">11</span>) <span class="kw">if</span> n % <span class="nm">2</span> == <span class="nm">0</span>}
+<span class="bi">print</span>(even_squares)                 <span class="cm"># {4, 16, 36, 64, 100}</span>
+
+<span class="cm"># ── Unique domains from email list ───────────────────────────────</span>
+emails  = [<span class="str">"a@example.com"</span>, <span class="str">"b@gmail.com"</span>, <span class="str">"c@example.com"</span>]
+domains = {e.split(<span class="str">"@"</span>)[<span class="nm">1</span>] <span class="kw">for</span> e <span class="kw">in</span> emails}
+<span class="bi">print</span>(domains)                      <span class="cm"># {'example.com', 'gmail.com'}</span>
+
+<span class="cm"># ── Nested: unique products from distinct pairs ───────────────────</span>
+products = {x * y <span class="kw">for</span> x <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">1</span>, <span class="nm">6</span>) <span class="kw">for</span> y <span class="kw">in</span> <span class="bi">range</span>(<span class="nm">1</span>, <span class="nm">6</span>) <span class="kw">if</span> x != y}
+<span class="bi">print</span>(<span class="bi">sorted</span>(products))            <span class="cm"># [2,3,4,5,6,8,10,12,15,20]</span>
+
+<span class="cm"># ── Unique chars across multiple strings ─────────────────────────</span>
+strings  = [<span class="str">"hello"</span>, <span class="str">"world"</span>, <span class="str">"python"</span>]
+all_chars = {ch <span class="kw">for</span> s <span class="kw">in</span> strings <span class="kw">for</span> ch <span class="kw">in</span> s}
+<span class="bi">print</span>(<span class="bi">sorted</span>(all_chars))</code></pre>
+        </div>
+
+        <section id="frozenset" class="card">
+            <h2>7.0 FROZENSET — THE IMMUTABLE, HASHABLE SET</h2>
+            <h3>7.1 What frozenset Is and Why It Exists</h3>
+            <p>A <code>frozenset</code> is an immutable version of a set. Once created, elements cannot be added or removed. It supports all non-mutating set operations and methods: membership testing, union, intersection, difference, symmetric difference, subset/superset checks. The critical property is that <code>frozenset</code> is <em>hashable</em> — because it is immutable, its hash value can be reliably computed and cached. This makes it usable as a dictionary key or as an element of another set — capabilities the mutable <code>set</code> does not have. The relationship between <code>set</code> and <code>frozenset</code> mirrors that between <code>list</code> and <code>tuple</code>.</p>
+            <h3>7.2 Creating and Using frozenset</h3>
+            <p><code>frozenset(iterable)</code> is the only constructor — there is no frozenset literal syntax. <code>frozenset()</code> creates an empty frozenset. Like <code>set()</code>, it accepts any iterable and eliminates duplicates. All read-only set operations work identically on frozensets. The mutating methods (<code>add</code>, <code>remove</code>, <code>update</code>, etc.) are absent — calling them raises <code>AttributeError</code>.</p>
+            <h3>7.3 Key Use Cases for frozenset</h3>
+            <p>Use <code>frozenset</code> as a dictionary key to represent an unordered combination: permission sets, feature flag groups, graph edges connecting unordered pairs. Use it as a set element to build sets-of-sets (otherwise impossible with mutable sets). Use it as a function argument that must not be accidentally mutated by the callee. Use it with <code>lru_cache</code> for memoising functions that take set-valued inputs — convert the set argument to a frozenset before using as the cache key.</p>
+            <div class="tip-box"><p><strong>💡 Memoisation Pattern:</strong> <code>@lru_cache</code> requires hashable arguments. Convert any set argument to frozenset: <code>key = frozenset(s)</code>. This is the standard Python idiom for caching set-valued computations.</p></div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 7.1 — frozenset: Creation, Hashability, Dict Keys, and Memoisation</span></div>
+            <pre><code><span class="kw">from</span> functools <span class="kw">import</span> lru_cache
+
+<span class="cm"># ── Creating frozensets ───────────────────────────────────────────</span>
+fs1 = <span class="bi">frozenset</span>([<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>])
+fs2 = <span class="bi">frozenset</span>({<span class="str">"python"</span>, <span class="str">"django"</span>})
+fs3 = <span class="bi">frozenset</span>()
+<span class="bi">print</span>(fs1)                          <span class="cm"># frozenset({1, 2, 3})</span>
+<span class="bi">print</span>(<span class="bi">type</span>(fs1))                   <span class="cm"># &lt;class 'frozenset'&gt;</span>
+
+<span class="cm"># ── Immutable — mutation methods raise AttributeError ────────────</span>
+<span class="kw">try</span>:
+    fs1.add(<span class="nm">4</span>)
+<span class="kw">except</span> <span class="bi">AttributeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"AttributeError: {e}"</span>)
+
+<span class="cm"># ── Hashable: usable as dict key ──────────────────────────────────</span>
+permissions = {
+    <span class="bi">frozenset</span>({<span class="str">"read"</span>}):                    <span class="str">"viewer"</span>,
+    <span class="bi">frozenset</span>({<span class="str">"read"</span>, <span class="str">"write"</span>}):           <span class="str">"editor"</span>,
+    <span class="bi">frozenset</span>({<span class="str">"read"</span>, <span class="str">"write"</span>, <span class="str">"delete"</span>}): <span class="str">"admin"</span>,
+}
+user_perms = <span class="bi">frozenset</span>({<span class="str">"read"</span>, <span class="str">"write"</span>})
+<span class="bi">print</span>(permissions[user_perms])      <span class="cm"># editor</span>
+
+<span class="cm"># ── frozenset as element of another set (set-of-sets) ────────────</span>
+edges = {
+    <span class="bi">frozenset</span>({<span class="str">"A"</span>, <span class="str">"B"</span>}),
+    <span class="bi">frozenset</span>({<span class="str">"B"</span>, <span class="str">"C"</span>}),
+    <span class="bi">frozenset</span>({<span class="str">"A"</span>, <span class="str">"C"</span>}),
+}
+<span class="bi">print</span>(<span class="bi">frozenset</span>({<span class="str">"B"</span>, <span class="str">"A"</span>}) <span class="kw">in</span> edges)  <span class="cm"># True — order irrelevant</span>
+
+<span class="cm"># ── All non-mutating operations work ─────────────────────────────</span>
+fa = <span class="bi">frozenset</span>({<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>})
+fb = <span class="bi">frozenset</span>({<span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>})
+<span class="bi">print</span>(fa & fb)                      <span class="cm"># frozenset({2, 3})</span>
+<span class="bi">print</span>(fa | fb)                      <span class="cm"># frozenset({1, 2, 3, 4})</span>
+<span class="bi">print</span>(fa - fb)                      <span class="cm"># frozenset({1})</span>
+
+<span class="cm"># ── Memoisation with lru_cache ────────────────────────────────────</span>
+@lru_cache(maxsize=<span class="nm">None</span>)
+<span class="kw">def</span> <span class="fn">sum_of_squares</span>(items: <span class="bi">frozenset</span>) -> <span class="bi">int</span>:
+    <span class="kw">return</span> <span class="bi">sum</span>(x**<span class="nm">2</span> <span class="kw">for</span> x <span class="kw">in</span> items)
+
+<span class="bi">print</span>(<span class="fn">sum_of_squares</span>(<span class="bi">frozenset</span>({<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>})))  <span class="cm"># 14</span>
+<span class="bi">print</span>(<span class="fn">sum_of_squares</span>(<span class="bi">frozenset</span>({<span class="nm">3</span>, <span class="nm">1</span>, <span class="nm">2</span>})))  <span class="cm"># 14 — cache hit!</span></code></pre>
+        </div>
+
+        <section id="hashability" class="card">
+            <h2>8.0 HASHABILITY — THE FOUNDATION OF SET ELEMENTS</h2>
+            <h3>8.1 What Hashability Means</h3>
+            <p>An object is hashable if it has a hash value that stays constant throughout its lifetime and it can be compared for equality. The contract is: if <code>a == b</code>, then <code>hash(a) == hash(b)</code>. The converse is not required — hash collisions (two unequal objects with the same hash) are allowed and handled internally by the hash table. Python's built-in immutable types — <code>int</code>, <code>float</code>, <code>str</code>, <code>tuple</code> (of hashable elements), and <code>frozenset</code> — are all hashable. The built-in mutable types — <code>list</code>, <code>dict</code>, and <code>set</code> — are not hashable, because their content (and thus their logical equality) can change after construction.</p>
+            <h3>8.2 Why Mutable Objects Cannot Be Set Elements</h3>
+            <p>If a mutable object were allowed as a set element, and its content changed after insertion, its hash value would change — but it would still occupy the original hash bucket, making it permanently unreachable. The set would contain an element that can never be found again, breaking the fundamental hash table invariants. Python prevents this by making mutable built-ins unhashable: <code>hash([])</code> raises <code>TypeError: unhashable type: 'list'</code>.</p>
+            <h3>8.3 Custom Objects and Hashability</h3>
+            <p>User-defined classes are hashable by default, with a hash based on <code>id()</code> (the object's memory address). However, if you define <code>__eq__</code>, Python sets <code>__hash__ = None</code>, making the class unhashable — because the contract requires equal objects to have equal hashes. If you define custom equality, you must also define a consistent <code>__hash__</code>. The standard pattern for value objects is to hash a tuple of the defining fields: <code>def __hash__(self): return hash((self.x, self.y))</code>.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 8.1 — Hashability: Built-ins, Custom Classes, and the __hash__/__eq__ Contract</span></div>
+            <pre><code><span class="cm"># ── Hashable built-in types ───────────────────────────────────────</span>
+<span class="bi">print</span>(<span class="bi">hash</span>(<span class="nm">42</span>))                    <span class="cm"># int — hashable</span>
+<span class="bi">print</span>(<span class="bi">hash</span>(<span class="str">"hello"</span>))              <span class="cm"># str — hashable</span>
+<span class="bi">print</span>(<span class="bi">hash</span>((<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>)))            <span class="cm"># tuple of ints — hashable</span>
+<span class="bi">print</span>(<span class="bi">hash</span>(<span class="bi">frozenset</span>({<span class="nm">1</span>, <span class="nm">2</span>})))   <span class="cm"># frozenset — hashable</span>
+
+<span class="cm"># ── Unhashable mutable types ──────────────────────────────────────</span>
+<span class="kw">for</span> obj <span class="kw">in</span> [[<span class="nm">1</span>, <span class="nm">2</span>], {<span class="str">"a"</span>: <span class="nm">1</span>}, {<span class="nm">1</span>, <span class="nm">2</span>}]:
+    <span class="kw">try</span>:
+        <span class="bi">hash</span>(obj)
+    <span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+        <span class="bi">print</span>(<span class="str">f"unhashable: {e}"</span>)
+
+<span class="cm"># ── Tuple is only hashable if ALL elements are hashable ───────────</span>
+<span class="bi">print</span>(<span class="bi">hash</span>((<span class="nm">1</span>, <span class="str">"ok"</span>, (<span class="nm">2</span>, <span class="nm">3</span>))))    <span class="cm"># works</span>
+<span class="kw">try</span>:
+    <span class="bi">hash</span>((<span class="nm">1</span>, [<span class="nm">2</span>, <span class="nm">3</span>]))               <span class="cm"># list inside tuple — unhashable</span>
+<span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"TypeError: {e}"</span>)
+
+<span class="cm"># ── Custom class: default hash from id() ─────────────────────────</span>
+<span class="kw">class</span> <span class="cl">DefaultPoint</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, x, y): self.x, self.y = x, y
+
+p1, p2 = <span class="cl">DefaultPoint</span>(<span class="nm">1</span>, <span class="nm">2</span>), <span class="cl">DefaultPoint</span>(<span class="nm">1</span>, <span class="nm">2</span>)
+<span class="bi">print</span>(p1 == p2)                    <span class="cm"># False  — default eq compares identity</span>
+<span class="bi">print</span>(<span class="bi">hash</span>(p1) == <span class="bi">hash</span>(p2))      <span class="cm"># False  — different id()s</span>
+
+<span class="cm"># ── Custom class with __eq__ makes it unhashable ──────────────────</span>
+<span class="kw">class</span> <span class="cl">BadPoint</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, x, y): self.x, self.y = x, y
+    <span class="kw">def</span> <span class="fn">__eq__</span>(self, other): <span class="kw">return</span> (self.x, self.y) == (other.x, other.y)
+<span class="cm"># __hash__ is now None — Python set it automatically</span>
+<span class="kw">try</span>:
+    <span class="bi">hash</span>(<span class="cl">BadPoint</span>(<span class="nm">1</span>, <span class="nm">2</span>))
+<span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"TypeError: {e}"</span>)       <span class="cm"># unhashable type: 'BadPoint'</span>
+
+<span class="cm"># ── Correct value object: define both __eq__ and __hash__ ─────────</span>
+<span class="kw">class</span> <span class="cl">Point</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, x, y): self.x, self.y = x, y
+    <span class="kw">def</span> <span class="fn">__eq__</span>(self, other): <span class="kw">return</span> (self.x, self.y) == (other.x, other.y)
+    <span class="kw">def</span> <span class="fn">__hash__</span>(self): <span class="kw">return</span> <span class="bi">hash</span>((self.x, self.y))  <span class="cm"># consistent with __eq__</span>
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self): <span class="kw">return</span> <span class="str">f"Point({self.x}, {self.y})"</span>
+
+p1, p2 = <span class="cl">Point</span>(<span class="nm">1</span>, <span class="nm">2</span>), <span class="cl">Point</span>(<span class="nm">1</span>, <span class="nm">2</span>)
+<span class="bi">print</span>(p1 == p2)                    <span class="cm"># True   — value equality</span>
+<span class="bi">print</span>(<span class="bi">hash</span>(p1) == <span class="bi">hash</span>(p2))      <span class="cm"># True   — consistent hashes</span>
+point_set = {<span class="cl">Point</span>(<span class="nm">0</span>, <span class="nm">0</span>), <span class="cl">Point</span>(<span class="nm">1</span>, <span class="nm">2</span>), <span class="cl">Point</span>(<span class="nm">0</span>, <span class="nm">0</span>)}
+<span class="bi">print</span>(point_set)                   <span class="cm"># {Point(0,0), Point(1,2)} — deduped</span></code></pre>
+        </div>
+
+        <section id="performance" class="card">
+            <h2>9.0 PERFORMANCE — BIG-O ANALYSIS AND CPython INTERNALS</h2>
+            <h3>9.1 Hash Table Internals</h3>
+            <p>Python sets are implemented as open-addressing hash tables with a load factor of about 2/3. When the table becomes more than 2/3 full, it is resized to approximately 4× its current capacity — an O(n) operation that is amortised across all insertions. The average-case complexity of all core set operations is O(1) for single-element operations (membership test, add, discard, remove) and O(n) for operations involving the entire set (iteration, copy, clear). The worst case for single-element operations is O(n) due to hash collisions, but this is astronomically rare in practice with Python's hash functions.</p>
+            <h3>9.2 Set Operation Complexities</h3>
+            <p>For set operations involving two sets A and B: union and symmetric difference are O(len(A) + len(B)); intersection is O(min(len(A), len(B))); difference is O(len(A)). This means intersection is optimised by iterating over the smaller set and checking membership in the larger — a key reason to prefer set intersection over nested loops for finding common elements in two collections. CPython's set implementation selects the smaller set automatically for intersection.</p>
+            <h3>9.3 Memory Footprint</h3>
+            <p>A Python set has a minimum memory footprint of about 216 bytes (on a 64-bit system), and grows as the hash table resizes. Each slot in the hash table stores a hash value and a pointer to the element — 16 bytes per slot. Because the load factor is maintained at 2/3, a set of n elements uses about 1.5n slots, giving roughly 24n bytes for the table itself plus the memory for each element object. A <code>frozenset</code> has the same memory layout but is slightly smaller because it does not need to track modification state. For large collections of small integers, a set typically uses more memory than a sorted list but offers dramatically better lookup performance.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 9.1 — Performance Benchmarks and Memory Analysis</span></div>
+            <pre><code><span class="kw">import</span> timeit, sys
+
+<span class="cm"># ── O(1) membership across different sizes ───────────────────────</span>
+<span class="kw">for</span> size <span class="kw">in</span> [<span class="nm">100</span>, <span class="nm">10_000</span>, <span class="nm">1_000_000</span>]:
+    s   = <span class="bi">set</span>(<span class="bi">range</span>(size))
+    lst = <span class="bi">list</span>(<span class="bi">range</span>(size))
+    target = size - <span class="nm">1</span>   <span class="cm"># worst case for list (scan to end)</span>
+    t_set  = timeit.timeit(<span class="kw">lambda</span>: target <span class="kw">in</span> s,   number=<span class="nm">50_000</span>)
+    t_list = timeit.timeit(<span class="kw">lambda</span>: target <span class="kw">in</span> lst, number=<span class="nm">50_000</span>)
+    <span class="bi">print</span>(<span class="str">f"n={size:>8}: set={t_set:.3f}s  list={t_list:.3f}s  ratio={t_list/t_set:.0f}x"</span>)
+
+<span class="cm"># ── Intersection: CPython picks smaller set ───────────────────────</span>
+big   = <span class="bi">set</span>(<span class="bi">range</span>(<span class="nm">1_000_000</span>))
+small = <span class="bi">set</span>(<span class="bi">range</span>(<span class="nm">0</span>, <span class="nm">1_000_000</span>, <span class="nm">7</span>))   <span class="cm"># ~143k elements</span>
+t = timeit.timeit(<span class="kw">lambda</span>: big & small, number=<span class="nm">10</span>)
+<span class="bi">print</span>(<span class="str">f"Intersection of 1M and 143k: {t:.3f}s"</span>)
+
+<span class="cm"># ── Memory footprint ─────────────────────────────────────────────</span>
+<span class="kw">import</span> sys
+empty_set   = <span class="bi">set</span>()
+empty_fset  = <span class="bi">frozenset</span>()
+ten_ints    = <span class="bi">set</span>(<span class="bi">range</span>(<span class="nm">10</span>))
+<span class="bi">print</span>(<span class="str">f"empty set:      {sys.getsizeof(empty_set)} bytes"</span>)     <span class="cm"># ~200 bytes</span>
+<span class="bi">print</span>(<span class="str">f"empty frozenset:{sys.getsizeof(empty_fset)} bytes"</span>)    <span class="cm"># ~216 bytes</span>
+<span class="bi">print</span>(<span class="str">f"set of 10 ints: {sys.getsizeof(ten_ints)} bytes"</span>)      <span class="cm"># ~728 bytes</span>
+
+<span class="cm"># ── The right tool: list vs set ──────────────────────────────────</span>
+<span class="cm"># Use list when: order matters, duplicates are meaningful, you need index access</span>
+<span class="cm"># Use set when: you only need membership, uniqueness, or set algebra operations</span>
+
+roles_list = [<span class="str">"admin"</span>, <span class="str">"editor"</span>, <span class="str">"viewer"</span>, <span class="str">"editor"</span>]  <span class="cm"># preserves order + dupes</span>
+roles_set  = {<span class="str">"admin"</span>, <span class="str">"editor"</span>, <span class="str">"viewer"</span>, <span class="str">"editor"</span>}  <span class="cm"># deduped, O(1) lookup</span>
+<span class="bi">print</span>(<span class="str">"editor"</span> <span class="kw">in</span> roles_set)        <span class="cm"># True — O(1)</span>
+<span class="bi">print</span>(<span class="bi">len</span>(roles_list), <span class="bi">len</span>(roles_set)) <span class="cm"># 4 vs 3</span></code></pre>
+        </div>
+
+        <section id="type-hints" class="card">
+            <h2>10.0 TYPE HINTS — ANNOTATING SETS IN MODERN PYTHON</h2>
+            <h3>10.1 Basic Set Type Annotations</h3>
+            <p>Python 3.9+ allows built-in collection types to be used directly in type hints using the lowercase forms: <code>set[int]</code> for a set of integers, <code>frozenset[str]</code> for a frozenset of strings. Before Python 3.9, the capitalised forms from the <code>typing</code> module were required: <code>Set[int]</code> and <code>FrozenSet[str]</code>. With <code>from __future__ import annotations</code> (available since Python 3.7), the lowercase syntax can be used in all Python 3.7+ code as well, because annotations are treated as strings and not evaluated at import time.</p>
+            <h3>10.2 Annotating Set Operations in Function Signatures</h3>
+            <p>When writing functions that accept or return sets, use <code>set[T]</code> for mutable sets and <code>frozenset[T]</code> for immutable sets. For functions that only iterate over the set without modifying it, consider annotating the parameter as <code>AbstractSet[T]</code> from <code>collections.abc</code> — this accepts both <code>set</code> and <code>frozenset</code> and makes the function more general. Similarly, <code>Collection[T]</code> accepts any sized, iterable, membership-testable collection.</p>
+            <h3>10.3 Annotating Union and Mixed-Type Sets</h3>
+            <p>A set that contains elements of multiple types is annotated as <code>set[int | str]</code> (Python 3.10+ union syntax) or <code>set[Union[int, str]]</code> for older versions. In practice, homogeneous sets (all elements of the same type) are much more common and better practice — heterogeneous sets are harder to reason about and make type checking less useful.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 10.1 — Type Hints for Sets and frozensets in Python 3.9+</span></div>
+            <pre><code><span class="kw">from</span> __future__ <span class="kw">import</span> annotations
+<span class="kw">from</span> collections.abc <span class="kw">import</span> Set <span class="kw">as</span> AbstractSet
+<span class="kw">from</span> typing <span class="kw">import</span> TypeVar
+
+T = TypeVar(<span class="str">"T"</span>)
+
+<span class="cm"># ── Basic set type hints (Python 3.9+ syntax) ────────────────────</span>
+<span class="kw">def</span> <span class="fn">get_unique_words</span>(text: <span class="bi">str</span>) -> <span class="bi">set</span>[<span class="bi">str</span>]:
+    <span class="kw">return</span> <span class="bi">set</span>(text.lower().split())
+
+<span class="kw">def</span> <span class="fn">get_stop_words</span>() -> <span class="bi">frozenset</span>[<span class="bi">str</span>]:
+    <span class="kw">return</span> <span class="bi">frozenset</span>({<span class="str">"the"</span>, <span class="str">"a"</span>, <span class="str">"an"</span>, <span class="str">"is"</span>, <span class="str">"in"</span>, <span class="str">"of"</span>, <span class="str">"to"</span>})
+
+<span class="cm"># ── AbstractSet accepts both set and frozenset ────────────────────</span>
+<span class="kw">def</span> <span class="fn">count_shared</span>(a: AbstractSet[<span class="bi">str</span>], b: AbstractSet[<span class="bi">str</span>]) -> <span class="bi">int</span>:
+    <span class="cm">"""Works with set, frozenset, or any AbstractSet implementation."""</span>
+    <span class="kw">return</span> <span class="bi">len</span>(a & b)
+
+words1: <span class="bi">set</span>[<span class="bi">str</span>]       = {<span class="str">"python"</span>, <span class="str">"data"</span>, <span class="str">"science"</span>}
+words2: <span class="bi">frozenset</span>[<span class="bi">str</span>] = <span class="bi">frozenset</span>({<span class="str">"python"</span>, <span class="str">"machine"</span>, <span class="str">"learning"</span>})
+<span class="bi">print</span>(<span class="fn">count_shared</span>(words1, words2))  <span class="cm"># 1</span>
+
+<span class="cm"># ── Generic set utility functions ────────────────────────────────</span>
+<span class="kw">def</span> <span class="fn">deduplicate</span>(items: <span class="bi">list</span>[T]) -> <span class="bi">set</span>[T]:
+    <span class="kw">return</span> <span class="bi">set</span>(items)
+
+<span class="kw">def</span> <span class="fn">immutable_union</span>(*sets: <span class="bi">set</span>[T]) -> <span class="bi">frozenset</span>[T]:
+    result: <span class="bi">set</span>[T] = <span class="bi">set</span>()
+    <span class="kw">for</span> s <span class="kw">in</span> sets:
+        result |= s
+    <span class="kw">return</span> <span class="bi">frozenset</span>(result)
+
+combined = <span class="fn">immutable_union</span>({<span class="nm">1</span>, <span class="nm">2</span>}, {<span class="nm">3</span>, <span class="nm">4</span>}, {<span class="nm">5</span>})
+<span class="bi">print</span>(combined)                    <span class="cm"># frozenset({1, 2, 3, 4, 5})</span>
+
+<span class="cm"># ── Annotating set-returning properties ──────────────────────────</span>
+<span class="kw">class</span> <span class="cl">Document</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, content: <span class="bi">str</span>):
+        self._content = content
+        self._tags: <span class="bi">set</span>[<span class="bi">str</span>] = <span class="bi">set</span>()
+
+    <span class="kw">def</span> <span class="fn">add_tag</span>(self, tag: <span class="bi">str</span>) -> <span class="bi">None</span>:
+        self._tags.add(tag.lower().strip())
+
+    @<span class="bi">property</span>
+    <span class="kw">def</span> <span class="fn">tags</span>(self) -> <span class="bi">frozenset</span>[<span class="bi">str</span>]:
+        <span class="kw">return</span> <span class="bi">frozenset</span>(self._tags)   <span class="cm"># expose as immutable</span>
+
+doc = <span class="cl">Document</span>(<span class="str">"Hello world"</span>)
+doc.add_tag(<span class="str">"Python"</span>); doc.add_tag(<span class="str">"tutorial"</span>)
+<span class="bi">print</span>(doc.tags)                    <span class="cm"># frozenset({'python', 'tutorial'})</span></code></pre>
+        </div>
+
+        <section id="real-world" class="card">
+            <h2>11.0 REAL-WORLD PATTERNS — SETS IN PRODUCTION CODE</h2>
+            <h3>11.1 Deduplication</h3>
+            <p>The most common real-world use of sets is deduplication: removing duplicates from a list while preserving the ability to test membership efficiently. Converting a list to a set and back is the idiomatic pattern: <code>unique = list(set(items))</code>. Note that this does not preserve order — if order must be preserved while deduplicating, use <code>dict.fromkeys(items)</code> instead (Python 3.7+ dicts preserve insertion order), then convert back to a list. For large datasets in production pipelines, set-based deduplication is dramatically faster than list-based approaches.</p>
+            <h3>11.2 Graph Traversal with Sets</h3>
+            <p>Sets are ideal for tracking visited nodes in graph traversal algorithms. A <code>visited</code> set provides O(1) membership testing to check whether a node has already been processed, enabling efficient BFS and DFS without revisiting nodes. The canonical BFS pattern is: initialise a queue with the start node and a <code>visited</code> set containing the start node; while the queue is non-empty, dequeue a node, process it, and enqueue any unvisited neighbours while adding them to <code>visited</code>.</p>
+            <h3>11.3 Access Control and Permission Modeling</h3>
+            <p>Sets model permission systems elegantly: a user's permissions are a set of capability strings, and access checks are simple set operations. "Does the user have this permission?" is <code>required in user_permissions</code>. "Does the user have all required permissions?" is <code>required_set.issubset(user_permissions)</code>. "What permissions is this user missing?" is <code>required_set - user_permissions</code>. These operations are O(1) or O(k) — far more efficient than iterating over a list of permissions.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header"><span><i class="fab fa-python"></i> EXAMPLE 11.1 — Real-World Set Patterns: Dedup, Graph BFS, and Access Control</span></div>
+            <pre><code><span class="kw">from</span> collections <span class="kw">import</span> deque
+
+<span class="cm"># ── Pattern 1: Order-preserving deduplication ─────────────────────</span>
+raw_tags = [<span class="str">"python"</span>, <span class="str">"api"</span>, <span class="str">"python"</span>, <span class="str">"django"</span>, <span class="str">"api"</span>, <span class="str">"backend"</span>]
+
+<span class="cm"># Unordered dedup (fastest)</span>
+unordered = <span class="bi">list</span>(<span class="bi">set</span>(raw_tags))
+
+<span class="cm"># Order-preserving dedup (Python 3.7+ dict trick)</span>
+ordered   = <span class="bi">list</span>(<span class="bi">dict</span>.fromkeys(raw_tags))
+<span class="bi">print</span>(ordered)                      <span class="cm"># ['python', 'api', 'django', 'backend']</span>
+
+<span class="cm"># ── Pattern 2: BFS with visited set ──────────────────────────────</span>
+graph = {
+    <span class="str">"A"</span>: [<span class="str">"B"</span>, <span class="str">"C"</span>],
+    <span class="str">"B"</span>: [<span class="str">"D"</span>, <span class="str">"E"</span>],
+    <span class="str">"C"</span>: [<span class="str">"F"</span>],
+    <span class="str">"D"</span>: [], <span class="str">"E"</span>: [<span class="str">"F"</span>], <span class="str">"F"</span>: []
+}
+
+<span class="kw">def</span> <span class="fn">bfs</span>(graph: <span class="bi">dict</span>, start: <span class="bi">str</span>) -> <span class="bi">list</span>[<span class="bi">str</span>]:
+    visited = {start}
+    queue   = deque([start])
+    order   = []
+    <span class="kw">while</span> queue:
+        node = queue.popleft()
+        order.append(node)
+        <span class="kw">for</span> neighbour <span class="kw">in</span> graph[node]:
+            <span class="kw">if</span> neighbour <span class="kw">not</span> <span class="kw">in</span> visited:   <span class="cm"># O(1) membership test</span>
+                visited.add(neighbour)
+                queue.append(neighbour)
+    <span class="kw">return</span> order
+
+<span class="bi">print</span>(<span class="fn">bfs</span>(graph, <span class="str">"A"</span>))               <span class="cm"># ['A', 'B', 'C', 'D', 'E', 'F']</span>
+
+<span class="cm"># ── Pattern 3: Permission modeling ───────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">User</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name: <span class="bi">str</span>, permissions: <span class="bi">set</span>[<span class="bi">str</span>]):
+        self.name = name
+        self.permissions = permissions
+
+    <span class="kw">def</span> <span class="fn">can</span>(self, action: <span class="bi">str</span>) -> <span class="bi">bool</span>:
+        <span class="kw">return</span> action <span class="kw">in</span> self.permissions
+
+    <span class="kw">def</span> <span class="fn">can_all</span>(self, actions: <span class="bi">set</span>[<span class="bi">str</span>]) -> <span class="bi">bool</span>:
+        <span class="kw">return</span> actions.issubset(self.permissions)
+
+    <span class="kw">def</span> <span class="fn">missing</span>(self, required: <span class="bi">set</span>[<span class="bi">str</span>]) -> <span class="bi">set</span>[<span class="bi">str</span>]:
+        <span class="kw">return</span> required - self.permissions
+
+alice = <span class="cl">User</span>(<span class="str">"alice"</span>, {<span class="str">"read"</span>, <span class="str">"write"</span>, <span class="str">"comment"</span>})
+ADMIN_PERMS = {<span class="str">"read"</span>, <span class="str">"write"</span>, <span class="str">"delete"</span>, <span class="str">"manage_users"</span>}
+
+<span class="bi">print</span>(alice.can(<span class="str">"write"</span>))           <span class="cm"># True</span>
+<span class="bi">print</span>(alice.can_all(ADMIN_PERMS))  <span class="cm"># False</span>
+<span class="bi">print</span>(alice.missing(ADMIN_PERMS))  <span class="cm"># {'delete', 'manage_users'}</span>
+
+<span class="cm"># ── Pattern 4: Finding changed items between two snapshots ────────</span>
+old_ids = {<span class="nm">101</span>, <span class="nm">102</span>, <span class="nm">103</span>, <span class="nm">104</span>}
+new_ids = {<span class="nm">102</span>, <span class="nm">103</span>, <span class="nm">105</span>, <span class="nm">106</span>}
+
+added   = new_ids - old_ids          <span class="cm"># {105, 106}</span>
+removed = old_ids - new_ids          <span class="cm"># {101, 104}</span>
+kept    = old_ids & new_ids          <span class="cm"># {102, 103}</span>
+<span class="bi">print</span>(<span class="str">f"Added: {added}, Removed: {removed}, Kept: {kept}"</span>)</code></pre>
+        </div>
+
+        <section id="pitfalls" class="card">
+            <h2>12.0 COMMON PITFALLS AND HOW TO AVOID THEM</h2>
+            <table class="pitfalls-table">
+                <colgroup><col style="width:22%"><col style="width:42%"><col style="width:36%"></colgroup>
+                <thead><tr><th>Mistake</th><th>Problem Description</th><th>Correct Approach</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Mistake"><strong>Using {} for empty set</strong></td>
+                        <td data-label="Problem"><code>{}</code> creates an empty dict. Calling <code>.add()</code> on it raises <code>AttributeError: 'dict' object has no attribute 'add'</code>. This is the single most common set mistake in Python.</td>
+                        <td data-label="Fix">Always use <code>set()</code> to create an empty set. Use <code>type(x)</code> to verify: <code>type(set()) is set</code> is <code>True</code>.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Modifying a set while iterating</strong></td>
+                        <td data-label="Problem">Adding or removing elements from a set during a <code>for</code> loop raises <code>RuntimeError: Set changed size during iteration</code>. The hash table's internal state is undefined mid-iteration.</td>
+                        <td data-label="Fix">Iterate over a copy: <code>for item in set(my_set)</code> or collect items to remove then do <code>my_set -= to_remove</code> after the loop.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Adding mutable elements</strong></td>
+                        <td data-label="Problem">Trying to add a list, dict, or set as a set element raises <code>TypeError: unhashable type: 'list'</code>. Mutable types are not hashable because their content can change, breaking the hash table invariants.</td>
+                        <td data-label="Fix">Convert mutable containers to hashable equivalents: lists → tuples, sets → frozensets, dicts → frozenset of tuples. Then add the hashable version.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Using remove() when element may be absent</strong></td>
+                        <td data-label="Problem"><code>set.remove(x)</code> raises <code>KeyError</code> if <code>x</code> is not in the set. Wrapping in <code>try/except</code> is verbose and obscures intent.</td>
+                        <td data-label="Fix">Use <code>set.discard(x)</code> for safe removal that silently does nothing if the element is absent. Only use <code>remove()</code> when absence is a programming error that should raise an exception.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Using operator | with non-sets</strong></td>
+                        <td data-label="Problem"><code>my_set | [1, 2, 3]</code> raises <code>TypeError: unsupported operand type(s) for |: 'set' and 'list'</code>. The <code>|</code> operator requires both operands to be sets.</td>
+                        <td data-label="Fix">Use the method form: <code>my_set.union([1, 2, 3])</code> which accepts any iterable. The same applies to <code>&amp;</code>, <code>-</code>, and <code>^</code> — use <code>.intersection()</code>, <code>.difference()</code>, and <code>.symmetric_difference()</code> for non-set inputs.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Assuming set ordering</strong></td>
+                        <td data-label="Problem">Sets are unordered. While in CPython 3.6+, small integer sets may appear in a consistent order, this is an implementation detail that is not guaranteed. Code that depends on set ordering will fail intermittently and produce non-reproducible results.</td>
+                        <td data-label="Fix">If you need ordered unique values, use <code>sorted(set(items))</code> to get a sorted list, or <code>dict.fromkeys(items)</code> for order-of-first-occurrence. Never rely on the iteration order of a set.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Confusing set and frozenset mutability</strong></td>
+                        <td data-label="Problem">A <code>frozenset</code> cannot be mutated — trying <code>fs.add(x)</code> raises <code>AttributeError</code>. Developers sometimes store a <code>frozenset</code> expecting to modify it later, causing runtime errors.</td>
+                        <td data-label="Fix">Use <code>set</code> when mutation is required, <code>frozenset</code> when the set must be hashable or should never be modified. The naming is a clear signal: "frozen" means immutable. Convert between them as needed: <code>frozenset(my_set)</code> and <code>set(my_frozenset)</code>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="cheatsheet" class="card">
+            <h2>13.0 QUICK REFERENCE — PYTHON SETS CHEAT SHEET</h2>
+            <table class="pitfalls-table">
+                <colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+                <thead><tr><th>Task</th><th>Syntax / Example</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Create non-empty set</strong></td><td><code>{1, 2, 3}</code> or <code>set([1, 2, 3])</code></td></tr>
+                    <tr><td><strong>Create empty set</strong></td><td><code>set()</code> — NEVER <code>{}</code> (that's a dict)</td></tr>
+                    <tr><td><strong>Create frozenset</strong></td><td><code>frozenset([1, 2, 3])</code> or <code>frozenset({1, 2, 3})</code></td></tr>
+                    <tr><td><strong>Set comprehension</strong></td><td><code>{x**2 for x in range(10)}</code></td></tr>
+                    <tr><td><strong>Filtered comprehension</strong></td><td><code>{x for x in data if x > 0}</code></td></tr>
+                    <tr><td><strong>Membership test O(1)</strong></td><td><code>x in s</code> or <code>x not in s</code></td></tr>
+                    <tr><td><strong>Add element</strong></td><td><code>s.add(x)</code> — idempotent, O(1)</td></tr>
+                    <tr><td><strong>Add many elements</strong></td><td><code>s.update(iterable)</code> or <code>s |= set(...)</code></td></tr>
+                    <tr><td><strong>Safe remove</strong></td><td><code>s.discard(x)</code> — no error if absent</td></tr>
+                    <tr><td><strong>Remove (error if absent)</strong></td><td><code>s.remove(x)</code> — raises KeyError if absent</td></tr>
+                    <tr><td><strong>Remove arbitrary element</strong></td><td><code>s.pop()</code> — raises KeyError if empty</td></tr>
+                    <tr><td><strong>Clear all elements</strong></td><td><code>s.clear()</code> — in-place</td></tr>
+                    <tr><td><strong>Copy</strong></td><td><code>s.copy()</code> or <code>set(s)</code></td></tr>
+                    <tr><td><strong>Size</strong></td><td><code>len(s)</code> — O(1)</td></tr>
+                    <tr><td><strong>Union</strong></td><td><code>A | B</code> or <code>A.union(B)</code></td></tr>
+                    <tr><td><strong>Intersection</strong></td><td><code>A &amp; B</code> or <code>A.intersection(B)</code></td></tr>
+                    <tr><td><strong>Difference</strong></td><td><code>A - B</code> or <code>A.difference(B)</code></td></tr>
+                    <tr><td><strong>Symmetric difference</strong></td><td><code>A ^ B</code> or <code>A.symmetric_difference(B)</code></td></tr>
+                    <tr><td><strong>In-place union</strong></td><td><code>A |= B</code> or <code>A.update(B)</code></td></tr>
+                    <tr><td><strong>In-place intersection</strong></td><td><code>A &= B</code> or <code>A.intersection_update(B)</code></td></tr>
+                    <tr><td><strong>Subset check</strong></td><td><code>A &lt;= B</code> or <code>A.issubset(B)</code></td></tr>
+                    <tr><td><strong>Proper subset</strong></td><td><code>A &lt; B</code> (A ⊂ B, A ≠ B)</td></tr>
+                    <tr><td><strong>Superset check</strong></td><td><code>A &gt;= B</code> or <code>A.issuperset(B)</code></td></tr>
+                    <tr><td><strong>Disjoint check</strong></td><td><code>A.isdisjoint(B)</code> — True if no shared elements</td></tr>
+                    <tr><td><strong>Equality (order ignored)</strong></td><td><code>A == B</code></td></tr>
+                    <tr><td><strong>Deduplication</strong></td><td><code>list(set(items))</code></td></tr>
+                    <tr><td><strong>Order-preserving dedup</strong></td><td><code>list(dict.fromkeys(items))</code></td></tr>
+                    <tr><td><strong>Convert to sorted list</strong></td><td><code>sorted(s)</code></td></tr>
+                    <tr><td><strong>Safe iteration</strong></td><td><code>for item in set(s):</code> — iterate over copy</td></tr>
+                    <tr><td><strong>frozenset as dict key</strong></td><td><code>{frozenset({'read'}): 'viewer'}</code></td></tr>
+                    <tr><td><strong>frozenset in set</strong></td><td><code>{frozenset({'A','B'}), frozenset({'B','C'})}</code></td></tr>
+                    <tr><td><strong>Type annotation (3.9+)</strong></td><td><code>set[str]</code>, <code>frozenset[int]</code></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="quiz" class="card">
+            <h2>14.0 KNOWLEDGE CHECK: PYTHON SETS QUIZ</h2>
+            <div class="quiz-item">
+                <div class="quiz-question">1. What does <code>{}</code> create in Python, and how do you correctly create an empty set? Why was this design decision made?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation"><code>{}</code> creates an empty <strong>dictionary</strong>, not an empty set. To create an empty set, you must use <code>set()</code>. This design decision stems from Python's history: the dictionary literal syntax using curly braces was introduced before the set literal syntax. When set literals were added in Python 2.7/3.0, the <code>{1, 2, 3}</code> syntax was created for non-empty sets, but the bare <code>{}</code> could not be repurposed from dict without breaking backwards compatibility. Verify: <code>type({}) is dict</code> is <code>True</code>; <code>type(set()) is set</code> is <code>True</code>. This is the most important set gotcha — calling <code>.add()</code> on an empty dict produces <code>AttributeError: 'dict' object has no attribute 'add'</code>.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">2. Why is set membership testing O(1), while list membership testing is O(n)? What is the underlying data structure?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Python sets are implemented as <strong>open-addressing hash tables</strong>. When you test <code>x in my_set</code>, Python computes <code>hash(x)</code> — a constant-time operation — and uses the hash value to directly index into the hash table. This jumps to the correct slot in O(1), regardless of how many elements the set contains. Only in the (very rare) case of hash collisions does Python do additional comparisons, and even then, the amortised complexity remains O(1). By contrast, a list has no index structure — <code>x in my_list</code> must scan elements one by one until finding a match or reaching the end, which is O(n) in the worst case (element not present or at the end). For a set of 1,000,000 elements, the set lookup takes the same time as a lookup in a set of 10 elements — the list lookup is 100,000× slower.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">3. What is the difference between <code>set.remove(x)</code> and <code>set.discard(x)</code>? When should you use each?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation"><code>remove(x)</code> raises <code>KeyError</code> if <code>x</code> is not in the set. <code>discard(x)</code> removes <code>x</code> if present and silently does nothing if <code>x</code> is absent — no exception is raised. Use <code>remove()</code> when the element's presence is a program invariant — if it's absent, that's a programming error and you want an exception. Use <code>discard()</code> when absence is an expected, valid state — the most common case in practice. <code>discard</code> is named by analogy with "discarding" a card — you attempt to discard it, but if it was never there, nothing happens. In production code, <code>discard</code> is usually the safer and more defensive choice unless you specifically need the sentinel behaviour of <code>remove</code>.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">4. What is a frozenset, and why can it be used as a dictionary key when a regular set cannot?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">A <code>frozenset</code> is an <strong>immutable</strong> version of a set. Once created, its elements cannot be changed. Because it is immutable, Python can safely compute a stable hash value for it — the hash will never change. Dictionary keys and set elements must be <strong>hashable</strong>: they must have a stable hash value. A mutable <code>set</code> is not hashable because if you added or removed elements after inserting it as a key, its hash value would change, and the key could no longer be found in the hash table — breaking the dictionary's internal structure. Python prevents this by making the mutable <code>set</code> type unhashable (<code>hash(set())</code> raises <code>TypeError</code>). The <code>frozenset</code> type exists precisely to be the hashable variant, enabling sets to be used as dict keys and as elements of other sets.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">5. What is the difference between <code>A | B</code> and <code>A.union(B)</code>? When would you prefer the method form?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Both <code>A | B</code> and <code>A.union(B)</code> return a new set containing all elements from A and B. The key difference is their type requirements. The <code>|</code> operator requires <strong>both operands to be sets</strong> — <code>A | [1, 2, 3]</code> raises <code>TypeError</code>. The <code>.union()</code> method accepts any <strong>iterable</strong> as its argument, converting it to a set internally — <code>A.union([1, 2, 3])</code> works perfectly. Additionally, <code>.union()</code> accepts multiple arguments at once: <code>A.union(B, C, D)</code>. Use the operator form (<code>|</code>) when both operands are known to be sets and you want concise, mathematical-looking code. Use the method form when the argument may be a list, tuple, generator, or any other iterable — the method form is more robust and flexible.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">6. Why does defining <code>__eq__</code> in a Python class make it unhashable by default, and how do you fix this?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Python enforces the hashability contract: <strong>if <code>a == b</code>, then <code>hash(a) == hash(b)</code></strong>. When you define <code>__eq__</code>, you are redefining what equality means for your class. Python cannot know whether your custom equality is consistent with the default hash (which is based on <code>id()</code>). Since two different objects with the same field values would compare equal but have different <code>id()</code>-based hashes, the contract would be violated. To prevent this, Python automatically sets <code>__hash__ = None</code> when you define <code>__eq__</code>, making the class unhashable. To restore hashability, you must define a <code>__hash__</code> method that is consistent with your <code>__eq__</code>. The standard pattern is to hash a tuple of the fields that define equality: <code>def __hash__(self): return hash((self.x, self.y))</code>. If two objects are equal, they must produce the same tuple and thus the same hash — the contract is satisfied.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">7. What happens when you add an element that is already in a set? How does this differ from list.append()?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">When you call <code>s.add(x)</code> where <code>x</code> is already in the set, <strong>nothing happens</strong> — the set is unchanged and no error is raised. This is called <em>idempotent insertion</em>: calling it multiple times has the same effect as calling it once. The set maintains its uniqueness invariant automatically. By contrast, <code>list.append(x)</code> always adds the element regardless of whether it is already present — a list can contain duplicates. The set's behaviour is a direct consequence of its mathematical definition (a set contains each element at most once) and its hash table implementation (if the element's hash already exists in the table and compares equal to an existing element, the table slot is not updated). This idempotency makes sets very useful for building collections where duplicates are meaningless — you can safely <code>add()</code> without checking <code>in</code> first.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">8. What is symmetric difference, and how does it differ from union and difference?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Symmetric difference (<code>A ^ B</code> or <code>A.symmetric_difference(B)</code>) returns elements that appear in <strong>exactly one</strong> of the two sets — elements that are in A or B, but <em>not</em> in both. It is mathematically equivalent to <code>(A | B) - (A &amp; B)</code> — the union minus the intersection. Compare: <em>Union</em> (<code>A | B</code>) returns elements in A, B, or both — all elements from either set. <em>Difference</em> (<code>A - B</code>) returns elements in A that are not in B — it is asymmetric (A - B ≠ B - A in general). <em>Symmetric difference</em> (<code>A ^ B</code>) returns elements that are in one but not both — it is symmetric (A ^ B = B ^ A). A practical example: given two lists of subscribers, symmetric difference gives you subscribers who are on exactly one list — useful for finding discrepancies between datasets, detecting changes between two snapshots, or finding items that need to be added or removed to make two sets identical.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">9. When should you use a set instead of a list, and when is a list still the better choice?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Use a <strong>set</strong> when: you need O(1) membership testing and will perform many lookups; duplicates are meaningless and should be eliminated; you need mathematical set operations (union, intersection, difference); the collection is used as a lookup table, a visited marker in a graph algorithm, or a permission/access-control model; order does not matter. Use a <strong>list</strong> when: order matters (sets are unordered and do not support indexing); duplicates are meaningful (e.g. a list of transactions, a sequence of events); you need index-based access (<code>items[0]</code>, slicing); the elements are unhashable (lists of lists, mutable objects); you need to iterate in a guaranteed sequence. The core question is: do you care about which position an element is in, or only whether it is present? If membership is the primary concern and duplicates should not exist, use a set. If position matters or duplicates are meaningful, use a list.</div>
+            </div>
+        </section>
+
+        <section class="comment-section">
+            <div class="comment-header">
+                <div class="comment-title"><i class="fas fa-comments"></i> Discussion &amp; Questions <span class="comment-count" id="commentCount">0</span></div>
+            </div>
+            <div class="comment-form">
+                <textarea id="commentContent" placeholder="Share your thoughts, questions, or insights about Python sets..."></textarea>
+                <div class="comment-form-row">
+                    <input type="text"  id="commentAuthor" placeholder="Your name *" required>
+                    <input type="email" id="commentEmail"  placeholder="Your email (optional)">
+                    <button class="comment-submit" onclick="submitComment()"><i class="fas fa-paper-plane"></i> Post Comment</button>
+                </div>
+            </div>
+            <div class="comments-list" id="commentsList">
+                <div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first to share your thoughts!</div>
+            </div>
+        </section>
+
+        <div class="social-share-section">
+            <div class="social-share-label"><i class="fas fa-share-alt"></i> Share this guide</div>
+            <div class="social-share-buttons">
+                <a href="#" class="social-btn facebook" onclick="shareOnFacebook();return false;"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="social-btn twitter"  onclick="shareOnTwitter();return false;"><i class="fab fa-x-twitter"></i> X</a>
+                <a href="#" class="social-btn linkedin" onclick="shareOnLinkedIn();return false;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                <a href="#" class="social-btn whatsapp" onclick="shareOnWhatsApp();return false;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#" class="social-btn telegram" onclick="shareOnTelegram();return false;"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            </div>
+        </div>
+
+        <div class="subscription-section">
+            <div class="subscription-title"><i class="fas fa-envelope-open-text"></i> Stay Updated with Python</div>
+            <div class="subscription-subtitle">Get the latest Python tutorials, advanced patterns, and educational resources delivered to your inbox.</div>
+            <div class="subscription-form">
+                <div class="form-group"><input type="text"  id="subscriberName"  placeholder="Your name (optional)"></div>
+                <div class="form-group"><input type="email" id="subscriberEmail" placeholder="Your email address *" required></div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="privacyConsent">
+                    <label for="privacyConsent">I agree to receive emails and accept the privacy policy.</label>
+                </div>
+                <button class="subscribe-btn" id="subscribeBtn" onclick="handleSubscription()"><i class="fas fa-bell"></i> Subscribe to Updates</button>
+                <div class="subscription-message" id="subscriptionMessage" role="alert"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="return-home-wrap"><a href="index.html" class="return-home-btn"><i class="fas fa-house"></i> Return to Home</a></div>
+
+    <footer role="contentinfo">
+        <div class="footer-layer-1">
+            <div class="footer-l1-inner">
+                <div class="footer-l1-heading">📘 POETIC BYTES — Learning Hub</div>
+                <p class="footer-l1-sub">Everything you need to master Python sets — cheat sheets, exercises, references, and tools.</p>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+                    <div class="f1-col" style="width:100%;max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-file-alt"></i> Cheat Sheets</div>
+                        <ul>
+                            <li><a href="#creation"><i class="fas fa-chevron-right"></i> Creating Sets</a></li>
+                            <li><a href="#operations"><i class="fas fa-chevron-right"></i> Set Operations</a></li>
+                            <li><a href="#frozenset"><i class="fas fa-chevron-right"></i> frozenset</a></li>
+                            <li><a href="#hashability"><i class="fas fa-chevron-right"></i> Hashability Rules</a></li>
+                            <li><a href="#cheatsheet"><i class="fas fa-chevron-right"></i> Full Cheat Sheet</a></li>
+                        </ul>
+                    </div>
+                    <div class="f1-col" style="width:100%;max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-dumbbell"></i> Exercises</div>
+                        <ul>
+                            <li><a href="#quiz"><i class="fas fa-chevron-right"></i> Knowledge Quiz</a></li>
+                            <li><a href="#operations"><i class="fas fa-chevron-right"></i> Operations Practice</a></li>
+                            <li><a href="#comprehensions"><i class="fas fa-chevron-right"></i> Comprehension Drills</a></li>
+                            <li><a href="#real-world"><i class="fas fa-chevron-right"></i> Real-World Challenges</a></li>
+                            <li><a href="#pitfalls"><i class="fas fa-chevron-right"></i> Pitfall Drills</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-layer-2">
+            <div class="footer-l2-main">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">📘 POETIC BYTES</div>
+                    <p class="footer-tagline">University-level Python education — clear, rigorous, and practical. From fundamentals to advanced patterns, every concept explained with depth and precision.</p>
+                    <div class="footer-brand-badges">
+                        <span class="f-badge"><i class="fab fa-python"></i> Python 3.12+</span>
+                        <span class="f-badge"><i class="fas fa-graduation-cap"></i> University Level</span>
+                        <span class="f-badge"><i class="fas fa-book-open"></i> 30+ Examples</span>
+                        <span class="f-badge"><i class="fas fa-clock"></i> 35 min read</span>
+                    </div>
+                </div>
+                <div class="footer-l2-cols-right">
+                    <div class="footer-l2-col">
+                        <div class="footer-l2-col-title">Quick Links</div>
+                        <ul>
+                            <li><a href="#introduction"><i class="fas fa-chevron-right"></i> Introduction</a></li>
+                            <li><a href="#creation"><i class="fas fa-chevron-right"></i> Creating Sets</a></li>
+                            <li><a href="#operations"><i class="fas fa-chevron-right"></i> Set Operations</a></li>
+                            <li><a href="#frozenset"><i class="fas fa-chevron-right"></i> frozenset</a></li>
+                            <li><a href="#pitfalls"><i class="fas fa-chevron-right"></i> Pitfalls</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-l2-col">
+                        <div class="footer-l2-col-title">External Resources</div>
+                        <ul>
+                            <li><a href="https://docs.python.org/3.12/library/stdtypes.html#set-types-set-frozenset" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Python 3.12 Set Types</a></li>
+                            <li><a href="https://docs.python.org/3.12/reference/datamodel.html#object.__hash__" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> __hash__ data model</a></li>
+                            <li><a href="https://docs.python.org/3/library/collections.abc.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> collections.abc</a></li>
+                            <li><a href="https://peps.python.org/pep-0218/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> PEP 218 — set type</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-l2-divider">
+            <div class="footer-l2-bottom">
+                <div class="footer-l2-copyright">© 2026 <strong>POETIC BYTES</strong> — Glenn Junsay Pansensoy · Educational Hub · All rights reserved.</div>
+                <div class="footer-l2-legal-links">
+                    <a href="privacy.html">Privacy Policy</a><span class="dot">·</span>
+                    <a href="terms.html">Terms of Service</a><span class="dot">·</span>
+                    <a href="cookie.html">Cookie Policy</a><span class="dot">·</span>
+                    <a href="disclaimer.html">Disclaimer</a><span class="dot">·</span>
+                    <a href="about.html">About</a><span class="dot">·</span>
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="footer-l2-python"><i class="fab fa-python"></i> Python 3.12+ · 2026 Edition</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var progressBar = document.getElementById('progressBar');
+        var backToTop   = document.getElementById('backToTop');
+        window.addEventListener('scroll', function(){
+            var ws = document.body.scrollTop || document.documentElement.scrollTop;
+            var h  = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            progressBar.style.width = (h > 0 ? (ws/h)*100 : 0) + '%';
+            if(ws > 300) backToTop.classList.add('visible'); else backToTop.classList.remove('visible');
+        });
+        backToTop.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+        var hamburgerBtn = document.getElementById('hamburgerBtn');
+        var mobileMenu   = document.getElementById('mobileMenu');
+        var menuOverlay  = document.getElementById('menuOverlay');
+        function openMenu(){hamburgerBtn.classList.add('active');mobileMenu.classList.add('open');menuOverlay.classList.add('open');document.body.style.overflow='hidden';hamburgerBtn.setAttribute('aria-expanded','true');}
+        function closeMenu(){hamburgerBtn.classList.remove('active');mobileMenu.classList.remove('open');menuOverlay.classList.remove('open');document.body.style.overflow='';hamburgerBtn.setAttribute('aria-expanded','false');}
+        hamburgerBtn.addEventListener('click',function(){if(mobileMenu.classList.contains('open'))closeMenu();else openMenu();});
+        menuOverlay.addEventListener('click',closeMenu);
+        document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+
+        document.querySelectorAll('.menu-link').forEach(function(link){
+            link.addEventListener('click',function(e){
+                var target=document.querySelector(this.getAttribute('href'));
+                if(target){e.preventDefault();closeMenu();setTimeout(function(){target.scrollIntoView({behavior:'smooth',block:'start'});},300);}
+            });
+        });
+
+        document.querySelectorAll('.nav-links a, .f1-col a[href^="#"], .footer-l2-col a[href^="#"]').forEach(function(link){
+            link.addEventListener('click',function(e){
+                var href=this.getAttribute('href');
+                if(href&&href.startsWith('#')&&href.length>1){var t=document.querySelector(href);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}
+            });
+        });
+
+        const pageTitle = encodeURIComponent("Python Sets: Complete Educational Guide 2026");
+        const pageUrl   = encodeURIComponent("https://poeticbytes.com/python-sets-guide");
+        function shareOnFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+pageUrl,'facebook-share','width=580,height=296');}
+        function shareOnTwitter(){window.open('https://twitter.com/intent/tweet?text='+pageTitle+'&url='+pageUrl,'twitter-share','width=550,height=235');}
+        function shareOnLinkedIn(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+pageUrl,'linkedin-share','width=550,height=400');}
+        function shareOnWhatsApp(){window.open('https://wa.me/?text='+pageTitle+'%20'+pageUrl,'whatsapp-share','width=500,height=400');}
+        function shareOnTelegram(){window.open('https://t.me/share/url?url='+pageUrl+'&text='+pageTitle,'telegram-share','width=500,height=400');}
+
+        const API_BASE_URL='http://localhost:5000/api';
+        async function handleSubscription(){
+            const name=document.getElementById('subscriberName').value.trim();
+            const email=document.getElementById('subscriberEmail').value.trim();
+            const consent=document.getElementById('privacyConsent').checked;
+            const btn=document.getElementById('subscribeBtn');
+            if(!email){showSubMsg('Please enter your email address.','error');return;}
+            if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showSubMsg('Please enter a valid email address.','error');return;}
+            if(!consent){showSubMsg('Please agree to the privacy policy.','error');return;}
+            btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            try{
+                const r=await fetch(API_BASE_URL+'/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email})});
+                const d=await r.json();
+                if(r.ok){showSubMsg(d.message||'Subscription successful!','success');document.getElementById('subscriberName').value='';document.getElementById('subscriberEmail').value='';document.getElementById('privacyConsent').checked=false;}
+                else{showSubMsg(d.error||'Subscription failed.','error');}
+            }catch(e){showSubMsg('Network error. Please check your connection.','error');}
+            finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-bell"></i> Subscribe to Updates';}
+        }
+        function showSubMsg(msg,type){const el=document.getElementById('subscriptionMessage');el.textContent=msg;el.className='subscription-message '+type;setTimeout(()=>{el.style.display='none';},5000);}
+
+        async function loadComments(){
+            try{const r=await fetch(API_BASE_URL+'/comments');const d=await r.json();if(r.ok){displayComments(d.comments);updateCommentCount(d.comments.length);}}catch(e){console.error(e);}
+        }
+        function displayComments(comments){
+            const list=document.getElementById('commentsList');
+            if(!comments||comments.length===0){list.innerHTML='<div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first!</div>';return;}
+            list.innerHTML=comments.map(c=>'<div class="comment-item"><div class="comment-meta"><span><i class="fas fa-user-circle"></i> '+escapeHtml(c.author)+'</span><span><i class="far fa-clock"></i> '+c.date+'</span></div><div class="comment-content">'+escapeHtml(c.content).replace(/\n/g,'<br>')+'</div></div>').join('');
+        }
+        function updateCommentCount(n){document.getElementById('commentCount').textContent=n;}
+        async function submitComment(){
+            const author=document.getElementById('commentAuthor').value.trim();
+            const email=document.getElementById('commentEmail').value.trim();
+            const content=document.getElementById('commentContent').value.trim();
+            const btn=document.querySelector('.comment-submit');
+            if(!author){alert('Please enter your name.');return;}
+            if(!content){alert('Please enter your comment.');return;}
+            if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email or leave it blank.');return;}
+            btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Posting...';
+            try{
+                const r=await fetch(API_BASE_URL+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({author,email,content})});
+                const d=await r.json();
+                if(r.ok){document.getElementById('commentContent').value='';document.getElementById('commentAuthor').value='';document.getElementById('commentEmail').value='';await loadComments();alert('Comment posted! It will appear after moderation.');}
+                else{alert(d.error||'Failed to post. Please try again.');}
+            }catch(e){alert('Network error.');}
+            finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i> Post Comment';}
+        }
+        function escapeHtml(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
+        document.addEventListener('DOMContentLoaded',loadComments);
+        document.getElementById('commentContent').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submitComment();}});
+    </script>
+</body>
+</html>
