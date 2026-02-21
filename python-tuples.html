@@ -1,0 +1,2336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Python Tuples: Complete University-Level Guide</title>
+    <meta name="title" content="Python Tuples: Complete University-Level Guide (2026) | 30+ Examples">
+    <meta name="description" content="Master Python tuples with this comprehensive university-level guide. 30+ examples covering tuple creation, packing and unpacking, immutability, named tuples, and advanced patterns. Python 3.12+.">
+    <meta name="keywords" content="Python tuples tutorial, Python tuple unpacking, Python named tuples, Python immutable sequences, Python tuple vs list, Python tuple methods, Python tuple comprehension, Python NamedTuple, Python dataclass vs tuple, Python typing tuple">
+    <meta name="author" content="POETIC BYTES Educational Division">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html">
+    <meta property="og:title" content="Python Tuples: Complete University-Level Guide (2026) | 30+ Examples">
+    <meta property="og:description" content="Master Python tuples with this comprehensive university-level guide. 30+ examples covering tuple creation, packing and unpacking, immutability, named tuples, and advanced patterns.">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/images/python-tuples-og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="POETIC BYTES">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-02-20T08:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-20T10:30:00+00:00">
+    <meta property="article:author" content="POETIC BYTES Educational Division">
+    <meta property="article:section" content="Python Programming">
+    <meta property="article:tag" content="Python Tuples">
+    <meta property="article:tag" content="Python Sequences">
+    <meta property="article:tag" content="Python Immutability">
+    <meta property="article:tag" content="Python Unpacking">
+    <meta property="article:tag" content="Python Named Tuples">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@GlennPansensoy">
+    <meta name="twitter:creator" content="@GlennPansensoy">
+    <meta name="twitter:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html">
+    <meta name="twitter:title" content="Python Tuples: Complete University-Level Guide (2026) | 30+ Examples">
+    <meta name="twitter:description" content="Master Python tuples with this comprehensive university-level guide. 30+ examples covering tuple creation, unpacking, named tuples, and advanced patterns.">
+    <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/images/python-tuples-twitter-card.jpg">
+    <meta name="twitter:label1" content="Est. Reading Time">
+    <meta name="twitter:data1" content="35 minutes">
+    <meta name="twitter:label2" content="Python Version">
+    <meta name="twitter:data2" content="3.12+">
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html">
+    <link rel="alternate" hreflang="en" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html">
+    <link rel="alternate" hreflang="x-default" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Article",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html#article",
+                "headline": "Python Tuples: Complete University-Level Guide (2026) | 30+ Examples",
+                "description": "Master Python tuples with this comprehensive university-level guide. 30+ examples covering tuple creation, packing and unpacking, immutability, named tuples, and advanced patterns.",
+                "keywords": "Python tuples, immutability, unpacking, named tuples, sequences, NamedTuple, typing",
+                "datePublished": "2026-02-20T08:00:00+00:00",
+                "dateModified": "2026-02-20T10:30:00+00:00",
+                "author": {
+                    "@type": "Organization",
+                    "name": "POETIC BYTES Educational Division",
+                    "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/about"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "POETIC BYTES",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/images/logo.png",
+                        "width": 180,
+                        "height": 60
+                    }
+                },
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html"
+                },
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/images/python-tuples-og-image.jpg",
+                    "width": 1200,
+                    "height": 630
+                },
+                "wordCount": 7000,
+                "timeRequired": "PT35M",
+                "educationalLevel": "Advanced",
+                "educationalUse": "Complete Guide, Tutorial, Reference",
+                "teaches": [
+                    "Tuple Creation and Syntax",
+                    "Packing and Unpacking",
+                    "Immutability and Hashability",
+                    "Indexing and Slicing",
+                    "Tuple Methods",
+                    "Named Tuples with collections.namedtuple",
+                    "Typed Named Tuples with typing.NamedTuple",
+                    "Tuples as Dictionary Keys",
+                    "Tuples vs Lists",
+                    "Advanced Unpacking with Star Expressions"
+                ]
+            },
+            {
+                "@type": "TechArticle",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html#tech-article",
+                "proficiencyLevel": "Advanced",
+                "dependencies": "Python 3.12+",
+                "skills": "Python Programming, Data Structures",
+                "version": "2026 Edition",
+                "keywords": "Python 3.12, Python tuples tutorial, named tuples, immutable sequences"
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/"},
+                    {"@type": "ListItem", "position": 2, "name": "Python Tutorials", "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/"},
+                    {"@type": "ListItem", "position": 3, "name": "Python Tuples Complete Guide", "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html"}
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-tuples.html#faq",
+                "mainEntity": [
+                    {"@type": "Question", "name": "What is the difference between a tuple and a list?", "acceptedAnswer": {"@type": "Answer", "text": "Tuples are immutable ordered sequences — once created they cannot be modified. Lists are mutable. Tuples are faster, hashable (when their contents are hashable), and signal to readers that the data is fixed."}},
+                    {"@type": "Question", "name": "When should I use a tuple instead of a list?", "acceptedAnswer": {"@type": "Answer", "text": "Use a tuple when the collection of items is semantically fixed — coordinates, RGB values, database rows, function return values. Use a list when you need to add, remove, or modify elements."}},
+                    {"@type": "Question", "name": "What is tuple unpacking?", "acceptedAnswer": {"@type": "Answer", "text": "Tuple unpacking (also called destructuring) assigns each element of a tuple to a separate variable in a single statement: x, y, z = (1, 2, 3). The star operator (*rest) captures remaining elements into a list."}},
+                    {"@type": "Question", "name": "What is a named tuple?", "acceptedAnswer": {"@type": "Answer", "text": "A named tuple is a tuple subclass where each position has a name. Elements can be accessed by name (point.x) or by index (point[0]). Use collections.namedtuple or typing.NamedTuple for typed, documented versions."}}
+                ]
+            }
+        ]
+    }
+    </script>
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="pinterest" content="nopin">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0b1f33;
+            --primary-deep: #0a2a40;
+            --primary-medium: #1d4e7a;
+            --primary-light: #3b82f6;
+            --accent-teal: #2dd4bf;
+            --text-light: #ffffff;
+            --text-soft: #f8fafc;
+            --text-muted: #e2e8f0;
+            --code-bg: #0f2a40;
+            --card-bg: rgba(18, 40, 65, 0.85);
+            --border-color: #2d5580;
+            --font-mono: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'Courier New', monospace;
+            --font-main: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0c253a, #123a52);
+            color: var(--text-light);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, p, li, .comment-content, .quiz-question, .quiz-explanation, .tip-box p, .warning-box p {
+            text-align: justify !important;
+            word-break: break-word;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 1rem 0 0.6rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.6rem;
+            color: #ffffff;
+            border-left: 4px solid var(--primary-light);
+            padding-left: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.5rem;
+            color: #ffffff;
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.4rem;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            max-width: 100%;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        li {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0.8rem 0.5rem;
+            width: 100%;
+            overflow-x: hidden;
+            word-wrap: break-word;
+        }
+
+        .container * {
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+
+        pre, code, .pitfalls-table, table {
+            max-width: 100%;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        pre {
+            white-space: pre;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .pitfalls-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            table-layout: auto;
+        }
+
+        .pitfalls-table th, .pitfalls-table td {
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        img { max-width: 100%; height: auto; }
+
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent-teal));
+            z-index: 2000;
+        }
+
+        .navbar {
+            background: rgba(5, 25, 45, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .logo { font-size: 1.1rem; font-weight: 700; color: white; white-space: nowrap; }
+
+        .nav-links { display: flex; align-items: center; gap: 0; flex-shrink: 1; }
+
+        .nav-links a {
+            color: #ffffff;
+            margin-left: 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover { color: var(--accent-teal); }
+
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
+            flex-shrink: 0;
+        }
+
+        .hamburger-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger-btn.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(5, 20, 38, 0.99);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 5rem 2rem 2rem;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open { right: 0; }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.open { opacity: 1; pointer-events: all; }
+
+        .mobile-menu-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-teal);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-section { margin-bottom: 1.5rem; }
+
+        .mobile-menu-section-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.55rem 0.8rem;
+            border-radius: 10px;
+            margin-bottom: 0.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover { color: white; background: rgba(59, 130, 246, 0.15); padding-left: 1.1rem; }
+        .mobile-menu a i { width: 16px; text-align: center; font-size: 0.75rem; color: var(--primary-light); }
+
+        .hero-section {
+            background: rgba(0, 30, 55, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.2rem 0;
+        }
+
+        .code-example {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin: 1.2rem 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: #0a1f33;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .code-header span { font-size: 0.9rem; font-weight: 500; color: #ffffff; }
+
+        pre {
+            background: #0a1d30;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        code { font-family: var(--font-mono); color: #ffffff; font-size: 0.85rem; }
+
+        .kw { color: #d8a8ff; }
+        .fn { color: #8dd0c0; }
+        .str { color: #f9d77e; }
+        .bi { color: #7ec8e0; }
+        .cm { color: #8aa9c9; }
+        .nm { color: #f5b37c; }
+        .cl { color: #f8c56d; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feature-item {
+            background: #123a57;
+            padding: 0.8rem 1rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .feature-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: #ffffff; }
+        .feature-item p { font-size: 0.85rem; margin-bottom: 0; color: #ffffff; }
+
+        .pitfalls-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #0e314b;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .pitfalls-table th {
+            background: #1d4e79;
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            vertical-align: middle;
+            border-bottom: 2px solid #2f6597;
+            word-break: normal;
+        }
+
+        .pitfalls-table td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid #1e4a6e;
+            text-align: left;
+            color: #ffffff;
+            font-size: 0.85rem;
+            line-height: 1.55;
+            vertical-align: top;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .pitfalls-table td code {
+            font-size: 0.8rem;
+            background: #0a1f33;
+            padding: 0.15rem 0.35rem;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-word;
+            display: inline;
+            color: #ffffff;
+        }
+
+        .pitfalls-table tr:last-child td { border-bottom: none; }
+        .pitfalls-table tr:hover td { background: rgba(59, 130, 246, 0.05); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #0e314b;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: #1d4e79;
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.9rem;
+            vertical-align: middle;
+            line-height: 1.4;
+        }
+
+        td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid #2f6597;
+            text-align: left;
+            color: #ffffff;
+            font-size: 0.85rem;
+            vertical-align: top;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px #0e3c7a;
+            z-index: 999;
+        }
+
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+
+        .quiz-item {
+            background: #0f3450;
+            border-radius: 20px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            border: 1px solid #2f6597;
+        }
+
+        .quiz-question { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; color: #ffffff; }
+
+        .quiz-answer {
+            background: #1d4e79;
+            padding: 0.5rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 0.4rem 0;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            color: #ffffff;
+        }
+
+        .quiz-answer:hover { background: #256aa0; }
+
+        .quiz-explanation {
+            margin-top: 0.8rem;
+            padding: 0.6rem;
+            background: #0a2640;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            display: none;
+            color: #ffffff;
+        }
+
+        .quiz-explanation.show { display: block; }
+
+        .tip-box {
+            background: rgba(45, 212, 191, 0.08);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-left: 4px solid var(--accent-teal);
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .tip-box p { margin: 0; color: #ffffff; font-size: 0.85rem; }
+        .tip-box strong { color: var(--accent-teal); }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-left: 4px solid #fbbf24;
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .warning-box p { margin: 0; color: #ffffff; font-size: 0.85rem; }
+        .warning-box strong { color: #fbbf24; }
+
+        .social-share-section {
+            background: rgba(0, 30, 55, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .social-share-label {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-share-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+        }
+
+        .social-btn i { font-size: 1.1rem; }
+        .social-btn.facebook { background: #1877f2; }
+        .social-btn.twitter  { background: #1da1f2; }
+        .social-btn.linkedin { background: #0a66c2; }
+        .social-btn.whatsapp { background: #25d366; }
+        .social-btn.telegram { background: #0088cc; }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .subscription-section {
+            background: linear-gradient(145deg, #0d2c44, #103e5c);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .subscription-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+
+        .subscription-subtitle {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .subscription-form { display: flex; flex-direction: column; gap: 0.6rem; max-width: 500px; margin: 0 auto; }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.85rem;
+        }
+
+        .form-group input::placeholder { color: rgba(255,255,255,0.5); }
+
+        .form-group.checkbox { display: flex; align-items: center; gap: 0.5rem; }
+        .form-group.checkbox label { font-size: 0.75rem; color: #ffffff; }
+
+        .subscribe-btn {
+            background: var(--primary-light);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .subscribe-btn:hover { background: #2563eb; }
+
+        .subscription-message {
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.4rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .subscription-message.success { background: rgba(16,185,129,0.15); color: #10b981; display: block; }
+        .subscription-message.error   { background: rgba(239,68,68,0.15);   color: #ef4444;  display: block; }
+
+        .comment-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.2rem 0;
+        }
+
+        .comment-header { margin-bottom: 1rem; }
+
+        .comment-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comment-count {
+            background: var(--primary-light);
+            color: white;
+            border-radius: 20px;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 0.7rem;
+            min-height: 100px;
+            resize: vertical;
+            font-family: var(--font-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .comment-form-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .comment-form-row input {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.5rem 0.7rem;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.8rem;
+        }
+
+        .comment-form-row input::placeholder { color: rgba(255,255,255,0.5); }
+
+        .comment-submit {
+            background: var(--primary-light);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+
+        .comment-submit:hover { background: #2563eb; }
+
+        .comments-list { margin-top: 1rem; }
+
+        .comment-item {
+            background: #0f3450;
+            border-radius: 12px;
+            padding: 0.7rem 0.9rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid #2f6597;
+        }
+
+        .comment-meta {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--accent-teal);
+            margin-bottom: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .comment-content { font-size: 0.85rem; color: #ffffff; line-height: 1.5; }
+
+        .no-comments { font-size: 0.85rem; color: rgba(255,255,255,0.6); text-align: center; padding: 1rem 0; }
+
+        .return-home-wrap {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .return-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-light);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .return-home-btn:hover { background: #2563eb; }
+
+        .footer-layer-1 {
+            background: #021525;
+            border-top: 1px solid #0f2436;
+            padding: 2.5rem 0.5rem;
+        }
+
+        .footer-l1-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .footer-l1-heading {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent-teal);
+            text-align: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-l1-sub {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-l1-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .f1-col-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid #1a3e5c;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .f1-col-title i { color: var(--accent-teal); font-size: 0.7rem; }
+
+        .f1-col ul { list-style: none; margin: 0; padding: 0; }
+        .f1-col ul li { margin-bottom: 0.45rem; }
+
+        .f1-col ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .f1-col ul li a:hover { color: var(--accent-teal); padding-left: 4px; }
+
+        .f1-col ul li a i {
+            font-size: 0.65rem;
+            width: 11px;
+            color: var(--accent-teal);
+            flex-shrink: 0;
+        }
+
+        .f1-col ul li a .badge-new {
+            font-size: 0.55rem;
+            font-weight: 700;
+            background: rgba(45,212,191,0.15);
+            color: var(--accent-teal);
+            border-radius: 4px;
+            padding: 0.05rem 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-layer-2 {
+            background: #020d18;
+            border-top: 1px solid #0f2436;
+            padding: 2rem 0.5rem;
+        }
+
+        .footer-l2-main {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .footer-l2-cols-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-brand-col .footer-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-brand-col .footer-tagline {
+            font-size: 0.75rem;
+            color: #ffffff;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+        }
+
+        .footer-brand-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+
+        .f-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            padding: 0.25rem 0.55rem;
+            border-radius: 20px;
+            border: 1px solid rgba(45,212,191,0.3);
+            color: var(--accent-teal);
+            background: rgba(45,212,191,0.07);
+        }
+
+        .footer-l2-col-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid #1a3e5c;
+        }
+
+        .footer-l2-col ul { list-style: none; margin: 0; padding: 0; }
+        .footer-l2-col ul li { margin-bottom: 0.45rem; }
+
+        .footer-l2-col ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .footer-l2-col ul li a:hover { color: var(--accent-teal); padding-left: 4px; }
+
+        .footer-l2-col ul li a i {
+            font-size: 0.65rem;
+            width: 11px;
+            color: var(--accent-teal);
+            flex-shrink: 0;
+        }
+
+        .footer-l2-divider { border: none; border-top: 1px solid #0f2436; margin: 1.5rem 0 0; }
+
+        .footer-l2-bottom {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.2rem 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-align: center;
+        }
+
+        .footer-l2-copyright { font-size: 0.8rem; color: #ffffff; }
+        .footer-l2-copyright strong { color: #ffffff; }
+
+        .footer-l2-legal-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-l2-legal-links .dot { display: none; }
+
+        .footer-l2-legal-links a {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-l2-legal-links a:hover { color: var(--accent-teal); }
+
+        .footer-l2-python {
+            font-size: 0.8rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .footer-l2-python i { color: var(--accent-teal); }
+
+        @media (max-width: 900px) {
+            .footer-l1-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-l2-main { grid-template-columns: 1fr; gap: 1.8rem; }
+            .footer-brand-col { grid-column: 1 / -1; }
+        }
+
+        section, .card, .code-example, .hero-section, .comment-section,
+        .subscription-section, .social-share-section {
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+
+            .footer-layer-1, .footer-layer-2 { padding: 1.5rem 0.25rem !important; }
+            .footer-l1-grid, .footer-l2-main { gap: 0.75rem; }
+            .f1-col-title { font-size: 0.7rem; margin-bottom: 0.6rem; padding-bottom: 0.3rem; }
+            .f1-col ul li a { font-size: 0.8rem; }
+
+            .footer-l2-bottom {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem 0.25rem 0;
+                text-align: center;
+            }
+
+            .footer-l2-copyright { font-size: 0.75rem; line-height: 1.5; }
+            .footer-l2-legal-links { flex-wrap: wrap; gap: 0.3rem 0.5rem; justify-content: center; }
+            .footer-l2-legal-links a { font-size: 0.75rem; }
+            .footer-l2-python { font-size: 0.75rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0.4rem 0.15rem; }
+            h1 { font-size: 1.2rem; }
+            h2 { font-size: 1.05rem; padding-left: 0.4rem; }
+            p, li { font-size: 0.9rem; margin-bottom: 0.7rem; }
+            pre { font-size: 0.7rem; padding: 0.4rem; }
+            code { font-size: 0.7rem; }
+            .grid-2, .grid-3 { gap: 0.5rem; }
+            .feature-item { padding: 0.6rem 0.4rem; }
+            .feature-item h4 { font-size: 0.9rem; }
+            .feature-item p { font-size: 0.85rem; }
+            .pitfalls-table td, table td,
+            .pitfalls-table th, table th { padding: 0.4rem; font-size: 0.75rem; min-width: 100px; }
+        }
+
+        * { max-width: 100vw; box-sizing: border-box; }
+        body { -webkit-text-size-adjust: 100%; }
+        img, video, iframe, object, embed { max-width: 100%; height: auto; }
+
+        .flex-row, .nav-links, .comment-form-row,
+        .social-share-buttons, .footer-l2-bottom { flex-wrap: wrap; }
+
+        table, .pitfalls-table { max-width: 100%; overflow-x: auto; display: block; }
+
+        @media (max-width: 700px) {
+            .pitfalls-table, .pitfalls-table thead, .pitfalls-table tbody,
+            .pitfalls-table th, .pitfalls-table td, .pitfalls-table tr {
+                display: block;
+                width: 100%;
+            }
+            .pitfalls-table thead { display: none; }
+            .pitfalls-table td {
+                padding: 0.5rem 0.6rem;
+                border-bottom: 1px solid #1e4a6e;
+            }
+            .pitfalls-table td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                font-size: 0.7rem;
+                color: var(--accent-teal);
+                display: block;
+                margin-bottom: 0.2rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .pitfalls-table tr { margin-bottom: 0.75rem; border: 1px solid #1e4a6e; border-radius: 8px; overflow: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="progressBar"></div>
+    <div class="mobile-menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation menu" role="navigation">
+        <div class="mobile-menu-title">📘 POETIC BYTES</div>
+        <div class="mobile-menu-section">
+            <div class="mobile-menu-section-label">Main Sections</div>
+            <a href="#introduction" class="menu-link"><i class="fas fa-home"></i> Introduction</a>
+            <a href="#basics" class="menu-link"><i class="fas fa-cube"></i> Tuple Basics</a>
+            <a href="#unpacking" class="menu-link"><i class="fas fa-expand-arrows-alt"></i> Packing &amp; Unpacking</a>
+            <a href="#immutability" class="menu-link"><i class="fas fa-lock"></i> Immutability</a>
+            <a href="#methods" class="menu-link"><i class="fas fa-tools"></i> Tuple Methods</a>
+            <a href="#named-tuples" class="menu-link"><i class="fas fa-tag"></i> Named Tuples</a>
+            <a href="#typed-named-tuples" class="menu-link"><i class="fas fa-code"></i> Typed Named Tuples</a>
+            <a href="#as-keys" class="menu-link"><i class="fas fa-key"></i> Tuples as Dict Keys</a>
+            <a href="#vs-list" class="menu-link"><i class="fas fa-balance-scale"></i> Tuples vs Lists</a>
+            <a href="#pitfalls" class="menu-link"><i class="fas fa-exclamation-triangle"></i> Common Pitfalls</a>
+            <a href="#type-hints" class="menu-link"><i class="fas fa-font"></i> Type Hints</a>
+            <a href="#return-values" class="menu-link"><i class="fas fa-reply"></i> Return Values</a>
+            <a href="#performance" class="menu-link"><i class="fas fa-tachometer-alt"></i> Performance</a>
+            <a href="#real-world" class="menu-link"><i class="fas fa-briefcase"></i> Real-World Patterns</a>
+            <a href="#cheatsheet" class="menu-link"><i class="fas fa-clipboard-list"></i> Cheat Sheet</a>
+            <a href="#quiz" class="menu-link"><i class="fas fa-question-circle"></i> Knowledge Quiz</a>
+        </div>
+    </div>
+
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="logo">📘 POETIC BYTES</div>
+        <div class="nav-links" role="list">
+            <a href="#introduction" role="listitem">Intro</a>
+            <a href="#basics" role="listitem">Basics</a>
+            <a href="#unpacking" role="listitem">Unpacking</a>
+            <a href="#immutability" role="listitem">Immutability</a>
+            <a href="#methods" role="listitem">Methods</a>
+            <a href="#named-tuples" role="listitem">Named Tuples</a>
+            <a href="#typed-named-tuples" role="listitem">Typed</a>
+            <a href="#as-keys" role="listitem">Dict Keys</a>
+            <a href="#vs-list" role="listitem">vs List</a>
+            <a href="#pitfalls" role="listitem">Pitfalls</a>
+            <a href="#type-hints" role="listitem">Typing</a>
+            <a href="#return-values" role="listitem">Returns</a>
+            <a href="#performance" role="listitem">Perf</a>
+            <a href="#real-world" role="listitem">Real World</a>
+            <a href="#cheatsheet" role="listitem">Cheat Sheet</a>
+            <a href="#quiz" role="listitem">Quiz</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <main class="container">
+
+        <section id="introduction" class="hero-section">
+            <h4>PYTHON TUPLES: A COMPLETE GUIDE (2026)</h4>
+            <h4>1.0 UNDERSTANDING IMMUTABLE SEQUENCES IN PYTHON</h4>
+            <p>Among Python's built-in sequence types, tuples occupy a uniquely important role. They are ordered, immutable collections that serve as the language's primary vehicle for grouping related but heterogeneous data. Unlike lists — which are dynamic containers designed for homogeneous collections that change over time — tuples communicate a semantic contract: these values belong together and will not change. Understanding tuples deeply is fundamental to writing idiomatic, correct, and performant Python.</p>
+            <p>A tuple is created simply by separating values with commas: <code>point = 1, 2</code>. The parentheses you often see — <code>point = (1, 2)</code> — are not the tuple syntax; the comma is. Parentheses merely aid readability or are required for disambiguation. This distinction is one of the first subtleties that separates an understanding of Python's data model from a surface-level familiarity with the syntax.</p>
+            <h3>1.1 Why This Guide Exists — Our Educational Philosophy</h3>
+            <p>This resource has been designed as a comprehensive educational tool for computer science students, self-directed learners, and professional developers who want to understand tuples beyond the typical "they're like lists but immutable" summary. Every explanation has been crafted to meet university-level instructional standards: we emphasise not just the "how" but the "why" behind each concept, connecting theory to practical software design decisions.</p>
+            <h3>1.2 Prerequisites and Learning Path</h3>
+            <p>This guide assumes familiarity with Python variables, basic data types, loops, and functions. Exposure to lists will make comparisons more meaningful. For a deeper understanding of Python's data model — in particular how immutability intersects with object identity and hashing — we recommend reviewing the POETIC BYTES Python Classes Guide, as classes, descriptors, and the <code>__hash__</code> protocol are directly relevant to named tuples.</p>
+            <h3>1.3 Educational Objectives</h3>
+            <ul>
+                <li><strong>Create tuples correctly</strong> and understand that the comma, not parentheses, makes a tuple.</li>
+                <li><strong>Pack and unpack tuples</strong> using standard destructuring and star expressions for flexible unpacking.</li>
+                <li><strong>Understand immutability</strong> — what it means, what it does not mean, and why it matters for correctness and performance.</li>
+                <li><strong>Use tuple methods</strong> <code>count()</code> and <code>index()</code> effectively.</li>
+                <li><strong>Create named tuples</strong> using <code>collections.namedtuple</code> for self-documenting structured data.</li>
+                <li><strong>Write typed named tuples</strong> using <code>typing.NamedTuple</code> for modern, IDE-friendly code.</li>
+                <li><strong>Use tuples as dictionary keys</strong> and understand why hashability matters.</li>
+                <li><strong>Choose between tuples and lists</strong> with confidence based on semantic and performance considerations.</li>
+                <li><strong>Avoid common tuple pitfalls</strong> including the single-element tuple syntax trap and mutability of contained objects.</li>
+            </ul>
+        </section>
+
+        <section id="basics" class="card">
+            <h2>2.0 TUPLE BASICS — CREATION, INDEXING, AND SLICING</h2>
+            <h3>2.1 Creating Tuples</h3>
+            <p>The fundamental rule is that a tuple is defined by commas, not parentheses. Parentheses group expressions; the trailing comma creates a tuple. This means <code>x = (1)</code> is an integer, while <code>x = (1,)</code> is a one-element tuple. Similarly, <code>x = 1, 2, 3</code> is a valid tuple with no parentheses at all. The empty tuple is the one exception — <code>()</code> or <code>tuple()</code> — since there are no commas to rely on.</p>
+            <p>Tuples support all standard sequence operations: indexing with <code>t[0]</code>, negative indexing with <code>t[-1]</code>, slicing with <code>t[1:3]</code>, length with <code>len(t)</code>, membership testing with <code>in</code>, and iteration. Like lists, they support concatenation (<code>+</code>) and repetition (<code>*</code>), both of which produce new tuples rather than modifying the original.</p>
+            <h3>2.2 Tuple vs Parenthesised Expression</h3>
+            <p>The comma-makes-a-tuple rule catches many beginners off guard. When you write <code>return x, y</code> inside a function, Python returns a two-element tuple — the parentheses in <code>return (x, y)</code> are optional. Likewise, <code>a = 1,</code> creates a one-element tuple. Forgetting the trailing comma when you intend a one-element tuple is one of the most common tuple mistakes in Python.</p>
+            <div class="tip-box">
+                <p><strong>💡 Key Rule:</strong> It is the comma that creates a tuple, not the parentheses. Parentheses are used for grouping and readability. The only exception is the empty tuple <code>()</code>, where there are no commas to distinguish it.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 2.1 — Tuple Creation, Indexing, and Slicing</span>
+            </div>
+            <pre><code><span class="kw">from</span> __future__ <span class="kw">import</span> annotations
+
+t1 = <nm>1</nm>, <nm>2</nm>, <nm>3</nm>                     <span class="cm"># the comma makes the tuple</span>
+t2 = (<nm>1</nm>, <nm>2</nm>, <nm>3</nm>)                   <span class="cm"># parentheses for readability only</span>
+t3 = <span class="bi">tuple</span>([<nm>4</nm>, <nm>5</nm>, <nm>6</nm>])            <span class="cm"># convert from iterable</span>
+t4 = <span class="bi">tuple</span>(<span class="str">"abc"</span>)               <span class="cm"># ('a', 'b', 'c')</span>
+empty = ()                         <span class="cm"># empty tuple</span>
+single = (<nm>42</nm>,)                    <span class="cm"># one-element tuple — trailing comma required</span>
+not_a_tuple = (<nm>42</nm>)               <span class="cm"># this is just the integer 42</span>
+
+<span class="bi">print</span>(<span class="bi">type</span>(single))              <span class="cm"># &lt;class 'tuple'&gt;</span>
+<span class="bi">print</span>(<span class="bi">type</span>(not_a_tuple))         <span class="cm"># &lt;class 'int'&gt;</span>
+
+colors = (<span class="str">"red"</span>, <span class="str">"green"</span>, <span class="str">"blue"</span>, <span class="str">"yellow"</span>, <span class="str">"purple"</span>)
+
+<span class="bi">print</span>(colors[<nm>0</nm>])               <span class="cm"># 'red'   — first element</span>
+<span class="bi">print</span>(colors[-<nm>1</nm>])              <span class="cm"># 'purple' — last element</span>
+<span class="bi">print</span>(colors[<nm>1</nm>:<nm>4</nm>])            <span class="cm"># ('green', 'blue', 'yellow')</span>
+<span class="bi">print</span>(colors[::<nm>2</nm>])             <span class="cm"># ('red', 'blue', 'purple') — every other</span>
+<span class="bi">print</span>(colors[::-<nm>1</nm>])            <span class="cm"># reversed tuple</span>
+
+<span class="bi">print</span>(<span class="str">"green"</span> <span class="kw">in</span> colors)       <span class="cm"># True</span>
+<span class="bi">print</span>(<span class="bi">len</span>(colors))              <span class="cm"># 5</span>
+
+a = (<nm>1</nm>, <nm>2</nm>) + (<nm>3</nm>, <nm>4</nm>)           <span class="cm"># concatenation → (1, 2, 3, 4)</span>
+b = (<nm>0</nm>,) * <nm>5</nm>                  <span class="cm"># repetition → (0, 0, 0, 0, 0)</span>
+<span class="bi">print</span>(a, b)</code></pre>
+        </div>
+
+        <section id="unpacking" class="card">
+            <h2>3.0 PACKING AND UNPACKING</h2>
+            <h3>3.1 Basic Unpacking</h3>
+            <p>Tuple unpacking (also called destructuring or iterable unpacking) is one of Python's most elegant features. It assigns each element of a sequence to a corresponding variable in a single statement. The left-hand side must have the same number of variables as there are elements in the sequence — otherwise Python raises a <code>ValueError</code>. This works with any iterable, not just tuples, but tuples are the idiomatic vehicle for this pattern.</p>
+            <p>Swapping two variables in Python is famously elegant because of tuple packing and unpacking: <code>a, b = b, a</code>. Python evaluates the right side first, creating a temporary tuple <code>(b, a)</code>, then unpacks it back into <code>a</code> and <code>b</code>. No temporary variable needed.</p>
+            <h3>3.2 Star Expressions for Extended Unpacking</h3>
+            <p>Python 3 introduced the star operator in unpacking. A starred variable <code>*rest</code> collects any number of elements into a list — it can appear anywhere in the assignment target, not just at the end. This allows you to extract the first element, the last element, or any specific position while collecting the rest, without knowing the sequence length in advance. Only one starred expression is permitted per assignment.</p>
+            <h3>3.3 Nested Unpacking</h3>
+            <p>Python supports nested unpacking for nested sequences. You can destructure a tuple of tuples in a single statement: <code>(a, b), c = (1, 2), 3</code>. This is particularly useful when iterating over a list of coordinate pairs or key-value pairs returned from a dictionary's <code>.items()</code> method.</p>
+            <div class="tip-box">
+                <p><strong>💡 Pattern:</strong> Use <code>_</code> as a conventional "throwaway" variable name when you want to unpack but discard certain elements: <code>first, *_, last = some_tuple</code>. This communicates to readers that the middle elements are intentionally ignored.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 3.1 — Packing, Unpacking, and Star Expressions</span>
+            </div>
+            <pre><code>point = <nm>10</nm>, <nm>20</nm>                    <span class="cm"># packing: creates tuple (10, 20)</span>
+x, y = point                       <span class="cm"># basic unpacking</span>
+<span class="bi">print</span>(x, y)                        <span class="cm"># 10 20</span>
+
+rgb = (<nm>255</nm>, <nm>128</nm>, <nm>0</nm>)
+r, g, b = rgb
+<span class="bi">print</span>(<span class="str">f"Red={r}, Green={g}, Blue={b}"</span>)
+
+a, b = <nm>1</nm>, <nm>2</nm>
+a, b = b, a                        <span class="cm"># swap — no temp variable needed</span>
+<span class="bi">print</span>(a, b)                        <span class="cm"># 2 1</span>
+
+numbers = (<nm>1</nm>, <nm>2</nm>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>, <nm>6</nm>)
+first, *middle, last = numbers
+<span class="bi">print</span>(first)                       <span class="cm"># 1</span>
+<span class="bi">print</span>(middle)                      <span class="cm"># [2, 3, 4, 5]  — a list</span>
+<span class="bi">print</span>(last)                        <span class="cm"># 6</span>
+
+head, *tail = numbers
+<span class="bi">print</span>(head, tail)                  <span class="cm"># 1  [2, 3, 4, 5, 6]</span>
+
+*init, penultimate, ultimate = numbers
+<span class="bi">print</span>(init, penultimate, ultimate) <span class="cm"># [1,2,3,4]  5  6</span>
+
+first, _, third, *_ = numbers      <span class="cm"># discard second and rest</span>
+<span class="bi">print</span>(first, third)               <span class="cm"># 1 3</span>
+
+matrix = ((<nm>1</nm>, <nm>2</nm>), (<nm>3</nm>, <nm>4</nm>), (<nm>5</nm>, <nm>6</nm>))
+<span class="kw">for</span> (x, y) <span class="kw">in</span> matrix:
+    <span class="bi">print</span>(<span class="str">f"x={x}, y={y}"</span>)
+
+scores = {<span class="str">"Alice"</span>: <nm>95</nm>, <span class="str">"Bob"</span>: <nm>87</nm>, <span class="str">"Carol"</span>: <nm>92</nm>}
+<span class="kw">for</span> name, score <span class="kw">in</span> scores.items():
+    <span class="bi">print</span>(<span class="str">f"{name}: {score}"</span>)</code></pre>
+        </div>
+
+        <section id="immutability" class="card">
+            <h2>4.0 IMMUTABILITY — WHAT IT MEANS AND WHAT IT DOES NOT</h2>
+            <h3>4.1 What Immutability Guarantees</h3>
+            <p>A tuple is immutable: once created, you cannot add, remove, or replace its elements. Any attempt to assign to an index — <code>t[0] = 99</code> — raises a <code>TypeError</code>. This guarantee is enforced at the language level and cannot be circumvented. Immutability serves several purposes: it makes tuples suitable as dictionary keys and set members (when their contents are also hashable), it signals programmer intent that the data is fixed, and it allows the interpreter to make certain optimisations.</p>
+            <h3>4.2 What Immutability Does Not Guarantee</h3>
+            <p>A critically important nuance is that a tuple's immutability applies only to the tuple itself — not to the objects it contains. If a tuple holds a reference to a list, that list can be mutated freely. The tuple's structure (which objects it references) does not change, but the objects themselves can change. As a direct consequence, a tuple containing a mutable object is not hashable, even though the tuple itself is otherwise immutable in structure.</p>
+            <div class="warning-box">
+                <p><strong>⚠️ Common Misconception:</strong> A tuple containing a list is <em>not</em> hashable and cannot be used as a dictionary key. Immutability of the tuple does not imply immutability of its contents. Only tuples whose elements are all hashable (recursively) are themselves hashable.</p>
+            </div>
+            <h3>4.3 Immutability and Performance</h3>
+            <p>Because the interpreter knows a tuple cannot change, it can apply optimisations unavailable to lists. Small tuples are often cached and reused (interned) by CPython rather than freshly allocated on each creation. Iteration over a tuple is slightly faster than over an equivalent list. For fixed data that is accessed frequently, tuples can offer a measurable performance benefit. Additionally, tuples consume less memory than lists of the same length because they do not allocate an over-provisioned internal buffer for future appends.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 4.1 — Immutability, Hashability, and Contained Mutability</span>
+            </div>
+            <pre><code>t = (<nm>1</nm>, <nm>2</nm>, <nm>3</nm>)
+
+<span class="kw">try</span>:
+    t[<nm>0</nm>] = <nm>99</nm>
+<span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"Caught: {e}"</span>)         <span class="cm"># 'tuple' object does not support item assignment</span>
+
+coords = (<nm>10</nm>, <nm>20</nm>)
+<span class="bi">print</span>(<span class="bi">hash</span>(coords))              <span class="cm"># works — all elements hashable</span>
+
+lookup = {coords: <span class="str">"origin offset"</span>}
+<span class="bi">print</span>(lookup[(<nm>10</nm>, <nm>20</nm>)])          <span class="cm"># 'origin offset'</span>
+
+mixed = (<nm>1</nm>, [<nm>2</nm>, <nm>3</nm>], <nm>4</nm>)
+mixed[<nm>1</nm>].append(<nm>99</nm>)              <span class="cm"># mutating the list INSIDE the tuple is allowed</span>
+<span class="bi">print</span>(mixed)                      <span class="cm"># (1, [2, 3, 99], 4)  — tuple structure unchanged</span>
+
+<span class="kw">try</span>:
+    <span class="bi">hash</span>(mixed)
+<span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"Caught: {e}"</span>)         <span class="cm"># unhashable type: 'list'</span>
+
+<span class="kw">import</span> sys
+lst = [<nm>1</nm>, <nm>2</nm>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>]
+tpl = (<nm>1</nm>, <nm>2</nm>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>)
+<span class="bi">print</span>(<span class="str">f"list size: {sys.getsizeof(lst)} bytes"</span>)
+<span class="bi">print</span>(<span class="str">f"tuple size: {sys.getsizeof(tpl)} bytes"</span>)  <span class="cm"># tuple is smaller</span></code></pre>
+        </div>
+
+        <section id="methods" class="card">
+            <h2>5.0 TUPLE METHODS — COUNT AND INDEX</h2>
+            <h3>5.1 The Two Built-in Tuple Methods</h3>
+            <p>Tuples expose only two methods — <code>count()</code> and <code>index()</code> — a deliberate design reflecting their immutable nature. Because tuples cannot grow, shrink, or be reordered, there is no need for <code>append</code>, <code>sort</code>, <code>remove</code>, or any of the list's mutation methods. The tuple's minimal API is a feature, not a limitation: it enforces discipline and communicates clearly that the data is fixed.</p>
+            <p><code>count(value)</code> returns the number of times <code>value</code> appears in the tuple. It performs a linear scan and is O(n). <code>index(value, start, stop)</code> returns the index of the first occurrence of <code>value</code>, optionally restricted to the subrange <code>[start, stop)</code>. It raises <code>ValueError</code> if the value is not found. You should always guard calls to <code>index()</code> with an <code>in</code> check or a <code>try/except</code> block when the presence of the value is uncertain.</p>
+            <h3>5.2 General Sequence Operations</h3>
+            <p>Beyond its two methods, the tuple supports the full complement of Python sequence operations inherited from the abstract sequence protocol: <code>len()</code>, iteration, <code>reversed()</code>, <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>sorted()</code> (returns a list), and <code>enumerate()</code>. These functions work uniformly across all sequence types — another expression of Python's duck-typing philosophy.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 5.1 — Tuple Methods and Sequence Operations</span>
+            </div>
+            <pre><code>grades = (<nm>88</nm>, <nm>95</nm>, <nm>72</nm>, <nm>88</nm>, <nm>91</nm>, <nm>88</nm>, <nm>100</nm>, <nm>72</nm>)
+
+<span class="bi">print</span>(grades.count(<nm>88</nm>))          <span class="cm"># 3</span>
+<span class="bi">print</span>(grades.count(<nm>99</nm>))          <span class="cm"># 0 — no error for missing values</span>
+
+<span class="bi">print</span>(grades.index(<nm>91</nm>))          <span class="cm"># 4 — first occurrence</span>
+<span class="bi">print</span>(grades.index(<nm>88</nm>, <nm>2</nm>))      <span class="cm"># 3 — search from index 2 onward</span>
+
+<span class="kw">try</span>:
+    grades.index(<nm>999</nm>)
+<span class="kw">except</span> <span class="bi">ValueError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"Caught: {e}"</span>)
+
+<span class="kw">if</span> <nm>100</nm> <span class="kw">in</span> grades:
+    idx = grades.index(<nm>100</nm>)
+    <span class="bi">print</span>(<span class="str">f"Perfect score at position {idx}"</span>)
+
+<span class="bi">print</span>(<span class="bi">min</span>(grades), <span class="bi">max</span>(grades))   <span class="cm"># 72  100</span>
+<span class="bi">print</span>(<span class="bi">sum</span>(grades) / <span class="bi">len</span>(grades))  <span class="cm"># average</span>
+<span class="bi">print</span>(<span class="bi">sorted</span>(grades))             <span class="cm"># returns a new list, sorted ascending</span>
+<span class="bi">print</span>(<span class="bi">sorted</span>(grades, reverse=<span class="bi">True</span>)) <span class="cm"># descending</span>
+
+<span class="kw">for</span> i, grade <span class="kw">in</span> <span class="bi">enumerate</span>(grades, start=<nm>1</nm>):
+    <span class="bi">print</span>(<span class="str">f"  Student {i}: {grade}"</span>)</code></pre>
+        </div>
+
+        <section id="named-tuples" class="card">
+            <h2>6.0 NAMED TUPLES WITH COLLECTIONS.NAMEDTUPLE</h2>
+            <h3>6.1 The Problem Named Tuples Solve</h3>
+            <p>Plain tuples are positional: <code>employee[2]</code> is meaningless without context. When you have structured data with a fixed set of fields — a 2D point, a database record, a configuration entry — named tuples add field names to each position. The result is self-documenting: <code>point.x</code> is immediately clear, whereas <code>point[0]</code> is not. Named tuples are tuple subclasses, so they inherit all tuple behaviour including immutability and hashability (when fields are hashable).</p>
+            <p><code>collections.namedtuple(typename, field_names)</code> returns a new class. The <code>field_names</code> can be a list of strings or a single space/comma-separated string. Instances can be created positionally or by keyword. They can be unpacked like regular tuples, indexed numerically, or accessed by attribute name.</p>
+            <h3>6.2 Named Tuple Utility Methods</h3>
+            <p>Named tuples provide several additional class methods and attributes beyond standard tuples. <code>_make(iterable)</code> creates an instance from any iterable. <code>_asdict()</code> returns an <code>OrderedDict</code> (actually a plain dict in Python 3.8+) of field names to values — useful for serialisation. <code>_replace(**kwargs)</code> returns a new instance with selected fields replaced, which is the idiomatic way to "modify" an immutable named tuple. <code>_fields</code> is a tuple of field names, useful for introspection and documentation.</p>
+            <div class="tip-box">
+                <p><strong>💡 Best Practice:</strong> Use named tuples for data that is naturally record-like but does not need methods or complex validation. They are significantly lighter than full classes and communicate immutability clearly. For data that needs methods, validation, or mutability, prefer <code>typing.NamedTuple</code> or <code>@dataclass</code>.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 6.1 — Named Tuples with collections.namedtuple</span>
+            </div>
+            <pre><code><span class="kw">from</span> collections <span class="kw">import</span> namedtuple
+
+Point = <span class="fn">namedtuple</span>(<span class="str">"Point"</span>, [<span class="str">"x"</span>, <span class="str">"y"</span>])
+p = <span class="cl">Point</span>(<nm>3</nm>, <nm>4</nm>)
+
+<span class="bi">print</span>(p.x, p.y)                   <span class="cm"># 3 4 — attribute access</span>
+<span class="bi">print</span>(p[<nm>0</nm>], p[<nm>1</nm>])               <span class="cm"># 3 4 — still indexable</span>
+x, y = p                           <span class="cm"># still unpackable</span>
+<span class="bi">print</span>(<span class="bi">repr</span>(p))                    <span class="cm"># Point(x=3, y=4)</span>
+<span class="bi">print</span>(<span class="bi">isinstance</span>(p, <span class="bi">tuple</span>))      <span class="cm"># True</span>
+
+Employee = <span class="fn">namedtuple</span>(<span class="str">"Employee"</span>, <span class="str">"name department salary"</span>)
+emp = <span class="cl">Employee</span>(<span class="str">"Alice"</span>, <span class="str">"Engineering"</span>, <nm>95000</nm>)
+<span class="bi">print</span>(emp.name, emp.salary)
+
+promoted = emp._replace(salary=<nm>110000</nm>, department=<span class="str">"Architecture"</span>)
+<span class="bi">print</span>(promoted)
+
+data = [<span class="str">"Bob"</span>, <span class="str">"Marketing"</span>, <nm>78000</nm>]
+emp2 = <span class="cl">Employee</span>._make(data)
+<span class="bi">print</span>(emp2)
+
+<span class="bi">print</span>(emp._asdict())               <span class="cm"># {'name': 'Alice', 'department': 'Engineering', ...}</span>
+<span class="bi">print</span>(<span class="cl">Employee</span>._fields)            <span class="cm"># ('name', 'department', 'salary')</span>
+
+Color = <span class="fn">namedtuple</span>(<span class="str">"Color"</span>, <span class="str">"r g b"</span>, defaults=(<nm>0</nm>, <nm>0</nm>, <nm>0</nm>))
+black = <span class="cl">Color</span>()
+red   = <span class="cl">Color</span>(r=<nm>255</nm>)
+<span class="bi">print</span>(black, red)                  <span class="cm"># Color(r=0, g=0, b=0)  Color(r=255, g=0, b=0)</span></code></pre>
+        </div>
+
+        <section id="typed-named-tuples" class="card">
+            <h2>7.0 TYPED NAMED TUPLES WITH TYPING.NAMEDTUPLE</h2>
+            <h3>7.1 The Modern Approach</h3>
+            <p>Python 3.6 introduced <code>typing.NamedTuple</code>, which allows you to define named tuples using class syntax with full type annotations. This provides several advantages over <code>collections.namedtuple</code>: type annotations for IDE support and static analysis, the ability to add methods and docstrings, default values specified with simple assignment syntax, and a class definition that is more readable and familiar to developers accustomed to class-based code.</p>
+            <p>The resulting class is still a true tuple subclass — all tuple operations, unpacking, and indexing work identically. The difference is purely in how the class is defined and how well it integrates with modern Python tooling.</p>
+            <h3>7.2 Adding Methods to NamedTuple Subclasses</h3>
+            <p>Unlike <code>collections.namedtuple</code> (where adding methods requires subclassing the result), <code>typing.NamedTuple</code> lets you define methods directly in the class body. You can add computed properties, validators in <code>__new__</code>, class methods, and static methods. This makes typed named tuples a compelling middle ground between a plain named tuple and a full <code>@dataclass</code>: you get the immutability and hashability of a tuple with the expressiveness of a class definition.</p>
+            <div class="tip-box">
+                <p><strong>💡 Design Decision:</strong> Choose <code>typing.NamedTuple</code> over <code>collections.namedtuple</code> for all new code. It reads better, integrates with type checkers, and supports methods. Reserve <code>collections.namedtuple</code> only when dynamic field creation at runtime is required.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 7.1 — Typed Named Tuples with typing.NamedTuple</span>
+            </div>
+            <pre><code><span class="kw">from</span> typing <span class="kw">import</span> NamedTuple
+<span class="kw">import</span> math
+
+<span class="kw">class</span> <span class="cl">Vector3D</span>(<span class="cl">NamedTuple</span>):
+    <span class="str">"""An immutable 3D vector with typed fields and methods."""</span>
+    x: float
+    y: float
+    z: float = <nm>0.0</nm>              <span class="cm"># default value</span>
+
+    <span class="kw">def</span> <span class="fn">magnitude</span>(self) -> float:
+        <span class="kw">return</span> math.sqrt(self.x**<nm>2</nm> + self.y**<nm>2</nm> + self.z**<nm>2</nm>)
+
+    <span class="kw">def</span> <span class="fn">normalise</span>(self) -> <span class="str">"Vector3D"</span>:
+        mag = self.magnitude()
+        <span class="kw">if</span> mag == <nm>0</nm>:
+            <span class="kw">raise</span> <span class="bi">ValueError</span>(<span class="str">"Cannot normalise zero vector."</span>)
+        <span class="kw">return</span> <span class="cl">Vector3D</span>(self.x / mag, self.y / mag, self.z / mag)
+
+    <span class="kw">def</span> <span class="fn">dot</span>(self, other: <span class="str">"Vector3D"</span>) -> float:
+        <span class="kw">return</span> self.x * other.x + self.y * other.y + self.z * other.z
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"Vector3D({self.x:.3f}, {self.y:.3f}, {self.z:.3f})"</span>
+
+v1 = <span class="cl">Vector3D</span>(<nm>1</nm>, <nm>2</nm>, <nm>3</nm>)
+v2 = <span class="cl">Vector3D</span>(<nm>4</nm>, <nm>5</nm>)             <span class="cm"># z defaults to 0.0</span>
+
+<span class="bi">print</span>(v1)                          <span class="cm"># Vector3D(1.000, 2.000, 3.000)</span>
+<span class="bi">print</span>(v1.magnitude())             <span class="cm"># 3.7416…</span>
+<span class="bi">print</span>(v1.dot(v2))                 <span class="cm"># 14.0</span>
+<span class="bi">print</span>(<span class="bi">isinstance</span>(v1, <span class="bi">tuple</span>))     <span class="cm"># True — still a tuple!</span>
+
+x, y, z = v1                      <span class="cm"># unpackable</span>
+<span class="bi">print</span>(x, y, z)                    <span class="cm"># 1 2 3</span>
+
+n = v1.normalise()
+<span class="bi">print</span>(n)
+<span class="bi">print</span>(<span class="bi">abs</span>(n.magnitude() - <nm>1.0</nm>) < <nm>1e-10</nm>)  <span class="cm"># True — unit vector</span>
+
+seen = {v1, v2, <span class="cl">Vector3D</span>(<nm>1</nm>, <nm>2</nm>, <nm>3</nm>)}
+<span class="bi">print</span>(<span class="bi">len</span>(seen))                  <span class="cm"># 2 — v1 and the duplicate are the same</span></code></pre>
+        </div>
+
+        <section id="as-keys" class="card">
+            <h2>8.0 TUPLES AS DICTIONARY KEYS</h2>
+            <h3>8.1 Hashability and Why It Matters</h3>
+            <p>Python's dictionaries and sets are implemented as hash tables. Every key must be hashable — it must implement <code>__hash__</code> and <code>__eq__</code>, and its hash must remain constant for its lifetime. Because tuples (with hashable contents) are immutable, they satisfy these requirements and can be used directly as dictionary keys or set members. This opens up a powerful class of data structures: multi-dimensional lookups, coordinate maps, memoisation caches, and sparse matrices.</p>
+            <p>Lists cannot be dictionary keys because they are mutable — their content, and therefore their would-be hash, could change at any time. The dict or set would then be broken. Tuples, being immutable, carry no such risk. This is one of the most practically important distinctions between tuples and lists.</p>
+            <h3>8.2 Common Patterns</h3>
+            <p>Using tuples as keys is idiomatic Python for multi-dimensional lookups. A geographic mapping might use <code>(latitude, longitude)</code> tuples as keys. A game board might use <code>(row, col)</code>. A memoisation cache wraps function arguments into a tuple to use as the cache key. The pattern is both efficient and expressive.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 8.1 — Tuples as Dictionary Keys and Set Members</span>
+            </div>
+            <pre><code>grid: dict[tuple[int, int], str] = {}
+grid[(<nm>0</nm>, <nm>0</nm>)] = <span class="str">"start"</span>
+grid[(<nm>3</nm>, <nm>4</nm>)] = <span class="str">"treasure"</span>
+grid[(<nm>1</nm>, <nm>2</nm>)] = <span class="str">"wall"</span>
+
+<span class="bi">print</span>(grid[(<nm>3</nm>, <nm>4</nm>)])              <span class="cm"># 'treasure'</span>
+<span class="bi">print</span>((<nm>0</nm>, <nm>0</nm>) <span class="kw">in</span> grid)            <span class="cm"># True</span>
+
+visited: set[tuple[int, int]] = set()
+visited.add((<nm>0</nm>, <nm>0</nm>))
+visited.add((<nm>1</nm>, <nm>2</nm>))
+visited.add((<nm>0</nm>, <nm>0</nm>))             <span class="cm"># duplicate ignored</span>
+<span class="bi">print</span>(<span class="bi">len</span>(visited))               <span class="cm"># 2</span>
+
+<span class="kw">import</span> functools
+
+@functools.<span class="fn">cache</span>
+<span class="kw">def</span> <span class="fn">fib</span>(n: int) -> int:
+    <span class="kw">if</span> n <= <nm>1</nm>: <span class="kw">return</span> n
+    <span class="kw">return</span> <span class="fn">fib</span>(n - <nm>1</nm>) + <span class="fn">fib</span>(n - <nm>2</nm>)
+
+<span class="bi">print</span>(<span class="fn">fib</span>(<nm>50</nm>))                    <span class="cm"># fast due to caching</span>
+
+def <span class="fn">manual_memo</span>(func):
+    cache: dict[tuple, object] = {}
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args):
+        <span class="kw">if</span> args <span class="kw">not in</span> cache:
+            cache[args] = func(*args)  <span class="cm"># args is already a tuple</span>
+        <span class="kw">return</span> cache[args]
+    <span class="kw">return</span> wrapper
+
+@<span class="fn">manual_memo</span>
+<span class="kw">def</span> <span class="fn">expensive</span>(x: int, y: int) -> int:
+    <span class="kw">return</span> x * y + x ** <nm>2</nm>
+
+<span class="bi">print</span>(<span class="fn">expensive</span>(<nm>5</nm>, <nm>10</nm>))           <span class="cm"># computed</span>
+<span class="bi">print</span>(<span class="fn">expensive</span>(<nm>5</nm>, <nm>10</nm>))           <span class="cm"># from cache</span></code></pre>
+        </div>
+
+        <section id="vs-list" class="card">
+            <h2>9.0 TUPLES VS LISTS — CHOOSING THE RIGHT TYPE</h2>
+            <h3>9.1 The Semantic Distinction</h3>
+            <p>The choice between a tuple and a list is primarily semantic, not purely about performance. A tuple communicates that its elements form a cohesive, fixed record — a coordinate pair, a function's return values, a database row. A list communicates a dynamic, homogeneous collection of items that may grow, shrink, or be reordered. The Pythonic guideline is: use a tuple when you are grouping related but potentially heterogeneous fields into a record; use a list when you have a variable-length sequence of items of the same kind.</p>
+            <p>Guido van Rossum's own guidance is that tuples are for heterogeneous data (name, age, email) while lists are for homogeneous data (a list of names). The fact that both are sequences with similar syntax is an implementation detail; their semantic intent differs fundamentally.</p>
+            <h3>9.2 Performance Considerations</h3>
+            <p>Tuples are faster to create, iterate, and index than lists of the same size. They consume less memory because they allocate only exactly as much space as needed, whereas lists allocate a buffer for future appends. For configuration data, constants, or lookup tables that are defined once and read many times, tuples are the better choice. However, for collections that are built incrementally, modified frequently, or sorted, lists are the appropriate tool — attempting to use tuples for mutable workloads leads to awkward code that creates many unnecessary intermediate tuples.</p>
+            <table class="pitfalls-table">
+                <colgroup><col style="width:25%"><col style="width:37%"><col style="width:38%"></colgroup>
+                <thead><tr><th>Aspect</th><th>Tuple</th><th>List</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Aspect"><strong>Mutability</strong></td>
+                        <td data-label="Tuple">Immutable — elements cannot be changed after creation</td>
+                        <td data-label="List">Mutable — supports append, remove, sort, etc.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Aspect"><strong>Hashability</strong></td>
+                        <td data-label="Tuple">Hashable when contents are hashable — usable as dict key</td>
+                        <td data-label="List">Never hashable — cannot be a dict key or set member</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Aspect"><strong>Memory</strong></td>
+                        <td data-label="Tuple">Compact — no over-allocation buffer</td>
+                        <td data-label="List">Larger — pre-allocates space for growth</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Aspect"><strong>Semantic intent</strong></td>
+                        <td data-label="Tuple">Heterogeneous record — a fixed set of related fields</td>
+                        <td data-label="List">Homogeneous collection — variable-length sequence of same-kind items</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Aspect"><strong>Methods</strong></td>
+                        <td data-label="Tuple"><code>count()</code>, <code>index()</code> only</td>
+                        <td data-label="List">Full mutation API: <code>append</code>, <code>extend</code>, <code>pop</code>, <code>sort</code>, etc.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="pitfalls" class="card">
+            <h2>10.0 COMMON PITFALLS AND HOW TO AVOID THEM</h2>
+            <table class="pitfalls-table">
+                <colgroup><col style="width:22%"><col style="width:42%"><col style="width:36%"></colgroup>
+                <thead><tr><th>Mistake</th><th>Problem Description</th><th>Correct Approach</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Mistake"><strong>Missing Trailing Comma</strong></td>
+                        <td data-label="Problem">Writing <code>t = (42)</code> creates an integer, not a tuple. The parentheses here are a grouping operator, not tuple syntax. This is one of the most common beginner errors with tuples.</td>
+                        <td data-label="Fix">Always include a trailing comma for single-element tuples: <code>t = (42,)</code> or <code>t = 42,</code>. Use <code>type(t)</code> to verify when uncertain.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Assuming Immutability Means Deeply Immutable</strong></td>
+                        <td data-label="Problem">A tuple containing a list can have its contained list mutated: <code>t = ([1, 2],); t[0].append(3)</code>. The tuple's structure is unchanged, but the data inside has changed. This surprises developers expecting total immutability.</td>
+                        <td data-label="Fix">Understand that tuple immutability is shallow — only the references it holds are frozen, not the objects those references point to. Use frozen structures (<code>frozenset</code>, nested tuples) if deep immutability is required.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Trying to Sort a Tuple</strong></td>
+                        <td data-label="Problem">Calling <code>t.sort()</code> on a tuple raises an <code>AttributeError</code> because tuples have no <code>sort()</code> method. Tuples cannot be modified in-place.</td>
+                        <td data-label="Fix">Use the built-in <code>sorted(t)</code> which returns a new list, or convert to a list first: <code>list(t)</code>, sort it, and convert back if needed: <code>tuple(sorted(t))</code>.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Using a Tuple with a Mutable Element as a Dict Key</strong></td>
+                        <td data-label="Problem">Attempting <code>d[([1, 2], "name")] = value</code> raises <code>TypeError: unhashable type: 'list'</code>. A tuple containing a mutable element is not hashable.</td>
+                        <td data-label="Fix">Ensure all elements of a tuple used as a dict key are themselves hashable. Replace lists with tuples: <code>d[((1, 2), "name")] = value</code>.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Unpacking Length Mismatch</strong></td>
+                        <td data-label="Problem">If the number of variables on the left does not match the sequence length, Python raises <code>ValueError: too many values to unpack</code> or <code>not enough values to unpack</code>.</td>
+                        <td data-label="Fix">Use a star expression <code>*rest</code> to absorb extra elements when the sequence length is variable: <code>first, *rest = some_tuple</code>. This avoids fragile length-dependent unpacking.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Overusing Tuples as Records Without Named Fields</strong></td>
+                        <td data-label="Problem">Returning <code>(name, age, email, department)</code> from a function and then accessing <code>result[2]</code> at the call site is opaque, fragile, and hard to maintain. Adding a new field breaks all indexed accesses.</td>
+                        <td data-label="Fix">Use <code>typing.NamedTuple</code> or <code>@dataclass</code> for structured records. Named access (<code>result.email</code>) is self-documenting and robust against field reordering.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- NEW SECTION 11: TYPE HINTS                                  -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="type-hints" class="card">
+            <h2>11.0 TUPLES IN TYPE HINTS — MODERN PYTHON TYPING</h2>
+            <h3>11.1 Annotating Tuples with the <code>typing</code> Module and Built-in Syntax</h3>
+            <p>Python 3.9 introduced the ability to use the built-in <code>tuple</code> type directly in annotations without importing from <code>typing</code>. For example, <code>tuple[int, str]</code> (lowercase) is now the preferred style over <code>Tuple[int, str]</code> from <code>typing</code>. Both remain valid, but the built-in syntax is cleaner and recommended for Python 3.9+. If you must support Python 3.8, use <code>from __future__ import annotations</code> to enable the new syntax via lazy evaluation.</p>
+            <h3>11.2 Fixed-Length vs Variable-Length Tuple Annotations</h3>
+            <p>Type hints treat tuples differently from lists because of their fixed, positional nature. A <code>tuple[int, str, float]</code> annotation describes a tuple with exactly three elements: an int at position 0, a str at position 1, and a float at position 2. This is far more precise than a list annotation, which can only describe the element type, not the count. For a variable-length homogeneous tuple — analogous to a list — use the ellipsis form: <code>tuple[int, ...]</code> which means "a tuple of any number of ints". The empty tuple is annotated as <code>tuple[()]</code>.</p>
+            <h3>11.3 Tuples in Function Signatures</h3>
+            <p>Returning a tuple from a function is one of the most common patterns in Python. Annotating the return type with a specific tuple type makes the function's contract explicit and enables type checkers like <code>mypy</code> and <code>pyright</code> to catch misuses at the call site. When a function returns multiple logically unrelated values, a named tuple return type is even clearer, combining the precision of a tuple annotation with the readability of named fields.</p>
+            <div class="tip-box">
+                <p><strong>💡 Python 3.9+ Style:</strong> Prefer <code>tuple[int, str]</code> over <code>Tuple[int, str]</code>. Use <code>from __future__ import annotations</code> at the top of any file where you want modern annotation syntax in Python 3.8 environments — it defers all annotation evaluation so the new syntax does not raise a <code>TypeError</code> at runtime.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 11.1 — Tuple Type Hints (Python 3.9+ and 3.12+)</span>
+            </div>
+            <pre><code><span class="kw">from</span> __future__ <span class="kw">import</span> annotations   <span class="cm"># enables new syntax on 3.8</span>
+<span class="kw">from</span> typing <span class="kw">import</span> NamedTuple
+
+<span class="cm"># ── Fixed-length tuple annotations ────────────────────────────────</span>
+<span class="kw">def</span> <span class="fn">get_point</span>() -> <span class="bi">tuple</span>[<span class="bi">int</span>, <span class="bi">int</span>]:
+    <span class="kw">return</span> <nm>10</nm>, <nm>20</nm>
+
+<span class="kw">def</span> <span class="fn">parse_record</span>(raw: <span class="bi">str</span>) -> <span class="bi">tuple</span>[<span class="bi">str</span>, <span class="bi">int</span>, <span class="bi">float</span>]:
+    name, age, gpa = raw.split(<span class="str">","</span>)
+    <span class="kw">return</span> name.strip(), <span class="bi">int</span>(age), <span class="bi">float</span>(gpa)
+
+<span class="cm"># ── Variable-length homogeneous tuple (like a frozen list) ────────</span>
+<span class="kw">def</span> <span class="fn">as_tuple</span>(values: <span class="bi">list</span>[<span class="bi">int</span>]) -> <span class="bi">tuple</span>[<span class="bi">int</span>, ...]:
+    <span class="kw">return</span> <span class="bi">tuple</span>(values)
+
+scores: <span class="bi">tuple</span>[<span class="bi">int</span>, ...] = (<nm>88</nm>, <nm>95</nm>, <nm>72</nm>, <nm>100</nm>)
+
+<span class="cm"># ── Empty tuple ───────────────────────────────────────────────────</span>
+empty: <span class="bi">tuple</span>[()] = ()
+
+<span class="cm"># ── Nested tuple annotation ───────────────────────────────────────</span>
+Matrix2x2 = <span class="bi">tuple</span>[<span class="bi">tuple</span>[<span class="bi">float</span>, <span class="bi">float</span>], <span class="bi">tuple</span>[<span class="bi">float</span>, <span class="bi">float</span>]]
+
+<span class="kw">def</span> <span class="fn">identity</span>() -> Matrix2x2:
+    <span class="kw">return</span> ((<nm>1.0</nm>, <nm>0.0</nm>), (<nm>0.0</nm>, <nm>1.0</nm>))
+
+<span class="cm"># ── Union return type (Python 3.10+ | syntax) ────────────────────</span>
+<span class="kw">def</span> <span class="fn">divide</span>(a: <span class="bi">float</span>, b: <span class="bi">float</span>) -> <span class="bi">tuple</span>[<span class="bi">float</span>, <span class="bi">str</span>] | <span class="bi">None</span>:
+    <span class="kw">if</span> b == <nm>0</nm>:
+        <span class="kw">return</span> <span class="bi">None</span>
+    <span class="kw">return</span> a / b, <span class="str">"ok"</span>
+
+<span class="cm"># ── NamedTuple used as a precise return type ──────────────────────</span>
+<span class="kw">class</span> <span class="cl">Stats</span>(NamedTuple):
+    mean:   <span class="bi">float</span>
+    median: <span class="bi">float</span>
+    std:    <span class="bi">float</span>
+
+<span class="kw">def</span> <span class="fn">describe</span>(data: <span class="bi">tuple</span>[<span class="bi">float</span>, ...]) -> <span class="cl">Stats</span>:
+    n = <span class="bi">len</span>(data)
+    mean = <span class="bi">sum</span>(data) / n
+    sorted_data = <span class="bi">sorted</span>(data)
+    median = sorted_data[n // <nm>2</nm>] <span class="kw">if</span> n % <nm>2</nm> <span class="kw">else</span> (sorted_data[n//<nm>2</nm>-<nm>1</nm>] + sorted_data[n//<nm>2</nm>]) / <nm>2</nm>
+    variance = <span class="bi">sum</span>((x - mean) ** <nm>2</nm> <span class="kw">for</span> x <span class="kw">in</span> data) / n
+    <span class="kw">return</span> <span class="cl">Stats</span>(mean=mean, median=median, std=variance ** <nm>0.5</nm>)
+
+result = <span class="fn">describe</span>((<nm>4.0</nm>, <nm>7.0</nm>, <nm>13.0</nm>, <nm>2.0</nm>, <nm>9.0</nm>))
+<span class="bi">print</span>(<span class="str">f"mean={result.mean:.2f}, median={result.median}, std={result.std:.2f}"</span>)</code></pre>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- NEW SECTION 12: TUPLES AS RETURN VALUES                     -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="return-values" class="card">
+            <h2>12.0 TUPLES AS RETURN VALUES — MULTIPLE RETURN PATTERN</h2>
+            <h3>12.1 Why Python Functions Return Tuples</h3>
+            <p>Python functions can appear to return multiple values — <code>return x, y, z</code> — but this is syntactic sugar for returning a single tuple. The calling code can then unpack it with <code>a, b, c = my_func()</code>. This is one of the most natural and idiomatic uses of tuples in Python, and it avoids the verbosity of defining a container class just to return a couple of values. The pattern is used extensively throughout the standard library: <code>dict.items()</code> yields tuples, <code>enumerate()</code> yields <code>(index, value)</code> tuples, and <code>os.path.split()</code> returns <code>(head, tail)</code>.</p>
+            <h3>12.2 Success/Error Pair Pattern</h3>
+            <p>A common functional programming pattern adapted in Python is returning a <code>(result, error)</code> or <code>(success, value)</code> pair. Instead of relying on exceptions for control flow, a function returns a two-element tuple whose first element indicates success or failure and whose second element carries the result or error message. This pattern is particularly useful in contexts where exceptions are expensive, or when the caller must handle the error immediately at the call site without propagating it.</p>
+            <h3>12.3 When to Upgrade from a Tuple to a Named Tuple</h3>
+            <p>The heuristic is simple: if you find yourself writing <code>result[0]</code> and <code>result[2]</code> at the call site — or explaining in a comment what each position means — it is time to use a named tuple or dataclass. The positional tuple is appropriate when the number of returned items is two or three and their meaning is immediately obvious from context, such as <code>min_val, max_val = compute_range(data)</code>. Any more complexity than this, and named fields become essential for maintainability.</p>
+            <div class="tip-box">
+                <p><strong>💡 Standard Library Examples:</strong> Study how the standard library uses tuple returns: <code>divmod(a, b)</code> returns <code>(quotient, remainder)</code>; <code>math.modf(x)</code> returns <code>(fractional, integer)</code>; <code>socket.getaddrinfo()</code> returns a list of 5-tuples. These are elegant because the meaning of each position is documented and the names at the call site make the intent clear.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 12.1 — Multiple Return Values and Real-World Patterns</span>
+            </div>
+            <pre><code><span class="kw">from</span> typing <span class="kw">import</span> NamedTuple
+
+<span class="cm"># ── Basic multiple return ─────────────────────────────────────────</span>
+<span class="kw">def</span> <span class="fn">min_max</span>(data: <span class="bi">list</span>[<span class="bi">float</span>]) -> <span class="bi">tuple</span>[<span class="bi">float</span>, <span class="bi">float</span>]:
+    <span class="kw">return</span> <span class="bi">min</span>(data), <span class="bi">max</span>(data)
+
+lo, hi = <span class="fn">min_max</span>([<nm>3.1</nm>, <nm>7.5</nm>, <nm>1.2</nm>, <nm>9.0</nm>, <nm>4.4</nm>])
+<span class="bi">print</span>(<span class="str">f"Range: {lo} – {hi}"</span>)                  <span class="cm"># Range: 1.2 – 9.0</span>
+
+<span class="cm"># ── Standard library pattern: divmod ─────────────────────────────</span>
+quotient, remainder = <span class="bi">divmod</span>(<nm>17</nm>, <nm>5</nm>)
+<span class="bi">print</span>(<span class="str">f"17 ÷ 5 = {quotient} rem {remainder}"</span>) <span class="cm"># 3 rem 2</span>
+
+<span class="cm"># ── Success/error pair pattern ────────────────────────────────────</span>
+<span class="kw">def</span> <span class="fn">safe_divide</span>(a: <span class="bi">float</span>, b: <span class="bi">float</span>) -> <span class="bi">tuple</span>[<span class="bi">bool</span>, <span class="bi">float</span> | <span class="bi">str</span>]:
+    <span class="kw">if</span> b == <nm>0</nm>:
+        <span class="kw">return</span> <span class="bi">False</span>, <span class="str">"Division by zero"</span>
+    <span class="kw">return</span> <span class="bi">True</span>, a / b
+
+ok, value = <span class="fn">safe_divide</span>(<nm>10</nm>, <nm>3</nm>)
+<span class="kw">if</span> ok:
+    <span class="bi">print</span>(<span class="str">f"Result: {value:.4f}"</span>)   <span class="cm"># Result: 3.3333</span>
+
+ok, err = <span class="fn">safe_divide</span>(<nm>5</nm>, <nm>0</nm>)
+<span class="kw">if</span> <span class="kw">not</span> ok:
+    <span class="bi">print</span>(<span class="str">f"Error: {err}"</span>)          <span class="cm"># Error: Division by zero</span>
+
+<span class="cm"># ── When to graduate to a NamedTuple return ───────────────────────</span>
+<span class="kw">class</span> <span class="cl">ParseResult</span>(NamedTuple):
+    success:  <span class="bi">bool</span>
+    value:    <span class="bi">int</span>
+    message:  <span class="bi">str</span>
+
+<span class="kw">def</span> <span class="fn">parse_positive_int</span>(s: <span class="bi">str</span>) -> <span class="cl">ParseResult</span>:
+    <span class="kw">try</span>:
+        n = <span class="bi">int</span>(s)
+        <span class="kw">if</span> n <= <nm>0</nm>:
+            <span class="kw">return</span> <span class="cl">ParseResult</span>(<span class="bi">False</span>, <nm>0</nm>, <span class="str">f"Expected positive, got {n}"</span>)
+        <span class="kw">return</span> <span class="cl">ParseResult</span>(<span class="bi">True</span>, n, <span class="str">"ok"</span>)
+    <span class="kw">except</span> <span class="bi">ValueError</span>:
+        <span class="kw">return</span> <span class="cl">ParseResult</span>(<span class="bi">False</span>, <nm>0</nm>, <span class="str">f"Not an integer: {s!r}"</span>)
+
+r = <span class="fn">parse_positive_int</span>(<span class="str">"42"</span>)
+<span class="bi">print</span>(r.success, r.value, r.message)   <span class="cm"># True 42 ok</span>
+
+r = <span class="fn">parse_positive_int</span>(<span class="str">"abc"</span>)
+<span class="bi">print</span>(r.success, r.message)            <span class="cm"># False Not an integer: 'abc'</span>
+
+<span class="cm"># ── Enumerate: the most-used tuple return in iteration ───────────</span>
+fruits = (<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"cherry"</span>)
+<span class="kw">for</span> idx, fruit <span class="kw">in</span> <span class="bi">enumerate</span>(fruits, start=<nm>1</nm>):
+    <span class="bi">print</span>(<span class="str">f"  {idx}. {fruit}"</span>)</code></pre>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- NEW SECTION 13: PERFORMANCE BENCHMARKS                      -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="performance" class="card">
+            <h2>13.0 PERFORMANCE DEEP DIVE — BENCHMARKING TUPLES VS LISTS</h2>
+            <h3>13.1 Memory Layout and CPython Internals</h3>
+            <p>In CPython, a list object allocates an internal array of pointers with over-provisioning — when you call <code>list.append()</code>, Python often doubles the allocated array to amortise the cost of future appends. This over-allocation means a list of 5 elements may occupy memory for 8. A tuple, by contrast, allocates exactly as much space as it needs and never more. This makes tuples strictly smaller than equivalent lists: on a 64-bit CPython 3.12 build, a 5-element list typically occupies around 88 bytes while a 5-element tuple occupies around 80 bytes. The difference grows for larger collections.</p>
+            <h3>13.2 Tuple Interning in CPython</h3>
+            <p>CPython applies a small-tuple interning optimisation: empty tuples and, in some versions, tuples of small integers may be cached and reused across calls rather than freshly allocated. This means <code>t = ()</code> in a loop does not allocate a new object each iteration — it returns the same globally cached empty tuple object. This is an implementation detail of CPython and should not be relied upon in code, but it does explain why tuple creation in tight loops can be measurably faster than list creation of the same data.</p>
+            <h3>13.3 When the Difference Matters</h3>
+            <p>For most application code, the performance difference between tuples and lists is negligible compared to the cost of I/O, network calls, or database queries. The difference becomes meaningful in hot inner loops processing millions of records, in data-science pipelines iterating over large sequences, or in memory-constrained environments. The clearest performance win is in using tuples as dictionary keys — hash computation for a tuple is cached after the first call in CPython 3.12+, so repeated lookups with the same tuple key are faster than they would be with other hashable keys of equivalent complexity.</p>
+            <div class="warning-box">
+                <p><strong>⚠️ Measure Before Optimising:</strong> Always profile your actual workload with <code>timeit</code> or <code>cProfile</code> before choosing a data structure for performance reasons alone. The readability and semantic clarity of tuples vs. lists is a far more important factor in maintainable code than micro-benchmarks.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 13.1 — Benchmarking Tuples vs Lists with timeit and sys</span>
+            </div>
+            <pre><code><span class="kw">import</span> sys
+<span class="kw">import</span> timeit
+
+<span class="cm"># ── Memory comparison ─────────────────────────────────────────────</span>
+lst = [<nm>1</nm>, <nm>2</nm>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>]
+tpl = (<nm>1</nm>, <nm>2</nm>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>)
+<span class="bi">print</span>(<span class="str">f"list size : {sys.getsizeof(lst)} bytes"</span>)  <span class="cm"># ~88 bytes</span>
+<span class="bi">print</span>(<span class="str">f"tuple size: {sys.getsizeof(tpl)} bytes"</span>)  <span class="cm"># ~80 bytes</span>
+
+<span class="cm"># ── Creation time: tuple literal vs list literal ──────────────────</span>
+t_tuple = timeit.timeit(<span class="str">"t = (1, 2, 3, 4, 5)"</span>, number=<nm>5_000_000</nm>)
+t_list  = timeit.timeit(<span class="str">"l = [1, 2, 3, 4, 5]"</span>, number=<nm>5_000_000</span>)
+<span class="bi">print</span>(<span class="str">f"Tuple literal: {t_tuple:.3f}s"</span>)   <span class="cm"># typically ~0.06s</span>
+<span class="bi">print</span>(<span class="str">f"List literal : {t_list:.3f}s"</span>)    <span class="cm"># typically ~0.12s  (2× slower)</span>
+
+<span class="cm"># ── Iteration speed ───────────────────────────────────────────────</span>
+setup = <span class="str">"data_t = tuple(range(1000)); data_l = list(range(1000))"</span>
+t_iter_t = timeit.timeit(<span class="str">"for x in data_t: pass"</span>, setup=setup, number=<nm>100_000</nm>)
+t_iter_l = timeit.timeit(<span class="str">"for x in data_l: pass"</span>, setup=setup, number=<nm>100_000</nm>)
+<span class="bi">print</span>(<span class="str">f"Tuple iteration: {t_iter_t:.3f}s"</span>)
+<span class="bi">print</span>(<span class="str">f"List  iteration: {t_iter_l:.3f}s"</span>)
+
+<span class="cm"># ── Empty tuple is interned (same object reused) ──────────────────</span>
+a = ()
+b = ()
+<span class="bi">print</span>(a <span class="kw">is</span> b)                   <span class="cm"># True  — same cached object in CPython</span>
+<span class="bi">print</span>([] <span class="kw">is</span> [])                 <span class="cm"># False — new list created each time</span>
+
+<span class="cm"># ── Dict key lookup: cached hash ─────────────────────────────────</span>
+lookup = {(<nm>x</nm>, <nm>y</nm>): <nm>x</nm>*<nm>y</nm> <span class="kw">for</span> <nm>x</nm>, <nm>y</nm> <span class="kw">in</span> [(i, i+<nm>1</nm>) <span class="kw">for</span> i <span class="kw">in</span> <span class="bi">range</span>(<nm>100</nm>)]}
+key = (<nm>42</nm>, <nm>43</nm>)
+setup2 = <span class="str">"import builtins; key=(42,43); lookup={(x,x+1):x*(x+1) for x in range(100)}"</span>
+t_key = timeit.timeit(<span class="str">"lookup[key]"</span>, setup=setup2, number=<nm>1_000_000</nm>)
+<span class="bi">print</span>(<span class="str">f"Dict tuple-key lookup: {t_key:.3f}s for 1M lookups"</span>)</code></pre>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- NEW SECTION 14: REAL-WORLD PATTERNS                         -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="real-world" class="card">
+            <h2>14.0 REAL-WORLD PATTERNS — TUPLES IN PRODUCTION CODE</h2>
+            <h3>14.1 Geographic Coordinates and Spatial Data</h3>
+            <p>Coordinate pairs and triples are the canonical use case for tuples. A 2D point <code>(latitude, longitude)</code> is naturally immutable — once a location is recorded, its coordinates should not change. Representing it as a tuple instead of a list communicates this intent, and makes the point usable as a dict key for spatial indexing or as a set member for de-duplication. A named tuple <code>GeoPoint(lat, lon)</code> adds the additional benefit of field names without sacrificing hashability or performance.</p>
+            <h3>14.2 Database Rows and Query Results</h3>
+            <p>Database adapter libraries in Python (DB-API 2.0 compliant drivers like <code>psycopg2</code>, <code>sqlite3</code>, and <code>cx_Oracle</code>) return each row as a tuple by default. This is deliberate: a database row is a fixed, ordered record — it maps naturally onto a tuple. The adapter returns the row immutably to prevent accidental modification of what is supposed to be a read-only view of database state. Converting rows to named tuples via <code>cursor.description</code> is a common pattern to make result processing code self-documenting.</p>
+            <h3>14.3 Configuration Constants and Sentinel Values</h3>
+            <p>Module-level constants that define allowable values, HTTP status codes, error categories, or valid choices are natural candidates for tuples rather than lists. A tuple constant signals to readers — and to linters — that the collection is not meant to grow or shrink at runtime. Common patterns include defining <code>VALID_FORMATS = ("json", "csv", "xml")</code> or <code>HTTP_SUCCESS_CODES = (200, 201, 204)</code>. Because tuples are hashable, they can themselves be stored in sets or used as dict keys, enabling fast membership testing patterns.</p>
+            <h3>14.4 Graph Edges, Matrix Coordinates, and Sparse Representations</h3>
+            <p>In graph algorithms, an edge between vertices <code>u</code> and <code>v</code> with weight <code>w</code> is naturally represented as a <code>(u, v, w)</code> tuple. A set of such tuples forms an edge list. In sparse matrix representations, <code>(row, col)</code> tuples serve as dictionary keys pointing to non-zero values, creating a memory-efficient sparse matrix without requiring a full 2D array. These patterns exploit both the hashability and the fixed structure of tuples simultaneously.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 14.1 — Real-World Tuple Patterns in Production</span>
+            </div>
+            <pre><code><span class="kw">from</span> typing <span class="kw">import</span> NamedTuple
+<span class="kw">import</span> sqlite3, math
+
+<span class="cm"># ── Pattern 1: Geographic coordinates ────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">GeoPoint</span>(NamedTuple):
+    lat: <span class="bi">float</span>
+    lon: <span class="bi">float</span>
+
+    <span class="kw">def</span> <span class="fn">distance_to</span>(self, other: <span class="cl">GeoPoint</span>) -> <span class="bi">float</span>:
+        <span class="cm">"""Haversine distance in km."""</span>
+        R = <nm>6371</nm>
+        dlat = math.radians(other.lat - self.lat)
+        dlon = math.radians(other.lon - self.lon)
+        a = math.sin(dlat/<nm>2</nm>)**<nm>2</nm> + math.cos(math.radians(self.lat)) \
+            * math.cos(math.radians(other.lat)) * math.sin(dlon/<nm>2</nm>)**<nm>2</nm>
+        <span class="kw">return</span> R * <nm>2</nm> * math.atan2(math.sqrt(a), math.sqrt(<nm>1</nm>-a))
+
+paris  = <span class="cl">GeoPoint</span>(<nm>48.8566</nm>,  <nm>2.3522</nm>)
+london = <span class="cl">GeoPoint</span>(<nm>51.5074</nm>, -<nm>0.1278</nm>)
+<span class="bi">print</span>(<span class="str">f"Paris → London: {paris.distance_to(london):.1f} km"</span>)
+
+<span class="cm"># Tuples as dict keys for spatial index</span>
+city_map = {paris: <span class="str">"Paris"</span>, london: <span class="str">"London"</span>}
+<span class="bi">print</span>(city_map[<span class="cl">GeoPoint</span>(<nm>48.8566</nm>, <nm>2.3522</nm>)])  <span class="cm"># Paris</span>
+
+<span class="cm"># ── Pattern 2: SQLite rows → Named Tuples ────────────────────────</span>
+<span class="kw">class</span> <span class="cl">Employee</span>(NamedTuple):
+    id:         <span class="bi">int</span>
+    name:       <span class="bi">str</span>
+    department: <span class="bi">str</span>
+    salary:     <span class="bi">float</span>
+
+conn = sqlite3.connect(<span class="str">":memory:"</span>)
+conn.execute(<span class="str">"CREATE TABLE emp (id INT, name TEXT, dept TEXT, salary REAL)"</span>)
+conn.executemany(<span class="str">"INSERT INTO emp VALUES (?,?,?,?)"</span>,
+    [(<nm>1</nm>,<span class="str">"Alice"</span>,<span class="str">"Eng"</span>,<nm>92000</nm>), (<nm>2</nm>,<span class="str">"Bob"</span>,<span class="str">"HR"</span>,<nm>75000</nm>), (<nm>3</nm>,<span class="str">"Carol"</span>,<span class="str">"Eng"</span>,<nm>98000</nm>)])
+conn.commit()
+
+employees = [<span class="cl">Employee</span>(*row) <span class="kw">for</span> row <span class="kw">in</span> conn.execute(<span class="str">"SELECT * FROM emp"</span>)]
+<span class="kw">for</span> emp <span class="kw">in</span> employees:
+    <span class="bi">print</span>(<span class="str">f"  {emp.name:6s} | {emp.department:4s} | ${emp.salary:,.0f}"</span>)
+
+<span class="cm"># ── Pattern 3: Constants tuple for membership testing ────────────</span>
+HTTP_SUCCESS = (<nm>200</nm>, <nm>201</nm>, <nm>204</nm>, <nm>206</nm>)
+HTTP_REDIRECT = (<nm>301</nm>, <nm>302</nm>, <nm>307</nm>, <nm>308</nm>)
+
+<span class="kw">def</span> <span class="fn">classify_status</span>(code: <span class="bi">int</span>) -> <span class="bi">str</span>:
+    <span class="kw">if</span> code <span class="kw">in</span> HTTP_SUCCESS:  <span class="kw">return</span> <span class="str">"success"</span>
+    <span class="kw">if</span> code <span class="kw">in</span> HTTP_REDIRECT: <span class="kw">return</span> <span class="str">"redirect"</span>
+    <span class="kw">return</span> <span class="str">"other"</span>
+
+<span class="bi">print</span>(<span class="fn">classify_status</span>(<nm>200</nm>), <span class="fn">classify_status</span>(<nm>301</nm>))  <span class="cm"># success redirect</span>
+
+<span class="cm"># ── Pattern 4: Sparse matrix with tuple keys ─────────────────────</span>
+sparse: <span class="bi">dict</span>[<span class="bi">tuple</span>[<span class="bi">int</span>, <span class="bi">int</span>], <span class="bi">float</span>] = {
+    (<nm>0</nm>, <nm>0</nm>): <nm>1.0</nm>,
+    (<nm>1</nm>, <nm>2</nm>): <nm>3.5</nm>,
+    (<nm>3</nm>, <nm>3</nm>): -<nm>2.0</nm>,
+}
+<span class="bi">print</span>(sparse.get((<nm>1</nm>, <nm>2</nm>), <nm>0.0</nm>))   <span class="cm"># 3.5</span>
+<span class="bi">print</span>(sparse.get((<nm>0</nm>, <nm>1</nm>), <nm>0.0</nm>))   <span class="cm"># 0.0  (zero element — not stored)</span>
+
+<span class="cm"># ── Pattern 5: Graph edges as tuples in a set ────────────────────</span>
+<span class="cm"># (from_node, to_node, weight)</span>
+edges: <span class="bi">set</span>[<span class="bi">tuple</span>[<span class="bi">str</span>, <span class="bi">str</span>, <span class="bi">float</span>]] = {
+    (<span class="str">"A"</span>, <span class="str">"B"</span>, <nm>4.5</nm>),
+    (<span class="str">"B"</span>, <span class="str">"C"</span>, <nm>2.0</nm>),
+    (<span class="str">"A"</span>, <span class="str">"C"</span>, <nm>7.1</nm>),
+}
+neighbors_of_A = [(dst, w) <span class="kw">for</span> (src, dst, w) <span class="kw">in</span> edges <span class="kw">if</span> src == <span class="str">"A"</span>]
+<span class="bi">print</span>(<span class="bi">sorted</span>(neighbors_of_A))   <span class="cm"># [('B', 4.5), ('C', 7.1)]</span></code></pre>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- NEW SECTION 15: QUICK REFERENCE CHEAT SHEET                 -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="cheatsheet" class="card">
+            <h2>15.0 QUICK REFERENCE — PYTHON TUPLES CHEAT SHEET</h2>
+            <table class="pitfalls-table">
+                <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+                <thead><tr><th>Task</th><th>Syntax / Example</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Create tuple</strong></td><td><code>t = 1, 2, 3</code> or <code>t = (1, 2, 3)</code></td></tr>
+                    <tr><td><strong>Single-element tuple</strong></td><td><code>t = (42,)</code> — the trailing comma is mandatory</td></tr>
+                    <tr><td><strong>Empty tuple</strong></td><td><code>t = ()</code> or <code>t = tuple()</code></td></tr>
+                    <tr><td><strong>From iterable</strong></td><td><code>t = tuple([1, 2, 3])</code> or <code>tuple("abc")</code></td></tr>
+                    <tr><td><strong>Index / negative index</strong></td><td><code>t[0]</code>, <code>t[-1]</code> (last element)</td></tr>
+                    <tr><td><strong>Slice</strong></td><td><code>t[1:3]</code>, <code>t[::2]</code>, <code>t[::-1]</code> (reversed)</td></tr>
+                    <tr><td><strong>Unpack</strong></td><td><code>x, y, z = t</code></td></tr>
+                    <tr><td><strong>Extended unpack</strong></td><td><code>first, *rest = t</code>; <code>head, *mid, tail = t</code></td></tr>
+                    <tr><td><strong>Swap variables</strong></td><td><code>a, b = b, a</code></td></tr>
+                    <tr><td><strong>Nested unpack</strong></td><td><code>(x, y), z = (1, 2), 3</code></td></tr>
+                    <tr><td><strong>Count occurrences</strong></td><td><code>t.count(value)</code></td></tr>
+                    <tr><td><strong>Find index</strong></td><td><code>t.index(value)</code> — raises <code>ValueError</code> if absent</td></tr>
+                    <tr><td><strong>Safe find index</strong></td><td><code>t.index(v) if v in t else -1</code></td></tr>
+                    <tr><td><strong>Concatenate</strong></td><td><code>t1 + t2</code> → new tuple</td></tr>
+                    <tr><td><strong>Repeat</strong></td><td><code>t * 3</code> → new tuple</td></tr>
+                    <tr><td><strong>Length</strong></td><td><code>len(t)</code></td></tr>
+                    <tr><td><strong>Membership</strong></td><td><code>x in t</code></td></tr>
+                    <tr><td><strong>Sort (new list)</strong></td><td><code>sorted(t)</code> or <code>sorted(t, reverse=True)</code></td></tr>
+                    <tr><td><strong>Sort back to tuple</strong></td><td><code>tuple(sorted(t))</code></td></tr>
+                    <tr><td><strong>Named tuple</strong></td><td><code>from collections import namedtuple; P = namedtuple("P", ["x","y"])</code></td></tr>
+                    <tr><td><strong>Typed named tuple</strong></td><td><code>class P(NamedTuple): x: int; y: int</code></td></tr>
+                    <tr><td><strong>"Modify" a named tuple</strong></td><td><code>p2 = p._replace(x=99)</code></td></tr>
+                    <tr><td><strong>Named tuple to dict</strong></td><td><code>p._asdict()</code></td></tr>
+                    <tr><td><strong>As dict key</strong></td><td><code>d[(1, 2)] = "origin"</code> (all elements must be hashable)</td></tr>
+                    <tr><td><strong>Hash check</strong></td><td><code>hash(t)</code> — raises <code>TypeError</code> if contents unhashable</td></tr>
+                    <tr><td><strong>Type annotation (fixed)</strong></td><td><code>tuple[int, str, float]</code></td></tr>
+                    <tr><td><strong>Type annotation (variable)</strong></td><td><code>tuple[int, ...]</code></td></tr>
+                    <tr><td><strong>Memory size</strong></td><td><code>import sys; sys.getsizeof(t)</code></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="quiz" class="card">
+            <h2>16.0 KNOWLEDGE CHECK: PYTHON TUPLES QUIZ</h2>
+            <div class="quiz-item">
+                <div class="quiz-question">1. What does <code>t = (42)</code> create, and how would you fix it to create a single-element tuple?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation"><code>t = (42)</code> creates the integer <code>42</code>. The parentheses are a grouping operator here — it is the comma that creates a tuple, not the parentheses. To create a single-element tuple, you must include a trailing comma: <code>t = (42,)</code> or equivalently <code>t = 42,</code>. You can verify with <code>type(t)</code>.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">2. Why can a tuple containing a list not be used as a dictionary key?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Dictionary keys must be hashable. A tuple's hash is derived from the hashes of its elements. Lists are mutable and therefore not hashable (Python sets <code>list.__hash__ = None</code>). Since one of the tuple's elements is unhashable, the tuple itself cannot be hashed, and Python raises <code>TypeError: unhashable type: 'list'</code>. Replace the list with a tuple to make the outer tuple hashable.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">3. What is the output of <code>a, *b, c = (1, 2, 3, 4, 5)</code>? What type is <code>b</code>?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation"><code>a</code> is <code>1</code>, <code>c</code> is <code>5</code>, and <code>b</code> is <code>[2, 3, 4]</code>. The starred expression <code>*b</code> collects the remaining middle elements. Crucially, the starred variable always collects into a <strong>list</strong>, not a tuple — even when the source is a tuple. This is a common source of surprise for developers who expect type preservation.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">4. What is the key difference between <code>collections.namedtuple</code> and <code>typing.NamedTuple</code>?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Both produce immutable tuple subclasses with named fields. <code>collections.namedtuple</code> is the older factory function style — field names are strings, and adding methods requires subclassing the result. <code>typing.NamedTuple</code> uses class syntax with type annotations, supports default values directly in the class body, allows methods and docstrings to be defined inline, and integrates well with type checkers and IDEs. For new code, <code>typing.NamedTuple</code> is preferred.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">5. A tuple is immutable. Does that mean all data inside it is also immutable?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">No. Tuple immutability is shallow — the tuple's own references to its elements cannot be changed, but the elements themselves can be mutable objects. For example, a tuple holding a list allows the list to be appended to, cleared, or sorted freely. The tuple's structure (which object each position points to) remains constant, but the content of those objects can change. Deep immutability requires that all contained objects are also immutable (e.g. using nested tuples instead of lists).</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">6. What is the difference between <code>tuple[int, str]</code> and <code>tuple[int, ...]</code> in type annotations?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation"><code>tuple[int, str]</code> is a fixed-length tuple annotation: it describes a tuple with exactly two elements — an <code>int</code> at index 0 and a <code>str</code> at index 1. The length and types of each position are fully specified. <code>tuple[int, ...]</code> (with ellipsis) is a variable-length annotation: it describes a tuple of any number of <code>int</code> elements — conceptually a frozen list of ints. The ellipsis form is the tuple equivalent of <code>list[int]</code>. The empty tuple is annotated as <code>tuple[()]</code>. These annotations are available as built-in syntax from Python 3.9+ without any imports from <code>typing</code>.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">7. When Python evaluates <code>return x, y</code> in a function, what exactly is returned? Is this the same as <code>return (x, y)</code>?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Both <code>return x, y</code> and <code>return (x, y)</code> return exactly the same thing: a two-element tuple <code>(x, y)</code>. The comma is what creates the tuple — the parentheses are just for grouping and readability. Python evaluates the right-hand side as a tuple expression before the return instruction. The caller receives a single tuple object and can unpack it: <code>a, b = my_func()</code>. This is called the "multiple return" pattern, but there is technically only one return value — the tuple.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">8. How do you access elements of a <code>typing.NamedTuple</code>? How does that differ from a plain tuple?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">A <code>typing.NamedTuple</code> instance supports three access methods simultaneously: by name (<code>p.x</code>), by index (<code>p[0]</code>), and by unpacking (<code>x, y = p</code>). A plain tuple only supports index and unpacking access — there are no named fields. Named tuple access by attribute name is the most idiomatic and readable, and is the primary reason to prefer named tuples over plain tuples for structured records. All three access methods return the same value; they are just syntactic alternatives operating on the same underlying data.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">9. Why does CPython cache small tuples but not small lists? What practical benefit does this have?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">CPython can safely cache and reuse tuple objects because tuples are immutable — sharing the same object between multiple names poses no risk of one name inadvertently modifying what another name sees. Lists are mutable, so sharing would mean one name's mutation is visible to all other names holding the same object — this would break the expected semantics. In practice, the empty tuple <code>()</code> is always the same singleton object in CPython: <code>() is ()</code> evaluates to <code>True</code>. This means creating an empty tuple in a tight loop allocates no new memory. This optimisation is an implementation detail of CPython and is not guaranteed by the Python language specification.</div>
+            </div>
+        </section>
+
+        <section class="comment-section" aria-label="Comments section">
+            <div class="comment-header">
+                <div class="comment-title"><i class="fas fa-comments"></i> Discussion &amp; Questions <span class="comment-count" id="commentCount">0</span></div>
+            </div>
+            <div class="comment-form">
+                <textarea id="commentContent" placeholder="Share your thoughts, questions, or insights about Python tuples..." aria-label="Comment text"></textarea>
+                <div class="comment-form-row">
+                    <input type="text"  id="commentAuthor" placeholder="Your name *" required>
+                    <input type="email" id="commentEmail"  placeholder="Your email (optional, for replies)">
+                    <button class="comment-submit" onclick="submitComment()"><i class="fas fa-paper-plane"></i> Post Comment</button>
+                </div>
+            </div>
+            <div class="comments-list" id="commentsList">
+                <div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first to share your thoughts!</div>
+            </div>
+        </section>
+
+        <div class="social-share-section" aria-label="Social sharing buttons">
+            <div class="social-share-label"><i class="fas fa-share-alt"></i> Share this guide</div>
+            <div class="social-share-buttons">
+                <a href="#" class="social-btn facebook" onclick="shareOnFacebook(); return false;"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="social-btn twitter"  onclick="shareOnTwitter();  return false;"><i class="fab fa-x-twitter"></i> X</a>
+                <a href="#" class="social-btn linkedin" onclick="shareOnLinkedIn(); return false;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                <a href="#" class="social-btn whatsapp" onclick="shareOnWhatsApp(); return false;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#" class="social-btn telegram" onclick="shareOnTelegram(); return false;"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            </div>
+        </div>
+
+        <div class="subscription-section" aria-label="Email subscription">
+            <div class="subscription-title"><i class="fas fa-envelope-open-text"></i> Stay Updated with Python</div>
+            <div class="subscription-subtitle">Get the latest Python tutorials, advanced patterns, and educational resources delivered to your inbox.</div>
+            <div class="subscription-form">
+                <div class="form-group"><input type="text"  id="subscriberName"  placeholder="Your name (optional)"></div>
+                <div class="form-group"><input type="email" id="subscriberEmail" placeholder="Your email address *" required></div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="privacyConsent">
+                    <label for="privacyConsent">I agree to receive emails and accept the privacy policy.</label>
+                </div>
+                <button class="subscribe-btn" id="subscribeBtn" onclick="handleSubscription()"><i class="fas fa-bell"></i> Subscribe to Updates</button>
+                <div class="subscription-message" id="subscriptionMessage" role="alert"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="return-home-wrap"><a href="index.html" class="return-home-btn"><i class="fas fa-house"></i> Return to Home</a></div>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-layer-1">
+            <div class="footer-l1-inner">
+                <div class="footer-l1-heading">📘 POETIC BYTES — Learning Hub</div>
+                <p class="footer-l1-sub">Everything you need to master Python tuples — cheat sheets, exercises, references, and tools.</p>
+                <div class="footer-l1-grid" style="display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+                    <div class="f1-col" style="width:100%; max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-file-alt"></i> Cheat Sheets</div>
+                        <ul>
+                            <li><a href="#basics"><i class="fas fa-chevron-right"></i> Tuple Basics</a></li>
+                            <li><a href="#unpacking"><i class="fas fa-chevron-right"></i> Packing &amp; Unpacking</a></li>
+                            <li><a href="#immutability"><i class="fas fa-chevron-right"></i> Immutability Rules</a></li>
+                            <li><a href="#named-tuples"><i class="fas fa-chevron-right"></i> Named Tuples</a></li>
+                            <li><a href="#typed-named-tuples"><i class="fas fa-chevron-right"></i> Typed Named Tuples</a></li>
+                        </ul>
+                    </div>
+                    <div class="f1-col" style="width:100%; max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-dumbbell"></i> Exercises</div>
+                        <ul>
+                            <li><a href="#quiz"><i class="fas fa-chevron-right"></i> Knowledge Quiz</a></li>
+                            <li><a href="#unpacking"><i class="fas fa-chevron-right"></i> Unpacking Challenges</a></li>
+                            <li><a href="#as-keys"><i class="fas fa-chevron-right"></i> Dict Key Practice</a></li>
+                            <li><a href="#typed-named-tuples"><i class="fas fa-chevron-right"></i> NamedTuple Exercises</a></li>
+                            <li><a href="#pitfalls"><i class="fas fa-chevron-right"></i> Pitfall Drills</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-layer-2">
+            <div class="footer-l2-main">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">📘 POETIC BYTES</div>
+                    <p class="footer-tagline">University-level Python education — clear, rigorous, and practical. From fundamentals to advanced patterns, every concept explained with depth and precision.</p>
+                    <div class="footer-brand-badges">
+                        <span class="f-badge"><i class="fab fa-python"></i> Python 3.12+</span>
+                        <span class="f-badge"><i class="fas fa-graduation-cap"></i> University Level</span>
+                        <span class="f-badge"><i class="fas fa-book-open"></i> 30+ Examples</span>
+                        <span class="f-badge"><i class="fas fa-clock"></i> 35 min read</span>
+                    </div>
+                </div>
+                <div class="footer-l2-cols-right">
+                    <div class="footer-l2-col">
+                        <div class="footer-l2-col-title">Quick Links</div>
+                        <ul>
+                            <li><a href="#introduction"><i class="fas fa-chevron-right"></i> Introduction</a></li>
+                            <li><a href="#basics"><i class="fas fa-chevron-right"></i> Tuple Basics</a></li>
+                            <li><a href="#unpacking"><i class="fas fa-chevron-right"></i> Unpacking</a></li>
+                            <li><a href="#named-tuples"><i class="fas fa-chevron-right"></i> Named Tuples</a></li>
+                            <li><a href="#pitfalls"><i class="fas fa-chevron-right"></i> Pitfalls</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-l2-col">
+                        <div class="footer-l2-col-title">External Resources</div>
+                        <ul>
+                            <li><a href="https://docs.python.org/3.12/tutorial/datastructures.html#tuples-and-sequences" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Python 3.12 Tuples</a></li>
+                            <li><a href="https://docs.python.org/3.12/library/collections.html#collections.namedtuple" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> collections.namedtuple</a></li>
+                            <li><a href="https://docs.python.org/3.12/library/typing.html#typing.NamedTuple" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> typing.NamedTuple</a></li>
+                            <li><a href="https://realpython.com/python-namedtuple/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Real Python: Named Tuples</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-l2-divider">
+            <div class="footer-l2-bottom">
+                <div class="footer-l2-copyright">© 2026 <strong>POETIC BYTES</strong> — Glenn Junsay Pansensoy · Educational Hub · All rights reserved.</div>
+                <div class="footer-l2-legal-links">
+                    <a href="privacy.html">Privacy Policy</a><span class="dot"></span>
+                    <a href="terms.html">Terms of Service</a><span class="dot"></span>
+                    <a href="cookie.html">Cookie Policy</a><span class="dot"></span>
+                    <a href="disclaimer.html">Disclaimer</a><span class="dot"></span>
+                    <a href="about.html">About</a><span class="dot"></span>
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="footer-l2-python"><i class="fab fa-python"></i> Python 3.12+ · 2026 Edition</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var progressBar = document.getElementById('progressBar');
+        var backToTop   = document.getElementById('backToTop');
+        window.addEventListener('scroll', function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled  = height > 0 ? (winScroll / height) * 100 : 0;
+            progressBar.style.width = scrolled + '%';
+            if (winScroll > 300) backToTop.classList.add('visible'); else backToTop.classList.remove('visible');
+        });
+        backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        var hamburgerBtn = document.getElementById('hamburgerBtn');
+        var mobileMenu   = document.getElementById('mobileMenu');
+        var menuOverlay  = document.getElementById('menuOverlay');
+        function openMenu()  { hamburgerBtn.classList.add('active'); mobileMenu.classList.add('open'); menuOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; hamburgerBtn.setAttribute('aria-expanded', 'true'); }
+        function closeMenu() { hamburgerBtn.classList.remove('active'); mobileMenu.classList.remove('open'); menuOverlay.classList.remove('open'); document.body.style.overflow = ''; hamburgerBtn.setAttribute('aria-expanded', 'false'); }
+        hamburgerBtn.addEventListener('click', function () { if (mobileMenu.classList.contains('open')) closeMenu(); else openMenu(); });
+        menuOverlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+        var menuLinks = document.querySelectorAll('.menu-link');
+        menuLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                var targetId = this.getAttribute('href');
+                var target   = document.querySelector(targetId);
+                if (target) { e.preventDefault(); closeMenu(); setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 300); }
+            });
+        });
+
+        document.querySelectorAll('.nav-links a, .f1-col a[href^="#"], .footer-l2-col a[href^="#"], .footer-l2-legal-links a[href^="#"]').forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                var href = this.getAttribute('href');
+                if (href && href.startsWith('#') && href.length > 1) {
+                    var target = document.querySelector(href);
+                    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                }
+            });
+        });
+
+        const pageTitle = encodeURIComponent("Python Tuples: Complete Educational Guide 2026");
+        const pageUrl   = encodeURIComponent("https://poeticbytes.com/python-tuples-guide");
+        function shareOnFacebook() { window.open('https://www.facebook.com/sharer/sharer.php?u=' + pageUrl, 'facebook-share', 'width=580,height=296'); }
+        function shareOnTwitter()  { window.open('https://twitter.com/intent/tweet?text=' + pageTitle + '&url=' + pageUrl, 'twitter-share', 'width=550,height=235'); }
+        function shareOnLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + pageUrl, 'linkedin-share', 'width=550,height=400'); }
+        function shareOnWhatsApp() { window.open('https://wa.me/?text=' + pageTitle + '%20' + pageUrl, 'whatsapp-share', 'width=500,height=400'); }
+        function shareOnTelegram() { window.open('https://t.me/share/url?url=' + pageUrl + '&text=' + pageTitle, 'telegram-share', 'width=500,height=400'); }
+
+        const API_BASE_URL = 'http://localhost:5000/api';
+        async function handleSubscription() {
+            const name    = document.getElementById('subscriberName').value.trim();
+            const email   = document.getElementById('subscriberEmail').value.trim();
+            const consent = document.getElementById('privacyConsent').checked;
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            if (!email) { showSubscriptionMessage('Please enter your email address.', 'error'); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showSubscriptionMessage('Please enter a valid email address.', 'error'); return; }
+            if (!consent) { showSubscriptionMessage('Please agree to the privacy policy.', 'error'); return; }
+            subscribeBtn.disabled = true; subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            try {
+                const response = await fetch(API_BASE_URL + '/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email }) });
+                const data = await response.json();
+                if (response.ok) { showSubscriptionMessage(data.message || 'Subscription successful! Check your email.', 'success'); document.getElementById('subscriberName').value = ''; document.getElementById('subscriberEmail').value = ''; document.getElementById('privacyConsent').checked = false; }
+                else { showSubscriptionMessage(data.error || 'Subscription failed. Please try again.', 'error'); }
+            } catch (error) { showSubscriptionMessage('Network error. Please check your connection.', 'error'); }
+            finally { subscribeBtn.disabled = false; subscribeBtn.innerHTML = '<i class="fas fa-bell"></i> Subscribe to Updates'; }
+        }
+        function showSubscriptionMessage(message, type) {
+            const el = document.getElementById('subscriptionMessage');
+            el.textContent = message; el.className = 'subscription-message ' + type;
+            setTimeout(() => { el.style.display = 'none'; }, 5000);
+        }
+
+        async function loadComments() {
+            try {
+                const response = await fetch(API_BASE_URL + '/comments');
+                const data = await response.json();
+                if (response.ok) { displayComments(data.comments); updateCommentCount(data.comments.length); }
+            } catch (error) { console.error('Error loading comments:', error); }
+        }
+        function displayComments(comments) {
+            const list = document.getElementById('commentsList');
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first to share your thoughts!</div>'; return; }
+            list.innerHTML = comments.map(c =>
+                '<div class="comment-item" id="comment-' + c.id + '">'
+                + '<div class="comment-meta"><span class="comment-author"><i class="fas fa-user-circle"></i> ' + escapeHtml(c.author) + '</span>'
+                + '<span class="comment-date"><i class="far fa-clock"></i> ' + c.date + '</span></div>'
+                + '<div class="comment-content">' + escapeHtml(c.content).replace(/\n/g, '<br>') + '</div></div>'
+            ).join('');
+        }
+        function updateCommentCount(count) { document.getElementById('commentCount').textContent = count; }
+        async function submitComment() {
+            const author  = document.getElementById('commentAuthor').value.trim();
+            const email   = document.getElementById('commentEmail').value.trim();
+            const content = document.getElementById('commentContent').value.trim();
+            const submitBtn = document.querySelector('.comment-submit');
+            if (!author)  { alert('Please enter your name.'); return; }
+            if (!content) { alert('Please enter your comment.'); return; }
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address or leave it blank.'); return; }
+            submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            try {
+                const response = await fetch(API_BASE_URL + '/comments', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ author, email, content }) });
+                const data = await response.json();
+                if (response.ok) { document.getElementById('commentContent').value = ''; document.getElementById('commentAuthor').value = ''; document.getElementById('commentEmail').value = ''; await loadComments(); alert('Comment posted successfully! It will appear after moderation.'); }
+                else { alert(data.error || 'Failed to post comment. Please try again.'); }
+            } catch (error) { alert('Network error. Please check your connection.'); }
+            finally { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Post Comment'; }
+        }
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+        }
+        document.addEventListener('DOMContentLoaded', loadComments);
+        document.getElementById('commentContent').addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitComment(); } });
+    </script>
+</body>
+</html>
