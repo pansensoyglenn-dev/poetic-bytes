@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Python Classes: Complete University-Level Guide (2026) | 35+ Examples</title>
+    <meta name="title" content="Python Classes: Complete University-Level Guide (2026) | 35+ Examples">
+    <meta name="description" content="Master Python classes with this comprehensive university-level guide. 35+ examples covering OOP principles, inheritance, magic methods, dataclasses, metaclasses, and advanced patterns. Python 3.12+.">
+    <meta name="keywords" content="Python classes tutorial, Python OOP advanced, Python inheritance explained, Python magic methods, Python dataclasses, Python metaclasses, Python abstract classes, Python class methods, Python static methods, Python properties, Python encapsulation, Python polymorphism, Python dunder methods, Python __init__, Python __str__ __repr__">
+    <meta name="author" content="POETIC BYTES Educational Division">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html">
+    <meta property="og:title" content="Python Classes: Complete University-Level Guide (2026) | 35+ Examples">
+    <meta property="og:description" content="Master Python classes with this comprehensive university-level guide. 35+ examples covering OOP principles, inheritance, magic methods, dataclasses, and advanced patterns.">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/images/python-classes-og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="POETIC BYTES">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-02-20T08:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-20T10:30:00+00:00">
+    <meta property="article:author" content="POETIC BYTES Educational Division">
+    <meta property="article:section" content="Python Programming">
+    <meta property="article:tag" content="Python Classes">
+    <meta property="article:tag" content="Python OOP">
+    <meta property="article:tag" content="Python Inheritance">
+    <meta property="article:tag" content="Python Magic Methods">
+    <meta property="article:tag" content="Python Dataclasses">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@GlennPansensoy">
+    <meta name="twitter:creator" content="@GlennPansensoy">
+    <meta name="twitter:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html">
+    <meta name="twitter:title" content="Python Classes: Complete University-Level Guide (2026) | 35+ Examples">
+    <meta name="twitter:description" content="Master Python classes with this comprehensive university-level guide. 35+ examples covering OOP, inheritance, magic methods, dataclasses, and advanced patterns.">
+    <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/images/python-classes-twitter-card.jpg">
+    <meta name="twitter:label1" content="Est. Reading Time">
+    <meta name="twitter:data1" content="45 minutes">
+    <meta name="twitter:label2" content="Python Version">
+    <meta name="twitter:data2" content="3.12+">
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html">
+    <link rel="alternate" hreflang="en" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html">
+    <link rel="alternate" hreflang="x-default" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Article",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html#article",
+                "headline": "Python Classes: Complete University-Level Guide (2026) | 35+ Examples",
+                "description": "Master Python classes with this comprehensive university-level guide. 35+ examples covering OOP principles, inheritance, magic methods, dataclasses, metaclasses, and advanced patterns.",
+                "keywords": "Python classes, OOP, inheritance, magic methods, dataclasses, metaclasses, encapsulation, polymorphism",
+                "datePublished": "2026-02-20T08:00:00+00:00",
+                "dateModified": "2026-02-20T10:30:00+00:00",
+                "author": {
+                    "@type": "Organization",
+                    "name": "POETIC BYTES Educational Division",
+                    "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/about"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "POETIC BYTES",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/images/logo.png",
+                        "width": 180,
+                        "height": 60
+                    }
+                },
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html"
+                },
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/images/python-classes-og-image.jpg",
+                    "width": 1200,
+                    "height": 630
+                },
+                "wordCount": 8500,
+                "timeRequired": "PT45M",
+                "educationalLevel": "Advanced",
+                "educationalUse": "Complete Guide, Tutorial, Reference",
+                "teaches": [
+                    "Class Definition and Instantiation",
+                    "Instance and Class Attributes",
+                    "Inheritance and MRO",
+                    "Magic Dunder Methods",
+                    "Properties and Descriptors",
+                    "Class Methods and Static Methods",
+                    "Abstract Base Classes",
+                    "Dataclasses",
+                    "Metaclasses",
+                    "Encapsulation and Polymorphism"
+                ]
+            },
+            {
+                "@type": "TechArticle",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html#tech-article",
+                "proficiencyLevel": "Advanced",
+                "dependencies": "Python 3.12+",
+                "skills": "Python Programming, Object-Oriented Programming",
+                "version": "2026 Edition",
+                "keywords": "Python 3.12, Python classes tutorial, advanced Python OOP"
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/"},
+                    {"@type": "ListItem", "position": 2, "name": "Python Tutorials", "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/"},
+                    {"@type": "ListItem", "position": 3, "name": "Python Classes Complete Guide", "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html"}
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-classes.html#faq",
+                "mainEntity": [
+                    {"@type": "Question", "name": "What is the difference between a class and an instance?", "acceptedAnswer": {"@type": "Answer", "text": "A class is a blueprint or template that defines attributes and methods. An instance is a concrete object created from that blueprint using the class constructor."}},
+                    {"@type": "Question", "name": "What is MRO in Python?", "acceptedAnswer": {"@type": "Answer", "text": "Method Resolution Order (MRO) defines the order in which Python searches for methods in an inheritance hierarchy, determined by the C3 linearization algorithm."}},
+                    {"@type": "Question", "name": "What are dunder methods?", "acceptedAnswer": {"@type": "Answer", "text": "Dunder (double underscore) methods like __init__, __str__, __repr__ are special methods that allow you to define how objects behave with built-in Python operators and functions."}},
+                    {"@type": "Question", "name": "When should I use a dataclass?", "acceptedAnswer": {"@type": "Answer", "text": "Use dataclasses when you primarily need a container for data with minimal behaviour. They auto-generate __init__, __repr__, and __eq__ based on declared fields."}}
+                ]
+            }
+        ]
+    }
+    </script>
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="pinterest" content="nopin">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0b1f33;
+            --primary-deep: #0a2a40;
+            --primary-medium: #1d4e7a;
+            --primary-light: #3b82f6;
+            --accent-teal: #2dd4bf;
+            --text-light: #ffffff;
+            --text-soft: #f8fafc;
+            --text-muted: #e2e8f0;
+            --code-bg: #0f2a40;
+            --card-bg: rgba(18, 40, 65, 0.85);
+            --border-color: #2d5580;
+            --font-mono: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'Courier New', monospace;
+            --font-main: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0c253a, #123a52);
+            color: var(--text-light);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, p, li, .comment-content, .quiz-question, .quiz-explanation, .tip-box p, .warning-box p {
+            text-align: justify !important;
+            word-break: break-word;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 1rem 0 0.6rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.6rem;
+            color: #ffffff;
+            border-left: 4px solid var(--primary-light);
+            padding-left: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.5rem;
+            color: #ffffff;
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.4rem;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            max-width: 100%;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0.8rem 0.5rem;
+            width: 100%;
+            overflow-x: hidden;
+            word-wrap: break-word;
+        }
+
+        .container * {
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+
+        pre, code, .pitfalls-table, table {
+            max-width: 100%;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        pre {
+            white-space: pre;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .pitfalls-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            table-layout: auto;
+        }
+
+        .pitfalls-table th, .pitfalls-table td {
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        img { max-width: 100%; height: auto; }
+
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent-teal));
+            z-index: 2000;
+        }
+
+        .navbar {
+            background: rgba(5, 25, 45, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .logo { font-size: 1.1rem; font-weight: 700; color: white; white-space: nowrap; }
+
+        .nav-links { display: flex; align-items: center; gap: 0; flex-shrink: 1; }
+
+        .nav-links a {
+            color: #ffffff;
+            margin-left: 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover { color: var(--accent-teal); }
+
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
+            flex-shrink: 0;
+        }
+
+        .hamburger-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger-btn.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(5, 20, 38, 0.99);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 5rem 2rem 2rem;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open { right: 0; }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.open { opacity: 1; pointer-events: all; }
+
+        .mobile-menu-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-teal);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-section { margin-bottom: 1.5rem; }
+
+        .mobile-menu-section-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.55rem 0.8rem;
+            border-radius: 10px;
+            margin-bottom: 0.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover { color: white; background: rgba(59, 130, 246, 0.15); padding-left: 1.1rem; }
+        .mobile-menu a i { width: 16px; text-align: center; font-size: 0.75rem; color: var(--primary-light); }
+
+        .hero-section {
+            background: rgba(0, 30, 55, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.2rem 0;
+        }
+
+        .code-example {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin: 1.2rem 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: #0a1f33;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .code-header span { font-size: 0.9rem; font-weight: 500; color: #ffffff; }
+
+        pre {
+            background: #0a1d30;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        code { font-family: var(--font-mono); color: #ffffff; font-size: 0.85rem; }
+
+        .kw { color: #d8a8ff; }
+        .fn { color: #8dd0c0; }
+        .str { color: #f9d77e; }
+        .bi { color: #7ec8e0; }
+        .cm { color: #8aa9c9; }
+        .nm { color: #f5b37c; }
+        .cl { color: #f8c56d; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feature-item {
+            background: #123a57;
+            padding: 0.8rem 1rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .feature-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: #ffffff; }
+        .feature-item p { font-size: 0.85rem; margin-bottom: 0; color: #ffffff; }
+
+        .pitfalls-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #0e314b;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .pitfalls-table th {
+            background: #1d4e79;
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            vertical-align: middle;
+            border-bottom: 2px solid #2f6597;
+            word-break: normal;
+        }
+
+        .pitfalls-table td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid #1e4a6e;
+            text-align: left;
+            color: #ffffff;
+            font-size: 0.85rem;
+            line-height: 1.55;
+            vertical-align: top;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .pitfalls-table td code {
+            font-size: 0.8rem;
+            background: #0a1f33;
+            padding: 0.15rem 0.35rem;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-word;
+            display: inline;
+            color: #ffffff;
+        }
+
+        .pitfalls-table tr:last-child td { border-bottom: none; }
+        .pitfalls-table tr:hover td { background: rgba(59, 130, 246, 0.05); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #0e314b;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: #1d4e79;
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.9rem;
+            vertical-align: middle;
+            line-height: 1.4;
+        }
+
+        td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid #2f6597;
+            text-align: left;
+            color: #ffffff;
+            font-size: 0.85rem;
+            vertical-align: top;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px #0e3c7a;
+            z-index: 999;
+        }
+
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+
+        .quiz-item {
+            background: #0f3450;
+            border-radius: 20px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            border: 1px solid #2f6597;
+        }
+
+        .quiz-question { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; color: #ffffff; }
+
+        .quiz-answer {
+            background: #1d4e79;
+            padding: 0.5rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 0.4rem 0;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            color: #ffffff;
+        }
+
+        .quiz-answer:hover { background: #256aa0; }
+
+        .quiz-explanation {
+            margin-top: 0.8rem;
+            padding: 0.6rem;
+            background: #0a2640;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            display: none;
+            color: #ffffff;
+        }
+
+        .quiz-explanation.show { display: block; }
+
+        .tip-box {
+            background: rgba(45, 212, 191, 0.08);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-left: 4px solid var(--accent-teal);
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .tip-box p { margin: 0; color: #ffffff; font-size: 0.85rem; }
+        .tip-box strong { color: var(--accent-teal); }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-left: 4px solid #fbbf24;
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .warning-box p { margin: 0; color: #ffffff; font-size: 0.85rem; }
+        .warning-box strong { color: #fbbf24; }
+
+        
+        .social-share-section {
+            background: rgba(0, 30, 55, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .social-share-label {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-share-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+        }
+
+        .social-btn i { font-size: 1.1rem; }
+        .social-btn.facebook { background: #1877f2; }
+        .social-btn.twitter  { background: #1da1f2; }
+        .social-btn.linkedin { background: #0a66c2; }
+        .social-btn.whatsapp { background: #25d366; }
+        .social-btn.telegram { background: #0088cc; }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        
+        .subscription-section {
+            background: linear-gradient(145deg, #0d2c44, #103e5c);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .subscription-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+
+        .subscription-subtitle {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .subscription-form { display: flex; flex-direction: column; gap: 0.6rem; max-width: 500px; margin: 0 auto; }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.85rem;
+        }
+
+        .form-group input::placeholder { color: rgba(255,255,255,0.5); }
+
+        .form-group.checkbox { display: flex; align-items: center; gap: 0.5rem; }
+        .form-group.checkbox label { font-size: 0.75rem; color: #ffffff; }
+
+        .subscribe-btn {
+            background: var(--primary-light);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .subscribe-btn:hover { background: #2563eb; }
+
+        .subscription-message {
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.4rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .subscription-message.success { background: rgba(16,185,129,0.15); color: #10b981; display: block; }
+        .subscription-message.error   { background: rgba(239,68,68,0.15);   color: #ef4444;  display: block; }
+
+        
+        .comment-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.2rem 0;
+        }
+
+        .comment-header { margin-bottom: 1rem; }
+
+        .comment-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comment-count {
+            background: var(--primary-light);
+            color: white;
+            border-radius: 20px;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 0.7rem;
+            min-height: 100px;
+            resize: vertical;
+            font-family: var(--font-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .comment-form-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .comment-form-row input {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.5rem 0.7rem;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.8rem;
+        }
+
+        .comment-form-row input::placeholder { color: rgba(255,255,255,0.5); }
+
+        .comment-submit {
+            background: var(--primary-light);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+
+        .comment-submit:hover { background: #2563eb; }
+
+        .comments-list { margin-top: 1rem; }
+
+        .comment-item {
+            background: #0f3450;
+            border-radius: 12px;
+            padding: 0.7rem 0.9rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid #2f6597;
+        }
+
+        .comment-meta {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--accent-teal);
+            margin-bottom: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .comment-content { font-size: 0.85rem; color: #ffffff; line-height: 1.5; }
+
+        .no-comments { font-size: 0.85rem; color: rgba(255,255,255,0.6); text-align: center; padding: 1rem 0; }
+
+        
+        .return-home-wrap {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .return-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-light);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .return-home-btn:hover { background: #2563eb; }
+
+        
+        .footer-layer-1 {
+            background: #021525;
+            border-top: 1px solid #0f2436;
+            padding: 2.5rem 0.5rem;
+        }
+
+        .footer-l1-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .footer-l1-heading {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent-teal);
+            text-align: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-l1-sub {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-l1-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .f1-col-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid #1a3e5c;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .f1-col-title i { color: var(--accent-teal); font-size: 0.7rem; }
+
+        .f1-col ul { list-style: none; margin: 0; padding: 0; }
+        .f1-col ul li { margin-bottom: 0.45rem; }
+
+        .f1-col ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .f1-col ul li a:hover { color: var(--accent-teal); padding-left: 4px; }
+
+        .f1-col ul li a i {
+            font-size: 0.65rem;
+            width: 11px;
+            color: var(--accent-teal);
+            flex-shrink: 0;
+        }
+
+        .f1-col ul li a .badge-new {
+            font-size: 0.55rem;
+            font-weight: 700;
+            background: rgba(45,212,191,0.15);
+            color: var(--accent-teal);
+            border-radius: 4px;
+            padding: 0.05rem 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        
+        .footer-layer-2 {
+            background: #020d18;
+            border-top: 1px solid #0f2436;
+            padding: 2rem 0.5rem;
+        }
+
+        .footer-l2-main {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .footer-l2-cols-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-brand-col .footer-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-brand-col .footer-tagline {
+            font-size: 0.75rem;
+            color: #ffffff;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+        }
+
+        .footer-brand-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+
+        .f-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            padding: 0.25rem 0.55rem;
+            border-radius: 20px;
+            border: 1px solid rgba(45,212,191,0.3);
+            color: var(--accent-teal);
+            background: rgba(45,212,191,0.07);
+        }
+
+        .footer-l2-col-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid #1a3e5c;
+        }
+
+        .footer-l2-col ul { list-style: none; margin: 0; padding: 0; }
+        .footer-l2-col ul li { margin-bottom: 0.45rem; }
+
+        .footer-l2-col ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .footer-l2-col ul li a:hover { color: var(--accent-teal); padding-left: 4px; }
+
+        .footer-l2-col ul li a i {
+            font-size: 0.65rem;
+            width: 11px;
+            color: var(--accent-teal);
+            flex-shrink: 0;
+        }
+
+        .footer-l2-divider { border: none; border-top: 1px solid #0f2436; margin: 1.5rem 0 0; }
+
+        .footer-l2-bottom {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.2rem 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-align: center;
+        }
+
+        .footer-l2-copyright { font-size: 0.8rem; color: #ffffff; }
+        .footer-l2-copyright strong { color: #ffffff; }
+
+        .footer-l2-legal-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-l2-legal-links .dot { display: none; }
+
+        .footer-l2-legal-links a {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-l2-legal-links a:hover { color: var(--accent-teal); }
+
+        .footer-l2-python {
+            font-size: 0.8rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .footer-l2-python i { color: var(--accent-teal); }
+
+        
+        @media (max-width: 900px) {
+            .footer-l1-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-l2-main { grid-template-columns: 1fr; gap: 1.8rem; }
+            .footer-brand-col { grid-column: 1 / -1; }
+        }
+
+        section, .card, .code-example, .hero-section, .comment-section,
+        .subscription-section, .social-share-section {
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+
+            .footer-layer-1, .footer-layer-2 { padding: 1.5rem 0.25rem !important; }
+            .footer-l1-grid, .footer-l2-main { gap: 0.75rem; }
+            .f1-col-title { font-size: 0.7rem; margin-bottom: 0.6rem; padding-bottom: 0.3rem; }
+            .f1-col ul li a { font-size: 0.8rem; }
+
+            .footer-l2-bottom {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem 0.25rem 0;
+                text-align: center;
+            }
+
+            .footer-l2-copyright { font-size: 0.75rem; line-height: 1.5; }
+            .footer-l2-legal-links { flex-wrap: wrap; gap: 0.3rem 0.5rem; justify-content: center; }
+            .footer-l2-legal-links a { font-size: 0.75rem; }
+            .footer-l2-python { font-size: 0.75rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0.4rem 0.15rem; }
+            h1 { font-size: 1.2rem; }
+            h2 { font-size: 1.05rem; padding-left: 0.4rem; }
+            p, li { font-size: 0.9rem; margin-bottom: 0.7rem; }
+            pre { font-size: 0.7rem; padding: 0.4rem; }
+            code { font-size: 0.7rem; }
+            .grid-2, .grid-3 { gap: 0.5rem; }
+            .feature-item { padding: 0.6rem 0.4rem; }
+            .feature-item h4 { font-size: 0.9rem; }
+            .feature-item p { font-size: 0.85rem; }
+            .pitfalls-table td, table td,
+            .pitfalls-table th, table th { padding: 0.4rem; font-size: 0.75rem; min-width: 100px; }
+        }
+
+        * { max-width: 100vw; box-sizing: border-box; }
+        body { -webkit-text-size-adjust: 100%; }
+        img, video, iframe, object, embed { max-width: 100%; height: auto; }
+
+        .flex-row, .nav-links, .comment-form-row,
+        .social-share-buttons, .footer-l2-bottom { flex-wrap: wrap; }
+
+        table, .pitfalls-table { max-width: 100%; overflow-x: auto; display: block; }
+
+        @media (max-width: 700px) {
+            .pitfalls-table, .pitfalls-table thead, .pitfalls-table tbody,
+            .pitfalls-table th, .pitfalls-table td, .pitfalls-table tr {
+                display: block;
+                width: 100%;
+            }
+            .pitfalls-table thead { display: none; }
+            .pitfalls-table td {
+                padding: 0.5rem 0.6rem;
+                border-bottom: 1px solid #1e4a6e;
+            }
+            .pitfalls-table td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                font-size: 0.7rem;
+                color: var(--accent-teal);
+                display: block;
+                margin-bottom: 0.2rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .pitfalls-table tr { margin-bottom: 0.75rem; border: 1px solid #1e4a6e; border-radius: 8px; overflow: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="progressBar"></div>
+    <div class="mobile-menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation menu" role="navigation">
+        <div class="mobile-menu-title">📘 POETIC BYTES</div>
+        <div class="mobile-menu-section">
+            <div class="mobile-menu-section-label">Main Sections</div>
+            <a href="#introduction" class="menu-link"><i class="fas fa-home"></i> Introduction</a>
+            <a href="#basics" class="menu-link"><i class="fas fa-cube"></i> Class Basics</a>
+            <a href="#inheritance" class="menu-link"><i class="fas fa-sitemap"></i> Inheritance & MRO</a>
+            <a href="#magic-methods" class="menu-link"><i class="fas fa-magic"></i> Magic Methods</a>
+            <a href="#properties" class="menu-link"><i class="fas fa-lock"></i> Properties</a>
+            <a href="#class-static" class="menu-link"><i class="fas fa-tools"></i> Class & Static Methods</a>
+            <a href="#abstract" class="menu-link"><i class="fas fa-project-diagram"></i> Abstract Classes</a>
+            <a href="#dataclasses" class="menu-link"><i class="fas fa-database"></i> Dataclasses</a>
+            <a href="#metaclasses" class="menu-link"><i class="fas fa-atom"></i> Metaclasses</a>
+            <a href="#patterns" class="menu-link"><i class="fas fa-layer-group"></i> Design Patterns</a>
+            <a href="#mistakes" class="menu-link"><i class="fas fa-exclamation-triangle"></i> Common Pitfalls</a>
+            <a href="#quiz" class="menu-link"><i class="fas fa-question-circle"></i> Knowledge Quiz</a>
+        </div>
+    </div>
+
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="logo">📘 POETIC BYTES</div>
+        <div class="nav-links" role="list">
+            <a href="#introduction" role="listitem">Intro</a>
+            <a href="#basics" role="listitem">Basics</a>
+            <a href="#inheritance" role="listitem">Inheritance</a>
+            <a href="#magic-methods" role="listitem">Magic Methods</a>
+            <a href="#properties" role="listitem">Properties</a>
+            <a href="#class-static" role="listitem">Class/Static</a>
+            <a href="#abstract" role="listitem">Abstract</a>
+            <a href="#dataclasses" role="listitem">Dataclasses</a>
+            <a href="#metaclasses" role="listitem">Metaclasses</a>
+            <a href="#mistakes" role="listitem">Pitfalls</a>
+            <a href="#quiz" role="listitem">Quiz</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <main class="container">
+           
+        <section id="introduction" class="hero-section">
+            <h4>PYTHON CLASSES: A COMPLETE GUIDE (2026)</h4>
+            <h4>1.0 THE THEORETICAL AND PRACTICAL FOUNDATIONS OF OBJECT-ORIENTED PROGRAMMING</h4>
+            <p>Object-Oriented Programming (OOP) is one of the most influential paradigms in software engineering history. At its heart, OOP organises code around objects — self-contained units that bundle data (attributes) and behaviour (methods) together. Python embraces OOP fully while remaining flexible enough to mix paradigms. Understanding classes is therefore not merely a language skill; it is a fundamental shift in how you model the real world in code.</p>
+            <p>A class is a blueprint — a precise description of what instances of that type will look like and how they will behave. When you write <code>class Dog:</code>, you are not creating a dog; you are creating the concept of a dog, from which any number of individual dog objects can be stamped out. Each object (instance) carries its own state but shares the class's methods.</p>
+            <h4>1.1 Why This Guide Exists — Our Educational Philosophy</h4>
+            <p>This resource has been designed as a comprehensive educational tool for computer science students, self-directed learners, and professional developers seeking to deepen their understanding of Python OOP. Every explanation has been crafted to meet university-level instructional standards: we emphasise not just the "how" but the "why" behind each concept, connecting theory to practical software design.</p>
+            <h4>1.2 Prerequisites and Learning Path</h4>
+            <p>This guide assumes familiarity with Python functions, variables, data types, conditionals, and loops. Some exposure to Python functions (including *args and **kwargs) is helpful. If you have not yet studied functions, we recommend reviewing the POETIC BYTES Python Functions Guide first.</p>
+            <h4>1.3 Educational Objectives</h4>
+            <ul>
+                <li><strong>Define classes and instantiate objects</strong> using <code>__init__</code> and understand the role of <code>self</code>.</li>
+                <li><strong>Distinguish instance, class, and static attributes</strong> and choose the appropriate type.</li>
+                <li><strong>Build inheritance hierarchies</strong> with single and multiple inheritance, and understand Python's MRO.</li>
+                <li><strong>Implement magic (dunder) methods</strong> to integrate objects with Python's operators and built-in functions.</li>
+                <li><strong>Use properties</strong> to implement controlled attribute access with getters, setters, and deleters.</li>
+                <li><strong>Write class methods and static methods</strong> and understand when each is appropriate.</li>
+                <li><strong>Design abstract base classes</strong> to define interfaces and enforce contracts.</li>
+                <li><strong>Use dataclasses</strong> for clean, boilerplate-free data containers.</li>
+                <li><strong>Understand metaclasses</strong> and how Python creates classes at runtime.</li>
+                <li><strong>Recognise and avoid common OOP pitfalls</strong> including mutable class attributes and incorrect use of super().</li>
+            </ul>
+        </section>
+       
+        <section id="basics" class="card">
+            <h4>2.0 CLASS BASICS — ANATOMY OF A PYTHON CLASS</h4>
+            <h4>2.1 Defining a Class</h4>
+            <p>Every class definition starts with the <code>class</code> keyword, followed by the class name (by convention in CamelCase), an optional inheritance list in parentheses, and a colon. The class body is indented and contains attribute assignments and method definitions.</p>
+            <p>The special method <code>__init__</code> is the constructor — it is called automatically when a new instance is created. Its first parameter is always <code>self</code>, which is a reference to the instance being constructed. You use <code>self</code> to attach attributes to the instance and to call other instance methods.</p>
+            <div class="tip-box">
+                <p><strong>💡 Key Distinction:</strong> <code>self</code> is not a keyword in Python — it is merely a naming convention. You could name it anything, but every Python programmer uses <code>self</code> so you should too. It is automatically passed by Python when you call an instance method.</p>
+            </div>
+            <h4>2.2 Instance Attributes vs Class Attributes</h4>
+            <p><strong>Instance attributes</strong> are defined inside <code>__init__</code> using <code>self.name = value</code>. They belong to one specific object — each instance has its own copy.</p>
+            <p><strong>Class attributes</strong> are defined at the class level, outside any method. They are shared across all instances. Modifying a class attribute on the class changes it everywhere; modifying it on an instance creates a new instance attribute that shadows the class attribute for that instance only.</p>
+            <div class="warning-box">
+                <p><strong>⚠️ Critical Warning:</strong> Never use mutable objects (lists, dicts) as class attributes if you intend them to be per-instance. All instances will share the same object, causing very hard-to-debug side effects. Use <code>self.items = []</code> inside <code>__init__</code> instead.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python" style="color:#3b82f6;"></i> EXAMPLE 2.1 — Class Definition, Instantiation, and Attribute Access</span>
+            </div>
+            <pre><code><span class="kw">class</span> <span class="cl">BankAccount</span>:
+    <span class="str">"""A simple bank account class demonstrating OOP fundamentals."""</span>
+
+    <span class="cm"># Class attribute — shared by ALL instances</span>
+    bank_name: str = <span class="str">"POETIC BANK"</span>
+    _total_accounts: int = <nm>0</nm>  <span class="cm"># tracks how many accounts exist</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, owner: str, balance: float = <nm>0.0</nm>) -> <span class="bi">None</span>:
+        <span class="str">"""Initialise a new bank account."""</span>
+        <span class="cm"># Instance attributes — unique to each object</span>
+        self.owner   = owner
+        self.balance = balance
+        self._transactions: list[float] = []   <span class="cm"># mutable → always on self</span>
+        <span class="cl">BankAccount</span>._total_accounts += <nm>1</nm>
+
+    <span class="kw">def</span> <span class="fn">deposit</span>(self, amount: float) -> <span class="bi">None</span>:
+        <span class="kw">if</span> amount <= <nm>0</nm>:
+            <span class="kw">raise</span> <span class="bi">ValueError</span>(<span class="str">"Deposit amount must be positive."</span>)
+        self.balance += amount
+        self._transactions.append(amount)
+        <span class="bi">print</span>(<span class="str">f"Deposited £{amount:.2f} — new balance: £{self.balance:.2f}"</span>)
+
+    <span class="kw">def</span> <span class="fn">withdraw</span>(self, amount: float) -> <span class="bi">None</span>:
+        <span class="kw">if</span> amount > self.balance:
+            <span class="kw">raise</span> <span class="bi">ValueError</span>(<span class="str">"Insufficient funds."</span>)
+        self.balance -= amount
+        self._transactions.append(-amount)
+        <span class="bi">print</span>(<span class="str">f"Withdrew £{amount:.2f} — new balance: £{self.balance:.2f}"</span>)
+
+    <span class="kw">def</span> <span class="fn">get_statement</span>(self) -> str:
+        lines = [<span class="str">f"Account: {self.owner}"</span>]
+        <span class="kw">for</span> t <span class="kw">in</span> self._transactions:
+            lines.append(<span class="str">f"  {'Credit' if t > 0 else 'Debit':6s}: £{abs(t):.2f}"</span>)
+        lines.append(<span class="str">f"Balance: £{self.balance:.2f}"</span>)
+        <span class="kw">return</span> <span class="str">"\n"</span>.join(lines)
+
+<span class="cm"># Instantiation</span>
+alice = <span class="cl">BankAccount</span>(<span class="str">"Alice"</span>, <nm>1000.0</nm>)
+bob   = <span class="cl">BankAccount</span>(<span class="str">"Bob"</span>)
+
+alice.deposit(<nm>250.0</nm>)
+alice.withdraw(<nm>75.0</nm>)
+<span class="bi">print</span>(alice.get_statement())
+
+<span class="cm"># Class attributes are accessible on both the class and instances</span>
+<span class="bi">print</span>(<span class="str">f"Bank: {BankAccount.bank_name}"</span>)
+<span class="bi">print</span>(<span class="str">f"Total accounts: {BankAccount._total_accounts}"</span>)  <span class="cm"># 2</span></code></pre>
+        </div>
+  
+        <section id="inheritance" class="card">
+            <h4>3.0 INHERITANCE AND THE METHOD RESOLUTION ORDER (MRO)</h5>
+            <h4>3.1 Single Inheritance</h4>
+            <p>Inheritance allows a child class to acquire the attributes and methods of a parent class, extending or overriding them as needed. You specify the parent class in parentheses: <code>class Child(Parent):</code>. The child automatically has access to all of the parent's non-private members.</p>
+            <p>To call the parent's <code>__init__</code> (or any overridden method), use <code>super()</code>. This is essential when the child adds new attributes — you want to call the parent's init to set up inherited attributes before adding the child's own.</p>
+            <h4>3.2 Multiple Inheritance and the C3 MRO</h4>
+            <p>Python supports multiple inheritance — a class can inherit from more than one parent. Python resolves method lookup order using the C3 linearization algorithm, producing a deterministic MRO accessible via <code>ClassName.__mro__</code> or <code>ClassName.mro()</code>. Understanding MRO prevents subtle bugs when overriding methods in diamond inheritance hierarchies.</p>
+            <h4>3.3 Using super() Correctly</h4>
+            <p><code>super()</code> returns a proxy object that delegates method calls to the next class in the MRO — not necessarily the direct parent. This makes it cooperative: when every class in a hierarchy uses <code>super()</code>, method calls chain correctly through the entire MRO, which is critical for multiple inheritance to work reliably.</p>
+            <div class="tip-box">
+                <p><strong>💡 Key Rule:</strong> Always use <code>super().__init__(...)</code> rather than <code>ParentClass.__init__(self, ...)</code> when inside a class that may participate in multiple inheritance. <code>super()</code> is MRO-aware; a direct call is not.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 3.1 — Inheritance, super(), and MRO</span>
+            </div>
+            <pre><code><span class="kw">class</span> <span class="cl">Animal</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name: str, sound: str) -> <span class="bi">None</span>:
+        self.name  = name
+        self.sound = sound
+
+    <span class="kw">def</span> <span class="fn">speak</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"{self.name} says '{self.sound}!'"</span>
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"{type(self).__name__}(name={self.name!r})"</span>
+
+<span class="kw">class</span> <span class="cl">Pet</span>(<span class="cl">Animal</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name: str, sound: str, owner: str) -> <span class="bi">None</span>:
+        <span class="bi">super</span>().__init__(name, sound)   <span class="cm"># delegate to Animal.__init__</span>
+        self.owner = owner
+
+    <span class="kw">def</span> <span class="fn">speak</span>(self) -> str:
+        base = <span class="bi">super</span>().speak()          <span class="cm"># extend parent behaviour</span>
+        <span class="kw">return</span> <span class="str">f"{base} (owned by {self.owner})"</span>
+
+<span class="kw">class</span> <span class="cl">ServiceAnimal</span>(<span class="cl">Animal</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name: str, sound: str, role: str) -> <span class="bi">None</span>:
+        <span class="bi">super</span>().__init__(name, sound)
+        self.role = role
+
+    <span class="kw">def</span> <span class="fn">describe_role</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"{self.name} is trained as: {self.role}"</span>
+
+<span class="cm"># Multiple inheritance — diamond pattern</span>
+<span class="kw">class</span> <span class="cl">ServicePet</span>(<span class="cl">Pet</span>, <span class="cl">ServiceAnimal</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name: str, sound: str, owner: str, role: str) -> <span class="bi">None</span>:
+        <span class="cm"># super() follows MRO: ServicePet → Pet → ServiceAnimal → Animal</span>
+        <span class="cm"># Python's C3 linearization ensures Animal.__init__ runs once</span>
+        Pet.__init__(self, name, sound, owner)
+        self.role = role
+
+<span class="cm"># Inspect the MRO</span>
+<span class="bi">print</span>(<span class="cl">ServicePet</span>.__mro__)
+<span class="cm"># (<class 'ServicePet'>, <class 'Pet'>, <class 'ServiceAnimal'>, <class 'Animal'>, <class 'object'>)</span>
+
+buddy = <span class="cl">ServicePet</span>(<span class="str">"Buddy"</span>, <span class="str">"Woof"</span>, <span class="str">"Alice"</span>, <span class="str">"Guide Dog"</span>)
+<span class="bi">print</span>(buddy.speak())
+<span class="bi">print</span>(buddy.describe_role())
+<span class="bi">print</span>(<span class="bi">isinstance</span>(buddy, <span class="cl">Animal</span>))   <span class="cm"># True — buddy is-an Animal</span></code></pre>
+        </div>
+    
+        <section id="magic-methods" class="card">
+            <h5>4.0 MAGIC (DUNDER) METHODS — INTEGRATING WITH PYTHON'S DATA MODEL</h4>
+            <h4>4.1 What Are Dunder Methods?</h4>
+            <p>Dunder methods (double-underscore methods, e.g. <code>__str__</code>, <code>__add__</code>, <code>__len__</code>) allow your objects to participate in Python's built-in syntax and protocols. When you write <code>len(obj)</code>, Python calls <code>obj.__len__()</code>. When you write <code>a + b</code>, Python calls <code>a.__add__(b)</code>. This is Python's data model — by implementing the right dunder methods, your objects integrate seamlessly with the language.</p>
+            <h4>4.2 Essential Dunder Methods</h4>
+            <p><strong>__repr__ vs __str__:</strong> <code>__repr__</code> should return an unambiguous, developer-facing string — ideally valid Python that could recreate the object. <code>__str__</code> returns a human-friendly string for end users. When only <code>__repr__</code> is defined, Python uses it as a fallback for <code>str()</code> as well.</p>
+            <p><strong>Comparison methods:</strong> <code>__eq__</code>, <code>__lt__</code>, <code>__le__</code>, <code>__gt__</code>, <code>__ge__</code>, <code>__ne__</code> enable <code>==</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>. Use <code>@functools.total_ordering</code> to auto-generate missing comparisons from just <code>__eq__</code> and one other.</p>
+            <p><strong>Arithmetic operators:</strong> <code>__add__</code>, <code>__sub__</code>, <code>__mul__</code>, <code>__truediv__</code> and their reflected (<code>__radd__</code>) and in-place (<code>__iadd__</code>) variants.</p>
+            <p><strong>Container protocol:</strong> <code>__len__</code>, <code>__getitem__</code>, <code>__setitem__</code>, <code>__delitem__</code>, <code>__contains__</code>, <code>__iter__</code>, <code>__next__</code> — implement these to make your object behave like a sequence or mapping.</p>
+            <p><strong>Context manager protocol:</strong> <code>__enter__</code> and <code>__exit__</code> — allow your object to be used with the <code>with</code> statement for resource management.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 4.1 — Implementing a Rich Vector Class with Dunder Methods</span>
+            </div>
+            <pre><code><span class="kw">from</span> __future__ <span class="kw">import</span> annotations
+<span class="kw">import</span> math
+<span class="kw">import</span> functools
+
+@functools.total_ordering
+<span class="kw">class</span> <span class="cl">Vector2D</span>:
+    <span class="str">"""2D vector with full operator support via dunder methods."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, x: float, y: float) -> <span class="bi">None</span>:
+        self.x = x
+        self.y = y
+
+    <span class="cm"># ── Representation ──────────────────────────────</span>
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"Vector2D({self.x}, {self.y})"</span>   <span class="cm"># unambiguous, recreatable</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"({self.x}, {self.y})"</span>            <span class="cm"># friendly display</span>
+
+    <span class="cm"># ── Arithmetic ──────────────────────────────────</span>
+    <span class="kw">def</span> <span class="fn">__add__</span>(self, other: <span class="cl">Vector2D</span>) -> <span class="cl">Vector2D</span>:
+        <span class="kw">return</span> <span class="cl">Vector2D</span>(self.x + other.x, self.y + other.y)
+
+    <span class="kw">def</span> <span class="fn">__sub__</span>(self, other: <span class="cl">Vector2D</span>) -> <span class="cl">Vector2D</span>:
+        <span class="kw">return</span> <span class="cl">Vector2D</span>(self.x - other.x, self.y - other.y)
+
+    <span class="kw">def</span> <span class="fn">__mul__</span>(self, scalar: float) -> <span class="cl">Vector2D</span>:   <span class="cm"># v * 3</span>
+        <span class="kw">return</span> <span class="cl">Vector2D</span>(self.x * scalar, self.y * scalar)
+
+    <span class="kw">def</span> <span class="fn">__rmul__</span>(self, scalar: float) -> <span class="cl">Vector2D</span>:  <span class="cm"># 3 * v</span>
+        <span class="kw">return</span> self.__mul__(scalar)
+
+    <span class="kw">def</span> <span class="fn">__neg__</span>(self) -> <span class="cl">Vector2D</span>:
+        <span class="kw">return</span> <span class="cl">Vector2D</span>(-self.x, -self.y)
+
+    <span class="cm"># ── Comparison (total_ordering fills in the rest) ─</span>
+    <span class="kw">def</span> <span class="fn">__eq__</span>(self, other: object) -> bool:
+        <span class="kw">if not isinstance</span>(other, <span class="cl">Vector2D</span>): <span class="kw">return</span> <span class="bi">NotImplemented</span>
+        <span class="kw">return</span> math.isclose(self.x, other.x) <span class="kw">and</span> math.isclose(self.y, other.y)
+
+    <span class="kw">def</span> <span class="fn">__lt__</span>(self, other: <span class="cl">Vector2D</span>) -> bool:
+        <span class="kw">return</span> abs(self) < abs(other)   <span class="cm"># compare by magnitude</span>
+
+    <span class="cm"># ── Other protocols ─────────────────────────────</span>
+    <span class="kw">def</span> <span class="fn">__abs__</span>(self) -> float:          <span class="cm"># abs(v) → magnitude</span>
+        <span class="kw">return</span> math.hypot(self.x, self.y)
+
+    <span class="kw">def</span> <span class="fn">__bool__</span>(self) -> bool:          <span class="cm"># bool(v) → False only for zero vector</span>
+        <span class="kw">return</span> self.x != <nm>0</nm> <span class="kw">or</span> self.y != <nm>0</nm>
+
+    <span class="kw">def</span> <span class="fn">__hash__</span>(self) -> int:
+        <span class="kw">return</span> <span class="bi">hash</span>((self.x, self.y))
+
+    <span class="kw">def</span> <span class="fn">dot</span>(self, other: <span class="cl">Vector2D</span>) -> float:
+        <span class="kw">return</span> self.x * other.x + self.y * other.y
+
+v1 = <span class="cl">Vector2D</span>(<nm>3</nm>, <nm>4</nm>)
+v2 = <span class="cl">Vector2D</span>(<nm>1</nm>, <nm>2</nm>)
+
+<span class="bi">print</span>(v1 + v2)           <span class="cm"># (4, 6)</span>
+<span class="bi">print</span>(v1 * <nm>2</nm>)            <span class="cm"># (6, 8)</span>
+<span class="bi">print</span>(<nm>3</nm> * v2)            <span class="cm"># (3, 6) — uses __rmul__</span>
+<span class="bi">print</span>(<span class="bi">abs</span>(v1))            <span class="cm"># 5.0  — Pythagorean theorem</span>
+<span class="bi">print</span>(v1 > v2)            <span class="cm"># True — magnitude 5 > 2.24</span>
+<span class="bi">print</span>(<span class="bi">repr</span>(v1))           <span class="cm"># Vector2D(3, 4)</span>
+<span class="bi">print</span>(v1.dot(v2))         <span class="cm"># 11</span></code></pre>
+        </div>
+    
+        <section id="properties" class="card">
+            <h4>5.0 PROPERTIES — CONTROLLED ATTRIBUTE ACCESS</h4>
+            <h4>5.1 The Property Decorator</h4>
+            <p>Properties allow you to define methods that are accessed like attributes, giving you a clean public API while maintaining internal control. A property getter is decorated with <code>@property</code>. The corresponding setter is decorated with <code>@name.setter</code> and the deleter with <code>@name.deleter</code>. If no setter is defined, the attribute is read-only.</p>
+            <p>This is Python's idiomatic approach to encapsulation. Unlike Java, where you define explicit <code>getX()</code> and <code>setX()</code> methods, Python starts with simple public attributes and refactors to properties only when you need validation or computed values — without changing the caller's interface at all.</p>
+            <h4>5.2 When to Use Properties</h4>
+            <p>Use a property when you need to: validate data before assignment, compute a value on the fly from other attributes, log or trigger side effects on access, or make an attribute read-only. Do not add properties preemptively — start with a plain attribute and refactor if needed.</p>
+            <div class="tip-box">
+                <p><strong>💡 Design Principle:</strong> The Uniform Access Principle states that attributes and computed values should be accessed the same way. Python properties enforce this — you can change from a stored attribute to a computed property without changing a single line of calling code.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 5.1 — Properties with Validation and Computed Values</span>
+            </div>
+            <pre><code><span class="kw">class</span> <span class="cl">Circle</span>:
+    <span class="str">"""A circle with validated radius and computed geometry properties."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, radius: float) -> <span class="bi">None</span>:
+        self.radius = radius   <span class="cm"># triggers the setter below</span>
+
+    @<span class="fn">property</span>
+    <span class="kw">def</span> <span class="fn">radius</span>(self) -> float:
+        <span class="str">"""The radius of the circle (must be positive)."""</span>
+        <span class="kw">return</span> self._radius
+
+    @radius.<span class="fn">setter</span>
+    <span class="kw">def</span> <span class="fn">radius</span>(self, value: float) -> <span class="bi">None</span>:
+        <span class="kw">if</span> value <= <nm>0</nm>:
+            <span class="kw">raise</span> <span class="bi">ValueError</span>(<span class="str">f"Radius must be positive, got {value}"</span>)
+        self._radius = value   <span class="cm"># store in private _radius</span>
+
+    @radius.<span class="fn">deleter</span>
+    <span class="kw">def</span> <span class="fn">radius</span>(self) -> <span class="bi">None</span>:
+        <span class="kw">raise</span> <span class="bi">AttributeError</span>(<span class="str">"Cannot delete radius."</span>)
+
+    @<span class="fn">property</span>
+    <span class="kw">def</span> <span class="fn">diameter</span>(self) -> float:
+        <span class="str">"""Computed from radius — no storage needed."""</span>
+        <span class="kw">return</span> self._radius * <nm>2</nm>
+
+    @<span class="fn">property</span>
+    <span class="kw">def</span> <span class="fn">area</span>(self) -> float:
+        <span class="kw">import</span> math
+        <span class="kw">return</span> math.pi * self._radius ** <nm>2</nm>
+
+    @<span class="fn">property</span>
+    <span class="kw">def</span> <span class="fn">circumference</span>(self) -> float:
+        <span class="kw">import</span> math
+        <span class="kw">return</span> <nm>2</nm> * math.pi * self._radius
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"Circle(radius={self._radius})"</span>
+
+c = <span class="cl">Circle</span>(<nm>5</nm>)
+<span class="bi">print</span>(c.radius)           <span class="cm"># 5 — read via getter</span>
+<span class="bi">print</span>(c.diameter)         <span class="cm"># 10</span>
+<span class="bi">print</span>(<span class="str">f"{c.area:.4f}"</span>)   <span class="cm"># 78.5398</span>
+
+c.radius = <nm>7</nm>             <span class="cm"># triggers setter — valid</span>
+<span class="bi">print</span>(c.area)             <span class="cm"># 153.9380…</span>
+
+<span class="kw">try</span>:
+    c.radius = -<nm>3</nm>         <span class="cm"># triggers setter — invalid → ValueError</span>
+<span class="kw">except</span> <span class="bi">ValueError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"Caught: {e}"</span>)</code></pre>
+        </div>
+       
+        <section id="class-static" class="card">
+            <h4>6.0 CLASS METHODS AND STATIC METHODS</h4>
+            <h4>6.1 The Three Method Types</h4>
+            <p>Python has three distinct method types, each with a different first argument and purpose. <strong>Instance methods</strong> receive <code>self</code> (the instance) as their first argument — they can access and modify instance state. <strong>Class methods</strong> (decorated with <code>@classmethod</code>) receive <code>cls</code> (the class itself) as their first argument — they can access class attributes but not instance attributes, and are commonly used as alternative constructors. <strong>Static methods</strong> (decorated with <code>@staticmethod</code>) receive no implicit argument — they are simply functions that live inside a class for organisational purposes and have no access to the class or instance.</p>
+            <h4>6.2 Alternative Constructors with @classmethod</h4>
+            <p>One of the most useful applications of class methods is creating alternative constructors. If your class can be created from different data sources (a string, a dict, a file path), you can provide a factory method for each. Crucially, using <code>cls(...))</code> instead of hardcoding the class name means subclasses will inherit and correctly return their own type.</p>
+            <div class="tip-box">
+                <p><strong>💡 Pattern:</strong> Use <code>@classmethod</code> for factory methods and <code>@staticmethod</code> for utility functions logically related to the class but not needing access to its state. If a method doesn't need <code>self</code> or <code>cls</code>, make it a staticmethod.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 6.1 — Instance, Class, and Static Methods in Practice</span>
+            </div>
+            <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> date
+
+<span class="kw">class</span> <span class="cl">Person</span>:
+    <span class="str">"""Demonstrates all three method types."""</span>
+
+    _registry: list[<span class="str">"Person"</span>] = []   <span class="cm"># class attribute</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name: str, birth_year: int) -> <span class="bi">None</span>:
+        self.name       = name
+        self.birth_year = birth_year
+        <span class="cl">Person</span>._registry.append(self)
+
+    <span class="cm"># ── Instance method: operates on self ───────────</span>
+    <span class="kw">def</span> <span class="fn">age</span>(self) -> int:
+        <span class="kw">return</span> date.today().year - self.birth_year
+
+    <span class="kw">def</span> <span class="fn">greet</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"Hello, I'm {self.name}, age {self.age()}."</span>
+
+    <span class="cm"># ── Class methods: alternative constructors ─────</span>
+    @<span class="fn">classmethod</span>
+    <span class="kw">def</span> <span class="fn">from_string</span>(cls, data: str) -> <span class="str">"Person"</span>:
+        <span class="str">"""Create from 'Name:year' string."""</span>
+        name, year = data.split(<span class="str">":"</span>)
+        <span class="kw">return</span> cls(name.strip(), <span class="bi">int</span>(year.strip()))
+
+    @<span class="fn">classmethod</span>
+    <span class="kw">def</span> <span class="fn">from_dict</span>(cls, data: dict) -> <span class="str">"Person"</span>:
+        <span class="str">"""Create from a dictionary."""</span>
+        <span class="kw">return</span> cls(data[<span class="str">"name"</span>], data[<span class="str">"birth_year"</span>])
+
+    @<span class="fn">classmethod</span>
+    <span class="kw">def</span> <span class="fn">all_people</span>(cls) -> list[<span class="str">"Person"</span>]:
+        <span class="kw">return</span> list(cls._registry)
+
+    <span class="cm"># ── Static method: utility, no state needed ─────</span>
+    @<span class="fn">staticmethod</span>
+    <span class="kw">def</span> <span class="fn">is_adult</span>(birth_year: int) -> bool:
+        <span class="kw">return</span> date.today().year - birth_year >= <nm>18</nm>
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"Person({self.name!r}, {self.birth_year})"</span>
+
+<span class="cm"># Instance method</span>
+alice = <span class="cl">Person</span>(<span class="str">"Alice"</span>, <nm>1990</nm>)
+<span class="bi">print</span>(alice.greet())
+
+<span class="cm"># Alternative constructors via classmethods</span>
+bob   = <span class="cl">Person</span>.from_string(<span class="str">"Bob : 1985"</span>)
+carol = <span class="cl">Person</span>.from_dict({<span class="str">"name"</span>: <span class="str">"Carol"</span>, <span class="str">"birth_year"</span>: <nm>2010</nm>})
+
+<span class="bi">print</span>(<span class="cl">Person</span>.all_people())
+
+<span class="cm"># Static method — call on class or instance</span>
+<span class="bi">print</span>(<span class="cl">Person</span>.is_adult(<nm>1990</nm>))   <span class="cm"># True</span>
+<span class="bi">print</span>(carol.is_adult(<nm>2010</nm>))     <span class="cm"># False</span></code></pre>
+        </div>
+        
+        <section id="abstract" class="card">
+            <h4>7.0 ABSTRACT BASE CLASSES — DEFINING INTERFACES AND CONTRACTS</h4>
+            <h4>7.1 What Are Abstract Classes?</h4>
+            <p>An abstract class is a class that cannot be instantiated directly; it exists solely as a template for subclasses. Abstract classes define a contract: any concrete subclass must implement all abstract methods, or it too becomes abstract and cannot be instantiated. Python provides this via the <code>abc</code> module: inherit from <code>ABC</code> and decorate abstract methods with <code>@abstractmethod</code>.</p>
+            <h4>7.2 Abstract Properties and Class Methods</h4>
+            <p>You can combine <code>@abstractmethod</code> with <code>@property</code>, <code>@classmethod</code>, or <code>@staticmethod</code>. The combination enforces that subclasses provide not just any implementation but one of the correct type. For example, <code>@property @abstractmethod</code> forces subclasses to define a property (not just a method).</p>
+            <div class="tip-box">
+                <p><strong>💡 Design Principle:</strong> Abstract classes embody the "Program to an interface, not an implementation" principle. They let you write code that works with any object honouring the contract, making it trivially easy to swap implementations — e.g. switching from a SQLite to a PostgreSQL data store.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 7.1 — Abstract Base Classes and the Strategy Pattern</span>
+            </div>
+            <pre><code><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">Shape</span>(<span class="cl">ABC</span>):
+    <span class="str">"""Abstract base class — cannot be instantiated directly."""</span>
+
+    @<span class="fn">abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">area</span>(self) -> float: ...
+
+    @<span class="fn">abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">perimeter</span>(self) -> float: ...
+
+    @<span class="fn">property</span>
+    @<span class="fn">abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">name</span>(self) -> str: ...   <span class="cm"># subclasses must expose .name as a property</span>
+
+    <span class="cm"># Concrete method — available to all subclasses</span>
+    <span class="kw">def</span> <span class="fn">describe</span>(self) -> str:
+        <span class="kw">return</span> (
+            <span class="str">f"{self.name}: area={self.area():.4f}, "</span>
+            <span class="str">f"perimeter={self.perimeter():.4f}"</span>
+        )
+
+<span class="kw">class</span> <span class="cl">Rectangle</span>(<span class="cl">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, w: float, h: float) -> <span class="bi">None</span>:
+        self.w, self.h = w, h
+
+    @<span class="fn">property</span>
+    <span class="kw">def</span> <span class="fn">name</span>(self) -> str: <span class="kw">return</span> <span class="str">"Rectangle"</span>
+
+    <span class="kw">def</span> <span class="fn">area</span>(self) -> float:      <span class="kw">return</span> self.w * self.h
+    <span class="kw">def</span> <span class="fn">perimeter</span>(self) -> float: <span class="kw">return</span> <nm>2</nm> * (self.w + self.h)
+
+<span class="kw">class</span> <span class="cl">Circle</span>(<span class="cl">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, r: float) -> <span class="bi">None</span>:
+        <span class="kw">import</span> math; self.r = r; self._pi = math.pi
+
+    @<span class="fn">property</span>
+    <span class="kw">def</span> <span class="fn">name</span>(self) -> str: <span class="kw">return</span> <span class="str">"Circle"</span>
+
+    <span class="kw">def</span> <span class="fn">area</span>(self) -> float:      <span class="kw">return</span> self._pi * self.r ** <nm>2</nm>
+    <span class="kw">def</span> <span class="fn">perimeter</span>(self) -> float: <span class="kw">return</span> <nm>2</nm> * self._pi * self.r
+
+<span class="cm"># Polymorphism: same interface, different implementations</span>
+shapes: list[<span class="cl">Shape</span>] = [<span class="cl">Rectangle</span>(<nm>4</nm>, <nm>6</nm>), <span class="cl">Circle</span>(<nm>5</nm>)]
+<span class="kw">for</span> shape <span class="kw">in</span> shapes:
+    <span class="bi">print</span>(shape.describe())
+
+<span class="kw">try</span>:
+    s = <span class="cl">Shape</span>()   <span class="cm"># TypeError: can't instantiate abstract class</span>
+<span class="kw">except</span> <span class="bi">TypeError</span> <span class="kw">as</span> e:
+    <span class="bi">print</span>(<span class="str">f"Caught: {e}"</span>)</code></pre>
+        </div>
+         
+        <section id="dataclasses" class="card">
+            <h4>8.0 DATACLASSES — BOILERPLATE-FREE DATA CONTAINERS</h4>
+            <h4>8.1 The Problem Dataclasses Solve</h4>
+            <p>Writing a class that primarily holds data — with a constructor, <code>__repr__</code>, and <code>__eq__</code> — is repetitive. Python 3.7 introduced the <code>@dataclass</code> decorator to auto-generate these methods from simple field declarations. The result is a concise, readable class with no boilerplate.</p>
+            <h4>8.2 Key Dataclass Features</h4>
+            <p><code>field()</code> is used to customise individual fields: set <code>default_factory</code> for mutable defaults, <code>repr=False</code> to exclude a field from repr, <code>compare=False</code> to exclude from equality checks, or <code>init=False</code> to exclude from the constructor.</p>
+            <p>Setting <code>frozen=True</code> makes the dataclass immutable — all fields become read-only — and auto-generates <code>__hash__</code>, making instances usable as dictionary keys or set members. Setting <code>order=True</code> generates comparison methods so instances can be sorted.</p>
+            <p><code>__post_init__</code> is called after the generated <code>__init__</code>, allowing you to add validation or compute derived fields.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 8.1 — Dataclasses: Basics to Advanced</span>
+            </div>
+            <pre><code><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field, KW_ONLY
+<span class="kw">from</span> typing <span class="kw">import</span> ClassVar
+<span class="kw">import</span> uuid
+
+@dataclass(order=<span class="bi">True</span>)
+<span class="kw">class</span> <span class="cl">Student</span>:
+    <span class="str">"""Represents a student with auto-generated dunder methods."""</span>
+    <span class="cm"># Fields used for ordering (listed first so comparisons work by priority)</span>
+    gpa:       float
+    last_name: str
+    first_name: str
+
+    <span class="cm"># Extra fields — excluded from ordering</span>
+    _: KW_ONLY
+    student_id: str = field(default_factory=<span class="kw">lambda</span>: str(uuid.uuid4())[:<nm>8</nm>])
+    courses:    list[str] = field(default_factory=list)   <span class="cm"># safe mutable default</span>
+
+    <span class="cm"># Class variable — not a field, not included in __init__</span>
+    _count: <span class="cl">ClassVar</span>[int] = <nm>0</nm>
+
+    <span class="kw">def</span> <span class="fn">__post_init__</span>(self) -> <span class="bi">None</span>:
+        <span class="kw">if not</span> (<nm>0.0</nm> <= self.gpa <= <nm>4.0</nm>):
+            <span class="kw">raise</span> <span class="bi">ValueError</span>(<span class="str">f"GPA must be 0–4, got {self.gpa}"</span>)
+        <span class="cl">Student</span>._count += <nm>1</nm>
+
+    @<span class="fn">classmethod</span>
+    <span class="kw">def</span> <span class="fn">count</span>(cls) -> int:
+        <span class="kw">return</span> cls._count
+
+    <span class="kw">def</span> <span class="fn">full_name</span>(self) -> str:
+        <span class="kw">return</span> <span class="str">f"{self.first_name} {self.last_name}"</span>
+
+<span class="cm"># Auto-generated __init__, __repr__, __eq__, __lt__, __le__, etc.</span>
+s1 = <span class="cl">Student</span>(gpa=<nm>3.8</nm>, last_name=<span class="str">"Pansensoy"</span>, first_name=<span class="str">"Glenn"</span>)
+s2 = <span class="cl">Student</span>(gpa=<nm>3.5</nm>, last_name=<span class="str">"Turing"</span>,    first_name=<span class="str">"Alan"</span>,
+              courses=[<span class="str">"CS101"</span>, <span class="str">"MATH201"</span>])
+
+<span class="bi">print</span>(s1)                   <span class="cm"># auto __repr__</span>
+<span class="bi">print</span>(s1 > s2)              <span class="cm"># True — ordered by gpa first</span>
+<span class="bi">print</span>(sorted([s1, s2]))     <span class="cm"># ascending gpa</span>
+<span class="bi">print</span>(<span class="cl">Student</span>.count())       <span class="cm"># 2</span>
+
+<span class="cm"># Frozen dataclass — immutable + hashable</span>
+@dataclass(frozen=<span class="bi">True</span>)
+<span class="kw">class</span> <span class="cl">Point</span>:
+    x: float
+    y: float
+
+p = <span class="cl">Point</span>(<nm>1.0</nm>, <nm>2.0</nm>)
+seen = {p, <span class="cl">Point</span>(<nm>3.0</nm>, <nm>4.0</nm>)}   <span class="cm"># hashable → usable in set</span>
+<span class="bi">print</span>(p <span class="kw">in</span> seen)             <span class="cm"># True</span></code></pre>
+        </div>
+    
+        <section id="metaclasses" class="card">
+            <h4>9.0 METACLASSES — CLASSES THAT CREATE CLASSES</h4>
+            <h4>9.1 What Is a Metaclass?</h4>
+            <p>In Python, everything is an object — including classes themselves. A metaclass is the class of a class. Just as a regular class defines how its instances behave, a metaclass defines how classes behave. The default metaclass for all Python classes is <code>type</code>. When you write <code>class Foo: ...</code>, Python calls <code>type('Foo', bases, namespace)</code> to construct the class object.</p>
+            <p>You create a custom metaclass by inheriting from <code>type</code> and overriding <code>__new__</code> or <code>__init__</code>. You apply it with the <code>metaclass=</code> keyword: <code>class MyClass(metaclass=MyMeta):</code>. Metaclasses are powerful but rarely needed — decorators and class decorators solve most of the same problems more simply.</p>
+            <h4>9.2 Practical Uses of Metaclasses</h4>
+            <p>Common legitimate uses include: enforcing coding standards on all subclasses (e.g. requiring docstrings), auto-registering subclasses in a plugin system, adding methods or attributes to every class automatically, and building ORMs (like Django's models) where <code>class User(Model): name = CharField()</code> is transformed into a database-aware class by the metaclass.</p>
+            <div class="warning-box">
+                <p><strong>⚠️ Use Sparingly:</strong> Metaclasses make code significantly harder to understand. The Python community wisdom is: "if you're not sure whether you need a metaclass, you don't." Prefer class decorators, <code>__init_subclass__</code>, or descriptors for most customisation needs.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 9.1 — Metaclass for Auto-Registering Plugins</span>
+            </div>
+            <pre><code><span class="kw">class</span> <span class="cl">PluginMeta</span>(<span class="bi">type</span>):
+    <span class="str">"""Metaclass that auto-registers every subclass in a registry."""</span>
+    _registry: dict[str, type] = {}
+
+    <span class="kw">def</span> <span class="fn">__new__</span>(mcs, name: str, bases: tuple, namespace: dict, **kwargs):
+        cls = <span class="bi">super</span>().__new__(mcs, name, bases, namespace)
+        <span class="kw">if</span> bases:   <span class="cm"># skip registering the base class itself</span>
+            mcs._registry[name.lower()] = cls
+        <span class="kw">return</span> cls
+
+<span class="kw">class</span> <span class="cl">Plugin</span>(metaclass=<span class="cl">PluginMeta</span>):
+    <span class="str">"""Base class for all plugins."""</span>
+    <span class="kw">def</span> <span class="fn">run</span>(self) -> str:
+        <span class="kw">raise</span> <span class="bi">NotImplementedError</span>
+
+<span class="kw">class</span> <span class="cl">CSVPlugin</span>(<span class="cl">Plugin</span>):
+    <span class="kw">def</span> <span class="fn">run</span>(self) -> str: <span class="kw">return</span> <span class="str">"Processing CSV data…"</span>
+
+<span class="kw">class</span> <span class="cl">JSONPlugin</span>(<span class="cl">Plugin</span>):
+    <span class="kw">def</span> <span class="fn">run</span>(self) -> str: <span class="kw">return</span> <span class="str">"Processing JSON data…"</span>
+
+<span class="kw">class</span> <span class="cl">XMLPlugin</span>(<span class="cl">Plugin</span>):
+    <span class="kw">def</span> <span class="fn">run</span>(self) -> str: <span class="kw">return</span> <span class="str">"Processing XML data…"</span>
+
+<span class="cm"># The metaclass has automatically populated the registry</span>
+<span class="bi">print</span>(<span class="cl">PluginMeta</span>._registry)
+<span class="cm"># {'csvplugin': <class 'CSVPlugin'>, 'jsonplugin': ..., 'xmlplugin': ...}</span>
+
+<span class="cm"># Look up and invoke a plugin by name at runtime</span>
+<span class="kw">def</span> <span class="fn">run_plugin</span>(name: str) -> str:
+    plugin_cls = <span class="cl">PluginMeta</span>._registry.get(name.lower())
+    <span class="kw">if not</span> plugin_cls:
+        <span class="kw">raise</span> <span class="bi">ValueError</span>(<span class="str">f"Unknown plugin: {name}"</span>)
+    <span class="kw">return</span> plugin_cls().run()
+
+<span class="bi">print</span>(<span class="fn">run_plugin</span>(<span class="str">"JSONPlugin"</span>))   <span class="cm"># Processing JSON data…</span>
+<span class="bi">print</span>(<span class="fn">run_plugin</span>(<span class="str">"CSVPlugin"</span>))    <span class="cm"># Processing CSV data…</span></code></pre>
+        </div>
+      
+        <section id="patterns" class="card">
+            <h4>10.0 OOP DESIGN PATTERNS IN PYTHON</h4>
+            <p>Design patterns are proven, reusable solutions to commonly occurring software design problems. Python's first-class functions and dynamic nature often simplify classic patterns. Below are three fundamental patterns with Pythonic implementations.</p>
+            <h4>10.1 Singleton — Ensuring One Instance</h4>
+            <p>The Singleton pattern ensures only one instance of a class is ever created. In Python, the cleanest implementation overrides <code>__new__</code> — the object creation step that precedes <code>__init__</code>.</p>
+            <h4>10.2 Observer — Event-Driven Communication</h4>
+            <p>The Observer pattern defines a one-to-many dependency: when one object (the subject) changes state, all dependent objects (observers) are notified automatically. This decouples producers from consumers and is the foundation of event systems and UI frameworks.</p>
+            <h4>10.3 Decorator Pattern (not the @ syntax)</h4>
+            <p>The Decorator pattern wraps an object to extend its behaviour without subclassing. In Python this is especially natural because of duck typing — the wrapper just needs to implement the same interface as the wrapped object.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 10.1 — Observer Pattern for Event-Driven Systems</span>
+            </div>
+            <pre><code><span class="kw">from</span> __future__ <span class="kw">import</span> annotations
+<span class="kw">from</span> typing <span class="kw">import</span> Callable
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+
+<span class="kw">type</span> Handler = Callable[[str, object], <span class="bi">None</span>]
+
+<span class="kw">class</span> <span class="cl">EventEmitter</span>:
+    <span class="str">"""Subject in the Observer pattern — emits named events."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self) -> <span class="bi">None</span>:
+        self._listeners: dict[str, list[<span class="cl">Handler</span>]] = {}
+
+    <span class="kw">def</span> <span class="fn">on</span>(self, event: str, handler: <span class="cl">Handler</span>) -> <span class="bi">None</span>:
+        self._listeners.setdefault(event, []).append(handler)
+
+    <span class="kw">def</span> <span class="fn">off</span>(self, event: str, handler: <span class="cl">Handler</span>) -> <span class="bi">None</span>:
+        self._listeners.get(event, []).remove(handler)
+
+    <span class="kw">def</span> <span class="fn">emit</span>(self, event: str, data: object = <span class="bi">None</span>) -> <span class="bi">None</span>:
+        <span class="kw">for</span> handler <span class="kw">in</span> self._listeners.get(event, []):
+            handler(event, data)
+
+<span class="kw">class</span> <span class="cl">StockMarket</span>(<span class="cl">EventEmitter</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self) -> <span class="bi">None</span>:
+        <span class="bi">super</span>().__init__()
+        self._prices: dict[str, float] = {}
+
+    <span class="kw">def</span> <span class="fn">update_price</span>(self, ticker: str, price: float) -> <span class="bi">None</span>:
+        old = self._prices.get(ticker)
+        self._prices[ticker] = price
+        <span class="kw">if</span> old <span class="kw">is not None</span>:
+            change = ((price - old) / old) * <nm>100</nm>
+            <span class="kw">if</span> <span class="bi">abs</span>(change) >= <nm>5</nm>:
+                self.emit(<span class="str">"price_alert"</span>, {<span class="str">"ticker"</span>: ticker, <span class="str">"change"</span>: change, <span class="str">"price"</span>: price})
+        self.emit(<span class="str">"price_update"</span>, {<span class="str">"ticker"</span>: ticker, <span class="str">"price"</span>: price})
+
+<span class="cm"># Observer functions (could also be methods)</span>
+<span class="kw">def</span> <span class="fn">log_all_updates</span>(event: str, data: object) -> <span class="bi">None</span>:
+    <span class="bi">print</span>(<span class="str">f"[LOG] {event}: {data}"</span>)
+
+<span class="kw">def</span> <span class="fn">alert_on_spike</span>(event: str, data: object) -> <span class="bi">None</span>:
+    <span class="bi">print</span>(<span class="str">f"🚨 ALERT — {data['ticker']} moved {data['change']:+.1f}% to ${data['price']}"</span>)
+
+market = <span class="cl">StockMarket</span>()
+market.on(<span class="str">"price_update"</span>, log_all_updates)
+market.on(<span class="str">"price_alert"</span>,  alert_on_spike)
+
+market.update_price(<span class="str">"AAPL"</span>, <nm>150.00</nm>)
+market.update_price(<span class="str">"AAPL"</span>, <nm>162.50</nm>)   <span class="cm"># +8.3% — triggers alert</span>
+market.update_price(<span class="str">"GOOG"</span>, <nm>2800.00</nm>)
+market.update_price(<span class="str">"GOOG"</span>, <nm>2812.00</nm>)   <span class="cm"># +0.4% — no alert</span></code></pre>
+        </div>
+      
+        <section id="mistakes" class="card">
+            <h4>11.0 COMMON PITFALLS AND HOW TO AVOID THEM</h4>
+            <table class="pitfalls-table">
+                <colgroup><col style="width:22%"><col style="width:42%"><col style="width:36%"></colgroup>
+                <thead><tr><th>Mistake</th><th>Problem Description</th><th>Correct Approach</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Mistake"><strong>Mutable Class Attributes</strong></td>
+                        <td data-label="Problem">Using a mutable object (list, dict) as a class attribute means all instances share the same object. Appending to it from one instance mutates it for every instance.</td>
+                        <td data-label="Fix">Assign mutable defaults inside <code>__init__</code>: <code>self.items = []</code>. Use <code>field(default_factory=list)</code> in dataclasses.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Forgetting super() in __init__</strong></td>
+                        <td data-label="Problem">Overriding <code>__init__</code> without calling <code>super().__init__()</code> leaves parent-class attributes uninitialised, causing AttributeErrors or silently broken behaviour.</td>
+                        <td data-label="Fix">Always call <code>super().__init__(...)</code> as the first line of the child's <code>__init__</code>, passing the required arguments.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Name Mangling Confusion</strong></td>
+                        <td data-label="Problem">Attributes with double leading underscores (e.g. <code>__secret</code>) are name-mangled to <code>_ClassName__secret</code>. Accessing them from outside (or a subclass) without the mangled name raises AttributeError.</td>
+                        <td data-label="Fix">Use single underscore <code>_attr</code> for "private by convention". Reserve double underscores for deliberate name-mangling to avoid subclass collisions.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Implementing __eq__ Without __hash__</strong></td>
+                        <td data-label="Problem">Defining <code>__eq__</code> automatically sets <code>__hash__</code> to <code>None</code>, making instances unhashable and unusable as dict keys or set members.</td>
+                        <td data-label="Fix">Define <code>__hash__</code> alongside <code>__eq__</code>, or use <code>@dataclass(frozen=True)</code> which auto-generates a consistent hash.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Using isinstance() on Old-Style Checks</strong></td>
+                        <td data-label="Problem">Checking <code>type(obj) == MyClass</code> excludes subclasses, breaking polymorphism. It prevents duck typing and makes code fragile.</td>
+                        <td data-label="Fix">Use <code>isinstance(obj, MyClass)</code> — it returns True for instances of MyClass and all its subclasses, respecting the inheritance hierarchy.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Mistake"><strong>Deep Inheritance Hierarchies</strong></td>
+                        <td data-label="Problem">Chains of 4+ classes make code hard to understand, debug, and extend. The MRO becomes complex and overriding methods becomes error-prone.</td>
+                        <td data-label="Fix">Prefer composition over inheritance. Use mixins for shared behaviour. Follow the rule: inherit for "is-a" relationships, compose for "has-a".</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="quiz" class="card">
+            <h4>12.0 KNOWLEDGE CHECK: PYTHON CLASSES QUIZ</h4>
+            <div class="quiz-item">
+                <div class="quiz-question">1. What is the difference between a class attribute and an instance attribute?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">A class attribute is defined at the class level and shared across all instances — changing it on the class changes it everywhere. An instance attribute is defined in <code>__init__</code> on <code>self</code> and belongs to one specific object. If you assign a class attribute on an instance, it creates a new instance attribute that shadows the class attribute for that instance only.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">2. What does <code>super().__init__()</code> do, and why must you call it in a subclass?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation"><code>super()</code> returns a proxy that delegates to the next class in the MRO. Calling <code>super().__init__()</code> runs the parent's constructor, ensuring inherited attributes are properly set up. Without it, the subclass object is missing attributes defined by the parent, causing AttributeErrors or silent bugs.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">3. Why does defining <code>__eq__</code> break hashing, and how do you fix it?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Python requires that objects that compare equal have the same hash. When you define <code>__eq__</code>, Python cannot guarantee this is true for the default hash, so it sets <code>__hash__ = None</code>, making the object unhashable. Fix by also defining <code>__hash__</code> based on the same fields used in <code>__eq__</code>, or use <code>@dataclass(frozen=True)</code> which handles both automatically.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">4. When would you choose composition over inheritance?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">Use inheritance for genuine "is-a" relationships where the subclass really is a specialised version of the parent. Use composition (holding a reference to another object) for "has-a" relationships. Composition is preferred when: you want to reuse behaviour without the tight coupling of inheritance, you need to switch implementations at runtime, or the inheritance hierarchy is becoming deep and hard to follow.</div>
+            </div>
+            <div class="quiz-item">
+                <div class="quiz-question">5. What is Python's MRO and how is it determined?</div>
+                <div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div>
+                <div class="quiz-explanation">The Method Resolution Order (MRO) defines the sequence Python follows when searching for a method or attribute in an inheritance hierarchy. It is computed using the C3 linearization algorithm, which guarantees a consistent, deterministic order that respects the local precedence of each class and prevents the "diamond problem". Inspect it with <code>ClassName.__mro__</code> or <code>ClassName.mro()</code>.</div>
+            </div>
+        </section>
+        
+        <section class="comment-section" aria-label="Comments section">
+            <div class="comment-header">
+                <div class="comment-title"><i class="fas fa-comments"></i> Discussion &amp; Questions <span class="comment-count" id="commentCount">0</span></div>
+            </div>
+            <div class="comment-form">
+                <textarea id="commentContent" placeholder="Share your thoughts, questions, or insights about Python classes..." aria-label="Comment text"></textarea>
+                <div class="comment-form-row">
+                    <input type="text"  id="commentAuthor" placeholder="Your name *" required>
+                    <input type="email" id="commentEmail"  placeholder="Your email (optional, for replies)">
+                    <button class="comment-submit" onclick="submitComment()"><i class="fas fa-paper-plane"></i> Post Comment</button>
+                </div>
+            </div>
+            <div class="comments-list" id="commentsList">
+                <div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first to share your thoughts!</div>
+            </div>
+        </section>
+
+        <div class="social-share-section" aria-label="Social sharing buttons">
+            <div class="social-share-label"><i class="fas fa-share-alt"></i> Share this guide</div>
+            <div class="social-share-buttons">
+                <a href="#" class="social-btn facebook" onclick="shareOnFacebook(); return false;"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="social-btn twitter"  onclick="shareOnTwitter();  return false;"><i class="fab fa-x-twitter"></i> X</a>
+                <a href="#" class="social-btn linkedin" onclick="shareOnLinkedIn(); return false;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                <a href="#" class="social-btn whatsapp" onclick="shareOnWhatsApp(); return false;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#" class="social-btn telegram" onclick="shareOnTelegram(); return false;"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            </div>
+        </div>
+
+        <div class="subscription-section" aria-label="Email subscription">
+            <div class="subscription-title"><i class="fas fa-envelope-open-text"></i> Stay Updated with Python</div>
+            <div class="subscription-subtitle">Get the latest Python tutorials, advanced patterns, and educational resources delivered to your inbox.</div>
+            <div class="subscription-form">
+                <div class="form-group"><input type="text"  id="subscriberName"  placeholder="Your name (optional)"></div>
+                <div class="form-group"><input type="email" id="subscriberEmail" placeholder="Your email address *" required></div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="privacyConsent">
+                    <label for="privacyConsent">I agree to receive emails and accept the privacy policy.</label>
+                </div>
+                <button class="subscribe-btn" id="subscribeBtn" onclick="handleSubscription()"><i class="fas fa-bell"></i> Subscribe to Updates</button>
+                <div class="subscription-message" id="subscriptionMessage" role="alert"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="return-home-wrap"><a href="index.html" class="return-home-btn"><i class="fas fa-house"></i> Return to Home</a></div>
+    
+    <footer class="footer" role="contentinfo">
+        <div class="footer-layer-1">
+            <div class="footer-l1-inner">
+                <div class="footer-l1-heading">📘 POETIC BYTES — Learning Hub</div>
+                <p class="footer-l1-sub">Everything you need to master Python classes — cheat sheets, exercises, references, and tools.</p>
+                <div class="footer-l1-grid" style="display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+                    <div class="f1-col" style="width:100%; max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-file-alt"></i> Cheat Sheets</div>
+                        <ul>
+                            <li><a href="#basics"><i class="fas fa-chevron-right"></i> Class Basics</a></li>
+                            <li><a href="#inheritance"><i class="fas fa-chevron-right"></i> Inheritance &amp; MRO</a></li>
+                            <li><a href="#magic-methods"><i class="fas fa-chevron-right"></i> Magic Methods</a></li>
+                            <li><a href="#properties"><i class="fas fa-chevron-right"></i> Properties</a></li>
+                            <li><a href="#class-static"><i class="fas fa-chevron-right"></i> Class &amp; Static Methods</a></li>
+                        </ul>
+                    </div>
+                    <div class="f1-col" style="width:100%; max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-dumbbell"></i> Exercises</div>
+                        <ul>
+                            <li><a href="#quiz"><i class="fas fa-chevron-right"></i> Knowledge Quiz</a></li>
+                            <li><a href="#abstract"><i class="fas fa-chevron-right"></i> Abstract Class Exercises</a></li>
+                            <li><a href="#dataclasses"><i class="fas fa-chevron-right"></i> Dataclass Practice</a></li>
+                            <li><a href="#patterns"><i class="fas fa-chevron-right"></i> Design Pattern Challenges</a></li>
+                            <li><a href="#mistakes"><i class="fas fa-chevron-right"></i> Pitfall Drills</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-layer-2">
+            <div class="footer-l2-main">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">📘 POETIC BYTES</div>
+                    <p class="footer-tagline">University-level Python education — clear, rigorous, and practical. From fundamentals to advanced patterns, every concept explained with depth and precision.</p>
+                    <div class="footer-brand-badges">
+                        <span class="f-badge"><i class="fab fa-python"></i> Python 3.12+</span>
+                        <span class="f-badge"><i class="fas fa-graduation-cap"></i> University Level</span>
+                        <span class="f-badge"><i class="fas fa-book-open"></i> 35+ Examples</span>
+                        <span class="f-badge"><i class="fas fa-clock"></i> 45 min read</span>
+                    </div>
+                </div>
+                <div class="footer-l2-cols-right">
+                    <div class="footer-l2-col">
+                        <div class="footer-l2-col-title">Quick Links</div>
+                        <ul>
+                            <li><a href="#introduction"><i class="fas fa-chevron-right"></i> Introduction</a></li>
+                            <li><a href="#basics"><i class="fas fa-chevron-right"></i> Class Basics</a></li>
+                            <li><a href="#inheritance"><i class="fas fa-chevron-right"></i> Inheritance</a></li>
+                            <li><a href="#magic-methods"><i class="fas fa-chevron-right"></i> Magic Methods</a></li>
+                            <li><a href="#dataclasses"><i class="fas fa-chevron-right"></i> Dataclasses</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-l2-col">
+                        <div class="footer-l2-col-title">External Resources</div>
+                        <ul>
+                            <li><a href="https://docs.python.org/3.12/tutorial/classes.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Python 3.12 Classes</a></li>
+                            <li><a href="https://peps.python.org/pep-0557/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> PEP 557 – Dataclasses</a></li>
+                            <li><a href="https://docs.python.org/3.12/library/abc.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> abc Module Docs</a></li>
+                            <li><a href="https://realpython.com/python3-object-oriented-programming/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Real Python OOP</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-l2-divider">
+            <div class="footer-l2-bottom">
+                <div class="footer-l2-copyright">© 2026 <strong>POETIC BYTES</strong> — Glenn Junsay Pansensoy · Educational Division · All rights reserved.</div>
+                <div class="footer-l2-legal-links">
+                    <a href="#">Privacy Policy</a><span class="dot"></span>
+                    <a href="#">Terms of Service</a><span class="dot"></span>
+                    <a href="#">Cookie Policy</a><span class="dot"></span>
+                    <a href="#">Disclaimer</a><span class="dot"></span>
+                    <a href="#">About</a><span class="dot"></span>
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="footer-l2-python"><i class="fab fa-python"></i> Python 3.12+ · 2026 Edition</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var progressBar = document.getElementById('progressBar');
+        var backToTop   = document.getElementById('backToTop');
+        window.addEventListener('scroll', function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled  = height > 0 ? (winScroll / height) * 100 : 0;
+            progressBar.style.width = scrolled + '%';
+            if (winScroll > 300) backToTop.classList.add('visible'); else backToTop.classList.remove('visible');
+        });
+        backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        var hamburgerBtn = document.getElementById('hamburgerBtn');
+        var mobileMenu   = document.getElementById('mobileMenu');
+        var menuOverlay  = document.getElementById('menuOverlay');
+        function openMenu()  { hamburgerBtn.classList.add('active'); mobileMenu.classList.add('open'); menuOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; hamburgerBtn.setAttribute('aria-expanded', 'true'); }
+        function closeMenu() { hamburgerBtn.classList.remove('active'); mobileMenu.classList.remove('open'); menuOverlay.classList.remove('open'); document.body.style.overflow = ''; hamburgerBtn.setAttribute('aria-expanded', 'false'); }
+        hamburgerBtn.addEventListener('click', function () { if (mobileMenu.classList.contains('open')) closeMenu(); else openMenu(); });
+        menuOverlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+        var menuLinks = document.querySelectorAll('.menu-link');
+        menuLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                var targetId = this.getAttribute('href');
+                var target   = document.querySelector(targetId);
+                if (target) { e.preventDefault(); closeMenu(); setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 300); }
+            });
+        });
+
+        document.querySelectorAll('.nav-links a, .f1-col a[href^="#"], .footer-l2-col a[href^="#"], .footer-l2-legal-links a[href^="#"]').forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                var href = this.getAttribute('href');
+                if (href && href.startsWith('#') && href.length > 1) {
+                    var target = document.querySelector(href);
+                    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                }
+            });
+        });
+
+        const pageTitle = encodeURIComponent("Python Classes: Complete Educational Guide 2026");
+        const pageUrl   = encodeURIComponent("https://poeticbytes.com/python-classes-guide");
+        function shareOnFacebook() { window.open('https://www.facebook.com/sharer/sharer.php?u=' + pageUrl, 'facebook-share', 'width=580,height=296'); }
+        function shareOnTwitter()  { window.open('https://twitter.com/intent/tweet?text=' + pageTitle + '&url=' + pageUrl, 'twitter-share', 'width=550,height=235'); }
+        function shareOnLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + pageUrl, 'linkedin-share', 'width=550,height=400'); }
+        function shareOnWhatsApp() { window.open('https://wa.me/?text=' + pageTitle + '%20' + pageUrl, 'whatsapp-share', 'width=500,height=400'); }
+        function shareOnTelegram() { window.open('https://t.me/share/url?url=' + pageUrl + '&text=' + pageTitle, 'telegram-share', 'width=500,height=400'); }
+
+        const API_BASE_URL = 'http://localhost:5000/api';
+        async function handleSubscription() {
+            const name    = document.getElementById('subscriberName').value.trim();
+            const email   = document.getElementById('subscriberEmail').value.trim();
+            const consent = document.getElementById('privacyConsent').checked;
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            if (!email) { showSubscriptionMessage('Please enter your email address.', 'error'); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showSubscriptionMessage('Please enter a valid email address.', 'error'); return; }
+            if (!consent) { showSubscriptionMessage('Please agree to the privacy policy.', 'error'); return; }
+            subscribeBtn.disabled = true; subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            try {
+                const response = await fetch(API_BASE_URL + '/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email }) });
+                const data = await response.json();
+                if (response.ok) { showSubscriptionMessage(data.message || 'Subscription successful! Check your email.', 'success'); document.getElementById('subscriberName').value = ''; document.getElementById('subscriberEmail').value = ''; document.getElementById('privacyConsent').checked = false; }
+                else { showSubscriptionMessage(data.error || 'Subscription failed. Please try again.', 'error'); }
+            } catch (error) { showSubscriptionMessage('Network error. Please check your connection.', 'error'); }
+            finally { subscribeBtn.disabled = false; subscribeBtn.innerHTML = '<i class="fas fa-bell"></i> Subscribe to Updates'; }
+        }
+        function showSubscriptionMessage(message, type) {
+            const el = document.getElementById('subscriptionMessage');
+            el.textContent = message; el.className = 'subscription-message ' + type;
+            setTimeout(() => { el.style.display = 'none'; }, 5000);
+        }
+
+        async function loadComments() {
+            try {
+                const response = await fetch(API_BASE_URL + '/comments');
+                const data = await response.json();
+                if (response.ok) { displayComments(data.comments); updateCommentCount(data.comments.length); }
+            } catch (error) { console.error('Error loading comments:', error); }
+        }
+        function displayComments(comments) {
+            const list = document.getElementById('commentsList');
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first to share your thoughts!</div>'; return; }
+            list.innerHTML = comments.map(c =>
+                '<div class="comment-item" id="comment-' + c.id + '">'
+                + '<div class="comment-meta"><span class="comment-author"><i class="fas fa-user-circle"></i> ' + escapeHtml(c.author) + '</span>'
+                + '<span class="comment-date"><i class="far fa-clock"></i> ' + c.date + '</span></div>'
+                + '<div class="comment-content">' + escapeHtml(c.content).replace(/\n/g, '<br>') + '</div></div>'
+            ).join('');
+        }
+        function updateCommentCount(count) { document.getElementById('commentCount').textContent = count; }
+        async function submitComment() {
+            const author  = document.getElementById('commentAuthor').value.trim();
+            const email   = document.getElementById('commentEmail').value.trim();
+            const content = document.getElementById('commentContent').value.trim();
+            const submitBtn = document.querySelector('.comment-submit');
+            if (!author)  { alert('Please enter your name.'); return; }
+            if (!content) { alert('Please enter your comment.'); return; }
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address or leave it blank.'); return; }
+            submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            try {
+                const response = await fetch(API_BASE_URL + '/comments', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ author, email, content }) });
+                const data = await response.json();
+                if (response.ok) { document.getElementById('commentContent').value = ''; document.getElementById('commentAuthor').value = ''; document.getElementById('commentEmail').value = ''; await loadComments(); alert('Comment posted successfully! It will appear after moderation.'); }
+                else { alert(data.error || 'Failed to post comment. Please try again.'); }
+            } catch (error) { alert('Network error. Please check your connection.'); }
+            finally { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Post Comment'; }
+        }
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+        }
+        document.addEventListener('DOMContentLoaded', loadComments);
+        document.getElementById('commentContent').addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitComment(); } });
+    </script>
+</body>
+</html>
