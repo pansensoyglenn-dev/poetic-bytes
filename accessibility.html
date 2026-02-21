@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Accessible Python tutorials – inclusive teaching, screen‑reader friendly code, and cognitive accessibility.">
+    <title>Accessible Python · Tutorial & Guide</title>
+    <style>
+        /* ----- same deep space palette, identical structure, only content evolves ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0.75rem;
+            background: #0B121C;        /* deep space blue */
+            color: #E2E8F0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        article {
+            max-width: 780px;
+            width: 100%;
+            background: #0F1C2A;          /* unified dark card */
+            padding: 1.25rem 1.25rem;
+            border-radius: 24px;
+            box-shadow: 0 15px 30px -8px rgba(0,0,0,0.9), 0 0 0 1px #2C4F6E;
+            border: 1px solid #1F405C;
+            transition: padding 0.2s ease, margin 0.2s ease;
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
+            color: #5FA7D3;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 0.75rem;
+            text-shadow: 0 0 6px rgba(75,139,190,0.5);
+            word-break: break-word;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            font-weight: 650;
+            margin: 1.75rem 0 0.5rem;
+            color: #78B9E6;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 1px dashed #306998;
+            padding-bottom: 0.25rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin: 0 0 0.9rem 0;
+            color: #CBD5E1;
+        }
+
+        .meta {
+            font-size: 0.6rem;
+            color: #9AB8D9;
+            margin: 0.5rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .footer {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #1F4060;
+            color: #A0BEDB;
+        }
+
+        .footer p {
+            font-size: 0.6rem;
+            margin: 0.2rem 0;
+            color: #B8D4E9;
+        }
+
+        code {
+            background: #122B3A;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.73rem;
+            color: #D4E6F1;
+            border: 1px solid #2E5A77;
+            word-break: break-word;
+        }
+
+        pre {
+            background: #0A1A24;
+            border-left: 5px solid #4B8BBE;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.2rem 0;
+            box-shadow: 0 0 0 1px #2D4B6C, inset 0 0 8px rgba(0,0,0,0.7);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.73rem;
+            color: #E1EFF7;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        .rem-badge {
+            font-size: 0.6rem;
+            background: #0F2632;
+            color: #BCDFF5;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            box-shadow: 0 0 12px rgba(75,139,190,0.2);
+            margin: 0.6rem 0 0.2rem;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: #C9DCEB;
+        }
+
+        a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #2C5F7A;
+            word-break: break-word;
+        }
+
+        ::selection {
+            background: #1F4C6B;
+            color: #F0F9FF;
+        }
+
+        @media (min-width: 480px) {
+            body { margin: 1rem; }
+            article { padding: 1.5rem 1.8rem; }
+        }
+        @media (min-width: 640px) {
+            body { margin: 1.5rem; }
+            article { padding: 2rem 2.2rem; }
+            h1 { letter-spacing: 3px; }
+        }
+        @media (min-width: 900px) {
+            body { margin: 2rem auto; }
+            article { padding: 2rem 2.5rem; }
+        }
+        @media (max-width: 400px) {
+            .meta {
+                gap: 0.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            pre { padding: 0.7rem 0.8rem; }
+        }
+
+        pre::-webkit-scrollbar {
+            height: 6px;
+            background: #0f1e28;
+        }
+        pre::-webkit-scrollbar-thumb {
+            background: #306998;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>🐍 ACCESSIBLE PYTHON · TUTORIALS FOR EVERYONE</h1>
+            <div class="meta">
+                <span>📅 FEB 13, 2026</span>
+                <span>⏱️ 10 MIN READ</span>
+                <span>👤 GLENN JUNSAY PANSENSOY</span>
+                <span>🏷️ PYTHON · A11Y · INCLUSIVE LEARNING</span>
+            </div>
+        </header>
+
+        <section>
+            <p style="font-size:0.8rem; color:#B0D4F0;">Python is known for readability — but is your tutorial accessible to developers with disabilities? From screen‑reader friendly examples to cognitive load reduction, this guide shows you how.</p>
+        </section>
+
+        <h2>✦ 1. SCREEN READER & CODE</h2>
+        <p><strong>Semantic markup matters</strong>. Use <code>&lt;pre&gt;</code> with accessible labels, avoid ASCII art, and provide text alternatives. Jupyter notebooks can be made navigable via headings and alt text for plots.</p>
+        <pre><code>
+if __name__ == "__main__":
+    print("obscure")
+
+if __name__ == "__main__":   
+    print("clear")</code></pre>
+        <span class="rem-badge">🗣️ NVDA & VoiceOver read punctuation – keep syntax minimal where possible.</span>
+
+        <h2>✦ 2. COLOUR & CONTRAST IN TUTORIALS</h2>
+        <p>Never rely solely on colour. Use patterns and labels. Python Tutor (pythontutor.com) visualises execution – ensure diagrams have sufficient contrast (min 4.5:1).</p>
+        <pre><code>
+pending_tasks = []
+completed_tasks = []</code></pre>
+
+        <h2>✦ 3. COGNITIVE ACCESSIBILITY</h2>
+        <p>Keep examples short, comments simple, and avoid deeply nested constructs. Break down complex comprehensions.</p>
+        <pre><code>#  Hard for working memory:
+matrix = [[1,2,3], [4,5,6], [7,8,9]]
+flat = [num for row in matrix for num in row if num % 2]
+
+matrix = [[1,2,3], [4,5,6], [7,8,9]]
+all_numbers = []
+for row in matrix:
+    for num in row:
+        if num % 2:          
+            all_numbers.append(num)</code></pre>
+
+        <h2>✦ 4. ASSISTIVE TECHNOLOGY + PYTHON ENV</h2>
+        <p>Many blind developers use terminal‑based tools. Structure REPL output with clear delimiters. Use <code>emacspeak</code> or accessible IDEs like VS Code with screen readers.</p>
+        <pre><code>
+print("="*40)
+print("RESULTS")
+print("="*40)
+for i, item in enumerate(data, 1):
+    print(f"{i}. {item}")   
+print("-"*40)</code></pre>
+
+        <h2>✦ 5. WRITING ACCESSIBLE DOCS (Sphinx, MkDocs)</h2>
+        <p>Use proper heading hierarchy (h1 → h2 → h3) in docstrings. Alt text for autogenerated plots (matplotlib: <code>plt.figtext()</code> can describe).</p>
+        <pre><code>
+def calculate_mean(numbers):
+    if not numbers:
+        return None
+    return sum(numbers) / len(numbers)</code></pre>
+
+        <h2>✦ 6. KEYBOARD‑ONLY NOTEBOOKS</h2>
+        <p>Jupyter can be used without a mouse: shift+enter to run, esc to command mode. Teach these shortcuts early. Avoid drag‑drop exercises.</p>
+        <span class="rem-badge">⌨️ 2026: JupyterLab improved screen‑reader tree navigation.</span>
+
+        <h2>✦ 7. AUDIO & VIDEO TUTORIALS</h2>
+        <p>Provide transcripts, captions, and clear audio description. For coding videos, describe what you type: <em>“Now I’ll import pandas as pd, then read the CSV…”</em></p>
+        <pre><code>
+
+</code></pre>
+
+        <h2>✦ BONUS: ACCESSIBLE PYTHON PACKAGES</h2>
+        <ul>
+            <li><strong>emacspeak</strong> – audio desktop for blind programmers.</li>
+            <li><strong>accessible-pygments</strong> – high‑contrast syntax themes.</li>
+            <li><strong>matplotlib</strong> – use `plt.style.use('dark_background')` and include textual summaries via `ax.set_title` + `ax.text` for complex charts.</li>
+            <li><strong>Jupyter a11y</strong> – nbextensions like "accessibility" (cell structure).</li>
+            <li><strong>talking-python</strong> – screen‑reader friendly REPL (prototype).</li>
+        </ul>
+
+        <h2>✦ WHY ACCESSIBLE TUTORIALS?</h2>
+        <p>Over 15% of the world's population lives with some form of disability. Inclusive Python teaching means more diverse perspectives, better code, and a stronger community. As Guido said: “Code is read much more often than it is written.” Make it readable by all.</p>
+
+        <div style="margin-top: 1.8rem; border-top: 1px dashed #1F4060; padding-top: 1rem;">
+            <p style="font-size: 0.6rem; color: #9CC0D9; text-align: center;">📘 READABLE PYTHON IS ACCESSIBLE PYTHON – SINCE PEP 8</p>
+        </div>
+
+        <span class="rem-badge" style="margin-top:0.2rem;">📐 Created By: Glenn Junsay Pansensoy</span>
+
+        <footer class="footer">
+            <p>© 2026 ACCESSIBLE PYTHON · TUTORIALS WITHOUT BARRIERS</p>
+            <p style="font-style: italic; color: #B0D4F0;">“The beauty of Python is its readability — for humans, all humans.”</p>
+            <p>🐍 · ♿ · ⚙️ · 🌈</p>
+        </footer>
+    </article>
+</body>
+</html>
