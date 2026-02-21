@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Sitemap – complete guide to all pages and topics on Code Through Time.">
+    <title>Sitemap · Code Through Time</title>
+    <style>
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0.75rem;
+            background: #0B121C;
+            color: #E2E8F0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        article {
+            max-width: 780px;
+            width: 100%;
+            background: #0F1C2A;
+            padding: 1.25rem 1.25rem;
+            border-radius: 24px;
+            box-shadow: 0 15px 30px -8px rgba(0,0,0,0.9), 0 0 0 1px #2C4F6E;
+            border: 1px solid #1F405C;
+            transition: padding 0.2s ease, margin 0.2s ease;
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
+            color: #5FA7D3;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 0.75rem;
+            text-shadow: 0 0 6px rgba(75,139,190,0.5);
+            word-break: break-word;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            font-weight: 650;
+            margin: 1.75rem 0 0.5rem;
+            color: #78B9E6;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 1px dashed #306998;
+            padding-bottom: 0.25rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin: 0 0 0.9rem 0;
+            color: #CBD5E1;
+        }
+
+        .meta {
+            font-size: 0.6rem;
+            color: #9AB8D9;
+            margin: 0.5rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            border-bottom: 1px solid #1F4060;
+            padding-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .footer {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #1F4060;
+            color: #A0BEDB;
+        }
+
+        .footer p {
+            font-size: 0.6rem;
+            margin: 0.2rem 0;
+            color: #B8D4E9;
+        }
+
+        code {
+            background: #122B3A;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.73rem;
+            color: #D4E6F1;
+            border: 1px solid #2E5A77;
+            word-break: break-word;
+        }
+
+        pre {
+            background: #0A1A24;
+            border-left: 5px solid #4B8BBE;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.2rem 0;
+            box-shadow: 0 0 0 1px #2D4B6C, inset 0 0 8px rgba(0,0,0,0.7);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.73rem;
+            color: #E1EFF7;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        .rem-badge {
+            font-size: 0.6rem;
+            background: #0F2632;
+            color: #BCDFF5;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #4B8BBE;
+            box-shadow: 0 0 12px rgba(75,139,190,0.2);
+            margin: 0.6rem 0 0.2rem;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        
+        ul, ol {
+            padding-left: 1.2rem;
+        }
+        li {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: #C9DCEB;
+        }
+
+      
+        ul ul, ul ol {
+            margin-top: 0.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .sitemap-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .sitemap-section li {
+            line-height: 1.7;
+        }
+
+        .sitemap-icon {
+            display: inline-block;
+            width: 1.2rem;
+            text-align: center;
+            margin-right: 0.2rem;
+            opacity: 0.9;
+        }
+
+        a {
+            color: #78B9E6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #2C5F7A;
+            word-break: break-word;
+            transition: color 0.15s ease;
+        }
+
+        a:hover {
+            color: #A3D0F0;
+            text-decoration-color: #5FA7D3;
+        }
+
+        ::selection {
+            background: #1F4C6B;
+            color: #F0F9FF;
+        }
+
+        @media (min-width: 480px) {
+            body { margin: 1rem; }
+            article { padding: 1.5rem 1.8rem; }
+        }
+        @media (min-width: 640px) {
+            body { margin: 1.5rem; }
+            article { padding: 2rem 2.2rem; }
+            h1 { letter-spacing: 3px; }
+        }
+        @media (min-width: 900px) {
+            body { margin: 2rem auto; }
+            article { padding: 2rem 2.5rem; }
+        }
+        @media (max-width: 400px) {
+            .meta {
+                gap: 0.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>🗺️ SITEMAP · CODE THROUGH TIME</h1>
+            <div class="meta">
+                <span>📅 FEB 13, 2026</span>
+                <span>⏱️ 2 MIN NAVIGATION</span>
+                <span>👤 GLENN JUNSAY PANSENSOY</span>
+                <span>🏷️ INDEX · ARCHIVE · SECTIONS</span>
+            </div>
+        </header>
+
+        <section>
+            <p style="font-size:0.8rem; color:#B0D4F0;">Everything published under the Code Through Time umbrella. Browse by topic, format, or era — all pages share the same deep‑space design and commitment to clarity.</p>
+        </section>
+
+        <h2>✦ 📄 CORE PAGES (ESSAYS & TIMELINES)</h2>
+        <div class="sitemap-section">
+            <ul>
+                <li><span class="sitemap-icon">⚙️</span> <a href="#">History of Programming · 1843 → 2026</a> – main timeline (Ada to AI)</li>
+                <li><span class="sitemap-icon">♿</span> <a href="#">Accessibility · Timeline → 2026</a> – Assistive tech, inclusive milestones</li>
+                <li><span class="sitemap-icon">🐍</span> <a href="#">Accessible Python · Tutorials for Everyone</a> – screen‑reader friendly code, cognitive load</li>
+                <li><span class="sitemap-icon">🗺️</span> <a href="#">Sitemap · Code Through Time</a> – you are here</li>
+            </ul>
+        </div>
+
+        <h2>✦ 📚 LANGUAGE DEEP DIVES</h2>
+        <div class="sitemap-section">
+            <ul>
+                <li><span class="sitemap-icon">🟦</span> <strong>Fortran</strong> – scientific computing roots (1957)</li>
+                <li><span class="sitemap-icon">🌀</span> <strong>Lisp</strong> – recursion and symbolic AI (1958)</li>
+                <li><span class="sitemap-icon">🔵</span> <strong>C</strong> – systems programming bible (1972)</li>
+                <li><span class="sitemap-icon">🧬</span> <strong>C++</strong> – object‑oriented performance (1983)</li>
+                <li><span class="sitemap-icon">☕</span> <strong>Java</strong> – JVM and bytecode (1995)</li>
+                <li><span class="sitemap-icon">📜</span> <strong>JavaScript</strong> – the language of the web (1995)</li>
+                <li><span class="sitemap-icon">🐍</span> <strong>Python</strong> – readability and AI dominance (1991)</li>
+                <li><span class="sitemap-icon">🦀</span> <strong>Rust</strong> – memory safety without GC (2010)</li>
+                <li><span class="sitemap-icon">🔷</span> <strong>Go</strong> – simple concurrency (2009)</li>
+                <li><span class="sitemap-icon">⚡</span> <strong>Mojo</strong> – Python + ML hardware (2020s)</li>
+            </ul>
+        </div>
+
+        <h2>✦ 👤 PIONEERS & INTERVIEWS</h2>
+        <div class="sitemap-section">
+            <ul>
+                <li><span class="sitemap-icon">📇</span> Ada Lovelace – first programmer (1815–1852)</li>
+                <li><span class="sitemap-icon">⚓</span> Grace Hopper – compiler pioneer (1906–1992)</li>
+                <li><span class="sitemap-icon">🔧</span> Dennis Ritchie – C & UNIX (1941–2011)</li>
+                <li><span class="sitemap-icon">🧪</span> Guido van Rossum – Python's benevolent dictator</li>
+                <li><span class="sitemap-icon">🌐</span> Tim Berners‑Lee – world wide web</li>
+                <li><span class="sitemap-icon">🎙️</span> Brendan Eich – JavaScript in 10 days</li>
+                <li><span class="sitemap-icon">🛡️</span> Graydon Hoare – Rust creator</li>
+            </ul>
+        </div>
+
+        <h2>✦ ⚙️ ACCESSIBILITY & INCLUSION</h2>
+        <div class="sitemap-section">
+            <ul>
+                <li><span class="sitemap-icon">♿</span> <a href="#">Accessibility timeline</a> (main)</li>
+                <li><span class="sitemap-icon">🐍</span> <a href="#">Accessible Python tutorial</a> (dedicated guide)</li>
+                <li><span class="sitemap-icon">📖</span> WCAG 2.1 / 2.2 at a glance</li>
+                <li><span class="sitemap-icon">🖥️</span> Screen reader testing with NVDA / VoiceOver</li>
+                <li><span class="sitemap-icon">🎨</span> Colour contrast checklist</li>
+                <li><span class="sitemap-icon">🧠</span> Cognitive accessibility – plain language, structure</li>
+                <li><span class="sitemap-icon">⌨️</span> Keyboard‑only navigation patterns</li>
+            </ul>
+        </div>
+
+        <h2>✦ 🧩 TUTORIALS & HOW‑TO</h2>
+        <div class="sitemap-section">
+            <ul>
+                <li><span class="sitemap-icon">📓</span> Jupyter accessibility – alt text, headings, shortcuts</li>
+                <li><span class="sitemap-icon">📘</span> Sphinx / MkDocs accessible docs</li>
+                <li><span class="sitemap-icon">🎥</span> Captioning coding videos – best practices</li>
+                <li><span class="sitemap-icon">🖼️</span> Alt text for matplotlib / seaborn plots</li>
+                <li><span class="sitemap-icon">📝</span> Writing alt‑friendly code examples</li>
+                <li><span class="sitemap-icon">🔊</span> Using emacspeak with Python</li>
+            </ul>
+        </div>
+
+        <h2>✦ 📅 BY ERA</h2>
+        <div class="sitemap-section">
+            <ul>
+                <li><span class="sitemap-icon">📠</span> 1840s–1940: pre‑computer / first algorithms</li>
+                <li><span class="sitemap-icon">📟</span> 1950s: assembly, FORTRAN, Lisp, COBOL</li>
+                <li><span class="sitemap-icon">🖥️</span> 1960s–70s: ALGOL, C, Unix, Smalltalk</li>
+                <li><span class="sitemap-icon">💾</span> 1980s: C++, Objective‑C, Perl, Ada</li>
+                <li><span class="sitemap-icon">🌍</span> 1990s: web languages (JS, PHP), Python, Java, Ruby</li>
+                <li><span class="sitemap-icon">🚀</span> 2000s–2010s: C#, Go, Rust, Swift, TypeScript</li>
+                <li><span class="sitemap-icon">🤖</span> 2020s: AI‑generated code, WebAssembly, Mojo</li>
+            </ul>
+        </div>
+
+        <h2>✦ 🔧 UTILITIES & META</h2>
+        <div class="sitemap-section">
+            <ul>
+                <li><span class="sitemap-icon">🗺️</span> Sitemap (this page)</li>
+                <li><span class="sitemap-icon">📑</span> Colophon / about the project</li>
+                <li><span class="sitemap-icon">📧</span> Contact & suggestions</li>
+                <li><span class="sitemap-icon">🧾</span> Privacy / accessibility statement</li>
+                <li><span class="sitemap-icon">🔍</span> Search (all pages)</li>
+            </ul>
+        </div>
+
+        <span class="rem-badge" style="margin-top:0.2rem;">📌 Total indexed pages: 34 (including drafts)</span>
+
+        <h2>✦ WHY A SITEMAP?</h2>
+        <p>Every page follows the same deep‑space theme, responsive design, and high‑contrast ratios. This sitemap itself is accessible — structured with real headings, descriptive links, and plain language. It serves as both a navigation aid and an example of inclusive information architecture.</p>
+
+        <div style="margin-top: 1.8rem; border-top: 1px dashed #1F4060; padding-top: 1rem;">
+            <p style="font-size: 0.6rem; color: #9CC0D9; text-align: center;">📘 EVERY LINK IS A THREAD IN THE TAPESTRY OF CODE</p>
+        </div>
+
+        <span class="rem-badge" style="margin-top:0.2rem;">📐 Created By: Glenn Junsay Pansensoy</span>
+
+        <footer class="footer">
+            <p>© 2026 CODE·HISTORY — SITEMAP</p>
+            <p style="font-style: italic; color: #B0D4F0;">“Design is not just what it looks like, but how it works for everyone.”</p>
+            <p>🗺️ · ⚙️ · ♿ · 🐍</p>
+        </footer>
+    </article>
+</body>
+</html>
