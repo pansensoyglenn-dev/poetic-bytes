@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Python String Cheat Sheet - POETIC BYTES</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace;
+      background: #0B121C;
+      color: #E2E8F0;
+      line-height: 1.4;
+      padding: 0.5rem;
+      min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .download-container {
+      max-width: 1200px;
+      margin: 0 auto 1rem auto;
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      padding: 0 0.5rem;
+    }
+
+    .download-btn {
+      background: #4B8BBE;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 4px 15px rgba(75, 139, 190, 0.4);
+      transition: all 0.3s;
+      border: 1px solid #FFD966;
+    }
+
+    .download-btn:hover {
+      background: #306998;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(75, 139, 190, 0.6);
+    }
+
+    .download-btn i {
+      font-size: 1.2rem;
+    }
+
+    .download-btn.secondary {
+      background: #FFD966;
+      color: #0B121C;
+      border: 1px solid #4B8BBE;
+    }
+
+    .download-btn.secondary:hover {
+      background: #FFC107;
+    }
+
+    @media (max-width: 768px) {
+      .download-container {
+        justify-content: center;
+      }
+      .download-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1rem;
+      }
+    }
+
+    .cheat-sheet {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #0F1C2F;
+      border: 2px solid #1F4060;
+      border-radius: 15px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid #4B8BBE;
+    }
+
+    .header h1 {
+      font-size: 1.2rem;
+      color: #FFD966;
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .header h2 {
+      font-size: 0.8rem;
+      color: #4B8BBE;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      word-break: break-word;
+    }
+
+    .header p {
+      font-size: 0.6rem;
+      color: #CBD5E1;
+      margin-top: 0.5rem;
+      word-break: break-word;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+  
+    @media (min-width: 640px) {
+      body { padding: 1rem; }
+      .cheat-sheet { padding: 1.5rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .header h1 { font-size: 1.5rem; }
+    }
+
+    @media (min-width: 1024px) {
+      body { padding: 1.5rem; }
+      .cheat-sheet { padding: 2rem; }
+      .grid { grid-template-columns: repeat(3, 1fr); }
+      .header h1 { font-size: 2rem; }
+    }
+
+    
+    @media (min-width: 1400px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .section {
+      background: #132337;
+      border: 1px solid #1F4060;
+      border-radius: 10px;
+      padding: 0.8rem;
+      break-inside: avoid;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .section h3 {
+      font-size: 0.9rem;
+      color: #4B8BBE;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 2px solid #4B8BBE;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .section h4 {
+      font-size: 0.75rem;
+      color: #FFD966;
+      margin: 0.5rem 0 0.3rem 0;
+      text-transform: uppercase;
+      word-break: break-word;
+    }
+
+    
+    .method-list {
+      list-style: none;
+      width: 100%;
+    }
+
+    .method-list li {
+      font-size: 0.65rem;
+      margin-bottom: 0.4rem;
+      color: #CBD5E1;
+      font-family: 'Courier New', monospace;
+      border-left: 2px solid #1F4060;
+      padding-left: 0.5rem;
+      word-break: break-word;
+      line-height: 1.4;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
+
+    .method-list li strong {
+      color: #4B8BBE;
+      font-weight: 700;
+      margin-right: 0.3rem;
+      min-width: 70px;
+    }
+
+    .method-list li span {
+      color: #FFD966;
+      font-size: 0.6rem;
+      word-break: break-word;
+      flex: 1;
+    }
+
+    /* CODE BLOCKS - Scrollable on mobile */
+    .code-block {
+      background: #0B121C;
+      border: 1px solid #1F4060;
+      border-radius: 6px;
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      font-size: 0.6rem;
+      color: #FFD966;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    /* TABLE - Responsive with scroll */
+    .table-responsive {
+      overflow-x: auto;
+      max-width: 100%;
+      margin: 0.5rem 0;
+      border-radius: 6px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.6rem;
+      min-width: 300px;
+    }
+
+    .table th {
+      background: #1F4060;
+      color: #E2E8F0;
+      padding: 0.3rem;
+      text-align: left;
+      font-size: 0.6rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .table td {
+      padding: 0.3rem;
+      border-bottom: 1px solid #1F4060;
+      color: #CBD5E1;
+      word-break: break-word;
+    }
+
+    /* TWO COLUMN GRID - Responsive */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+    }
+
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .format-item {
+      background: #0B121C;
+      border: 1px solid #1F4060;
+      border-radius: 4px;
+      padding: 0.3rem;
+      word-break: break-word;
+    }
+
+    .format-item .syntax {
+      color: #4B8BBE;
+      font-size: 0.6rem;
+      font-weight: bold;
+      word-break: break-word;
+    }
+
+    .format-item .example {
+      color: #FFD966;
+      font-size: 0.55rem;
+      margin-top: 0.1rem;
+      word-break: break-word;
+    }
+
+    .methods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.3rem;
+      font-size: 0.55rem;
+      width: 100%;
+    }
+
+    .methods-grid div {
+      background: #0B121C;
+      padding: 0.3rem;
+      border-radius: 4px;
+      text-align: center;
+      color: #CBD5E1;
+      border: 1px solid #1F4060;
+      word-break: break-word;
+    }
+
+    .note {
+      background: rgba(255, 217, 102, 0.1);
+      border-left: 3px solid #FFD966;
+      padding: 0.4rem;
+      margin: 0.5rem 0;
+      font-size: 0.6rem;
+      color: #CBD5E1;
+      word-break: break-word;
+    }
+
+    .badge {
+      background: #4B8BBE;
+      color: #0B121C;
+      padding: 0.1rem 0.3rem;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 0.5rem;
+      margin-left: 0.2rem;
+      display: inline-block;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      padding-top: 0.8rem;
+      border-top: 2px solid #1F4060;
+      text-align: center;
+      font-size: 0.6rem;
+      color: #CBD5E1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 640px) {
+      .footer {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    .footer .left {
+      color: #4B8BBE;
+    }
+
+    .footer .right {
+      color: #FFD966;
+    }
+
+    .footer .center {
+      color: #CBD5E1;
+    }
+
+    .method-list li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+    }
+
+    .method-list li strong {
+      min-width: auto;
+      width: auto;
+    }
+
+    @media (max-width: 480px) {
+      .method-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1rem;
+      }
+      
+      .method-list li strong {
+        min-width: 100%;
+      }
+      
+      .method-list li span {
+        padding-left: 0.5rem;
+      }
+      
+      .section {
+        padding: 0.6rem;
+      }
+      
+      .section h3 {
+        font-size: 0.85rem;
+      }
+      
+      .code-block {
+        font-size: 0.55rem;
+        padding: 0.4rem;
+      }
+    }
+
+    * {
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+
+    
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 18, 28, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #1F4060;
+      border-top: 5px solid #4B8BBE;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      color: #FFD966;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    
+    @media print {
+      body {
+        background: white;
+        padding: 0.1in;
+      }
+      .cheat-sheet {
+        background: white;
+        border: 1px solid #ccc;
+        box-shadow: none;
+      }
+      .section {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+      }
+      .download-container {
+        display: none;
+      }
+      .loading-overlay {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Generating PDF... Please wait</div>
+  </div>
+
+  
+  <div class="download-container">
+    <button class="download-btn" id="downloadPDF">
+      <span>📥</span>
+      DOWNLOAD AS PDF
+      <span>📄</span>
+    </button>
+    <button class="download-btn secondary" id="printPDF">
+      <span>🖨️</span>
+      PRINT / SAVE AS PDF
+      <span>📑</span>
+    </button>
+  </div>
+
+  <div class="cheat-sheet" id="cheatSheet">
+    
+    <div class="header">
+      <h1>👼|����PYTHON STRINGS</h1>
+      <h2>COMPLETE CHEAT SHEET · v3.12</h2>
+      <p>by Glenn Junsay Pansensoy / POETIC BYTES · 60+ methods · quick reference</p>
+    </div>
+
+    <div class="grid">
+     
+      <div class="section">
+        <h3>📝 STRING CREATION</h3>
+        <ul class="method-list">
+          <li><strong>'' or ""</strong> <span>'hello', "world"</span></li>
+          <li><strong>''' '''</strong> <span>Multi-line strings</span></li>
+          <li><strong>r'' or r""</strong> <span>Raw: r'C:\Users'</span></li>
+          <li><strong>f'' or f""</strong> <span>f"Hello {name}"</span></li>
+          <li><strong>str()</strong> <span>str(42) → '42'</span></li>
+          <li><strong>b'' or b""</strong> <span>Bytes: b'hello'</span></li>
+          <li><strong>''.join()</strong> <span>'-'.join(['a','b'])</span></li>
+        </ul>
+        <div class="code-block">name = "Alice"
+raw = r"C:\Users\name"
+fstr = f"Hello, {name}"</div>
+      </div>
+
+      <div class="section">
+        <h3>⚙️ BASIC OPERATIONS</h3>
+        <ul class="method-list">
+          <li><strong>+</strong> <span>"Hello" + "World"</span></li>
+          <li><strong>*</strong> <span>"Ha" * 3 → "HaHaHa"</span></li>
+          <li><strong>in / not in</strong> <span>'a' in 'abc' → True</span></li>
+          <li><strong>[]</strong> <span>text[0], text[-1]</span></li>
+          <li><strong>[:]</strong> <span>text[1:4], text[::-1]</span></li>
+          <li><strong>len()</strong> <span>len("hello") → 5</span></li>
+          <li><strong>==, !=, >, <</strong> <span>Comparisons</span></li>
+        </ul>
+        <div class="code-block">s = "Python"
+print(s[0])      # 'P'
+print(s[::-1])   # 'nohtyP'</div>
+      </div>
+
+     
+      <div class="section">
+        <h3>🔤 CASE CONVERSION</h3>
+        <ul class="method-list">
+          <li><strong>upper()</strong> <span>"Hello" → "HELLO"</span></li>
+          <li><strong>lower()</strong> <span>"Hello" → "hello"</span></li>
+          <li><strong>capitalize()</strong> <span>"hello world" → "Hello world"</span></li>
+          <li><strong>title()</strong> <span>"hello world" → "Hello World"</span></li>
+          <li><strong>swapcase()</strong> <span>"Hello" → "hELLO"</span></li>
+          <li><strong>casefold()</strong> <span>Aggressive lower</span></li>
+        </ul>
+        <div class="code-block">text = "Python STRING"
+print(text.upper())   # PYTHON STRING
+print(text.lower())   # python string</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="section">
+        <h3>🔍 SEARCH & FIND</h3>
+        <ul class="method-list">
+          <li><strong>find(sub)</strong> <span>"abc".find('b') → 1</span></li>
+          <li><strong>rfind(sub)</strong> <span>Reverse find</span></li>
+          <li><strong>index(sub)</strong> <span>Like find but raises</span></li>
+          <li><strong>rindex(sub)</strong> <span>Reverse index</span></li>
+          <li><strong>count(sub)</strong> <span>"banana".count('a') → 3</span></li>
+          <li><strong>startswith()</strong> <span>"hi".startswith('h')</span></li>
+          <li><strong>endswith()</strong> <span>".txt".endswith('txt')</span></li>
+        </ul>
+        <div class="code-block">text = "Python programming"
+print(text.find("prog"))   # 7
+print(text.count("p"))     # 1</div>
+      </div>
+
+      <div class="section">
+        <h3>✂️ MODIFY & TRANSFORM</h3>
+        <ul class="method-list">
+          <li><strong>replace(old, new)</strong> <span>"hi".replace('i','ello')</span></li>
+          <li><strong>strip()</strong> <span>Remove both ends</span></li>
+          <li><strong>lstrip()</strong> <span>Left strip</span></li>
+          <li><strong>rstrip()</strong> <span>Right strip</span></li>
+          <li><strong>removeprefix()</strong> <span>3.9+: "test".removeprefix('t')</span></li>
+          <li><strong>removesuffix()</strong> <span>3.9+: "test".removesuffix('t')</span></li>
+        </ul>
+        <div class="code-block">text = "  Hello  "
+print(text.strip())        # "Hello"
+print("banana".replace('a','o'))</div>
+      </div>
+
+      <div class="section">
+        <h3>📏 ALIGN & PAD</h3>
+        <ul class="method-list">
+          <li><strong>ljust(w, c)</strong> <span>"hi".ljust(5,'-') → "hi---"</span></li>
+          <li><strong>rjust(w, c)</strong> <span>"hi".rjust(5,'-') → "---hi"</span></li>
+          <li><strong>center(w, c)</strong> <span>"hi".center(5,'-') → "-hi--"</span></li>
+          <li><strong>zfill(w)</strong> <span>"42".zfill(5) → "00042"</span></li>
+          <li><strong>expandtabs()</strong> <span>Replace tabs</span></li>
+        </ul>
+        <div class="code-block">print("42".zfill(5))        # "00042"
+print("hi".center(7,'*'))  # "**hi***"</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="section">
+        <h3>🔗 SPLIT & JOIN</h3>
+        <ul class="method-list">
+          <li><strong>split()</strong> <span>"a,b,c".split(',')</span></li>
+          <li><strong>rsplit()</strong> <span>Split from right</span></li>
+          <li><strong>splitlines()</strong> <span>Split at line breaks</span></li>
+          <li><strong>partition()</strong> <span>("a","-","b")</span></li>
+          <li><strong>rpartition()</strong> <span>Reverse partition</span></li>
+          <li><strong>join()</strong> <span>'-'.join(['a','b'])</span></li>
+        </ul>
+        <div class="code-block">csv = "a,b,c"
+print(csv.split(','))      # ['a','b','c']
+print('-'.join(['a','b'])) # "a-b"</div>
+      </div>
+
+      <div class="section">
+        <h3>✅ VALIDATION (IS* METHODS)</h3>
+        <div class="two-col">
+          <ul class="method-list">
+            <li><strong>isdigit()</strong> <span>"123"</span></li>
+            <li><strong>isalpha()</strong> <span>"abc"</span></li>
+            <li><strong>isalnum()</strong> <span>"abc123"</span></li>
+            <li><strong>isspace()</strong> <span>"   "</span></li>
+            <li><strong>isdecimal()</strong> <span>"123"</span></li>
+          </ul>
+          <ul class="method-list">
+            <li><strong>isnumeric()</strong> <span>"⅔"</span></li>
+            <li><strong>isupper()</strong> <span>"ABC"</span></li>
+            <li><strong>islower()</strong> <span>"abc"</span></li>
+            <li><strong>istitle()</strong> <span>"Hello"</span></li>
+            <li><strong>isidentifier()</strong> <span>"var1"</span></li>
+          </ul>
+        </div>
+        <div class="code-block">print("123".isdigit())   # True
+print("abc".isalpha())   # True</div>
+      </div>
+
+      <div class="section">
+        <h3>🎨 FORMAT SPECS</h3>
+        <div class="format-grid">
+          <div class="format-item"><span class="syntax">:.2f</span><br><span class="example">3.14</span></div>
+          <div class="format-item"><span class="syntax">:>10</span><br><span class="example">"        hi"</span></div>
+          <div class="format-item"><span class="syntax">:<10</span><br><span class="example">"hi        "</span></div>
+          <div class="format-item"><span class="syntax">:^10</span><br><span class="example">"    hi    "</span></div>
+          <div class="format-item"><span class="syntax">:,</span><br><span class="example">1,000,000</span></div>
+          <div class="format-item"><span class="syntax">:.3e</span><br><span class="example">1.235e+02</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+  
+      <div class="section">
+        <h3>⚡ F-STRINGS (3.6+)</h3>
+        <ul class="method-list">
+          <li><strong>f"{expr}"</strong> <span>f"Hello {name}"</span></li>
+          <li><strong>f"{expr!r}"</strong> <span>repr()</span></li>
+          <li><strong>f"{expr!s}"</strong> <span>str()</span></li>
+          <li><strong>f"{expr=}"</strong> <span>Debug (3.8+)</span></li>
+          <li><strong>f"{expr:fmt}"</strong> <span>With format</span></li>
+        </ul>
+        <div class="code-block">name = "Alice"
+age = 30
+print(f"{name=}, {age=}")
+print(f"Pi: {3.14159:.2f}")</div>
+      </div>
+
+      <div class="section">
+        <h3>🌍 UNICODE</h3>
+        <ul class="method-list">
+          <li><strong>encode()</strong> <span>str → bytes</span></li>
+          <li><strong>decode()</strong> <span>bytes → str</span></li>
+          <li><strong>ord()</strong> <span>ord('A') → 65</span></li>
+          <li><strong>chr()</strong> <span>chr(65) → 'A'</span></li>
+          <li><strong>\u, \U</strong> <span>Unicode escapes</span></li>
+        </ul>
+        <div class="code-block">text = "café"
+enc = text.encode('utf-8')
+print(ord('Ω'))  # 937</div>
+      </div>
+
+      <div class="section">
+        <h3>⚡ PERFORMANCE</h3>
+        <ul class="method-list">
+          <li><strong>''.join()</strong> <span>FASTEST (O(n))</span></li>
+          <li><strong>+= in loop</strong> <span>SLOW (O(n²))</span></li>
+          <li><strong>StringIO</strong> <span>Complex builds</span></li>
+          <li><strong>f-strings</strong> <span>Fastest formatting</span></li>
+        </ul>
+        <div class="code-block"># GOOD
+''.join(['a', 'b', 'c'])
+
+# BAD (avoid)
+s = ''
+for x in list: s += x</div>
+        <div class="note">⏱️ join() is 100x faster for 10k strings</div>
+      </div>
+    </div>
+
+    <div class="grid">
+ 
+      <div class="section">
+        <h3>📋 COMMON PATTERNS</h3>
+        <ul class="method-list">
+          <li><strong>Reverse</strong> <span>s[::-1]</span></li>
+          <li><strong>Palindrome</strong> <span>s == s[::-1]</span></li>
+          <li><strong>Count words</strong> <span>len(s.split())</span></li>
+          <li><strong>Snake to camel</strong> <span>''.join(w.capitalize() for w in s.split('_'))</span></li>
+          <li><strong>Slugify</strong> <span>re.sub(r'\W+', '-', s.lower())</span></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>🔍 REGEX (re module)</h3>
+        <ul class="method-list">
+          <li><strong>search()</strong> <span>First match</span></li>
+          <li><strong>match()</strong> <span>Match at start</span></li>
+          <li><strong>findall()</strong> <span>All matches</span></li>
+          <li><strong>sub()</strong> <span>Replace</span></li>
+          <li><strong>split()</strong> <span>Split by pattern</span></li>
+          <li><strong>compile()</strong> <span>Precompile</span></li>
+        </ul>
+        <div class="code-block">import re
+nums = re.findall(r'\d+', 'a1b2c3')
+# ['1', '2', '3']</div>
+      </div>
+
+      <div class="section">
+        <h3>🔧 ESCAPE SEQUENCES</h3>
+        <div class="table-responsive">
+          <table class="table">
+            <tr><th>Escape</th><th>Meaning</th></tr>
+            <tr><td>\n</td><td>Newline</td></tr>
+            <tr><td>\t</td><td>Tab</td></tr>
+            <tr><td>\'</td><td>Single quote</td></tr>
+            <tr><td>\"</td><td>Double quote</td></tr>
+            <tr><td>\\</td><td>Backslash</td></tr>
+            <tr><td>\xhh</td><td>Hex value</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top: 1rem;">
+      <h3>📚 ALL STRING METHODS (60+)</h3>
+      <div class="methods-grid">
+        <div>capitalize()</div> <div>casefold()</div> <div>center()</div> <div>count()</div>
+        <div>encode()</div> <div>endswith()</div> <div>expandtabs()</div> <div>find()</div>
+        <div>format()</div> <div>format_map()</div> <div>index()</div> <div>isalnum()</div>
+        <div>isalpha()</div> <div>isascii()</div> <div>isdecimal()</div> <div>isdigit()</div>
+        <div>isidentifier()</div> <div>islower()</div> <div>isnumeric()</div> <div>isprintable()</div>
+        <div>isspace()</div> <div>istitle()</div> <div>isupper()</div> <div>join()</div>
+        <div>ljust()</div> <div>lower()</div> <div>lstrip()</div> <div>maketrans()</div>
+        <div>partition()</div> <div>removeprefix()</div> <div>removesuffix()</div> <div>replace()</div>
+        <div>rfind()</div> <div>rindex()</div> <div>rjust()</div> <div>rpartition()</div>
+        <div>rsplit()</div> <div>rstrip()</div> <div>split()</div> <div>splitlines()</div>
+        <div>startswith()</div> <div>strip()</div> <div>swapcase()</div> <div>title()</div>
+        <div>translate()</div> <div>upper()</div> <div>zfill()</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="left">POETIC BYTES</div>
+      <div class="center">Python 3.12 · 60+ Methods</div>
+      <div class="right">Glenn Junsay Pansensoy</div>
+    </div>
+  </div>
+
+  <script>
+  
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+  
+    document.getElementById('printPDF').addEventListener('click', function() {
+      window.print();
+    });
+
+    
+    document.getElementById('downloadPDF').addEventListener('click', async function() {
+      try {
+        
+        loadingOverlay.style.display = 'flex';
+
+        
+        const element = document.getElementById('cheatSheet');
+        
+        
+        const canvas = await html2canvas(element, {
+          scale: 2,
+          backgroundColor: '#0F1C2F',
+          logging: false,
+          allowTaint: true,
+          useCORS: true
+        });
+        
+        
+        const imgData = canvas.toDataURL('image/png');
+        
+        
+        const { jsPDF } = window.jspdf;
+        
+        
+        const imgWidth = 297; 
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: 'a4'
+        });
+        
+        
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, undefined, 'FAST');
+        
+       
+        pdf.save('python-string-cheat-sheet.pdf');
+        
+        
+        loadingOverlay.style.display = 'none';
+        
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        alert('Error generating PDF. Please try the "Print / Save as PDF" button instead.');
+        loadingOverlay.style.display = 'none';
+      }
+    });
+
+    
+    window.addEventListener('error', function(e) {
+      if (e.target.src && e.target.src.includes('html2canvas')) {
+        console.log('html2canvas failed to load, providing fallback');
+        document.getElementById('downloadPDF').addEventListener('click', function() {
+          alert('For mobile devices, please use the "Print / Save as PDF" button instead.');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
