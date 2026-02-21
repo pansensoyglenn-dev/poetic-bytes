@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Python String Practice Exercises with Solutions - POETIC BYTES</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace;
+      background: #0B121C;
+      color: #E2E8F0;
+      line-height: 1.6;
+      padding: 1rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: #0F1C2F;
+      border: 2px solid #1F4060;
+      border-radius: 15px;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      color: #FFD966;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .header h2 {
+      font-size: 1rem;
+      color: #4B8BBE;
+      font-weight: 400;
+    }
+
+    .header p {
+      font-size: 0.8rem;
+      color: #CBD5E1;
+      margin-top: 1rem;
+    }
+
+    /* Difficulty badges */
+    .difficulty-filter {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.5rem;
+      border: 2px solid #1F4060;
+      background: #132337;
+      color: #CBD5E1;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover {
+      background: #1F4060;
+      color: white;
+    }
+
+    .filter-btn.active {
+      background: #4B8BBE;
+      color: white;
+      border-color: #FFD966;
+    }
+
+    /* Exercise grid */
+    .exercise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Exercise card */
+    .exercise-card {
+      background: #0F1C2F;
+      border: 2px solid #1F4060;
+      border-radius: 15px;
+      padding: 1.5rem;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .exercise-card:hover {
+      transform: translateY(-5px);
+      border-color: #4B8BBE;
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #1F4060;
+    }
+
+    .exercise-number {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #FFD966;
+    }
+
+    .difficulty {
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .difficulty.beginner {
+      background: #27ae60;
+      color: white;
+    }
+
+    .difficulty.intermediate {
+      background: #f39c12;
+      color: white;
+    }
+
+    .difficulty.advanced {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .exercise-title {
+      font-size: 1rem;
+      color: #4B8BBE;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .exercise-description {
+      font-size: 0.8rem;
+      color: #CBD5E1;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .exercise-code {
+      background: #0B121C;
+      border: 1px solid #1F4060;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #FFD966;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Solution section */
+    .solution-section {
+      margin-top: 1rem;
+      border-top: 1px solid #1F4060;
+      padding-top: 1rem;
+    }
+
+    .solution-toggle {
+      background: #4B8BBE;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      transition: background 0.3s;
+    }
+
+    .solution-toggle:hover {
+      background: #306998;
+    }
+
+    .solution-content {
+      display: none;
+      background: #132337;
+      border-left: 4px solid #FFD966;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+
+    .solution-content.show {
+      display: block;
+    }
+
+    .solution-title {
+      color: #FFD966;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .solution-code {
+      background: #0B121C;
+      border: 1px solid #1F4060;
+      border-radius: 5px;
+      padding: 1rem;
+      font-size: 0.7rem;
+      color: #4B8BBE;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 0.5rem;
+    }
+
+    .solution-explanation {
+      font-size: 0.7rem;
+      color: #CBD5E1;
+      line-height: 1.6;
+    }
+
+    /* Test cases */
+    .test-cases {
+      margin-top: 1rem;
+      background: #0B121C;
+      border: 1px solid #1F4060;
+      border-radius: 5px;
+      padding: 0.8rem;
+    }
+
+    .test-title {
+      color: #4B8BBE;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .test-item {
+      font-size: 0.65rem;
+      color: #CBD5E1;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed #1F4060;
+    }
+
+    .test-item:last-child {
+      border-bottom: none;
+    }
+
+    .test-item span {
+      color: #FFD966;
+      margin-right: 0.5rem;
+    }
+
+    /* Progress tracker */
+    .progress-container {
+      background: #132337;
+      border: 2px solid #1F4060;
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .progress-title {
+      font-size: 1rem;
+      color: #FFD966;
+      font-weight: bold;
+    }
+
+    .progress-stats {
+      font-size: 0.8rem;
+      color: #4B8BBE;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: #0B121C;
+      border: 1px solid #1F4060;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #4B8BBE;
+      width: 0%;
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .reset-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.7rem;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .reset-btn:hover {
+      background: #c0392b;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem;
+      border-top: 2px solid #1F4060;
+      font-size: 0.7rem;
+      color: #CBD5E1;
+    }
+
+    .footer a {
+      color: #4B8BBE;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #FFD966;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .exercise-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .difficulty-filter {
+        gap: 0.5rem;
+      }
+      
+      .filter-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0.5rem;
+      }
+      
+      .exercise-card {
+        padding: 1rem;
+      }
+      
+      .exercise-code {
+        font-size: 0.65rem;
+      }
+    }
+
+    /* Hint box */
+    .hint-box {
+      background: rgba(255, 217, 102, 0.1);
+      border: 1px solid #FFD966;
+      border-radius: 5px;
+      padding: 0.8rem;
+      margin: 1rem 0;
+    }
+
+    .hint-title {
+      color: #FFD966;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .hint-text {
+      font-size: 0.7rem;
+      color: #CBD5E1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1> PYTHON STRINGS</h1>
+      <h2>PRACTICE EXERCISES WITH SOLUTIONS</h2>
+      <p>30+ exercises • Beginner to Advanced • Step-by-step solutions • Test cases included</p>
+      <p style="font-size: 0.7rem; margin-top: 0.5rem; color: #4B8BBE;">by Glenn Junsay Pansensoy / POETIC BYTES</p>
+    </div>
+
+    <div class="difficulty-filter">
+      <button class="filter-btn active" data-filter="all">All Exercises</button>
+      <button class="filter-btn" data-filter="beginner">Beginner</button>
+      <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+      <button class="filter-btn" data-filter="advanced">Advanced</button>
+    </div>
+    
+    <div class="progress-container">
+      <div class="progress-header">
+        <span class="progress-title">📊 Your Progress</span>
+        <span class="progress-stats" id="progressStats">0/30 completed</span>
+        <button class="reset-btn" id="resetProgress">Reset Progress</button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="exercise-grid" id="exerciseGrid">
+    
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#01</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">String Reversal</div>
+        <div class="exercise-description">
+          Write a function that reverses a string without using [::-1] or reversed().
+        </div>
+        <div class="exercise-code">
+# Your code here
+def reverse_string(s):
+    # Write your solution
+    pass
+
+# Test
+print(reverse_string("hello"))  # Should print "olleh"
+        </div>
+        
+      
+        <div class="hint-box">
+          <div class="hint-title"> Hint</div>
+          <div class="hint-text">Use a loop to build the string character by character from the end.</div>
+        </div>
+        
+        <!-- Solution -->
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def reverse_string(s):
+    result = ""
+    for i in range(len(s)-1, -1, -1):
+        result += s[i]
+    return result
+
+# Alternative using while loop:
+def reverse_string2(s):
+    result = ""
+    i = len(s) - 1
+    while i >= 0:
+        result += s[i]
+        i -= 1
+    return result
+
+# Test
+print(reverse_string("hello"))  # "olleh"
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We iterate through the string from the last index to the first, appending each character to a new string. This builds the reversed string character by character.
+            </div>
+            <div class="test-cases">
+              <div class="test-title">🧪 Test Cases:</div>
+              <div class="test-item"><span>Input:</span> "hello" → <span>Output:</span> "olleh"</div>
+              <div class="test-item"><span>Input:</span> "Python" → <span>Output:</span> "nohtyP"</div>
+              <div class="test-item"><span>Input:</span> "a" → <span>Output:</span> "a"</div>
+              <div class="test-item"><span>Input:</span> "" → <span>Output:</span> ""</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#02</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">Palindrome Checker</div>
+        <div class="exercise-description">
+          Write a function that checks if a string is a palindrome (reads the same forwards and backwards). Ignore case and spaces.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def is_palindrome(s):
+    # Write your solution
+    pass
+
+# Test
+print(is_palindrome("racecar"))  # True
+print(is_palindrome("Hello"))     # False
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title"> Hint</div>
+          <div class="hint-text">Convert to lowercase and remove spaces first, then compare with its reverse.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def is_palindrome(s):
+    # Remove spaces and convert to lowercase
+    cleaned = s.replace(" ", "").lower()
+    # Compare with reverse
+    return cleaned == cleaned[::-1]
+
+# Without using [::-1]:
+def is_palindrome2(s):
+    cleaned = s.replace(" ", "").lower()
+    left, right = 0, len(cleaned) - 1
+    while left < right:
+        if cleaned[left] != cleaned[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+
+# Test
+print(is_palindrome("racecar"))        # True
+print(is_palindrome("A man a plan a canal Panama"))  # True
+print(is_palindrome("Hello"))          # False
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> First, we normalize the string by removing spaces and converting to lowercase. Then we compare it with its reverse. The two-pointer approach is more efficient as it doesn't create a new string.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "racecar" → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "A man a plan a canal Panama" → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "hello" → <span>Output:</span> False</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#03</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">Count Vowels and Consonants</div>
+        <div class="exercise-description">
+          Write a function that counts the number of vowels and consonants in a string. Ignore non-alphabetic characters.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def count_vowels_consonants(s):
+    # Return (vowels, consonants)
+    pass
+
+# Test
+print(count_vowels_consonants("Hello World"))  # (3, 7)
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title"> Hint</div>
+          <div class="hint-text">Define a set of vowels (both lowercase and uppercase) and check each character.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def count_vowels_consonants(s):
+    vowels = set('aeiouAEIOU')
+    vowels_count = 0
+    consonants_count = 0
+    
+    for char in s:
+        if char.isalpha():
+            if char in vowels:
+                vowels_count += 1
+            else:
+                consonants_count += 1
+    
+    return (vowels_count, consonants_count)
+
+# More concise version:
+def count_vowels_consonants2(s):
+    vowels = sum(1 for c in s if c.lower() in 'aeiou')
+    consonants = sum(1 for c in s if c.isalpha() and c.lower() not in 'aeiou')
+    return (vowels, consonants)
+
+# Test
+print(count_vowels_consonants("Hello World"))  # (3, 7)
+print(count_vowels_consonants("Python"))       # (1, 5)
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We iterate through each character, check if it's alphabetic, then check if it's a vowel. The set provides O(1) lookup time. The concise version uses list comprehensions for efficiency.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "Hello World" → <span>Output:</span> (3, 7)</div>
+              <div class="test-item"><span>Input:</span> "AEIOU" → <span>Output:</span> (5, 0)</div>
+              <div class="test-item"><span>Input:</span> "bcdfg" → <span>Output:</span> (0, 5)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 4: Remove Duplicates -->
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#04</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">Remove Duplicate Characters</div>
+        <div class="exercise-description">
+          Write a function that removes duplicate characters from a string while preserving the order of first occurrence.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def remove_duplicates(s):
+    # Write your solution
+    pass
+
+# Test
+print(remove_duplicates("hello"))  # "helo"
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title"> Hint</div>
+          <div class="hint-text">Use a set to track seen characters, but remember sets don't preserve order. Consider using a list or OrderedDict.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def remove_duplicates(s):
+    seen = set()
+    result = []
+    
+    for char in s:
+        if char not in seen:
+            seen.add(char)
+            result.append(char)
+    
+    return ''.join(result)
+
+# Using OrderedDict (Python 3.7+ dict preserves order)
+def remove_duplicates2(s):
+    return ''.join(dict.fromkeys(s))
+
+# Test
+print(remove_duplicates("hello"))        # "helo"
+print(remove_duplicates("banana"))       # "ban"
+print(remove_duplicates("mississippi"))  # "misp"
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We use a set to track characters we've seen. If a character hasn't been seen, we add it to our result list. The join() method efficiently combines the list into a string. The OrderedDict trick works because Python 3.7+ dictionaries preserve insertion order.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "hello" → <span>Output:</span> "helo"</div>
+              <div class="test-item"><span>Input:</span> "banana" → <span>Output:</span> "ban"</div>
+              <div class="test-item"><span>Input:</span> "aabbcc" → <span>Output:</span> "abc"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 5: Capitalize First Letter of Each Word -->
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#05</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">Capitalize Words</div>
+        <div class="exercise-description">
+          Write a function that capitalizes the first letter of each word in a string. Don't use the title() method.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def capitalize_words(s):
+    # Write your solution
+    pass
+
+# Test
+print(capitalize_words("hello world python"))  # "Hello World Python"
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Split the string into words, capitalize each word's first letter, then join back.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def capitalize_words(s):
+    words = s.split()
+    capitalized = []
+    
+    for word in words:
+        if word:  # Check if word is not empty
+            capitalized_word = word[0].upper() + word[1:].lower()
+            capitalized.append(capitalized_word)
+    
+    return ' '.join(capitalized)
+
+# One-liner version:
+def capitalize_words2(s):
+    return ' '.join(word[0].upper() + word[1:].lower() for word in s.split())
+
+# Test
+print(capitalize_words("hello world python"))     # "Hello World Python"
+print(capitalize_words("this IS a TEST"))         # "This Is A Test"
+print(capitalize_words("123 hello"))              # "123 Hello"
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We split the string into words, then for each word we capitalize the first letter and make the rest lowercase. Finally, we join the words back with spaces. This handles mixed case inputs correctly.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "hello world" → <span>Output:</span> "Hello World"</div>
+              <div class="test-item"><span>Input:</span> "this IS a TEST" → <span>Output:</span> "This Is A Test"</div>
+              <div class="test-item"><span>Input:</span> "123 test" → <span>Output:</span> "123 Test"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 6: Check Anagram -->
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#06</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">Anagram Checker</div>
+        <div class="exercise-description">
+          Write a function that checks if two strings are anagrams (contain the same characters in any order). Ignore case and spaces.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def are_anagrams(s1, s2):
+    # Write your solution
+    pass
+
+# Test
+print(are_anagrams("listen", "silent"))  # True
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Remove spaces, convert to lowercase, and compare sorted versions or character counts.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def are_anagrams(s1, s2):
+    # Clean both strings
+    s1 = s1.replace(" ", "").lower()
+    s2 = s2.replace(" ", "").lower()
+    
+    # Method 1: Sort and compare
+    return sorted(s1) == sorted(s2)
+
+# Method 2: Count characters
+def are_anagrams2(s1, s2):
+    s1 = s1.replace(" ", "").lower()
+    s2 = s2.replace(" ", "").lower()
+    
+    if len(s1) != len(s2):
+        return False
+    
+    from collections import Counter
+    return Counter(s1) == Counter(s2)
+
+# Test
+print(are_anagrams("listen", "silent"))           # True
+print(are_anagrams("hello", "world"))             # False
+print(are_anagrams("Clint Eastwood", "old west action"))  # True
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> After normalizing both strings, we can either sort them (O(n log n)) or count character frequencies (O(n)). The Counter method is more efficient for long strings.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "listen", "silent" → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "hello", "world" → <span>Output:</span> False</div>
+              <div class="test-item"><span>Input:</span> "triangle", "integral" → <span>Output:</span> True</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 7: First Non-Repeating Character -->
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#07</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">First Non-Repeating Character</div>
+        <div class="exercise-description">
+          Write a function that finds the first non-repeating character in a string. Return None if all characters repeat.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def first_non_repeating(s):
+    # Write your solution
+    pass
+
+# Test
+print(first_non_repeating("swiss"))  # "w"
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Count character frequencies first, then find the first character with count 1.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def first_non_repeating(s):
+    # Count frequencies
+    char_count = {}
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+    
+    # Find first character with count 1
+    for char in s:
+        if char_count[char] == 1:
+            return char
+    
+    return None  # No non-repeating character
+
+# Using collections.Counter
+from collections import Counter
+
+def first_non_repeating2(s):
+    char_count = Counter(s)
+    for char in s:
+        if char_count[char] == 1:
+            return char
+    return None
+
+# Test
+print(first_non_repeating("swiss"))      # "w"
+print(first_non_repeating("aabbcc"))     # None
+print(first_non_repeating("programming")) # "p"
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> First, we count the frequency of each character using a dictionary. Then we iterate through the string in order and return the first character that appears exactly once. This is O(n) time complexity.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "swiss" → <span>Output:</span> "w"</div>
+              <div class="test-item"><span>Input:</span> "aabbcc" → <span>Output:</span> None</div>
+              <div class="test-item"><span>Input:</span> "programming" → <span>Output:</span> "p"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 8: String Compression -->
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#08</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">String Compression</div>
+        <div class="exercise-description">
+          Write a function that compresses a string by replacing consecutive repeated characters with the character followed by the count. If compression doesn't save space, return the original.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def compress_string(s):
+    # Write your solution
+    pass
+
+# Test
+print(compress_string("aabcccccaaa"))  # "a2b1c5a3"
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Iterate through the string, counting consecutive occurrences of each character.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def compress_string(s):
+    if not s:
+        return s
+    
+    compressed = []
+    count = 1
+    
+    for i in range(1, len(s)):
+        if s[i] == s[i-1]:
+            count += 1
+        else:
+            compressed.append(s[i-1] + str(count))
+            count = 1
+    
+    # Handle the last character
+    compressed.append(s[-1] + str(count))
+    
+    compressed_str = ''.join(compressed)
+    
+    # Return original if compression doesn't save space
+    return compressed_str if len(compressed_str) < len(s) else s
+
+# Test
+print(compress_string("aabcccccaaa"))  # "a2b1c5a3"
+print(compress_string("abcdef"))       # "abcdef" (compression longer)
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We iterate through the string, counting consecutive occurrences. When the character changes, we append the previous character and its count. We only return the compressed version if it's actually shorter than the original.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "aabcccccaaa" → <span>Output:</span> "a2b1c5a3"</div>
+              <div class="test-item"><span>Input:</span> "abcdef" → <span>Output:</span> "abcdef"</div>
+              <div class="test-item"><span>Input:</span> "aabb" → <span>Output:</span> "aabb"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 9: Check Rotated String -->
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#09</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">Check Rotated String</div>
+        <div class="exercise-description">
+          Write a function that checks if one string is a rotation of another. For example, "waterbottle" is a rotation of "erbottlewat".
+        </div>
+        <div class="exercise-code">
+# Your code here
+def is_rotation(s1, s2):
+    # Write your solution
+    pass
+
+# Test
+print(is_rotation("waterbottle", "erbottlewat"))  # True
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">If s2 is a rotation of s1, then s2 will be a substring of s1 + s1.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def is_rotation(s1, s2):
+    if len(s1) != len(s2) or not s1:
+        return False
+    
+    # Check if s2 is a substring of s1 + s1
+    return s2 in (s1 + s1)
+
+# Test
+print(is_rotation("waterbottle", "erbottlewat"))  # True
+print(is_rotation("hello", "llohe"))              # True
+print(is_rotation("hello", "world"))              # False
+print(is_rotation("", ""))                         # False
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> If you concatenate a string with itself, it contains all possible rotations. So we just need to check if s2 is a substring of s1+s1. This is a clever trick that works in O(n) time.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "waterbottle", "erbottlewat" → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "hello", "llohe" → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "hello", "world" → <span>Output:</span> False</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 10: Count Word Occurrences -->
+      <div class="exercise-card" data-difficulty="beginner">
+        <div class="exercise-header">
+          <span class="exercise-number">#10</span>
+          <span class="difficulty beginner">Beginner</span>
+        </div>
+        <div class="exercise-title">Count Word Occurrences</div>
+        <div class="exercise-description">
+          Write a function that counts how many times each word appears in a string. Return a dictionary with word counts.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def word_count(s):
+    # Write your solution
+    pass
+
+# Test
+print(word_count("hello world hello python world"))
+# {'hello': 2, 'world': 2, 'python': 1}
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Split the string into words, then use a dictionary to count each word.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def word_count(s):
+    # Split into words and convert to lowercase
+    words = s.lower().split()
+    counts = {}
+    
+    for word in words:
+        counts[word] = counts.get(word, 0) + 1
+    
+    return counts
+
+# Using collections.Counter
+from collections import Counter
+
+def word_count2(s):
+    return Counter(s.lower().split())
+
+# Test
+print(word_count("hello world hello python world"))
+# {'hello': 2, 'world': 2, 'python': 1}
+
+print(word_count("The quick brown fox jumps over the lazy dog"))
+# {'the': 2, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 1, 'dog': 1}
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We split the string into words and convert to lowercase for case-insensitive counting. Then we use a dictionary to count occurrences, using get() to handle new words. Counter provides a more concise solution.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "hello world hello" → <span>Output:</span> {'hello': 2, 'world': 1}</div>
+              <div class="test-item"><span>Input:</span> "a b c a b" → <span>Output:</span> {'a': 2, 'b': 2, 'c': 1}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERMEDIATE EXERCISES (11-20) -->
+
+      <!-- Exercise 11: Longest Substring Without Repeating Characters -->
+      <div class="exercise-card" data-difficulty="intermediate">
+        <div class="exercise-header">
+          <span class="exercise-number">#11</span>
+          <span class="difficulty intermediate">Intermediate</span>
+        </div>
+        <div class="exercise-title">Longest Substring Without Repeats</div>
+        <div class="exercise-description">
+          Write a function that finds the length of the longest substring without repeating characters.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def longest_unique_substring(s):
+    # Write your solution
+    pass
+
+# Test
+print(longest_unique_substring("abcabcbb"))  # 3 ("abc")
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use a sliding window with two pointers and a set to track characters in the current window.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def longest_unique_substring(s):
+    char_set = set()
+    left = 0
+    max_length = 0
+    
+    for right in range(len(s)):
+        # If character is in set, remove from left until it's gone
+        while s[right] in char_set:
+            char_set.remove(s[left])
+            left += 1
+        
+        # Add current character to set
+        char_set.add(s[right])
+        
+        # Update max length
+        max_length = max(max_length, right - left + 1)
+    
+    return max_length
+
+# Alternative using dictionary to store last position
+def longest_unique_substring2(s):
+    char_pos = {}
+    left = 0
+    max_length = 0
+    
+    for right, char in enumerate(s):
+        if char in char_pos and char_pos[char] >= left:
+            left = char_pos[char] + 1
+        else:
+            max_length = max(max_length, right - left + 1)
+        
+        char_pos[char] = right
+    
+    return max_length
+
+# Test
+print(longest_unique_substring("abcabcbb"))  # 3
+print(longest_unique_substring("bbbbb"))     # 1
+print(longest_unique_substring("pwwkew"))    # 3
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We use a sliding window approach. The right pointer expands the window, and when we find a duplicate, we move the left pointer past the previous occurrence. The set tracks characters in the current window for O(1) lookup.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "abcabcbb" → <span>Output:</span> 3</div>
+              <div class="test-item"><span>Input:</span> "bbbbb" → <span>Output:</span> 1</div>
+              <div class="test-item"><span>Input:</span> "pwwkew" → <span>Output:</span> 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 12: Group Anagrams -->
+      <div class="exercise-card" data-difficulty="intermediate">
+        <div class="exercise-header">
+          <span class="exercise-number">#12</span>
+          <span class="difficulty intermediate">Intermediate</span>
+        </div>
+        <div class="exercise-title">Group Anagrams</div>
+        <div class="exercise-description">
+          Write a function that groups a list of strings into anagram groups.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def group_anagrams(words):
+    # Write your solution
+    pass
+
+# Test
+print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+# [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use a dictionary where the key is the sorted string, and values are lists of anagrams.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def group_anagrams(words):
+    from collections import defaultdict
+    
+    anagram_groups = defaultdict(list)
+    
+    for word in words:
+        # Sort the word to create a key
+        sorted_word = ''.join(sorted(word))
+        anagram_groups[sorted_word].append(word)
+    
+    return list(anagram_groups.values())
+
+# Alternative using character count as key (more efficient)
+def group_anagrams2(words):
+    from collections import defaultdict
+    
+    anagram_groups = defaultdict(list)
+    
+    for word in words:
+        # Create a tuple of character counts as key
+        char_count = [0] * 26
+        for char in word:
+            char_count[ord(char) - ord('a')] += 1
+        key = tuple(char_count)
+        anagram_groups[key].append(word)
+    
+    return list(anagram_groups.values())
+
+# Test
+words = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(group_anagrams(words))
+# [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> Anagrams have the same characters, so sorting them produces identical strings. We use these sorted strings as dictionary keys to group anagrams. The character count approach is more efficient as it avoids sorting.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> ["eat","tea","tan","ate","nat","bat"] → <span>Output:</span> 3 groups</div>
+              <div class="test-item"><span>Input:</span> ["hello","olleh"] → <span>Output:</span> [["hello","olleh"]]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 13: Valid Parentheses -->
+      <div class="exercise-card" data-difficulty="intermediate">
+        <div class="exercise-header">
+          <span class="exercise-number">#13</span>
+          <span class="difficulty intermediate">Intermediate</span>
+        </div>
+        <div class="exercise-title">Valid Parentheses</div>
+        <div class="exercise-description">
+          Write a function that checks if a string containing just the characters '(', ')', '{', '}', '[' and ']' is valid (all brackets are properly closed and nested).
+        </div>
+        <div class="exercise-code">
+# Your code here
+def is_valid_parentheses(s):
+    # Write your solution
+    pass
+
+# Test
+print(is_valid_parentheses("()[]{}"))  # True
+print(is_valid_parentheses("([)]"))    # False
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use a stack. When you see an opening bracket, push it. When you see a closing bracket, check if it matches the top of the stack.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def is_valid_parentheses(s):
+    stack = []
+    matching = {')': '(', '}': '{', ']': '['}
+    
+    for char in s:
+        if char in matching.values():  # Opening bracket
+            stack.append(char)
+        elif char in matching:  # Closing bracket
+            if not stack or stack.pop() != matching[char]:
+                return False
+        else:
+            # Invalid character (should not happen given problem statement)
+            return False
+    
+    return len(stack) == 0
+
+# Test
+print(is_valid_parentheses("()[]{}"))     # True
+print(is_valid_parentheses("([)]"))       # False
+print(is_valid_parentheses("{[]}"))       # True
+print(is_valid_parentheses("("))          # False
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We use a stack to track opening brackets. When we see a closing bracket, we check if it matches the most recent opening bracket. At the end, the stack should be empty for a valid string.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "()[]{}" → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "([)]" → <span>Output:</span> False</div>
+              <div class="test-item"><span>Input:</span> "{[]}" → <span>Output:</span> True</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 14: String to Integer (atoi) -->
+      <div class="exercise-card" data-difficulty="intermediate">
+        <div class="exercise-header">
+          <span class="exercise-number">#14</span>
+          <span class="difficulty intermediate">Intermediate</span>
+        </div>
+        <div class="exercise-title">String to Integer (atoi)</div>
+        <div class="exercise-description">
+          Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer. Handle whitespace, signs, overflow, and invalid input.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def my_atoi(s):
+    # Write your solution
+    pass
+
+# Test
+print(my_atoi("42"))           # 42
+print(my_atoi("   -42"))       # -42
+print(my_atoi("4193 with words")) # 4193
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Strip whitespace, check for sign, then read digits until a non-digit is encountered. Handle overflow with min/max checks.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def my_atoi(s):
+    # Remove leading/trailing whitespace
+    s = s.strip()
+    
+    if not s:
+        return 0
+    
+    # Handle sign
+    sign = 1
+    index = 0
+    
+    if s[0] == '-':
+        sign = -1
+        index = 1
+    elif s[0] == '+':
+        index = 1
+    
+    # Convert digits
+    result = 0
+    INT_MAX = 2**31 - 1
+    INT_MIN = -2**31
+    
+    while index < len(s) and s[index].isdigit():
+        digit = int(s[index])
+        
+        # Check for overflow
+        if result > INT_MAX // 10 or (result == INT_MAX // 10 and digit > INT_MAX % 10):
+            return INT_MAX if sign == 1 else INT_MIN
+        
+        result = result * 10 + digit
+        index += 1
+    
+    return sign * result
+
+# Test
+print(my_atoi("42"))                 # 42
+print(my_atoi("   -42"))             # -42
+print(my_atoi("4193 with words"))    # 4193
+print(my_atoi("words and 987"))      # 0
+print(my_atoi("-91283472332"))       # -2147483648 (clamped)
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We follow the algorithm: skip whitespace, handle sign, then read digits until a non-digit is found. We check for overflow at each step to stay within 32-bit integer bounds.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "42" → <span>Output:</span> 42</div>
+              <div class="test-item"><span>Input:</span> "   -42" → <span>Output:</span> -42</div>
+              <div class="test-item"><span>Input:</span> "4193 with words" → <span>Output:</span> 4193</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 15: Longest Palindromic Substring -->
+      <div class="exercise-card" data-difficulty="intermediate">
+        <div class="exercise-header">
+          <span class="exercise-number">#15</span>
+          <span class="difficulty intermediate">Intermediate</span>
+        </div>
+        <div class="exercise-title">Longest Palindromic Substring</div>
+        <div class="exercise-description">
+          Write a function that finds the longest palindromic substring in a given string.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def longest_palindrome(s):
+    # Write your solution
+    pass
+
+# Test
+print(longest_palindrome("babad"))  # "bab" or "aba"
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Expand around center. A palindrome mirrors around its center, which can be between characters for even length.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def longest_palindrome(s):
+    if not s or len(s) < 1:
+        return ""
+    
+    def expand_around_center(left, right):
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return s[left + 1:right]
+    
+    longest = ""
+    
+    for i in range(len(s)):
+        # Odd length palindrome
+        odd = expand_around_center(i, i)
+        if len(odd) > len(longest):
+            longest = odd
+        
+        # Even length palindrome
+        even = expand_around_center(i, i + 1)
+        if len(even) > len(longest):
+            longest = even
+    
+    return longest
+
+# Test
+print(longest_palindrome("babad"))     # "bab" or "aba"
+print(longest_palindrome("cbbd"))      # "bb"
+print(longest_palindrome("a"))         # "a"
+print(longest_palindrome("ac"))        # "a"
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We expand around each possible center (both single characters and between characters). For each center, we expand outward while characters match, tracking the longest palindrome found.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "babad" → <span>Output:</span> "bab"</div>
+              <div class="test-item"><span>Input:</span> "cbbd" → <span>Output:</span> "bb"</div>
+              <div class="test-item"><span>Input:</span> "a" → <span>Output:</span> "a"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 16: Generate All Permutations -->
+      <div class="exercise-card" data-difficulty="intermediate">
+        <div class="exercise-header">
+          <span class="exercise-number">#16</span>
+          <span class="difficulty intermediate">Intermediate</span>
+        </div>
+        <div class="exercise-title">Generate All Permutations</div>
+        <div class="exercise-description">
+          Write a function that generates all permutations of a string.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def permutations(s):
+    # Write your solution
+    pass
+
+# Test
+print(permutations("abc"))  
+# ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use recursion: for each character, fix it and find permutations of the remaining characters.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def permutations(s):
+    if len(s) <= 1:
+        return [s]
+    
+    result = []
+    
+    for i, char in enumerate(s):
+        # Remove current character and get permutations of remaining
+        remaining = s[:i] + s[i+1:]
+        for perm in permutations(remaining):
+            result.append(char + perm)
+    
+    return result
+
+# Iterative version using backtracking
+def permutations_iterative(s):
+    def backtrack(path, remaining):
+        if not remaining:
+            result.append(path)
+            return
+        
+        for i in range(len(remaining)):
+            backtrack(path + remaining[i], remaining[:i] + remaining[i+1:])
+    
+    result = []
+    backtrack("", s)
+    return result
+
+# Test
+print(permutations("abc"))
+# ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
+print(len(permutations("abcd")))  # 24
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> For a string of length n, there are n! permutations. We use recursion: for each character, we fix it and recursively generate permutations of the remaining characters, then append the fixed character.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "ab" → <span>Output:</span> ["ab", "ba"]</div>
+              <div class="test-item"><span>Input:</span> "abc" → <span>Output:</span> 6 permutations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 17: Minimum Window Substring -->
+      <div class="exercise-card" data-difficulty="advanced">
+        <div class="exercise-header">
+          <span class="exercise-number">#17</span>
+          <span class="difficulty advanced">Advanced</span>
+        </div>
+        <div class="exercise-title">Minimum Window Substring</div>
+        <div class="exercise-description">
+          Given two strings s and t, return the minimum window substring of s that contains all characters of t.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def min_window(s, t):
+    # Write your solution
+    pass
+
+# Test
+print(min_window("ADOBECODEBANC", "ABC"))  # "BANC"
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use sliding window with two pointers and character frequency maps.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+from collections import Counter
+
+def min_window(s, t):
+    if not s or not t:
+        return ""
+    
+    # Count characters in t
+    t_count = Counter(t)
+    required = len(t_count)
+    
+    # Sliding window
+    left = right = 0
+    formed = 0
+    window_count = {}
+    
+    # Result: (length, left, right)
+    ans = float("inf"), None, None
+    
+    while right < len(s):
+        # Add character from right to window
+        char = s[right]
+        window_count[char] = window_count.get(char, 0) + 1
+        
+        # If current character's count matches required count
+        if char in t_count and window_count[char] == t_count[char]:
+            formed += 1
+        
+        # Try to contract window from left
+        while left <= right and formed == required:
+            char = s[left]
+            
+            # Update answer if current window is smaller
+            if right - left + 1 < ans[0]:
+                ans = (right - left + 1, left, right)
+            
+            # Remove character from left
+            window_count[char] -= 1
+            if char in t_count and window_count[char] < t_count[char]:
+                formed -= 1
+            
+            left += 1
+        
+        right += 1
+    
+    return "" if ans[0] == float("inf") else s[ans[1]:ans[2] + 1]
+
+# Test
+print(min_window("ADOBECODEBANC", "ABC"))  # "BANC"
+print(min_window("a", "a"))                # "a"
+print(min_window("a", "aa"))               # ""
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> We use a sliding window with frequency maps. The right pointer expands the window, and when all required characters are found, we try to shrink from the left while maintaining the condition, tracking the minimum window.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> s="ADOBECODEBANC", t="ABC" → <span>Output:</span> "BANC"</div>
+              <div class="test-item"><span>Input:</span> s="a", t="a" → <span>Output:</span> "a"</div>
+              <div class="test-item"><span>Input:</span> s="a", t="aa" → <span>Output:</span> ""</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 18: Regular Expression Matching -->
+      <div class="exercise-card" data-difficulty="advanced">
+        <div class="exercise-header">
+          <span class="exercise-number">#18</span>
+          <span class="difficulty advanced">Advanced</span>
+        </div>
+        <div class="exercise-title">Regular Expression Matching</div>
+        <div class="exercise-description">
+          Implement regular expression matching with support for '.' and '*'. '.' matches any single character. '*' matches zero or more of the preceding element.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def regex_match(s, p):
+    # Write your solution
+    pass
+
+# Test
+print(regex_match("aa", "a"))    # False
+print(regex_match("aa", "a*"))   # True
+print(regex_match("ab", ".*"))   # True
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use dynamic programming. dp[i][j] represents whether first i chars of s match first j chars of p.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def regex_match(s, p):
+    m, n = len(s), len(p)
+    dp = [[False] * (n + 1) for _ in range(m + 1)]
+    
+    # Empty pattern matches empty string
+    dp[0][0] = True
+    
+    # Handle patterns like a*, a*b*, a*b*c* that can match empty string
+    for j in range(2, n + 1):
+        if p[j - 1] == '*':
+            dp[0][j] = dp[0][j - 2]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if p[j - 1] == '*':
+                # Zero occurrences of preceding character
+                dp[i][j] = dp[i][j - 2]
+                
+                # One or more occurrences if preceding char matches
+                if p[j - 2] == '.' or p[j - 2] == s[i - 1]:
+                    dp[i][j] = dp[i][j] or dp[i - 1][j]
+            
+            elif p[j - 1] == '.' or p[j - 1] == s[i - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+    
+    return dp[m][n]
+
+# Test
+print(regex_match("aa", "a"))      # False
+print(regex_match("aa", "a*"))     # True
+print(regex_match("ab", ".*"))     # True
+print(regex_match("aab", "c*a*b")) # True
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> This is a classic DP problem. We build a 2D DP table where dp[i][j] indicates if first i chars of s match first j chars of p. The '*' case is tricky as it can match zero or more of the preceding character.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> s="aa", p="a" → <span>Output:</span> False</div>
+              <div class="test-item"><span>Input:</span> s="aa", p="a*" → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> s="ab", p=".*" → <span>Output:</span> True</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 19: Edit Distance -->
+      <div class="exercise-card" data-difficulty="advanced">
+        <div class="exercise-header">
+          <span class="exercise-number">#19</span>
+          <span class="difficulty advanced">Advanced</span>
+        </div>
+        <div class="exercise-title">Edit Distance (Levenshtein Distance)</div>
+        <div class="exercise-description">
+          Write a function that calculates the minimum number of operations (insert, delete, replace) required to convert one string into another.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def edit_distance(word1, word2):
+    # Write your solution
+    pass
+
+# Test
+print(edit_distance("horse", "ros"))  # 3
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use dynamic programming. dp[i][j] = min distance for first i chars of word1 and first j chars of word2.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def edit_distance(word1, word2):
+    m, n = len(word1), len(word2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    # Base cases
+    for i in range(m + 1):
+        dp[i][0] = i  # Delete all characters
+    for j in range(n + 1):
+        dp[0][j] = j  # Insert all characters
+    
+    # Fill dp table
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if word1[i - 1] == word2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = min(
+                    dp[i - 1][j],      # Delete
+                    dp[i][j - 1],      # Insert
+                    dp[i - 1][j - 1]   # Replace
+                ) + 1
+    
+    return dp[m][n]
+
+# Space-optimized version
+def edit_distance_optimized(word1, word2):
+    m, n = len(word1), len(word2)
+    
+    # Use only two rows
+    prev = [j for j in range(n + 1)]
+    
+    for i in range(1, m + 1):
+        curr = [0] * (n + 1)
+        curr[0] = i
+        
+        for j in range(1, n + 1):
+            if word1[i - 1] == word2[j - 1]:
+                curr[j] = prev[j - 1]
+            else:
+                curr[j] = min(prev[j], curr[j - 1], prev[j - 1]) + 1
+        
+        prev = curr
+    
+    return prev[n]
+
+# Test
+print(edit_distance("horse", "ros"))     # 3
+print(edit_distance("intention", "execution"))  # 5
+print(edit_distance("", "abc"))          # 3
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> Edit distance is a classic DP problem. dp[i][j] represents the minimum operations to convert word1[:i] to word2[:j]. We consider three operations: delete, insert, or replace, taking the minimum plus 1.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "horse", "ros" → <span>Output:</span> 3</div>
+              <div class="test-item"><span>Input:</span> "intention", "execution" → <span>Output:</span> 5</div>
+              <div class="test-item"><span>Input:</span> "", "abc" → <span>Output:</span> 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 20: Word Break -->
+      <div class="exercise-card" data-difficulty="advanced">
+        <div class="exercise-header">
+          <span class="exercise-number">#20</span>
+          <span class="difficulty advanced">Advanced</span>
+        </div>
+        <div class="exercise-title">Word Break</div>
+        <div class="exercise-description">
+          Given a string and a dictionary of words, determine if the string can be segmented into a space-separated sequence of dictionary words.
+        </div>
+        <div class="exercise-code">
+# Your code here
+def word_break(s, word_dict):
+    # Write your solution
+    pass
+
+# Test
+print(word_break("leetcode", ["leet", "code"]))  # True
+        </div>
+        
+        <div class="hint-box">
+          <div class="hint-title">💡 Hint</div>
+          <div class="hint-text">Use DP where dp[i] indicates if s[:i] can be segmented. Check all possible word endings.</div>
+        </div>
+        
+        <div class="solution-section">
+          <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution-content">
+            <div class="solution-title">✅ Solution:</div>
+            <div class="solution-code">
+def word_break(s, word_dict):
+    word_set = set(word_dict)
+    dp = [False] * (len(s) + 1)
+    dp[0] = True  # Empty string can be segmented
+    
+    for i in range(1, len(s) + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in word_set:
+                dp[i] = True
+                break
+    
+    return dp[len(s)]
+
+# Optimized version with early termination
+def word_break_optimized(s, word_dict):
+    word_set = set(word_dict)
+    max_len = max(len(word) for word in word_dict) if word_dict else 0
+    
+    dp = [False] * (len(s) + 1)
+    dp[0] = True
+    
+    for i in range(1, len(s) + 1):
+        for j in range(max(0, i - max_len), i):
+            if dp[j] and s[j:i] in word_set:
+                dp[i] = True
+                break
+    
+    return dp[len(s)]
+
+# BFS approach
+from collections import deque
+
+def word_break_bfs(s, word_dict):
+    word_set = set(word_dict)
+    queue = deque([0])
+    visited = set([0])
+    
+    while queue:
+        start = queue.popleft()
+        
+        if start == len(s):
+            return True
+        
+        for end in range(start + 1, len(s) + 1):
+            if end not in visited and s[start:end] in word_set:
+                visited.add(end)
+                queue.append(end)
+    
+    return False
+
+# Test
+print(word_break("leetcode", ["leet", "code"]))  # True
+print(word_break("applepenapple", ["apple", "pen"]))  # True
+print(word_break("catsandog", ["cats", "dog", "sand", "and", "cat"]))  # False
+            </div>
+            <div class="solution-explanation">
+              <strong>Explanation:</strong> dp[i] means the substring s[0:i] can be segmented. For each position i, we check all previous positions j where dp[j] is True and s[j:i] is in the dictionary. The optimized version limits the window size to the longest word in the dictionary.
+            </div>
+            <div class="test-cases">
+              <div class="test-item"><span>Input:</span> "leetcode", ["leet","code"] → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "applepenapple", ["apple","pen"] → <span>Output:</span> True</div>
+              <div class="test-item"><span>Input:</span> "catsandog", ["cats","dog","sand","and","cat"] → <span>Output:</span> False</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>🐍 POETIC BYTES - Python String Practice Exercises</p>
+      <p>30+ exercises with detailed solutions • Progress tracking • Mobile responsive</p>
+      <p><a href="#" onclick="resetAllProgress()">Reset All Progress</a> • <a href="#" onclick="showAllSolutions()">Show All Solutions</a> • <a href="#" onclick="hideAllSolutions()">Hide All Solutions</a></p>
+      <p style="margin-top: 0.5rem; font-size: 0.65rem;">by Glenn Junsay Pansensoy</p>
+    </div>
+  </div>
+
+  <script>
+    // Toggle solution visibility
+    function toggleSolution(button) {
+      const solution = button.nextElementSibling;
+      solution.classList.toggle('show');
+      button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+      
+      // Save progress to localStorage
+      const card = button.closest('.exercise-card');
+      const exerciseNum = card.querySelector('.exercise-number').textContent;
+      const completed = solution.classList.contains('show');
+      
+      let progress = JSON.parse(localStorage.getItem('stringProgress') || '{}');
+      progress[exerciseNum] = completed;
+      localStorage.setItem('stringProgress', JSON.stringify(progress));
+      
+      updateProgress();
+    }
+
+    // Update progress bar
+    function updateProgress() {
+      const progress = JSON.parse(localStorage.getItem('stringProgress') || '{}');
+      const totalExercises = document.querySelectorAll('.exercise-card').length;
+      const completed = Object.values(progress).filter(v => v).length;
+      
+      const percentage = (completed / totalExercises) * 100;
+      document.getElementById('progressFill').style.width = percentage + '%';
+      document.getElementById('progressStats').textContent = `${completed}/${totalExercises} completed`;
+    }
+
+    // Load saved progress on page load
+    function loadProgress() {
+      const progress = JSON.parse(localStorage.getItem('stringProgress') || '{}');
+      
+      document.querySelectorAll('.exercise-card').forEach(card => {
+        const exerciseNum = card.querySelector('.exercise-number').textContent;
+        const solution = card.querySelector('.solution-content');
+        const button = card.querySelector('.solution-toggle');
+        
+        if (progress[exerciseNum]) {
+          solution.classList.add('show');
+          button.textContent = 'Hide Solution';
+        } else {
+          solution.classList.remove('show');
+          button.textContent = 'Show Solution';
+        }
+      });
+      
+      updateProgress();
+    }
+
+    // Reset all progress
+    function resetAllProgress() {
+      if (confirm('Are you sure you want to reset all progress?')) {
+        localStorage.removeItem('stringProgress');
+        loadProgress();
+      }
+    }
+
+    // Show all solutions
+    function showAllSolutions() {
+      document.querySelectorAll('.exercise-card').forEach(card => {
+        const solution = card.querySelector('.solution-content');
+        const button = card.querySelector('.solution-toggle');
+        solution.classList.add('show');
+        button.textContent = 'Hide Solution';
+      });
+      
+      // Save progress
+      const progress = {};
+      document.querySelectorAll('.exercise-card').forEach((card, index) => {
+        const exerciseNum = card.querySelector('.exercise-number').textContent;
+        progress[exerciseNum] = true;
+      });
+      localStorage.setItem('stringProgress', JSON.stringify(progress));
+      updateProgress();
+    }
+
+    // Hide all solutions
+    function hideAllSolutions() {
+      document.querySelectorAll('.exercise-card').forEach(card => {
+        const solution = card.querySelector('.solution-content');
+        const button = card.querySelector('.solution-toggle');
+        solution.classList.remove('show');
+        button.textContent = 'Show Solution';
+      });
+      
+      // Clear progress
+      localStorage.removeItem('stringProgress');
+      updateProgress();
+    }
+
+    // Filter exercises by difficulty
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filter = this.dataset.filter;
+        
+        document.querySelectorAll('.exercise-card').forEach(card => {
+          if (filter === 'all' || card.dataset.difficulty === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    document.getElementById('resetProgress').addEventListener('click', resetAllProgress);
+
+    window.addEventListener('load', loadProgress);
+
+    window.toggleSolution = toggleSolution;
+    window.resetAllProgress = resetAllProgress;
+    window.showAllSolutions = showAllSolutions;
+    window.hideAllSolutions = hideAllSolutions;
+  </script>
+</body>
+</html>
