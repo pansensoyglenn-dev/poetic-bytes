@@ -1,0 +1,2626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Python Functions: Complete University-Level Guide (2026) | 35+ Examples</title>
+    <meta name="title" content="Python Functions: Complete University-Level Guide (2026) | 35+ Examples">
+    <meta name="description" content="Master Python functions with this comprehensive university-level guide. 35+ examples covering decorators, generators, recursion, type hints, functools, and advanced patterns. Python 3.12+. Includes interactive quizzes and code playground.">
+    <meta name="keywords" content="Python functions tutorial, Python functions advanced, Python decorators explained, Python generators yield, Python recursion examples, Python type hints guide, Python functools partial, Python closures tutorial, Python lambda functions, Python higher-order functions, Python async await, Python dataclasses, Python function scope LEGB, Python memoization lru_cache, Python function composition">
+    <meta name="author" content="POETIC BYTES Educational Division">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pansensoyglenn-dev.github.io/python-functions.html">
+    <meta property="og:title" content="Python Functions: Complete University-Level Guide (2026) | 35+ Examples">
+    <meta property="og:description" content="Master Python functions with this comprehensive university-level guide. 35+ examples covering decorators, generators, recursion, type hints, and advanced patterns.">
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/python-functions.html/images/python-functions-og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="POETIC BYTES">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-01-15T08:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-19T10:30:00+00:00">
+    <meta property="article:author" content="POETIC BYTES Educational Division">
+    <meta property="article:section" content="Python Programming">
+    <meta property="article:tag" content="Python Functions">
+    <meta property="article:tag" content="Python Decorators">
+    <meta property="article:tag" content="Python Generators">
+    <meta property="article:tag" content="Python Type Hints">
+    <meta property="article:tag" content="Python Async">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@GlennPansensoy">
+    <meta name="twitter:creator" content="@GlennPansensoy">
+    <meta name="twitter:url" content="https://pansensoyglenn-dev.github.io/poetic-bytes/python-fubctions.html">
+    <meta name="twitter:title" content="Python Functions: Complete University-Level Guide (2026) | 35+ Examples">
+    <meta name="twitter:description" content="Master Python functions with this comprehensive university-level guide. 35+ examples covering decorators, generators, recursion, type hints, and advanced patterns.">
+    <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html/images/python-functions-twitter-card.jpg">
+    <meta name="twitter:label1" content="Est. Reading Time">
+    <meta name="twitter:data1" content="45 minutes">
+    <meta name="twitter:label2" content="Python Version">
+    <meta name="twitter:data2" content="3.12+">
+    <link rel="canonical" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html">
+    <link rel="alternate" hreflang="en" href="https://pansensoyglenn-dev.githib.io/poetic-bytes/python-functions.html">
+    <link rel="alternate" hreflang="x-default" href="https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Article",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#article",
+                "headline": "Python Functions: Complete University-Level Guide (2026) | 35+ Examples",
+                "description": "Master Python functions with this comprehensive university-level guide. 35+ examples covering decorators, generators, recursion, type hints, functools, and advanced patterns.",
+                "keywords": "Python functions, decorators, generators, recursion, type hints, functools, closures, lambda, async",
+                "datePublished": "2026-01-15T08:00:00+00:00",
+                "dateModified": "2026-02-19T10:30:00+00:00",
+                "author": {
+                    "@type": "Organization",
+                    "name": "POETIC BYTES Educational Division",
+                    "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html/about"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "POETIC BYTES",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/images/logo.png",
+                        "width": 180,
+                        "height": 60
+                    }
+                },
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html"
+                },
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html/images/python-functions.html-og-image.jpg",
+                    "width": 1200,
+                    "height": 630
+                },
+                "wordCount": 8500,
+                "timeRequired": "PT45M",
+                "educationalLevel": "Advanced",
+                "educationalUse": "Complete Guide, Tutorial, Reference",
+                "teaches": [
+                    "Python Function Definition",
+                    "Parameter Types",
+                    "Scope and Closures",
+                    "Decorators",
+                    "Generators",
+                    "Recursion",
+                    "Type Hints",
+                    "Functools Module",
+                    "Higher-Order Functions",
+                    "Async Functions",
+                    "Dataclasses"
+                ]
+            },
+            {
+                "@type": "TechArticle",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#tech-article",
+                "proficiencyLevel": "Advanced",
+                "dependencies": "Python 3.12+",
+                "skills": "Python Programming, Functional Programming",
+                "version": "2026 Edition",
+                "keywords": "Python 3.12, Python functions tutorial, advanced Python"
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Python Tutorials",
+                        "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Python Functions Complete Guide",
+                        "item": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html"
+                    }
+                ]
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#webpage",
+                "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html",
+                "name": "Python Functions: Complete University-Level Guide (2026) | 35+ Examples",
+                "description": "Master Python functions with this comprehensive university-level guide. 35+ examples covering decorators, generators, recursion, type hints, functools, and advanced patterns.",
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html/#website"
+                },
+                "primaryImageOfPage": {
+                    "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#primaryimage"
+                },
+                "breadcrumb": {
+                    "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#breadcrumb"
+                },
+                "datePublished": "2026-01-15T08:00:00+00:00",
+                "dateModified": "2026-02-19T10:30:00+00:00"
+            },
+            {
+                "@type": "ImageObject",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#primaryimage",
+                "url": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions html/images/python-functions-og-image.jpg",
+                "width": 1200,
+                "height": 630,
+                "caption": "Python Functions Complete Guide - University Level Educational Resource"
+            },
+            {
+                "@type": "Course",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#course",
+                "name": "Python Functions: From Basics to Advanced Patterns",
+                "description": "A comprehensive course on Python functions covering all aspects from basic definitions to advanced functional programming patterns.",
+                "provider": {
+                    "@type": "Organization",
+                    "name": "POETIC BYTES",
+                    "sameAs": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html"
+                },
+                "educationalLevel": "Advanced",
+                "teaches": [
+                    "Function Definition",
+                    "Parameters & Arguments",
+                    "Scope & Closures",
+                    "Decorators",
+                    "Generators",
+                    "Recursion",
+                    "Type Hints",
+                    "Functools",
+                    "Higher-Order Functions",
+                    "Async/Await",
+                    "Dataclasses"
+                ],
+                "numberOfCredits": 5,
+                "coursePrerequisites": "Basic Python syntax knowledge"
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://pansensoyglenn-dev.github.io/poetic-bytes/python-functions.html#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is the LEGB rule in Python?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "LEGB stands for Local, Enclosing, Global, Built-in - the order Python searches for variable names when resolving a name reference inside a function."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What's the difference between return and yield?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "return exits the function entirely, destroying all local state. yield pauses the function, saving all local state (variables, execution position), and can be resumed later. A function with yield is a generator."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What does @functools.wraps do?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "It copies the original function's __name__, __doc__, __annotations__, and other metadata to the wrapper function. Without it, all decorated functions appear as 'wrapper' with no docstring, breaking introspection, help(), and documentation generators."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "When should I use async def instead of def?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Use async def for I/O-bound operations - network requests, file reads, database queries - where the function spends time waiting for external resources. For CPU-bound operations, use regular functions with multiprocessing instead, as async provides no concurrency benefit there."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is the mutable default argument pitfall?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Using a mutable object (list, dict) as a default parameter causes it to be shared across all calls, accumulating data unexpectedly. Fix by using None as sentinel and create the object inside the body."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="pinterest" content="nopin">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-dark: #0b1f33;
+            --primary-deep: #0a2a40;
+            --primary-medium: #1d4e7a;
+            --primary-light: #3b82f6;
+            --accent-teal: #2dd4bf;
+            --text-light: #ffffff;
+            --text-soft: #f8fafc;
+            --text-muted: #e2e8f0;
+            --code-bg: #0f2a40;
+            --card-bg: rgba(18, 40, 65, 0.85);
+            --border-color: #2d5580;
+            --font-mono: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'Courier New', monospace;
+            --font-main: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+        }
+        
+        body {
+            background: linear-gradient(145deg, #0c253a, #123a52);
+            color: var(--text-light);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4, p, li, .comment-content, .quiz-question, .quiz-explanation, .tip-box p, .warning-box p {
+            text-align: justify !important;
+            word-break: break-word;
+        }
+        
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 1rem 0 0.6rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+        }
+        
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.6rem;
+            color: #ffffff;
+            border-left: 4px solid var(--primary-light);
+            padding-left: 0.8rem;
+            text-transform: uppercase;
+        }
+        
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.5rem;
+            color: #ffffff;
+        }
+        
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.4rem;
+            color: #ffffff;
+        }
+        
+        p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            max-width: 100%;
+            line-height: 1.6;
+            width: 100%;
+        }
+        
+        li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0.8rem 0.5rem;
+            width: 100%;
+            overflow-x: hidden;
+            word-wrap: break-word;
+        }
+        
+        .container * {
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        
+        pre, code, .pitfalls-table, table {
+            max-width: 100%;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        
+        pre {
+            white-space: pre;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .pitfalls-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            table-layout: auto;
+        }
+        
+        .pitfalls-table th, .pitfalls-table td {
+            white-space: normal;
+            word-break: break-word;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent-teal));
+            z-index: 2000;
+        }
+        
+        .navbar {
+            background: rgba(5, 25, 45, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+        
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            flex-shrink: 1;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            margin-left: 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
+            flex-shrink: 0;
+        }
+
+        .hamburger-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger-btn.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background: white;
+        }
+
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger-btn.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background: white;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(5, 20, 38, 0.99);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 5rem 2rem 2rem;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-teal);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu-section-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.55rem 0.8rem;
+            border-radius: 10px;
+            margin-bottom: 0.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: white;
+            background: rgba(59, 130, 246, 0.15);
+            padding-left: 1.1rem;
+        }
+
+        .mobile-menu a i {
+            width: 16px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--primary-light);
+        }
+
+        .hero-section {
+            background: rgba(0, 30, 55, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1rem 0 1.5rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.2rem 0;
+        }
+        
+        .code-example {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin: 1.2rem 0;
+            overflow: hidden;
+        }
+        
+        .code-header {
+            background: #0a1f33;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .code-header span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+        
+        pre {
+            background: #0a1d30;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+        
+        code {
+            font-family: var(--font-mono);
+            color: #ffffff;
+            font-size: 0.85rem;
+        }
+        
+        .kw { color: #d8a8ff; }
+        .fn { color: #8dd0c0; }
+        .str { color: #f9d77e; }
+        .bi { color: #7ec8e0; }
+        .cm { color: #8aa9c9; }
+        .nm { color: #f5b37c; }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .feature-item {
+            background: #123a57;
+            padding: 0.8rem 1rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--primary-light);
+        }
+        
+        .feature-item h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+        
+        .feature-item p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+            color: #ffffff;
+        }
+        
+        .pitfalls-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #0e314b;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .pitfalls-table th {
+            background: #1d4e79;
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            vertical-align: middle;
+            border-bottom: 2px solid #2f6597;
+            word-break: normal;
+        }
+
+        .pitfalls-table th:nth-child(1) { width: 22%; }
+        .pitfalls-table th:nth-child(2) { width: 42%; }
+        .pitfalls-table th:nth-child(3) { width: 36%; }
+
+        .pitfalls-table td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid #1e4a6e;
+            text-align: left;
+            color: #ffffff;
+            font-size: 0.85rem;
+            line-height: 1.55;
+            vertical-align: top;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .pitfalls-table td code {
+            font-size: 0.8rem;
+            background: #0a1f33;
+            padding: 0.15rem 0.35rem;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-word;
+            display: inline;
+            color: #ffffff;
+        }
+
+        .pitfalls-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pitfalls-table tr:hover td {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #0e314b;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: #1d4e79;
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.9rem;
+            vertical-align: middle;
+            line-height: 1.4;
+        }
+
+        td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid #2f6597;
+            text-align: left;
+            color: #ffffff;
+            font-size: 0.85rem;
+            vertical-align: top;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px #0e3c7a;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .quiz-item {
+            background: #0f3450;
+            border-radius: 20px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            border: 1px solid #2f6597;
+        }
+        
+        .quiz-question {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+        
+        .quiz-answer {
+            background: #1d4e79;
+            padding: 0.5rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 0.4rem 0;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            color: #ffffff;
+        }
+        
+        .quiz-answer:hover {
+            background: #256aa0;
+        }
+        
+        .quiz-explanation {
+            margin-top: 0.8rem;
+            padding: 0.6rem;
+            background: #0a2640;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            display: none;
+            color: #ffffff;
+        }
+        
+        .quiz-explanation.show {
+            display: block;
+        }
+
+        .tip-box {
+            background: rgba(45, 212, 191, 0.08);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-left: 4px solid var(--accent-teal);
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .tip-box p {
+            margin: 0;
+            color: #ffffff;
+            font-size: 0.85rem;
+        }
+
+        .tip-box strong {
+            color: var(--accent-teal);
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-left: 4px solid #fbbf24;
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #ffffff;
+            font-size: 0.85rem;
+        }
+
+        .warning-box strong {
+            color: #fbbf24;
+        }
+
+        .social-share-section {
+            background: rgba(0, 30, 55, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .social-share-label {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-share-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+        }
+
+        .social-btn i {
+            font-size: 1.1rem;
+        }
+
+        .social-btn.facebook { background: #1877f2; }
+        .social-btn.twitter { background: #1da1f2; }
+        .social-btn.linkedin { background: #0a66c2; }
+        .social-btn.whatsapp { background: #25d366; }
+        .social-btn.telegram { background: #0088cc; }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .subscription-section {
+            background: linear-gradient(145deg, #0d2c44, #103e5c);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .subscription-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+
+        .subscription-subtitle {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .subscription-form {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            color: white;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .form-group input::placeholder {
+            color: #ffffff;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .form-group.checkbox input {
+            width: auto;
+            margin: 0;
+        }
+
+        .form-group.checkbox label {
+            font-size: 0.8rem;
+            color: #ffffff;
+        }
+
+        .subscribe-btn {
+            width: 100%;
+            padding: 0.6rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-teal));
+            border: none;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .subscribe-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59,130,246,0.3);
+        }
+
+        .subscribe-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .subscription-message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            text-align: center;
+            display: none;
+            color: #ffffff;
+        }
+
+        .subscription-message.success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--success-color);
+            color: #ffffff;
+            display: block;
+        }
+
+        .subscription-message.error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--error-color);
+            color: #ffffff;
+            display: block;
+        }
+
+        .subscription-message.info {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid var(--info-color);
+            color: #ffffff;
+            display: block;
+        }
+
+        .comment-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .comment-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comment-count {
+            background: var(--primary-light);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .comment-form {
+            background: #0a2640;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 0.6rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: white;
+            font-size: 0.85rem;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .comment-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .comment-form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .comment-form-row input {
+            flex: 1;
+            padding: 0.5rem 0.7rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: white;
+            font-size: 0.8rem;
+            min-width: 200px;
+        }
+
+        .comment-form-row input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .comment-form-row input::placeholder {
+            color: #ffffff;
+            opacity: 0.7;
+        }
+
+        .comment-submit {
+            background: linear-gradient(135deg, var(--primary-light), #2563eb);
+            border: none;
+            border-radius: 30px;
+            padding: 0.5rem 1.2rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comment-submit:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .comment-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .comments-list {
+            margin-top: 1.5rem;
+        }
+
+        .comment-item {
+            background: #0e2e47;
+            border-radius: 16px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--primary-light);
+        }
+
+        .comment-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .comment-author {
+            font-weight: 700;
+            color: white;
+            font-size: 0.85rem;
+        }
+
+        .comment-date {
+            font-size: 0.65rem;
+            color: #ffffff;
+            opacity: 0.8;
+        }
+
+        .comment-content {
+            font-size: 0.85rem;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .no-comments {
+            text-align: center;
+            padding: 2rem;
+            color: #ffffff;
+            font-size: 0.8rem;
+            background: #0a2640;
+            border-radius: 16px;
+        }
+
+        .return-home-wrap {
+            text-align: center;
+            margin: 2rem 0 0;
+            padding: 0 1rem;
+        }
+
+        .return-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, #1d4e7a, #3b82f6);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 4px 20px rgba(59,130,246,0.35);
+            transition: all 0.25s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .return-home-btn:hover {
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            box-shadow: 0 8px 28px rgba(59,130,246,0.5);
+            transform: translateY(-2px);
+        }
+
+        .return-home-btn i { font-size: 0.85rem; }
+
+        .footer {
+            margin-top: 0;
+            background: transparent;
+            border: none;
+        }
+
+        .footer-layer-1 {
+            background: linear-gradient(180deg, #061e30 0%, #041625 100%);
+            border-top: 1px solid #1a3e5c;
+            padding: 2rem 0.5rem;
+        }
+
+        .footer-l1-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .footer-l1-heading {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent-teal);
+            text-align: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-l1-sub {
+            font-size: 1rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-l1-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .f1-col-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid #1a3e5c;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .f1-col-title i { color: var(--accent-teal); font-size: 1rem; }
+
+        .f1-col ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .f1-col ul li {
+            margin-bottom: 0.45rem;
+        }
+
+        .f1-col ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .f1-col ul li a:hover {
+            color: var(--accent-teal);
+            padding-left: 4px;
+        }
+
+        .f1-col ul li a i {
+            font-size: 1rem;
+            width: 11px;
+            color: var(--accent-teal);
+            flex-shrink: 0;
+        }
+
+        .f1-col ul li a .badge-new {
+            font-size: 1rem;
+            font-weight: 700;
+            background: rgba(45,212,191,0.15);
+            color: var(--accent-teal);
+            border-radius: 4px;
+            padding: 0.05rem 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-layer-2 {
+            background: #020d18;
+            border-top: 1px solid #0f2436;
+            padding: 2rem 0.5rem;
+        }
+
+        .footer-l2-main {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .footer-brand-col .footer-logo {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-brand-col .footer-tagline {
+            font-size: 1rem;
+            color: #ffffff;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+        }
+
+        .footer-brand-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .f-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            border-radius: 4px;
+            padding: 0.2rem 0.55rem;
+            color: #ffffff;
+        }
+
+        .f-badge-teal  { background: rgba(45,212,191,0.08); color: var(--accent-teal); border: 1px solid rgba(45,212,191,0.2); }
+        .f-badge-blue  { background: rgba(59,130,246,0.08); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
+        .f-badge-gold  { background: rgba(251,191,36,0.08); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+
+        .footer-social-row {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid #1a3e5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-icon:hover {
+            background: rgba(59,130,246,0.12);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+
+        .footer-l2-col-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #0f2436;
+        }
+
+        .footer-l2-col ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-l2-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-l2-col ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+
+        .footer-l2-col ul li a:hover { color: var(--accent-teal); }
+        .footer-l2-col ul li a i { font-size: 1rem; width: 11px; color: var(--accent-teal); }
+
+        .footer-l2-divider {
+            max-width: 1600px;
+            margin: 1.5rem auto 0;
+            border: none;
+            border-top: 1px solid #0d2033;
+        }
+
+        .footer-l2-bottom {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.2rem 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            text-align: center;
+        }
+
+        .footer-l2-copyright {
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        .footer-l2-copyright strong { color: #ffffff; }
+
+        .footer-l2-legal-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-l2-legal-links a {
+            font-size: 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-l2-legal-links a:hover { color: var(--accent-teal); }
+
+        .footer-l2-legal-links .dot {
+            display: none;
+        }
+
+        .footer-l2-python {
+            font-size: 1rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .footer-l2-python i { color: var(--accent-teal); }
+
+        /* Responsive and layout fixes */
+        @media (max-width: 900px) {
+            .footer-l1-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-l2-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.8rem;
+            }
+            .footer-brand-col {
+                grid-column: 1 / -1;
+            }
+        }
+
+        section, .card, .code-example, .hero-section, .comment-section, 
+        .subscription-section, .social-share-section {
+            width: 100% !important;
+            float: none !important;
+            clear: both !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        .grid-2, .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr !important;
+            gap: 1rem;
+            margin: 1rem 0;
+            width: 100%;
+        }
+
+        @media (max-width: 780px) {
+            .container { 
+                padding: 0.5rem 0.25rem;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            section, .card, .code-example, .hero-section, 
+            .comment-section, .subscription-section, 
+            .social-share-section, .return-home-wrap {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0.75rem 0 !important;
+                padding: 0.75rem 0.5rem !important;
+                float: none !important;
+                clear: both !important;
+                box-sizing: border-box;
+            }
+            
+            h1, h2, h3, h4, p, li, .comment-content, 
+            .quiz-question, .quiz-explanation, .tip-box p, 
+            .warning-box p, .feature-item p {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            .navbar .nav-links { display: none !important; }
+            
+            .footer-layer-1, .footer-layer-2 {
+                padding: 1.5rem 0.25rem !important;
+            }
+            
+            .footer-l1-grid, .footer-l2-main {
+                gap: 0.75rem;
+            }
+            
+            .f1-col-title {
+                font-size: 1rem;
+                margin-bottom: 0.6rem;
+                padding-bottom: 0.3rem;
+            }
+            
+            .f1-col ul li a {
+                font-size: 1rem;
+            }
+            
+            .footer-l2-bottom {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem 0.25rem 0;
+                text-align: center;
+            }
+            
+            .footer-l2-copyright {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            .footer-l2-legal-links {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .footer-l2-legal-links a {
+                font-size: 1rem;
+            }
+            
+            .footer-l2-python {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.4rem 0.15rem;
+            }
+            
+            h1 {
+                font-size: 1.2rem;
+            }
+            
+            h2 {
+                font-size: 1.05rem;
+                padding-left: 0.4rem;
+            }
+            
+            p, li {
+                font-size: 0.9rem;
+                margin-bottom: 0.7rem;
+            }
+            
+            pre {
+                font-size: 0.7rem;
+                padding: 0.4rem;
+            }
+            
+            code {
+                font-size: 0.7rem;
+            }
+            
+            .grid-2, .grid-3 {
+                gap: 0.5rem;
+            }
+            
+            .feature-item {
+                padding: 0.6rem 0.4rem;
+            }
+            
+            .feature-item h4 {
+                font-size: 0.9rem;
+            }
+            
+            .feature-item p {
+                font-size: 0.85rem;
+            }
+            
+            .pitfalls-table td, table td,
+            .pitfalls-table th, table th {
+                padding: 0.4rem;
+                font-size: 0.75rem;
+                min-width: 100px;
+            }
+        }
+
+        * {
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+        body {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        img, video, iframe, object, embed {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .flex-row, .nav-links, .comment-form-row, 
+        .social-share-buttons, .footer-l2-bottom {
+            flex-wrap: wrap;
+        }
+
+        table, .pitfalls-table {
+            max-width: 100%;
+            overflow-x: auto;
+            display: block;
+        }
+
+        @media (max-width: 700px) {
+            .pitfalls-table,
+            .pitfalls-table thead,
+            .pitfalls-table tbody,
+            .pitfalls-table th,
+            .pitfalls-table td,
+            .pitfalls-table tr {
+                display: block;
+                width: 100%;
+            }
+
+            .pitfalls-table thead {
+                display: none;
+            }
+
+            .pitfalls-table tr {
+                background: #0e2e47;
+                border-radius: 12px;
+                margin-bottom: 0.6rem;
+                border: 1px solid #1e4a6e;
+                overflow: hidden;
+            }
+
+            .pitfalls-table td {
+                padding: 0.6rem 0.8rem;
+                border-bottom: 1px solid #1e4a6e;
+                position: relative;
+            }
+
+            .pitfalls-table td:last-child {
+                border-bottom: none;
+            }
+
+            .pitfalls-table td::before {
+                content: attr(data-label);
+                display: block;
+                font-size: 0.65rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--accent-teal);
+                margin-bottom: 0.3rem;
+            }
+        }
+
+        .f1-col ul li a .badge-new {
+            display: none;
+        }
+
+        .footer-l2-col ul li a {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-l2-col ul li a i {
+            font-size: 0.65rem;
+            width: 11px;
+            color: var(--accent-teal);
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="progressBar"></div>
+    <div class="mobile-menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation menu" role="navigation">
+        <div class="mobile-menu-title">📘 POETIC BYTES</div>
+        <div class="mobile-menu-section">
+            <div class="mobile-menu-section-label">Main Sections</div>
+            <a href="#introduction" class="menu-link"><i class="fas fa-home"></i> Introduction</a>
+            <a href="#basics" class="menu-link"><i class="fas fa-cube"></i> Foundations</a>
+            <a href="#scope" class="menu-link"><i class="fas fa-layer-group"></i> Scope & Closures</a>
+            <a href="#lambda" class="menu-link"><i class="fas fa-bolt"></i> Lambda Functions</a>
+            <a href="#decorators" class="menu-link"><i class="fas fa-magic"></i> Decorators</a>
+            <a href="#generators" class="menu-link"><i class="fas fa-sync-alt"></i> Generators</a>
+            <a href="#typehints" class="menu-link"><i class="fas fa-tag"></i> Type Hints</a>
+            <a href="#functools" class="menu-link"><i class="fas fa-tools"></i> Functools</a>
+            <a href="#higher-order" class="menu-link"><i class="fas fa-project-diagram"></i> Higher-Order</a>
+            <a href="#async-functions" class="menu-link"><i class="fas fa-clock"></i> Async Functions</a>
+            <a href="#mistakes" class="menu-link"><i class="fas fa-exclamation-triangle"></i> Common Pitfalls</a>
+            <a href="#quiz" class="menu-link"><i class="fas fa-question-circle"></i> Knowledge Quiz</a>
+        </div>
+    </div>
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="logo">📘 POETIC BYTES</div>
+        <div class="nav-links" role="list">
+            <a href="#introduction" role="listitem">Intro</a>
+            <a href="#basics" role="listitem">Basics</a>
+            <a href="#scope" role="listitem">Scope</a>
+            <a href="#lambda" role="listitem">Lambda</a>
+            <a href="#decorators" role="listitem">Decorators</a>
+            <a href="#generators" role="listitem">Generators</a>
+            <a href="#typehints" role="listitem">Type Hints</a>
+            <a href="#functools" role="listitem">Functools</a>
+            <a href="#higher-order" role="listitem">Higher‑Order</a>
+            <a href="#async-functions" role="listitem">Async</a>
+            <a href="#mistakes" role="listitem">Pitfalls</a>
+            <a href="#quiz" role="listitem">Quiz</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <main class="container">
+    
+        <section id="introduction" class="hero-section">
+            <h4>PYTHON FUNCTIONS: A COMPLETE GUIDE (2026)</h4>
+            <h4>1.0 THE THEORETICAL AND PRACTICAL FOUNDATIONS OF FUNCTIONS</h4>
+            <p>In the landscape of computer science, functions represent one of the most profound abstractions ever devised. At their core, functions are mechanisms for encapsulating behavior — they take inputs, perform computations, and produce outputs. But this simple description belies their true power. Functions are the building blocks of modular reasoning, the units of reuse, and the foundation upon which scalable software systems are constructed. When we teach functions, we are not merely teaching syntax; we are teaching a way of thinking about problems that scales from the smallest script to the largest distributed systems.</p>
+            <p>Python's implementation of functions draws from decades of programming language theory while remaining accessible to beginners. Unlike purely functional languages, Python embraces multiple paradigms: you can write procedural code, object-oriented code, and functional code — often within the same function definition. This flexibility makes Python an ideal teaching language because it allows us to introduce concepts incrementally while always having a solid foundation to build upon.</p>
+            <h4>1.1 Why This Guide Exists — Our Educational Philosophy</h4>
+            <p>This resource has been designed as a comprehensive educational tool for computer science students, self-directed learners, and professional developers seeking to deepen their understanding. Every explanation has been crafted to meet university-level instructional standards: we emphasize not just the "how" but the "why" behind each concept.</p>
+            <h4>1.2 Prerequisites and Learning Path</h4>
+            <p>This guide assumes basic familiarity with Python syntax — variables, data types, conditionals, and loops. If you're entirely new to programming, we recommend starting with a "Python Fundamentals" course before diving into functions.</p>
+            <h4>1.3 Educational Objectives</h4>
+            <ul>
+                <li><strong>Define and call functions</strong> with appropriate parameter types and return values.</li>
+                <li><strong>Analyze variable scope</strong> using Python's LEGB rule and manipulate scope with global and nonlocal keywords.</li>
+                <li><strong>Create flexible functions</strong> using *args and **kwargs to accept variable numbers of arguments.</li>
+                <li><strong>Implement lambda functions</strong> for short, throwaway operations in functional contexts.</li>
+                <li><strong>Design closures</strong> that capture and retain state from enclosing scopes.</li>
+                <li><strong>Write decorators</strong> to modify function behavior without changing source code.</li>
+                <li><strong>Build generators</strong> with yield for memory-efficient iteration over large or infinite sequences.</li>
+                <li><strong>Apply recursion</strong> appropriately to tree-structured problems.</li>
+                <li><strong>Add type hints</strong> to functions, improving documentation and enabling static type checking.</li>
+                <li><strong>Utilize functools utilities</strong> including partial, lru_cache, and wraps.</li>
+                <li><strong>Recognize and avoid common pitfalls</strong> including mutable default arguments and late binding in closures.</li>
+            </ul>
+        </section>
+
+        <section id="basics" class="card">
+            <h4>2.0 FOUNDATIONS: THE ANATOMY OF PYTHON FUNCTIONS</h4>
+            <h4>2.1 Function Definition Syntax — A Detailed Examination</h4>
+            <p>Every Python function begins with the <code>def</code> keyword, followed by the function name, parentheses containing parameters, and a colon. The indented block that follows constitutes the function body. Functions in Python are first-class objects — they can be assigned to variables, passed as arguments, returned from other functions, and stored in data structures.</p>
+            <p>The function name follows the same rules as variable names: it must start with a letter or underscore, contain only letters, numbers, or underscores, and should be descriptive. Python's style guide (PEP 8) recommends lowercase_with_underscores for function names.</p>
+            <div class="tip-box">
+                <p><strong>💡 Pro Tip:</strong> A well-named function reads like a sentence. <code>calculate_total_price(items)</code> is far more readable than <code>ctp(i)</code>. Invest time in naming — it pays dividends in maintainability.</p>
+            </div>
+            <h4>2.2 Parameter Types — A Comprehensive Taxonomy</h4>
+            <p><strong>Positional Parameters:</strong> Values are assigned to parameters based on their position in the function call. The number of arguments must match exactly unless defaults are provided.</p>
+            <p><strong>Default Parameters:</strong> Parameters can have default values, making them optional. Critical nuance: default values are evaluated only once at function definition time, not each call.</p>
+            <p><strong>Keyword Arguments:</strong> Callers can specify which parameter receives which value using the parameter name, improving readability.</p>
+            <p><strong>Variable Positional Arguments (*args):</strong> The *args parameter collects any number of positional arguments into a tuple, enabling functions to accept arbitrary numbers of inputs.</p>
+            <p><strong>Variable Keyword Arguments (**kwargs):</strong> The **kwargs parameter collects any number of keyword arguments into a dictionary, essential for functions that need to accept arbitrary configuration options.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python" style="color:#3b82f6;"></i> EXAMPLE 1.1 — Basic Function Definition and Introspection</span>
+            </div>
+            <pre><code><span class="cm"># A simple function with documentation</span>
+<span class="kw">def</span> <span class="fn">calculate_area</span>(length, width):
+    <span class="str">"""
+    Calculate the area of a rectangle.
+    
+    Parameters:
+        length (float): The length of the rectangle.
+        width  (float): The width of the rectangle.
+    Returns:
+        float: The computed area (length * width).
+    
+    This demonstrates basic function structure:
+    - Parameters: length and width (both numbers)
+    - Return value: product of length and width
+    - Docstring: provides documentation
+    """</span>
+    area = length * width
+    <span class="kw">return</span> area
+
+<span class="cm"># Calling the function with different arguments</span>
+result1 = <span class="fn">calculate_area</span>(<nm>5</nm>, <nm>3</nm>)
+<span class="bi">print</span>(<span class="str">f"Area of 5×3 rectangle: {result1}"</span>)   <span class="cm"># Output: 15</span>
+
+<span class="cm"># Functions are objects — they have attributes</span>
+<span class="bi">print</span>(<span class="str">f"Function name: {calculate_area.__name__}"</span>)
+<span class="bi">print</span>(<span class="str">f"Documentation: {calculate_area.__doc__.strip()}"</span>)
+<span class="bi">print</span>(<span class="str">f"Function type: {type(calculate_area)}"</span>)
+
+<span class="cm"># Assign function to a variable (functions are first-class)</span>
+area_calculator = calculate_area
+<span class="bi">print</span>(<span class="str">f"Area of 7×2 rectangle: {area_calculator(<nm>7</nm>, <nm>2</nm>)}"</span>)  <span class="cm"># 14</span></code></pre>
+        </div>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 1.2 — All Parameter Types in Action</span>
+            </div>
+            <pre><code><span class="kw">def</span> <span class="fn">demonstrate_params</span>(
+    pos1,                    <span class="cm"># positional required</span>
+    pos2,                    <span class="cm"># positional required</span>
+    default=<span class="str">"default value"</span>, <span class="cm"># default parameter (optional)</span>
+    *args,                   <span class="cm"># variable positional → tuple</span>
+    kw_only,                 <span class="cm"># keyword-only (must be named in call)</span>
+    **kwargs                 <span class="cm"># variable keyword → dict</span>
+):
+    <span class="str">"""Demonstrate all parameter types in one function."""</span>
+    <span class="bi">print</span>(<span class="str">f"pos1={pos1}, pos2={pos2}"</span>)
+    <span class="bi">print</span>(<span class="str">f"default={default}"</span>)
+    <span class="bi">print</span>(<span class="str">f"*args={args}"</span>)
+    <span class="bi">print</span>(<span class="str">f"kw_only={kw_only}"</span>)
+    <span class="bi">print</span>(<span class="str">f"**kwargs={kwargs}"</span>)
+
+<span class="bi">print</span>(<span class="str">"=== Minimum required arguments ==="</span>)
+<span class="fn">demonstrate_params</span>(<nm>1</nm>, <nm>2</nm>, kw_only=<span class="str">"required"</span>)
+
+<span class="bi">print</span>(<span class="str">"\n=== With extra positional (*args) ==="</span>)
+<span class="fn">demonstrate_params</span>(<nm>1</nm>, <nm>2</nm>, <span class="str">"override"</span>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>, kw_only=<span class="str">"req"</span>)
+
+<span class="bi">print</span>(<span class="str">"\n=== With **kwargs ==="</span>)
+<span class="fn">demonstrate_params</span>(<nm>1</nm>, <nm>2</nm>, kw_only=<span class="str">"kw"</span>, extra1=<span class="str">"A"</span>, debug=<span class="bi">True</span>)</code></pre>
+        </div>
+
+        <section id="scope" class="card">
+            <h4>3.0 VARIABLE SCOPE AND CLOSURES — UNDERSTANDING NAMESPACE RESOLUTION</h4>
+            <h4>3.1 The LEGB Rule — How Python Resolves Names</h4>
+            <p>When Python encounters a variable name in a function, it searches for the definition in a specific order: <strong>L</strong>ocal → <strong>E</strong>nclosing → <strong>G</strong>lobal → <strong>B</strong>uilt-in. This is the LEGB rule. Understanding this search order is essential for predicting how code will behave and avoiding subtle bugs.</p>
+            <p><strong>Local:</strong> Names defined within the current function. Created when the function is called and destroyed when it returns.</p>
+            <p><strong>Enclosing:</strong> Names in the local scope of enclosing functions (used in nested functions). This is the scope closures capture.</p>
+            <p><strong>Global:</strong> Names defined at the top level of the module, accessible throughout the file.</p>
+            <p><strong>Built-in:</strong> Names predefined in Python's built-in namespace (print, len, range, type, etc.).</p>
+            <h4>3.2 The global and nonlocal Keywords</h4>
+            <p>By default, assignment to a name inside a function creates a new local variable. To modify a global variable inside a function, you must declare it with the <code>global</code> keyword. To modify a variable in an enclosing (but non-global) scope from a nested function, use <code>nonlocal</code>. Overuse of global is a code smell — prefer passing values as parameters and returning results.</p>
+            <h4>3.3 Closures — Functions That Capture Their Environment</h4>
+            <p>A closure is a nested function that references variables from its enclosing scope even after that enclosing function has finished executing. The inner function "closes over" those variables, creating a persistent, private environment. Closures are the foundation of decorators, memoization, and many functional programming patterns. They provide a lightweight alternative to classes for maintaining state.</p>
+            <div class="tip-box">
+                <p><strong>💡 Key Insight:</strong> Closures give you object-like state without defining a class. They are perfect for factory functions — functions that create and return other customized functions.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 2.1 — LEGB Rule and Closures</span>
+            </div>
+            <pre><code><span class="cm"># Global scope</span>
+global_var = <span class="str">"I am global"</span>
+
+<span class="kw">def</span> <span class="fn">outer_function</span>(x):
+    <span class="cm"># Enclosing scope (captured by inner_function)</span>
+    enclosing_var = <span class="str">"I am enclosing"</span>
+    
+    <span class="kw">def</span> <span class="fn">inner_function</span>(y):
+        <span class="cm"># Local scope</span>
+        local_var = <span class="str">"I am local"</span>
+        <span class="bi">print</span>(<span class="str">f"Local: {local_var}"</span>)
+        <span class="bi">print</span>(<span class="str">f"Enclosing: {enclosing_var}"</span>)   <span class="cm"># from outer_function</span>
+        <span class="bi">print</span>(<span class="str">f"Global: {global_var}"</span>)
+        <span class="kw">return</span> x + y    <span class="cm"># x is from enclosing scope</span>
+    
+    <span class="kw">return</span> inner_function   <span class="cm"># Return the closure</span>
+
+<span class="cm"># Create and call a closure</span>
+closure = <span class="fn">outer_function</span>(<nm>10</nm>)   <span class="cm"># outer_function returns inner_function</span>
+result = <span class="fn">closure</span>(<nm>5</nm>)           <span class="cm"># calls inner_function(5), x=10 is remembered</span>
+<span class="bi">print</span>(<span class="str">f"Result (10+5): {result}"</span>)
+
+<span class="cm"># Counter factory — closure maintaining state via nonlocal</span>
+<span class="kw">def</span> <span class="fn">counter_factory</span>(start=<nm>0</nm>):
+    <span class="str">"""Returns a counter function that remembers its state."""</span>
+    count = start
+    <span class="kw">def</span> <span class="fn">increment</span>(step=<nm>1</nm>):
+        <span class="kw">nonlocal</span> count       <span class="cm"># allow modifying enclosing variable</span>
+        count += step
+        <span class="kw">return</span> count
+    <span class="kw">return</span> increment
+
+counter_a = <span class="fn">counter_factory</span>(<nm>0</nm>)
+counter_b = <span class="fn">counter_factory</span>(<nm>100</nm>)  <span class="cm"># independent state</span>
+
+<span class="bi">print</span>(<span class="str">f"\ncounter_a: {counter_a()}, {counter_a()}, {counter_a(<nm>5</nm>)}"</span>)  <span class="cm"># 1, 2, 7</span>
+<span class="bi">print</span>(<span class="str">f"counter_b: {counter_b()}, {counter_b()}"</span>)              <span class="cm"># 101, 102</span></code></pre>
+        </div>
+
+        <section id="lambda" class="card">
+            <h2>4.0 LAMBDA FUNCTIONS — ANONYMOUS OPERATIONS</h2>
+            <p>Lambda functions are small, anonymous functions defined with the <code>lambda</code> keyword. They can take any number of arguments but must consist of a single expression, which is implicitly returned. Lambdas are syntactic sugar for simple functions, making code more concise when the function logic is trivial. They are particularly valuable when passed as arguments to higher-order functions like <code>map()</code>, <code>filter()</code>, <code>sorted()</code>, and <code>reduce()</code>.</p>
+            <h4>4.1 When to Use Lambdas</h4>
+            <p>Use lambdas when the function is simple enough to be expressed in one line and when it is only needed in one place. Common use cases include: sorting with custom keys, filtering sequences with <code>filter()</code>, transforming sequences with <code>map()</code>, and callbacks in asynchronous or event-driven code.</p>
+            <div class="warning-box">
+                <p><strong>⚠️ When NOT to Use Lambdas:</strong> If the logic is complex, needs a docstring, or is used in multiple places, a named <code>def</code> function is always preferable. Lambdas should never be assigned to variables just to avoid using <code>def</code> — that defeats the purpose and PEP 8 discourages it.</p>
+            </div>
+            <h3>4.2 Lambda vs def — A Direct Comparison</h3>
+            <p>Syntactically, <code>lambda x: x**2</code> is equivalent to <code>def f(x): return x**2</code>. The difference is that lambdas are anonymous expressions, while <code>def</code> creates named function objects with full support for docstrings and multiple statements.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 3.1 — Lambda Functions in Action</span>
+            </div>
+            <pre><code><span class="cm"># Basic lambda — single argument</span>
+square = <span class="kw">lambda</span> x: x ** <nm>2</nm>
+<span class="bi">print</span>(<span class="str">f"Square of 7: {square(<nm>7</nm>)}"</span>)   <span class="cm"># 49</span>
+
+<span class="cm"># Multi-argument lambda</span>
+add = <span class="kw">lambda</span> a, b: a + b
+<span class="bi">print</span>(<span class="str">f"5 + 3 = {add(<nm>5</nm>, <nm>3</nm>)}"</span>)       <span class="cm"># 8</span>
+
+<span class="cm"># Sorting — sort list of dicts by a specific key</span>
+students = [
+    {<span class="str">"name"</span>: <span class="str">"Alice"</span>, <span class="str">"grade"</span>: <nm>88</nm>},
+    {<span class="str">"name"</span>: <span class="str">"Bob"</span>, <span class="str">"grade"</span>: <nm>95</nm>},
+    {<span class="str">"name"</span>: <span class="str">"Charlie"</span>, <span class="str">"grade"</span>: <nm>72</nm>},
+]
+sorted_students = <span class="bi">sorted</span>(students, key=<span class="kw">lambda</span> s: s[<span class="str">"grade"</span>], reverse=<span class="bi">True</span>)
+<span class="bi">print</span>(<span class="str">"Ranked by grade:"</span>, [(s[<span class="str">"name"</span>], s[<span class="str">"grade"</span>]) <span class="kw">for</span> s <span class="kw">in</span> sorted_students])
+
+<span class="cm"># map() — transform every element</span>
+numbers = [<nm>1</nm>, <nm>2</nm>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>]
+cubes = <span class="bi">list</span>(<span class="bi">map</span>(<span class="kw">lambda</span> x: x ** <nm>3</nm>, numbers))
+<span class="bi">print</span>(<span class="str">f"Cubes: {cubes}"</span>)           <span class="cm"># [1, 8, 27, 64, 125]</span>
+
+<span class="cm"># filter() — keep only matching elements</span>
+even = <span class="bi">list</span>(<span class="bi">filter</span>(<span class="kw">lambda</span> x: x % <nm>2</nm> == <nm>0</nm>, numbers))
+<span class="bi">print</span>(<span class="str">f"Even numbers: {even}"</span>)     <span class="cm"># [2, 4]</span>
+
+<span class="cm"># reduce() — cumulative folding operation</span>
+<span class="kw">from</span> functools <span class="kw">import</span> reduce
+product = <span class="fn">reduce</span>(<span class="kw">lambda</span> acc, x: acc * x, numbers)
+<span class="bi">print</span>(<span class="str">f"Product: {product}"</span>)       <span class="cm"># 120</span>
+
+<span class="cm"># Conditional lambda (ternary inside lambda)</span>
+abs_val = <span class="kw">lambda</span> x: x <span class="kw">if</span> x >= <nm>0</nm> <span class="kw">else</span> -x
+<span class="bi">print</span>(<span class="str">f"|−7| = {abs_val(<nm>-7</nm>)}"</span>)     <span class="cm"># 7</span></code></pre>
+        </div>
+
+        <section id="decorators" class="card">
+            <h4>5.0 DECORATORS — FUNCTION TRANSFORMATION AND AUGMENTATION</h4>
+            <h3>5.1 What Are Decorators?</h3>
+            <p>Decorators are one of Python's most powerful features. A decorator is a function that takes another function as an argument, extends its behavior, and returns a new function (the "wrapper"). This allows you to add functionality to existing functions without modifying their source code — this is the Open/Closed Principle from software design: open for extension, closed for modification.</p>
+            <p>The <code>@decorator_name</code> syntax above a function definition is pure syntactic sugar for <code>func = decorator_name(func)</code>. Understanding this equivalence demystifies decorators entirely.</p>
+            <h3>5.2 Common Use Cases</h3>
+            <ul>
+                <li><strong>Timing:</strong> Measure function execution time for performance profiling</li>
+                <li><strong>Logging:</strong> Log function calls, arguments, and return values automatically</li>
+                <li><strong>Authentication:</strong> Check permissions or tokens before allowing execution</li>
+                <li><strong>Caching / Memoization:</strong> Store results of expensive calls for reuse</li>
+                <li><strong>Validation:</strong> Validate or sanitize inputs before the function body runs</li>
+                <li><strong>Retry Logic:</strong> Automatically retry failed operations with backoff</li>
+            </ul>
+            <h3>5.3 Preserving Metadata with @wraps</h3>
+            <p>When you wrap a function, the wrapper obscures the original function's name, docstring, and annotations. Always use <code>@functools.wraps(func)</code> inside your decorator to copy these attributes from the original to the wrapper. This ensures introspection tools, debuggers, and documentation generators work correctly on decorated functions.</p>
+            <h3>5.4 Decorators with Arguments (Decorator Factories)</h3>
+            <p>To create a decorator that accepts its own arguments (e.g., <code>@retry(max_attempts=3)</code>), you need an additional level of nesting: a factory function that accepts the arguments and returns the actual decorator, which in turn returns the wrapper. This is a decorator factory pattern.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 4.1 — Decorator Patterns</span>
+            </div>
+            <pre><code><span class="kw">import</span> time
+<span class="kw">from</span> functools <span class="kw">import</span> wraps
+
+<span class="cm"># ─── Basic decorator (no arguments) ───</span>
+<span class="kw">def</span> <span class="fn">timer</span>(func):
+    <span class="str">"""Decorator: measures and prints execution time."""</span>
+    @<span class="fn">wraps</span>(func)
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - start
+        <span class="bi">print</span>(<span class="str">f"⏱ {func.__name__} took {elapsed:.6f}s"</span>)
+        <span class="kw">return</span> result
+    <span class="kw">return</span> wrapper
+
+<span class="cm"># ─── Decorator with logging ───</span>
+<span class="kw">def</span> <span class="fn">logger</span>(func):
+    <span class="str">"""Decorator: logs arguments and return value."""</span>
+    <span class="fn">wraps</span>(func)
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        sig = <span class="str">", "</span>.join([<span class="bi">repr</span>(a) <span class="kw">for</span> a <span class="kw">in</span> args])
+        <span class="bi">print</span>(<span class="str">f"📞 Calling {func.__name__}({sig})"</span>)
+        result = func(*args, **kwargs)
+        <span class="bi">print</span>(<span class="str">f"✅ {func.__name__} returned: {result!r}"</span>)
+        <span class="kw">return</span> result
+    <span class="kw">return</span> wrapper
+
+<span class="cm"># ─── Decorator factory (accepts arguments) ───</span>
+<span class="kw">def</span> <span class="fn">retry</span>(max_attempts=<nm>3</nm>, delay=<nm>0.5</nm>):
+    <span class="str">"""Decorator factory: retries function on exception."""</span>
+    <span class="kw">def</span> <span class="fn">decorator</span>(func):
+        <span class="fn">wraps</span>(func)
+        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+            <span class="kw">for</span> attempt <span class="kw">in</span> <span class="bi">range</span>(<nm>1</nm>, max_attempts + <nm>1</nm>):
+                <span class="kw">try</span>:
+                    <span class="kw">return</span> func(*args, **kwargs)
+                <span class="kw">except</span> <span class="bi">Exception</span> <span class="kw">as</span> e:
+                    <span class="bi">print</span>(<span class="str">f"⚠ Attempt {attempt} failed: {e}"</span>)
+                    <span class="kw">if</span> attempt < max_attempts:
+                        time.sleep(delay)
+            <span class="kw">raise</span> <span class="bi">RuntimeError</span>(<span class="str">f"All {max_attempts} attempts failed"</span>)
+        <span class="kw">return</span> wrapper
+    <span class="kw">return</span> decorator
+
+<span class="cm"># Stack multiple decorators (applied bottom-up, executed top-down)</span>
+<span class="fn">timer</span>
+<span class="fn">logger</span>
+<span class="kw">def</span> <span class="fn">compute_sum</span>(n):
+    <span class="str">"""Return sum of 0..n-1."""</span>
+    time.sleep(<nm>0.05</nm>)
+    <span class="kw">return</span> <span class="bi">sum</span>(<span class="bi">range</span>(n))
+
+result = <span class="fn">compute_sum</span>(<nm>1000</nm>)
+<span class="bi">print</span>(<span class="str">f"Metadata preserved: {compute_sum.__name__}"</span>)  <span class="cm"># 'compute_sum', not 'wrapper'</span></code></pre>
+        </div>
+
+        <section id="generators" class="card">
+            <h4>6.0 GENERATORS — LAZY EVALUATION WITH YIELD</h4>
+            <h4>6.1 Understanding Generators</h4>
+            <p>Generators are functions that can pause and resume their execution, producing a sequence of results over time rather than computing them all at once. They are defined like normal functions but use the <code>yield</code> statement instead of <code>return</code>. When called, a generator function returns a generator object without starting execution. Each call to <code>next()</code> on the generator (or each iteration) advances it to the next <code>yield</code> statement, at which point the function's local state is preserved until the next call.</p>
+            <h4>6.2 Why Generators Matter</h4>
+            <p>Generators provide two major benefits: <strong>memory efficiency</strong> and the ability to work with <strong>infinite sequences</strong>. For large datasets, generators avoid loading everything into memory at once — a list of 10 million integers consumes hundreds of megabytes, while a generator producing them uses constant memory. For streams, pipelines, or real-time data, generators process values as they arrive rather than waiting for all data to be available.</p>
+            <h3>6.3 Generator Expressions</h3>
+            <p>Just as list comprehensions create lists, generator expressions (using parentheses) create generators lazily. <code>(x**2 for x in range(1000))</code> creates a generator that computes squares one at a time, consuming almost no memory regardless of the range size. Use them anywhere you'd use a list comprehension but only need to iterate once.</p>
+            <div class="tip-box">
+                <p><strong>💡 yield vs return:</strong> <code>return</code> exits the function permanently. <code>yield</code> pauses it, saving all local variables and the execution position, then resumes from exactly that point on the next call. A function can yield multiple times but can only return once.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 5.1 — Generator Fundamentals</span>
+            </div>
+            <pre><code><span class="cm"># Simple countdown generator</span>
+<span class="kw">def</span> <span class="fn">countdown</span>(start):
+    <span class="str">"""Generator: counts down from start to 1, then signals done."""</span>
+    <span class="bi">print</span>(<span class="str">f"Starting countdown from {start}"</span>)
+    <span class="kw">while</span> start > <nm>0</nm>:
+        <span class="kw">yield</span> start       <span class="cm"># pause here, return value, resume next call</span>
+        start -= <nm>1</nm>
+    <span class="bi">print</span>(<span class="str">"Countdown finished!"</span>)   <span class="cm"># runs after last yield</span>
+
+<span class="kw">for</span> num <span class="kw">in</span> <span class="fn">countdown</span>(<nm>5</nm>):
+    <span class="bi">print</span>(<span class="str">f"  Tick: {num}"</span>)
+
+<span class="cm"># Infinite generator (never exhausts)</span>
+<span class="kw">def</span> <span class="fn">integers_from</span>(n):
+    <span class="str">"""Yield an infinite sequence starting at n."""</span>
+    <span class="kw">while</span> <span class="bi">True</span>:
+        <span class="kw">yield</span> n
+        n += <nm>1</nm>
+
+<span class="cm"># Safe to use with take-style patterns</span>
+gen = <span class="fn">integers_from</span>(<nm>10</nm>)
+first_five = [<span class="bi">next</span>(gen) <span class="kw">for</span> _ <span class="kw">in</span> <span class="bi">range</span>(<nm>5</nm>)]
+<span class="bi">print</span>(<span class="str">f"First five integers from 10: {first_five}"</span>)  <span class="cm"># [10,11,12,13,14]</span>
+
+<span class="cm"># Memory comparison: list vs generator</span>
+<span class="kw">import</span> sys
+list_sq = [x**<nm>2</nm> <span class="kw">for</span> x <span class="kw">in</span> <span class="bi">range</span>(<nm>1000</nm>)]
+gen_sq  = (x**<nm>2</nm> <span class="kw">for</span> x <span class="kw">in</span> <span class="bi">range</span>(<nm>1000</nm>))
+<span class="bi">print</span>(<span class="str">f"List size: {sys.getsizeof(list_sq)} bytes"</span>)   <span class="cm"># ~8856 bytes</span>
+<span class="bi">print</span>(<span class="str">f"Generator size: {sys.getsizeof(gen_sq)} bytes"</span>) <span class="cm"># ~104 bytes</span>
+
+<span class="cm"># Generator pipeline — compose generators for data processing</span>
+<span class="kw">def</span> <span class="fn">read_lines</span>(lines):
+    <span class="kw">for</span> line <span class="kw">in</span> lines: <span class="kw">yield</span> line.strip()
+
+<span class="kw">def</span> <span class="fn">filter_empty</span>(lines):
+    <span class="kw">for</span> line <span class="kw">in</span> lines:
+        <span class="kw">if</span> line: <span class="kw">yield</span> line
+
+<span class="kw">def</span> <span class="fn">uppercase</span>(lines):
+    <span class="kw">for</span> line <span class="kw">in</span> lines: <span class="kw">yield</span> line.upper()
+
+raw = [<span class="str">"  hello  "</span>, <span class="str">""</span>, <span class="str">"  world  "</span>, <span class="str">"  python  "</span>]
+pipeline = <span class="fn">uppercase</span>(<span class="fn">filter_empty</span>(<span class="fn">read_lines</span>(raw)))
+<span class="bi">print</span>(<span class="bi">list</span>(pipeline))   <span class="cm"># ['HELLO', 'WORLD', 'PYTHON']</span></code></pre>
+        </div>
+
+        <section id="typehints" class="card">
+            <h4>8.0 TYPE HINTS — WRITING SELF-DOCUMENTING, SAFER CODE</h4>
+            <h3>8.1 Introduction to Type Hints</h3>
+            <p>Type hints, introduced in Python 3.5 (PEP 484), allow you to annotate the expected types of function parameters and return values. Python remains dynamically typed at runtime — type hints are not enforced by the interpreter. However, they enable static type checkers like <code>mypy</code> and <code>pyright</code> to catch type-related errors before runtime, and they serve as machine-checkable documentation that can never go out of date with the code itself.</p>
+            <h4>8.2 Modern Type Hint Syntax (Python 3.10+)</h4>
+            <p>Python 3.9+ allows using built-in types directly as generics: <code>list[int]</code> instead of <code>List[int]</code>. Python 3.10+ introduced the union operator <code>X | Y</code> instead of <code>Union[X, Y]</code>. Python 3.12+ introduced <code>type</code> aliases for cleaner type definitions. These improvements make type hints more readable and reduce the need to import from <code>typing</code>.</p>
+            <h4>8.3 Protocol and Structural Typing</h4>
+            <p>The <code>Protocol</code> class from <code>typing</code> enables structural subtyping (duck typing with type safety): instead of requiring a specific class inheritance, you specify which methods and attributes an object must have. This is Python's way of expressing "I need something that supports these operations" without tying to a concrete type hierarchy.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 7.1 — Type Hints in Practice</span>
+            </div>
+            <pre><code><span class="kw">from</span> typing <span class="kw">import</span> List, Tuple, Dict, Optional, Union, Callable, Any
+<span class="kw">from</span> typing <span class="kw">import</span> Protocol
+
+<span class="cm"># Basic type hints — parameters and return value</span>
+<span class="kw">def</span> <span class="fn">greet</span>(name: <span class="bi">str</span>, age: <span class="bi">int</span> = <nm>0</nm>) -> <span class="bi">str</span>:
+    <span class="kw">return</span> <span class="str">f"Hello {name}, age {age}"</span>
+
+<span class="cm"># Collection types</span>
+<span class="kw">def</span> <span class="fn">process_numbers</span>(numbers: List[<span class="bi">float</span>]) -> Tuple[<span class="bi">float</span>, <span class="bi">float</span>, <span class="bi">float</span>]:
+    <span class="str">"""Returns (min, max, average) of the list."""</span>
+    <span class="kw">return</span> <span class="bi">min</span>(numbers), <span class="bi">max</span>(numbers), <span class="bi">sum</span>(numbers) / <span class="bi">len</span>(numbers)
+
+<span class="cm"># Optional — value may be None (common for DB lookups)</span>
+<span class="kw">def</span> <span class="fn">find_user</span>(user_id: <span class="bi">int</span>) -> Optional[Dict[<span class="bi">str</span>, Any]]:
+    users = {<nm>1</nm>: {<span class="str">"name"</span>: <span class="str">"Alice"</span>}, <nm>2</nm>: {<span class="str">"name"</span>: <span class="str">"Bob"</span>}}
+    <span class="kw">return</span> users.get(user_id)   <span class="cm"># returns dict or None</span>
+
+<span class="cm"># Union type — accepts multiple types (Python 3.10+: int | str)</span>
+<span class="kw">def</span> <span class="fn">stringify</span>(value: Union[<span class="bi">int</span>, <span class="bi">float</span>, <span class="bi">str</span>]) -> <span class="bi">str</span>:
+    <span class="kw">return</span> <span class="bi">str</span>(value)
+
+<span class="cm"># Callable type — function as a parameter</span>
+<span class="kw">def</span> <span class="fn">apply_twice</span>(func: Callable[[<span class="bi">int</span>], <span class="bi">int</span>], x: <span class="bi">int</span>) -> <span class="bi">int</span>:
+    <span class="str">"""Apply func to x twice: func(func(x))."""</span>
+    <span class="kw">return</span> func(func(x))
+
+double = <span class="kw">lambda</span> x: x * <nm>2</nm>
+<span class="bi">print</span>(<span class="fn">apply_twice</span>(double, <nm>3</nm>))   <span class="cm"># 12 (3→6→12)</span>
+
+<span class="cm"># Protocol — structural subtyping (duck typing + safety)</span>
+<span class="kw">class</span> <span class="fn">Drawable</span>(Protocol):
+    <span class="kw">def</span> <span class="fn">draw</span>(self) -> <span class="bi">None</span>: ...
+
+<span class="kw">def</span> <span class="fn">render</span>(item: Drawable) -> <span class="bi">None</span>:
+    <span class="str">"""Works with any object that has a draw() method."""</span>
+    item.draw()
+
+<span class="cm"># Access type hints at runtime</span>
+<span class="bi">print</span>(<span class="str">f"\nType hints: {process_numbers.__annotations__}"</span>)</code></pre>
+        </div>
+
+        <section id="functools" class="card">
+            <h4>9.0 FUNCTOOLS — PROFESSIONAL FUNCTION MANIPULATION</h4>
+            <h4>9.1 partial — Fixing Arguments</h4>
+            <p><code>functools.partial</code> allows you to "freeze" some arguments of a function, creating a new function with fewer parameters. This is a form of partial application — a functional programming concept. It is particularly useful for adapting functions to interfaces that expect a specific signature (e.g., as callbacks) or for creating specialized versions of generic utilities.</p>
+            <h4>9.2 lru_cache — Memoization Made Easy</h4>
+            <p>The <code>@lru_cache</code> decorator automatically caches function return values based on arguments. When the same arguments are passed again, the cached result is returned immediately without re-executing the function. This can transform an exponential-time recursive algorithm into a linear one. LRU stands for "Least Recently Used" — when the cache reaches <code>maxsize</code>, the least recently accessed entry is evicted. Using <code>maxsize=None</code> creates an unlimited cache (also available as <code>@cache</code> in Python 3.9+).</p>
+            <h3>9.3 wraps — Preserving Function Metadata</h3>
+            <p>When writing decorators, <code>@wraps</code> copies the original function's name, docstring, and annotations to the wrapper. Without it, all decorated functions would appear to have the name "wrapper" and no docstring, breaking introspection, help systems, and tools like Sphinx documentation generators.</p>
+            <h4>9.4 reduce — Cumulative Folding</h4>
+            <p><code>functools.reduce(func, iterable)</code> applies a two-argument function cumulatively to the items of an iterable, reducing it to a single value. It is the functional programming equivalent of a fold operation, powerful for computing running products, building strings character by character, or combining nested structures.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 8.1 — Functools Deep Dive</span>
+            </div>
+            <pre><code><span class="kw">from</span> functools <span class="kw">import</span> partial, lru_cache, wraps, reduce
+<span class="kw">import</span> time
+
+<span class="cm"># ─── partial: freeze arguments ───</span>
+<span class="kw">def</span> <span class="fn">power</span>(base, exponent):
+    <span class="str">"""Raise base to exponent."""</span>
+    <span class="kw">return</span> base ** exponent
+
+square  = <span class="fn">partial</span>(power, exponent=<nm>2</nm>)  <span class="cm"># locks exponent=2</span>
+cube    = <span class="fn">partial</span>(power, exponent=<nm>3</nm>)  <span class="cm"># locks exponent=3</span>
+tenth   = <span class="fn">partial</span>(power, exponent=<nm>10</nm>) <span class="cm"># locks exponent=10</span>
+
+<span class="bi">print</span>(<span class="str">f"square(7): {square(<nm>7</nm>)}"</span>)   <span class="cm"># 49</span>
+<span class="bi">print</span>(<span class="str">f"cube(5): {cube(<nm>5</nm>)}"</span>)       <span class="cm"># 125</span>
+<span class="bi">print</span>(<span class="str">f"tenth(2): {tenth(<nm>2</nm>)}"</span>)     <span class="cm"># 1024</span>
+
+<span class="cm"># ─── lru_cache: transform exponential to linear ───</span>
+<span class="cm"># Without cache: O(2^n) — extremely slow for n > 40</span>
+<span class="fn">lru_cache</span>(maxsize=<span class="bi">None</span>)    <span class="cm"># unlimited cache</span>
+<span class="kw">def</span> <span class="fn">fib</span>(n):
+    <span class="str">"""nth Fibonacci number. Memoized for O(n) time."""</span>
+    <span class="kw">if</span> n < <nm>2</nm>:
+        <span class="kw">return</span> n
+    <span class="kw">return</span> <span class="fn">fib</span>(n-<nm>1</nm>) + <span class="fn">fib</span>(n-<nm>2</nm>)
+
+<span class="bi">print</span>(<span class="str">f"\nfib(50) = {fib(<nm>50</nm>)}"</span>)
+<span class="bi">print</span>(<span class="str">f"Cache info: {fib.cache_info()}"</span>)  <span class="cm"># hits, misses, size</span>
+fib.cache_clear()   <span class="cm"># reset if needed</span>
+
+<span class="cm"># ─── reduce: folding over a sequence ───</span>
+numbers = [<nm>1</nm>, <nm>2</nm>, <nm>3</nm>, <nm>4</nm>, <nm>5</nm>]
+product = <span class="fn">reduce</span>(<span class="kw">lambda</span> acc, x: acc * x, numbers, <nm>1</nm>)
+<span class="bi">print</span>(<span class="str">f"\nProduct via reduce: {product}"</span>)   <span class="cm"># 120</span>
+
+<span class="cm"># Flatten nested list with reduce</span>
+nested = [[<nm>1</nm>,<nm>2</nm>], [<nm>3</nm>,<nm>4</nm>], [<nm>5</nm>,<nm>6</nm>]]
+flat = <span class="fn">reduce</span>(<span class="kw">lambda</span> acc, lst: acc + lst, nested, [])
+<span class="bi">print</span>(<span class="str">f"Flattened: {flat}"</span>)               <span class="cm"># [1, 2, 3, 4, 5, 6]</span></code></pre>
+        </div>
+
+        <section id="higher-order" class="card">
+            <h4>10.0 HIGHER-ORDER FUNCTIONS — FUNCTIONS AS FIRST-CLASS CITIZENS</h4>
+            <h4>10.1 What Are Higher-Order Functions?</h4>
+            <p>A higher-order function is any function that either takes one or more functions as arguments, returns a function as its result, or both. In Python, functions are first-class objects, which means they can be stored in variables, added to lists, passed to functions, and returned like any other value. This property enables powerful compositional programming patterns.</p>
+            <h4>10.2 Function Composition</h4>
+            <p>Function composition is the act of chaining multiple functions so that the output of one becomes the input of the next: <code>h(x) = f(g(x))</code>. This is a fundamental concept in mathematics and functional programming. In Python, you can implement a generic <code>compose()</code> utility using <code>functools.reduce</code>, enabling you to build complex data transformations from simple, testable pieces.</p>
+            <h4>10.3 Map, Filter, Reduce — The Functional Triad</h4>
+            <p><strong>map(func, iterable)</strong> applies func to every element, returning a lazy iterator. <strong>filter(pred, iterable)</strong> keeps only elements where pred returns True. <strong>reduce(func, iterable)</strong> combines all elements into a single value using a binary function. Together, these three operations can express a vast range of data transformations without explicit loops, and they compose cleanly with lambda and partial.</p>
+            <h4>10.4 Currying</h4>
+            <p>Currying is the technique of transforming a function that takes multiple arguments into a chain of functions each taking a single argument: <code>add(3)(4)</code> instead of <code>add(3, 4)</code>. While Python doesn't do this automatically (unlike Haskell), you can implement curried functions manually or with <code>functools.partial</code>. Currying enables elegant point-free style programming and powerful function factories.</p>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 9.1 — Higher-Order Functions and Composition</span>
+            </div>
+            <pre><code><span class="kw">from</span> functools <span class="kw">import</span> reduce
+
+<span class="cm"># ─── Function Composition ───</span>
+<span class="kw">def</span> <span class="fn">compose</span>(*funcs):
+    <span class="str">"""
+    Compose multiple functions right-to-left.
+    compose(f, g, h)(x) == f(g(h(x)))
+    """</span>
+    <span class="kw">return</span> <span class="kw">lambda</span> x: <span class="fn">reduce</span>(<span class="kw">lambda</span> v, f: f(v), <span class="bi">reversed</span>(funcs), x)
+
+double    = <span class="kw">lambda</span> x: x * <nm>2</nm>
+increment = <span class="kw">lambda</span> x: x + <nm>1</nm>
+square    = <span class="kw">lambda</span> x: x ** <nm>2</nm>
+
+<span class="cm"># Right-to-left: first square, then increment, then double</span>
+transform = <span class="fn">compose</span>(double, increment, square)
+<span class="bi">print</span>(<span class="str">f"compose(double, increment, square)(3): {transform(<nm>3</nm>)}"</span>)
+<span class="cm"># square(3)=9, increment(9)=10, double(10)=20</span>
+
+<span class="cm"># ─── Currying ───</span>
+<span class="kw">def</span> <span class="fn">curry</span>(func):
+    <span class="str">"""Convert a two-argument function into a curried form."""</span>
+    <span class="kw">return</span> <span class="kw">lambda</span> a: <span class="kw">lambda</span> b: func(a, b)
+
+add     = <span class="fn">curry</span>(<span class="kw">lambda</span> a, b: a + b)
+multiply= <span class="fn">curry</span>(<span class="kw">lambda</span> a, b: a * b)
+
+add5    = add(<nm>5</nm>)        <span class="cm"># partially applied</span>
+triple  = multiply(<nm>3</nm>)   <span class="cm"># partially applied</span>
+
+<span class="bi">print</span>(<span class="str">f"add5(10): {add5(<nm>10</nm>)}"</span>)       <span class="cm"># 15</span>
+<span class="bi">print</span>(<span class="str">f"triple(7): {triple(<nm>7</nm>)}"</span>)   <span class="cm"># 21</span>
+
+<span class="cm"># ─── Higher-order pipeline ───</span>
+<span class="kw">def</span> <span class="fn">pipeline</span>(*steps):
+    <span class="str">"""Apply a series of (filter/map/sort) steps to data."""</span>
+    <span class="kw">def</span> <span class="fn">process</span>(data):
+        result = data
+        <span class="kw">for</span> step <span class="kw">in</span> steps:
+            result = step(result)
+        <span class="kw">return</span> result
+    <span class="kw">return</span> process
+
+numbers = <span class="bi">range</span>(<nm>1</nm>, <nm>21</nm>)
+process = <span class="fn">pipeline</span>(
+    <span class="kw">lambda</span> d: <span class="bi">filter</span>(<span class="kw">lambda</span> x: x % <nm>2</nm> == <nm>0</nm>, d),  <span class="cm"># keep evens</span>
+    <span class="kw">lambda</span> d: <span class="bi">map</span>(<span class="kw">lambda</span> x: x ** <nm>2</nm>, d),          <span class="cm"># square them</span>
+    <span class="kw">lambda</span> d: <span class="bi">filter</span>(<span class="kw">lambda</span> x: x > <nm>50</nm>, d),       <span class="cm"># keep > 50</span>
+    <span class="bi">list</span>                                               <span class="cm"># materialize</span>
+)
+<span class="bi">print</span>(<span class="str">f"\nPipeline result: {process(numbers)}"</span>)
+<span class="cm"># Evens: [2,4,6,...,20] → squared → [4,16,36,64,100,144,...] → >50 → [64,100,...]</span></code></pre>
+        </div>
+
+        <section id="async-functions" class="card">
+            <h4>11.0 ASYNC FUNCTIONS — CONCURRENT PROGRAMMING WITH ASYNCIO</h4>
+            <h4>11.1 What Are Async Functions?</h4>
+            <p>Async functions, defined with <code>async def</code>, are coroutines — functions that can be paused and resumed cooperatively. When an async function encounters an <code>await</code> expression, it suspends its execution and yields control back to the event loop, allowing other coroutines to run. This is cooperative multitasking — unlike threads, only one coroutine runs at a time, but they interleave at I/O boundaries, making async ideal for I/O-bound workloads like web requests, file operations, and database queries.</p>
+            <h4>11.2 When to Use Async</h4>
+            <p>Async is most beneficial when your program spends significant time <em>waiting</em> for external resources: HTTP requests, database queries, file reads, socket communication. For CPU-bound work (numerical computation, image processing), async provides no benefit — use <code>multiprocessing</code> instead. The golden rule: if your bottleneck involves waiting, async; if it involves computing, processes.</p>
+            <h4>11.3 async def vs def — Key Differences</h4>
+            <p>Calling a regular function executes it immediately. Calling an async function returns a coroutine object — execution doesn't begin until it is awaited or passed to an event loop. This is why you must <code>await</code> async functions, and why async functions can only call other async functions with <code>await</code> (synchronous code can be run in an executor if needed).</p>
+            <div class="tip-box">
+                <p><strong>💡 Event Loop:</strong> The event loop is the runtime that manages and runs coroutines. <code>asyncio.run(main())</code> creates an event loop, runs the given coroutine until completion, then closes the loop. In production, the loop often stays alive for the entire program lifetime.</p>
+            </div>
+        </section>
+
+        <div class="code-example">
+            <div class="code-header">
+                <span><i class="fab fa-python"></i> EXAMPLE 10.1 — Async Functions with asyncio</span>
+            </div>
+            <pre><code><span class="kw">import</span> asyncio
+<span class="kw">import</span> time
+
+<span class="cm"># ─── Basic async function ───</span>
+<span class="kw">async def</span> <span class="fn">fetch_data</span>(url: <span class="bi">str</span>, delay: <span class="bi">float</span>) -> <span class="bi">str</span>:
+    <span class="str">"""Simulate a slow network request without blocking."""</span>
+    <span class="bi">print</span>(<span class="str">f"  → Fetching {url}..."</span>)
+    <span class="kw">await</span> asyncio.sleep(delay)   <span class="cm"># yields control; other coros can run</span>
+    <span class="kw">return</span> <span class="str">f"Data from {url}"</span>
+
+<span class="cm"># Sequential (slow): total time = sum of all delays</span>
+<span class="kw">async def</span> <span class="fn">sequential_fetch</span>():
+    start = time.perf_counter()
+    r1 = <span class="kw">await</span> <span class="fn">fetch_data</span>(<span class="str">"api/users"</span>, <nm>1.0</nm>)
+    r2 = <span class="kw">await</span> <span class="fn">fetch_data</span>(<span class="str">"api/posts"</span>, <nm>0.8</nm>)
+    r3 = <span class="kw">await</span> <span class="fn">fetch_data</span>(<span class="str">"api/comments"</span>, <nm>0.6</nm>)
+    elapsed = time.perf_counter() - start
+    <span class="bi">print</span>(<span class="str">f"Sequential total: {elapsed:.2f}s"</span>)  <span class="cm"># ≈ 2.4s</span>
+    <span class="kw">return</span> [r1, r2, r3]
+
+<span class="cm"># Concurrent (fast): total time ≈ max single delay</span>
+<span class="kw">async def</span> <span class="fn">concurrent_fetch</span>():
+    start = time.perf_counter()
+    <span class="cm"># gather launches all coroutines simultaneously</span>
+    results = <span class="kw">await</span> asyncio.gather(
+        <span class="fn">fetch_data</span>(<span class="str">"api/users"</span>, <nm>1.0</nm>),
+        <span class="fn">fetch_data</span>(<span class="str">"api/posts"</span>, <nm>0.8</nm>),
+        <span class="fn">fetch_data</span>(<span class="str">"api/comments"</span>, <nm>0.6</nm>),
+    )
+    elapsed = time.perf_counter() - start
+    <span class="bi">print</span>(<span class="str">f"Concurrent total: {elapsed:.2f}s"</span>)  <span class="cm"># ≈ 1.0s</span>
+    <span class="kw">return</span> results
+
+<span class="cm"># ─── Async context manager ───</span>
+<span class="kw">async def</span> <span class="fn">process_with_timeout</span>():
+    <span class="kw">try</span>:
+        <span class="cm"># asyncio.timeout cancels if task exceeds duration</span>
+        <span class="kw">async with</span> asyncio.timeout(<nm>0.5</nm>):
+            result = <span class="kw">await</span> <span class="fn">fetch_data</span>(<span class="str">"api/slow"</span>, <nm>2.0</nm>)
+    <span class="kw">except</span> asyncio.TimeoutError:
+        <span class="bi">print</span>(<span class="str">"Request timed out — handled gracefully"</span>)
+
+<span class="cm"># Run with asyncio.run() — entry point for async programs</span>
+<span class="kw">async def</span> <span class="fn">main</span>():
+    <span class="bi">print</span>(<span class="str">"=== Sequential ==="</span>)
+    <span class="kw">await</span> <span class="fn">sequential_fetch</span>()
+    <span class="bi">print</span>(<span class="str">"\n=== Concurrent ==="</span>)
+    <span class="kw">await</span> <span class="fn">concurrent_fetch</span>()
+    <span class="bi">print</span>(<span class="str">"\n=== Timeout handling ==="</span>)
+    <span class="kw">await</span> <span class="fn">process_with_timeout</span>()
+
+asyncio.run(<span class="fn">main</span>())</code></pre>
+        </div>
+
+        <section id="mistakes" class="card">
+            <h4>13.0 COMMON PITFALLS AND HOW TO AVOID THEM</h4>
+            <table class="pitfalls-table">
+                <colgroup><col style="width:22%"><col style="width:42%"><col style="width:36%"></colgroup>
+                <thead><tr><th>Mistake</th><th>Problem Description</th><th>Correct Approach</th></tr></thead>
+                <tbody>
+                    <tr><td data-label="Mistake"><strong>Mutable Default Arguments</strong></td><td data-label="Problem">Using a mutable object (list, dict) as a default parameter causes it to be shared across all calls, accumulating data unexpectedly.</td><td data-label="Fix">Use <code>None</code> as sentinel and create the object inside the body:<br><code>def func(x, lst=None):<br>&nbsp;&nbsp;lst = lst or []</code></td></tr>
+                    <tr><td data-label="Mistake"><strong>Late Binding in Closures</strong></td><td data-label="Problem">A lambda inside a loop captures the variable by reference, not by value — all lambdas end up using the final loop value.</td><td data-label="Fix">Capture by value using a default argument:<br><code>lambda x, i=i: i * x</code></td></tr>
+                    <tr><td data-label="Mistake"><strong>Forgetting to Return</strong></td><td data-label="Problem">When a return statement is missing or a branch is skipped, Python implicitly returns <code>None</code>, causing unexpected results downstream.</td><td data-label="Fix">Always include an explicit <code>return</code>, even when returning <code>None</code>, to make intent clear.</td></tr>
+                    <tr><td data-label="Mistake"><strong>Unintended Variable Shadowing</strong></td><td data-label="Problem">Assigning to a name inside a nested function creates a new local variable, hiding the enclosing one instead of modifying it.</td><td data-label="Fix">Declare <code>nonlocal varname</code> at the top of the inner function to modify the enclosing variable.</td></tr>
+                    <tr><td data-label="Mistake"><strong>Too Many Parameters</strong></td><td data-label="Problem">Functions with 5+ parameters are hard to call, test, and maintain — a sign the function is doing too much.</td><td data-label="Fix">Group related params into a dataclass or TypedDict; split the function into smaller, focused units.</td></tr>
+                    <tr><td data-label="Mistake"><strong>Missing @wraps in Decorators</strong></td><td data-label="Problem">Without <code>@wraps</code>, all decorated functions report the name "wrapper" and have no docstring, breaking debugging and documentation tools.</td><td data-label="Fix">Always add <code>@functools.wraps(func)</code> inside every decorator's wrapper function.</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="quiz" class="card">
+            <h4>14.0 KNOWLEDGE CHECK: PYTHON FUNCTIONS QUIZ</h4>
+            <div class="quiz-item"><div class="quiz-question">1. What will be the output of this code?<br><code>def func(x, lst=[]):<br>&nbsp;&nbsp;lst.append(x)<br>&nbsp;&nbsp;return lst<br>print(func(1))<br>print(func(2))</code></div><div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div><div class="quiz-explanation">This demonstrates the mutable default argument pitfall. The list is created once at function definition, shared across all calls. Output: [1] then [1, 2]. Fix: <code>def func(x, lst=None): lst = lst or []</code></div></div>
+            <div class="quiz-item"><div class="quiz-question">2. What does the LEGB rule stand for?</div><div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div><div class="quiz-explanation">Local, Enclosing, Global, Built-in — the order Python searches for variable names when resolving a name reference inside a function.</div></div>
+            <div class="quiz-item"><div class="quiz-question">3. What's the difference between return and yield?</div><div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div><div class="quiz-explanation"><code>return</code> exits the function entirely, destroying all local state. <code>yield</code> pauses the function, saving all local state (variables, execution position), and can be resumed later. A function with yield is a generator.</div></div>
+            <div class="quiz-item"><div class="quiz-question">4. What does <code>@functools.wraps(func)</code> do and why is it important?</div><div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div><div class="quiz-explanation">It copies the original function's __name__, __doc__, __annotations__, and other metadata to the wrapper function. Without it, all decorated functions appear as "wrapper" with no docstring, breaking introspection, help(), and documentation generators like Sphinx.</div></div>
+            <div class="quiz-item"><div class="quiz-question">5. When should you use async def instead of def?</div><div class="quiz-answer" onclick="this.nextElementSibling.classList.toggle('show')">Click to reveal answer</div><div class="quiz-explanation">Use async def for I/O-bound operations — network requests, file reads, database queries — where the function spends time waiting for external resources. For CPU-bound operations, use regular functions with multiprocessing instead, as async provides no concurrency benefit there.</div></div>
+        </section>
+
+        <section class="comment-section" aria-label="Comments section">
+            <div class="comment-header"><div class="comment-title"><i class="fas fa-comments"></i> Discussion & Questions <span class="comment-count" id="commentCount">0</span></div></div>
+            <div class="comment-form"><textarea id="commentContent" placeholder="Share your thoughts, questions, or insights about Python functions..." aria-label="Comment text"></textarea><div class="comment-form-row"><input type="text" id="commentAuthor" placeholder="Your name *" required><input type="email" id="commentEmail" placeholder="Your email (optional, for replies)"><button class="comment-submit" onclick="submitComment()"><i class="fas fa-paper-plane"></i> Post Comment</button></div></div>
+            <div class="comments-list" id="commentsList"><div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first to share your thoughts!</div></div>
+        </section>
+
+        <div class="social-share-section" aria-label="Social sharing buttons">
+            <div class="social-share-label"><i class="fas fa-share-alt"></i> Share this guide</div>
+            <div class="social-share-buttons">
+                <a href="#" class="social-btn facebook" onclick="shareOnFacebook(); return false;"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="social-btn twitter" onclick="shareOnTwitter(); return false;"><i class="fab fa-x-twitter"></i> X</a>
+                <a href="#" class="social-btn linkedin" onclick="shareOnLinkedIn(); return false;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                <a href="#" class="social-btn whatsapp" onclick="shareOnWhatsApp(); return false;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#" class="social-btn telegram" onclick="shareOnTelegram(); return false;"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            </div>
+        </div>
+
+        <div class="subscription-section" aria-label="Email subscription">
+            <div class="subscription-title"><i class="fas fa-envelope-open-text"></i> Stay Updated with Python</div>
+            <div class="subscription-subtitle">Get the latest Python tutorials, advanced patterns, and educational resources delivered to your inbox.</div>
+            <div class="subscription-form">
+                <div class="form-group"><input type="text" id="subscriberName" placeholder="Your name (optional)"></div>
+                <div class="form-group"><input type="email" id="subscriberEmail" placeholder="Your email address *" required></div>
+                <div class="form-group checkbox"><input type="checkbox" id="privacyConsent"><label for="privacyConsent">I agree to receive emails and accept the privacy policy.</label></div>
+                <button class="subscribe-btn" id="subscribeBtn" onclick="handleSubscription()"><i class="fas fa-bell"></i> Subscribe to Updates</button>
+                <div class="subscription-message" id="subscriptionMessage" role="alert"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="return-home-wrap"><a href="index.html" class="return-home-btn"><i class="fas fa-house"></i> Return to Home</a></div>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-layer-1">
+            <div class="footer-l1-inner">
+                <div class="footer-l1-heading">📘 POETIC BYTES — Learning Hub</div>
+                <p class="footer-l1-sub">Everything you need to master Python functions — cheat sheets, exercises, references, and tools.</p>
+                <div class="footer-l1-grid" style="display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+                    <div class="f1-col" style="width:100%; max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-file-alt"></i> Cheat Sheets</div>
+                        <ul>
+                            <li><a href="#basics"><i class="fas fa-chevron-right"></i> Function Basics</a></li>
+                            <li><a href="#parameters"><i class="fas fa-chevron-right"></i> Parameters &amp; Arguments</a></li>
+                            <li><a href="#scope"><i class="fas fa-chevron-right"></i> Scope &amp; LEGB Rule</a></li>
+                            <li><a href="#closures"><i class="fas fa-chevron-right"></i> Closures</a></li>
+                            <li><a href="#decorators"><i class="fas fa-chevron-right"></i> Decorators</a></li>
+                        </ul>
+                    </div>
+                    <div class="f1-col" style="width:100%; max-width:320px;">
+                        <div class="f1-col-title"><i class="fas fa-dumbbell"></i> Exercises</div>
+                        <ul>
+                            <li><a href="#quiz"><i class="fas fa-chevron-right"></i> Knowledge Quiz</a></li>
+                            <li><a href="#generators"><i class="fas fa-chevron-right"></i> Generator Exercises</a></li>
+                            <li><a href="#recursion"><i class="fas fa-chevron-right"></i> Recursion Practice</a></li>
+                            <li><a href="#async"><i class="fas fa-chevron-right"></i> Async Challenges</a></li>
+                            <li><a href="#mistakes"><i class="fas fa-chevron-right"></i> Pitfall Drills</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-layer-2">
+            <div class="footer-l2-main"></div>
+            <hr class="footer-l2-divider">
+            <div class="footer-l2-bottom">
+                <div class="footer-l2-copyright">© 2026 <strong>POETIC BYTES</strong> — Glenn Junsay Pansensoy · Python Tutorial· All rights reserved.</div>
+                <div class="footer-l2-legal-links"><a href="privacy.html">Privacy Policy</a><span class="dot"></span><a href="terms.html">Terms of Service</a><span class="dot"></span><a href="cookie.html">Cookie Policy</a><span class="dot"></span><a href="disclaimer.html">Disclaimer</a><span class="dot"></span><a href="about.html">About</a><span class="dot"></span><a href="python-functions.html">Home</a></div>
+                <div class="footer-l2-python"><i class="fab fa-python"></i> Python 3.12+ · 2026 Edition</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        var progressBar = document.getElementById('progressBar');
+        var backToTop   = document.getElementById('backToTop');
+        window.addEventListener('scroll', function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled  = height > 0 ? (winScroll / height) * 100 : 0;
+            progressBar.style.width = scrolled + '%';
+            if (winScroll > 300) backToTop.classList.add('visible'); else backToTop.classList.remove('visible');
+        });
+        backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        var hamburgerBtn = document.getElementById('hamburgerBtn');
+        var mobileMenu   = document.getElementById('mobileMenu');
+        var menuOverlay  = document.getElementById('menuOverlay');
+        function openMenu() { hamburgerBtn.classList.add('active'); mobileMenu.classList.add('open'); menuOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; hamburgerBtn.setAttribute('aria-expanded', 'true'); }
+        function closeMenu() { hamburgerBtn.classList.remove('active'); mobileMenu.classList.remove('open'); menuOverlay.classList.remove('open'); document.body.style.overflow = ''; hamburgerBtn.setAttribute('aria-expanded', 'false'); }
+        hamburgerBtn.addEventListener('click', function () { if (mobileMenu.classList.contains('open')) closeMenu(); else openMenu(); });
+        menuOverlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+        var menuLinks = document.querySelectorAll('.menu-link');
+        menuLinks.forEach(function (link) { link.addEventListener('click', function (e) { var targetId = this.getAttribute('href'); var target = document.querySelector(targetId); if (target) { e.preventDefault(); closeMenu(); setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 300); } }); });
+
+        document.querySelectorAll('.nav-links a, .f1-col a[href^="#"], .footer-l2-col a[href^="#"], .footer-l2-legal-links a[href^="#"]').forEach(function (link) { link.addEventListener('click', function (e) { var href = this.getAttribute('href'); if (href && href.startsWith('#') && href.length > 1) { var target = document.querySelector(href); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } } }); });
+
+        const API_BASE_URL = 'http://localhost:5000/api';
+        const pageTitle = encodeURIComponent("Python Functions: Complete Educational Guide 2026");
+        const pageUrl = encodeURIComponent("https://pansensoyglenn-dev.githib.io/poetic-bytes.com/python-functions.html");
+        function shareOnFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, 'facebook-share', 'width=580,height=296'); }
+        function shareOnTwitter() { window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`, 'twitter-share', 'width=550,height=235'); }
+        function shareOnLinkedIn() { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, 'linkedin-share', 'width=550,height=400'); }
+        function shareOnWhatsApp() { window.open(`https://wa.me/?text=${pageTitle}%20${pageUrl}`, 'whatsapp-share', 'width=500,height=400'); }
+        function shareOnTelegram() { window.open(`https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`, 'telegram-share', 'width=500,height=400'); }
+
+        async function handleSubscription() {
+            const name = document.getElementById('subscriberName').value.trim();
+            const email = document.getElementById('subscriberEmail').value.trim();
+            const consent = document.getElementById('privacyConsent').checked;
+            const messageEl = document.getElementById('subscriptionMessage');
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            if (!email) { showSubscriptionMessage('Please enter your email address.', 'error'); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showSubscriptionMessage('Please enter a valid email address.', 'error'); return; }
+            if (!consent) { showSubscriptionMessage('Please agree to the privacy policy.', 'error'); return; }
+            subscribeBtn.disabled = true; subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            try {
+                const response = await fetch(`${API_BASE_URL}/subscribe`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email }) });
+                const data = await response.json();
+                if (response.ok) { showSubscriptionMessage(data.message || 'Subscription successful! Check your email.', 'success'); document.getElementById('subscriberName').value = ''; document.getElementById('subscriberEmail').value = ''; document.getElementById('privacyConsent').checked = false; }
+                else { showSubscriptionMessage(data.error || 'Subscription failed. Please try again.', 'error'); }
+            } catch (error) { console.error('Subscription error:', error); showSubscriptionMessage('Network error. Please check your connection.', 'error'); }
+            finally { subscribeBtn.disabled = false; subscribeBtn.innerHTML = '<i class="fas fa-bell"></i> Subscribe to Updates'; }
+        }
+        function showSubscriptionMessage(message, type) { const messageEl = document.getElementById('subscriptionMessage'); messageEl.textContent = message; messageEl.className = `subscription-message ${type}`; setTimeout(() => { messageEl.style.display = 'none'; }, 5000); }
+
+        async function loadComments() {
+            try { const response = await fetch(`${API_BASE_URL}/comments`); const data = await response.json(); if (response.ok) { displayComments(data.comments); updateCommentCount(data.comments.length); } } catch (error) { console.error('Error loading comments:', error); }
+        }
+        function displayComments(comments) {
+            const commentsList = document.getElementById('commentsList');
+            if (!comments || comments.length === 0) { commentsList.innerHTML = '<div class="no-comments"><i class="fas fa-comment-dots"></i> No comments yet. Be the first to share your thoughts!</div>'; return; }
+            let html = '';
+            comments.forEach(comment => { html += `<div class="comment-item" id="comment-${comment.id}"><div class="comment-meta"><span class="comment-author"><i class="fas fa-user-circle"></i> ${escapeHtml(comment.author)}</span><span class="comment-date"><i class="far fa-clock"></i> ${comment.date}</span></div><div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div></div>`; });
+            commentsList.innerHTML = html;
+        }
+        function updateCommentCount(count) { document.getElementById('commentCount').textContent = count; }
+        async function submitComment() {
+            const author = document.getElementById('commentAuthor').value.trim();
+            const email = document.getElementById('commentEmail').value.trim();
+            const content = document.getElementById('commentContent').value.trim();
+            const submitBtn = document.querySelector('.comment-submit');
+            if (!author) { alert('Please enter your name.'); return; }
+            if (!content) { alert('Please enter your comment.'); return; }
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address or leave it blank.'); return; }
+            submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            try {
+                const response = await fetch(`${API_BASE_URL}/comments`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ author, email, content }) });
+                const data = await response.json();
+                if (response.ok) { document.getElementById('commentContent').value = ''; document.getElementById('commentAuthor').value = ''; document.getElementById('commentEmail').value = ''; await loadComments(); alert('Comment posted successfully! It will appear after moderation.'); }
+                else { alert(data.error || 'Failed to post comment. Please try again.'); }
+            } catch (error) { console.error('Comment error:', error); alert('Network error. Please check your connection.'); }
+            finally { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Post Comment'; }
+        }
+        function escapeHtml(unsafe) { if (!unsafe) return ''; return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
+        document.addEventListener('DOMContentLoaded', loadComments);
+        document.getElementById('commentContent').addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitComment(); } });
+    </script>
+</body>
+</html>
