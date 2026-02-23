@@ -3,224 +3,845 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Professional Reference</title>
+    <title>30 Python Sample Programs</title>
     <style>
-        :root {
-            --obsidian: #0b0e14;
-            --midnight-blue: #161b22;
-            --accent-blue: #58a6ff;
-            --text-main: #adbac7;
-            --text-bright: #f0f6fc;
-            --code-bg: #0d1117;
-            --border-color: #30363d;
-            --sidebar-width: 280px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        * { box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: var(--obsidian);
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
+            background: #0b1420;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.7;
+            padding: 2.8rem 2rem;
+            color: #c9d9f0;
         }
 
-       
-        nav {
-            width: var(--sidebar-width);
-            height: 100vh;
-            background-color: var(--midnight-blue);
-            border-right: 1px solid var(--border-color);
-            position: fixed;
-            padding: 30px 20px;
+        .container {
+            max-width: 1700px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            border-left: 6px solid #3a7eff;
+            padding-left: 1.8rem;
+            color: #eaf1ff;
+            letter-spacing: -0.02em;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .meta-badge {
+            background: #123456;
+            color: #a2c4ff;
+            padding: 0.3rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            display: inline-block;
+            border: 1px solid #3b6cac;
+            margin-bottom: 2.5rem;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .program-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 3rem;
+        }
+
+        .prog-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #dde9ff;
+            margin-bottom: 0.1rem;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
-        .search-container {
-            margin-bottom: 30px;
+        .prog-title span {
+            background: #1e3148;
+            color: #86b0fe;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 1px solid #34598a;
+            letter-spacing: 0.3px;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
-        #conceptSearch {
-            width: 100%;
-            padding: 10px;
-            background: var(--code-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            color: var(--text-bright);
-            outline: none;
+        .prog-subtitle {
+            font-size: .8rem;
+            font-weight: 520;
+            color: #9cb6dd;
+            margin: 0.1rem 0 0.6rem 0;
+            border-bottom: 1px dashed #2c4b6e;
+            padding-bottom: 0.3rem;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
-        #conceptSearch:focus { border-color: var(--accent-blue); }
-
-        nav h2 {
-            color: var(--text-bright);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            opacity: 0.6;
+        .prog-explanation {
+            font-size: 0.9rem;
+            color: #ccdff7;
+            background: transparent;
+            padding: 0.3rem 0 0.3rem 1.2rem;
+            margin: 0.5rem 0 1rem 0;
+            border-left: 4px solid #3a7eff;
+            line-height: 1.85;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
-        nav ul { list-style: none; padding: 0; margin: 0; }
-        nav ul li { margin: 10px 0; }
-        nav ul li a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: block;
-            padding: 5px 0;
-            transition: 0.2s;
-        }
-        nav ul li a:hover { color: var(--accent-blue); }
-
-        
-        main {
-            margin-left: var(--sidebar-width);
-            padding: 60px 10%;
-            width: 100%;
-        }
-
-        header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 30px;
-            margin-bottom: 50px;
-        }
-
-        h1 { color: var(--text-bright); font-size: 1rem; margin: 0; }
-        .subtitle { color: var(--accent-blue); font-family: monospace; }
-
-        section { margin-bottom: 80px; scroll-margin-top: 40px; }
-        h3 { color: var(--text-bright); display: flex; align-items: center; }
-        h3::before {
-            content: ""; width: 4px; height: 20px; 
-            background: var(--accent-blue); margin-right: 15px;
-        }
-
-        
-        pre {
-            background-color: var(--code-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
+        .code-block {
+            background: #0c1a28;
+            color: #d6e5ff;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
             overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border: 1px solid #2c4662;
+            box-shadow: inset 0 0 6px #050e17;
+            margin: 0.8rem 0 0.4rem 0;
+            text-align: left;
         }
 
-        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
-        .keyword { color: #ff7b72; }
-        .func { color: #d2a8ff; }
-        .string { color: #a5d6ff; }
-        .comment { color: #8b949e; }
-        .decorator { color: #d2a8ff; font-weight: bold; }
+        .run-area {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
 
-        footer { text-align: center; color: #484f58; padding: 40px 0; border-top: 1px solid var(--border-color); }
+        .run-btn {
+            background: #1f3a5a;
+            border: 1px solid #3b6bb0;
+            color: #e0edff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.15s;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 8px rgba(0, 10, 25, 0.6);
+            text-align: justify;
+            text-justify: inter-word;
+        }
 
-        @media (max-width: 900px) {
-            body { flex-direction: column; }
-            nav { width: 100%; height: auto; position: relative; }
-            main { margin-left: 0; }
+        .run-btn:hover {
+            background: #2b4e7a;
+            border-color: #5d8cf0;
+            color: white;
+            box-shadow: 0 6px 12px #040d1a;
+        }
+
+        .output-panel {
+            background: #0b1b2b;
+            border: 1px solid #2c4d75;
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #b5d1ff;
+            flex: 1;
+            min-width: 220px;
+            box-shadow: inset 0 0 8px #030f1c;
+            white-space: pre-wrap;
+            word-break: break-word;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .advanced-section {
+            margin-top: 4rem;
+        }
+
+        .advanced-section h2 {
+            color: #eaf1ff;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid #ff7b72;
+            padding-left: 1.5rem;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            font-size: 0.8rem;
+            color: #65809e;
+            border-top: 1px solid #253e58;
+            padding-top: 2rem;
         }
     </style>
 </head>
 <body>
+<div class="container">
+    <h1>⋆ Python Sample Programs</h1>
+    <div class="meta-badge">Created By: Glenn Junsay Pansensoy</div>
 
-    <nav>
-        <div class="search-container">
-            <input type="text" id="conceptSearch" placeholder="Search concepts..." onkeyup="filterMenu()">
+    <div class="program-card">
+        <div class="prog-title">1. Hello, World! <span>core</span></div>
+        <div class="prog-subtitle">first output</div>
+        <div class="prog-explanation">
+            This is the simplest Python program that prints a line of text to the console. It introduces the print() function, which is the primary way to display information. The program shows how Python executes statements sequentially and how strings are enclosed in quotes. Every programmer starts here — it confirms that the environment works and that you can produce visible output.
         </div>
-        <h4>Core Modules</h4>
-        <ul id="menuList">
-            <li><a href="./data-structures">Data Types</a></li>
-            <li><a href="./python -functions">Functions</a></li>
-            <li><a href="/oop-intro">Object-Oriented</a></li>
-            <li><a href="#decorators">Decorators</a></li>
-            <li><a href="#exceptions">Error Handling</a></li>
-        </ul>
-    </nav>
+        <div class="code-block">print("Hello, World!")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runHello(1)">▶ Run</button>
+            <div id="output-1" class="output-panel">⏎ output will appear here</div>
+        </div>
+    </div>
 
-    <main>
-        <header>
-            <h4>Python Advanced Reference</h4>
-            <div class="subtitle">POETIC CODES</div>
-        </header>
+    <div class="program-card">
+        <div class="prog-title">2. Add two numbers <span>arithmetic</span></div>
+        <div class="prog-subtitle">user input & addition</div>
+        <div class="prog-explanation">
+            This program demonstrates how to accept keyboard input using input(), convert the resulting strings to integers using int(), and perform a mathematical operation. The input() function always returns a string, so explicit conversion is necessary for numeric addition. It also shows variable assignment and how to combine multiple values inside print().
+        </div>
+        <div class="code-block">a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+print("Sum =", a + b)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runAdd(2)">▶ Run</button>
+            <div id="output-2" class="output-panel">⏎ will simulate inputs 8 and 3</div>
+        </div>
+    </div>
 
-        <section id="data-types" class="content-section">
-            <h4>Dynamic Typing</h4>
-            <p>Python is strongly, dynamically typed. Objects have types, but variables are just names pointing to those objects.</p>
-            <pre><code>x = <span class="string">100</span>  <span class="comment"># x points to an int</span>
-x = <span class="string">"Now a string"</span>  <span class="comment"># x now points to a str</span></code></pre>
-        </section>
+    <div class="program-card">
+        <div class="prog-title">3. Even or odd <span>conditionals</span></div>
+        <div class="prog-subtitle">if/else & modulo</div>
+        <div class="prog-explanation">
+            This program checks whether an integer is even or odd using the modulo operator %. The modulo returns the remainder of a division: if a number divided by 2 leaves 0, it is even. The if-else structure controls the flow of execution based on that condition. It introduces boolean expressions and branching logic.
+        </div>
+        <div class="code-block">n = int(input("Enter a number: "))
+if n % 2 == 0:
+    print("Even")
+else:
+    print("Odd")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runEvenOdd(3)">▶ Run</button>
+            <div id="output-3" class="output-panel">⏎ try number 7</div>
+        </div>
+    </div>
 
-        <section id="functions" class="content-section">
-            <h4>First-Class Functions</h4>
-            <p>Functions can be passed as arguments, returned from other functions, and assigned to variables.</p>
-            <pre><code><span class="keyword">def</span> <span class="func">greet</span>(name): <span class="keyword">return</span> f<span class="string">"Hello, {name}"</span>
+    <div class="program-card">
+        <div class="prog-title">4. Factorial (loop) <span>iteration</span></div>
+        <div class="prog-subtitle">for loop accumulator</div>
+        <div class="prog-explanation">
+            The factorial of a non-negative integer n (written n!) is the product of all positive integers from 1 to n. This implementation uses a for loop with range(1, n+1) to iterate through each factor. The variable fact accumulates the result by multiplying with each i. It also handles the edge case 0! correctly.
+        </div>
+        <div class="code-block">n = int(input("factorial of: "))
+fact = 1
+for i in range(1, n+1):
+    fact *= i
+print(f"{n}! = {fact}")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runFactorial(4)">▶ Run</button>
+            <div id="output-4" class="output-panel">⏎ input 5 → 120</div>
+        </div>
+    </div>
 
-<span class="keyword">def</span> <span class="func">apply_func</span>(f, val): <span class="keyword">return</span> f(val)
+    <div class="program-card">
+        <div class="prog-title">5. Fibonacci series <span>sequence</span></div>
+        <div class="prog-subtitle">while & swapping</div>
+        <div class="prog-explanation">
+            The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two. This program prints the first n terms using a while loop and parallel assignment (a, b = b, a+b) which updates both variables simultaneously without a temporary variable.
+        </div>
+        <div class="code-block">n = int(input("How many terms? "))
+a, b = 0, 1
+count = 0
+while count < n:
+    print(a, end=" ")
+    a, b = b, a + b
+    count += 1</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runFib(5)">▶ Run</button>
+            <div id="output-5" class="output-panel">⏎ 7 terms</div>
+        </div>
+    </div>
 
-<span class="func">print</span>(apply_func(greet, <span class="string">"Dev"</span>))</code></pre>
-        </section>
+    <div class="program-card">
+        <div class="prog-title">6. Prime number check <span>math</span></div>
+        <div class="prog-subtitle">divisibility test</div>
+        <div class="prog-explanation">
+            A prime number is greater than 1 and has no positive divisors other than 1 and itself. This program checks primality by testing divisibility from 2 up to the square root of n (using math.isqrt). If any divisor is found, it prints "Composite" and breaks out of the loop.
+        </div>
+        <div class="code-block">import math
+n = int(input("Enter integer: "))
+if n < 2:
+    print("Not prime")
+else:
+    for i in range(2, int(math.isqrt(n)) + 1):
+        if n % i == 0:
+            print("Composite")
+            break
+    else:
+        print("Prime")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runPrime(6)">▶ Run</button>
+            <div id="output-6" class="output-panel">⏎ 17 → prime</div>
+        </div>
+    </div>
 
-        <section id="oop" class="content-section">
-            <h4>Inheritance & Classes</h4>
-            <p>Encapsulate logic into reusable blueprints. Use inheritance to extend functionality without redundancy.</p>
-            [attachment_0](attachment)
-            <pre><code><span class="keyword">class</span> <span class="func">BaseAPI</span>:
-    <span class="keyword">def</span> <span class="func">connect</span>(self): <span class="func">print</span>(<span class="string">"Connecting..."</span>)
+    <div class="program-card">
+        <div class="prog-title">7. Reverse a string <span>slicing</span></div>
+        <div class="prog-subtitle">extended slice</div>
+        <div class="prog-explanation">
+            Python's slicing syntax is extremely powerful. The expression s[::-1] creates a reversed copy of the string s. The start and end are omitted (meaning the whole string), and the step -1 makes the slice move backwards. This is the most concise way to reverse any sequence.
+        </div>
+        <div class="code-block">text = input("String to reverse: ")
+reversed_text = text[::-1]
+print("Reversed:", reversed_text)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runReverse(7)">▶ Run</button>
+            <div id="output-7" class="output-panel">⏎ "python" → "nohtyp"</div>
+        </div>
+    </div>
 
-<span class="keyword">class</span> <span class="func">UserAPI</span>(BaseAPI):
-    <span class="keyword">def</span> <span class="func">get_user</span>(self): <span class="keyword">return</span> {<span class="string">"id"</span>: <span class="string">1</span>}</code></pre>
-        </section>
+    <div class="program-card">
+        <div class="prog-title">8. Palindrome string <span>comparison</span></div>
+        <div class="prog-subtitle">reverse & compare</div>
+        <div class="prog-explanation">
+            A palindrome is a word, phrase, or sequence that reads the same forwards and backwards (ignoring case). This program converts the input to lowercase using .lower() so that the check is case-insensitive. It then compares the original string to its reversed version using slicing.
+        </div>
+        <div class="code-block">s = input("Enter word: ").lower()
+if s == s[::-1]:
+    print("Palindrome")
+else:
+    print("Not palindrome")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runPalindrome(8)">▶ Run</button>
+            <div id="output-8" class="output-panel">⏎ "Racecar" → palindrome</div>
+        </div>
+    </div>
 
-        <section id="decorators" class="content-section">
-            <h4>Python Decorators</h4>
-            <p>Decorators allow you to "wrap" another function to extend its behavior without permanently modifying it. This is a common pattern for logging, authentication, and timing.</p>
-            
-            <pre><code><span class="keyword">def</span> <span class="func">log_call</span>(func):
-    <span class="keyword">def</span> <span class="func">wrapper</span>(*args, **kwargs):
-        <span class="func">print</span>(f<span class="string">"Calling {func.__name__}"</span>)
-        <span class="keyword">return</span> func(*args, **kwargs)
-    <span class="keyword">return</span> wrapper
+    <div class="program-card">
+        <div class="prog-title">9. Sum of list <span>built‑ins</span></div>
+        <div class="prog-subtitle">sum() function</div>
+        <div class="prog-explanation">
+            Instead of writing a manual loop, Python provides the built-in sum() function that adds all elements of an iterable (like a list). This program creates a list of numbers and passes it to sum(), which returns the total. It demonstrates that Python encourages using high-level abstractions to write clean, readable code.
+        </div>
+        <div class="code-block">numbers = [12, 7, 3, 15, 9]
+total = sum(numbers)
+print("Sum =", total)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runListSum(9)">▶ Run</button>
+            <div id="output-9" class="output-panel">⏎ sum = 46</div>
+        </div>
+    </div>
 
-<span class="decorator">@log_call</span>
-<span class="keyword">def</span> <span class="func">fetch_data</span>():
-    <span class="keyword">return</span> {<span class="string">"data"</span>: <span class="string">"secure"</span>}</code></pre>
-        </section>
+    <div class="program-card">
+        <div class="prog-title">10. Max of three <span>conditional logic</span></div>
+        <div class="prog-subtitle">if / elif / else</div>
+        <div class="prog-explanation">
+            This program finds the largest among three numbers using two different approaches. The first uses nested conditionals: compare a with b and c, then compare b with c, etc. The second uses the built-in max() function, which is simpler and less error‑prone.
+        </div>
+        <div class="code-block">a, b, c = 41, 27, 53
+if a >= b and a >= c:
+    mx = a
+elif b >= c:
+    mx = b
+else:
+    mx = c
+print("max (if) =", mx)
+print("max (builtin) =", max(a, b, c))</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runMax(10)">▶ Run</button>
+            <div id="output-10" class="output-panel">⏎ max = 53 (both)</div>
+        </div>
+    </div>
 
-        <section id="exceptions" class="content-section">
-            <h4>Exception Lifecycle</h4>
-            <p>Handle runtime errors gracefully. The <code>finally</code> block ensures resources (like file handles) are released.</p>
-            
-            <pre><code><span class="keyword">try</span>:
-    perform_action()
-<span class="keyword">except</span> <span class="func">Exception</span> <span class="keyword">as</span> e:
-    <span class="func">print</span>(f<span class="string">"Error: {e}"</span>)
-<span class="keyword">finally</span>:
-    cleanup()</code></pre>
-        </section>
+    <div class="program-card">
+        <div class="prog-title">11. Simple calculator <span>match-case</span></div>
+        <div class="prog-subtitle">operator selection</div>
+        <div class="prog-explanation">
+            This program implements a basic four‑function calculator. It reads two numbers and an operator, then uses Python 3.10+'s match statement to select the correct operation. The match-case structure is cleaner than a long if-elif chain.
+        </div>
+        <div class="code-block">x = float(input("x: "))
+y = float(input("y: "))
+op = input("operator (+,-,*,/): ")
+match op:
+    case '+': print(x + y)
+    case '-': print(x - y)
+    case '*': print(x * y)
+    case '/': print(x / y if y else "undefined")
+    case _: print("unknown operator")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runCalc(11)">▶ Run</button>
+            <div id="output-11" class="output-panel">⏎ 8 * 2.5 = 20.0</div>
+        </div>
+    </div>
 
-        <footer>
-            &copy; 2026 Glenn Junsay Pansensoy. Prepared for global developers.
-        </footer>
-    </main>
+    <div class="program-card">
+        <div class="prog-title">12. Count vowels <span>iteration</span></div>
+        <div class="prog-subtitle">membership in set</div>
+        <div class="prog-explanation">
+            This program counts how many vowels (a, e, i, o, u) appear in a user‑provided string. It first converts the string to lowercase, then iterates over each character. A set containing the vowels allows fast membership testing with the in operator.
+        </div>
+        <div class="code-block">text = input("text: ").lower()
+vowels = set("aeiou")
+count = 0
+for ch in text:
+    if ch in vowels:
+        count += 1
+print("vowels:", count)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runVowels(12)">▶ Run</button>
+            <div id="output-12" class="output-panel">⏎ "hello world" → 3 vowels</div>
+        </div>
+    </div>
 
-    <script>
-        function filterMenu() {
-            let input = document.getElementById('conceptSearch').value.toLowerCase();
-            let items = document.getElementById('menuList').getElementsByTagName('li');
-            let sections = document.getElementsByClassName('content-section');
+    <div class="program-card">
+        <div class="prog-title">13. Multiplication table <span>nested loop</span></div>
+        <div class="prog-subtitle">formatting output</div>
+        <div class="prog-explanation">
+            This program prints a 10×10 multiplication table. It uses a nested for loop: the outer loop runs from 1 to 10 (rows), and the inner loop runs from 1 to 10 (columns). Inside the inner loop, the product i*j is printed with formatting :>4 to align numbers in columns four characters wide.
+        </div>
+        <div class="code-block">for i in range(1, 11):
+    for j in range(1, 11):
+        print(f"{i * j:>4}", end="")
+    print()</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runMult(13)">▶ Run</button>
+            <div id="output-13" class="output-panel">⏎ (shows 1..10 table)</div>
+        </div>
+    </div>
 
-            for (let i = 0; i < items.length; i++) {
-                let text = items[i].innerText.toLowerCase();
-                if (text.includes(input)) {
-                    items[i].style.display = "";
-                } else {
-                    items[i].style.display = "none";
-                }
-            }
-        }
-    </script>
+    <div class="program-card">
+        <div class="prog-title">14. Leap year <span>boolean logic</span></div>
+        <div class="prog-subtitle">Gregorian rule</div>
+        <div class="prog-explanation">
+            A year is a leap year if it is divisible by 400, or if it is divisible by 4 but not by 100. This program implements that logic using a compound boolean expression. It demonstrates the use of modulo for divisibility, logical operators (or, and, not), and operator precedence.
+        </div>
+        <div class="code-block">year = int(input("Year: "))
+if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+    print("Leap year")
+else:
+    print("Common year")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runLeap(14)">▶ Run</button>
+            <div id="output-14" class="output-panel">⏎ 2024 → leap, 2023 → common</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">15. Linear search <span>list iteration</span></div>
+        <div class="prog-subtitle">find index</div>
+        <div class="prog-explanation">
+            Linear search scans a list sequentially to find a target value. This program uses enumerate() to get both index and value during iteration. If the value matches the target, the index is recorded and the loop breaks. If the loop completes without finding the target, the found variable remains -1.
+        </div>
+        <div class="code-block">arr = [4, 2, 9, 1, 7]
+target = 9
+found = -1
+for i, val in enumerate(arr):
+    if val == target:
+        found = i
+        break
+print(f"found at {found}" if found != -1 else "not found")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runLinear(15)">▶ Run</button>
+            <div id="output-15" class="output-panel">⏎ found at 2</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">16. Bubble sort <span>sorting</span></div>
+        <div class="prog-subtitle">adjacent swaps</div>
+        <div class="prog-explanation">
+            Bubble sort repeatedly steps through a list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed. This implementation uses two nested loops: the outer loop controls the number of passes, and the inner loop performs the comparisons and swaps.
+        </div>
+        <div class="code-block">nums = [64, 34, 25, 12, 22, 11, 90]
+n = len(nums)
+for i in range(n - 1):
+    for j in range(n - 1 - i):
+        if nums[j] > nums[j + 1]:
+            nums[j], nums[j + 1] = nums[j + 1], nums[j]
+print("Sorted:", nums)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runBubble(16)">▶ Run</button>
+            <div id="output-16" class="output-panel">⏎ sorted list</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">17. Remove duplicates <span>set + dict</span></div>
+        <div class="prog-subtitle">preserve order</div>
+        <div class="prog-explanation">
+            Removing duplicates while keeping the original order is a common task. This code uses dict.fromkeys(items) which, in Python 3.7+, preserves insertion order because dictionaries remember the order of keys. The keys become the unique elements, and converting back to a list gives the ordered unique list.
+        </div>
+        <div class="code-block">items = [2, 3, 2, 5, 6, 3, 7, 2]
+unique = list(dict.fromkeys(items))
+print(unique)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runUnique(17)">▶ Run</button>
+            <div id="output-17" class="output-panel">⏎ [2, 3, 5, 6, 7]</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">18. Binary to decimal <span>int conversion</span></div>
+        <div class="prog-subtitle">base argument</div>
+        <div class="prog-explanation">
+            Python's int() function can parse numbers in any base by providing the base argument. For binary, use base 2. This program reads a string like "1101" and converts it to its decimal equivalent. It demonstrates how built‑in functions can handle low‑level conversions.
+        </div>
+        <div class="code-block">bin_str = input("binary number: ")
+decimal = int(bin_str, 2)
+print("decimal =", decimal)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runBinary(18)">▶ Run</button>
+            <div id="output-18" class="output-panel">⏎ 1101 → 13</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">19. Dice roll simulator <span>random</span></div>
+        <div class="prog-subtitle">randint</div>
+        <div class="prog-explanation">
+            This program simulates rolling a standard six‑sided die using random.randint(1, 6). The random module provides functions for generating pseudo‑random numbers. randint(a, b) returns a random integer N such that a <= N <= b. This is useful in games, simulations, and any application that needs unpredictability.
+        </div>
+        <div class="code-block">import random
+roll = random.randint(1, 6)
+print("🎲 you rolled:", roll)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runDice(19)">▶ Run</button>
+            <div id="output-19" class="output-panel">⏎ random 1..6</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">20. Area of circle <span>math module</span></div>
+        <div class="prog-subtitle">pi constant</div>
+        <div class="prog-explanation">
+            This program calculates the area of a circle given its radius, using the formula πr². It imports math to access math.pi, a high‑precision approximation of π. The calculation uses floating‑point arithmetic. The result is printed with two decimal places using an f‑string format specifier :.2f.
+        </div>
+        <div class="code-block">import math
+r = float(input("radius: "))
+area = math.pi * r ** 2
+print(f"area = {area:.2f}")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runArea(20)">▶ Run</button>
+            <div id="output-20" class="output-panel">⏎ r=5 → 78.54</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">21. Swap two variables <span>tuple unpack</span></div>
+        <div class="prog-subtitle">pythonic swap</div>
+        <div class="prog-explanation">
+            Swapping two variables in most languages requires a temporary variable. Python allows a more elegant way using tuple unpacking: a, b = b, a. The right‑hand side creates a tuple (b, a), which is then unpacked into a and b. This operation is atomic and avoids a temporary variable.
+        </div>
+        <div class="code-block">a = 5; b = 10
+print("before:", a, b)
+a, b = b, a
+print("after :", a, b)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runSwap(21)">▶ Run</button>
+            <div id="output-21" class="output-panel">⏎ before 5 10 → after 10 5</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">22. Count words <span>split</span></div>
+        <div class="prog-subtitle">whitespace split</div>
+        <div class="prog-explanation">
+            This program counts the number of words in a sentence. It uses the string method .split() which, without arguments, splits on any whitespace (spaces, tabs, newlines) and returns a list of words. The length of that list is the word count. This is a simple but practical example of string processing.
+        </div>
+        <div class="code-block">sentence = input("sentence: ")
+words = sentence.split()
+print("word count =", len(words))</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runWordCount(22)">▶ Run</button>
+            <div id="output-22" class="output-panel">⏎ "hello world" → 2</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">23. Nested dictionary <span>data structures</span></div>
+        <div class="prog-subtitle">key access</div>
+        <div class="prog-explanation">
+            Dictionaries can contain other dictionaries, creating nested structures. This program creates a student record with a nested "grades" dictionary. Accessing a value requires chaining keys: student["grades"]["cs"]. This demonstrates how to model real‑world hierarchical data.
+        </div>
+        <div class="code-block">student = {
+    "name": "Lena",
+    "grades": {"math": 88, "cs": 95}
+}
+print(student["grades"]["cs"])</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runNested(23)">▶ Run</button>
+            <div id="output-23" class="output-panel">⏎ 95</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">24. Guess the number <span>game loop</span></div>
+        <div class="prog-subtitle">while + hints</div>
+        <div class="prog-explanation">
+            This simple game picks a random secret number between 1 and 20. The player repeatedly guesses, and the program gives "too low" or "too high" feedback until the correct number is found. The while loop continues until the guess matches the secret.
+        </div>
+        <div class="code-block">import random
+secret = random.randint(1, 20)
+guess = None
+while guess != secret:
+    guess = int(input("guess (1-20): "))
+    if guess < secret:
+        print("too low")
+    elif guess > secret:
+        print("too high")
+print("You got it!")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runGuess(24)">▶ Run</button>
+            <div id="output-24" class="output-panel">⏎ simulates a quick win</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">25. File write & read <span>I/O</span></div>
+        <div class="prog-subtitle">with open</div>
+        <div class="prog-explanation">
+            This program writes a line to a file named "sample.txt" and then reads it back. It uses the with statement, which ensures the file is properly closed after the block, even if an error occurs. The first block opens the file in write mode ("w"), erasing any previous content.
+        </div>
+        <div class="code-block">with open("sample.txt", "w") as f:
+    f.write("Python is fun!\n")
+with open("sample.txt", "r") as f:
+    content = f.read()
+print("file content:", content)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runFile(25)">▶ Run</button>
+            <div id="output-25" class="output-panel">⏎ file content: Python is fun!</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">26. Squares with list comp <span>comprehension</span></div>
+        <div class="prog-subtitle">one-liner</div>
+        <div class="prog-explanation">
+            List comprehensions provide a concise way to create lists. This one‑liner generates a list of squares from 1 to 10: [x**2 for x in range(1, 11)]. It reads like a mathematical set notation: for each x in the range, compute x² and collect the results.
+        </div>
+        <div class="code-block">squares = [x**2 for x in range(1, 11)]
+print(squares)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runSquares(26)">▶ Run</button>
+            <div id="output-26" class="output-panel">⏎ [1,4,9,16,25,36,49,64,81,100]</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">27. Filter even numbers <span>lambda/filter</span></div>
+        <div class="prog-subtitle">functional tools</div>
+        <div class="prog-explanation">
+            The filter() function constructs an iterator from elements of an iterable for which a function returns True. Here, a lambda function (lambda x: x%2==0) checks for even numbers. Combining filter() with lambda allows a functional programming style.
+        </div>
+        <div class="code-block">nums = [1, 2, 3, 4, 5, 6, 7, 8]
+evens = list(filter(lambda x: x % 2 == 0, nums))
+print(evens)</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runFilter(27)">▶ Run</button>
+            <div id="output-27" class="output-panel">⏎ [2,4,6,8]</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">28. Class & constructor <span>OOP</span></div>
+        <div class="prog-subtitle">__init__ method</div>
+        <div class="prog-explanation">
+            This program defines a simple Person class with an __init__ method (constructor) that initializes name and age attributes. It also has a greet() method that returns a string. Creating an instance p = Person("Alex", 24) calls the constructor.
+        </div>
+        <div class="code-block">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def greet(self):
+        return f"Hi, I'm {self.name}"
+p = Person("Alex", 24)
+print(p.greet())</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runClass(28)">▶ Run</button>
+            <div id="output-28" class="output-panel">⏎ Hi, I'm Alex</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">29. Try / except division <span>error handling</span></div>
+        <div class="prog-subtitle">ZeroDivisionError</div>
+        <div class="prog-explanation">
+            This program safely divides two integers by catching potential errors. It uses try-except to handle ZeroDivisionError (division by zero) and ValueError (invalid input conversion). If an error occurs, the corresponding except block runs instead of crashing the program.
+        </div>
+        <div class="code-block">try:
+    a = int(input("a: "))
+    b = int(input("b: "))
+    print(a / b)
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+except ValueError:
+    print("Invalid integer")</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runException(29)">▶ Run</button>
+            <div id="output-29" class="output-panel">⏎ 10 / 2 = 5.0</div>
+        </div>
+    </div>
+
+    <div class="program-card">
+        <div class="prog-title">30. Current date & time <span>datetime</span></div>
+        <div class="prog-subtitle">now() formatting</div>
+        <div class="prog-explanation">
+            The datetime module supplies classes for manipulating dates and times. This program gets the current moment with datetime.now() and then formats it using strftime() with a format string "%Y-%m-%d %H:%M:%S" (year‑month‑day hour:minute:second).
+        </div>
+        <div class="code-block">from datetime import datetime
+now = datetime.now()
+print("Now:", now.strftime("%Y-%m-%d %H:%M:%S"))</div>
+        <div class="run-area">
+            <button class="run-btn" onclick="runDatetime(30)">▶ Run</button>
+            <div id="output-30" class="output-panel">⏎ current date/time</div>
+        </div>
+    </div>
+
+    <div class="advanced-section">
+        <h2>🚀 Additional Advanced Concepts</h2>
+        
+        <div class="program-card">
+            <div class="prog-title">A1. Decorators with arguments</div>
+            <div class="prog-explanation">
+                Decorators can accept arguments by adding a factory layer. Used extensively in web frameworks (Flask routes, Django decorators) and for access control.
+            </div>
+            <div class="code-block">def retry(max_attempts):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_attempts):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    print(f"Attempt {attempt+1} failed: {e}")
+            return None
+        return wrapper
+    return decorator
+
+@retry(3)
+def unstable_connection():
+    import random
+    if random.random() < 0.7:
+        raise ConnectionError("Network unstable")
+    return "Connected!"</div>
+        </div>
+
+        <div class="program-card">
+            <div class="prog-title">A2. Generators and yield from</div>
+            <div class="prog-explanation">
+                Generators produce values lazily, making them memory-efficient for large datasets. yield from delegates to another generator.
+            </div>
+            <div class="code-block">def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+def take(n, iterable):
+    for i, val in enumerate(iterable):
+        if i >= n:
+            break
+        yield val
+
+fib = fibonacci()
+print(list(take(10, fib)))</div>
+        </div>
+
+        <div class="program-card">
+            <div class="prog-title">A3. Context Managers with contextlib</div>
+            <div class="prog-explanation">
+                Custom context managers via contextlib.contextmanager for simpler resource management.
+            </div>
+            <div class="code-block">from contextlib import contextmanager
+import time
+
+@contextmanager
+def timer():
+    start = time.perf_counter()
+    yield
+    elapsed = time.perf_counter() - start
+    print(f"Elapsed: {elapsed:.6f}s")
+
+with timer():
+    sum(range(10_000_000))</div>
+        </div>
+
+        <div class="program-card">
+            <div class="prog-title">A4. Async/Await & Asyncio</div>
+            <div class="prog-explanation">
+                Asynchronous programming for concurrent I/O operations without threads.
+            </div>
+            <div class="code-block">import asyncio
+
+async def fetch_data(url):
+    print(f"Fetching {url}")
+    await asyncio.sleep(1)
+    return f"Data from {url}"
+
+async def main():
+    urls = ["api.github.com", "api.twitter.com", "api.reddit.com"]
+    tasks = [fetch_data(url) for url in urls]
+    results = await asyncio.gather(*tasks)
+    for result in results:
+        print(result)</div>
+        </div>
+    </div>
+
+    <footer>Python Sample Programs + Advanced Concepts — Created by Glenn Junsay Pansensoy</footer>
+</div>
+
+<script>
+    function runHello(id) { document.getElementById(`output-${id}`).innerText = 'Hello, World!'; }
+    function runAdd(id) { document.getElementById(`output-${id}`).innerText = 'Sum = 11  (simulated 8 + 3)'; }
+    function runEvenOdd(id) { document.getElementById(`output-${id}`).innerText = 'Odd  (input 7)'; }
+    function runFactorial(id) { document.getElementById(`output-${id}`).innerText = '5! = 120'; }
+    function runFib(id) { document.getElementById(`output-${id}`).innerText = '0 1 1 2 3 5 8  (7 terms)'; }
+    function runPrime(id) { document.getElementById(`output-${id}`).innerText = 'Prime  (17)'; }
+    function runReverse(id) { document.getElementById(`output-${id}`).innerText = 'Reversed: nohtyp'; }
+    function runPalindrome(id) { document.getElementById(`output-${id}`).innerText = 'Palindrome  (racecar)'; }
+    function runListSum(id) { document.getElementById(`output-${id}`).innerText = 'Sum = 46'; }
+    function runMax(id) { document.getElementById(`output-${id}`).innerText = 'max (if) = 53\nmax (builtin) = 53'; }
+    function runCalc(id) { document.getElementById(`output-${id}`).innerText = '20.0  (8 * 2.5)'; }
+    function runVowels(id) { document.getElementById(`output-${id}`).innerText = 'vowels: 3  ("hello world")'; }
+    function runMult(id) { document.getElementById(`output-${id}`).innerText = '   1   2   3   4   5   6   7   8   9  10\n   2   4   6   8  10  12  14  16  18  20\n   ... (table preview)'; }
+    function runLeap(id) { document.getElementById(`output-${id}`).innerText = 'Leap year  (2024)'; }
+    function runLinear(id) { document.getElementById(`output-${id}`).innerText = 'found at 2'; }
+    function runBubble(id) { document.getElementById(`output-${id}`).innerText = 'Sorted: [11, 12, 22, 25, 34, 64, 90]'; }
+    function runUnique(id) { document.getElementById(`output-${id}`).innerText = '[2, 3, 5, 6, 7]'; }
+    function runBinary(id) { document.getElementById(`output-${id}`).innerText = 'decimal = 13  (1101)'; }
+    function runDice(id) { document.getElementById(`output-${id}`).innerText = '🎲 you rolled: 4  (simulated)'; }
+    function runArea(id) { document.getElementById(`output-${id}`).innerText = 'area = 78.54  (r=5)'; }
+    function runSwap(id) { document.getElementById(`output-${id}`).innerText = 'before: 5 10\nafter : 10 5'; }
+    function runWordCount(id) { document.getElementById(`output-${id}`).innerText = 'word count = 2'; }
+    function runNested(id) { document.getElementById(`output-${id}`).innerText = '95'; }
+    function runGuess(id) { document.getElementById(`output-${id}`).innerText = 'secret=12, guess 12 → You got it!'; }
+    function runFile(id) { document.getElementById(`output-${id}`).innerText = 'file content: Python is fun!\n'; }
+    function runSquares(id) { document.getElementById(`output-${id}`).innerText = '[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]'; }
+    function runFilter(id) { document.getElementById(`output-${id}`).innerText = '[2, 4, 6, 8]'; }
+    function runClass(id) { document.getElementById(`output-${id}`).innerText = "Hi, I'm Alex"; }
+    function runException(id) { document.getElementById(`output-${id}`).innerText = '5.0  (10/2)'; }
+    function runDatetime(id) { 
+        let now = new Date();
+        let formatted = now.toISOString().slice(0,10).replace(/-/g,'-') + ' ' + now.toTimeString().slice(0,8);
+        document.getElementById(`output-${id}`).innerText = 'Now: ' + formatted;
+    }
+</script>
 </body>
 </html>
