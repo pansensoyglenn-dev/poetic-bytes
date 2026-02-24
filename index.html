@@ -260,7 +260,7 @@
             width: 100%;
         }
         
-        /* Mobile First Approach - Enhanced responsive breakpoints */
+        
         @media (max-width: 640px) {
             .wrapper {
                 padding: 0 1rem;
@@ -405,7 +405,7 @@
             border-radius: 6px;
             -webkit-appearance: none;
             appearance: none;
-            font-size: 14px; /* Slightly larger for usability */
+            font-size: 14px; 
         }
         
         input:focus, textarea:focus, select:focus, button:focus {
@@ -1389,7 +1389,7 @@
             border: 1px solid var(--obsidian-border);
             border-radius: 0.6rem;
             color: white;
-            font-size: 14px; /* Prevents zoom on iOS */
+            font-size: 14px; 
             transition: border-color 0.2s;
         }
         
@@ -1678,7 +1678,7 @@
             overflow-x: auto;
         }
 
-        /* Syntax highlighting */
+        
         .keyword { color: #C792EA; font-weight: 600; }
         .function { color: #82AAFF; }
         .string { color: #C3E88D; }
@@ -1686,7 +1686,7 @@
         .comment { color: #546E7A; font-style: italic; }
         .class { color: #FFCB6B; font-weight: 600; }
 
-        /* Best Practices Styling */
+        
         .practices-grid,
         .resources-grid,
         .pitfalls-grid {
@@ -1731,7 +1731,7 @@
             overflow-x: auto;
         }
 
-        /* Pitfalls Styling */
+        
         .pitfall-header {
             background: rgba(239, 68, 68, 0.1);
             padding: 0.8rem;
@@ -1845,7 +1845,7 @@
             transform: scale(0.98);
         }
 
-        /* Intro section responsive */
+        
         @media (max-width: 768px) {
             .intro-grid { grid-template-columns: 1fr !important; }
             .intro-stat-grid { grid-template-columns: 1fr 1fr !important; }
@@ -1854,7 +1854,7 @@
             .intro-stat-grid { grid-template-columns: 1fr !important; }
         }
 
-        /* Justify body text — keep structural/UI elements left or center aligned */
+        
         h1, h2, h3, h4, h5, h6,
         .hero-headline, .section-title h2,
         .nav-links a, .brand-name, .btn,
@@ -1932,7 +1932,7 @@
     </div>
     
     <main>
-        <!-- Skip-to-content for accessibility/SEO -->
+        
         <a href="#essentials" class="sr-only" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to main content</a>
 
         <section class="hero-panel" aria-label="Introduction to Python Learning">
@@ -1979,9 +1979,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════════════════════
-             EXPANDED INTRODUCTION — Why Python & Why This Platform
-        ═══════════════════════════════════════════════════════════ -->
+        
         <section class="intro-section" aria-label="Why Learn Python in 2026" style="padding: 2.5rem 0; border-bottom: 1px solid var(--obsidian-border);">
             <div class="wrapper">
                 <div class="section-title">
@@ -1990,7 +1988,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
                 </div>
 
                 <div class="intro-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.8rem;align-items:start;">
-                    <!-- Left column: narrative -->
+                    
                     <div class="intro-text" style="line-height:1.8;color:var(--text-soft);">
                         <p style="margin-bottom:1rem;">Python has quietly become the <strong style="color:var(--text-main);">most influential programming language of the 21st century</strong>. From the algorithms that recommend your next video, to the scripts automating repetitive office work, to the machine-learning models reshaping healthcare and finance — Python is the common thread. According to the 2024 Stack Overflow Developer Survey, Python ranked as the most-used programming language among professional developers for the third consecutive year, and that momentum has only accelerated heading into 2026.</p>
                         <p style="margin-bottom:1rem;">But raw popularity alone does not explain why you should learn it. Python's design philosophy — <em>readable code is better than clever code</em> — means that what you write today will still make sense to you six months later. Its syntax is close enough to plain English that beginners can produce working programs within hours of their first lesson, while its standard library and thriving ecosystem of third-party packages mean experts never hit a ceiling.</p>
@@ -1998,7 +1996,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
                         <p>This platform exists because learning to code should not require an expensive bootcamp or a computer science degree. <strong style="color:var(--text-main);">Poetic Bytes was built to give every motivated learner access to structured, honest, jargon-free Python education</strong> — the same quality of instruction you'd find in a paid course, completely free, updated for the latest Python 3.12+ features.</p>
                     </div>
 
-                    <!-- Right column: stat cards + "what you'll achieve" -->
+                    
                     <div>
                         <div class="intro-stat-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.2rem;">
                             <div class="intro-stat-card" style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;text-align:center;">
@@ -2033,7 +2031,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
                     </div>
                 </div>
 
-                <!-- Who this is for -->
+                
                 <div style="margin-top:2rem;">
                     <h3 style="font-size:0.9rem;text-align:center;margin-bottom:1.2rem;color:var(--text-main);">🙋 Who is this for?</h3>
                     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.8rem;">
@@ -2070,7 +2068,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
                     </div>
                 </div>
 
-                <!-- How this site works -->
+                
                 <div style="margin-top:2rem;background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:1rem;padding:1.5rem;">
                     <h3 style="font-size:0.9rem;color:#FFD966;margin-bottom:1rem;">📖 How Poetic Bytes Works</h3>
                     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">
@@ -2102,7 +2100,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
                     </div>
                 </div>
 
-                <!-- Python 2026 landscape note -->
+                
                 <div style="margin-top:1.5rem;background:rgba(75,139,190,0.07);border:1px solid rgba(75,139,190,0.25);border-radius:0.8rem;padding:1.2rem;">
                     <h3 style="font-size:0.85rem;color:var(--accent-blue);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem;"><i class="fas fa-info-circle"></i> Python in 2026 — What's New & Why It Matters</h3>
                     <p style="font-size:0.78rem;color:var(--text-soft);line-height:1.7;">Python 3.12 and its successors brought meaningful performance improvements — the interpreter is measurably faster, error messages are significantly more helpful, and new typing features make large codebases easier to maintain. This site is written for <strong style="color:var(--text-main);">modern Python (3.10+)</strong>, meaning you'll learn <code style="color:#a5d6ff;background:var(--code-bg);padding:0.1rem 0.3rem;border-radius:3px;">match</code> statements, structural pattern matching, improved <code style="color:#a5d6ff;background:var(--code-bg);padding:0.1rem 0.3rem;border-radius:3px;">TypedDict</code>, and the latest best practices from the community — not the dated patterns still taught in many older tutorials. We also cover how Python integrates with AI tooling, making you ready for the realities of today's development landscape.</p>
@@ -2200,9 +2198,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════════════════════
-             PYTHON VS OTHER LANGUAGES — Educational Comparison
-        ═══════════════════════════════════════════════════════════ -->
+        
         <section style="padding:2.5rem 0;border-top:1px solid var(--obsidian-border);" aria-label="Python compared to other programming languages">
             <div class="wrapper">
                 <div class="section-title">
@@ -2270,47 +2266,42 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════════════════════
-             PYTHON CAREER ROADMAP
-        ═══════════════════════════════════════════════════════════ -->
+        
         <section style="padding:2.5rem 0;border-top:1px solid var(--obsidian-border);" aria-label="Python developer career roadmap">
             <div class="wrapper">
                 <div class="section-title">
                     <h2>Python Career Roadmap</h2>
                     <p>From your first script to a professional Python career — a visual guide</p>
                 </div>
-                <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0;">
-                    <!-- Phase 1 -->
-                    <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:0.8rem;">
+                <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+                    
+                    <div style="display:flex;gap:1rem;align-items:flex-start;">
                         <div style="display:flex;flex-direction:column;align-items:center;">
                             <div style="width:36px;height:36px;background:linear-gradient(145deg,var(--python-blue),var(--python-deep));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0;">1</div>
-                            <div style="width:2px;background:var(--obsidian-border);flex:1;min-height:30px;margin-top:4px;"></div>
                         </div>
-                        <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;flex:1;margin-bottom:0.5rem;">
-                            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;"><span style="font-size:1rem;">🌱</span><strong style="font-size:0.82rem;color:#FFD966;">Foundations (Weeks 1–8)</strong><span style="background:#10B981;color:white;border-radius:20px;padding:0.1rem 0.5rem;font-size:0.65rem;margin-left:auto;">Beginner</span></div>
+                        <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;flex:1;">
+                            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;flex-wrap:wrap;"><span style="font-size:1rem;">🌱</span><strong style="font-size:0.82rem;color:#FFD966;">Foundations (Weeks 1–8)</strong><span style="background:#10B981;color:white;border-radius:20px;padding:0.1rem 0.5rem;font-size:0.65rem;">Beginner</span></div>
                             <p style="font-size:0.75rem;color:var(--text-soft);">Variables, data types, conditionals, loops, functions, file I/O, error handling. Goal: write your first working script that automates a real task.</p>
                         </div>
                     </div>
-                    <!-- Phase 2 -->
-                    <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:0.8rem;">
+                    
+                    <div style="display:flex;gap:1rem;align-items:flex-start;">
                         <div style="display:flex;flex-direction:column;align-items:center;">
                             <div style="width:36px;height:36px;background:linear-gradient(145deg,#F59E0B,#D97706);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0;">2</div>
-                            <div style="width:2px;background:var(--obsidian-border);flex:1;min-height:30px;margin-top:4px;"></div>
                         </div>
-                        <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;flex:1;margin-bottom:0.5rem;">
-                            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;"><span style="font-size:1rem;">🏗️</span><strong style="font-size:0.82rem;color:#FFD966;">Object-Oriented Python (Weeks 8–16)</strong><span style="background:#F59E0B;color:white;border-radius:20px;padding:0.1rem 0.5rem;font-size:0.65rem;margin-left:auto;">Intermediate</span></div>
+                        <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;flex:1;">
+                            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;flex-wrap:wrap;"><span style="font-size:1rem;">🏗️</span><strong style="font-size:0.82rem;color:#FFD966;">Object-Oriented Python (Weeks 8–16)</strong><span style="background:#F59E0B;color:white;border-radius:20px;padding:0.1rem 0.5rem;font-size:0.65rem;">Intermediate</span></div>
                             <p style="font-size:0.75rem;color:var(--text-soft);">Classes, inheritance, dunder methods, composition, design patterns, modules, and package management with pip. Goal: build a reusable, modular library.</p>
                         </div>
                     </div>
-                    <!-- Phase 3 — branches -->
-                    <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:0.8rem;">
+                    
+                    <div style="display:flex;gap:1rem;align-items:flex-start;">
                         <div style="display:flex;flex-direction:column;align-items:center;">
                             <div style="width:36px;height:36px;background:linear-gradient(145deg,#8B5CF6,#6D28D9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0;">3</div>
-                            <div style="width:2px;background:transparent;flex:1;"></div>
                         </div>
                         <div style="flex:1;">
                             <p style="font-size:0.8rem;font-weight:600;color:#FFD966;margin-bottom:0.8rem;">Choose Your Specialisation (Weeks 16+)</p>
-                            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.6rem;">
+                            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.6rem;">
                                 <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:0.6rem;padding:0.8rem;">
                                     <div style="font-size:0.9rem;margin-bottom:0.3rem;">📊</div>
                                     <div style="font-size:0.75rem;font-weight:600;color:var(--text-main);margin-bottom:0.2rem;">Data Science</div>
@@ -2338,53 +2329,52 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════════════════════
-             PYTHON GLOSSARY / KEY CONCEPTS QUICK REFERENCE
-        ═══════════════════════════════════════════════════════════ -->
+        
         <section style="padding:2.5rem 0;border-top:1px solid var(--obsidian-border);" aria-label="Python key concepts glossary">
             <div class="wrapper">
                 <div class="section-title">
                     <h2>Python Key Concepts — Quick Reference</h2>
                     <p>Essential terms every Python learner should know, explained in plain language</p>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0.8rem;margin-top:1.5rem;">
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">variable</code></div>
+                
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px, 1fr));gap:0.8rem;margin-top:1.5rem;width:100%;">
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">variable</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">A named container that holds a value. Unlike many languages, Python variables don't need a type declaration — Python infers the type automatically.</p>
                     </div>
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">function</code></div>
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">function</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">A reusable block of code that performs a specific task. Defined with <code style="color:#ff7b72;">def</code>. Functions are first-class objects in Python — you can pass them around like variables.</p>
                     </div>
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">list</code></div>
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">list</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">An ordered, mutable collection of items. Written as <code style="color:#a5d6ff;">[1, 2, 3]</code>. Lists can hold mixed types and support slicing, sorting, and list comprehensions.</p>
                     </div>
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">dictionary</code></div>
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">dictionary</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">A key-value mapping. Written as <code style="color:#a5d6ff;">{"key": value}</code>. Python dicts are ordered (since 3.7+) and extremely fast for lookups — the backbone of most data-processing code.</p>
                     </div>
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">class</code></div>
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">class</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">A blueprint for creating objects that bundle data and behavior. The foundation of Object-Oriented Programming (OOP) in Python.</p>
                     </div>
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">decorator</code></div>
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">decorator</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">A function that wraps another function to extend its behavior without modifying it. Written with <code style="color:#ff7b72;">@</code>. Used extensively in Flask, Django, and testing frameworks.</p>
                     </div>
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">generator</code></div>
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">generator</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">A function that yields values one at a time instead of returning them all at once. Memory-efficient for processing large datasets or infinite sequences.</p>
                     </div>
-                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;">exception</code></div>
+                    <div style="background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:0.8rem;padding:1rem;word-wrap:break-word;overflow-wrap:break-word;width:100%;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap;"><code style="color:#a5d6ff;background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:3px;font-size:0.75rem;white-space:normal;">exception</code></div>
                         <p style="font-size:0.75rem;color:var(--text-soft);">An error that disrupts normal program flow. Handled with <code style="color:#ff7b72;">try / except</code> blocks. Writing robust exception handling is what separates production code from scripts.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Instructor Section -->
+        
         <section class="instructor-section">
             <div class="wrapper">
                 <div class="section-title">
@@ -2530,7 +2520,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
                 
                 <div class="category-title"><span>🏛️</span> Object Oriented Programming</div>
 
-                <!-- OOP Rich Content -->
+                
                 <style>
                     .oop-section { margin-top: 1.2rem; }
                     .oop-block {
@@ -2605,7 +2595,7 @@ topics = [<span class="str">"Lists"</span>, <span class="str">"Dicts"</span>, <s
 
                 <div class="oop-section">
 
-                    <!-- 1. Classes & __init__ -->
+                    
                     <div class="oop-block">
                         <h3>🏗️ Defining Classes and <code style="color:#a5d6ff;background:none;">__init__</code></h3>
                         <p>A class is a blueprint that bundles data (attributes) and behavior (methods) into a single reusable unit. The <code>__init__</code> method runs automatically whenever you create a new instance and is the place to set up initial state. <code>self</code> is a reference to the instance being created — it is not a keyword, just a strong convention.</p>
@@ -2643,7 +2633,7 @@ acc1.deposit(200)
                         </div>
                     </div>
 
-                    <!-- 2. Class vs Instance Variables -->
+                    
                     <div class="oop-block">
                         <h3>📊 Class Variables vs Instance Variables</h3>
                         <p>Instance variables live on each object and are unique per instance. Class variables are shared across all instances — useful for counters, default settings, or constants that belong to the concept rather than any particular object. The distinction matters most when a class variable is mutable.</p>
@@ -2680,7 +2670,7 @@ a.add(1); b.add(2)
                         <p class="oop-note">⚠️ Never use a mutable object (list, dict, set) as a class variable default. Always initialise it inside <code>__init__</code>.</p>
                     </div>
 
-                    <!-- 3. Dunder / Magic Methods -->
+                    
                     <div class="oop-block">
                         <h3>✨ Dunder Methods (Magic Methods)</h3>
                         <p>Python calls dunder ("double underscore") methods automatically in response to built-in operations. Implementing them makes your objects feel native — they can be compared with <code>==</code>, printed readably, added with <code>+</code>, iterated with <code>for</code>, or used as dictionary keys. This is how Python achieves operator overloading without special syntax.</p>
@@ -2721,7 +2711,7 @@ v2 = <span style="color:#FFD966">Vector</span>(1, 2)
                         </div>
                     </div>
 
-                    <!-- 4. @property, @classmethod, @staticmethod -->
+                    
                     <div class="oop-block">
                         <h3>🎯 Decorators: @property, @classmethod, @staticmethod</h3>
                         <p>Python provides three built-in decorators that change how methods behave. <strong style="color:#FFD966">@property</strong> turns a method into a computed attribute with optional validation on set. <strong style="color:#FFD966">@classmethod</strong> receives the class itself as the first argument and is ideal for alternative constructors. <strong style="color:#FFD966">@staticmethod</strong> is a plain function namespaced inside the class — it receives neither instance nor class.</p>
@@ -2729,7 +2719,7 @@ v2 = <span style="color:#FFD966">Vector</span>(1, 2)
     <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">__init__</span>(<span style="color:#ff7b72">self</span>, celsius: float):
         <span style="color:#ff7b72">self</span>._celsius = celsius
 
-    <span style="color:#6c7986"># @property — access like an attribute, add validation</span>
+    
     @property
     <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">celsius</span>(<span style="color:#ff7b72">self</span>):
         <span style="color:#ff7b72">return</span> <span style="color:#ff7b72">self</span>._celsius
@@ -2744,12 +2734,12 @@ v2 = <span style="color:#FFD966">Vector</span>(1, 2)
     <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">fahrenheit</span>(<span style="color:#ff7b72">self</span>):           <span style="color:#6c7986"># read-only computed property</span>
         <span style="color:#ff7b72">return</span> <span style="color:#ff7b72">self</span>._celsius * 9/5 + 32
 
-    <span style="color:#6c7986"># @classmethod — alternative constructor</span>
+    
     @classmethod
     <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">from_fahrenheit</span>(cls, f: float):
         <span style="color:#ff7b72">return</span> cls((f - 32) * 5/9)
 
-    <span style="color:#6c7986"># @staticmethod — utility, no self/cls needed</span>
+    
     @staticmethod
     <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">is_valid</span>(celsius: float) -&gt; bool:
         <span style="color:#ff7b72">return</span> celsius &gt;= -273.15
@@ -2761,7 +2751,7 @@ t = <span style="color:#FFD966">Temperature</span>.from_fahrenheit(212)
                         <div class="oop-insight">💡 Use <code>@property</code> when you want attribute-style access but need control (validation, lazy computation). Use <code>@classmethod</code> to provide multiple ways to construct an object. Use <code>@staticmethod</code> for helpers logically related to the class but not tied to any instance.</div>
                     </div>
 
-                    <!-- 5. Composition over Inheritance -->
+                    
                     <div class="oop-block">
                         <h3>🔗 Composition — Building Objects from Objects</h3>
                         <p>Inheritance models an "is-a" relationship. Composition models a "has-a" relationship and is usually the better choice. A <code>Car</code> is not a special kind of <code>Engine</code> — it <em>has</em> an <code>Engine</code>. Composition keeps classes small, focused, and independently testable. You can swap components without restructuring a class hierarchy.</p>
@@ -2795,7 +2785,7 @@ tesla = <span style="color:#FFD966">Car</span>(<span style="color:#a5d6ff">"Tesl
                         <div class="oop-insight">💡 Prefer composition when the relationship between two classes changes over time or you need to swap implementations. Prefer inheritance when a genuine "is-a" relationship exists and you want to share a consistent interface.</div>
                     </div>
 
-                    <!-- 6. Dataclasses -->
+                    
                     <div class="oop-block">
                         <h3>📦 Dataclasses — Boilerplate-Free Classes</h3>
                         <p>The <code>@dataclass</code> decorator (Python 3.7+) auto-generates <code>__init__</code>, <code>__repr__</code>, and <code>__eq__</code> from annotated fields. It dramatically reduces repetitive code for classes whose primary job is holding data. You can mark fields as mutable or immutable (<code>frozen=True</code>), add default factories, and still add your own methods.</p>
@@ -2837,7 +2827,7 @@ p = <span style="color:#FFD966">Point</span>(3.0, 4.0)
                         </div>
                     </div>
 
-                    <!-- 7. Context Managers -->
+                    
                     <div class="oop-block">
                         <h3>🔑 Context Managers — The <code>with</code> Statement</h3>
                         <p>A context manager guarantees that set-up and tear-down code runs reliably — even if an exception is raised. Implement <code>__enter__</code> and <code>__exit__</code> to make any class usable with <code>with</code>. This pattern is the backbone of file I/O, database connections, locks, and any resource that must be released after use.</p>
@@ -2874,7 +2864,7 @@ p = <span style="color:#FFD966">Point</span>(3.0, 4.0)
                         <div class="oop-insight">💡 Python's built-in <code>open()</code> already implements the context manager protocol. Whenever you write resource-management code, ask: "should this be a context manager?"</div>
                     </div>
 
-                    <!-- 8. Slots -->
+                    
                     <div class="oop-block">
                         <h3>⚡ __slots__ — Memory-Efficient Classes</h3>
                         <p>By default Python stores instance attributes in a dictionary (<code>__dict__</code>), which is flexible but uses extra memory. Declaring <code>__slots__</code> replaces that dictionary with a fixed-size C-level array, reducing memory by 40–60% per instance — critical when you create millions of small objects (e.g., in simulations, parsers, or data pipelines).</p>
@@ -2968,7 +2958,7 @@ p2 = <span style="color:#FFD966">PointSlotted</span>(1, 2)
                         <li><a href="aiml.html">ML fundamentals</a></li>
                         <li><a href="web-development.html">Web Development</a></li>
                         <li><a href="automation.html">Automation</a></li>
-                        <li><a href"sample-programs">Sample Programs</a></li>
+                        <li><a href="sample-programs">Sample Programs</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -2980,7 +2970,7 @@ p2 = <span style="color:#FFD966">PointSlotted</span>(1, 2)
                         <li><a href="code-examples.html">Code runner</a></li>
                         <li><a href="design.html">Design Patterns</a></li>
                         <li><a href="concepts.html">Coding Concepts</a></li>
-                        <li><a href="sample-programs.html">More Programs </a></li>
+                        <li><a href="string-programs.html">More Programs </a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -2989,6 +2979,7 @@ p2 = <span style="color:#FFD966">PointSlotted</span>(1, 2)
                         <li><a href="https://www.x.com/@GlennPansensoy">Facebook</a></li>
                         <li><a href="www.linkedin.com/in/glenn-pansensoy-6288453a2">LinkedIn</a></li>
                         <li><a href="https://x.com/@GlennPansensoy">X (Twitter)</a></li>
+                        <li><a href="#">WhatsApp channel</a></li>
                         <li><a href="https://www.youtube.com/c/@GlennPansensoy">YouTube</a></li>
                         <li><a href="https://github.com/pansensoyglenn-dev/poetic-bytes/">GitHub</a></li>
                     </ul>
