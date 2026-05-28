@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Python Cheat Sheet 2026 – Complete Quick Reference | Poetic Bytes</title>
+<meta name="description" content="The most complete Python cheat sheet for 2026 — syntax, data structures, OOP, built-ins, file I/O, and more. Free quick reference by Poetic Bytes.">
+<meta name="author" content="Glenn Junsay Pansensoy">
+<link rel="canonical" href="https://poetic-bytes.vercel.app/cheat-sheet.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poetic-bytes.vercel.app/cheat-sheet.html">
+<meta property="og:title" content="Python Cheat Sheet 2026 – Complete Quick Reference | Poetic Bytes">
+<meta property="og:description" content="Every Python syntax pattern you need — from variables to transformers — on one page.">
+<meta property="og:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PoeticGlenn">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+<meta name="theme-color" content="#0B121C">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+
+<style>
+:root {
+  --bg:        #0B121C;
+  --panel:     #0F1C2F;
+  --card:      #111e30;
+  --border:    #1F4060;
+  --blue:      #4B8BBE;
+  --blue-deep: #306998;
+  --blue-lt:   #78B9E6;
+  --gold:      #FFD966;
+  --text:      #E2E8F0;
+  --muted:     #8BA3BF;
+  --code-bg:   #0A1A24;
+  --green:     #10B981;
+  --amber:     #F59E0B;
+  --red:       #EF4444;
+  --purple:    #c084fc;
+  --btn-h:     44px;
+  --btn-r:     8px;
+  --card-r:    12px;
+  --gap:       1rem;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:hidden;-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  font-family:'Syne',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  font-size:15px;
+  overflow-x:hidden;
+}
+
+.page-col{width:100%;max-width:900px;margin:0 auto;padding:0 1.25rem;}
+section{padding:2.5rem 0;border-bottom:1px solid var(--border);}
+section:last-child{border-bottom:none;}
+
+.progress-bar-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(31,64,96,.3);z-index:2000;}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--gold));width:0%;transition:width .2s;}
+
+.nav-bar{
+  position:fixed;top:3px;left:0;right:0;
+  background:rgba(11,18,28,.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+}
+.nav-inner{
+  max-width:900px;margin:0 auto;
+  padding:.6rem 1.25rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.08em;}
+.brand-icon{
+  width:2rem;height:2rem;border-radius:6px;
+  background:linear-gradient(145deg,var(--blue),var(--blue-deep));
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.nav-links{display:flex;gap:1.2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:color .2s;letter-spacing:.04em;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+@media(max-width:680px){.nav-links{display:none;}}
+
+.menu-toggle{
+  display:none;flex-direction:column;justify-content:center;align-items:center;
+  background:rgba(75,139,190,.1);border:1px solid var(--border);border-radius:6px;
+  width:40px;height:40px;cursor:pointer;gap:4px;
+}
+.menu-toggle span{width:18px;height:2px;background:#fff;border-radius:2px;transition:.25s;}
+.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.menu-toggle.active span:nth-child(2){opacity:0;}
+.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+@media(max-width:680px){.menu-toggle{display:flex;}}
+
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1050;opacity:0;visibility:hidden;transition:.2s;backdrop-filter:blur(4px);}
+.drawer-overlay.active{opacity:1;visibility:visible;}
+.mobile-drawer{
+  position:fixed;top:0;right:-300px;width:280px;height:100vh;
+  background:var(--panel);border-left:1px solid var(--border);
+  z-index:1100;display:flex;flex-direction:column;transition:right .3s;
+  box-shadow:-5px 0 30px rgba(0,0,0,.5);
+}
+.mobile-drawer.active{right:0;}
+.drawer-hd{padding:.8rem;border-bottom:1px solid var(--border);display:flex;justify-content:flex-end;}
+.drawer-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.drawer-body{flex:1;overflow-y:auto;padding:.8rem;}
+.drawer-body li{list-style:none;margin-bottom:.5rem;}
+.drawer-body a,.drawer-body button{
+  display:flex;align-items:center;gap:.6rem;width:100%;padding:.7rem .9rem;
+  background:rgba(75,139,190,.12);border:1px solid var(--border);border-radius:8px;
+  color:var(--text);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;
+}
+.drawer-body i{color:var(--gold);width:1.2rem;}
+
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.25;font-weight:700;}
+p{font-size:.82rem;color:var(--muted);line-height:1.7;}
+code{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#a5d6ff;}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  height:var(--btn-h);padding:0 1.4rem;
+  border-radius:var(--btn-r);font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;
+  cursor:pointer;transition:all .2s;border:none;text-decoration:none;white-space:nowrap;
+}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;box-shadow:0 4px 14px rgba(75,139,190,.35);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(75,139,190,.45);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+.btn-outline:hover{border-color:var(--blue);background:rgba(75,139,190,.08);}
+@media(max-width:480px){.btn{width:100%;}}
+
+.hero{
+  padding:5rem 0 2.5rem;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(75,139,190,.18) 0%,transparent 70%);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid var(--border);border-radius:40px;padding:.3rem .9rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.2rem;background:var(--card);
+}
+.live-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);margin-bottom:.8rem;}
+.hero p.lead{font-size:.88rem;color:var(--muted);max-width:560px;margin-bottom:1.4rem;line-height:1.75;}
+.hero-btns{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;}
+
+.toc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:.6rem;
+  margin-top:1.2rem;
+}
+.toc-pill{
+  display:flex;align-items:center;gap:.5rem;
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:.55rem .8rem;font-size:.72rem;font-weight:600;color:var(--muted);
+  text-decoration:none;transition:.2s;cursor:pointer;
+}
+.toc-pill:hover{border-color:var(--blue);color:var(--text);background:rgba(75,139,190,.1);}
+.toc-pill i{color:var(--gold);font-size:.7rem;flex-shrink:0;}
+
+.section-label{
+  font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;
+}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.cs-block{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);
+  overflow:hidden;margin-bottom:1rem;
+}
+.cs-block-hd{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.7rem 1rem;background:rgba(75,139,190,.08);
+  border-bottom:1px solid var(--border);cursor:pointer;
+  user-select:none;
+}
+.cs-block-hd h3{font-size:.8rem;color:var(--text);flex:1;}
+.cs-block-hd .cs-icon{font-size:1rem;flex-shrink:0;}
+.cs-block-hd .cs-toggle{font-size:.85rem;color:var(--blue);flex-shrink:0;transition:transform .25s;}
+.cs-block-hd.open .cs-toggle{transform:rotate(45deg);}
+.cs-body{display:none;padding:.85rem 1rem;}
+.cs-body.open{display:block;}
+
+.cs-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:.65rem;
+}
+@media(min-width:560px){
+  .cs-grid{grid-template-columns:1fr 1fr;}
+}
+
+.cs-snippet{
+  background:var(--code-bg);border-radius:6px;border-left:3px solid var(--blue);
+  padding:.75rem .9rem;overflow-x:auto;
+}
+.cs-snippet pre{font-family:'JetBrains Mono',monospace;font-size:.72rem;line-height:1.65;color:var(--text);}
+.cs-snippet.gold{border-left-color:var(--gold);}
+.cs-snippet.green{border-left-color:var(--green);}
+.cs-snippet.purple{border-left-color:var(--purple);}
+.cs-snippet.amber{border-left-color:var(--amber);}
+.cs-snippet.red{border-left-color:var(--red);}
+
+.cs-label{font-size:.62rem;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.3rem;}
+
+.kw{color:#ff7b72;font-weight:600;}
+.fn{color:#d2a8ff;}
+.st{color:#a5d6ff;}
+.cl{color:#FFD966;font-weight:600;}
+.nc{color:#79c0ff;}
+.op{color:#ff9e64;}
+.cm{color:#546e7a;font-style:italic;}
+
+.insight{
+  background:rgba(75,139,190,.08);border:1px solid rgba(75,139,190,.25);
+  border-radius:6px;padding:.55rem .85rem;font-size:.74rem;color:var(--blue-lt);
+  margin-top:.6rem;
+}
+.insight-gold{
+  background:rgba(255,217,102,.07);border:1px solid rgba(255,217,102,.25);
+  border-radius:6px;padding:.55rem .85rem;font-size:.74rem;color:var(--gold);
+  margin-top:.6rem;
+}
+
+.badge{display:inline-block;padding:.1rem .5rem;border-radius:20px;font-size:.6rem;font-weight:700;}
+.badge-beg{background:rgba(16,185,129,.15);color:#10b981;}
+.badge-int{background:rgba(245,158,11,.15);color:#f59e0b;}
+.badge-adv{background:rgba(139,92,246,.15);color:#a78bfa;}
+
+.copy-btn{
+  display:inline-flex;align-items:center;gap:.3rem;
+  background:rgba(75,139,190,.15);border:1px solid rgba(75,139,190,.3);
+  border-radius:4px;padding:.2rem .5rem;font-size:.6rem;font-weight:700;
+  color:var(--blue-lt);cursor:pointer;transition:.2s;float:right;
+  font-family:'Syne',sans-serif;
+}
+.copy-btn:hover{background:rgba(75,139,190,.3);}
+.copy-btn.copied{color:var(--green);border-color:var(--green);}
+
+.search-bar{
+  display:flex;align-items:center;gap:.6rem;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--btn-r);
+  padding:.5rem .9rem;margin-bottom:1.5rem;transition:border-color .2s;
+}
+.search-bar:focus-within{border-color:var(--blue);}
+.search-bar i{color:var(--muted);font-size:.85rem;flex-shrink:0;}
+.search-bar input{
+  flex:1;background:none;border:none;outline:none;
+  color:var(--text);font-size:.8rem;font-family:'Syne',sans-serif;
+}
+.search-bar input::placeholder{color:var(--muted);}
+
+.ad-slot{text-align:center;padding:.8rem 0;}
+
+.page-footer{padding:3rem 0 1.5rem;background:#1a2535;border-top:1px solid var(--border);}
+.footer-grid{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:1.5rem;}
+.footer-col h5{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:.4rem;}
+.footer-col a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.74rem;transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.copyright{border-top:1px solid var(--border);padding-top:1.2rem;text-align:center;font-size:.72rem;color:var(--muted);}
+.copyright a{color:rgba(255,255,255,.5);text-decoration:none;}
+
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--border);}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
+
+.hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-icon">🐍</div>
+      POETIC BYTES
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#toc">Curriculum</a></li>
+      <li><a href="index.html#pathways">Pathways</a></li>
+      <li><a href="algorithm-history.html">Algorithms</a></li>
+      <li><a href="cheat-sheet.html" class="active">Cheat Sheet</a></li>
+      <li><a href="index.html#instructor">Instructor</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+  <div class="drawer-body">
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+      <li><button data-href="#basics"><i class="fas fa-code"></i>Basics</button></li>
+      <li><button data-href="#strings"><i class="fas fa-font"></i>Strings</button></li>
+      <li><button data-href="#collections"><i class="fas fa-layer-group"></i>Collections</button></li>
+      <li><button data-href="#functions"><i class="fas fa-cogs"></i>Functions</button></li>
+      <li><button data-href="#oop"><i class="fas fa-cubes"></i>OOP</button></li>
+      <li><button data-href="#exceptions"><i class="fas fa-exclamation-triangle"></i>Exceptions</button></li>
+      <li><button data-href="#fileio"><i class="fas fa-file-code"></i>File I/O</button></li>
+      <li><button data-href="#builtins"><i class="fas fa-toolbox"></i>Built-ins</button></li>
+      <li><button data-href="#comprehensions"><i class="fas fa-list"></i>Comprehensions</button></li>
+      <li><button data-href="#async"><i class="fas fa-bolt"></i>Async</button></li>
+      <li><button data-href="#typing"><i class="fas fa-tag"></i>Type Hints</button></li>
+    </ul>
+  </div>
+</div>
+
+<main style="padding-top:56px;">
+
+<section class="hero" aria-label="Hero">
+  <div class="page-col">
+    <div class="hero-tag"><span class="live-dot"></span> Python 3.10 – 3.13 Patterns</div>
+    <h1>Python Cheat Sheet<br><span style="color:var(--blue-lt)">Complete 2026 Reference</span></h1>
+    <p class="lead">Every syntax pattern, built-in, and idiom you reach for daily — organised, searchable, and copy-ready. Covers Python 3.10 through 3.13.</p>
+    <div class="hero-btns">
+      <a href="python-basics.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Start Learning Free</a>
+      <a href="index.html#toc" class="btn btn-outline"><i class="fas fa-book"></i> Full Curriculum</a>
+    </div>
+    <div class="toc-grid">
+      <a href="#basics"         class="toc-pill"><i class="fas fa-terminal"></i> Basics</a>
+      <a href="#strings"        class="toc-pill"><i class="fas fa-font"></i> Strings</a>
+      <a href="#collections"    class="toc-pill"><i class="fas fa-layer-group"></i> Collections</a>
+      <a href="#functions"      class="toc-pill"><i class="fas fa-cogs"></i> Functions</a>
+      <a href="#oop"            class="toc-pill"><i class="fas fa-cubes"></i> OOP</a>
+      <a href="#exceptions"     class="toc-pill"><i class="fas fa-exclamation-triangle"></i> Exceptions</a>
+      <a href="#fileio"         class="toc-pill"><i class="fas fa-file-code"></i> File I/O</a>
+      <a href="#builtins"       class="toc-pill"><i class="fas fa-toolbox"></i> Built-ins</a>
+      <a href="#comprehensions" class="toc-pill"><i class="fas fa-list"></i> Comprehensions</a>
+      <a href="#generators"     class="toc-pill"><i class="fas fa-infinity"></i> Generators</a>
+      <a href="#decorators"     class="toc-pill"><i class="fas fa-magic"></i> Decorators</a>
+      <a href="#async"          class="toc-pill"><i class="fas fa-bolt"></i> Async / Await</a>
+      <a href="#typing"         class="toc-pill"><i class="fas fa-tag"></i> Type Hints</a>
+      <a href="#regex"          class="toc-pill"><i class="fas fa-search"></i> Regex</a>
+      <a href="#stdlib"         class="toc-pill"><i class="fas fa-boxes"></i> Std Library</a>
+      <a href="#dataclasses"    class="toc-pill"><i class="fas fa-database"></i> Dataclasses</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:1.5rem 0 0;">
+  <div class="page-col">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="csSearch" placeholder="Search cheat sheet — e.g. lambda, decorator, zip …" autocomplete="off">
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ BASICS -->
+<section id="basics">
+  <div class="page-col">
+    <div class="section-label">🏁 Basics</div>
+
+    <div class="cs-block" data-tags="variables assignment types int float str bool none print input comment">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">📌</span><h3>Variables &amp; Types</h3><span class="badge badge-beg">Beginner</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Assignment</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>x = <span class="nc">42</span>
+name = <span class="st">"Glenn"</span>
+pi   = <span class="nc">3.14</span>
+flag = <span class="kw">True</span>
+nada = <span class="kw">None</span>
+a, b, c = <span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">3</span>
+x, *rest = [<span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">3</span>, <span class="nc">4</span>]</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Type Checking</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="fn">type</span>(x)             <span class="cm"># &lt;class 'int'&gt;</span>
+<span class="fn">isinstance</span>(x, int)  <span class="cm"># True</span>
+<span class="fn">isinstance</span>(x, (int, float))
+<span class="fn">int</span>(<span class="st">"42"</span>)           <span class="cm"># 42</span>
+<span class="fn">str</span>(<span class="nc">3.14</span>)          <span class="cm"># "3.14"</span>
+<span class="fn">float</span>(<span class="st">"3.14"</span>)      <span class="cm"># 3.14</span>
+<span class="fn">bool</span>(<span class="nc">0</span>)            <span class="cm"># False</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Print &amp; Input</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="fn">print</span>(<span class="st">"Hello"</span>, <span class="st">"World"</span>, sep=<span class="st">", "</span>)
+<span class="fn">print</span>(<span class="st">"loading"</span>, end=<span class="st">"..."</span>)
+name = <span class="fn">input</span>(<span class="st">"Enter name: "</span>)
+age  = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Operators</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="nc">10</span> // <span class="nc">3</span>   <span class="cm"># 3  — floor division</span>
+<span class="nc">10</span> %  <span class="nc">3</span>   <span class="cm"># 1  — modulo</span>
+<span class="nc">2</span>  ** <span class="nc">8</span>   <span class="cm"># 256 — power</span>
+x := <span class="fn">len</span>(s) <span class="cm"># walrus — assign + test</span>
+x and y or z
+<span class="kw">not</span> x
+x <span class="kw">is</span> <span class="kw">None</span>  &nbsp; x <span class="kw">is not</span> <span class="kw">None</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block" data-tags="if elif else match control flow conditional ternary">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🔀</span><h3>Control Flow</h3><span class="badge badge-beg">Beginner</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">if / elif / else</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">if</span> x &gt; <span class="nc">0</span>:
+    <span class="fn">print</span>(<span class="st">"positive"</span>)
+<span class="kw">elif</span> x == <span class="nc">0</span>:
+    <span class="fn">print</span>(<span class="st">"zero"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"negative"</span>)
+
+label = <span class="st">"even"</span> <span class="kw">if</span> x % <span class="nc">2</span> == <span class="nc">0</span> <span class="kw">else</span> <span class="st">"odd"</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">match (Python 3.10+)</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">match</span> command:
+    <span class="kw">case</span> <span class="st">"quit"</span>:
+        quit()
+    <span class="kw">case</span> <span class="st">"help"</span> | <span class="st">"?"</span>:
+        show_help()
+    <span class="kw">case</span> {<span class="st">"action"</span>: action, <span class="st">"obj"</span>: obj}:
+        do(action, obj)
+    <span class="kw">case</span> _:
+        unknown()</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">for loops</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nc">5</span>):          <span class="cm"># 0..4</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nc">1</span>, <span class="nc">10</span>, <span class="nc">2</span>):   <span class="cm"># 1,3,5,7,9</span>
+<span class="kw">for</span> i, v <span class="kw">in</span> <span class="fn">enumerate</span>(lst):
+<span class="kw">for</span> a, b <span class="kw">in</span> <span class="fn">zip</span>(xs, ys):
+<span class="kw">for</span> k, v <span class="kw">in</span> d.items():
+    <span class="kw">continue</span>  <span class="cm"># skip</span>
+    <span class="kw">break</span>     <span class="cm"># exit</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">while loop</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">while</span> condition:
+    do_something()
+<span class="kw">else</span>:
+    <span class="cm"># runs if loop ended normally</span>
+    finished()
+
+<span class="kw">while</span> chunk := f.read(<span class="nc">1024</span>):
+    process(chunk)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ STRINGS -->
+<section id="strings">
+  <div class="page-col">
+    <div class="section-label">📝 Strings</div>
+
+    <div class="cs-block" data-tags="string f-string format slice upper lower strip split join replace find encode">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">📝</span><h3>String Essentials</h3><span class="badge badge-beg">Beginner</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">f-strings &amp; formatting</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>name, score = <span class="st">"Ana"</span>, <span class="nc">98.5</span>
+<span class="st">f"Hello, {name}!"</span>
+<span class="st">f"Score: {score:.2f}"</span>     <span class="cm"># 98.50</span>
+<span class="st">f"{score:&gt;10.1f}"</span>         <span class="cm"># right-align</span>
+<span class="st">f"{1_000_000:,}"</span>          <span class="cm"># 1,000,000</span>
+<span class="st">f"{name!r}"</span>               <span class="cm"># repr()</span>
+<span class="st">f"{'yes' if flag else 'no'}"</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Slicing</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>s = <span class="st">"Hello, Python!"</span>
+s[<span class="nc">0</span>]       <span class="cm"># H</span>
+s[-<span class="nc">1</span>]      <span class="cm"># !</span>
+s[<span class="nc">7</span>:<span class="nc">13</span>]    <span class="cm"># Python</span>
+s[:<span class="nc">5</span>]      <span class="cm"># Hello</span>
+s[::-<span class="nc">1</span>]    <span class="cm"># reverse</span>
+s[<span class="nc">7</span>:<span class="nc">13</span>:<span class="nc">2</span>]  <span class="cm"># Pto</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Common Methods</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>s.upper()  s.lower()  s.title()
+s.strip()  s.lstrip()  s.rstrip()
+s.replace(<span class="st">"old"</span>, <span class="st">"new"</span>)
+s.split(<span class="st">","</span>)
+<span class="st">", "</span>.join([<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>])
+s.startswith(<span class="st">"He"</span>)
+s.endswith(<span class="st">"!"</span>)
+s.find(<span class="st">"Py"</span>)    <span class="cm"># index or -1</span>
+s.count(<span class="st">"l"</span>)
+s.zfill(<span class="nc">5</span>)       <span class="cm"># "00042"</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Multi-line &amp; Raw</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>msg = <span class="st">"""
+line one
+line two
+"""</span>
+
+path = <span class="st">r"C:\Users\Glenn\file.txt"</span>
+
+b = <span class="st">b"bytes literal"</span>
+s = b.decode(<span class="st">"utf-8"</span>)
+b = s.encode(<span class="st">"utf-8"</span>)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ COLLECTIONS -->
+<section id="collections">
+  <div class="page-col">
+    <div class="section-label">📦 Collections</div>
+
+    <div class="cs-block" data-tags="list append pop sort reverse slice extend insert remove index">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">📋</span><h3>Lists</h3><span class="badge badge-beg">Beginner</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Create &amp; Mutate</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>lst = [<span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">3</span>]
+lst.append(<span class="nc">4</span>)
+lst.extend([<span class="nc">5</span>, <span class="nc">6</span>])
+lst.insert(<span class="nc">0</span>, <span class="nc">0</span>)
+lst.remove(<span class="nc">3</span>)      <span class="cm"># first occurrence</span>
+val = lst.pop()    <span class="cm"># last item</span>
+val = lst.pop(<span class="nc">0</span>)  <span class="cm"># by index</span>
+lst.clear()</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Search &amp; Sort</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>lst.index(<span class="nc">3</span>)          <span class="cm"># first index</span>
+lst.count(<span class="nc">2</span>)
+<span class="nc">3</span> <span class="kw">in</span> lst
+lst.sort()             <span class="cm"># in-place</span>
+lst.sort(key=<span class="kw">lambda</span> x: -x)
+lst.reverse()
+<span class="fn">sorted</span>(lst)            <span class="cm"># new list</span>
+<span class="fn">sorted</span>(lst, reverse=<span class="kw">True</span>)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Copy</div>
+            <div class="cs-snippet amber">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>alias   = lst           <span class="cm"># same object!</span>
+shallow = lst.copy()    <span class="cm"># or lst[:]</span>
+<span class="kw">import</span> copy
+deep    = copy.deepcopy(lst)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Useful Patterns</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>flat = [x <span class="kw">for</span> sub <span class="kw">in</span> nested <span class="kw">for</span> x <span class="kw">in</span> sub]
+chunks = [lst[i:i+n] <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nc">0</span>,<span class="fn">len</span>(lst),n)]
+unique = list(dict.fromkeys(lst))
+<span class="fn">max</span>(lst, key=<span class="kw">lambda</span> x: x[<span class="st">'score'</span>])</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block" data-tags="dictionary dict get items keys values update setdefault defaultdict merge">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">📖</span><h3>Dictionaries</h3><span class="badge badge-beg">Beginner</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Create &amp; Access</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>d = {<span class="st">"name"</span>: <span class="st">"Ana"</span>, <span class="st">"age"</span>: <span class="nc">25</span>}
+d[<span class="st">"name"</span>]             <span class="cm"># KeyError if missing</span>
+d.get(<span class="st">"name"</span>, <span class="st">"?"</span>)   <span class="cm"># safe</span>
+d[<span class="st">"city"</span>] = <span class="st">"Davao"</span>
+<span class="kw">del</span> d[<span class="st">"age"</span>]
+d.pop(<span class="st">"age"</span>, <span class="kw">None</span>)   <span class="cm"># safe delete</span>
+<span class="st">"name"</span> <span class="kw">in</span> d          <span class="cm"># True</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Iterate &amp; Update</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">for</span> k <span class="kw">in</span> d.keys():    <span class="cm"># keys</span>
+<span class="kw">for</span> v <span class="kw">in</span> d.values():  <span class="cm"># values</span>
+<span class="kw">for</span> k, v <span class="kw">in</span> d.items():
+d.update({<span class="st">"z"</span>: <span class="nc">99</span>})
+d.setdefault(<span class="st">"hits"</span>, <span class="nc">0</span>)
+merged = d1 | d2       <span class="cm"># 3.9+</span>
+d1 |= d2               <span class="cm"># in-place merge</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">defaultdict &amp; Counter</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> collections <span class="kw">import</span> defaultdict, Counter
+dd = defaultdict(list)
+dd[<span class="st">"a"</span>].append(<span class="nc">1</span>)    <span class="cm"># no KeyError</span>
+
+words = [<span class="st">"the"</span>,<span class="st">"cat"</span>,<span class="st">"sat"</span>,<span class="st">"the"</span>]
+c = Counter(words)
+c.most_common(<span class="nc">2</span>)     <span class="cm"># top 2</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Useful Patterns</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>inv = {v: k <span class="kw">for</span> k, v <span class="kw">in</span> d.items()}
+grouped = defaultdict(list)
+<span class="kw">for</span> item <span class="kw">in</span> data:
+    grouped[item[<span class="st">"type"</span>]].append(item)
+flat = dict.fromkeys([<span class="st">"a"</span>,<span class="st">"b"</span>], <span class="nc">0</span>)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block" data-tags="set frozenset union intersection difference add remove discard">
+      <div class="cs-block-hd" onclick="toggleBlock(this)">
+        <span class="cs-icon">🔵</span><h3>Sets &amp; Tuples</h3><span class="badge badge-beg">Beginner</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Sets</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>s = {<span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">3</span>}
+s = <span class="fn">set</span>([<span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">2</span>, <span class="nc">3</span>])  <span class="cm"># {1,2,3}</span>
+s.add(<span class="nc">4</span>)
+s.discard(<span class="nc">99</span>)          <span class="cm"># safe remove</span>
+a | b    <span class="cm"># union</span>
+a &amp; b    <span class="cm"># intersection</span>
+a - b    <span class="cm"># difference</span>
+a ^ b    <span class="cm"># symmetric diff</span>
+a &lt;= b   <span class="cm"># subset</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Tuples</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>t = (<span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">3</span>)
+t = <span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">3</span>         <span class="cm"># same</span>
+a, b, c = t          <span class="cm"># unpack</span>
+a, *rest = t         <span class="cm"># star unpack</span>
+x, _ , z = t         <span class="cm"># ignore middle</span>
+
+<span class="kw">from</span> collections <span class="kw">import</span> namedtuple
+Point = namedtuple(<span class="st">"Point"</span>, [<span class="st">"x"</span>,<span class="st">"y"</span>])
+p = Point(<span class="nc">3</span>, <span class="nc">4</span>); p.x</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ FUNCTIONS -->
+<section id="functions">
+  <div class="page-col">
+    <div class="section-label">🛠️ Functions</div>
+
+    <div class="cs-block" data-tags="def function args kwargs lambda closure return default positional keyword">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🛠️</span><h3>Function Definitions</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Signatures</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">def</span> <span class="fn">greet</span>(name: str, greeting: str = <span class="st">"Hi"</span>) -&gt; str:
+    <span class="kw">return</span> <span class="st">f"{greeting}, {name}!"</span>
+
+<span class="kw">def</span> <span class="fn">add</span>(*args: int) -&gt; int:
+    <span class="kw">return</span> <span class="fn">sum</span>(args)
+
+<span class="kw">def</span> <span class="fn">info</span>(**kwargs) -&gt; dict:
+    <span class="kw">return</span> kwargs
+
+<span class="kw">def</span> <span class="fn">mixed</span>(a, b, /, c, *, d):
+    <span class="cm"># / — positional only</span>
+    <span class="cm"># * — keyword only after</span>
+    <span class="kw">pass</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Lambda &amp; Higher-Order</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>square = <span class="kw">lambda</span> x: x ** <span class="nc">2</span>
+add    = <span class="kw">lambda</span> a, b: a + b
+
+<span class="fn">list</span>(<span class="fn">map</span>(<span class="kw">lambda</span> x: x*<span class="nc">2</span>, [<span class="nc">1</span>,<span class="nc">2</span>,<span class="nc">3</span>]))
+<span class="fn">list</span>(<span class="fn">filter</span>(<span class="kw">lambda</span> x: x&gt;<span class="nc">2</span>, [<span class="nc">1</span>,<span class="nc">2</span>,<span class="nc">3</span>]))
+<span class="kw">from</span> functools <span class="kw">import</span> reduce
+reduce(<span class="kw">lambda</span> a,b: a+b, [<span class="nc">1</span>,<span class="nc">2</span>,<span class="nc">3</span>])</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Closures</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">def</span> <span class="fn">make_multiplier</span>(n):
+    <span class="kw">def</span> <span class="fn">multiply</span>(x):
+        <span class="kw">return</span> x * n   <span class="cm"># captures n</span>
+    <span class="kw">return</span> multiply
+
+triple = make_multiplier(<span class="nc">3</span>)
+triple(<span class="nc">7</span>)  <span class="cm"># 21</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Unpacking in Calls</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>args   = [<span class="nc">1</span>, <span class="nc">2</span>, <span class="nc">3</span>]
+kwargs = {<span class="st">"sep"</span>: <span class="st">"-"</span>}
+<span class="fn">print</span>(*args)
+<span class="fn">print</span>(*args, **kwargs)
+
+coords = (<span class="nc">3</span>, <span class="nc">4</span>)
+<span class="fn">distance</span>(*coords)
+
+combined = [*lst1, *lst2]
+merged   = {**d1, **d2}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ OOP -->
+<section id="oop">
+  <div class="page-col">
+    <div class="section-label">🏗️ OOP</div>
+
+    <div class="cs-block" data-tags="class init self property classmethod staticmethod inheritance super dunder magic">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🏗️</span><h3>Classes &amp; OOP</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Class Definition</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">class</span> <span class="cl">Animal</span>:
+    species = <span class="st">"Unknown"</span>       <span class="cm"># class var</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: str):
+        <span class="kw">self</span>.name = name       <span class="cm"># instance var</span>
+        <span class="kw">self</span>._private = <span class="kw">True</span>  <span class="cm"># convention</span>
+
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>) -&gt; str:
+        <span class="kw">return</span> <span class="st">f"{self.name} …"</span>
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"Animal({self.name!r})"</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Inheritance &amp; super()</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">class</span> <span class="cl">Dog</span>(<span class="cl">Animal</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, breed):
+        <span class="fn">super</span>().__init__(name)
+        <span class="kw">self</span>.breed = breed
+
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>) -&gt; str:  <span class="cm"># override</span>
+        <span class="kw">return</span> <span class="st">f"{self.name} barks!"</span>
+
+<span class="fn">isinstance</span>(Dog(<span class="st">"Rex"</span>,<span class="st">"Lab"</span>), Animal)  <span class="cm"># True</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">@property / classmethod / staticmethod</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">class</span> <span class="cl">Circle</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, r): <span class="kw">self</span>._r = r
+
+    @property
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="nc">3.14159</span> * <span class="kw">self</span>._r ** <span class="nc">2</span>
+
+    @area.setter
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>, v): <span class="kw">self</span>._r = (v/<span class="nc">3.14</span>)**<span class="nc">.5</span>
+
+    @classmethod
+    <span class="kw">def</span> <span class="fn">from_diameter</span>(cls, d): <span class="kw">return</span> cls(d/<span class="nc">2</span>)
+
+    @staticmethod
+    <span class="kw">def</span> <span class="fn">validate_r</span>(r): <span class="kw">return</span> r &gt; <span class="nc">0</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Key Dunder Methods</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>__init__    <span class="cm"># constructor</span>
+__repr__    <span class="cm"># repr(obj)</span>
+__str__     <span class="cm"># str(obj) / print</span>
+__len__     <span class="cm"># len(obj)</span>
+__eq__      <span class="cm"># obj == other</span>
+__hash__    <span class="cm"># hash(obj)</span>
+__add__     <span class="cm"># obj + other</span>
+__iter__    <span class="cm"># iter(obj)</span>
+__next__    <span class="cm"># next(obj)</span>
+__enter__ __exit__  <span class="cm"># with stmt</span>
+__getitem__ <span class="cm"># obj[key]</span>
+__contains__ <span class="cm"># x in obj</span></pre>
+            </div>
+          </div>
+        </div>
+        <div class="insight">💡 Use <code>@dataclass</code> to auto-generate <code>__init__</code>, <code>__repr__</code>, and <code>__eq__</code> from annotated fields — see the Dataclasses section below.</div>
+      </div>
+    </div>
+
+    <div class="cs-block" data-tags="abc abstract abstractmethod interface protocol">
+      <div class="cs-block-hd" onclick="toggleBlock(this)">
+        <span class="cs-icon">🎭</span><h3>Abstract Base Classes</h3><span class="badge badge-adv">Advanced</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">ABC &amp; @abstractmethod</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">Shape</span>(<span class="cl">ABC</span>):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>) -&gt; float: ...
+
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">perimeter</span>(<span class="kw">self</span>) -&gt; float: ...
+
+<span class="kw">class</span> <span class="cl">Square</span>(<span class="cl">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, s): <span class="kw">self</span>.s = s
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>.s**<span class="nc">2</span>
+    <span class="kw">def</span> <span class="fn">perimeter</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="nc">4</span>*<span class="kw">self</span>.s</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Protocol (structural subtyping)</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> typing <span class="kw">import</span> Protocol
+
+<span class="kw">class</span> <span class="cl">Drawable</span>(<span class="cl">Protocol</span>):
+    <span class="kw">def</span> <span class="fn">draw</span>(<span class="kw">self</span>) -&gt; <span class="kw">None</span>: ...
+
+<span class="kw">def</span> <span class="fn">render</span>(item: Drawable) -&gt; <span class="kw">None</span>:
+    item.draw()
+
+<span class="cm"># Any class with .draw() satisfies Drawable</span>
+<span class="cm"># without explicit inheritance — duck typing + types</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ EXCEPTIONS -->
+<section id="exceptions">
+  <div class="page-col">
+    <div class="section-label">⚠️ Exceptions</div>
+
+    <div class="cs-block" data-tags="try except finally else raise exception custom error handling">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">⚠️</span><h3>Exception Handling</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">try / except / else / finally</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">try</span>:
+    result = risky()
+<span class="kw">except</span> <span class="cl">ValueError</span> <span class="kw">as</span> e:
+    handle(e)
+<span class="kw">except</span> (<span class="cl">TypeError</span>, <span class="cl">KeyError</span>):
+    handle_both()
+<span class="kw">except</span> <span class="cl">Exception</span> <span class="kw">as</span> e:
+    logging.exception(e)   <span class="cm"># log + re-raise</span>
+    <span class="kw">raise</span>
+<span class="kw">else</span>:
+    success()    <span class="cm"># no exception raised</span>
+<span class="kw">finally</span>:
+    cleanup()    <span class="cm"># always runs</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Raise &amp; Custom Exceptions</div>
+            <div class="cs-snippet red">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">"must be positive"</span>)
+<span class="kw">raise</span>                   <span class="cm"># re-raise current</span>
+
+<span class="kw">class</span> <span class="cl">AppError</span>(<span class="cl">Exception</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, msg, code=<span class="nc">500</span>):
+        <span class="fn">super</span>().__init__(msg)
+        <span class="kw">self</span>.code = code
+
+<span class="kw">raise</span> <span class="cl">AppError</span>(<span class="st">"Not found"</span>, code=<span class="nc">404</span>)
+
+<span class="kw">try</span>: ...
+<span class="kw">except</span> <span class="cl">AppError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(e.code)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Built-in Exception Hierarchy</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>BaseException
+ └── Exception
+      ├── ValueError
+      ├── TypeError
+      ├── KeyError
+      ├── IndexError
+      ├── AttributeError
+      ├── NameError
+      ├── FileNotFoundError
+      ├── ZeroDivisionError
+      ├── RuntimeError
+      └── StopIteration</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Context Managers</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> contextlib <span class="kw">import</span> contextmanager
+
+@contextmanager
+<span class="kw">def</span> <span class="fn">timer</span>():
+    start = time.time()
+    <span class="kw">try</span>:
+        <span class="kw">yield</span>
+    <span class="kw">finally</span>:
+        <span class="fn">print</span>(<span class="st">f"{time.time()-start:.3f}s"</span>)
+
+<span class="kw">with</span> timer():
+    heavy_computation()</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ FILE I/O -->
+<section id="fileio">
+  <div class="page-col">
+    <div class="section-label">📂 File I/O</div>
+
+    <div class="cs-block" data-tags="open read write append csv json pathlib encoding with context manager">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">📂</span><h3>File Handling</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Read / Write Text</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"f.txt"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    content = f.read()
+    lines   = f.readlines()
+    <span class="kw">for</span> line <span class="kw">in</span> f: ...
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"out.txt"</span>, <span class="st">"w"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"line\n"</span>)
+    f.writelines([<span class="st">"a\n"</span>, <span class="st">"b\n"</span>])
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"log.txt"</span>, <span class="st">"a"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"appended\n"</span>)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">pathlib (recommended)</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+
+p = Path(<span class="st">"data/file.txt"</span>)
+p.exists()
+p.read_text(encoding=<span class="st">"utf-8"</span>)
+p.write_text(<span class="st">"hello"</span>, encoding=<span class="st">"utf-8"</span>)
+p.parent  /  <span class="st">"other.txt"</span>
+<span class="fn">list</span>(p.parent.glob(<span class="st">"*.csv"</span>))
+p.mkdir(parents=<span class="kw">True</span>, exist_ok=<span class="kw">True</span>)
+p.stem  p.suffix  p.name</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">CSV</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">import</span> csv
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"data.csv"</span>, newline=<span class="st">""</span>) <span class="kw">as</span> f:
+    reader = csv.DictReader(f)
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        <span class="fn">print</span>(row[<span class="st">"name"</span>])
+
+rows = [{<span class="st">"a"</span>:<span class="nc">1</span>}]
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"out.csv"</span>, <span class="st">"w"</span>, newline=<span class="st">""</span>) <span class="kw">as</span> f:
+    w = csv.DictWriter(f, fieldnames=[<span class="st">"a"</span>])
+    w.writeheader()
+    w.writerows(rows)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">JSON</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">import</span> json
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"data.json"</span>) <span class="kw">as</span> f:
+    data = json.load(f)
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"out.json"</span>, <span class="st">"w"</span>) <span class="kw">as</span> f:
+    json.dump(data, f, indent=<span class="nc">2</span>)
+
+s = json.dumps(data)    <span class="cm"># to string</span>
+d = json.loads(s)       <span class="cm"># from string</span>
+json.dumps(data, default=str)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ BUILT-INS -->
+<section id="builtins">
+  <div class="page-col">
+    <div class="section-label">🧰 Built-in Functions</div>
+
+    <div class="cs-block" data-tags="enumerate zip map filter sorted any all sum min max len range reversed zip">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🧰</span><h3>Essential Built-ins</h3><span class="badge badge-beg">Beginner</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Iteration Helpers</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">for</span> i, v <span class="kw">in</span> <span class="fn">enumerate</span>(lst, start=<span class="nc">1</span>):
+<span class="kw">for</span> a, b <span class="kw">in</span> <span class="fn">zip</span>(xs, ys):
+<span class="fn">zip</span>(*matrix)              <span class="cm"># transpose</span>
+<span class="fn">list</span>(<span class="fn">reversed</span>(lst))
+<span class="fn">list</span>(<span class="fn">map</span>(fn, lst))
+<span class="fn">list</span>(<span class="fn">filter</span>(pred, lst))
+<span class="kw">from</span> itertools <span class="kw">import</span> chain
+<span class="fn">list</span>(chain(a, b, c))       <span class="cm"># flatten</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Aggregation</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="fn">sum</span>(lst)
+<span class="fn">sum</span>(x**<span class="nc">2</span> <span class="kw">for</span> x <span class="kw">in</span> lst)
+<span class="fn">min</span>(lst)  <span class="fn">max</span>(lst)
+<span class="fn">min</span>(lst, key=<span class="kw">lambda</span> x: x[<span class="st">"age"</span>])
+<span class="fn">any</span>(x &gt; <span class="nc">0</span> <span class="kw">for</span> x <span class="kw">in</span> lst)
+<span class="fn">all</span>(x &gt; <span class="nc">0</span> <span class="kw">for</span> x <span class="kw">in</span> lst)
+<span class="fn">len</span>(lst)
+<span class="fn">abs</span>(-<span class="nc">5</span>)  <span class="fn">round</span>(<span class="nc">3.7</span>)  <span class="fn">divmod</span>(<span class="nc">10</span>,<span class="nc">3</span>)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Type &amp; Object</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="fn">type</span>(x)
+<span class="fn">isinstance</span>(x, int)
+<span class="fn">issubclass</span>(Dog, Animal)
+<span class="fn">hasattr</span>(obj, <span class="st">"name"</span>)
+<span class="fn">getattr</span>(obj, <span class="st">"name"</span>, <span class="kw">None</span>)
+<span class="fn">setattr</span>(obj, <span class="st">"name"</span>, <span class="st">"Ana"</span>)
+<span class="fn">delattr</span>(obj, <span class="st">"name"</span>)
+<span class="fn">vars</span>(obj)    <span class="cm"># __dict__</span>
+<span class="fn">dir</span>(obj)     <span class="cm"># all attributes</span>
+<span class="fn">id</span>(obj)      <span class="cm"># memory address</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Conversion</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="fn">int</span>(<span class="st">"42"</span>)       <span class="fn">float</span>(<span class="st">"3.14"</span>)
+<span class="fn">str</span>(<span class="nc">42</span>)          <span class="fn">bool</span>(<span class="nc">0</span>)
+<span class="fn">list</span>(<span class="fn">range</span>(<span class="nc">5</span>))    <span class="fn">tuple</span>([<span class="nc">1</span>,<span class="nc">2</span>])
+<span class="fn">set</span>([<span class="nc">1</span>,<span class="nc">2</span>,<span class="nc">2</span>])    <span class="fn">dict</span>(a=<span class="nc">1</span>)
+<span class="fn">bin</span>(<span class="nc">10</span>)         <span class="cm"># '0b1010'</span>
+<span class="fn">hex</span>(<span class="nc">255</span>)        <span class="cm"># '0xff'</span>
+<span class="fn">ord</span>(<span class="st">'A'</span>)        <span class="cm"># 65</span>
+<span class="fn">chr</span>(<span class="nc">65</span>)         <span class="cm"># 'A'</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ COMPREHENSIONS -->
+<section id="comprehensions">
+  <div class="page-col">
+    <div class="section-label">⚡ Comprehensions</div>
+
+    <div class="cs-block" data-tags="list comprehension dict set generator expression nested filter">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">⚡</span><h3>Comprehensions &amp; Expressions</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">List Comprehensions</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>[x**<span class="nc">2</span> <span class="kw">for</span> x <span class="kw">in</span> range(<span class="nc">10</span>)]
+[x <span class="kw">for</span> x <span class="kw">in</span> lst <span class="kw">if</span> x &gt; <span class="nc">0</span>]
+[x**<span class="nc">2</span> <span class="kw">for</span> x <span class="kw">in</span> lst <span class="kw">if</span> x % <span class="nc">2</span> == <span class="nc">0</span>]
+[f(x) <span class="kw">if</span> x &gt; <span class="nc">0</span> <span class="kw">else</span> g(x) <span class="kw">for</span> x <span class="kw">in</span> lst]
+[x <span class="kw">for</span> row <span class="kw">in</span> matrix <span class="kw">for</span> x <span class="kw">in</span> row]</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Dict &amp; Set Comprehensions</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>{k: v*<span class="nc">2</span> <span class="kw">for</span> k, v <span class="kw">in</span> d.items()}
+{k: v <span class="kw">for</span> k, v <span class="kw">in</span> d.items() <span class="kw">if</span> v &gt; <span class="nc">0</span>}
+{w.lower() <span class="kw">for</span> w <span class="kw">in</span> words}
+{k: i <span class="kw">for</span> i, k <span class="kw">in</span> <span class="fn">enumerate</span>(keys)}</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Generator Expressions</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>(x**<span class="nc">2</span> <span class="kw">for</span> x <span class="kw">in</span> range(<span class="nc">10</span>))    <span class="cm"># lazy</span>
+<span class="fn">sum</span>(x**<span class="nc">2</span> <span class="kw">for</span> x <span class="kw">in</span> range(<span class="nc">1000</span>)) <span class="cm"># no list</span>
+<span class="fn">any</span>(x &gt; <span class="nc">99</span> <span class="kw">for</span> x <span class="kw">in</span> biglist)   <span class="cm"># short-circuits</span>
+<span class="fn">next</span>(x <span class="kw">for</span> x <span class="kw">in</span> lst <span class="kw">if</span> x &gt; <span class="nc">0</span>) <span class="cm"># first match</span></pre>
+            </div>
+          </div>
+        </div>
+        <div class="insight-gold">⚡ Prefer generator expressions over list comprehensions when you only need to iterate once — they use O(1) memory vs O(n) for lists. Use list comprehensions when you need indexing or multiple passes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ GENERATORS -->
+<section id="generators">
+  <div class="page-col">
+    <div class="section-label">♾️ Generators</div>
+
+    <div class="cs-block" data-tags="generator yield next send itertools islice chain count infinite">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">♾️</span><h3>Generators &amp; Iterators</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Generator Functions</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">def</span> <span class="fn">countdown</span>(n):
+    <span class="kw">while</span> n &gt; <span class="nc">0</span>:
+        <span class="kw">yield</span> n
+        n -= <span class="nc">1</span>
+
+<span class="kw">def</span> <span class="fn">read_chunks</span>(path, size=<span class="nc">1024</span>):
+    <span class="kw">with</span> <span class="fn">open</span>(path, <span class="st">"rb"</span>) <span class="kw">as</span> f:
+        <span class="kw">while</span> chunk := f.read(size):
+            <span class="kw">yield</span> chunk
+
+<span class="kw">for</span> n <span class="kw">in</span> countdown(<span class="nc">5</span>): <span class="fn">print</span>(n)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">itertools</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> itertools <span class="kw">import</span> (
+    islice, chain, cycle, repeat,
+    product, permutations, combinations,
+    groupby, accumulate, takewhile,
+    dropwhile, zip_longest
+)
+<span class="fn">list</span>(islice(countdown(<span class="nc">100</span>), <span class="nc">5</span>))    <span class="cm"># first 5</span>
+<span class="fn">list</span>(chain([<span class="nc">1</span>,<span class="nc">2</span>], [<span class="nc">3</span>,<span class="nc">4</span>]))          <span class="cm"># flatten</span>
+<span class="fn">list</span>(combinations(<span class="st">"ABC"</span>, <span class="nc">2</span>))       <span class="cm"># pairs</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Custom Iterator</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">class</span> <span class="cl">Counter</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, stop):
+        <span class="kw">self</span>.n = <span class="nc">0</span>; <span class="kw">self</span>.stop = stop
+
+    <span class="kw">def</span> <span class="fn">__iter__</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>
+
+    <span class="kw">def</span> <span class="fn">__next__</span>(<span class="kw">self</span>):
+        <span class="kw">if</span> <span class="kw">self</span>.n &gt;= <span class="kw">self</span>.stop:
+            <span class="kw">raise</span> <span class="cl">StopIteration</span>
+        <span class="kw">self</span>.n += <span class="nc">1</span>
+        <span class="kw">return</span> <span class="kw">self</span>.n</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ DECORATORS -->
+<section id="decorators">
+  <div class="page-col">
+    <div class="section-label">🪄 Decorators</div>
+
+    <div class="cs-block" data-tags="decorator functools wraps lru_cache property classmethod staticmethod parametrised">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🪄</span><h3>Decorators</h3><span class="badge badge-adv">Advanced</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Basic Decorator</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> functools <span class="kw">import</span> wraps
+
+<span class="kw">def</span> <span class="fn">log_call</span>(func):
+    @wraps(func)        <span class="cm"># preserves metadata</span>
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        <span class="fn">print</span>(<span class="st">f"calling {func.__name__}"</span>)
+        result = func(*args, **kwargs)
+        <span class="fn">print</span>(<span class="st">f"done"</span>)
+        <span class="kw">return</span> result
+    <span class="kw">return</span> wrapper
+
+@log_call
+<span class="kw">def</span> <span class="fn">add</span>(a, b): <span class="kw">return</span> a + b</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Parametrised Decorator</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">def</span> <span class="fn">retry</span>(times=<span class="nc">3</span>):
+    <span class="kw">def</span> <span class="fn">decorator</span>(func):
+        @wraps(func)
+        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+            <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(times):
+                <span class="kw">try</span>: <span class="kw">return</span> func(*args, **kwargs)
+                <span class="kw">except</span> <span class="cl">Exception</span>: <span class="kw">pass</span>
+            <span class="kw">raise</span> <span class="cl">RuntimeError</span>(<span class="st">"All retries failed"</span>)
+        <span class="kw">return</span> wrapper
+    <span class="kw">return</span> decorator
+
+@retry(times=<span class="nc">5</span>)
+<span class="kw">def</span> <span class="fn">fetch_data</span>(): ...</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Built-in Decorators</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> functools <span class="kw">import</span> lru_cache, cache
+
+@lru_cache(maxsize=<span class="nc">128</span>)
+<span class="kw">def</span> <span class="fn">fib</span>(n):
+    <span class="kw">return</span> n <span class="kw">if</span> n &lt; <span class="nc">2</span> <span class="kw">else</span> fib(n-<span class="nc">1</span>)+fib(n-<span class="nc">2</span>)
+
+@cache                   <span class="cm"># unlimited (3.9+)</span>
+<span class="kw">def</span> <span class="fn">expensive</span>(x): ...
+
+@property
+@classmethod
+@staticmethod
+@dataclass</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ ASYNC -->
+<section id="async">
+  <div class="page-col">
+    <div class="section-label">⚡ Async / Await</div>
+
+    <div class="cs-block" data-tags="async await asyncio gather task coroutine event loop aiohttp httpx">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">⚡</span><h3>Async / Await</h3><span class="badge badge-adv">Advanced</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Coroutines</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">import</span> asyncio
+
+<span class="kw">async def</span> <span class="fn">fetch</span>(url: str) -&gt; str:
+    <span class="kw">await</span> asyncio.sleep(<span class="nc">1</span>)   <span class="cm"># non-blocking</span>
+    <span class="kw">return</span> <span class="st">f"data from {url}"</span>
+
+<span class="kw">async def</span> <span class="fn">main</span>():
+    result = <span class="kw">await</span> fetch(<span class="st">"http://example.com"</span>)
+    <span class="fn">print</span>(result)
+
+asyncio.run(main())</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">gather &amp; Tasks</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">async def</span> <span class="fn">main</span>():
+    urls = [<span class="st">"url1"</span>, <span class="st">"url2"</span>, <span class="st">"url3"</span>]
+    results = <span class="kw">await</span> asyncio.gather(
+        *[fetch(url) <span class="kw">for</span> url <span class="kw">in</span> urls]
+    )
+
+    t = asyncio.create_task(fetch(<span class="st">"url"</span>))
+    <span class="kw">await</span> t
+
+    <span class="kw">async with</span> asyncio.timeout(<span class="nc">5</span>):
+        result = <span class="kw">await</span> fetch(<span class="st">"slow_url"</span>)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Async Context &amp; Iteration</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">async with</span> aiohttp.ClientSession() <span class="kw">as</span> session:
+    <span class="kw">async with</span> session.get(url) <span class="kw">as</span> resp:
+        data = <span class="kw">await</span> resp.json()
+
+<span class="kw">async def</span> <span class="fn">gen</span>():
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nc">5</span>):
+        <span class="kw">await</span> asyncio.sleep(<span class="nc">0</span>)
+        <span class="kw">yield</span> i
+
+<span class="kw">async for</span> item <span class="kw">in</span> gen():
+    <span class="fn">print</span>(item)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ TYPE HINTS -->
+<section id="typing">
+  <div class="page-col">
+    <div class="section-label">🏷️ Type Hints</div>
+
+    <div class="cs-block" data-tags="typing Optional Union List Dict Tuple Callable TypeVar TypedDict Literal overload">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🏷️</span><h3>Type Hints (3.9–3.13)</h3><span class="badge badge-adv">Advanced</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Modern Syntax (3.10+)</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>x: int = <span class="nc">42</span>
+name: str | <span class="kw">None</span> = <span class="kw">None</span>     <span class="cm"># 3.10+</span>
+
+<span class="kw">def</span> <span class="fn">process</span>(
+    items: list[str],
+    config: dict[str, int],
+    cb: callable | <span class="kw">None</span> = <span class="kw">None</span>
+) -&gt; tuple[int, str]:
+    <span class="kw">return</span> <span class="nc">0</span>, <span class="st">"ok"</span>
+
+<span class="kw">def</span> <span class="fn">first</span>(lst: list[int]) -&gt; int | <span class="kw">None</span>:
+    <span class="kw">return</span> lst[<span class="nc">0</span>] <span class="kw">if</span> lst <span class="kw">else</span> <span class="kw">None</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">typing module</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> typing <span class="kw">import</span> (
+    TypeVar, Generic,
+    Callable, TypedDict,
+    Literal, Final,
+    ClassVar, overload,
+    TYPE_CHECKING
+)
+
+T = TypeVar(<span class="st">'T'</span>)
+
+<span class="kw">class</span> <span class="cl">Stack</span>(<span class="cl">Generic</span>[T]):
+    <span class="kw">def</span> <span class="fn">push</span>(<span class="kw">self</span>, item: T) -&gt; <span class="kw">None</span>: ...
+    <span class="kw">def</span> <span class="fn">pop</span>(<span class="kw">self</span>) -&gt; T: ...</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">TypedDict</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> typing <span class="kw">import</span> TypedDict, Required
+
+<span class="kw">class</span> <span class="cl">Article</span>(<span class="cl">TypedDict</span>):
+    title:    str
+    author:   str
+    views:    int
+    draft:    bool
+
+<span class="kw">class</span> <span class="cl">PartialOK</span>(<span class="cl">TypedDict</span>, total=<span class="kw">False</span>):
+    optional_field: str</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Literal &amp; Final</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> typing <span class="kw">import</span> Literal, Final
+
+Mode = Literal[<span class="st">"r"</span>, <span class="st">"w"</span>, <span class="st">"a"</span>]
+
+<span class="kw">def</span> <span class="fn">open_file</span>(path: str, mode: Mode): ...
+
+MAX: Final[int] = <span class="nc">100</span>     <span class="cm"># can't reassign</span>
+
+STATUS = Literal[<span class="st">"ok"</span>, <span class="st">"error"</span>, <span class="st">"pending"</span>]</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════ REGEX -->
+<section id="regex">
+  <div class="page-col">
+    <div class="section-label">🔍 Regex</div>
+
+    <div class="cs-block" data-tags="regex re match search findall sub group compile pattern">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🔍</span><h3>Regular Expressions</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Core Functions</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">import</span> re
+
+re.match(<span class="st">r"\d+"</span>, <span class="st">"42abc"</span>)     <span class="cm"># start</span>
+re.search(<span class="st">r"\d+"</span>, <span class="st">"abc42"</span>)    <span class="cm"># anywhere</span>
+re.findall(<span class="st">r"\d+"</span>, <span class="st">"1a2b3"</span>)   <span class="cm"># ['1','2','3']</span>
+re.sub(<span class="st">r"\s+"</span>, <span class="st">" "</span>, text)     <span class="cm"># replace</span>
+re.split(<span class="st">r"[,;]"</span>, <span class="st">"a,b;c"</span>)   <span class="cm"># ['a','b','c']</span>
+
+pattern = re.compile(<span class="st">r"\b\w{5}\b"</span>)
+<span class="kw">for</span> m <span class="kw">in</span> pattern.finditer(text):
+    <span class="fn">print</span>(m.group(), m.start())</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Groups &amp; Flags</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre">m = re.search(
+    <span class="st">r"(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d{2})"</span>,
+    <span class="st">"Date: 2026-05"</span>
+)
+m.group(<span class="st">"year"</span>)   <span class="cm"># "2026"</span>
+m.group(<span class="st">"month"</span>)  <span class="cm"># "05"</span>
+
+re.search(<span class="st">r"hello"</span>, text, re.IGNORECASE)
+re.search(<span class="st">r"^start"</span>, text, re.MULTILINE)</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Pattern Cheat Sheet</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre>.      <span class="cm"># any char except \n</span>
+\d \D  <span class="cm"># digit / non-digit</span>
+\w \W  <span class="cm"># word char / non-word</span>
+\s \S  <span class="cm"># whitespace / non-ws</span>
+^  $   <span class="cm"># start / end of line</span>
+*  +   <span class="cm"># 0+ / 1+  (greedy)</span>
+*? +?  <span class="cm"># 0+ / 1+  (lazy)</span>
+{3}    <span class="cm"># exactly 3</span>
+{2,5}  <span class="cm"># 2 to 5</span>
+[a-z]  <span class="cm"># character class</span>
+(a|b)  <span class="cm"># group / alternation</span>
+(?:…)  <span class="cm"># non-capturing group</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ DATACLASSES -->
+<section id="dataclasses">
+  <div class="page-col">
+    <div class="section-label">🗄️ Dataclasses</div>
+
+    <div class="cs-block" data-tags="dataclass field frozen post_init slots default_factory">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">🗄️</span><h3>Dataclasses</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">Basic Dataclass</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+
+@dataclass
+<span class="kw">class</span> <span class="cl">Point</span>:
+    x: float
+    y: float
+    label: str = <span class="st">""</span>
+    tags: list[str] = field(default_factory=list)
+
+    <span class="kw">def</span> <span class="fn">distance</span>(<span class="kw">self</span>) -&gt; float:
+        <span class="kw">return</span> (self.x**<span class="nc">2</span> + self.y**<span class="nc">2</span>)**<span class="nc">.5</span>
+
+p = <span class="cl">Point</span>(<span class="nc">3.0</span>, <span class="nc">4.0</span>)
+<span class="fn">print</span>(p)       <span class="cm"># Point(x=3.0, y=4.0, label='')</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">Frozen &amp; Slots</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre">@dataclass(frozen=<span class="kw">True</span>)     <span class="cm"># immutable</span>
+<span class="kw">class</span> <span class="cl">Config</span>:
+    host: str = <span class="st">"localhost"</span>
+    port: int = <span class="nc">8080</span>
+
+@dataclass(slots=<span class="kw">True</span>)      <span class="cm"># faster, less RAM</span>
+<span class="kw">class</span> <span class="cl">Record</span>:
+    id: int
+    value: float
+
+@dataclass(order=<span class="kw">True</span>)      <span class="cm"># enables <, >, <=, >=</span>
+<span class="kw">class</span> <span class="cl">Version</span>:
+    major: int; minor: int</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">__post_init__ &amp; field()</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> dataclasses <span class="kw">import</span> field
+
+@dataclass
+<span class="kw">class</span> <span class="cl">User</span>:
+    name: str
+    email: str
+    _id: int = field(init=<span class="kw">False</span>, repr=<span class="kw">False</span>)
+
+    <span class="kw">def</span> <span class="fn">__post_init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>._id = <span class="fn">hash</span>(<span class="kw">self</span>.email)
+        <span class="kw">if</span> <span class="st">"@"</span> <span class="kw">not in</span> <span class="kw">self</span>.email:
+            <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">"Bad email"</span>)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ STD LIBRARY -->
+<section id="stdlib">
+  <div class="page-col">
+    <div class="section-label">📦 Standard Library Highlights</div>
+
+    <div class="cs-block" data-tags="os sys datetime collections functools pathlib logging argparse subprocess time random">
+      <div class="cs-block-hd open" onclick="toggleBlock(this)">
+        <span class="cs-icon">📦</span><h3>Standard Library Quick Reference</h3><span class="badge badge-int">Intermediate</span><span class="cs-toggle">+</span>
+      </div>
+      <div class="cs-body open">
+        <div class="cs-grid">
+          <div>
+            <div class="cs-label">os &amp; sys</div>
+            <div class="cs-snippet">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">import</span> os, sys
+
+os.getcwd()
+os.environ.get(<span class="st">"HOME"</span>, <span class="st">""</span>)
+os.path.join(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)
+os.path.exists(path)
+os.listdir(<span class="st">"."</span>)
+os.makedirs(path, exist_ok=<span class="kw">True</span>)
+
+sys.argv           <span class="cm"># CLI args list</span>
+sys.exit(<span class="nc">0</span>)
+sys.version</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">datetime</div>
+            <div class="cs-snippet gold">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime, date, timedelta
+
+now  = datetime.now()
+today = date.today()
+dt = datetime(<span class="nc">2026</span>, <span class="nc">1</span>, <span class="nc">15</span>, <span class="nc">10</span>, <span class="nc">30</span>)
+dt.strftime(<span class="st">"%Y-%m-%d %H:%M"</span>)
+datetime.strptime(<span class="st">"2026-01-15"</span>, <span class="st">"%Y-%m-%d"</span>)
+now + timedelta(days=<span class="nc">7</span>)
+(dt2 - dt1).days</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">logging</div>
+            <div class="cs-snippet green">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre"><span class="kw">import</span> logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format=<span class="st">"%(asctime)s %(levelname)s %(message)s"</span>
+)
+
+log = logging.getLogger(__name__)
+log.debug(<span class="st">"debug msg"</span>)
+log.info(<span class="st">"info msg"</span>)
+log.warning(<span class="st">"warn msg"</span>)
+log.error(<span class="st">"error msg"</span>)
+log.exception(e)   <span class="cm"># error + traceback</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">random &amp; hashlib</div>
+            <div class="cs-snippet purple">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">import</span> random, hashlib, secrets
+
+random.randint(<span class="nc">1</span>, <span class="nc">100</span>)
+random.choice(lst)
+random.sample(lst, k=<span class="nc">5</span>)
+random.shuffle(lst)
+random.seed(<span class="nc">42</span>)
+
+secrets.token_hex(<span class="nc">16</span>)     <span class="cm"># secure random</span>
+hashlib.sha256(<span class="st">b"data"</span>).hexdigest()</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">subprocess &amp; argparse</div>
+            <div class="cs-snippet amber">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">import</span> subprocess, argparse
+
+result = subprocess.run(
+    [<span class="st">"ls"</span>, <span class="st">"-la"</span>],
+    capture_output=<span class="kw">True</span>, text=<span class="kw">True</span>, check=<span class="kw">True</span>
+)
+<span class="fn">print</span>(result.stdout)
+
+parser = argparse.ArgumentParser()
+parser.add_argument(<span class="st">"name"</span>)
+parser.add_argument(<span class="st">"--verbose"</span>, action=<span class="st">"store_true"</span>)
+args = parser.parse_args()</pre>
+            </div>
+          </div>
+          <div>
+            <div class="cs-label">functools</div>
+            <div class="cs-snippet red">
+              <button class="copy-btn" onclick="copySnippet(this)"><i class="fas fa-copy"></i> Copy</button>
+              <pre><span class="kw">from</span> functools <span class="kw">import</span> (
+    partial, reduce, wraps,
+    lru_cache, cache,
+    total_ordering, singledispatch
+)
+
+double = partial(<span class="fn">pow</span>, exp=<span class="nc">2</span>)
+reduce(<span class="kw">lambda</span> a,b: a+b, [<span class="nc">1</span>,<span class="nc">2</span>,<span class="nc">3</span>])
+
+@singledispatch
+<span class="kw">def</span> <span class="fn">process</span>(x): ...
+
+@process.register(int)
+<span class="kw">def</span> _(x): <span class="kw">return</span> x * <span class="nc">2</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- BACK TO CURRICULUM -->
+<section style="padding:2.5rem 0;border-top:1px solid var(--border);">
+  <div class="page-col" style="text-align:center;">
+    <h3 style="margin-bottom:.4rem;font-size:1rem;">Ready to go deeper?</h3>
+    <p style="margin-bottom:1.2rem;">Every topic in this cheat sheet has a full lesson in the curriculum.</p>
+    <div style="display:flex;flex-direction:column;gap:.6rem;">
+      <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Back to Full Curriculum</a>
+      <a href="algorithm-history.html" class="btn btn-outline"><i class="fas fa-hourglass-half"></i> History of Algorithms</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="page-footer">
+  <div class="page-col">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Guided Tracks</h5>
+        <ul>
+          <li><a href="beginners.html">First-time dev</a></li>
+          <li><a href="data-science.html">Data &amp; statistics</a></li>
+          <li><a href="backend.html">Backend / Django</a></li>
+          <li><a href="aiml.html">ML fundamentals</a></li>
+          <li><a href="web-development.html">Web Development</a></li>
+          <li><a href="automation.html">Automation</a></li>
+          <li><a href="sample-programs">Sample Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Toolkit</h5>
+        <ul>
+          <li><a href="algorithm-history.html">History of Algorithms</a></li>
+          <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+          <li><a href="library.html">Snippet library</a></li>
+          <li><a href="code-examples.html">Code runner</a></li>
+          <li><a href="design.html">Design Patterns</a></li>
+          <li><a href="concepts.html">Coding Concepts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://www.facebook.com/GlennPansensoy">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/in/Glenn-Junsay-Pansensoy">LinkedIn</a></li>
+          <li><a href="https://x.com/@PoeticGlenn">X (Twitter)</a></li>
+          <li><a href="https://www.youtube.com/@GlennPansensoy">YouTube</a></li>
+          <li><a href="https://github.com/pansensoyglenn-dev">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Policies</h5>
+        <ul>
+          <li><a href="privacy.html">Data privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="cookie.html">Cookies</a></li>
+          <li><a href="disclaimer.html">Disclaimers</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2026 Poetic Bytes • Created by Glenn Junsay Pansensoy • dedicated to pragmatic learning.</p>
+      <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  const pbar = document.getElementById('pbar');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+  }, {passive:true});
+
+  const menuToggle  = document.getElementById('menuToggle');
+  const drawer      = document.getElementById('mobileDrawer');
+  const overlay     = document.getElementById('drawerOverlay');
+  const drawerClose = document.getElementById('drawerClose');
+
+  function closeDrawer(){
+    menuToggle?.classList.remove('active');
+    drawer?.classList.remove('active');
+    overlay?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  menuToggle?.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = drawer.classList.toggle('active');
+    menuToggle.classList.toggle('active', open);
+    overlay.classList.toggle('active', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay?.addEventListener('click', closeDrawer);
+  drawerClose?.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); });
+  document.querySelectorAll('.drawer-body button[data-href]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.querySelector(btn.dataset.href);
+      if (target) { target.scrollIntoView({behavior:'smooth'}); closeDrawer(); }
+    });
+  });
+
+  window.toggleBlock = function(hdEl){
+    const body   = hdEl.nextElementSibling;
+    const toggle = hdEl.querySelector('.cs-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    hdEl.classList.toggle('open', !isOpen);
+    toggle.textContent = isOpen ? '+' : '−';
+  };
+
+  document.querySelectorAll('.cs-block-hd.open').forEach(hd => {
+    hd.querySelector('.cs-toggle').textContent = '−';
+  });
+
+  window.copySnippet = function(btn){
+    const pre = btn.closest('.cs-snippet').querySelector('pre');
+    const text = pre.innerText || pre.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+      }, 1800);
+    });
+  };
+
+  const searchInput = document.getElementById('csSearch');
+  const blocks      = document.querySelectorAll('.cs-block');
+
+  searchInput?.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    blocks.forEach(block => {
+      if (!q) { block.classList.remove('hidden'); return; }
+      const tags  = (block.dataset.tags || '').toLowerCase();
+      const title = block.querySelector('h3')?.textContent.toLowerCase() || '';
+      const code  = block.querySelector('pre')?.textContent.toLowerCase() || '';
+      const match = tags.includes(q) || title.includes(q) || code.includes(q);
+      block.classList.toggle('hidden', !match);
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
