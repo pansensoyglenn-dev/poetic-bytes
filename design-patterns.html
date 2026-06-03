@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Python Design Patterns – Complete Guide 2026 | Poetic Bytes</title>
+<meta name="description" content="Master all 23 Gang of Four design patterns in Python — Creational, Structural, and Behavioral — with real code examples and when-to-use guidance.">
+<meta name="author" content="Glenn Junsay Pansensoy">
+<link rel="canonical" href="https://poetic-bytes.vercel.app/design-patterns.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poetic-bytes.vercel.app/design-patterns.html">
+<meta property="og:title" content="Python Design Patterns – Complete Guide 2026 | Poetic Bytes">
+<meta property="og:description" content="All 23 GoF design patterns implemented in Python with annotated examples, diagrams, and real-world use cases.">
+<meta property="og:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PoeticGlenn">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+<meta name="theme-color" content="#0B121C">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+<style>
+:root{
+  --bg:#0B121C;--panel:#0F1C2F;--card:#111e30;--border:#1F4060;
+  --blue:#4B8BBE;--blue-deep:#306998;--blue-lt:#78B9E6;
+  --gold:#FFD966;--text:#E2E8F0;--muted:#8BA3BF;--code-bg:#0A1A24;
+  --green:#10B981;--amber:#F59E0B;--red:#EF4444;--purple:#c084fc;
+  --teal:#2DD4BF;--rose:#FB7185;
+  --btn-h:44px;--btn-r:8px;--card-r:12px;--gap:1rem;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:hidden;-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden;}
+
+.page-col{width:100%;max-width:900px;margin:0 auto;padding:0 1.25rem;}
+section{padding:2.5rem 0;border-bottom:1px solid var(--border);}
+section:last-child{border-bottom:none;}
+
+.progress-bar-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(31,64,96,.3);z-index:2000;}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--gold));width:0%;transition:width .2s;}
+
+.nav-bar{position:fixed;top:3px;left:0;right:0;background:rgba(11,18,28,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:1000;}
+.nav-inner{max-width:900px;margin:0 auto;padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.08em;}
+.brand-icon{width:2rem;height:2rem;border-radius:6px;background:linear-gradient(145deg,var(--blue),var(--blue-deep));display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.nav-links{display:flex;gap:1.2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:color .2s;letter-spacing:.04em;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+@media(max-width:680px){.nav-links{display:none;}}
+.menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;background:rgba(75,139,190,.1);border:1px solid var(--border);border-radius:6px;width:40px;height:40px;cursor:pointer;gap:4px;}
+.menu-toggle span{width:18px;height:2px;background:#fff;border-radius:2px;transition:.25s;}
+.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.menu-toggle.active span:nth-child(2){opacity:0;}
+.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+@media(max-width:680px){.menu-toggle{display:flex;}}
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1050;opacity:0;visibility:hidden;transition:.2s;backdrop-filter:blur(4px);}
+.drawer-overlay.active{opacity:1;visibility:visible;}
+.mobile-drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--panel);border-left:1px solid var(--border);z-index:1100;display:flex;flex-direction:column;transition:right .3s;box-shadow:-5px 0 30px rgba(0,0,0,.5);}
+.mobile-drawer.active{right:0;}
+.drawer-hd{padding:.8rem;border-bottom:1px solid var(--border);display:flex;justify-content:flex-end;}
+.drawer-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.drawer-body{flex:1;overflow-y:auto;padding:.8rem;}
+.drawer-body li{list-style:none;margin-bottom:.5rem;}
+.drawer-body a,.drawer-body button{display:flex;align-items:center;gap:.6rem;width:100%;padding:.7rem .9rem;background:rgba(75,139,190,.12);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;}
+.drawer-body i{color:var(--gold);width:1.2rem;}
+
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.25;font-weight:700;}
+p{font-size:.82rem;color:var(--muted);line-height:1.7;}
+code{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#a5d6ff;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:var(--btn-h);padding:0 1.4rem;border-radius:var(--btn-r);font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .2s;border:none;text-decoration:none;white-space:nowrap;}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;box-shadow:0 4px 14px rgba(75,139,190,.35);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(75,139,190,.45);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+.btn-outline:hover{border-color:var(--blue);background:rgba(75,139,190,.08);}
+@media(max-width:480px){.btn{width:100%;}}
+
+/* Hero */
+.hero{padding:5rem 0 2.5rem;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(75,139,190,.18) 0%,transparent 70%);}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:40px;padding:.3rem .9rem;font-size:.68rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.2rem;background:var(--card);}
+.live-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);margin-bottom:.8rem;}
+.hero p.lead{font-size:.88rem;color:var(--muted);max-width:560px;margin-bottom:1.4rem;line-height:1.75;}
+.hero-btns{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;}
+
+/* Category tabs */
+.cat-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.cat-tab{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .9rem;border-radius:20px;font-size:.7rem;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--muted);transition:.2s;text-decoration:none;}
+.cat-tab:hover{color:var(--text);}
+.cat-tab.creational{border-color:rgba(75,139,190,.4);}.cat-tab.creational.active,.cat-tab.creational:hover{background:rgba(75,139,190,.15);color:var(--blue-lt);border-color:var(--blue);}
+.cat-tab.structural{border-color:rgba(45,212,191,.3);}.cat-tab.structural.active,.cat-tab.structural:hover{background:rgba(45,212,191,.12);color:var(--teal);border-color:var(--teal);}
+.cat-tab.behavioral{border-color:rgba(192,132,252,.3);}.cat-tab.behavioral.active,.cat-tab.behavioral:hover{background:rgba(192,132,252,.12);color:var(--purple);border-color:var(--purple);}
+.cat-tab.all.active,.cat-tab.all:hover{background:rgba(255,217,102,.1);color:var(--gold);border-color:var(--gold);}
+
+/* Section label */
+.section-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.section-label.creational{color:var(--blue-lt);}
+.section-label.creational::before,.section-label.creational::after{background:rgba(75,139,190,.3);}
+.section-label.structural{color:var(--teal);}
+.section-label.structural::before,.section-label.structural::after{background:rgba(45,212,191,.25);}
+.section-label.behavioral{color:var(--purple);}
+.section-label.behavioral::before,.section-label.behavioral::after{background:rgba(192,132,252,.25);}
+
+/* Search */
+.search-bar{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:var(--btn-r);padding:.5rem .9rem;margin-bottom:1rem;transition:border-color .2s;}
+.search-bar:focus-within{border-color:var(--blue);}
+.search-bar i{color:var(--muted);font-size:.85rem;flex-shrink:0;}
+.search-bar input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:.8rem;font-family:'Syne',sans-serif;}
+.search-bar input::placeholder{color:var(--muted);}
+
+/* Pattern card */
+.pattern-card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);overflow:hidden;margin-bottom:1rem;transition:border-color .2s;}
+.pattern-card:hover{border-color:rgba(75,139,190,.4);}
+.pattern-card.creational:hover{border-color:rgba(75,139,190,.5);}
+.pattern-card.structural:hover{border-color:rgba(45,212,191,.4);}
+.pattern-card.behavioral:hover{border-color:rgba(192,132,252,.4);}
+
+.pattern-hd{display:flex;align-items:flex-start;gap:.75rem;padding:.9rem 1rem;cursor:pointer;user-select:none;}
+.pattern-hd-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem;}
+.pattern-hd-info{flex:1;min-width:0;}
+.pattern-hd-info h3{font-size:.85rem;color:var(--text);margin-bottom:.18rem;}
+.pattern-hd-info p{font-size:.72rem;color:var(--muted);margin:0;line-height:1.5;}
+.pattern-hd-right{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;flex-shrink:0;}
+.pattern-toggle{font-size:.9rem;color:var(--blue);transition:transform .25s;width:20px;text-align:center;}
+.pattern-toggle.open{transform:rotate(45deg);}
+
+.pattern-body{display:none;border-top:1px solid var(--border);}
+.pattern-body.open{display:block;}
+
+.pattern-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--panel);}
+.ptab{padding:.45rem .85rem;font-size:.67rem;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:.15s;letter-spacing:.04em;}
+.ptab:hover{color:var(--text);}
+.ptab.active{color:var(--blue-lt);border-bottom-color:var(--blue);}
+
+.ptab-pane{display:none;padding:.9rem 1rem;}
+.ptab-pane.active{display:block;}
+
+.when-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.7rem;}
+@media(max-width:500px){.when-grid{grid-template-columns:1fr;}}
+.when-box{border-radius:8px;padding:.7rem .9rem;}
+.when-box.use{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);}
+.when-box.avoid{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);}
+.when-box h5{font-size:.67rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem;}
+.when-box.use h5{color:var(--green);}
+.when-box.avoid h5{color:var(--red);}
+.when-box ul{list-style:none;display:flex;flex-direction:column;gap:.25rem;}
+.when-box li{font-size:.72rem;color:var(--muted);display:flex;gap:.4rem;align-items:flex-start;}
+.when-box li::before{font-size:.65rem;flex-shrink:0;margin-top:.1rem;}
+.when-box.use li::before{content:'✓';color:var(--green);}
+.when-box.avoid li::before{content:'✗';color:var(--red);}
+
+.real-world{background:rgba(75,139,190,.07);border:1px solid rgba(75,139,190,.2);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem;}
+.real-world h5{font-size:.67rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:.35rem;}
+.real-world ul{list-style:none;display:flex;flex-direction:column;gap:.2rem;}
+.real-world li{font-size:.72rem;color:var(--muted);display:flex;gap:.4rem;align-items:flex-start;}
+.real-world li::before{content:'→';color:var(--blue-lt);flex-shrink:0;}
+
+/* Code */
+.code-wrap{position:relative;background:var(--code-bg);border-radius:6px;border-left:3px solid var(--blue);overflow:hidden;margin-bottom:.6rem;}
+.code-wrap.teal{border-left-color:var(--teal);}
+.code-wrap.purple{border-left-color:var(--purple);}
+.code-wrap.gold{border-left-color:var(--gold);}
+.code-wrap pre{font-family:'JetBrains Mono',monospace;font-size:.71rem;line-height:1.7;color:var(--text);padding:.85rem 1rem;overflow-x:auto;}
+.copy-btn{position:absolute;top:.45rem;right:.45rem;display:inline-flex;align-items:center;gap:.25rem;background:rgba(75,139,190,.2);border:1px solid rgba(75,139,190,.3);border-radius:4px;padding:.18rem .5rem;font-size:.58rem;font-weight:700;color:var(--blue-lt);cursor:pointer;transition:.2s;font-family:'Syne',sans-serif;z-index:1;}
+.copy-btn:hover{background:rgba(75,139,190,.4);}
+.copy-btn.copied{color:var(--green);border-color:var(--green);background:rgba(16,185,129,.15);}
+
+.kw{color:#ff7b72;font-weight:600;}
+.fn{color:#d2a8ff;}
+.st{color:#a5d6ff;}
+.cl{color:#FFD966;font-weight:600;}
+.nc{color:#79c0ff;}
+.cm{color:#546e7a;font-style:italic;}
+.dc{color:#4ec9b0;}
+
+/* Badges */
+.badge{display:inline-block;padding:.1rem .5rem;border-radius:20px;font-size:.58rem;font-weight:700;}
+.badge-cr{background:rgba(75,139,190,.15);color:var(--blue-lt);}
+.badge-st{background:rgba(45,212,191,.12);color:var(--teal);}
+.badge-bh{background:rgba(192,132,252,.12);color:var(--purple);}
+.badge-gof{background:rgba(255,217,102,.1);color:var(--gold);}
+
+.insight{background:rgba(75,139,190,.08);border:1px solid rgba(75,139,190,.25);border-radius:6px;padding:.55rem .85rem;font-size:.74rem;color:var(--blue-lt);margin-top:.6rem;}
+.insight-gold{background:rgba(255,217,102,.07);border:1px solid rgba(255,217,102,.22);border-radius:6px;padding:.55rem .85rem;font-size:.74rem;color:var(--gold);margin-top:.6rem;}
+
+/* Overview grid */
+.overview-grid{display:grid;grid-template-columns:1fr;gap:.5rem;}
+@media(min-width:480px){.overview-grid{grid-template-columns:1fr 1fr;}}
+.overview-pill{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.6rem .85rem;cursor:pointer;transition:.2s;text-decoration:none;}
+.overview-pill:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2);}
+.overview-pill.creational:hover{border-color:var(--blue);}
+.overview-pill.structural:hover{border-color:var(--teal);}
+.overview-pill.behavioral:hover{border-color:var(--purple);}
+.overview-pill-icon{font-size:1.1rem;flex-shrink:0;}
+.overview-pill-info{flex:1;min-width:0;}
+.overview-pill-info h4{font-size:.75rem;color:var(--text);margin-bottom:.08rem;}
+.overview-pill-info p{font-size:.66rem;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* Stats row */
+.stats-row{display:flex;flex-direction:column;gap:var(--gap);margin:1.5rem 0;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-align:center;}
+.stat-card .big{font-size:1.5rem;font-weight:800;color:var(--gold);}
+.stat-card .sm{font-size:.68rem;color:var(--muted);margin-top:.15rem;}
+
+.ad-slot{text-align:center;padding:.8rem 0;}
+
+.page-footer{padding:3rem 0 1.5rem;background:#1a2535;border-top:1px solid var(--border);}
+.footer-grid{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:1.5rem;}
+.footer-col h5{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:.4rem;}
+.footer-col a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.74rem;transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.copyright{border-top:1px solid var(--border);padding-top:1.2rem;text-align:center;font-size:.72rem;color:var(--muted);}
+.copyright a{color:rgba(255,255,255,.5);text-decoration:none;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--border);}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
+.hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+    <ul class="nav-links">
+      <li><a href="index.html#toc">Curriculum</a></li>
+      <li><a href="cheat-sheet.html">Cheat Sheet</a></li>
+      <li><a href="snippet-library.html">Snippets</a></li>
+      <li><a href="code-runner.html">Runner</a></li>
+      <li><a href="design-patterns.html" class="active">Patterns</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+  <div class="drawer-body">
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+      <li><button data-href="#creational"><i class="fas fa-hammer"></i>Creational</button></li>
+      <li><button data-href="#structural"><i class="fas fa-sitemap"></i>Structural</button></li>
+      <li><button data-href="#behavioral"><i class="fas fa-exchange-alt"></i>Behavioral</button></li>
+      <li><a href="cheat-sheet.html"><i class="fas fa-bolt"></i>Cheat Sheet</a></li>
+      <li><a href="code-runner.html"><i class="fas fa-play"></i>Code Runner</a></li>
+    </ul>
+  </div>
+</div>
+
+<main style="padding-top:56px;">
+
+<section class="hero">
+  <div class="page-col">
+    <div class="hero-tag"><span class="live-dot"></span> All 23 GoF Patterns</div>
+    <h1>Python Design Patterns<br><span style="color:var(--blue-lt)">Complete 2026 Guide</span></h1>
+    <p class="lead">Every Gang of Four design pattern implemented in clean, idiomatic Python — with annotated code, when-to-use guidance, and real-world examples from production libraries.</p>
+    <div class="hero-btns">
+      <a href="#creational" class="btn btn-primary"><i class="fas fa-hammer"></i> Creational Patterns</a>
+      <a href="code-runner.html" class="btn btn-outline"><i class="fas fa-play"></i> Try in Code Runner</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="big">23</div><div class="sm">Gang of Four patterns<br>fully implemented</div></div>
+      <div class="stat-card"><div class="big">3</div><div class="sm">Categories: Creational<br>Structural · Behavioral</div></div>
+      <div class="stat-card"><div class="big">1994</div><div class="sm">GoF book published<br>still the standard</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:1.5rem 0 0;">
+  <div class="page-col">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="patSearch" placeholder="Search patterns — e.g. singleton, observer, factory…" autocomplete="off">
+    </div>
+    <div class="cat-tabs">
+      <button class="cat-tab all active" data-filter="all"><i class="fas fa-th"></i> All 23</button>
+      <button class="cat-tab creational" data-filter="creational"><i class="fas fa-hammer"></i> Creational (5)</button>
+      <button class="cat-tab structural" data-filter="structural"><i class="fas fa-sitemap"></i> Structural (7)</button>
+      <button class="cat-tab behavioral" data-filter="behavioral"><i class="fas fa-exchange-alt"></i> Behavioral (11)</button>
+    </div>
+    <div id="noResults" class="hidden" style="text-align:center;padding:2rem;background:var(--card);border-radius:var(--card-r);border:1px solid var(--border);">
+      <i class="fas fa-search" style="font-size:1.5rem;color:var(--muted);display:block;margin-bottom:.5rem;"></i>
+      <p style="font-size:.78rem;">No patterns match. Try a different keyword.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ══════════════════════════════════ CREATIONAL -->
+<section id="creational">
+  <div class="page-col">
+    <div class="section-label creational"><i class="fas fa-hammer"></i> Creational Patterns</div>
+    <p style="margin-bottom:1.2rem;">Creational patterns abstract the instantiation process — they help make systems independent of how objects are created, composed, and represented.</p>
+
+    <!-- SINGLETON -->
+    <div class="pattern-card creational" data-category="creational" data-tags="singleton instance one thread safe">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">1️⃣</span>
+        <div class="pattern-hd-info">
+          <h3>Singleton</h3>
+          <p>Ensure a class has only one instance and provide a global access point to it.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-cr">Creational</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">import</span> threading
+
+<span class="kw">class</span> <span class="cl">Singleton</span>:
+    _instance = <span class="kw">None</span>
+    _lock = threading.Lock()
+
+    <span class="kw">def</span> <span class="fn">__new__</span>(cls, *args, **kwargs):
+        <span class="kw">if</span> cls._instance <span class="kw">is None</span>:
+            <span class="kw">with</span> cls._lock:
+                <span class="kw">if</span> cls._instance <span class="kw">is None</span>:
+                    cls._instance = <span class="fn">super</span>().__new__(cls)
+        <span class="kw">return</span> cls._instance
+
+<span class="kw">class</span> <span class="cl">AppConfig</span>(<span class="cl">Singleton</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">if not</span> <span class="fn">hasattr</span>(<span class="kw">self</span>, <span class="st">'_init'</span>):
+            <span class="kw">self</span>.debug = <span class="kw">False</span>
+            <span class="kw">self</span>.db_url = <span class="st">"postgresql://localhost/app"</span>
+            <span class="kw">self</span>._init = <span class="kw">True</span>
+
+a = <span class="cl">AppConfig</span>()
+b = <span class="cl">AppConfig</span>()
+<span class="fn">print</span>(a <span class="kw">is</span> b)  <span class="cm"># True — same object</span></pre>
+          </div>
+          <div class="insight">💡 The double-checked locking (checking <code>_instance</code> twice — outside and inside the lock) prevents multiple threads from each creating their own instance while the first is being constructed.</div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Exactly one instance must coordinate actions across the system</li><li>Config, logging, or connection pool objects</li><li>Shared mutable state needs a single source of truth</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Testing — singletons make unit tests hard to isolate</li><li>You just want global variables (use module-level instead)</li><li>The "single instance" constraint might change later</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>logging.getLogger()</code> returns the same logger for the same name</li>
+            <li>Django's database connection pool</li>
+            <li>Flask's application context (<code>current_app</code>)</li>
+            <li>Python module objects are themselves singletons — importing a module twice returns the cached version</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FACTORY METHOD -->
+    <div class="pattern-card creational" data-category="creational" data-tags="factory method create object subclass interface">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🏭</span>
+        <div class="pattern-hd-info">
+          <h3>Factory Method</h3>
+          <p>Define an interface for creating objects, but let subclasses decide which class to instantiate.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-cr">Creational</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">Notification</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, message: str) -> <span class="kw">None</span>: ...
+
+<span class="kw">class</span> <span class="cl">EmailNotification</span>(<span class="cl">Notification</span>):
+    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, message): <span class="fn">print</span>(<span class="st">f"📧 Email: {message}"</span>)
+
+<span class="kw">class</span> <span class="cl">SMSNotification</span>(<span class="cl">Notification</span>):
+    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, message): <span class="fn">print</span>(<span class="st">f"📱 SMS: {message}"</span>)
+
+<span class="kw">class</span> <span class="cl">PushNotification</span>(<span class="cl">Notification</span>):
+    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, message): <span class="fn">print</span>(<span class="st">f"🔔 Push: {message}"</span>)
+
+<span class="kw">class</span> <span class="cl">NotificationFactory</span>:
+    _map = {<span class="st">"email"</span>: <span class="cl">EmailNotification</span>, <span class="st">"sms"</span>: <span class="cl">SMSNotification</span>, <span class="st">"push"</span>: <span class="cl">PushNotification</span>}
+
+    @classmethod
+    <span class="kw">def</span> <span class="fn">create</span>(cls, channel: str) -> <span class="cl">Notification</span>:
+        klass = cls._map.get(channel.lower())
+        <span class="kw">if not</span> klass:
+            <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">f"Unknown channel: {channel}"</span>)
+        <span class="kw">return</span> klass()
+
+<span class="kw">for</span> ch <span class="kw">in</span> [<span class="st">"email"</span>, <span class="st">"sms"</span>, <span class="st">"push"</span>]:
+    <span class="cl">NotificationFactory</span>.create(ch).send(<span class="st">"Hello!"</span>)</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>A class can't anticipate the class of objects it must create</li><li>The creation logic should be in subclasses, not the base</li><li>You want to decouple client code from concrete classes</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Only one type of object will ever be created — use a constructor</li><li>The hierarchy would become complex for simple creation needs</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Django ORM's <code>objects.create()</code> and manager methods</li>
+            <li>SQLAlchemy's <code>create_engine()</code> creates different engine types from a URL string</li>
+            <li>pytest's fixture system — fixtures are factory functions</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABSTRACT FACTORY -->
+    <div class="pattern-card creational" data-category="creational" data-tags="abstract factory family product interface">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🏗️</span>
+        <div class="pattern-hd-info">
+          <h3>Abstract Factory</h3>
+          <p>Provide an interface for creating families of related objects without specifying their concrete classes.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-cr">Creational</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">Button</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">render</span>(<span class="kw">self</span>): ...
+
+<span class="kw">class</span> <span class="cl">Checkbox</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">render</span>(<span class="kw">self</span>): ...
+
+<span class="kw">class</span> <span class="cl">UIFactory</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">create_button</span>(<span class="kw">self</span>) -> <span class="cl">Button</span>: ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">create_checkbox</span>(<span class="kw">self</span>) -> <span class="cl">Checkbox</span>: ...
+
+<span class="kw">class</span> <span class="cl">DarkButton</span>(<span class="cl">Button</span>):
+    <span class="kw">def</span> <span class="fn">render</span>(<span class="kw">self</span>): <span class="fn">print</span>(<span class="st">"[Dark Button]"</span>)
+
+<span class="kw">class</span> <span class="cl">DarkCheckbox</span>(<span class="cl">Checkbox</span>):
+    <span class="kw">def</span> <span class="fn">render</span>(<span class="kw">self</span>): <span class="fn">print</span>(<span class="st">"[Dark Checkbox]"</span>)
+
+<span class="kw">class</span> <span class="cl">DarkThemeFactory</span>(<span class="cl">UIFactory</span>):
+    <span class="kw">def</span> <span class="fn">create_button</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="cl">DarkButton</span>()
+    <span class="kw">def</span> <span class="fn">create_checkbox</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="cl">DarkCheckbox</span>()
+
+<span class="kw">def</span> <span class="fn">build_ui</span>(factory: <span class="cl">UIFactory</span>):
+    factory.create_button().render()
+    factory.create_checkbox().render()
+
+build_ui(<span class="cl">DarkThemeFactory</span>())</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>System must be independent of how products are created</li><li>You need families of related products to work together</li><li>Swapping entire product families (e.g. themes, platforms) at runtime</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Only one product family — Factory Method suffices</li><li>Adding new product types requires changing all factory interfaces</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>GUI toolkits: wxPython, Qt — platform-specific widget factories</li>
+            <li>Database abstraction layers — different adapters per DB engine</li>
+            <li>Theme engines in design systems</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUILDER -->
+    <div class="pattern-card creational" data-category="creational" data-tags="builder step fluent chain construct complex object">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🔧</span>
+        <div class="pattern-hd-info">
+          <h3>Builder</h3>
+          <p>Separate the construction of a complex object from its representation using a step-by-step interface.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-cr">Creational</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+
+@dataclass
+<span class="kw">class</span> <span class="cl">Query</span>:
+    table: str
+    columns: list[str]
+    conditions: list[str]
+    order: str | <span class="kw">None</span>
+    limit_val: int | <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">to_sql</span>(<span class="kw">self</span>) -> str:
+        cols = <span class="st">", "</span>.join(<span class="kw">self</span>.columns) <span class="kw">or</span> <span class="st">"*"</span>
+        sql  = <span class="st">f"SELECT {cols} FROM {self.table}"</span>
+        <span class="kw">if</span> <span class="kw">self</span>.conditions:
+            sql += <span class="st">f" WHERE {' AND '.join(self.conditions)}"</span>
+        <span class="kw">if</span> <span class="kw">self</span>.order:
+            sql += <span class="st">f" ORDER BY {self.order}"</span>
+        <span class="kw">if</span> <span class="kw">self</span>.limit_val:
+            sql += <span class="st">f" LIMIT {self.limit_val}"</span>
+        <span class="kw">return</span> sql
+
+<span class="kw">class</span> <span class="cl">QueryBuilder</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, table: str):
+        <span class="kw">self</span>._table = table
+        <span class="kw">self</span>._cols, <span class="kw">self</span>._conds = [], []
+        <span class="kw">self</span>._order = <span class="kw">self</span>._limit = <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">select</span>(<span class="kw">self</span>, *cols): <span class="kw">self</span>._cols.extend(cols); <span class="kw">return self</span>
+    <span class="kw">def</span> <span class="fn">where</span>(<span class="kw">self</span>, cond):  <span class="kw">self</span>._conds.append(cond); <span class="kw">return self</span>
+    <span class="kw">def</span> <span class="fn">order_by</span>(<span class="kw">self</span>, col): <span class="kw">self</span>._order = col; <span class="kw">return self</span>
+    <span class="kw">def</span> <span class="fn">limit</span>(<span class="kw">self</span>, n):     <span class="kw">self</span>._limit = n; <span class="kw">return self</span>
+    <span class="kw">def</span> <span class="fn">build</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="cl">Query</span>(<span class="kw">self</span>._table, <span class="kw">self</span>._cols, <span class="kw">self</span>._conds, <span class="kw">self</span>._order, <span class="kw">self</span>._limit)
+
+q = (<span class="cl">QueryBuilder</span>(<span class="st">"users"</span>)
+     .select(<span class="st">"id"</span>, <span class="st">"name"</span>, <span class="st">"email"</span>)
+     .where(<span class="st">"active = true"</span>)
+     .order_by(<span class="st">"name"</span>)
+     .limit(<span class="nc">10</span>)
+     .build())
+<span class="fn">print</span>(q.to_sql())</pre>
+          </div>
+          <div class="insight">💡 The Builder pattern shines when an object requires many parameters, especially optional ones. It prevents the "telescoping constructor" anti-pattern where you have constructors with 8+ parameters.</div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Complex objects with many optional parameters</li><li>Different representations of the same construction process</li><li>Step-by-step construction with validation at each step</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Simple objects — use a constructor or <code>@dataclass</code></li><li>The number of steps is fixed and small</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>SQLAlchemy's query API: <code>session.query(User).filter(...).order_by(...).limit(10)</code></li>
+            <li>Python's <code>pathlib.Path</code> chaining</li>
+            <li>HTTP clients: <code>httpx.Client().get(url).headers(...)</code></li>
+            <li>Python's <code>unittest.mock.patch</code> builder</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROTOTYPE -->
+    <div class="pattern-card creational" data-category="creational" data-tags="prototype clone copy deep shallow">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🧬</span>
+        <div class="pattern-hd-info">
+          <h3>Prototype</h3>
+          <p>Create new objects by cloning an existing object rather than creating from scratch.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-cr">Creational</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">import</span> copy
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+
+@dataclass
+<span class="kw">class</span> <span class="cl">GameCharacter</span>:
+    name: str
+    hp: int
+    stats: dict[str, int] = field(default_factory=dict)
+    inventory: list[str] = field(default_factory=list)
+
+    <span class="kw">def</span> <span class="fn">clone</span>(<span class="kw">self</span>) -> <span class="st">"GameCharacter"</span>:
+        <span class="kw">return</span> copy.deepcopy(<span class="kw">self</span>)
+
+    <span class="kw">def</span> <span class="fn">with_name</span>(<span class="kw">self</span>, name: str) -> <span class="st">"GameCharacter"</span>:
+        c = <span class="kw">self</span>.clone()
+        c.name = name
+        <span class="kw">return</span> c
+
+<span class="cm"># Base template — build once, clone many times</span>
+warrior_template = <span class="cl">GameCharacter</span>(
+    name=<span class="st">"Warrior"</span>, hp=<span class="nc">200</span>,
+    stats={<span class="st">"str"</span>: <span class="nc">18</span>, <span class="st">"dex"</span>: <span class="nc">10</span>, <span class="st">"int"</span>: <span class="nc">6</span>},
+    inventory=[<span class="st">"sword"</span>, <span class="st">"shield"</span>]
+)
+
+player1 = warrior_template.with_name(<span class="st">"Aragorn"</span>)
+player2 = warrior_template.with_name(<span class="st">"Boromir"</span>)
+player2.inventory.append(<span class="st">"horn"</span>)
+
+<span class="fn">print</span>(player1)
+<span class="fn">print</span>(player2)
+<span class="fn">print</span>(<span class="st">"Template unchanged:"</span>, warrior_template.inventory)</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Object creation is expensive (DB queries, heavy computation)</li><li>You need many slightly-different variants of an object</li><li>Classes to instantiate are specified at runtime</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Objects are cheap to create from scratch</li><li>Deep copying creates unexpected side effects with circular references</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>copy.copy()</code> and <code>copy.deepcopy()</code> built-ins implement this pattern</li>
+            <li>Django model instances: <code>obj.pk = None; obj.save()</code> clones a record</li>
+            <li>Game engines for spawning enemy variants from templates</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ══════════════════════════════════ STRUCTURAL -->
+<section id="structural">
+  <div class="page-col">
+    <div class="section-label structural"><i class="fas fa-sitemap"></i> Structural Patterns</div>
+    <p style="margin-bottom:1.2rem;">Structural patterns deal with object composition — creating relationships between objects to form larger, flexible structures.</p>
+
+    <!-- ADAPTER -->
+    <div class="pattern-card structural" data-category="structural" data-tags="adapter wrapper interface convert incompatible">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🔌</span>
+        <div class="pattern-hd-info">
+          <h3>Adapter</h3>
+          <p>Convert one interface into another that clients expect — lets incompatible classes work together.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-st">Structural</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap teal">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">class</span> <span class="cl">LegacyPayment</span>:
+    <span class="cm"># Old system — can't change this</span>
+    <span class="kw">def</span> <span class="fn">do_payment</span>(<span class="kw">self</span>, amount_cents: int, currency_code: str) -> bool:
+        <span class="fn">print</span>(<span class="st">f"Legacy: paying {amount_cents}¢ in {currency_code}"</span>)
+        <span class="kw">return</span> <span class="kw">True</span>
+
+<span class="kw">class</span> <span class="cl">ModernPaymentGateway</span>:
+    <span class="cm"># New interface all new code expects</span>
+    <span class="kw">def</span> <span class="fn">charge</span>(<span class="kw">self</span>, amount: float, currency: str = <span class="st">"USD"</span>) -> bool: ...
+
+<span class="kw">class</span> <span class="cl">LegacyPaymentAdapter</span>(<span class="cl">ModernPaymentGateway</span>):
+    <span class="cm"># Wraps the old system in the new interface</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>._legacy = <span class="cl">LegacyPayment</span>()
+
+    <span class="kw">def</span> <span class="fn">charge</span>(<span class="kw">self</span>, amount: float, currency: str = <span class="st">"USD"</span>) -> bool:
+        cents = int(amount * <span class="nc">100</span>)
+        <span class="kw">return</span> <span class="kw">self</span>._legacy.do_payment(cents, currency.upper())
+
+<span class="kw">def</span> <span class="fn">process_order</span>(gateway: <span class="cl">ModernPaymentGateway</span>, total: float):
+    <span class="fn">print</span>(<span class="st">f"Processing ${total:.2f}"</span>)
+    gateway.charge(total)
+
+process_order(<span class="cl">LegacyPaymentAdapter</span>(), <span class="nc">29.99</span>)</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Integrating a legacy system with a new interface</li><li>Using a third-party library with an incompatible interface</li><li>Reusing existing functionality without modifying source code</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>You can change the original class — prefer direct refactoring</li><li>The translation logic is so complex it obscures the intent</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>io.TextIOWrapper</code> adapts a binary stream to a text stream</li>
+            <li>Django REST Framework serializers adapt model instances to JSON-serializable dicts</li>
+            <li>Database drivers: psycopg2, cx_Oracle all adapt different DB APIs to Python's DB-API 2.0</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECORATOR -->
+    <div class="pattern-card structural" data-category="structural" data-tags="decorator wrap extend behaviour runtime dynamic">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🎀</span>
+        <div class="pattern-hd-info">
+          <h3>Decorator (Structural)</h3>
+          <p>Attach additional responsibilities to an object dynamically — a flexible alternative to subclassing.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-st">Structural</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap teal">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">DataSource</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">write</span>(<span class="kw">self</span>, data: str): ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">read</span>(<span class="kw">self</span>) -> str: ...
+
+<span class="kw">class</span> <span class="cl">FileDataSource</span>(<span class="cl">DataSource</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name): <span class="kw">self</span>._data = <span class="st">""</span>; <span class="kw">self</span>.name = name
+    <span class="kw">def</span> <span class="fn">write</span>(<span class="kw">self</span>, data): <span class="kw">self</span>._data = data; <span class="fn">print</span>(<span class="st">f"File({self.name}): written"</span>)
+    <span class="kw">def</span> <span class="fn">read</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._data
+
+<span class="kw">class</span> <span class="cl">DataSourceDecorator</span>(<span class="cl">DataSource</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, wrapped: <span class="cl">DataSource</span>): <span class="kw">self</span>._wrapped = wrapped
+    <span class="kw">def</span> <span class="fn">write</span>(<span class="kw">self</span>, data): <span class="kw">self</span>._wrapped.write(data)
+    <span class="kw">def</span> <span class="fn">read</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._wrapped.read()
+
+<span class="kw">class</span> <span class="cl">EncryptionDecorator</span>(<span class="cl">DataSourceDecorator</span>):
+    <span class="kw">def</span> <span class="fn">write</span>(<span class="kw">self</span>, data):
+        encrypted = data[::-<span class="nc">1</span>]  <span class="cm"># toy encryption</span>
+        <span class="fn">print</span>(<span class="st">f"Encrypted: {encrypted}"</span>)
+        <span class="kw">super</span>().write(encrypted)
+    <span class="kw">def</span> <span class="fn">read</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">super</span>().read()[::-<span class="nc">1</span>]
+
+<span class="kw">class</span> <span class="cl">CompressionDecorator</span>(<span class="cl">DataSourceDecorator</span>):
+    <span class="kw">def</span> <span class="fn">write</span>(<span class="kw">self</span>, data):
+        <span class="fn">print</span>(<span class="st">f"Compressed ({len(data)} → {len(data)//2} bytes)"</span>)
+        <span class="kw">super</span>().write(data)
+
+source = <span class="cl">CompressionDecorator</span>(<span class="cl">EncryptionDecorator</span>(<span class="cl">FileDataSource</span>(<span class="st">"data.txt"</span>)))
+source.write(<span class="st">"Hello, Design Patterns!"</span>)
+<span class="fn">print</span>(<span class="st">"Read back:"</span>, source.read())</pre>
+          </div>
+          <div class="insight">💡 Note the difference from Python's function decorator (<code>@decorator</code> syntax). The GoF Decorator wraps an <em>object</em> at runtime; Python's <code>@decorator</code> wraps a <em>function</em> at definition time. Both follow the same structural idea.</div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Adding behaviour to individual objects without affecting others</li><li>Inheritance would cause a class explosion of combinations</li><li>Behaviour needs to be added and removed at runtime</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>The order of decorators matters in unexpected ways</li><li>Simple extension via inheritance is cleaner</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>functools.lru_cache</code>, <code>property</code>, <code>staticmethod</code> are function decorators</li>
+            <li>Python's <code>io</code> module: <code>BufferedReader(FileIO(...))</code></li>
+            <li>Django middleware wraps request/response handlers</li>
+            <li>Flask's <code>@app.route</code> decorator</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FACADE -->
+    <div class="pattern-card structural" data-category="structural" data-tags="facade simple interface subsystem hide complex">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🏛️</span>
+        <div class="pattern-hd-info">
+          <h3>Facade</h3>
+          <p>Provide a simplified interface to a complex subsystem — hide complexity behind a clean API.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-st">Structural</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap teal">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">class</span> <span class="cl">VideoDecoder</span>:
+    <span class="kw">def</span> <span class="fn">decode</span>(<span class="kw">self</span>, f): <span class="fn">print</span>(<span class="st">f"Decoded video: {f}"</span>)
+
+<span class="kw">class</span> <span class="cl">AudioMixer</span>:
+    <span class="kw">def</span> <span class="fn">mix</span>(<span class="kw">self</span>, f): <span class="fn">print</span>(<span class="st">f"Mixed audio: {f}"</span>)
+
+<span class="kw">class</span> <span class="cl">SubtitleParser</span>:
+    <span class="kw">def</span> <span class="fn">parse</span>(<span class="kw">self</span>, f): <span class="fn">print</span>(<span class="st">f"Parsed subtitles: {f}"</span>)
+
+<span class="kw">class</span> <span class="cl">VideoRenderer</span>:
+    <span class="kw">def</span> <span class="fn">render</span>(<span class="kw">self</span>, v, a): <span class="fn">print</span>(<span class="st">"Rendered final frame buffer"</span>)
+
+<span class="kw">class</span> <span class="cl">VideoPlayerFacade</span>:
+    <span class="cm"># One simple method hides 4 subsystems</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>._decoder  = <span class="cl">VideoDecoder</span>()
+        <span class="kw">self</span>._mixer    = <span class="cl">AudioMixer</span>()
+        <span class="kw">self</span>._subs     = <span class="cl">SubtitleParser</span>()
+        <span class="kw">self</span>._renderer = <span class="cl">VideoRenderer</span>()
+
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>, filename: str):
+        <span class="fn">print</span>(<span class="st">f"▶ Playing {filename}"</span>)
+        self._decoder.decode(filename)
+        self._mixer.mix(filename)
+        self._subs.parse(filename)
+        self._renderer.render(<span class="st">"video"</span>, <span class="st">"audio"</span>)
+        <span class="fn">print</span>(<span class="st">"✓ Playback started\n"</span>)
+
+player = <span class="cl">VideoPlayerFacade</span>()
+player.play(<span class="st">"movie.mp4"</span>)</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>A simple interface is needed for a complex subsystem</li><li>Layering subsystems — each layer communicates via facade</li><li>Reducing dependencies on internal subsystem classes</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Clients need fine-grained control over the subsystem</li><li>The facade becomes a "god object" owning too much logic</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>requests</code> library is a facade over <code>urllib3</code>, SSL, encodings, and HTTP parsing</li>
+            <li>Django's ORM is a facade over raw SQL and DB drivers</li>
+            <li>boto3 (AWS SDK) facades dozens of AWS service APIs</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROXY -->
+    <div class="pattern-card structural" data-category="structural" data-tags="proxy lazy loading cache access control virtual remote">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🔒</span>
+        <div class="pattern-hd-info">
+          <h3>Proxy</h3>
+          <p>Provide a surrogate or placeholder for another object to control access to it.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-st">Structural</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap teal">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre"><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">Database</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">query</span>(<span class="kw">self</span>, sql: str) -> list: ...
+
+<span class="kw">class</span> <span class="cl">RealDatabase</span>(<span class="cl">Database</span>):
+    <span class="kw">def</span> <span class="fn">query</span>(<span class="kw">self</span>, sql: str) -> list:
+        <span class="fn">print</span>(<span class="st">f"[DB] Executing: {sql}"</span>)
+        <span class="kw">return</span> [{<span class="st">"id"</span>: <span class="nc">1</span>, <span class="st">"name"</span>: <span class="st">"Ana"</span>}]
+
+<span class="kw">class</span> <span class="cl">CachedDatabaseProxy</span>(<span class="cl">Database</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, db: <span class="cl">Database</span>):
+        <span class="kw">self</span>._db    = db
+        <span class="kw">self</span>._cache: dict = {}
+        <span class="kw">self</span>._hits  = <span class="nc">0</span>
+
+    <span class="kw">def</span> <span class="fn">query</span>(<span class="kw">self</span>, sql: str) -> list:
+        <span class="kw">if</span> sql <span class="kw">in</span> <span class="kw">self</span>._cache:
+            <span class="kw">self</span>._hits += <span class="nc">1</span>
+            <span class="fn">print</span>(<span class="st">f"[Cache HIT #{self._hits}] {sql}"</span>)
+            <span class="kw">return</span> <span class="kw">self</span>._cache[sql]
+        result = <span class="kw">self</span>._db.query(sql)
+        <span class="kw">self</span>._cache[sql] = result
+        <span class="kw">return</span> result
+
+db = <span class="cl">CachedDatabaseProxy</span>(<span class="cl">RealDatabase</span>())
+db.query(<span class="st">"SELECT * FROM users"</span>)
+db.query(<span class="st">"SELECT * FROM users"</span>)  <span class="cm"># cache hit</span>
+db.query(<span class="st">"SELECT * FROM users"</span>)  <span class="cm"># cache hit</span></pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Lazy initialisation of expensive objects</li><li>Caching results of expensive operations</li><li>Access control — check permissions before delegating</li><li>Logging or auditing access to an object</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>The overhead of the proxy outweighs its benefits</li><li>The response time increase isn't acceptable</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>unittest.mock.MagicMock</code> is a proxy that records all calls</li>
+            <li>SQLAlchemy lazy-loaded relationships — a proxy that queries on first access</li>
+            <li>Python's <code>weakref.proxy()</code></li>
+            <li>CDNs and reverse proxies (Nginx, Cloudflare) follow this exact pattern</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPOSITE -->
+    <div class="pattern-card structural" data-category="structural" data-tags="composite tree hierarchy part whole leaf node">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🌳</span>
+        <div class="pattern-hd-info">
+          <h3>Composite</h3>
+          <p>Compose objects into tree structures. Let clients treat individual objects and compositions uniformly.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-st">Structural</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap teal">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">FileSystemItem</span>(ABC):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name): <span class="kw">self</span>.name = name
+
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">size</span>(<span class="kw">self</span>) -> int: ...
+
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>, indent=<span class="nc">0</span>): ...
+
+<span class="kw">class</span> <span class="cl">File</span>(<span class="cl">FileSystemItem</span>):  <span class="cm"># Leaf</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, size):
+        <span class="kw">super</span>().__init__(name); <span class="kw">self</span>._size = size
+    <span class="kw">def</span> <span class="fn">size</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._size
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>, indent=<span class="nc">0</span>):
+        <span class="fn">print</span>(<span class="st">" "</span> * indent + <span class="st">f"📄 {self.name} ({self._size}B)"</span>)
+
+<span class="kw">class</span> <span class="cl">Directory</span>(<span class="cl">FileSystemItem</span>):  <span class="cm"># Composite</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name):
+        <span class="kw">super</span>().__init__(name); <span class="kw">self</span>._children = []
+    <span class="kw">def</span> <span class="fn">add</span>(<span class="kw">self</span>, item: <span class="cl">FileSystemItem</span>):
+        <span class="kw">self</span>._children.append(item); <span class="kw">return self</span>
+    <span class="kw">def</span> <span class="fn">size</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="fn">sum</span>(c.size() <span class="kw">for</span> c <span class="kw">in</span> <span class="kw">self</span>._children)
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>, indent=<span class="nc">0</span>):
+        <span class="fn">print</span>(<span class="st">" "</span> * indent + <span class="st">f"📁 {self.name}/ ({self.size()}B)"</span>)
+        <span class="kw">for</span> c <span class="kw">in</span> <span class="kw">self</span>._children: c.display(indent + <span class="nc">2</span>)
+
+root = Directory(<span class="st">"project"</span>)
+src  = Directory(<span class="st">"src"</span>)
+src.add(File(<span class="st">"main.py"</span>, <span class="nc">1200</span>)).add(File(<span class="st">"utils.py"</span>, <span class="nc">800</span>))
+root.add(src).add(File(<span class="st">"README.md"</span>, <span class="nc">300</span>))
+root.display()</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Representing part-whole hierarchies (file systems, UI trees, org charts)</li><li>Client code should treat individual objects and groups uniformly</li><li>Recursive tree structures are natural for the domain</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Leaves and composites need very different interfaces</li><li>The hierarchy is shallow — a list suffices</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's AST (Abstract Syntax Tree) — expressions contain sub-expressions</li>
+            <li>HTML/XML DOM — every node is either a leaf (text) or a composite (element)</li>
+            <li>GUI frameworks: widget trees, layout containers</li>
+            <li>pytest's test collection: TestSuite contains TestCases</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRIDGE -->
+    <div class="pattern-card structural" data-category="structural" data-tags="bridge decouple abstraction implementation hierarchy">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🌉</span>
+        <div class="pattern-hd-info">
+          <h3>Bridge</h3>
+          <p>Decouple an abstraction from its implementation so both can vary independently.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-st">Structural</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap teal">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">Renderer</span>(ABC):  <span class="cm"># Implementation</span>
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">render_circle</span>(<span class="kw">self</span>, x, y, r): ...
+
+<span class="kw">class</span> <span class="cl">SVGRenderer</span>(<span class="cl">Renderer</span>):
+    <span class="kw">def</span> <span class="fn">render_circle</span>(<span class="kw">self</span>, x, y, r):
+        <span class="fn">print</span>(<span class="st">f'&lt;circle cx="{x}" cy="{y}" r="{r}"/&gt;'</span>)
+
+<span class="kw">class</span> <span class="cl">CanvasRenderer</span>(<span class="cl">Renderer</span>):
+    <span class="kw">def</span> <span class="fn">render_circle</span>(<span class="kw">self</span>, x, y, r):
+        <span class="fn">print</span>(<span class="st">f"ctx.arc({x},{y},{r},0,2*Math.PI)"</span>)
+
+<span class="kw">class</span> <span class="cl">Shape</span>(ABC):  <span class="cm"># Abstraction</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, renderer: <span class="cl">Renderer</span>):
+        <span class="kw">self</span>.renderer = renderer
+
+<span class="kw">class</span> <span class="cl">Circle</span>(<span class="cl">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, x, y, r, renderer):
+        <span class="kw">super</span>().__init__(renderer)
+        <span class="kw">self</span>.x, <span class="kw">self</span>.y, <span class="kw">self</span>.r = x, y, r
+
+    <span class="kw">def</span> <span class="fn">draw</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.renderer.render_circle(<span class="kw">self</span>.x, <span class="kw">self</span>.y, <span class="kw">self</span>.r)
+
+Circle(<span class="nc">10</span>, <span class="nc">20</span>, <span class="nc">5</span>, <span class="cl">SVGRenderer</span>()).draw()
+Circle(<span class="nc">10</span>, <span class="nc">20</span>, <span class="nc">5</span>, <span class="cl">CanvasRenderer</span>()).draw()</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Avoiding permanent binding between abstraction and implementation</li><li>Both abstraction and implementation should be extensible independently</li><li>Implementation changes shouldn't affect client code</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Only one implementation exists — needless complexity</li><li>The abstraction and implementation rarely change independently</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>logging</code> module: <code>Logger</code> (abstraction) + <code>Handler</code> implementations (FileHandler, StreamHandler)</li>
+            <li>Database drivers: the DB-API 2.0 spec is an abstraction; each vendor provides the implementation</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLYWEIGHT -->
+    <div class="pattern-card structural" data-category="structural" data-tags="flyweight memory share intrinsic extrinsic cache pool">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🪶</span>
+        <div class="pattern-hd-info">
+          <h3>Flyweight</h3>
+          <p>Use sharing to efficiently support a large number of fine-grained objects — minimise memory by sharing common state.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-st">Structural</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap teal">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">import</span> sys
+
+<span class="kw">class</span> <span class="cl">TreeType</span>:
+    <span class="cm"># Intrinsic state — shared, immutable</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, color, texture):
+        <span class="kw">self</span>.name, <span class="kw">self</span>.color, <span class="kw">self</span>.texture = name, color, texture
+    <span class="kw">def</span> <span class="fn">draw</span>(<span class="kw">self</span>, x, y):  <span class="cm"># x,y are extrinsic state — passed in</span>
+        <span class="fn">print</span>(<span class="st">f"Drawing {self.name} at ({x},{y})"</span>)
+
+<span class="kw">class</span> <span class="cl">TreeFactory</span>:
+    _types: dict[tuple, <span class="cl">TreeType</span>] = {}
+
+    @classmethod
+    <span class="kw">def</span> <span class="fn">get</span>(cls, name, color, texture) -> <span class="cl">TreeType</span>:
+        key = (name, color, texture)
+        <span class="kw">if</span> key <span class="kw">not in</span> cls._types:
+            cls._types[key] = <span class="cl">TreeType</span>(name, color, texture)
+            <span class="fn">print</span>(<span class="st">f"Created new TreeType: {name}"</span>)
+        <span class="kw">return</span> cls._types[key]
+
+forest = []
+<span class="kw">for</span> i <span class="kw">in</span> range(<span class="nc">1000</span>):
+    t = <span class="cl">TreeFactory</span>.get(<span class="st">"Pine"</span>, <span class="st">"green"</span>, <span class="st">"rough"</span>)
+    forest.append((t, i, i*<span class="nc">2</span>))  <span class="cm"># extrinsic state stored outside</span>
+
+<span class="fn">print</span>(<span class="st">f"Trees in forest: {len(forest)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Unique TreeType objects: {len(TreeFactory._types)}"</span>)
+forest[<span class="nc">42</span>][<span class="nc">0</span>].draw(*forest[<span class="nc">42</span>][<span class="nc">1</span>:])</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Huge numbers of similar objects are consuming too much RAM</li><li>Most object state can be made extrinsic (passed in)</li><li>Many identical objects can be replaced by a few shared ones</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Objects have little shared state — sharing saves nothing</li><li>The complexity outweighs the memory savings</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python interns small integers (−5 to 256) and common strings automatically</li>
+            <li>Font rendering: glyph objects (shape data) are shared; position is extrinsic</li>
+            <li>Game engines: terrain tiles, particle effects share type objects</li>
+            <li>Python's <code>__slots__</code> reduces per-instance memory similarly</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ══════════════════════════════════ BEHAVIORAL -->
+<section id="behavioral">
+  <div class="page-col">
+    <div class="section-label behavioral"><i class="fas fa-exchange-alt"></i> Behavioral Patterns</div>
+    <p style="margin-bottom:1.2rem;">Behavioral patterns are concerned with algorithms and the assignment of responsibilities between objects — how objects collaborate and distribute work.</p>
+
+    <!-- OBSERVER -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="observer event publish subscribe listener notify callback">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">📡</span>
+        <div class="pattern-hd-info">
+          <h3>Observer</h3>
+          <p>Define a one-to-many dependency so when one object changes state, all dependents are notified automatically.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+<span class="kw">class</span> <span class="cl">Observer</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">update</span>(<span class="kw">self</span>, event: str, data) -> <span class="kw">None</span>: ...
+
+<span class="kw">class</span> <span class="cl">Subject</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>._observers: list[<span class="cl">Observer</span>] = []
+
+    <span class="kw">def</span> <span class="fn">subscribe</span>(<span class="kw">self</span>, obs): <span class="kw">self</span>._observers.append(obs)
+    <span class="kw">def</span> <span class="fn">unsubscribe</span>(<span class="kw">self</span>, obs): <span class="kw">self</span>._observers.remove(obs)
+
+    <span class="kw">def</span> <span class="fn">_notify</span>(<span class="kw">self</span>, event, data=<span class="kw">None</span>):
+        <span class="kw">for</span> obs <span class="kw">in</span> <span class="kw">self</span>._observers:
+            obs.update(event, data)
+
+<span class="kw">class</span> <span class="cl">StockMarket</span>(<span class="cl">Subject</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>): <span class="kw">super</span>().__init__(); <span class="kw">self</span>._prices = {}
+    <span class="kw">def</span> <span class="fn">set_price</span>(<span class="kw">self</span>, ticker, price):
+        old = <span class="kw">self</span>._prices.get(ticker)
+        <span class="kw">self</span>._prices[ticker] = price
+        <span class="kw">self</span>._notify(<span class="st">"price_change"</span>, {<span class="st">"ticker"</span>: ticker, <span class="st">"old"</span>: old, <span class="st">"new"</span>: price})
+
+<span class="kw">class</span> <span class="cl">AlertObserver</span>(<span class="cl">Observer</span>):
+    <span class="kw">def</span> <span class="fn">update</span>(<span class="kw">self</span>, event, data):
+        <span class="kw">if</span> data[<span class="st">"old"</span>] <span class="kw">and</span> <span class="fn">abs</span>(data[<span class="st">"new"</span>]-data[<span class="st">"old"</span>])/data[<span class="st">"old"</span>] > <span class="nc">0.05</span>:
+            <span class="fn">print</span>(<span class="st">f"🚨 {data['ticker']} moved {(data['new']-data['old'])/data['old']:.1%}!"</span>)
+
+<span class="kw">class</span> <span class="cl">LogObserver</span>(<span class="cl">Observer</span>):
+    <span class="kw">def</span> <span class="fn">update</span>(<span class="kw">self</span>, event, data):
+        <span class="fn">print</span>(<span class="st">f"[LOG] {data['ticker']}: {data['old']} → {data['new']}"</span>)
+
+market = <span class="cl">StockMarket</span>()
+market.subscribe(<span class="cl">LogObserver</span>())
+market.subscribe(<span class="cl">AlertObserver</span>())
+market.set_price(<span class="st">"AAPL"</span>, <span class="nc">190.0</span>)
+market.set_price(<span class="st">"AAPL"</span>, <span class="nc">202.0</span>)  <span class="cm"># triggers alert</span></pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>A change in one object requires updating others — number unknown</li><li>Decoupled publish/subscribe without tight coupling</li><li>Event-driven architectures, UI updates, reactive systems</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Observers are called in a specific required order</li><li>Unexpected updates cascade and cause performance issues</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Django signals: <code>post_save.connect(handler)</code></li>
+            <li>Python's <code>tkinter</code> event binding: <code>widget.bind('&lt;Click&gt;', callback)</code></li>
+            <li>JavaScript's <code>EventEmitter</code> (same pattern)</li>
+            <li>SQLAlchemy ORM events: <code>event.listen()</code></li>
+            <li>FastAPI's dependency injection follows observer-like patterns</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRATEGY -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="strategy algorithm family interchangeable behaviour runtime swap">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">♟️</span>
+        <div class="pattern-hd-info">
+          <h3>Strategy</h3>
+          <p>Define a family of algorithms, encapsulate each, and make them interchangeable at runtime.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<span class="kw">from</span> typing <span class="kw">import</span> Callable
+
+<span class="cm"># Strategy using Protocol / Callable (idiomatic Python)</span>
+SortStrategy = Callable[[list], list]
+
+<span class="kw">def</span> <span class="fn">bubble_sort</span>(data: list) -> list:
+    d = data.copy()
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="fn">len</span>(d)):
+        <span class="kw">for</span> j <span class="kw">in</span> range(<span class="fn">len</span>(d) - i - <span class="nc">1</span>):
+            <span class="kw">if</span> d[j] > d[j+<span class="nc">1</span>]: d[j], d[j+<span class="nc">1</span>] = d[j+<span class="nc">1</span>], d[j]
+    <span class="kw">return</span> d
+
+<span class="kw">def</span> <span class="fn">quick_sort</span>(data: list) -> list:
+    <span class="kw">if</span> <span class="fn">len</span>(data) <= <span class="nc">1</span>: <span class="kw">return</span> data
+    pivot = data[<span class="fn">len</span>(data) // <span class="nc">2</span>]
+    left  = [x <span class="kw">for</span> x <span class="kw">in</span> data <span class="kw">if</span> x < pivot]
+    mid   = [x <span class="kw">for</span> x <span class="kw">in</span> data <span class="kw">if</span> x == pivot]
+    right = [x <span class="kw">for</span> x <span class="kw">in</span> data <span class="kw">if</span> x > pivot]
+    <span class="kw">return</span> quick_sort(left) + mid + quick_sort(right)
+
+<span class="kw">class</span> <span class="cl">DataProcessor</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, strategy: <span class="cl">SortStrategy</span> = sorted):
+        <span class="kw">self</span>._sort = strategy
+
+    <span class="kw">def</span> <span class="fn">set_strategy</span>(<span class="kw">self</span>, strategy: <span class="cl">SortStrategy</span>):
+        <span class="kw">self</span>._sort = strategy
+
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>, data: list) -> list:
+        <span class="fn">print</span>(<span class="st">f"Using: {self._sort.__name__}"</span>)
+        <span class="kw">return</span> <span class="kw">self</span>._sort(data)
+
+data = [<span class="nc">64</span>, <span class="nc">34</span>, <span class="nc">25</span>, <span class="nc">12</span>, <span class="nc">22</span>]
+proc = <span class="cl">DataProcessor</span>(bubble_sort)
+<span class="fn">print</span>(proc.process(data))
+proc.set_strategy(quick_sort)
+<span class="fn">print</span>(proc.process(data))</pre>
+          </div>
+          <div class="insight">💡 In Python, strategies are naturally just callables (functions or lambdas). No need for abstract base classes — pass the function directly. This is idiomatic Python Strategy.</div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Multiple algorithms for the same task, switchable at runtime</li><li>Eliminating large conditionals that select behaviour</li><li>Isolating algorithm implementation details from the code that uses it</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Only one or two algorithms — simple if/else is clearer</li><li>Clients never need to be aware of which strategy is used</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>sorted(key=...)</code> — the key function is a strategy</li>
+            <li>scikit-learn estimators: swap LinearRegression for RandomForest with the same <code>.fit()/.predict()</code> interface</li>
+            <li>Password hashing: bcrypt, argon2, scrypt are interchangeable strategies</li>
+            <li>Compression: gzip, bz2, lzma follow the same interface</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMAND -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="command undo redo queue action encapsulate request">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">📋</span>
+        <div class="pattern-hd-info">
+          <h3>Command</h3>
+          <p>Encapsulate a request as an object — enabling undo/redo, queuing, logging, and transactional operations.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<span class="kw">from</span> collections <span class="kw">import</span> deque
+
+<span class="kw">class</span> <span class="cl">Command</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>): ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">undo</span>(<span class="kw">self</span>): ...
+
+<span class="kw">class</span> <span class="cl">TextEditor</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>): <span class="kw">self</span>.text = <span class="st">""</span>
+    <span class="kw">def</span> <span class="fn">insert</span>(<span class="kw">self</span>, s): <span class="kw">self</span>.text += s
+    <span class="kw">def</span> <span class="fn">delete</span>(<span class="kw">self</span>, n): <span class="kw">self</span>.text = <span class="kw">self</span>.text[:-n]
+
+<span class="kw">class</span> <span class="cl">InsertCommand</span>(<span class="cl">Command</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, editor, text):
+        <span class="kw">self</span>.editor, <span class="kw">self</span>.text = editor, text
+    <span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>): <span class="kw">self</span>.editor.insert(<span class="kw">self</span>.text)
+    <span class="kw">def</span> <span class="fn">undo</span>(<span class="kw">self</span>):    <span class="kw">self</span>.editor.delete(<span class="fn">len</span>(<span class="kw">self</span>.text))
+
+<span class="kw">class</span> <span class="cl">CommandHistory</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>): <span class="kw">self</span>._stack = deque()
+    <span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>, cmd: <span class="cl">Command</span>):
+        cmd.execute(); <span class="kw">self</span>._stack.append(cmd)
+    <span class="kw">def</span> <span class="fn">undo</span>(<span class="kw">self</span>):
+        <span class="kw">if</span> <span class="kw">self</span>._stack: <span class="kw">self</span>._stack.pop().undo()
+
+editor  = <span class="cl">TextEditor</span>()
+history = <span class="cl">CommandHistory</span>()
+
+history.execute(<span class="cl">InsertCommand</span>(editor, <span class="st">"Hello"</span>))
+history.execute(<span class="cl">InsertCommand</span>(editor, <span class="st">" World"</span>))
+<span class="fn">print</span>(editor.text)   <span class="cm"># Hello World</span>
+history.undo()
+<span class="fn">print</span>(editor.text)   <span class="cm"># Hello</span>
+history.undo()
+<span class="fn">print</span>(editor.text)   <span class="cm"># (empty)</span></pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Undo/redo functionality is required</li><li>Operations need to be queued, scheduled, or logged</li><li>Implementing transactional behaviour (rollback)</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Simple, non-reversible operations — over-engineering</li><li>The command hierarchy grows to hundreds of classes</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Django database migrations: each migration is a Command with <code>forwards()</code> and <code>backwards()</code></li>
+            <li>Celery tasks: tasks are serialised commands queued for async execution</li>
+            <li>Git commits are commands with undo (revert) operations</li>
+            <li>Python's <code>asyncio.Task</code> encapsulates a coroutine as a schedulable command</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAIN OF RESPONSIBILITY -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="chain of responsibility handler pipeline middleware request">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">⛓️</span>
+        <div class="pattern-hd-info">
+          <h3>Chain of Responsibility</h3>
+          <p>Pass requests along a chain of handlers — each handler decides to process or forward the request.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+@dataclass
+<span class="kw">class</span> <span class="cl">Request</span>:
+    user_role:   str
+    amount:      float
+    description: str
+
+<span class="kw">class</span> <span class="cl">Approver</span>(ABC):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, limit):
+        <span class="kw">self</span>.name, <span class="kw">self</span>.limit = name, limit
+        <span class="kw">self</span>._next: <span class="cl">Approver</span> | <span class="kw">None</span> = <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">set_next</span>(<span class="kw">self</span>, handler: <span class="st">"Approver"</span>) -> <span class="st">"Approver"</span>:
+        <span class="kw">self</span>._next = handler; <span class="kw">return</span> handler
+
+    <span class="kw">def</span> <span class="fn">handle</span>(<span class="kw">self</span>, req: <span class="cl">Request</span>):
+        <span class="kw">if</span> req.amount <= <span class="kw">self</span>.limit:
+            <span class="fn">print</span>(<span class="st">f"✅ {self.name} approved ${req.amount:.0f} — {req.description}"</span>)
+        <span class="kw">elif</span> <span class="kw">self</span>._next:
+            <span class="fn">print</span>(<span class="st">f"⬆  {self.name} escalating ${req.amount:.0f}…"</span>)
+            <span class="kw">self</span>._next.handle(req)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="st">f"❌ ${req.amount:.0f} exceeds all approval limits"</span>)
+
+manager = Approver(<span class="st">"Manager"</span>,   <span class="nc">1_000</span>)
+director = Approver(<span class="st">"Director"</span>, <span class="nc">10_000</span>)
+cfo      = Approver(<span class="st">"CFO"</span>,       <span class="nc">100_000</span>)
+manager.set_next(director).set_next(cfo)
+
+<span class="kw">for</span> amt <span class="kw">in</span> [<span class="nc">500</span>, <span class="nc">5_000</span>, <span class="nc">50_000</span>, <span class="nc">150_000</span>]:
+    manager.handle(<span class="cl">Request</span>(<span class="st">"employee"</span>, amt, <span class="st">"Expense"</span>))
+    <span class="fn">print</span>()</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>More than one object may handle a request, and the handler isn't known a priori</li><li>Processing pipeline where each stage passes to the next</li><li>The set of handlers should be specifiable dynamically</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Every request must be handled — chain might drop requests silently</li><li>Performance-critical paths — traversing a long chain has overhead</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Django/Flask middleware stacks: each middleware can handle or pass the request</li>
+            <li>Python's logging: loggers pass records up to parent handlers</li>
+            <li>Exception handling: <code>try/except</code> chains bubble up through the call stack</li>
+            <li>Click command groups route CLI args through a handler chain</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMPLATE METHOD -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="template method skeleton algorithm hook override inherit">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">📐</span>
+        <div class="pattern-hd-info">
+          <h3>Template Method</h3>
+          <p>Define the skeleton of an algorithm in a base class — let subclasses override specific steps without changing the algorithm's structure.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">DataMigration</span>(ABC):
+    <span class="cm"># Template method — the invariant skeleton</span>
+    <span class="kw">def</span> <span class="fn">run</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.connect()
+        data = <span class="kw">self</span>.extract()
+        data = <span class="kw">self</span>.transform(data)
+        <span class="kw">self</span>.load(data)
+        <span class="kw">self</span>.disconnect()
+
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">connect</span>(<span class="kw">self</span>): ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">extract</span>(<span class="kw">self</span>) -> list: ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">transform</span>(<span class="kw">self</span>, data) -> list: ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">load</span>(<span class="kw">self</span>, data): ...
+    <span class="kw">def</span> <span class="fn">disconnect</span>(<span class="kw">self</span>): <span class="fn">print</span>(<span class="st">"Disconnected"</span>)  <span class="cm"># optional hook</span>
+
+<span class="kw">class</span> <span class="cl">CSVToJSON</span>(<span class="cl">DataMigration</span>):
+    <span class="kw">def</span> <span class="fn">connect</span>(<span class="kw">self</span>):     <span class="fn">print</span>(<span class="st">"Opening CSV file"</span>)
+    <span class="kw">def</span> <span class="fn">extract</span>(<span class="kw">self</span>):    <span class="kw">return</span> [<span class="st">"row1"</span>, <span class="st">"row2"</span>, <span class="st">"row3"</span>]
+    <span class="kw">def</span> <span class="fn">transform</span>(<span class="kw">self</span>, d): <span class="kw">return</span> [{<span class="st">"data"</span>: r} <span class="kw">for</span> r <span class="kw">in</span> d]
+    <span class="kw">def</span> <span class="fn">load</span>(<span class="kw">self</span>, d):      <span class="fn">print</span>(<span class="st">f"Writing {len(d)} JSON records"</span>)
+
+<span class="cl">CSVToJSON</span>().run()</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>The overall algorithm structure is fixed but certain steps vary</li><li>Avoiding code duplication of the common skeleton across subclasses</li><li>Controlling extension points precisely</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>The algorithm varies too much — Strategy is more flexible</li><li>Subclasses must override too many methods — hints at wrong abstraction</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Django's class-based views: <code>View.dispatch()</code> calls <code>get()</code>/<code>post()</code> — subclasses override</li>
+            <li>Python's <code>unittest.TestCase</code>: <code>setUp()</code> and <code>tearDown()</code> hooks</li>
+            <li>SQLAlchemy ORM: <code>__init__</code> hooks, <code>before_flush</code> events</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="state machine finite automata transition context behaviour">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🔄</span>
+        <div class="pattern-hd-info">
+          <h3>State</h3>
+          <p>Allow an object to alter its behaviour when its internal state changes — the object will appear to change its class.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">OrderState</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">confirm</span>(<span class="kw">self</span>, order): ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">ship</span>(<span class="kw">self</span>, order): ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">deliver</span>(<span class="kw">self</span>, order): ...
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">type</span>(<span class="kw">self</span>).__name__
+
+<span class="kw">class</span> <span class="cl">PendingState</span>(<span class="cl">OrderState</span>):
+    <span class="kw">def</span> <span class="fn">confirm</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"✅ Confirmed"</span>); o.state = <span class="cl">ConfirmedState</span>()
+    <span class="kw">def</span> <span class="fn">ship</span>(<span class="kw">self</span>, o):    <span class="fn">print</span>(<span class="st">"❌ Must confirm first"</span>)
+    <span class="kw">def</span> <span class="fn">deliver</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"❌ Must confirm first"</span>)
+
+<span class="kw">class</span> <span class="cl">ConfirmedState</span>(<span class="cl">OrderState</span>):
+    <span class="kw">def</span> <span class="fn">confirm</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"Already confirmed"</span>)
+    <span class="kw">def</span> <span class="fn">ship</span>(<span class="kw">self</span>, o):    <span class="fn">print</span>(<span class="st">"🚚 Shipped"</span>); o.state = <span class="cl">ShippedState</span>()
+    <span class="kw">def</span> <span class="fn">deliver</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"❌ Must ship first"</span>)
+
+<span class="kw">class</span> <span class="cl">ShippedState</span>(<span class="cl">OrderState</span>):
+    <span class="kw">def</span> <span class="fn">confirm</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"Already done"</span>)
+    <span class="kw">def</span> <span class="fn">ship</span>(<span class="kw">self</span>, o):    <span class="fn">print</span>(<span class="st">"Already shipped"</span>)
+    <span class="kw">def</span> <span class="fn">deliver</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"📦 Delivered!"</span>); o.state = <span class="cl">DeliveredState</span>()
+
+<span class="kw">class</span> <span class="cl">DeliveredState</span>(<span class="cl">OrderState</span>):
+    <span class="kw">def</span> <span class="fn">confirm</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"Order complete"</span>)
+    <span class="kw">def</span> <span class="fn">ship</span>(<span class="kw">self</span>, o):    <span class="fn">print</span>(<span class="st">"Order complete"</span>)
+    <span class="kw">def</span> <span class="fn">deliver</span>(<span class="kw">self</span>, o): <span class="fn">print</span>(<span class="st">"Order complete"</span>)
+
+<span class="kw">class</span> <span class="cl">Order</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>): <span class="kw">self</span>.state = <span class="cl">PendingState</span>()
+    <span class="kw">def</span> <span class="fn">confirm</span>(<span class="kw">self</span>): <span class="kw">self</span>.state.confirm(<span class="kw">self</span>)
+    <span class="kw">def</span> <span class="fn">ship</span>(<span class="kw">self</span>):    <span class="kw">self</span>.state.ship(<span class="kw">self</span>)
+    <span class="kw">def</span> <span class="fn">deliver</span>(<span class="kw">self</span>): <span class="kw">self</span>.state.deliver(<span class="kw">self</span>)
+
+o = <span class="cl">Order</span>()
+o.ship()     <span class="cm"># blocked</span>
+o.confirm()
+o.ship()
+o.deliver()</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Object behaviour depends heavily on its state, which changes at runtime</li><li>Replacing large conditionals that check object state</li><li>Finite state machines: orders, workflows, game entities</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Few states and simple transitions — if/else is clearer</li><li>State changes are infrequent and behaviour rarely varies</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's generators: <code>yield</code> implements a cooperative state machine</li>
+            <li>asyncio's event loop tracks coroutine states (pending, running, done)</li>
+            <li>Django's order/payment status workflows</li>
+            <li>Network connections: closed → connecting → connected → closing</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITERATOR -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="iterator traverse sequence next iter collection">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🔁</span>
+        <div class="pattern-hd-info">
+          <h3>Iterator</h3>
+          <p>Provide a way to sequentially access elements of a collection without exposing its underlying representation.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">class</span> <span class="cl">BinaryTreeNode</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, val, left=<span class="kw">None</span>, right=<span class="kw">None</span>):
+        <span class="kw">self</span>.val, <span class="kw">self</span>.left, <span class="kw">self</span>.right = val, left, right
+
+<span class="kw">class</span> <span class="cl">InOrderIterator</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, root):
+        <span class="kw">self</span>._stack = []
+        <span class="kw">self</span>._push_left(root)
+
+    <span class="kw">def</span> <span class="fn">_push_left</span>(<span class="kw">self</span>, node):
+        <span class="kw">while</span> node:
+            <span class="kw">self</span>._stack.append(node)
+            node = node.left
+
+    <span class="kw">def</span> <span class="fn">__iter__</span>(<span class="kw">self</span>): <span class="kw">return self</span>
+
+    <span class="kw">def</span> <span class="fn">__next__</span>(<span class="kw">self</span>):
+        <span class="kw">if not</span> <span class="kw">self</span>._stack:
+            <span class="kw">raise</span> <span class="cl">StopIteration</span>
+        node = <span class="kw">self</span>._stack.pop()
+        <span class="kw">self</span>._push_left(node.right)
+        <span class="kw">return</span> node.val
+
+tree = <span class="cl">BinaryTreeNode</span>(
+    <span class="nc">4</span>,
+    left  = <span class="cl">BinaryTreeNode</span>(<span class="nc">2</span>, <span class="cl">BinaryTreeNode</span>(<span class="nc">1</span>), <span class="cl">BinaryTreeNode</span>(<span class="nc">3</span>)),
+    right = <span class="cl">BinaryTreeNode</span>(<span class="nc">6</span>, <span class="cl">BinaryTreeNode</span>(<span class="nc">5</span>), <span class="cl">BinaryTreeNode</span>(<span class="nc">7</span>))
+)
+
+<span class="fn">print</span>(<span class="st">"In-order:"</span>, <span class="fn">list</span>(<span class="cl">InOrderIterator</span>(tree)))</pre>
+          </div>
+          <div class="insight">💡 Python's <code>__iter__</code> and <code>__next__</code> protocol IS the Iterator pattern built into the language. Every <code>for</code> loop calls these methods. Generators are the most Pythonic way to implement iterators.</div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Hiding the internal representation of a collection</li><li>Supporting multiple simultaneous traversals</li><li>Uniform interface across different collection types</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Python's built-in iteration protocol already handles this — just implement <code>__iter__</code></li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>for</code> loop, <code>iter()</code>, <code>next()</code> — the iterator protocol is native</li>
+            <li>All Python collections implement <code>__iter__</code>: list, dict, set, str, range</li>
+            <li>SQLAlchemy query results are iterators over rows</li>
+            <li>Django querysets are lazy iterators that only hit the DB when iterated</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDIATOR -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="mediator decouple middle broker coordinate chat room">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🤝</span>
+        <div class="pattern-hd-info">
+          <h3>Mediator</h3>
+          <p>Define an object that encapsulates how a set of objects interact — promotes loose coupling by preventing direct references.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">class</span> <span class="cl">ChatRoom</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>._members: list[<span class="st">"User"</span>] = []
+
+    <span class="kw">def</span> <span class="fn">join</span>(<span class="kw">self</span>, user: <span class="st">"User"</span>):
+        <span class="kw">self</span>._members.append(user)
+        <span class="kw">self</span>.broadcast(<span class="st">f"{user.name} joined"</span>, sender=user)
+
+    <span class="kw">def</span> <span class="fn">broadcast</span>(<span class="kw">self</span>, msg, sender):
+        <span class="kw">for</span> m <span class="kw">in</span> <span class="kw">self</span>._members:
+            <span class="kw">if</span> m <span class="kw">is not</span> sender:
+                m.receive(<span class="st">f"[{self.name}] {sender.name}: {msg}"</span>)
+
+<span class="kw">class</span> <span class="cl">User</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>._room: <span class="cl">ChatRoom</span> | <span class="kw">None</span> = <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">join</span>(<span class="kw">self</span>, room): <span class="kw">self</span>._room = room; room.join(<span class="kw">self</span>)
+    <span class="kw">def</span> <span class="fn">say</span>(<span class="kw">self</span>, msg):   <span class="kw">self</span>._room.broadcast(msg, <span class="kw">self</span>)
+    <span class="kw">def</span> <span class="fn">receive</span>(<span class="kw">self</span>, msg): <span class="fn">print</span>(<span class="st">f"  → {self.name} receives: {msg}"</span>)
+
+room = <span class="cl">ChatRoom</span>(<span class="st">"#python"</span>)
+alice, bob, carol = <span class="cl">User</span>(<span class="st">"Alice"</span>), <span class="cl">User</span>(<span class="st">"Bob"</span>), <span class="cl">User</span>(<span class="st">"Carol"</span>)
+<span class="kw">for</span> u <span class="kw">in</span> [alice, bob, carol]: u.join(room)
+alice.say(<span class="st">"Hello everyone!"</span>)</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Many objects communicate in complex, tangled ways</li><li>Reusing an object is hard because it refers to too many others</li><li>Decoupling components that would otherwise be tightly coupled</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>The mediator itself becomes a "god object" with too much logic</li><li>Components are few and communication is simple</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Django signals: the signal dispatcher is a mediator between senders and receivers</li>
+            <li>Message brokers: RabbitMQ, Kafka act as mediators between producers and consumers</li>
+            <li>Air traffic control: planes talk to the tower, not each other</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMENTO -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="memento snapshot undo restore save state history">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">💾</span>
+        <div class="pattern-hd-info">
+          <h3>Memento</h3>
+          <p>Capture and externalise an object's state so it can be restored later — without violating encapsulation.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre"><span class="kw">import</span> copy
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+@dataclass(frozen=<span class="kw">True</span>)
+<span class="kw">class</span> <span class="cl">Memento</span>:
+    state: dict  <span class="cm"># immutable snapshot</span>
+
+<span class="kw">class</span> <span class="cl">GameCharacter</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name):
+        <span class="kw">self</span>._state = {<span class="st">"name"</span>: name, <span class="st">"hp"</span>: <span class="nc">100</span>, <span class="st">"level"</span>: <span class="nc">1</span>, <span class="st">"xp"</span>: <span class="nc">0</span>}
+
+    <span class="kw">def</span> <span class="fn">save</span>(<span class="kw">self</span>) -> <span class="cl">Memento</span>:
+        <span class="kw">return</span> <span class="cl">Memento</span>(copy.deepcopy(<span class="kw">self</span>._state))
+
+    <span class="kw">def</span> <span class="fn">restore</span>(<span class="kw">self</span>, m: <span class="cl">Memento</span>):
+        <span class="kw">self</span>._state = copy.deepcopy(m.state)
+
+    <span class="kw">def</span> <span class="fn">fight</span>(<span class="kw">self</span>): <span class="kw">self</span>._state[<span class="st">"hp"</span>] -= <span class="nc">30</span>; <span class="kw">self</span>._state[<span class="st">"xp"</span>] += <span class="nc">50</span>
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">f"HP={self._state['hp']} XP={self._state['xp']}"</span>
+
+hero = <span class="cl">GameCharacter</span>(<span class="st">"Aria"</span>)
+checkpoint = hero.save()
+<span class="fn">print</span>(<span class="st">"Before boss:"</span>, hero)
+hero.fight(); hero.fight(); hero.fight()
+<span class="fn">print</span>(<span class="st">"After losses:"</span>, hero)
+hero.restore(checkpoint)
+<span class="fn">print</span>(<span class="st">"Restored:"</span>, hero)</pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Snapshots of an object's state must be produced for undo</li><li>Direct access to state fields would expose implementation details</li><li>Implementing checkpoint/restore in games or editors</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>Saving state is expensive (large objects, frequent saves)</li><li>Languages with garbage collection may accumulate too many mementos</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>pickle</code> and <code>copy</code> modules serialise/deserialise object state</li>
+            <li>Database transaction savepoints</li>
+            <li>Browser "back button" — each page is a memento of the browsing state</li>
+            <li>Jupyter notebook checkpoints</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISITOR -->
+    <div class="pattern-card behavioral" data-category="behavioral" data-tags="visitor double dispatch operation element accept traverse">
+      <div class="pattern-hd" onclick="togglePattern(this)">
+        <span class="pattern-hd-icon">🚶</span>
+        <div class="pattern-hd-info">
+          <h3>Visitor</h3>
+          <p>Represent an operation to be performed on elements of an object structure — define new operations without changing the classes.</p>
+        </div>
+        <div class="pattern-hd-right"><span class="badge badge-bh">Behavioral</span><span class="badge badge-gof">GoF</span><span class="pattern-toggle">+</span></div>
+      </div>
+      <div class="pattern-body">
+        <div class="pattern-tabs">
+          <div class="ptab active" onclick="switchTab(this,'code')">Code</div>
+          <div class="ptab" onclick="switchTab(this,'when')">When to Use</div>
+          <div class="ptab" onclick="switchTab(this,'real')">Real World</div>
+        </div>
+        <div class="ptab-pane active">
+          <div class="code-wrap purple">
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<span class="kw">from</span> functools <span class="kw">import</span> singledispatch
+
+<span class="cm"># Pythonic Visitor using singledispatch</span>
+<span class="kw">class</span> <span class="cl">Number</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, v): <span class="kw">self</span>.v = v
+
+<span class="kw">class</span> <span class="cl">Add</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, l, r): <span class="kw">self</span>.left, <span class="kw">self</span>.right = l, r
+
+<span class="kw">class</span> <span class="cl">Mul</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, l, r): <span class="kw">self</span>.left, <span class="kw">self</span>.right = l, r
+
+@singledispatch
+<span class="kw">def</span> <span class="fn">evaluate</span>(node): <span class="kw">raise</span> <span class="cl">TypeError</span>(<span class="st">f"Unknown: {type(node)}"</span>)
+
+@evaluate.register(<span class="cl">Number</span>)
+<span class="kw">def</span> _(node): <span class="kw">return</span> node.v
+
+@evaluate.register(<span class="cl">Add</span>)
+<span class="kw">def</span> _(node): <span class="kw">return</span> evaluate(node.left) + evaluate(node.right)
+
+@evaluate.register(<span class="cl">Mul</span>)
+<span class="kw">def</span> _(node): <span class="kw">return</span> evaluate(node.left) * evaluate(node.right)
+
+@singledispatch
+<span class="kw">def</span> <span class="fn">to_str</span>(node): <span class="kw">raise</span> <span class="cl">TypeError</span>()
+@to_str.register(<span class="cl">Number</span>)
+<span class="kw">def</span> _(n): <span class="kw">return</span> <span class="fn">str</span>(n.v)
+@to_str.register(<span class="cl">Add</span>)
+<span class="kw">def</span> _(n): <span class="kw">return</span> <span class="st">f"({to_str(n.left)} + {to_str(n.right)})"</span>
+@to_str.register(<span class="cl">Mul</span>)
+<span class="kw">def</span> _(n): <span class="kw">return</span> <span class="st">f"({to_str(n.left)} * {to_str(n.right)})"</span>
+
+expr = <span class="cl">Add</span>(<span class="cl">Mul</span>(<span class="cl">Number</span>(<span class="nc">2</span>), <span class="cl">Number</span>(<span class="nc">3</span>)), <span class="cl">Number</span>(<span class="nc">4</span>))
+<span class="fn">print</span>(to_str(expr), <span class="st">"="</span>, evaluate(expr))  <span class="cm"># (2*3)+4 = 10</span></pre>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="when-grid">
+            <div class="when-box use"><h5>✓ Use When</h5><ul><li>Many distinct and unrelated operations on an object structure</li><li>Object classes rarely change but operations on them change frequently</li><li>Gathering related operations across class hierarchies</li></ul></div>
+            <div class="when-box avoid"><h5>✗ Avoid When</h5><ul><li>The object hierarchy changes frequently — all visitors must be updated</li><li>Classes in the hierarchy need to be kept encapsulated from visitors</li></ul></div>
+          </div>
+        </div>
+        <div class="ptab-pane">
+          <div class="real-world"><h5>Real-World Usage</h5><ul>
+            <li>Python's <code>ast.NodeVisitor</code> — traverse and operate on Python AST nodes</li>
+            <li><code>functools.singledispatch</code> — idiomatic Python dispatch on type</li>
+            <li>Compiler passes: type checking, optimisation, code generation are separate visitors over the same AST</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding:2.5rem 0;border-top:1px solid var(--border);">
+  <div class="page-col" style="text-align:center;">
+    <h3 style="margin-bottom:.4rem;font-size:1rem;">Try the patterns yourself</h3>
+    <p style="margin-bottom:1.2rem;">Paste any snippet into the Code Runner and experiment live.</p>
+    <div style="display:flex;flex-direction:column;gap:.6rem;">
+      <a href="code-runner.html" class="btn btn-primary"><i class="fas fa-play"></i> Open Code Runner</a>
+      <a href="index.html" class="btn btn-outline"><i class="fas fa-home"></i> Back to Curriculum</a>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot page-col">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="4847320960" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+</main>
+
+<footer class="page-footer">
+  <div class="page-col">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Guided Tracks</h5>
+        <ul>
+          <li><a href="beginners.html">First-time dev</a></li>
+          <li><a href="data-science.html">Data &amp; statistics</a></li>
+          <li><a href="backend.html">Backend / Django</a></li>
+          <li><a href="aiml.html">ML fundamentals</a></li>
+          <li><a href="web-development.html">Web Development</a></li>
+          <li><a href="automation.html">Automation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Toolkit</h5>
+        <ul>
+          <li><a href="algorithm-history.html">History of Algorithms</a></li>
+          <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+          <li><a href="snippet-library.html">Snippet library</a></li>
+          <li><a href="code-runner.html">Code runner</a></li>
+          <li><a href="design-patterns.html">Design Patterns</a></li>
+          <li><a href="concepts.html">Coding Concepts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://www.facebook.com/GlennPansensoy">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/in/Glenn-Junsay-Pansensoy">LinkedIn</a></li>
+          <li><a href="https://x.com/@PoeticGlenn">X (Twitter)</a></li>
+          <li><a href="https://github.com/pansensoyglenn-dev">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Policies</h5>
+        <ul>
+          <li><a href="privacy.html">Data privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="cookie.html">Cookies</a></li>
+          <li><a href="disclaimer.html">Disclaimers</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2026 Poetic Bytes • Created by Glenn Junsay Pansensoy • dedicated to pragmatic learning.</p>
+      <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const pbar=document.getElementById('pbar');
+  window.addEventListener('scroll',()=>{const h=document.documentElement;const pct=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;if(pbar)pbar.style.width=Math.min(pct,100)+'%';},{passive:true});
+
+  const menuToggle=document.getElementById('menuToggle');
+  const drawer=document.getElementById('mobileDrawer');
+  const overlay=document.getElementById('drawerOverlay');
+  const drawerClose=document.getElementById('drawerClose');
+  function closeDrawer(){menuToggle?.classList.remove('active');drawer?.classList.remove('active');overlay?.classList.remove('active');document.body.style.overflow='';}
+  menuToggle?.addEventListener('click',e=>{e.stopPropagation();const open=drawer.classList.toggle('active');menuToggle.classList.toggle('active',open);overlay.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';});
+  overlay?.addEventListener('click',closeDrawer);
+  drawerClose?.addEventListener('click',closeDrawer);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+  document.querySelectorAll('.drawer-body button[data-href]').forEach(btn=>{btn.addEventListener('click',()=>{const t=document.querySelector(btn.dataset.href);if(t){t.scrollIntoView({behavior:'smooth'});closeDrawer();}});});
+
+  window.togglePattern=function(hdEl){
+    const body=hdEl.nextElementSibling;
+    const toggle=hdEl.querySelector('.pattern-toggle');
+    const isOpen=body.classList.contains('open');
+    body.classList.toggle('open',!isOpen);
+    toggle.classList.toggle('open',!isOpen);
+    toggle.textContent=isOpen?'+':'−';
+  };
+
+  window.switchTab=function(tabEl,type){
+    const body=tabEl.closest('.pattern-body');
+    body.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+    body.querySelectorAll('.ptab-pane').forEach(p=>p.classList.remove('active'));
+    tabEl.classList.add('active');
+    const panes=body.querySelectorAll('.ptab-pane');
+    const idx=['code','when','real'].indexOf(type);
+    if(panes[idx])panes[idx].classList.add('active');
+  };
+
+  window.copyCode=function(btn){
+    const pre=btn.closest('.code-wrap').querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText||pre.textContent).then(()=>{
+      btn.classList.add('copied');btn.innerHTML='<i class="fas fa-check"></i> Copied';
+      setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<i class="fas fa-copy"></i> Copy';},1800);
+    });
+  };
+
+  const searchInput=document.getElementById('patSearch');
+  const cards=document.querySelectorAll('.pattern-card');
+  const noResults=document.getElementById('noResults');
+  let activeFilter='all';
+
+  function applyFilters(){
+    const q=(searchInput?.value||'').toLowerCase().trim();
+    let visible=0;
+    cards.forEach(card=>{
+      const tags=(card.dataset.tags||'').toLowerCase();
+      const title=card.querySelector('h3')?.textContent.toLowerCase()||'';
+      const desc=card.querySelector('.pattern-hd-info p')?.textContent.toLowerCase()||'';
+      const cat=card.dataset.category||'';
+      const matchSearch=!q||tags.includes(q)||title.includes(q)||desc.includes(q);
+      const matchFilter=activeFilter==='all'||cat===activeFilter;
+      const show=matchSearch&&matchFilter;
+      card.classList.toggle('hidden',!show);
+      if(show)visible++;
+    });
+    noResults?.classList.toggle('hidden',visible>0);
+  }
+
+  searchInput?.addEventListener('input',applyFilters);
+
+  document.querySelectorAll('.cat-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter=btn.dataset.filter;
+      applyFilters();
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
