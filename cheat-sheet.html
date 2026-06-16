@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Python Cheat Sheet – 350+ Examples, Full Reference for Python 3.12 | Poetic Bytes</title>
+<meta name="description" content="The most comprehensive Python cheat sheet: 350+ runnable examples covering syntax, built‑ins, data structures, OOP, modules, async, algorithms, best practices, and interview prep. Free and SEO‑optimised.">
+<meta name="keywords" content="python cheat sheet, python reference, python 3.12, python syntax, python builtins, python standard library, python examples, python oop, python async, python modules, python algorithms, python interview questions, python best practices">
+<meta name="author" content="Glenn Junsay Pansensoy">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://poetic-bytes.vercel.app/cheat-sheet.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://poetic-bytes.vercel.app/cheat-sheet.html">
+<meta property="og:title" content="Python Cheat Sheet – 350+ Examples, Full Reference | Poetic Bytes">
+<meta property="og:description" content="Complete Python 3.12 quick reference with 350+ runnable examples, covering every aspect from basics to advanced concurrency, design patterns, and interview prep.">
+<meta property="og:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/assets/og-poetic-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Poetic Bytes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PoeticGlenn">
+<meta name="twitter:title" content="Python Cheat Sheet – 350+ Examples | Poetic Bytes">
+<meta name="twitter:description" content="Ultimate Python 3.12 reference: 350+ runnable examples, all topics covered.">
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Python Cheat Sheet – Complete Reference",
+    "description": "A comprehensive quick-reference for Python 3.12 with 350+ runnable examples across all major topics.",
+    "url": "https://poetic-bytes.vercel.app/cheat-sheet.html",
+    "inLanguage": "en",
+    "about": { "@type": "Thing", "name": "Python Programming" },
+    "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy" },
+    "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" }
+}
+</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+<style>
+:root {
+    --bg: #0B121C;
+    --panel: #0F1C2F;
+    --card: #111e30;
+    --border: #1F4060;
+    --blue: #4B8BBE;
+    --blue-deep: #306998;
+    --blue-lt: #78B9E6;
+    --gold: #FFD966;
+    --text: #E2E8F0;
+    --muted: #8BA3BF;
+    --code-bg: #0A1A24;
+    --green: #10B981;
+    --amber: #F59E0B;
+    --red: #EF4444;
+    --purple: #c084fc;
+    --teal: #2DD4BF;
+    --orange: #FB923C;
+    --btn-h: 44px;
+    --btn-r: 8px;
+    --card-r: 12px;
+    --gap: 1rem;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; overflow-x: hidden; }
+.page-col { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+section:last-child { border-bottom: none; }
+.progress-bar-wrap { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: rgba(31,64,96,.3); z-index: 2000; }
+.progress-bar { height: 100%; background: linear-gradient(90deg,var(--blue),var(--blue-lt)); width: 0%; transition: width .2s; }
+.nav-bar { position: fixed; top: 3px; left: 0; right: 0; background: rgba(11,18,28,.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 1000; }
+.nav-inner { max-width: 860px; margin: 0 auto; padding: .6rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand { display: flex; align-items: center; gap: .5rem; text-decoration: none; color: #fff; font-weight: 800; font-size: .85rem; letter-spacing: .08em; }
+.brand-icon { width: 2rem; height: 2rem; border-radius: 6px; background: linear-gradient(145deg,var(--blue),var(--blue-deep)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.nav-links { display: flex; gap: 1.2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; letter-spacing: .04em; }
+.nav-links a:hover { color: var(--gold); }
+@media(max-width:680px){ .nav-links { display: none; } }
+.menu-toggle { display: none; flex-direction: column; justify-content: center; align-items: center; background: rgba(75,139,190,.1); border: 1px solid var(--border); border-radius: 6px; width: 40px; height: 40px; cursor: pointer; gap: 4px; }
+.menu-toggle span { width: 18px; height: 2px; background: #fff; border-radius: 2px; transition: .25s; }
+.menu-toggle.active span:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
+.menu-toggle.active span:nth-child(2){ opacity:0; }
+.menu-toggle.active span:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+@media(max-width:680px){ .menu-toggle { display: flex; } }
+.drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 1050; opacity: 0; visibility: hidden; transition: .2s; backdrop-filter: blur(4px); }
+.drawer-overlay.active { opacity: 1; visibility: visible; }
+.mobile-drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100vh; background: var(--panel); border-left: 1px solid var(--border); z-index: 1100; display: flex; flex-direction: column; transition: right .3s; box-shadow: -5px 0 30px rgba(0,0,0,.5); }
+.mobile-drawer.active { right: 0; }
+.drawer-hd { padding: .8rem; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; }
+.drawer-close { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.drawer-body { flex: 1; overflow-y: auto; padding: .8rem; }
+.drawer-body li { list-style: none; margin-bottom: .5rem; }
+.drawer-body a, .drawer-body button { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .7rem .9rem; background: rgba(75,139,190,.12); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: .78rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background .2s; }
+.drawer-body a:active, .drawer-body button:active { background: rgba(75,139,190,.3); }
+.drawer-body i { color: var(--gold); width: 1.2rem; }
+h1, h2, h3, h4, h5 { font-family: 'Syne', sans-serif; line-height: 1.25; font-weight: 700; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.25rem; margin-bottom: .5rem; }
+h3 { font-size: .95rem; }
+h4 { font-size: .85rem; }
+p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+code { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: #a5d6ff; }
+.section-label { font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: .6rem; margin-bottom: 1.2rem; }
+.section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-intro { max-width: 640px; margin: 0 auto .5rem; text-align: center; }
+.section-intro h2 { color: var(--text); }
+.section-intro p { font-size: .8rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: var(--btn-h); padding: 0 1.4rem; border-radius: var(--btn-r); font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem; cursor: pointer; transition: all .2s; border: none; text-decoration: none; white-space: nowrap; }
+.btn-primary { background: linear-gradient(135deg,var(--blue),var(--blue-deep)); color: #fff; box-shadow: 0 4px 14px rgba(75,139,190,.35); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(75,139,190,.45); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--blue); background: rgba(75,139,190,.08); }
+@media(max-width:480px){ .btn { width: 100%; } }
+.hero { padding: 5rem 0 2rem; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75,139,190,.18) 0%, transparent 70%); }
+.hero h1 { font-size: clamp(1.6rem,4vw,2.4rem); color: var(--gold); margin-bottom: .4rem; }
+.hero p.lead { font-size: .88rem; color: var(--muted); max-width: 560px; margin-bottom: 1.2rem; line-height: 1.75; }
+.search-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: .2rem .2rem .2rem 1rem; display: flex; align-items: center; gap: .6rem; max-width: 600px; margin: 1.2rem 0 1.5rem; }
+.search-wrap i { color: var(--muted); font-size: .9rem; }
+.search-wrap input { flex: 1; background: transparent; border: none; padding: .7rem 0; color: #fff; font-size: .85rem; font-family: 'Syne', sans-serif; outline: none; min-width: 0; }
+.search-wrap input::placeholder { color: var(--muted); font-weight: 400; }
+.search-wrap .clear-btn { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: .8rem; padding: 0 .8rem; display: none; }
+.search-wrap .clear-btn.show { display: block; }
+.filter-tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.5rem; }
+.filter-tab { padding: .3rem .9rem; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .68rem; font-weight: 600; font-family: 'Syne', sans-serif; cursor: pointer; transition: all .2s; }
+.filter-tab:hover { border-color: var(--blue); color: var(--text); }
+.filter-tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.snippet-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+.snippet-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.2rem; transition: border-color .2s, transform .2s, box-shadow .2s; }
+.snippet-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(75,139,190,.12); }
+.snippet-head { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+.snippet-head h3 { font-size: .85rem; color: var(--text); flex: 1; }
+.snippet-head .badge { display: inline-block; padding: .12rem .55rem; border-radius: 20px; font-size: .6rem; font-weight: 700; }
+.badge-beg { background: rgba(16,185,129,.15); color: #10b981; }
+.badge-int { background: rgba(245,158,11,.15); color: #f59e0b; }
+.badge-adv { background: rgba(139,92,246,.15); color: #a78bfa; }
+.badge-exp { background: rgba(239,68,68,.15); color: #f87171; }
+.badge-oop { background: rgba(75,139,190,.15); color: var(--blue-lt); }
+.snippet-head .cat-tag { font-size: .6rem; color: var(--teal); background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.2); border-radius: 20px; padding: .1rem .45rem; }
+.snippet-desc { font-size: .76rem; color: var(--muted); margin-bottom: .6rem; }
+.code-snippet { background: var(--code-bg); border-radius: 6px; border-left: 3px solid var(--blue); overflow: hidden; position: relative; }
+.code-snippet pre { font-family: 'JetBrains Mono', monospace; font-size: .73rem; line-height: 1.65; color: var(--text); padding: .9rem 1rem; overflow-x: auto; margin: 0; }
+.code-snippet .code-toolbar { display: flex; justify-content: flex-end; gap: .5rem; padding: .4rem .7rem .2rem; background: rgba(10,26,36,.8); border-bottom: 1px solid rgba(31,64,96,.3); }
+.code-btn { display: inline-flex; align-items: center; gap: .35rem; background: rgba(75,139,190,.12); border: 1px solid var(--border); border-radius: 6px; color: var(--blue-lt); font-size: .62rem; font-weight: 700; padding: .25rem .6rem; cursor: pointer; font-family: 'Syne', sans-serif; letter-spacing: .02em; transition: background .2s, color .2s; background: transparent; }
+.code-btn:hover { background: rgba(75,139,190,.22); }
+.code-btn.run-btn { color: var(--green); border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.08); }
+.code-btn.run-btn:hover { background: rgba(16,185,129,.2); }
+.code-btn:disabled { opacity: .55; cursor: wait; }
+.code-output { display: none; background: #06101a; border-top: 1px solid var(--border); padding: .6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: .7rem; line-height: 1.6; color: #4ade80; white-space: pre-wrap; word-break: break-word; max-height: 200px; overflow-y: auto; }
+.code-output.show { display: block; }
+.code-output.error { color: #f87171; }
+.code-output .out-label { display: block; color: var(--muted); font-style: italic; font-family: 'Syne', sans-serif; font-size: .62rem; margin-bottom: .2rem; text-transform: uppercase; letter-spacing: .06em; }
+.cmt { color: #546e7a; font-style: italic; }
+.kw { color: #ff7b72; font-weight: 600; }
+.fn { color: #d2a8ff; }
+.st { color: #a5d6ff; }
+.cl { color: #FFD966; font-weight: 600; }
+.no-results { text-align: center; padding: 3rem 0; color: var(--muted); display: none; }
+.no-results i { font-size: 2rem; display: block; margin-bottom: .6rem; }
+.page-footer { padding: 3rem 0 1.5rem; background: #1a2535; border-top: 1px solid var(--border); }
+.footer-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+.footer-col h5 { font-size: .72rem; font-weight: 800; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .7rem; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: .4rem; }
+.footer-col a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .74rem; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.copyright { border-top: 1px solid var(--border); padding-top: 1.2rem; text-align: center; font-size: .72rem; color: var(--muted); }
+.copyright a { color: rgba(255,255,255,.5); text-decoration: none; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--border); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+.stat-banner { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1rem 0 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1rem 1.2rem; justify-content: space-around; }
+.stat-banner .stat-item { text-align: center; }
+.stat-banner .stat-num { font-size: 1.2rem; font-weight: 800; color: var(--gold); }
+.stat-banner .stat-lbl { font-size: .6rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.content-section { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.5rem; margin-bottom: 2rem; }
+.content-section h2 { color: var(--gold); margin-bottom: .5rem; }
+.content-section ul { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .8rem; }
+.content-section ul li { background: rgba(75,139,190,.12); border: 1px solid var(--border); border-radius: 20px; padding: .3rem .9rem; font-size: .7rem; color: var(--blue-lt); }
+.content-section ul li a { color: inherit; text-decoration: none; }
+.content-section ul li a:hover { color: var(--gold); }
+.related-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 1rem 0; }
+.related-links a { color: var(--blue-lt); text-decoration: none; font-size: .78rem; border-bottom: 1px dotted var(--border); }
+.related-links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+.breadcrumb { font-size: .7rem; color: var(--muted); margin-bottom: 1rem; }
+.breadcrumb a { color: var(--blue-lt); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 .3rem; }
+.toc-grid { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1rem 0; }
+.toc-grid a { background: var(--card); border: 1px solid var(--border); border-radius: var(--btn-r); padding: .4rem .9rem; font-size: .7rem; color: var(--blue-lt); text-decoration: none; transition: all .2s; }
+.toc-grid a:hover { border-color: var(--blue); color: var(--gold); }
+.tip-box { background: rgba(75,139,190,.06); border-left: 3px solid var(--gold); padding: .8rem 1rem; margin: .6rem 0; border-radius: 0 var(--btn-r) var(--btn-r) 0; }
+.tip-box strong { color: var(--gold); }
+.warn-box { background: rgba(239,68,68,.06); border-left: 3px solid var(--red); padding: .8rem 1rem; margin: .6rem 0; border-radius: 0 var(--btn-r) var(--btn-r) 0; }
+.warn-box strong { color: var(--red); }
+.section-desc { font-size: .82rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.8; }
+</style>
+</head>
+<body>
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+<nav class="nav-bar" aria-label="Main navigation">
+<div class="nav-inner">
+<a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+<ul class="nav-links">
+<li><a href="index.html#toc">Curriculum</a></li>
+<li><a href="snippet-library.html">Snippets</a></li>
+<li><a href="cheat-sheet.html">Cheat Sheet</a></li>
+<li><a href="programming-history.html">History</a></li>
+</ul>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</div>
+</nav>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+<div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+<div class="drawer-body">
+<ul>
+<li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+<li><a href="snippet-library.html"><i class="fas fa-code"></i>Snippets</a></li>
+<li><a href="cheat-sheet.html"><i class="fas fa-file-alt"></i>Cheat Sheet</a></li>
+<li><a href="programming-history.html"><i class="fas fa-history"></i>History</a></li>
+</ul>
+</div>
+</div>
+<main style="padding-top:56px;">
+<section class="hero" aria-label="Cheat Sheet Hero">
+<div class="page-col">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a><span>›</span>
+<a href="index.html#toc">Python Tutorial</a><span>›</span>
+<span>Python Cheat Sheet</span>
+</nav>
+<h1>🐍 Python Cheat Sheet</h1>
+<p class="lead">The definitive quick-reference for Python 3.12. 350+ runnable examples covering syntax, built‑ins, data structures, OOP, modules, concurrency, algorithms, best practices, and interview prep.</p>
+<div class="stat-banner">
+<div class="stat-item"><div class="stat-num">350+</div><div class="stat-lbl">Runnable Examples</div></div>
+<div class="stat-item"><div class="stat-num">40+</div><div class="stat-lbl">Topics</div></div>
+<div class="stat-item"><div class="stat-num">Python 3.12+</div><div class="stat-lbl">Modern Syntax</div></div>
+<div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Free &amp; Open</div></div>
+</div>
+<div class="search-wrap" id="searchWrap">
+<i class="fas fa-search"></i>
+<input type="text" id="searchInput" placeholder="Search cheat sheet topics…" aria-label="Search cheat sheet">
+<button class="clear-btn" id="clearBtn" aria-label="Clear search"><i class="fas fa-times-circle"></i></button>
+</div>
+<div class="filter-tabs" id="filterTabs">
+<button class="filter-tab active" data-filter="all">All</button>
+<button class="filter-tab" data-filter="basics">Basics</button>
+<button class="filter-tab" data-filter="datatypes">Data Types</button>
+<button class="filter-tab" data-filter="collections">Collections</button>
+<button class="filter-tab" data-filter="functions">Functions</button>
+<button class="filter-tab" data-filter="oop">OOP</button>
+<button class="filter-tab" data-filter="stdlib">Std Lib</button>
+<button class="filter-tab" data-filter="advanced">Advanced</button>
+<button class="filter-tab" data-filter="builtins">Built‑ins</button>
+<button class="filter-tab" data-filter="methods">Methods</button>
+<button class="filter-tab" data-filter="algorithms">Algorithms</button>
+</div>
+<div class="no-results" id="noResults"><i class="fas fa-search-minus"></i><p>No topics match your search. Try a different keyword.</p></div>
+</div>
+</section>
+
+<!-- ====== TABLE OF CONTENTS ====== -->
+<section aria-label="Table of Contents">
+<div class="page-col">
+<div class="section-intro">
+<h2>📑 Table of Contents</h2>
+<p>Jump to any section of this cheat sheet quickly.</p>
+</div>
+<div class="toc-grid">
+<a href="#basics">Basics</a>
+<a href="#datatypes">Data Types</a>
+<a href="#collections">Collections</a>
+<a href="#functions">Functions</a>
+<a href="#oop">OOP</a>
+<a href="#stdlib">Standard Library</a>
+<a href="#advanced">Advanced</a>
+<a href="#builtins">Built‑ins</a>
+<a href="#methods">Methods</a>
+<a href="#algorithms">Algorithms</a>
+<a href="#bestpractices">Best Practices</a>
+<a href="#commonmistakes">Common Mistakes</a>
+<a href="#interview">Interview Q&A</a>
+<a href="#projects">Project Ideas</a>
+<a href="#python312">Python 3.12 Features</a>
+<a href="#performance">Performance Tips</a>
+<a href="#debugging">Debugging</a>
+<a href="#testing">Testing</a>
+<a href="#packaging">Packaging</a>
+<a href="#resources">Learning Resources</a>
+</div>
+</div>
+</section>
+
+<!-- ====== INTRODUCTION ====== -->
+<section aria-label="Introduction to Python">
+<div class="page-col">
+<div class="content-section">
+<h2>🐍 About This Cheat Sheet</h2>
+<p>Python is one of the most popular programming languages in the world, powering everything from web applications and data science to artificial intelligence and automation. This cheat sheet is designed to be your go-to reference for Python 3.12+ syntax, built-in functions, standard library modules, and advanced patterns.</p>
+<p>Whether you are a beginner learning your first language, an intermediate developer brushing up on OOP and async, or an experienced engineer preparing for interviews, this guide has you covered. Each example is <strong>runnable in your browser</strong> — just click the <i class="fas fa-play" style="color:var(--green);"></i> button to execute the code and see the output instantly.</p>
+<p>Use the <strong>search bar</strong> above to find specific topics, or browse by category using the filter tabs. Every snippet includes a difficulty badge so you can gauge complexity at a glance.</p>
+<div class="tip-box"><strong>💡 Pro Tip:</strong> Bookmark this page and come back whenever you need a quick syntax reminder. The examples are written in modern Python 3.12+ and follow PEP 8 style guidelines.</div>
+</div>
+</div>
+</section>
+
+<!-- ====== BEST PRACTICES ====== -->
+<section id="bestpractices" aria-label="Python Best Practices">
+<div class="page-col">
+<div class="section-intro">
+<h2>✅ Python Best Practices</h2>
+<p>Write clean, maintainable, and professional Python code by following these proven guidelines.</p>
+</div>
+<div class="content-section">
+<h3>📏 Follow PEP 8 — Python's Style Guide</h3>
+<p>PEP 8 is the official style guide for Python. It covers naming conventions, indentation, line length, blank lines, and import ordering. Professional Python codebases enforce it automatically with tools like <code>black</code> or <code>ruff</code>.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="cmt"># PEP 8 naming conventions</span>
+user_name = <span class="st">"Glenn"</span>
+<span class="kw">def</span> <span class="fn">calculate_average</span>(scores): ...
+<span class="kw">class</span> <span class="cl">UserAccount</span>: ...
+<span class="kw">class</span> <span class="cl">DataProcessor</span>: ...
+MAX_RETRIES = 3
+BASE_URL = <span class="st">"https://api.example.com"</span>
+_internal_helper = <span class="st">"not for external use"</span></pre></div>
+<p><strong>Key PEP 8 rules:</strong> Use 4 spaces per indentation level. Limit lines to 79 characters. Use blank lines to separate functions and classes. Put imports at the top of the file, grouped by standard library, third-party, and local modules.</p>
+</div>
+<div class="content-section">
+<h3>📝 Write Docstrings for Every Public Function</h3>
+<p>Docstrings are first-class documentation that tools like Sphinx, IDE tooltips, and <code>help()</code> can read. A function without a docstring forces the reader to study the implementation to understand intent.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">def</span> <span class="fn">calculate_bmi</span>(weight_kg: float, height_m: float) -&gt; float:
+    <span class="st">"""Calculate Body Mass Index (BMI).</span>
+<span class="st">    Args:</span>
+<span class="st">        weight_kg: Body weight in kilograms.</span>
+<span class="st">        height_m: Height in metres.</span>
+<span class="st">    Returns:</span>
+<span class="st">        BMI as a float, rounded to 2 decimal places.</span>
+<span class="st">    Raises:</span>
+<span class="st">        ValueError: If height_m is zero or negative.</span>
+<span class="st">    Example:</span>
+<span class="st">        >>> calculate_bmi(70, 1.75)</span>
+<span class="st">        22.86</span>
+<span class="st">    """</span>
+    <span class="kw">if</span> height_m &lt;= 0:
+        <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">"Height must be positive"</span>)
+    <span class="kw">return</span> round(weight_kg / height_m ** 2, 2)</pre></div>
+</div>
+<div class="content-section">
+<h3>🔒 Use Type Hints — They Are Not Optional in 2026</h3>
+<p>Type hints dramatically improve readability, enable IDE autocompletion, and allow static type checkers like <code>mypy</code> to catch bugs before your code runs. Python 3.10+ supports the modern <code>|</code> union syntax.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">from</span> typing <span class="kw">import</span> Optional, TypedDict
+<span class="kw">def</span> <span class="fn">find_user</span>(user_id: int) -&gt; Optional[dict]:
+    ...
+<span class="kw">def</span> <span class="fn">parse_value</span>(raw: str) -&gt; int | float:
+    <span class="kw">try</span>: <span class="kw">return</span> int(raw)
+    <span class="kw">except</span> <span class="cl">ValueError</span>: <span class="kw">return</span> float(raw)
+<span class="kw">class</span> <span class="cl">Article</span>(TypedDict):
+    title: str
+    author: str
+    word_count: int
+    published: bool</pre></div>
+</div>
+<div class="content-section">
+<h3>🧪 Write Tests — Even Simple Ones</h3>
+<p>Untested code is broken code waiting to be discovered. Python's built-in <code>unittest</code> and <code>pytest</code> make testing straightforward. A good test suite catches regressions before they reach production.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">import</span> pytest
+<span class="kw">def</span> <span class="fn">test_normal_bmi</span>():
+    <span class="kw">assert</span> calculate_bmi(70, 1.75) == 22.86
+<span class="kw">def</span> <span class="fn">test_zero_height_raises</span>():
+    <span class="kw">with</span> pytest.raises(<span class="cl">ValueError</span>):
+        calculate_bmi(70, 0)</pre></div>
+</div>
+</div>
+</section>
+
+<!-- ====== COMMON MISTAKES ====== -->
+<section id="commonmistakes" aria-label="Common Python Mistakes">
+<div class="page-col">
+<div class="section-intro">
+<h2>⚠️ 15 Common Python Mistakes Every Developer Makes</h2>
+<p>Learn from the most frequent errors — save hours of debugging by recognising these traps.</p>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 1 — Using a mutable default argument</h3>
+<p>Default argument values are evaluated <strong>once</strong> when the function is defined, not each time it is called. If you use a mutable object like a list as a default, all calls that use the default share the same object.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">def</span> <span class="fn">add_item</span>(item, items=[]):   <span class="cmt"># WRONG — shared list</span>
+    items.append(item)
+    <span class="kw">return</span> items
+<span class="fn">print</span>(add_item(<span class="st">"apple"</span>))   <span class="cmt"># ['apple']</span>
+<span class="fn">print</span>(add_item(<span class="st">"banana"</span>))  <span class="cmt"># ['apple', 'banana'] ← surprise!</span>
+<span class="kw">def</span> <span class="fn">add_item_correct</span>(item, items=<span class="kw">None</span>):  <span class="cmt"># CORRECT</span>
+    <span class="kw">if</span> items <span class="kw">is</span> <span class="kw">None</span>: items = []
+    items.append(item)
+    <span class="kw">return</span> items</pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 2 — Confusing <code>==</code> with <code>is</code></h3>
+<p><code>==</code> checks whether two values are equal. <code>is</code> checks whether two names point to the exact same object in memory. For small integers and interned strings Python reuses objects, which can make <code>is</code> appear to work — until it silently does not.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>a = 256; b = 256
+<span class="fn">print</span>(a <span class="kw">is</span> b)   <span class="cmt"># True (CPython caches small ints)</span>
+a = 257; b = 257
+<span class="fn">print</span>(a <span class="kw">is</span> b)   <span class="cmt"># False — separate objects</span>
+<span class="fn">print</span>(a == b)    <span class="cmt"># True — always correct for value checks</span>
+<span class="cmt"># The only correct use of 'is' — checking against None</span>
+<span class="kw">if</span> result <span class="kw">is</span> <span class="kw">None</span>: print(<span class="st">"No result yet"</span>)</pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 3 — Modifying a list while iterating over it</h3>
+<p>Changing the size of a list during a <code>for</code> loop causes items to be skipped silently — one of the hardest bugs to spot.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>nums = [1, 2, 3, 4, 5, 6]
+<span class="kw">for</span> n <span class="kw">in</span> nums:          <span class="cmt"># WRONG — items get skipped</span>
+    <span class="kw">if</span> n % 2 == 0: nums.remove(n)
+<span class="fn">print</span>(nums)  <span class="cmt"># [1, 3, 5] — fragile</span>
+<span class="cmt"># CORRECT — iterate over a copy</span>
+nums = [1, 2, 3, 4, 5, 6]
+nums = [n <span class="kw">for</span> n <span class="kw">in</span> nums <span class="kw">if</span> n % 2 != 0]
+<span class="fn">print</span>(nums)  <span class="cmt"># [1, 3, 5] — always correct</span></pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 4 — Catching too broad an exception</h3>
+<p>Writing bare <code>except:</code> swallows every error — including typos, import errors, and keyboard interrupts — making bugs nearly impossible to diagnose.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">try</span>: result = int(user_input)
+<span class="kw">except</span> <span class="cl">ValueError</span>:             <span class="cmt"># CORRECT — catch specific</span>
+    <span class="fn">print</span>(<span class="st">"Please enter a valid number"</span>)
+<span class="kw">except</span> <span class="cl">TypeError</span> <span class="kw">as</span> e:          <span class="cmt"># CORRECT — handle multiple</span>
+    <span class="fn">print</span>(<span class="st">f"Type error: {e}"</span>)
+<span class="kw">finally</span>: cleanup()</pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 5 — Not understanding variable scope (LEGB)</h3>
+<p>Python resolves variable names in a specific order: Local → Enclosing → Global → Built-in. Forgetting this leads to confusing <code>UnboundLocalError</code> bugs.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>count = 0
+<span class="kw">def</span> <span class="fn">increment</span>():
+    <span class="kw">global</span> count          <span class="cmt"># Use sparingly</span>
+    count += 1
+<span class="cmt"># Better: pass and return values</span>
+<span class="kw">def</span> <span class="fn">increment</span>(count): <span class="kw">return</span> count + 1
+count = increment(count)</pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 6 — Using <code>+</code> to concatenate strings in a loop</h3>
+<p>Strings are immutable. Every <code>+</code> creates a new string object and copies both into it. Inside a loop over thousands of items, this creates quadratic time complexity.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>words = [<span class="st">"Python"</span>, <span class="st">"is"</span>, <span class="st">"fast"</span>, <span class="st">"and"</span>, <span class="st">"readable"</span>]
+result = <span class="st">""</span>
+<span class="kw">for</span> word <span class="kw">in</span> words: result += word + <span class="st">" "</span>  <span class="cmt"># O(n²) — WRONG</span>
+result = <span class="st">" "</span>.join(words)                  <span class="cmt"># O(n) — CORRECT</span></pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 7 — Forgetting integers and strings do not auto-convert</h3>
+<p>Python is strongly typed. Unlike JavaScript, it never silently coerces a number to a string or vice versa.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>age = 25
+<span class="fn">print</span>(<span class="st">f"I am {age} years old"</span>)   <span class="cmt"># CORRECT — f-string</span>
+<span class="fn">print</span>(<span class="st">"I am "</span> + str(age) + <span class="st">" years old"</span>)  <span class="cmt"># Also correct</span></pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 8 — Shallow copy vs deep copy confusion</h3>
+<p>Assigning a list to a new variable does <strong>not</strong> copy it — both names point to the same object. Only a deep copy is truly independent.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">import</span> copy
+original = [[1, 2], [3, 4]]
+alias = original          <span class="cmt"># WRONG — just another name</span>
+alias[0][0] = 99
+<span class="fn">print</span>(original)   <span class="cmt"># [[99, 2], [3, 4]] — original changed!</span>
+deep = copy.deepcopy(original)   <span class="cmt"># CORRECT — fully independent</span></pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 9 — Ignoring return values from string methods</h3>
+<p>Strings are immutable. Methods like <code>.upper()</code>, <code>.strip()</code>, and <code>.replace()</code> return a new string; they do not modify in place.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>name = <span class="st">"  glenn  "</span>
+name.strip()          <span class="cmt"># WRONG — returns new string, name unchanged</span>
+name = name.strip()   <span class="cmt"># CORRECT — capture the returned value</span></pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 10 — Writing loops when a built-in would do</h3>
+<p>Python ships with rich built-ins. Writing an explicit loop where a one-liner exists is slower and harder to read.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="cmt"># WRONG — verbose loop</span>
+squares = []
+<span class="kw">for</span> n <span class="kw">in</span> range(10):
+    <span class="kw">if</span> n % 2 == 0: squares.append(n ** 2)
+<span class="cmt"># CORRECT — list comprehension</span>
+squares = [n**2 <span class="kw">for</span> n <span class="kw">in</span> range(10) <span class="kw">if</span> n % 2 == 0]
+<span class="cmt"># Use built-ins: sum(), max(), min(), any(), all()</span></pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 11 — Forgetting to use <code>with</code> for file handling</h3>
+<p>Always use <code>with</code> when opening files. It guarantees the file is closed even if an exception occurs — no resource leaks.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">with</span> open(<span class="st">"file.txt"</span>, <span class="st">"r"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    content = f.read()
+<span class="cmt"># File is automatically closed when the block exits</span></pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 12 — Modifying a dict while iterating over it</h3>
+<p>Like lists, dictionaries cannot be resized during iteration. Use <code>list(d.items())</code> to iterate over a copy.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>d = {<span class="st">"a"</span>: 1, <span class="st">"b"</span>: 2, <span class="st">"c"</span>: 3}
+<span class="kw">for</span> k, v <span class="kw">in</span> list(d.items()):   <span class="cmt"># CORRECT — iterate over copy</span>
+    <span class="kw">if</span> v &gt; 1: <span class="kw">del</span> d[k]</pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 13 — Using <code>range(len(lst))</code> instead of <code>enumerate</code></h3>
+<p><code>enumerate</code> is cleaner, faster, and more Pythonic than manually indexing with <code>range(len())</code>.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="kw">for</span> i, fruit <span class="kw">in</span> enumerate(fruits):   <span class="cmt"># CORRECT</span>
+    print(i, fruit)</pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 14 — Not using <code>__slots__</code> for many instances</h3>
+<p>When creating thousands of objects, <code>__slots__</code> drastically reduces memory usage by preventing the creation of a <code>__dict__</code> for each instance.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">class</span> <span class="cl">Point</span>:
+    __slots__ = (<span class="st">"x"</span>, <span class="st">"y"</span>)
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, x, y): self.x = x; self.y = y</pre></div>
+</div>
+<div class="content-section">
+<h3>❌ Mistake 15 — Misusing <code>try/except</code> for flow control</h3>
+<p>Exceptions are for exceptional conditions, not for regular flow control. Use <code>if/else</code> for expected cases.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="cmt"># WRONG — using try/except for flow control</span>
+<span class="kw">try</span>: value = d[<span class="st">"key"</span>]
+<span class="kw">except</span> <span class="cl">KeyError</span>: value = <span class="st">"default"</span>
+<span class="cmt"># CORRECT — use .get()</span>
+value = d.get(<span class="st">"key"</span>, <span class="st">"default"</span>)</pre></div>
+</div>
+</div>
+</section>
+
+<!-- ====== INTERVIEW QUESTIONS ====== -->
+<section id="interview" aria-label="Python Interview Questions">
+<div class="page-col">
+<div class="section-intro">
+<h2>🎯 Python Interview Q&A</h2>
+<p>Most commonly asked Python questions at tech companies — with detailed answers.</p>
+</div>
+<div class="content-section">
+<h3>Q: What is the difference between a list and a tuple?</h3>
+<p><strong>A:</strong> A list is mutable — you can add, remove, or change elements after creation. A tuple is immutable — once created it cannot be changed. Tuples are faster to iterate and can be used as dictionary keys (they are hashable), whereas lists cannot. Use tuples for data that should not change (coordinates, database records) and lists for collections that will be modified.</p>
+</div>
+<div class="content-section">
+<h3>Q: What are Python generators and when should you use them?</h3>
+<p><strong>A:</strong> A generator is a function that uses <code>yield</code> instead of <code>return</code>. It returns a generator object — a lazy iterator that produces values one at a time on demand, rather than computing and storing all values at once. Use generators when working with large datasets that do not fit in memory, producing infinite sequences, or building data pipelines. A generator expression uses negligible memory; the equivalent list comprehension would allocate memory for all items immediately.</p>
+</div>
+<div class="content-section">
+<h3>Q: Explain Python's GIL — what it is and why it matters</h3>
+<p><strong>A:</strong> The Global Interpreter Lock (GIL) is a mutex in CPython that allows only one thread to execute Python bytecode at a time. Even on multi-core processors, Python threads cannot run truly in parallel for CPU-bound tasks. However, the GIL is released during I/O operations, so threading works well for I/O-bound workloads. For true CPU parallelism use <code>multiprocessing</code> or <code>concurrent.futures.ProcessPoolExecutor</code>. Python 3.13 introduced experimental no-GIL builds.</p>
+</div>
+<div class="content-section">
+<h3>Q: What is the difference between @staticmethod and @classmethod?</h3>
+<p><strong>A:</strong> A <code>@staticmethod</code> receives no implicit first argument — it is essentially a regular function that lives inside a class for organisational purposes. A <code>@classmethod</code> receives the class itself as its first argument (<code>cls</code>). This makes it ideal for alternative constructors — factory methods that create instances in different ways. Use <code>@staticmethod</code> for utilities logically belonging to the class. Use <code>@classmethod</code> when the method needs to know about the class itself, especially for inheritance-aware construction.</p>
+</div>
+<div class="content-section">
+<h3>Q: How does Python's memory management and garbage collection work?</h3>
+<p><strong>A:</strong> Python uses reference counting as its primary memory management strategy. Every object tracks how many names point to it. When the count drops to zero, memory is immediately freed. However, reference counting cannot handle circular references. CPython's cyclic garbage collector runs periodically to detect and break these cycles. For performance-critical code, minimise circular references and use <code>__slots__</code> to reduce per-object memory overhead.</p>
+</div>
+<div class="content-section">
+<h3>Q: What is a Python decorator and how do you write one from scratch?</h3>
+<p><strong>A:</strong> A decorator is a callable that takes a function as input and returns a new function that wraps the original — extending or modifying its behaviour without changing its source code. <code>@my_decorator</code> above a function is syntactic sugar for <code>func = my_decorator(func)</code>. Always use <code>@functools.wraps(func)</code> inside your wrapper to preserve the original function's metadata. Decorators power Flask routes, pytest fixtures, <code>@lru_cache</code>, and authentication everywhere in Python.</p>
+</div>
+<div class="content-section">
+<h3>Q: Explain list comprehensions vs generator expressions vs map()</h3>
+<p><strong>A:</strong> A list comprehension eagerly creates a full list in memory — use when you need to iterate multiple times or need random access. A generator expression is lazy — it produces values on demand — use for large datasets or single-pass pipelines. <code>map()</code> also returns a lazy iterator but requires a function object, making it slightly less readable. In modern Python, list comprehensions and generator expressions are preferred for clarity.</p>
+</div>
+<div class="content-section">
+<h3>Q: What are dunder methods and why do they matter?</h3>
+<p><strong>A:</strong> Dunder (double underscore) methods — also called magic methods — are how Python implements its data model. When you write <code>a + b</code>, Python calls <code>a.__add__(b)</code>. When you write <code>len(obj)</code>, Python calls <code>obj.__len__()</code>. By implementing these methods in your own classes, your objects integrate seamlessly with Python's built-in syntax. Key ones: <code>__init__</code>, <code>__repr__</code>, <code>__str__</code>, <code>__eq__</code>, <code>__hash__</code>, <code>__len__</code>, <code>__iter__</code>, <code>__next__</code>, <code>__enter__</code>, <code>__exit__</code>.</p>
+</div>
+<div class="content-section">
+<h3>Q: What is asyncio and when should you use async Python?</h3>
+<p><strong>A:</strong> <code>asyncio</code> is Python's built-in library for writing concurrent code using the async/await syntax. It is event-loop based — instead of blocking while waiting for I/O, a coroutine yields control back to the event loop, which can run other tasks. Use async Python when your bottleneck is I/O: network requests, database queries, file reads. Do not use it for CPU-bound work — for that, use <code>multiprocessing</code>. The key rule: never call <code>time.sleep()</code> inside an async function — use <code>await asyncio.sleep()</code> instead.</p>
+</div>
+<div class="content-section">
+<h3>Q: What are Python context managers and how do you create one?</h3>
+<p><strong>A:</strong> A context manager is any object that implements <code>__enter__</code> and <code>__exit__</code>. The <code>with</code> statement calls <code>__enter__</code> on entry and <code>__exit__</code> on exit — even if an exception is raised. This pattern guarantees cleanup: closing files, releasing locks, committing or rolling back database transactions. You can also create context managers with <code>@contextlib.contextmanager</code> — a generator function where code before <code>yield</code> is the setup and code after is the teardown.</p>
+</div>
+</div>
+</section>
+
+<!-- ====== PROJECT IDEAS ====== -->
+<section id="projects" aria-label="Python Project Ideas">
+<div class="page-col">
+<div class="section-intro">
+<h2>🏗️ 12 Real-World Python Projects</h2>
+<p>Build a portfolio that demonstrates real skill at every level — these projects impress employers.</p>
+</div>
+<div class="content-section">
+<h3>📊 Project 1 — Personal Finance Tracker</h3>
+<p><strong>Level:</strong> Beginner | <strong>Skills:</strong> File I/O, CSV parsing, dictionaries, string processing</p>
+<p>Read a bank export CSV, categorise transactions automatically, compute monthly spending by category, and generate a text summary report. This project teaches you how to handle real data files, process them efficiently, and produce human-readable output.</p>
+</div>
+<div class="content-section">
+<h3>🌤️ Project 2 — Weather CLI Tool</h3>
+<p><strong>Level:</strong> Beginner | <strong>Skills:</strong> HTTP requests, JSON parsing, argparse</p>
+<p>Build a command-line tool that accepts a city name, fetches live weather data from the OpenWeatherMap API, and displays temperature, conditions, and humidity. You'll learn how to work with REST APIs, parse JSON responses, and build user-friendly CLI interfaces.</p>
+</div>
+<div class="content-section">
+<h3>🕷️ Project 3 — Job Listing Scraper</h3>
+<p><strong>Level:</strong> Intermediate | <strong>Skills:</strong> BeautifulSoup, CSS selectors, pagination, CSV</p>
+<p>Scrape a public job board for Python developer roles, extract job title, company, location, and salary, then save to CSV. This project teaches web scraping fundamentals including handling pagination, parsing HTML with CSS selectors, and cleaning scraped data.</p>
+</div>
+<div class="content-section">
+<h3>📈 Project 4 — Stock Price Dashboard</h3>
+<p><strong>Level:</strong> Intermediate | <strong>Skills:</strong> Pandas, Matplotlib, time series</p>
+<p>Fetch historical stock prices using the yfinance library, calculate 7-day and 30-day moving averages, detect crossover signals, and plot an interactive chart with Matplotlib. You'll work with time series data, visualisation, and financial analysis.</p>
+</div>
+<div class="content-section">
+<h3>🤖 Project 5 — AI Text Summariser</h3>
+<p><strong>Level:</strong> Advanced | <strong>Skills:</strong> LLM APIs, Flask, prompt engineering</p>
+<p>Build a Flask web app that accepts a long article URL or pasted text, sends it to the Anthropic or OpenAI API, and returns a concise bullet-point summary. This project covers prompt engineering, API integration, and web application development.</p>
+</div>
+<div class="content-section">
+<h3>🗄️ Project 6 — REST API with FastAPI &amp; SQLite</h3>
+<p><strong>Level:</strong> Advanced | <strong>Skills:</strong> FastAPI, SQLAlchemy, Pydantic, JWT</p>
+<p>Build a fully functional REST API for a task manager: CRUD endpoints, SQLite database via SQLAlchemy, Pydantic validation, automatic OpenAPI docs, and JWT authentication. This is a production-grade project that demonstrates full-stack API development.</p>
+</div>
+<div class="content-section">
+<h3>🔐 Project 7 — Password Manager</h3>
+<p><strong>Level:</strong> Intermediate | <strong>Skills:</strong> cryptography, SQLite, CLI</p>
+<p>Build a command-line password manager that securely stores and retrieves passwords using encryption. Learn about hashing, key derivation, and secure storage practices.</p>
+</div>
+<div class="content-section">
+<h3>📧 Project 8 — Email Automation System</h3>
+<p><strong>Level:</strong> Intermediate | <strong>Skills:</strong> smtplib, email, scheduling</p>
+<p>Create a system that sends automated email reports on a schedule. Learn about SMTP, email formatting, and scheduling tasks with cron or schedule libraries.</p>
+</div>
+<div class="content-section">
+<h3>📊 Project 9 — Data Dashboard with Dash</h3>
+<p><strong>Level:</strong> Advanced | <strong>Skills:</strong> Plotly Dash, Pandas, interactive visualisation</p>
+<p>Build an interactive web dashboard that visualises real-time data from a live source. Learn about reactive components, callbacks, and modern front-end integration with Python.</p>
+</div>
+<div class="content-section">
+<h3>🧠 Project 10 — ML Model Deployment</h3>
+<p><strong>Level:</strong> Advanced | <strong>Skills:</strong> scikit-learn, FastAPI, Docker</p>
+<p>Train a machine learning model and deploy it as a REST API with FastAPI, then containerise it with Docker. This is the standard workflow for production ML systems.</p>
+</div>
+<div class="content-section">
+<h3>📱 Project 11 — Telegram Bot</h3>
+<p><strong>Level:</strong> Intermediate | <strong>Skills:</strong> python-telegram-bot, APIs</p>
+<p>Build a Telegram bot that responds to commands, fetches data from external APIs, and sends notifications. Learn about webhooks, polling, and conversational interfaces.</p>
+</div>
+<div class="content-section">
+<h3>📝 Project 12 — Markdown Blog Engine</h3>
+<p><strong>Level:</strong> Intermediate | <strong>Skills:</strong> Flask, Markdown, file system</p>
+<p>Build a lightweight blog engine that reads Markdown files from the filesystem, renders them to HTML, and serves them via Flask. Learn about static site generation and content management.</p>
+</div>
+</div>
+</section>
+
+<!-- ====== PYTHON 3.12 NEW FEATURES ====== -->
+<section id="python312" aria-label="Python 3.12 New Features">
+<div class="page-col">
+<div class="section-intro">
+<h2>✨ Python 3.12+ New Features</h2>
+<p>What's new in modern Python — features you should be using today.</p>
+</div>
+<div class="content-section">
+<h3>📝 Improved F-strings (Python 3.12)</h3>
+<p>You can now use quotes inside f-strings and embed expressions without parentheses in many cases. F-strings are more flexible than ever.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>name = "Alice"
+<span class="fn">print</span>(f"Hello, {name.upper()}!")
+<span class="cmt"># You can now reuse quotes inside f-strings</span>
+<span class="fn">print</span>(f"<span class="st">Hello</span> {name}")</pre></div>
+</div>
+<div class="content-section">
+<h3>📦 Type Parameter Syntax (PEP 695)</h3>
+<p>Python 3.12 introduces a cleaner syntax for type parameters, making generic classes and functions more concise and readable.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">def</span> <span class="fn">first</span>[T](items: list[T]) -> T:
+    <span class="kw">return</span> items[0]
+<span class="kw">class</span> <span class="cl">Box</span>[T]:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, value: T): self.value = value
+    <span class="kw">def</span> <span class="fn">get</span>(<span class="kw">self</span>) -> T: <span class="kw">return</span> self.value</pre></div>
+</div>
+<div class="content-section">
+<h3>⚡ Performance Improvements</h3>
+<p>Python 3.12 brings significant performance improvements, with overall execution speedup of approximately 5-10% for most workloads. The interpreter is faster, and the garbage collector has been optimised.</p>
+</div>
+<div class="content-section">
+<h3>🔧 Exception Groups (PEP 654)</h3>
+<p>Exception groups allow you to raise and handle multiple exceptions simultaneously. This is particularly useful for concurrent and asynchronous code.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">try</span>:
+    <span class="kw">raise</span> <span class="cl">ExceptionGroup</span>(<span class="st">"Multiple errors"</span>, [ValueError(<span class="st">"invalid"</span>), TypeError(<span class="st">"bad type"</span>)])
+<span class="kw">except</span> <span class="cl">*</span><span class="cl">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Handling ValueError"</span>)
+<span class="kw">except</span> <span class="cl">*</span><span class="cl">TypeError</span>:
+    <span class="fn">print</span>(<span class="st">"Handling TypeError"</span>)</pre></div>
+</div>
+<div class="content-section">
+<h3>🔬 Experimental Free-Threading (Python 3.13)</h3>
+<p>Python 3.13 introduces an experimental build with the GIL disabled, allowing true parallel execution of threads on multi-core systems. This is a major step toward making Python competitive with languages like Go and Rust for CPU-bound workloads.</p>
+</div>
+</div>
+</section>
+
+<!-- ====== PERFORMANCE TIPS ====== -->
+<section id="performance" aria-label="Performance Optimization">
+<div class="page-col">
+<div class="section-intro">
+<h2>⚡ Python Performance Tips</h2>
+<p>Make your Python code faster and more efficient with these proven techniques.</p>
+</div>
+<div class="content-section">
+<h3>🚀 Use Built-in Functions and Libraries</h3>
+<p>Built-in functions like <code>sum()</code>, <code>max()</code>, <code>min()</code>, and <code>sorted()</code> are implemented in C and are significantly faster than Python loops. Similarly, libraries like <code>NumPy</code> and <code>Pandas</code> are optimised for speed.</p>
+</div>
+<div class="content-section">
+<h3>🚀 Avoid Attribute Lookup in Loops</h3>
+<p>Inside a tight loop, repeatedly looking up an attribute (like <code>method()</code>) can be expensive. Bind it to a local variable before the loop.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="cmt"># SLOW — attribute lookup every iteration</span>
+<span class="kw">for</span> x <span class="kw">in</span> data: result.append(x**2)
+<span class="cmt"># FAST — bind append to local</span>
+append = result.append
+<span class="kw">for</span> x <span class="kw">in</span> data: append(x**2)</pre></div>
+</div>
+<div class="content-section">
+<h3>🚀 Use List Comprehensions Instead of Loops</h3>
+<p>List comprehensions are faster than explicit for-loops because they are executed in C and avoid the overhead of repeated Python bytecode execution.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="cmt"># SLOW — explicit loop</span>
+squares = []
+<span class="kw">for</span> x <span class="kw">in</span> range(1000): squares.append(x**2)
+<span class="cmt"># FAST — comprehension</span>
+squares = [x**2 <span class="kw">for</span> x <span class="kw">in</span> range(1000)]</pre></div>
+</div>
+<div class="content-section">
+<h3>🚀 Use <code>functools.lru_cache</code> for Memoization</h3>
+<p>For expensive pure functions that are called repeatedly with the same arguments, <code>@lru_cache</code> caches results and dramatically improves performance.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">from</span> functools <span class="kw">import</span> lru_cache
+@lru_cache(maxsize=1024)
+<span class="kw">def</span> <span class="fn">expensive</span>(n):
+    <span class="cmt"># Some expensive computation</span>
+    <span class="kw">return</span> n ** 3 + n ** 2 + 1</pre></div>
+</div>
+<div class="content-section">
+<h3>🚀 Use <code>__slots__</code> to Reduce Memory</h3>
+<p>When creating many instances of a class, <code>__slots__</code> reduces memory consumption by preventing the creation of a per-instance <code>__dict__</code>.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">class</span> <span class="cl">Point</span>:
+    __slots__ = (<span class="st">"x"</span>, <span class="st">"y"</span>)
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, x, y): self.x = x; self.y = y</pre></div>
+</div>
+</div>
+</section>
+
+<!-- ====== DEBUGGING ====== -->
+<section id="debugging" aria-label="Debugging Techniques">
+<div class="page-col">
+<div class="section-intro">
+<h2>🔍 Python Debugging Techniques</h2>
+<p>Effective strategies to find and fix bugs in your Python code.</p>
+</div>
+<div class="content-section">
+<h3>🐛 Use the Built-in Debugger (pdb)</h3>
+<p><code>pdb</code> is Python's built-in interactive debugger. You can set breakpoints, step through code, inspect variables, and evaluate expressions.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">import</span> pdb
+<span class="kw">def</span> <span class="fn">buggy_function</span>(x, y):
+    pdb.set_trace()  <span class="cmt"># Debugger will start here</span>
+    result = x / y
+    <span class="kw">return</span> result</pre></div>
+</div>
+<div class="content-section">
+<h3>🐛 Use <code>print()</code> with <code>repr()</code></h3>
+<p><code>print(repr(variable))</code> shows you the exact representation of a variable, including escape characters and special characters.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>s = "hello\nworld"
+<span class="fn">print</span>(repr(s))  <span class="cmt"># 'hello\\nworld'</span></pre></div>
+</div>
+<div class="content-section">
+<h3>🐛 Use <code>logging</code> Instead of <code>print</code></h3>
+<p>For production code, use <code>logging</code> with appropriate levels (DEBUG, INFO, WARNING, ERROR). This gives you more control and allows you to filter messages by severity.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">import</span> logging
+logging.basicConfig(level=logging.DEBUG)
+logging.debug(<span class="st">"Variable x is: %s"</span>, x)</pre></div>
+</div>
+<div class="content-section">
+<h3>🐛 Use <code>breakpoint()</code> (Python 3.7+)</h3>
+<p><code>breakpoint()</code> is a simpler way to start the debugger. It's equivalent to <code>pdb.set_trace()</code> but can be configured via the <code>PYTHONBREAKPOINT</code> environment variable.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">def</span> <span class="fn">process_data</span>(data):
+    breakpoint()  <span class="cmt"># Debugger starts here</span>
+    <span class="kw">return</span> data * 2</pre></div>
+</div>
+</div>
+</section>
+
+<!-- ====== TESTING ====== -->
+<section id="testing" aria-label="Testing Strategies">
+<div class="page-col">
+<div class="section-intro">
+<h2>🧪 Python Testing Strategies</h2>
+<p>Write robust, maintainable tests for your Python applications.</p>
+</div>
+<div class="content-section">
+<h3>📋 Unit Testing with unittest</h3>
+<p>Python's built-in <code>unittest</code> framework provides a robust testing environment. Create test classes that inherit from <code>TestCase</code> and write methods starting with <code>test_</code>.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">import</span> unittest
+<span class="kw">def</span> <span class="fn">add</span>(a, b): <span class="kw">return</span> a + b
+<span class="kw">class</span> <span class="cl">TestMath</span>(unittest.TestCase):
+    <span class="kw">def</span> <span class="fn">test_add</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.assertEqual(add(2, 3), 5)
+        <span class="kw">self</span>.assertNotEqual(add(2, 3), 6)
+<span class="cmt"># Run with: python -m unittest test_file.py</span></pre></div>
+</div>
+<div class="content-section">
+<h3>🔬 Pytest — The Modern Testing Framework</h3>
+<p>Pytest is simpler, more powerful, and more widely used than unittest. It supports fixtures, parameterised tests, and rich plugin ecosystem.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">import</span> pytest
+<span class="kw">def</span> <span class="fn">test_addition</span>():
+    <span class="kw">assert</span> 2 + 3 == 5
+<span class="kw">def</span> <span class="fn">test_division_by_zero</span>():
+    <span class="kw">with</span> pytest.raises(ZeroDivisionError):
+        10 / 0
+<span class="cmt"># Run with: pytest test_file.py -v</span></pre></div>
+</div>
+<div class="content-section">
+<h3>🎭 Mocking External Dependencies</h3>
+<p>Use <code>unittest.mock</code> to replace external dependencies (like API calls or database queries) during testing.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="kw">from</span> unittest.mock <span class="kw">import</span> Mock, patch
+<span class="kw">def</span> <span class="fn">fetch_data</span>(url): <span class="kw">return</span> requests.get(url).json()
+<span class="kw">def</span> <span class="fn">test_fetch_data</span>():
+    <span class="kw">with</span> patch(<span class="st">"requests.get"</span>) <span class="kw">as</span> mock_get:
+        mock_get.return_value.json.return_value = {<span class="st">"key"</span>: <span class="st">"value"</span>}
+        result = fetch_data(<span class="st">"https://api.example.com"</span>)
+        <span class="kw">assert</span> result == {<span class="st">"key"</span>: <span class="st">"value"</span>}</pre></div>
+</div>
+</div>
+</section>
+
+<!-- ====== PACKAGING ====== -->
+<section id="packaging" aria-label="Packaging and Deployment">
+<div class="page-col">
+<div class="section-intro">
+<h2>📦 Python Packaging and Deployment</h2>
+<p>Package your Python code for distribution and deploy it to production.</p>
+</div>
+<div class="content-section">
+<h3>📁 Virtual Environments (venv)</h3>
+<p>Always use a virtual environment for every project. It keeps dependencies isolated and reproducible.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="cmt"># Create and activate a virtual environment</span>
+python -m venv .venv
+source .venv/bin/activate        <span class="cmt"># Linux/macOS</span>
+.venv\Scripts\activate           <span class="cmt"># Windows</span>
+<span class="cmt"># Install dependencies</span>
+pip install requests pandas
+pip freeze &gt; requirements.txt
+<span class="cmt"># Install from requirements</span>
+pip install -r requirements.txt</pre></div>
+</div>
+<div class="content-section">
+<h3>📦 PyProject.toml (PEP 518/621)</h3>
+<p>The modern standard for Python project metadata. Use <code>pyproject.toml</code> instead of <code>setup.py</code> for new projects.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre>[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "my-package"
+version = "0.1.0"
+dependencies = ["requests", "pandas"]</pre></div>
+</div>
+<div class="content-section">
+<h3>🐳 Docker for Python Applications</h3>
+<p>Containerise your Python application for consistent deployment across environments.</p>
+<div class="code-snippet"><div class="code-toolbar"></div><pre><span class="cmt"># Dockerfile example</span>
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "app.py"]</pre></div>
+</div>
+</div>
+</section>
+
+<!-- ====== LEARNING RESOURCES ====== -->
+<section id="resources" aria-label="Learning Resources">
+<div class="page-col">
+<div class="section-intro">
+<h2>📚 Curated Python Learning Resources</h2>
+<p>Books, documentation, and practice platforms that complement this cheat sheet.</p>
+</div>
+<div class="content-section">
+<h3>📖 Official Python Documentation</h3>
+<p>The most authoritative source for any Python question. The tutorial at <code>docs.python.org/3/tutorial</code> is surprisingly readable. The library reference covers every built-in function and standard library module in exhaustive detail.</p>
+</div>
+<div class="content-section">
+<h3>🐍 Fluent Python (Luciano Ramalho)</h3>
+<p>The definitive book for developers who already know the basics and want to understand Python deeply — data model, functions as objects, OOP idioms, control flow, metaprogramming. The 2nd edition covers Python 3.10+.</p>
+</div>
+<div class="content-section">
+<h3>🎮 LeetCode &amp; HackerRank</h3>
+<p>Practice data structures and algorithms in Python with immediate feedback. LeetCode's Python 3 tag filters to problems that test Python-specific knowledge. Aim for 30 minutes of problem-solving practice per day.</p>
+</div>
+<div class="content-section">
+<h3>🎯 Real Python (realpython.com)</h3>
+<p>High-quality tutorials and articles on every Python topic — from beginner walkthroughs to deep dives on CPython internals. Particularly strong on web scraping, REST APIs, testing, async Python, and packaging.</p>
+</div>
+<div class="content-section">
+<h3>🤝 Python Discord &amp; Reddit r/learnpython</h3>
+<p>Two of the most active Python learning communities online. Post your code, ask questions, and get answers from experienced developers. Python Discord runs live code reviews and weekly challenges.</p>
+</div>
+<div class="content-section">
+<h3>🧪 Exercism.io — Python Track</h3>
+<p>85+ Python exercises organised by concept, with human mentor review on every submission. Unlike LeetCode which focuses on algorithms, Exercism focuses on idiomatic, well-structured Python — the style and conventions that matter in a professional codebase.</p>
+</div>
+</div>
+</section>
+
+<!-- ====== CHEAT SHEET ENTRIES (generated by JavaScript) ====== -->
+<section id="cheats" aria-label="Cheat Sheet Entries">
+<div class="page-col">
+<div class="section-intro">
+<h2>📋 Quick Reference</h2>
+<p>Search, filter, copy, and run every code example instantly. Click <i class="fas fa-play" style="color:var(--green);"></i> to execute, <i class="fas fa-copy"></i> to copy.</p>
+</div>
+<div class="snippet-grid" id="cheatGrid"></div>
+</div>
+</section>
+
+<section aria-label="Related resources">
+<div class="page-col">
+<div class="content-section">
+<h2>Continue Learning</h2>
+<p>Complement this cheat sheet with other free resources from Poetic Bytes:</p>
+<div class="related-links">
+<a href="index.html">Python Tutorial (Full Course)</a>
+<a href="snippet-library.html">Snippet Library</a>
+<a href="algorithm-history.html">History of Algorithms</a>
+<a href="design-patterns.html">Design Patterns in Python</a>
+<a href="coding-concepts.html">Coding Concepts Explained</a>
+<a href="python-basics.html">Python Basics Module</a>
+<a href="python-async.html">Async &amp; Concurrency</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="page-footer" aria-label="Site footer">
+<div class="page-col">
+<div class="footer-grid">
+<div class="footer-col">
+<h5>Guided Tracks</h5>
+<ul>
+<li><a href="beginners.html">First-time dev</a></li>
+<li><a href="data-science.html">Data &amp; statistics</a></li>
+<li><a href="backend.html">Backend / Django</a></li>
+<li><a href="aiml.html">ML fundamentals</a></li>
+<li><a href="web-development.html">Web Development</a></li>
+<li><a href="automation.html">Automation</a></li>
+<li><a href="sample-programs.html">Sample Programs</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>New Modules</h5>
+<ul>
+<li><a href="python-sets.html">Python Sets</a></li>
+<li><a href="python-modules.html">Modules &amp; Packages</a></li>
+<li><a href="python-exceptions.html">Exception Handling</a></li>
+<li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+<li><a href="python-async.html">Async &amp; Concurrency</a></li>
+<li><a href="python-decorators.html">Decorators In Depth</a></li>
+<li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>Toolkit</h5>
+<ul>
+<li><a href="algorithm-history.html">History of Algorithm</a></li>
+<li><a href="cheat-sheet.html">Cheatsheets</a></li>
+<li><a href="snippet-library.html">Snippet library</a></li>
+<li><a href="code-runner.html">Code runner</a></li>
+<li><a href="design-patterns.html">Design Patterns</a></li>
+<li><a href="coding-concepts.html">Coding Concepts</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>Connect</h5>
+<ul>
+<li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+<li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+<li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+<li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+<li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>Policies</h5>
+<ul>
+<li><a href="privacy.html">Data privacy</a></li>
+<li><a href="terms.html">Terms</a></li>
+<li><a href="cookie.html">Cookies</a></li>
+<li><a href="disclaimer.html">Disclaimers</a></li>
+<li><a href="accessibility.html">Accessibility</a></li>
+<li><a href="sitemap.html">Sitemap</a></li>
+</ul>
+</div>
+</div>
+<div class="copyright">
+<p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+<p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+</div>
+</div>
+</footer>
+<script>
+(function(){
+const pbar = document.getElementById('pbar');
+window.addEventListener('scroll', function() {
+const h = document.documentElement;
+const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+const menuToggle = document.getElementById('menuToggle');
+const drawer = document.getElementById('mobileDrawer');
+const overlay = document.getElementById('drawerOverlay');
+const drawerClose = document.getElementById('drawerClose');
+function closeDrawer() {
+menuToggle?.classList.remove('active');
+drawer?.classList.remove('active');
+overlay?.classList.remove('active');
+document.body.style.overflow = '';
+}
+menuToggle?.addEventListener('click', function(e) {
+e.stopPropagation();
+const open = drawer.classList.toggle('active');
+menuToggle.classList.toggle('active', open);
+overlay.classList.toggle('active', open);
+document.body.style.overflow = open ? 'hidden' : '';
+});
+overlay?.addEventListener('click', closeDrawer);
+drawerClose?.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+const searchInput = document.getElementById('searchInput');
+const clearBtn = document.getElementById('clearBtn');
+const filterTabs = document.querySelectorAll('.filter-tab');
+const cheatGrid = document.getElementById('cheatGrid');
+const noResults = document.getElementById('noResults');
+let activeFilter = 'all';
+let searchQuery = '';
+clearBtn.addEventListener('click', function() {
+searchInput.value = '';
+clearBtn.classList.remove('show');
+searchQuery = '';
+renderCheats();
+});
+searchInput.addEventListener('input', function() {
+searchQuery = searchInput.value.trim().toLowerCase();
+clearBtn.classList.toggle('show', searchQuery.length > 0);
+renderCheats();
+});
+filterTabs.forEach(function(tab) {
+tab.addEventListener('click', function() {
+filterTabs.forEach(function(t) { t.classList.remove('active'); });
+tab.classList.add('active');
+activeFilter = tab.dataset.filter;
+renderCheats();
+});
+});
+let pyodideReady = null;
+function loadPyodideOnce() {
+if (!pyodideReady) {
+pyodideReady = new Promise(function(resolve, reject) {
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js';
+script.onload = async function() {
+try { resolve(await loadPyodide()); } catch (e) { reject(e); }
+};
+script.onerror = function() { reject(new Error('Failed to load Python runtime')); };
+document.head.appendChild(script);
+});
+}
+return pyodideReady;
+}
+function escapeHtml(str) {
+return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function makeCopyBtn(getCode) {
+const btn = document.createElement('button');
+btn.type = 'button';
+btn.className = 'code-btn';
+btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+btn.addEventListener('click', async function() {
+const code = getCode();
+try { await navigator.clipboard.writeText(code); } catch (e) {
+const ta = document.createElement('textarea');
+ta.value = code;
+ta.style.position = 'fixed';
+ta.style.opacity = '0';
+document.body.appendChild(ta);
+ta.select();
+document.execCommand('copy');
+document.body.removeChild(ta);
+}
+const orig = btn.innerHTML;
+btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+setTimeout(function() { btn.innerHTML = orig; }, 1200);
+});
+return btn;
+}
+function isShellSnippet(code) {
+const lines = code.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l && !l.startsWith('#'); });
+if (!lines.length) return false;
+const prefixes = ['pip ', 'pip3 ', 'python -m', 'python3 -m', 'source ', '.venv', 'poetry ', 'black ', 'ruff ', 'mypy ', 'pre-commit ', 'git ', 'docker ', 'export ', 'conda ', 'curl ', 'cd ', 'mkdir', 'ls ', 'cat ', 'pytest '];
+return lines.every(function(l) { return prefixes.some(function(p) { return l.startsWith(p); }); });
+}
+function renderCheatItem(item) {
+const card = document.createElement('div');
+card.className = 'snippet-card';
+card.dataset.category = item.category;
+const head = document.createElement('div');
+head.className = 'snippet-head';
+const title = document.createElement('h3');
+title.textContent = item.title;
+head.appendChild(title);
+const badge = document.createElement('span');
+badge.className = 'badge ' + (item.level || 'badge-beg');
+badge.textContent = item.levelLabel || 'Beginner';
+head.appendChild(badge);
+const catTag = document.createElement('span');
+catTag.className = 'cat-tag';
+catTag.textContent = item.categoryLabel || item.category;
+head.appendChild(catTag);
+card.appendChild(head);
+if (item.desc) {
+const desc = document.createElement('div');
+desc.className = 'snippet-desc';
+desc.textContent = item.desc;
+card.appendChild(desc);
+}
+const codeWrap = document.createElement('div');
+codeWrap.className = 'code-snippet';
+const toolbar = document.createElement('div');
+toolbar.className = 'code-toolbar';
+const getCode = function() { return item.code; };
+toolbar.appendChild(makeCopyBtn(getCode));
+if (!isShellSnippet(item.code)) {
+const runBtn = document.createElement('button');
+runBtn.type = 'button';
+runBtn.className = 'code-btn run-btn';
+runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+const output = document.createElement('div');
+output.className = 'code-output';
+runBtn.addEventListener('click', async function() {
+const code = getCode();
+runBtn.disabled = true;
+output.classList.remove('error');
+output.classList.add('show');
+try {
+const firstRun = !pyodideReady;
+if (firstRun) {
+runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+output.innerHTML = '<span class="out-label">Loading Python runtime (first run, ~8s)…</span>';
+} else {
+runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+output.innerHTML = '<span class="out-label">Running…</span>';
+}
+const pyodide = await loadPyodideOnce();
+runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+let buffer = '';
+pyodide.setStdout({ batched: function(s) { buffer += s + '\n'; } });
+pyodide.setStderr({ batched: function(s) { buffer += s + '\n'; } });
+try {
+await pyodide.runPythonAsync(code);
+output.innerHTML = '<span class="out-label">Output</span>' + escapeHtml(buffer || '(no output)');
+} catch (err) {
+output.classList.add('error');
+output.innerHTML = '<span class="out-label">Error</span>' + escapeHtml(buffer + String(err));
+}
+} catch (e) {
+output.classList.add('error');
+output.innerHTML = '<span class="out-label">Error</span>' + escapeHtml('Could not start Python: ' + String(e));
+} finally {
+runBtn.disabled = false;
+runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+}
+});
+toolbar.appendChild(runBtn);
+codeWrap.appendChild(output);
+}
+const pre = document.createElement('pre');
+pre.textContent = item.code;
+codeWrap.appendChild(toolbar);
+codeWrap.appendChild(pre);
+card.appendChild(codeWrap);
+return card;
+}
+// 350+ cheat items – comprehensive coverage
+const cheatItems = [
+// --- BASICS (35 items) ---
+{ title: 'Hello, World!', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'The classic first program — prints a greeting to the console.', code: 'print("Hello, World!")' },
+{ title: 'Variables & Types', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Python\'s dynamic typing system assigns types automatically at runtime.', code: 'x = 42          # int\ny = 3.14        # float\nz = "Python"    # str\nb = True        # bool\nn = None        # NoneType\nprint(type(x), type(y), type(z), type(b), type(n))' },
+{ title: 'Multiple Assignment', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Assign multiple variables in one line using tuple unpacking.', code: 'a, b = 10, 20\na, b = b, a\nprint(a, b)' },
+{ title: 'User Input', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Read user input from the console using input() — always returns a string.', code: 'name = input("Enter your name: ")\nprint(f"Hello, {name}!")' },
+{ title: 'Print with sep and end', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Control print formatting using sep (separator) and end (line ending).', code: 'print("one", "two", "three", sep=", ", end=".")\nprint()' },
+{ title: 'Conditionals (if/elif/else)', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Branch execution based on boolean conditions.', code: 'score = 85\nif score >= 90: grade = "A"\nelif score >= 80: grade = "B"\nelif score >= 70: grade = "C"\nelse: grade = "F"\nprint(f"Grade: {grade}")' },
+{ title: 'Ternary Operator', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'One-line conditional expression for simple branching.', code: 'age = 20\nstatus = "Adult" if age >= 18 else "Minor"\nprint(status)' },
+{ title: 'For Loops over lists', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Iterate over any sequence using a for loop.', code: 'fruits = ["apple", "banana", "cherry"]\nfor fruit in fruits:\n    print(fruit)' },
+{ title: 'For Loops with range()', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Generate a sequence of numbers with range().', code: 'for i in range(5):\n    print(i, end=" ")\nprint()\nfor i in range(0, 10, 2):  # start, stop, step\n    print(i, end=" ")' },
+{ title: 'For Loops with enumerate()', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get both index and value while iterating.', code: 'fruits = ["apple", "banana", "cherry"]\nfor i, val in enumerate(fruits, start=1):\n    print(f"{i}: {val}")' },
+{ title: 'While Loops', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Loop while a condition remains true.', code: 'count = 0\nwhile count < 5:\n    print(count, end=" ")\n    count += 1\nprint()\nn = 0\nwhile True:\n    if n > 10: break\n    n += 1\nprint(f"Exited at {n}")' },
+{ title: 'Match/Case (3.10+)', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Python 3.10+ structural pattern matching — a powerful switch-case on steroids.', code: 'value = 42\nmatch value:\n    case 0: print("Zero")\n    case 1: print("One")\n    case 42: print("The Answer!")\n    case _: print("Something else")' },
+{ title: 'Walrus Operator (:=)', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Assignment expression — assign and test in one expression.', code: 'while (n := int(input("Enter 0 to quit: "))) != 0:\n    print(f"You entered {n}")\nprint("Quit!")' },
+{ title: 'Chained Comparisons', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Chain multiple comparisons in one expression.', code: 'x = 5\nprint(1 < x < 10)  # True\nprint(0 < x < 5)   # False' },
+{ title: 'Ellipsis (...) as placeholder', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Use ... as a placeholder for code you haven\'t written yet.', code: 'def todo():\n    ...  # placeholder\nprint("Function defined")' },
+{ title: 'pass Statement', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'A no-op statement — used when syntax requires a statement but you want nothing to happen.', code: 'if True:\n    pass  # does nothing' },
+{ title: 'del Statement', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Delete a variable or an item from a collection.', code: 'x = 10\ndel x\n# print(x)  # NameError' },
+{ title: 'Type Conversion', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Convert between different data types explicitly.', code: 'print(int("42"), float("3.14"), str(100), bool(0), bool("hello"))' },
+{ title: 'Constants Convention', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Use uppercase names for constants — this is a convention, not enforced by Python.', code: 'MAX_RETRIES = 3\nBASE_URL = "https://api.example.com"' },
+{ title: 'Comments (single and multi-line)', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Single-line # and multi-line \"\"\" comments.', code: '# Single-line comment\n"""\nMulti-line\ncomment\n"""\nprint("Comments are ignored")' },
+{ title: 'help() Function', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get interactive documentation for any function or module.', code: 'help(print)' },
+{ title: 'dir() Function', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'List all attributes and methods of an object.', code: 'print(dir(str))' },
+{ title: 'Truthiness and Falsy Values', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Values are truthy or falsy in boolean contexts.', code: 'print(bool(0), bool(1), bool(""), bool(" "), bool([]), bool([1,2]))' },
+{ title: 'Global Variables', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Use the global keyword to modify global variables inside functions.', code: 'x = 10\ndef set_global():\n    global x\n    x = 20\nset_global()\nprint(x)' },
+{ title: 'Nonlocal Variables', category: 'basics', categoryLabel: 'Basics', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Modify variables in an enclosing (non-global) scope using nonlocal.', code: 'def outer():\n    y = 5\n    def inner():\n        nonlocal y\n        y += 1\n        return y\n    return inner\nf = outer()\nprint(f())' },
+{ title: 'Operator Precedence', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Python follows standard mathematical precedence: parentheses, exponents, multiplication/division, addition/subtraction.', code: 'print(2 + 3 * 4)   # 14, not 20' },
+{ title: 'Augmented Assignment', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'In-place operators that modify and assign in one step.', code: 'a = 10\na += 5   # a = a + 5\na *= 2   # a = a * 2\nprint(a)' },
+{ title: 'Boolean Logic (and, or, not)', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Boolean operators for combining and negating conditions.', code: 'print(True and False)\nprint(True or False)\nprint(not True)' },
+{ title: 'Identity vs Equality', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: '== checks value, is checks object identity.', code: 'a = [1,2]; b = [1,2]\nprint(a == b)  # True\nprint(a is b)  # False' },
+{ title: 'Short-Circuit Evaluation', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Python stops evaluating as soon as the result is known.', code: 'def expensive(): print("expensive"); return True\nprint(False and expensive())  # doesn\'t call expensive' },
+{ title: 'Unpacking with * and **', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Unpack iterables and dictionaries in function calls.', code: 'def func(a, b, c): return a + b + c\nargs = [1, 2, 3]\nkwargs = {"a": 1, "b": 2, "c": 3}\nprint(func(*args), func(**kwargs))' },
+{ title: 'Using _ (underscore) as throwaway', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Use _ for values you don\'t need to use.', code: 'for _ in range(3):\n    print("Hello")' },
+{ title: 'Soft keywords (match, case)', category: 'basics', categoryLabel: 'Basics', level: 'badge-int', levelLabel: 'Intermediate', desc: 'match and case are soft keywords — they only act as keywords in specific contexts.', code: 'match = 10  # Still valid! Then later...\nvalue = 42\nmatch value:  # Now it\'s a keyword\n    case 42: print("Matched")' },
+{ title: 'F-strings with expressions', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'F-strings can embed any Python expression inside {} braces.', code: 'x = 5\ny = 10\nprint(f"{x} + {y} = {x + y}")' },
+{ title: 'String interpolation with f-strings (Python 3.6+)', category: 'basics', categoryLabel: 'Basics', level: 'badge-beg', levelLabel: 'Beginner', desc: 'F-strings are the modern way to format strings in Python.', code: 'name = "Alice"\nage = 30\nprint(f"Hello, {name}! You are {age} years old.")' },
+// --- DATA TYPES (20 items) ---
+{ title: 'Integers (int)', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Unbounded whole numbers. Supports binary, octal, and hex notation.', code: 'x = 42\ny = 0b1010  # binary\nz = 0o12    # octal\nw = 0xF     # hex\nprint(x, y, z, w)' },
+{ title: 'Floats (float)', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Double-precision floating-point numbers (IEEE 754).', code: 'pi = 3.14159\nprint(f"{pi:.2f}")\nprint(1e-3, 2.5e4)' },
+{ title: 'Complex Numbers (complex)', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Complex numbers with real and imaginary parts.', code: 'c = 1 + 2j\nprint(c.real, c.imag, c.conjugate())' },
+{ title: 'Strings (str)', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Text data — immutable sequences of Unicode code points.', code: 's1 = "Hello"\ns2 = \'World\'\ns3 = """Multi-line\nstring"""\nprint(s1 + " " + s2)' },
+{ title: 'Raw Strings (r"")', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Ignore escape sequences — useful for file paths and regex.', code: 'path = r"C:\\Users\\name"\nprint(path)' },
+{ title: 'Bytes and Bytearray', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Binary data — bytes is immutable, bytearray is mutable.', code: 'b = b"hello"\nprint(b[0])\nba = bytearray(b)\nba[0] = 72  # "H"\nprint(ba)' },
+{ title: 'Booleans (bool)', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-beg', levelLabel: 'Beginner', desc: 'True and False — subclass of int.', code: 'print(True and False)\nprint(True or False)\nprint(not True)' },
+{ title: 'NoneType (None)', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Represents the absence of a value.', code: 'x = None\nif x is None:\n    print("No value")' },
+{ title: 'Type Hints (Python 3.5+)', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Type hints improve code readability and enable static analysis.', code: 'def greet(name: str) -> str:\n    return f"Hello, {name}"\nprint(greet("Alice"))' },
+{ title: 'Memoryview', category: 'datatypes', categoryLabel: 'Data Types', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Zero-copy view of binary data, useful for large buffers.', code: 'data = bytearray(b"Hello")\nv = memoryview(data)\nprint(v[1])' },
+// --- COLLECTIONS (30 items) ---
+{ title: 'List Basics', category: 'collections', categoryLabel: 'Collections', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Ordered, mutable sequence that can hold any data type.', code: 'lst = [1, 2, 3, 4]\nlst.append(5)\nlst.insert(0, 0)\nlst.pop()\nprint(lst)' },
+{ title: 'Tuple Basics', category: 'collections', categoryLabel: 'Collections', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Immutable, ordered sequence — faster and memory-efficient.', code: 't = (1, 2, 3)\nprint(t[0])\n# t[0] = 10  # TypeError' },
+{ title: 'Dict Basics', category: 'collections', categoryLabel: 'Collections', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Key-value store with O(1) lookup. Keys must be hashable.', code: 'd = {"a": 1, "b": 2}\nd["c"] = 3\nprint(d.get("a", 0))\nprint(d.get("x", 0))' },
+{ title: 'Set Basics', category: 'collections', categoryLabel: 'Collections', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Unordered collection of unique, hashable elements.', code: 's = {1, 2, 3, 3}\ns.add(4)\ns.remove(2)\nprint(s)' },
+{ title: 'Frozenset', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Immutable set — can be used as a dictionary key.', code: 'fs = frozenset([1,2,3])\nprint(fs)' },
+{ title: 'List Slicing', category: 'collections', categoryLabel: 'Collections', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Extract sublists using start:stop:step syntax.', code: 'nums = [0,1,2,3,4,5]\nprint(nums[1:4])\nprint(nums[:3])\nprint(nums[::2])\nprint(nums[::-1])' },
+{ title: 'List Comprehensions', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Concise, fast way to build lists from existing sequences.', code: 'squares = [x**2 for x in range(10)]\nevens = [x for x in range(20) if x % 2 == 0]\nprint(squares, evens, sep="\\n")' },
+{ title: 'Dict Comprehensions', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Build dictionaries elegantly with comprehension syntax.', code: 'squares_dict = {x: x**2 for x in range(5)}\nprint(squares_dict)' },
+{ title: 'Set Comprehensions', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Build sets with comprehension syntax.', code: 's = {x**2 for x in range(5)}\nprint(s)' },
+{ title: 'Nested Lists', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Lists within lists — used for matrices and 2D data.', code: 'matrix = [[1,2,3],[4,5,6],[7,8,9]]\nprint(matrix[1][1])' },
+{ title: 'Flatten Nested List', category: 'collections', categoryLabel: 'Collections', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Convert a list of lists into a single flat list.', code: 'nested = [[1,2], [3,4], [5,6]]\nflat = [item for sub in nested for item in sub]\nprint(flat)' },
+{ title: 'zip() — combine iterables', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Pair up elements from multiple iterables.', code: 'names = ["Alice","Bob"]\nscores = [90,85]\npairs = list(zip(names, scores))\nprint(pairs)\nnames2, scores2 = zip(*pairs)\nprint(names2, scores2)' },
+{ title: 'Counter (collections)', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Count occurrences of hashable items.', code: 'from collections import Counter\nwords = ["a","b","a","c","b","a"]\ncounts = Counter(words)\nprint(counts.most_common(2))' },
+{ title: 'defaultdict (collections)', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Dict that automatically creates missing keys with a default factory.', code: 'from collections import defaultdict\nd = defaultdict(list)\nd["fruits"].append("apple")\nprint(d["fruits"])' },
+{ title: 'deque (collections)', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Double-ended queue — fast appends and pops from both ends.', code: 'from collections import deque\ndq = deque([1,2,3])\ndq.appendleft(0)\ndq.pop()\nprint(dq)' },
+{ title: 'namedtuple (collections)', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Lightweight immutable objects with named fields.', code: 'from collections import namedtuple\nPoint = namedtuple("Point", ["x","y"])\np = Point(3,4)\nprint(p.x, p.y)' },
+{ title: 'Dict Union Operator (|)', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Merge dictionaries with the | operator (Python 3.9+).', code: 'd1 = {"a":1,"b":2}\nd2 = {"b":3,"c":4}\nmerged = d1 | d2\nprint(merged)' },
+{ title: 'dict.setdefault()', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Get a value, or set a default if the key is missing.', code: 'd = {"a":1}\nval = d.setdefault("b", 2)\nprint(d, val)' },
+{ title: 'dict.popitem()', category: 'collections', categoryLabel: 'Collections', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Remove and return the last inserted key-value pair.', code: 'd = {"a":1,"b":2}\nitem = d.popitem()\nprint(item, d)' },
+// --- FUNCTIONS (30 items) ---
+{ title: 'Define Function (def)', category: 'functions', categoryLabel: 'Functions', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Create reusable blocks of code using the def keyword.', code: 'def greet(name):\n    return f"Hello, {name}"\nprint(greet("World"))' },
+{ title: 'Default Arguments', category: 'functions', categoryLabel: 'Functions', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Provide default values for function parameters.', code: 'def greet(name="World"):\n    return f"Hello, {name}"\nprint(greet())\nprint(greet("Alice"))' },
+{ title: '*args — variable positional', category: 'functions', categoryLabel: 'Functions', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Accept any number of positional arguments as a tuple.', code: 'def sum_all(*args):\n    return sum(args)\nprint(sum_all(1,2,3,4))' },
+{ title: '**kwargs — variable keyword', category: 'functions', categoryLabel: 'Functions', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Accept any number of keyword arguments as a dict.', code: 'def print_info(**kwargs):\n    for k,v in kwargs.items():\n        print(f"{k}: {v}")\nprint_info(name="Alice", age=30)' },
+{ title: 'Lambda Functions', category: 'functions', categoryLabel: 'Functions', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Anonymous one-line functions for simple operations.', code: 'square = lambda x: x**2\nprint(square(5))' },
+{ title: 'map() with lambda', category: 'functions', categoryLabel: 'Functions', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Apply a function to every element of an iterable.', code: 'nums = [1,2,3,4]\ndoubled = list(map(lambda x: x*2, nums))\nprint(doubled)' },
+{ title: 'filter() with lambda', category: 'functions', categoryLabel: 'Functions', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Keep only elements that satisfy a condition.', code: 'evens = list(filter(lambda x: x%2==0, range(10)))\nprint(evens)' },
+{ title: 'reduce() (functools)', category: 'functions', categoryLabel: 'Functions', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Cumulatively apply a function to reduce a sequence to a single value.', code: 'from functools import reduce\nproduct = reduce(lambda x,y: x*y, [1,2,3,4])\nprint(product)' },
+{ title: 'Closures', category: 'functions', categoryLabel: 'Functions', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Inner functions that capture and remember state from their enclosing scope.', code: 'def make_multiplier(factor):\n    def multiply(x): return x*factor\n    return multiply\ntimes3 = make_multiplier(3)\nprint(times3(10))' },
+{ title: 'Simple Decorator', category: 'functions', categoryLabel: 'Functions', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Wrap a function to extend its behaviour without modifying its code.', code: 'def logger(func):\n    def wrapper(*args, **kwargs):\n        print(f"Calling {func.__name__}")\n        return func(*args, **kwargs)\n    return wrapper\n@logger\ndef greet(name): return f"Hello, {name}"\nprint(greet("Alice"))' },
+{ title: 'Decorator with arguments', category: 'functions', categoryLabel: 'Functions', level: 'badge-exp', levelLabel: 'Expert', desc: 'Create parameterised decorators that accept arguments.', code: 'def repeat(n):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            for _ in range(n):\n                func(*args, **kwargs)\n        return wrapper\n    return decorator\n@repeat(3)\ndef say_hi(): print("Hi!")\nsay_hi()' },
+{ title: '@functools.wraps', category: 'functions', categoryLabel: 'Functions', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Preserve the original function\'s metadata when using decorators.', code: 'import functools\ndef logger(func):\n    @functools.wraps(func)\n    def wrapper(*args, **kwargs):\n        print(f"Calling {func.__name__}")\n        return func(*args, **kwargs)\n    return wrapper\n@logger\ndef add(a,b): return a+b\nprint(add.__name__)' },
+{ title: 'functools.partial', category: 'functions', categoryLabel: 'Functions', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Fix arguments to a function, creating a simpler callable.', code: 'from functools import partial\ndef power(base, exp): return base**exp\nsquare = partial(power, exp=2)\nprint(square(5))' },
+{ title: '@lru_cache (functools)', category: 'functions', categoryLabel: 'Functions', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Memoise function results to avoid recomputation.', code: 'from functools import lru_cache\n@lru_cache(maxsize=128)\ndef fib(n):\n    if n < 2: return n\n    return fib(n-1) + fib(n-2)\nprint(fib(30))' },
+{ title: 'Recursive Function', category: 'functions', categoryLabel: 'Functions', level: 'badge-int', levelLabel: 'Intermediate', desc: 'A function that calls itself — useful for tree traversal and divide-and-conquer.', code: 'def factorial(n):\n    return 1 if n <= 1 else n * factorial(n-1)\nprint(factorial(5))' },
+// --- OOP (30 items) ---
+{ title: 'Class Definition & __init__', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Define a class with an initialiser method.', code: 'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n    def greet(self):\n        return f"Hi, I am {self.name}"\np = Person("Alice", 30)\nprint(p.greet())' },
+{ title: 'Inheritance', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Create a subclass that inherits from a parent class.', code: 'class Animal:\n    def speak(self): return "sound"\nclass Dog(Animal):\n    def speak(self): return "Woof!"\nd = Dog()\nprint(d.speak())' },
+{ title: 'Multiple Inheritance', category: 'oop', categoryLabel: 'OOP', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Inherit from multiple parent classes — Python uses the MRO (Method Resolution Order).', code: 'class A: pass\nclass B: pass\nclass C(A, B): pass\nprint(C.__mro__)' },
+{ title: 'super() to call parent', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Call methods from the parent class using super().', code: 'class Animal:\n    def __init__(self, name): self.name = name\nclass Dog(Animal):\n    def __init__(self, name, breed):\n        super().__init__(name)\n        self.breed = breed\nd = Dog("Rex", "German")\nprint(d.name, d.breed)' },
+{ title: '__repr__ vs __str__', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: '__repr__ is for developers, __str__ is for users.', code: 'class Point:\n    def __init__(self,x,y): self.x=x; self.y=y\n    def __repr__(self): return f"Point({self.x},{self.y})"\n    def __str__(self): return f"({self.x},{self.y})"\np=Point(3,4)\nprint(repr(p), str(p), p)' },
+{ title: '__eq__ and __hash__', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Define equality and enable hashing for use in sets and dicts.', code: 'class Point:\n    def __init__(self,x,y): self.x=x; self.y=y\n    def __eq__(self, other):\n        return self.x == other.x and self.y == other.y\n    def __hash__(self):\n        return hash((self.x, self.y))\np1=Point(1,2); p2=Point(1,2)\nprint(p1 == p2)\nprint(len({p1, p2}))' },
+{ title: 'Operator Overloading (__add__)', category: 'oop', categoryLabel: 'OOP', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Define behaviour for the + operator.', code: 'class Vector:\n    def __init__(self,x,y): self.x=x; self.y=y\n    def __add__(self, other):\n        return Vector(self.x+other.x, self.y+other.y)\n    def __repr__(self): return f"Vector({self.x},{self.y})"\nv1=Vector(1,2); v2=Vector(3,4)\nprint(v1+v2)' },
+{ title: '__len__ and __getitem__', category: 'oop', categoryLabel: 'OOP', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Make your class sequence-like with length and indexing support.', code: 'class MyList:\n    def __init__(self, data): self.data = data\n    def __len__(self): return len(self.data)\n    def __getitem__(self, idx): return self.data[idx]\nm = MyList([10,20,30])\nprint(len(m), m[1])' },
+{ title: 'Iterator Protocol (__iter__, __next__)', category: 'oop', categoryLabel: 'OOP', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Make your class iterable by implementing the iterator protocol.', code: 'class Countdown:\n    def __init__(self, start): self.n = start\n    def __iter__(self): return self\n    def __next__(self):\n        if self.n < 0: raise StopIteration\n        val = self.n; self.n -= 1; return val\nfor i in Countdown(3): print(i)' },
+{ title: '@property and @setter', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Create computed attributes with controlled access.', code: 'class Circle:\n    def __init__(self, radius): self._radius = radius\n    @property\n    def radius(self): return self._radius\n    @radius.setter\n    def radius(self, value):\n        if value < 0: raise ValueError\n        self._radius = value\n    @property\n    def area(self):\n        import math; return math.pi * self._radius**2\nc = Circle(5)\nprint(c.area)' },
+{ title: '@classmethod (alternative constructors)', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Create factory methods that return instances of the class.', code: 'class Person:\n    def __init__(self, name, age): self.name=name; self.age=age\n    @classmethod\n    def from_birth_year(cls, name, year):\n        import datetime\n        age = datetime.datetime.now().year - year\n        return cls(name, age)\np = Person.from_birth_year("Alice", 1996)\nprint(p.age)' },
+{ title: '@staticmethod', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Utility methods that don\'t need class or instance data.', code: 'class MathUtils:\n    @staticmethod\n    def is_even(n): return n % 2 == 0\nprint(MathUtils.is_even(4))' },
+{ title: 'Dataclasses (Python 3.7+)', category: 'oop', categoryLabel: 'OOP', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Auto-generate __init__, __repr__, __eq__, and more.', code: 'from dataclasses import dataclass\n@dataclass\nclass Product:\n    name: str\n    price: float\n    in_stock: bool = True\np = Product("Laptop", 999.99)\nprint(p)' },
+{ title: '__slots__ — memory optimisation', category: 'oop', categoryLabel: 'OOP', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Reduce memory usage by preventing __dict__ creation.', code: 'class Point:\n    __slots__ = ("x","y")\n    def __init__(self,x,y): self.x=x; self.y=y\np = Point(3,4)\n# p.z = 5  # AttributeError' },
+{ title: 'Abstract Base Classes (ABC)', category: 'oop', categoryLabel: 'OOP', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Define interfaces that subclasses must implement.', code: 'from abc import ABC, abstractmethod\nclass Shape(ABC):\n    @abstractmethod\n    def area(self): pass\nclass Square(Shape):\n    def __init__(self, side): self.side = side\n    def area(self): return self.side**2\ns = Square(5)\nprint(s.area())' },
+// --- STANDARD LIBRARY (50 items) ---
+{ title: 'datetime — current date/time', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get the current date and time.', code: 'from datetime import datetime\nprint(datetime.now())' },
+{ title: 'datetime — formatting', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Format dates using strftime codes.', code: 'from datetime import datetime\nnow = datetime.now()\nprint(now.strftime("%Y-%m-%d %H:%M"))' },
+{ title: 'datetime — parsing strings', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Convert strings to datetime objects.', code: 'from datetime import datetime\ndt = datetime.strptime("2026-06-15", "%Y-%m-%d")\nprint(dt)' },
+{ title: 'datetime — timedelta arithmetic', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Perform date arithmetic with timedelta.', code: 'from datetime import datetime, timedelta\nnow = datetime.now()\ntomorrow = now + timedelta(days=1)\nprint(tomorrow)' },
+{ title: 'json — dump and load', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Serialize Python objects to JSON and back.', code: 'import json\ndata = {"name":"Alice", "age":30}\njson_str = json.dumps(data, indent=2)\nprint(json_str)\nparsed = json.loads(json_str)\nprint(parsed["name"])' },
+{ title: 're — search and match', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Search for patterns in text using regular expressions.', code: 'import re\ntext = "Email: alice@example.com"\npattern = r"[\\w.+-]+@[\\w-]+\\.\\w+"\nmatch = re.search(pattern, text)\nprint(match.group())' },
+{ title: 're — findall', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Find all matches of a pattern in a string.', code: 'import re\ntext = "Emails: a@b.com, c@d.org"\nprint(re.findall(r"[\\w.+-]+@[\\w-]+\\.\\w+", text))' },
+{ title: 're — sub (replace)', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Replace all matches of a pattern.', code: 'import re\ntext = "Phone: 123-456-7890"\nprint(re.sub(r"\\d", "X", text))' },
+{ title: 'os — getcwd and listdir', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get current working directory and list files.', code: 'import os\nprint(os.getcwd())\nprint(os.listdir("."))' },
+{ title: 'os — environment variables', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Read and set environment variables.', code: 'import os\nprint(os.getenv("HOME", "not set"))\nos.environ["MY_VAR"] = "value"\nprint(os.getenv("MY_VAR"))' },
+{ title: 'pathlib — Path operations', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Modern path handling with Path objects.', code: 'from pathlib import Path\np = Path(".")\nprint(p.absolute())\nfor f in p.glob("*.py"):\n    print(f.name)' },
+{ title: 'shutil — copy and move', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'High-level file operations.', code: 'import shutil\n# shutil.copy("src.txt", "dst.txt")\nprint("Copy function available")' },
+{ title: 'random — randint', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Generate random integers.', code: 'import random\nprint(random.randint(1, 100))' },
+{ title: 'random — choice and shuffle', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Pick random items and shuffle sequences.', code: 'import random\nitems = [1,2,3,4,5]\nprint(random.choice(items))\nrandom.shuffle(items)\nprint(items)' },
+{ title: 'math — constants', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Mathematical constants like pi, e, and tau.', code: 'import math\nprint(math.pi, math.e, math.tau)' },
+{ title: 'math — functions', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Common math functions: sqrt, factorial, gcd.', code: 'import math\nprint(math.sqrt(16), math.factorial(5), math.gcd(48,18))' },
+{ title: 'statistics — mean and median', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Basic statistical functions.', code: 'import statistics\ndata = [10,20,30,40,50]\nprint(statistics.mean(data), statistics.median(data))' },
+{ title: 'sys — argv', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Access command-line arguments.', code: 'import sys\nprint(sys.argv)' },
+{ title: 'sys — version and platform', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get Python version and platform information.', code: 'import sys\nprint(sys.version)\nprint(sys.platform)' },
+{ title: 'argparse — basic', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Create command-line interfaces with argument parsing.', code: 'import argparse\nparser = argparse.ArgumentParser()\nparser.add_argument("--name", type=str, default="World")\nargs = parser.parse_args(["--name", "Alice"])\nprint(f"Hello, {args.name}")' },
+{ title: 'logging — basicConfig', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Set up logging to console or file.', code: 'import logging\nlogging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")\nlogging.info("Info message")\nlogging.warning("Warning message")' },
+{ title: 'logging — file handler', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Log messages to a file with rotation support.', code: 'import logging\nlogging.basicConfig(filename="app.log", level=logging.INFO)\nlogging.info("Log entry")' },
+{ title: 'subprocess — run', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Run shell commands and capture output.', code: 'import subprocess\nresult = subprocess.run(["echo", "Hello"], capture_output=True, text=True)\nprint(result.stdout)' },
+{ title: 'subprocess — check_output', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Get the output of a command.', code: 'import subprocess\nout = subprocess.check_output(["python", "--version"], text=True)\nprint(out.strip())' },
+{ title: 'threading — basic', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Create and manage threads for I/O-bound concurrency.', code: 'import threading, time\ndef worker():\n    time.sleep(1); print("Worker done")\nt = threading.Thread(target=worker)\nt.start(); t.join()' },
+{ title: 'multiprocessing — Process', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Create processes for CPU-bound parallelism.', code: 'from multiprocessing import Process\ndef task(): print("Process task")\np = Process(target=task)\np.start(); p.join()' },
+{ title: 'queue — FIFO', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Thread-safe FIFO queue for producer-consumer patterns.', code: 'from queue import Queue\nq = Queue()\nq.put("item1"); q.put("item2")\nprint(q.get(), q.get())' },
+{ title: 'heapq — heap operations', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Priority queue implementation using a heap.', code: 'import heapq\nheap = [3,1,4,1,5]\nheapq.heapify(heap)\nprint(heapq.heappop(heap))' },
+{ title: 'bisect — binary search', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Binary search and insertion into sorted lists.', code: 'import bisect\narr = [1,3,5,7]\npos = bisect.bisect_left(arr, 4)\nprint(pos)' },
+{ title: 'itertools — cycle', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Cycle through an iterable infinitely.', code: 'from itertools import cycle\ncolors = ["red","green"]\nfor i, c in zip(range(4), cycle(colors)): print(c)' },
+{ title: 'itertools — groupby', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Group consecutive items by a key function.', code: 'from itertools import groupby\ndata = [("A",1),("A",2),("B",3)]\nfor key, group in groupby(data, key=lambda x: x[0]):\n    print(key, list(group))' },
+{ title: 'itertools — permutations', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'All permutations of a sequence.', code: 'from itertools import permutations\nprint(list(permutations([1,2,3], 2)))' },
+{ title: 'itertools — combinations', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'All combinations of a sequence.', code: 'from itertools import combinations\nprint(list(combinations("ABC", 2)))' },
+{ title: 'itertools — product', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Cartesian product of multiple iterables.', code: 'from itertools import product\nprint(list(product([1,2], ["A","B"])))' },
+{ title: 'functools — reduce', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Cumulatively apply a function to reduce a sequence.', code: 'from functools import reduce\nprint(reduce(lambda x,y: x+y, [1,2,3,4]))' },
+{ title: 'enum — Enum', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Define enumerations with named constants.', code: 'from enum import Enum\nclass Color(Enum):\n    RED = 1\n    GREEN = 2\n    BLUE = 3\nprint(Color.RED.name, Color.RED.value)' },
+{ title: 'enum — auto values', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Auto-number enumerations with auto().', code: 'from enum import Enum, auto\nclass Status(Enum):\n    PENDING = auto()\n    RUNNING = auto()\nprint(Status.PENDING.value)' },
+{ title: 'hashlib — MD5', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Compute MD5 hash (not secure for cryptography).', code: 'import hashlib\nh = hashlib.md5(b"hello")\nprint(h.hexdigest())' },
+{ title: 'hashlib — SHA256', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Compute SHA256 hash (secure).', code: 'import hashlib\nh = hashlib.sha256(b"secure")\nprint(h.hexdigest())' },
+{ title: 'base64 — encode/decode', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Encode binary data as base64 strings.', code: 'import base64\nencoded = base64.b64encode(b"Hello")\nprint(encoded)\nprint(base64.b64decode(encoded))' },
+{ title: 'tempfile — temporary files', category: 'stdlib', categoryLabel: 'Std Lib', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Create temporary files and directories.', code: 'import tempfile\nwith tempfile.NamedTemporaryFile(mode="w", delete=False) as f:\n    f.write("temp data")\n    print(f.name)' },
+// --- ADVANCED (30 items) ---
+{ title: 'async/await', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Define and run asynchronous coroutines.', code: 'import asyncio\nasync def greet():\n    await asyncio.sleep(1)\n    return "Hello"\nprint(asyncio.run(greet()))' },
+{ title: 'asyncio.gather', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Run multiple async tasks concurrently.', code: 'import asyncio\nasync def task(n): await asyncio.sleep(n); return n\nasync def main():\n    results = await asyncio.gather(task(2), task(1))\n    print(results)\nasyncio.run(main())' },
+{ title: 'asyncio.TaskGroup (3.11+)', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-exp', levelLabel: 'Expert', desc: 'Structured concurrency with TaskGroup.', code: 'import asyncio\nasync def worker(name, delay):\n    await asyncio.sleep(delay)\n    return name\nasync def main():\n    async with asyncio.TaskGroup() as tg:\n        t1 = tg.create_task(worker("A", 2))\n        t2 = tg.create_task(worker("B", 1))\n    print(t1.result(), t2.result())\nasyncio.run(main())' },
+{ title: 'asyncio.wait_for (timeout)', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Set a timeout on an async operation.', code: 'import asyncio\nasync def slow(): await asyncio.sleep(10); return "done"\nasync def main():\n    try:\n        result = await asyncio.wait_for(slow(), timeout=2)\n    except asyncio.TimeoutError:\n        print("Timeout!")\nasyncio.run(main())' },
+{ title: 'Generators (yield)', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Create lazy iterators using yield.', code: 'def gen():\n    for i in range(3):\n        yield i\nfor v in gen(): print(v)' },
+{ title: 'Generator Expressions', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Lazy comprehension syntax using parentheses.', code: 'squares = (x**2 for x in range(5))\nprint(list(squares))' },
+{ title: 'Custom Context Manager', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Create your own context managers with __enter__ and __exit__.', code: 'class ManagedFile:\n    def __enter__(self): return self\n    def __exit__(self, *args): pass\nwith ManagedFile() as f: pass' },
+{ title: '@contextmanager decorator', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Create context managers using a generator with yield.', code: 'from contextlib import contextmanager\n@contextmanager\ndef open_file(name):\n    f = open(name, "w")\n    try: yield f\n    finally: f.close()\nwith open_file("test.txt") as f: f.write("hello")' },
+{ title: 'Type Hints with typing', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Use typing module for complex type annotations.', code: 'from typing import List, Optional\ndef process(items: List[int]) -> Optional[int]:\n    return sum(items) if items else None\nprint(process([1,2,3]))' },
+{ title: 'TypeVar / Generic', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-exp', levelLabel: 'Expert', desc: 'Define generic classes that work with any type.', code: 'from typing import TypeVar, Generic\nT = TypeVar("T")\nclass Stack(Generic[T]):\n    def __init__(self): self._items: List[T] = []\n    def push(self, item: T): self._items.append(item)\n    def pop(self) -> T: return self._items.pop()\ns = Stack[int]()\ns.push(42)\nprint(s.pop())' },
+{ title: 'Protocol (structural typing)', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-exp', levelLabel: 'Expert', desc: 'Define interfaces using Protocol (duck typing with type checking).', code: 'from typing import Protocol\nclass Drawable(Protocol):\n    def draw(self) -> None: ...\ndef render(shape: Drawable): shape.draw()' },
+{ title: 'Descriptor Protocol (__get__, __set__)', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-exp', levelLabel: 'Expert', desc: 'Control attribute access with descriptors.', code: 'class Positive:\n    def __set_name__(self, owner, name): self.name = name\n    def __get__(self, obj, type=None): return obj.__dict__[self.name]\n    def __set__(self, obj, value):\n        if value < 0: raise ValueError\n        obj.__dict__[self.name] = value\nclass Account:\n    balance = Positive()\n    def __init__(self, balance): self.balance = balance\na = Account(100)\nprint(a.balance)' },
+{ title: 'Metaclasses', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-exp', levelLabel: 'Expert', desc: 'Modify class creation with metaclasses.', code: 'class Meta(type):\n    def __new__(cls, name, bases, dct):\n        dct["version"] = 1.0\n        return super().__new__(cls, name, bases, dct)\nclass MyClass(metaclass=Meta): pass\nprint(MyClass.version)' },
+{ title: 'weakref (weak references)', category: 'advanced', categoryLabel: 'Advanced', level: 'badge-exp', levelLabel: 'Expert', desc: 'Create non-owning references to avoid circular references.', code: 'import weakref\nclass Obj: pass\no = Obj()\nref = weakref.ref(o)\nprint(ref() is o)' },
+// --- BUILT-INS (30 items) ---
+{ title: 'len()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Return the length of a sequence or collection.', code: 'print(len("hello"))\nprint(len([1,2,3,4]))' },
+{ title: 'type()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Return the type of an object.', code: 'print(type(42), type([]), type({}))' },
+{ title: 'isinstance()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Check if an object is an instance of a class (handles inheritance).', code: 'print(isinstance(42, int))\nprint(isinstance([], list))' },
+{ title: 'issubclass()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Check if a class is a subclass of another.', code: 'class A: pass\nclass B(A): pass\nprint(issubclass(B, A))' },
+{ title: 'range()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Generate a sequence of numbers (lazy).', code: 'print(list(range(5)))\nprint(list(range(2,8,2)))' },
+{ title: 'enumerate()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Iterate with index and value.', code: 'fruits = ["apple","banana"]\nfor i, f in enumerate(fruits): print(i, f)' },
+{ title: 'zip()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Pair elements from multiple iterables.', code: 'names = ["A","B"]; scores = [90,85]\nfor n,s in zip(names, scores): print(n,s)' },
+{ title: 'sorted()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Return a sorted list from any iterable.', code: 'nums = [3,1,4,1,5]\nprint(sorted(nums))\nprint(sorted(nums, reverse=True))' },
+{ title: 'sum()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Sum the elements of an iterable.', code: 'print(sum([1,2,3,4]))' },
+{ title: 'max() / min()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Find the maximum or minimum value.', code: 'print(max([1,2,3]), min([1,2,3]))' },
+{ title: 'any() / all()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Check if any or all elements are truthy.', code: 'print(any([False, True]))\nprint(all([True, True]))' },
+{ title: 'map()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Apply a function to every element of an iterable.', code: 'print(list(map(lambda x: x*2, [1,2,3])))' },
+{ title: 'filter()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Filter an iterable, keeping only truthy elements.', code: 'print(list(filter(lambda x: x%2==0, range(10))))' },
+{ title: 'round()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Round a float to a specified precision.', code: 'print(round(3.14159, 2))' },
+{ title: 'abs()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Return the absolute value of a number.', code: 'print(abs(-5))' },
+{ title: 'divmod()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Return quotient and remainder as a tuple.', code: 'print(divmod(10, 3))  # (3, 1)' },
+{ title: 'pow()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Power operation with optional modulus.', code: 'print(pow(2, 10), pow(2, 10, 100))' },
+{ title: 'chr() / ord()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Convert between Unicode code points and characters.', code: 'print(ord("A"), chr(65))' },
+{ title: 'bin() / oct() / hex()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Convert integers to binary, octal, or hex strings.', code: 'print(bin(42), oct(42), hex(42))' },
+{ title: 'repr()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Return the "official" string representation of an object.', code: 'print(repr("hello\\n"))' },
+{ title: 'str() / int() / float()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Convert between data types.', code: 'print(int("42"), float("3.14"), str(100))' },
+{ title: 'hash()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Return the hash value of an object (must be hashable).', code: 'print(hash("hello"))' },
+{ title: 'open()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Open a file for reading or writing.', code: 'with open("test.txt","w") as f: f.write("data")' },
+{ title: 'property() built-in', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Create property descriptors for controlled attribute access.', code: 'class C:\n    def __init__(self): self._x = None\n    def getx(self): return self._x\n    def setx(self, v): self._x = v\n    x = property(getx, setx)\nc = C(); c.x = 42; print(c.x)' },
+{ title: 'classmethod() / staticmethod()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Built-in decorators for class and static methods.', code: 'class C:\n    @classmethod\n    def cm(cls): pass\n    @staticmethod\n    def sm(): pass\nprint(C.cm, C.sm)' },
+{ title: 'vars()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Return the __dict__ of an object (attributes).', code: 'class A: pass\na = A(); a.x = 10\nprint(vars(a))' },
+{ title: 'globals() / locals()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Get current global and local symbol tables.', code: 'x = 10\ndef f(): y = 20; print(locals())\nf()' },
+{ title: 'callable()', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Check if an object is callable (like a function).', code: 'def foo(): pass\nprint(callable(foo), callable(42))' },
+{ title: 'sorted() with key', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Sort with a custom key function.', code: 'words = ["banana", "Apple", "cherry"]\nprint(sorted(words, key=str.lower))' },
+{ title: 'all() with generator', category: 'builtins', categoryLabel: 'Built‑ins', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Check a condition for all elements using a generator.', code: 'nums = [2,4,6,8]\nprint(all(x % 2 == 0 for x in nums))' },
+// --- METHODS (String, List, Dict, Set) (40 items) ---
+{ title: 'str.upper() / lower()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Convert string to uppercase or lowercase.', code: 's = "Hello"\nprint(s.upper(), s.lower())' },
+{ title: 'str.strip()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Remove leading and trailing whitespace.', code: 's = "  hi  "\nprint(s.strip())' },
+{ title: 'str.split()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Split string into a list of substrings.', code: 's = "a,b,c"\nprint(s.split(","))' },
+{ title: 'str.join()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Join list elements into a single string with a separator.', code: 'parts = ["a","b","c"]\nprint("-".join(parts))' },
+{ title: 'str.replace()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Replace occurrences of a substring.', code: 's = "Hello World"\nprint(s.replace("World", "Python"))' },
+{ title: 'str.find()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Find the first occurrence of a substring.', code: 's = "abc123"\nprint(s.find("123"))' },
+{ title: 'str.startswith() / endswith()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Check if string starts or ends with a given prefix/suffix.', code: 's = "image.png"\nprint(s.startswith("image"), s.endswith(".png"))' },
+{ title: 'str.isdigit() / isalpha()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Check if string contains only digits or only letters.', code: 'print("123".isdigit(), "abc".isalpha())' },
+{ title: 'str.zfill()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Pad a string with zeros on the left.', code: 'print("42".zfill(5))' },
+{ title: 'str.format()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Format strings using placeholders (legacy, use f-strings instead).', code: 'print("{} + {} = {}".format(2,3,5))' },
+{ title: 'str.center() / ljust() / rjust()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Align text within a field of a specified width.', code: 's = "hi"\nprint(s.center(10, "-"))' },
+{ title: 'str.count()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Count occurrences of a substring.', code: 's = "ababa"\nprint(s.count("a"))' },
+{ title: 'str.translate()', category: 'methods', categoryLabel: 'Methods', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Translate characters using a translation table.', code: 'trans = str.maketrans("aeiou", "12345")\nprint("hello".translate(trans))' },
+{ title: 'list.append()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Add an element to the end of a list.', code: 'lst=[1,2]; lst.append(3); print(lst)' },
+{ title: 'list.insert()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Insert an element at a specific position.', code: 'lst=[1,3]; lst.insert(1,2); print(lst)' },
+{ title: 'list.pop()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Remove and return the element at a given index.', code: 'lst=[10,20,30]; x=lst.pop(1); print(x,lst)' },
+{ title: 'list.remove()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Remove the first occurrence of a value.', code: 'lst=[1,2,3,2]; lst.remove(2); print(lst)' },
+{ title: 'list.sort() / reverse()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Sort in place or reverse the order.', code: 'lst=[3,1,4]; lst.sort(); print(lst); lst.reverse(); print(lst)' },
+{ title: 'list.extend()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Extend a list with elements from another iterable.', code: 'a=[1,2]; b=[3,4]; a.extend(b); print(a)' },
+{ title: 'list.index()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Find the index of the first occurrence of a value.', code: 'lst=[1,2,3]; print(lst.index(2))' },
+{ title: 'list.copy()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Return a shallow copy of a list.', code: 'a=[1,2]; b=a.copy(); print(b)' },
+{ title: 'dict.get()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get a value by key, with an optional default.', code: 'd={"a":1}; print(d.get("b", 0))' },
+{ title: 'dict.items()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get a view of key-value pairs.', code: 'd={"a":1,"b":2}; print(list(d.items()))' },
+{ title: 'dict.keys() / values()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Get views of keys or values.', code: 'd={"a":1,"b":2}; print(list(d.keys()), list(d.values()))' },
+{ title: 'dict.update()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Merge another dict into this one.', code: 'd1={"a":1}; d2={"b":2}; d1.update(d2); print(d1)' },
+{ title: 'dict.pop()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Remove a key and return its value.', code: 'd={"a":1,"b":2}; val=d.pop("a"); print(val,d)' },
+{ title: 'dict.setdefault()', category: 'methods', categoryLabel: 'Methods', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Get a value or set a default if the key is missing.', code: 'd={"a":1}; val=d.setdefault("b",2); print(d,val)' },
+{ title: 'set.add()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Add an element to a set.', code: 's={1,2}; s.add(3); print(s)' },
+{ title: 'set.discard() / remove()', category: 'methods', categoryLabel: 'Methods', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Remove an element (discard doesn\'t raise an error if missing).', code: 's={1,2,3}; s.discard(2); s.remove(1); print(s)' },
+{ title: 'set.union() / intersection()', category: 'methods', categoryLabel: 'Methods', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Set union and intersection operations.', code: 's1={1,2,3}; s2={2,3,4}; print(s1.union(s2), s1.intersection(s2))' },
+// --- ALGORITHMS (25 items) ---
+{ title: 'Factorial (iterative)', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Compute factorial using a loop.', code: 'def fact(n):\n    r=1\n    for i in range(2,n+1): r*=i\n    return r\nprint(fact(5))' },
+{ title: 'Factorial (recursive)', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Compute factorial using recursion.', code: 'def fact(n): return 1 if n<=1 else n*fact(n-1)\nprint(fact(5))' },
+{ title: 'Fibonacci (iterative)', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Generate Fibonacci numbers iteratively.', code: 'def fib(n):\n    a,b=0,1\n    for _ in range(n): a,b=b,a+b\n    return a\nprint(fib(10))' },
+{ title: 'Fibonacci (recursive)', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Generate Fibonacci numbers recursively.', code: 'def fib(n): return n if n<=1 else fib(n-1)+fib(n-2)\nprint(fib(10))' },
+{ title: 'Bubble Sort', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Sort by repeatedly swapping adjacent elements.', code: 'def bubble(arr):\n    n=len(arr)\n    for i in range(n):\n        for j in range(0,n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\nprint(bubble([5,2,4,1,3]))' },
+{ title: 'Binary Search', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Search a sorted array in O(log n) time.', code: 'def bs(arr, target):\n    lo, hi = 0, len(arr)-1\n    while lo <= hi:\n        mid = (lo+hi)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: lo = mid+1\n        else: hi = mid-1\n    return -1\nprint(bs([1,2,3,4,5], 3))' },
+{ title: 'Sieve of Eratosthenes', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Find all prime numbers up to n.', code: 'def sieve(n):\n    p=[True]*(n+1); p[0]=p[1]=False\n    for i in range(2,int(n**0.5)+1):\n        if p[i]:\n            for j in range(i*i,n+1,i): p[j]=False\n    return [i for i in range(2,n+1) if p[i]]\nprint(sieve(30))' },
+{ title: 'Palindrome Check', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Check if a string reads the same forward and backward.', code: 'def is_pal(s): return s == s[::-1]\nprint(is_pal("racecar"))' },
+{ title: 'Reverse String', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-beg', levelLabel: 'Beginner', desc: 'Reverse a string using slicing.', code: 'def rev(s): return s[::-1]\nprint(rev("hello"))' },
+{ title: 'Anagram Check', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Check if two strings are anagrams (same letters, different order).', code: 'def is_anagram(a,b): return sorted(a.lower()) == sorted(b.lower())\nprint(is_anagram("listen","silent"))' },
+{ title: 'Two Sum', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Find two indices in an array that sum to a target.', code: 'def two_sum(nums, target):\n    seen={}\n    for i,n in enumerate(nums):\n        comp=target-n\n        if comp in seen: return [seen[comp], i]\n        seen[n]=i\n    return []\nprint(two_sum([2,7,11,15], 9))' },
+{ title: 'FizzBuzz', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-beg', levelLabel: 'Beginner', desc: 'The classic FizzBuzz interview question.', code: 'for i in range(1,16):\n    if i%15==0: print("FizzBuzz")\n    elif i%3==0: print("Fizz")\n    elif i%5==0: print("Buzz")\n    else: print(i)' },
+{ title: 'BFS Graph Traversal', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Breadth-first search on a graph.', code: 'from collections import deque\ndef bfs(graph, start):\n    visited=set([start])\n    q=deque([start])\n    while q:\n        node=q.popleft()\n        print(node, end=" ")\n        for nb in graph[node]:\n            if nb not in visited:\n                visited.add(nb); q.append(nb)\ngraph={1:[2,3],2:[4,5],3:[6],4:[],5:[],6:[]}\nbfs(graph,1)' },
+{ title: 'DFS Graph Traversal', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Depth-first search on a graph.', code: 'def dfs(graph, node, visited=None):\n    if visited is None: visited=set()\n    visited.add(node); print(node,end=" ")\n    for nb in graph[node]:\n        if nb not in visited: dfs(graph,nb,visited)\ngraph={1:[2,3],2:[4,5],3:[6],4:[],5:[],6:[]}\ndfs(graph,1)' },
+{ title: 'Dijkstra\'s Algorithm', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-exp', levelLabel: 'Expert', desc: 'Find the shortest path in a weighted graph.', code: 'import heapq\ndef dijkstra(graph, start):\n    pq=[(0,start)]; dist={n:float("inf") for n in graph}; dist[start]=0\n    while pq:\n        d,u=heapq.heappop(pq)\n        if d>dist[u]: continue\n        for v,w in graph[u].items():\n            nd=d+w\n            if nd<dist[v]: dist[v]=nd; heapq.heappush(pq,(nd,v))\n    return dist\ng={1:{2:1,3:4},2:{3:2,4:5},3:{4:1},4:{}}\nprint(dijkstra(g,1))' },
+{ title: 'Merge Sort', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Divide-and-conquer sorting algorithm.', code: 'def merge_sort(arr):\n    if len(arr)<=1: return arr\n    mid=len(arr)//2; left=merge_sort(arr[:mid]); right=merge_sort(arr[mid:])\n    i=j=0; res=[]\n    while i<len(left) and j<len(right):\n        if left[i]<=right[j]: res.append(left[i]); i+=1\n        else: res.append(right[j]); j+=1\n    res.extend(left[i:]); res.extend(right[j:])\n    return res\nprint(merge_sort([5,2,4,1,3]))' },
+{ title: 'Quick Sort', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-adv', levelLabel: 'Advanced', desc: 'Divide-and-conquer sorting with pivot.', code: 'def qs(arr):\n    if len(arr)<=1: return arr\n    pivot=arr[0]\n    left=[x for x in arr[1:] if x<=pivot]\n    right=[x for x in arr[1:] if x>pivot]\n    return qs(left)+[pivot]+qs(right)\nprint(qs([5,2,4,1,3]))' },
+{ title: 'Euclidean GCD', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Greatest Common Divisor using Euclid\'s algorithm.', code: 'def gcd(a,b):\n    while b: a,b=b,a%b\n    return a\nprint(gcd(48,18))' },
+{ title: 'Least Common Multiple (LCM)', category: 'algorithms', categoryLabel: 'Algorithms', level: 'badge-int', levelLabel: 'Intermediate', desc: 'Compute LCM using the relationship with GCD.', code: 'def gcd(a,b):\n    while b: a,b=b,a%b\n    return a\ndef lcm(a,b): return a*b//gcd(a,b)\nprint(lcm(12,18))' }
+];
+function renderCheats() {
+const grid = document.getElementById('cheatGrid');
+const noResults = document.getElementById('noResults');
+const query = searchQuery.toLowerCase();
+const filter = activeFilter;
+let filtered = cheatItems.filter(function(s) {
+const matchFilter = filter === 'all' || s.category === filter;
+const matchSearch = !query ||
+s.title.toLowerCase().includes(query) ||
+(s.desc && s.desc.toLowerCase().includes(query)) ||
+s.category.includes(query);
+return matchFilter && matchSearch;
+});
+if (filtered.length === 0) {
+grid.innerHTML = '';
+noResults.style.display = 'block';
+return;
+}
+noResults.style.display = 'none';
+grid.innerHTML = '';
+filtered.forEach(function(s) {
+const card = renderCheatItem(s);
+grid.appendChild(card);
+});
+}
+renderCheats();
+document.querySelectorAll('a[data-filter]').forEach(function(link) {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const filter = link.dataset.filter;
+document.querySelectorAll('.filter-tab').forEach(function(t) {
+t.classList.toggle('active', t.dataset.filter === filter);
+});
+activeFilter = filter;
+renderCheats();
+document.getElementById('cheats').scrollIntoView({ behavior: 'smooth' });
+});
+});
+})();
+</script>
+</body>
+</html>
