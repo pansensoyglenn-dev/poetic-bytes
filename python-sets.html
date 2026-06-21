@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Sets – Complete Guide with Examples | Learn Python Free 2026 | Poetic Bytes</title>
+    <meta name="description" content="Master Python sets in 2026 – unordered, unique collections. Learn set operations, methods, comprehensions, frozenset, and performance tips with runnable code examples. Free interactive tutorial." />
+    <meta name="keywords" content="python sets, set operations, frozenset, set comprehension, python data structures, unique collections, python tutorial, learn python, python programming" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/python-sets.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/python-sets.html" />
+    <meta property="og:title" content="Python Sets – Complete Guide with Examples | Poetic Bytes" />
+    <meta property="og:description" content="Master Python sets in 2026 – unordered, unique collections. Learn set operations, methods, comprehensions, frozenset, and performance tips with runnable code examples." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/assets/og-poetic-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Sets – Complete Guide with Examples | Poetic Bytes" />
+    <meta name="twitter:description" content="Master Python sets in 2026 – unordered, unique collections. Learn set operations, methods, comprehensions, frozenset, and performance tips with runnable code examples." />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/assets/og-poetic-image.jpg" />
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔵</text></svg>" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "Python Sets – Complete Guide with Examples",
+            "description": "Master Python sets in 2026 – unordered, unique collections. Learn set operations, methods, comprehensions, frozenset, and performance tips with runnable code examples.",
+            "image": "https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/assets/og-poetic-image.jpg",
+            "author": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "url": "https://www.linkedin.com/in/glenn-pansensoy",
+                "sameAs": [
+                    "https://twitter.com/PoeticGlenn",
+                    "https://www.facebook.com/Glenn-Pansensoy",
+                    "https://www.instagram.com/poeticglenn",
+                    "https://www.youtube.com/@GlennPansensoy"
+                ]
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Poetic Bytes",
+                "url": "https://poetic-bytes.vercel.app",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://poetic-bytes.vercel.app/logo.png"
+                }
+            },
+            "datePublished": "2026-06-21",
+            "dateModified": "2026-06-21",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://poetic-bytes.vercel.app/python-sets.html"
+            },
+            "keywords": "python sets, set operations, frozenset, set comprehension, python data structures, unique collections, python tutorial, learn python"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://poetic-bytes.vercel.app/" },
+                { "@type": "ListItem", "position": 2, "name": "Python Sets", "item": "https://poetic-bytes.vercel.app/python-sets.html" }
+            ]
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        /* (same styles as before – unchanged) */
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+            --toc-width: 220px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero h1 span {
+            color: var(--blue-lt);
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+            min-height: 100px;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+
+        .cat-label {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .68rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin: 1.8rem 0 .8rem;
+        }
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .insight strong {
+            color: var(--text);
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .note-warn {
+            font-size: .74rem;
+            color: var(--amber);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+
+        .code-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: .5rem;
+            padding: .6rem .7rem 0;
+        }
+        .code-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--blue-lt);
+            font-size: .66rem;
+            font-weight: 700;
+            padding: .35rem .7rem;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: .02em;
+            transition: background .2s, color .2s;
+        }
+        .code-btn:hover {
+            background: rgba(75, 139, 190, .28);
+        }
+        .code-btn:disabled {
+            opacity: .55;
+            cursor: wait;
+        }
+        .code-btn.run-btn {
+            color: var(--green);
+            border-color: rgba(16, 185, 129, .3);
+            background: rgba(16, 185, 129, .1);
+        }
+        .code-btn.run-btn:hover {
+            background: rgba(16, 185, 129, .22);
+        }
+        .code-output {
+            display: none;
+            background: #06101a;
+            border-top: 1px solid var(--border);
+            border-radius: 0 0 6px 6px;
+            padding: .8rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.6;
+            color: #4ade80;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 280px;
+            overflow-y: auto;
+            margin-top: .4rem;
+        }
+        .code-output.show {
+            display: block;
+        }
+        .code-output.error {
+            color: #f87171;
+        }
+        .code-output .out-label {
+            display: block;
+            color: var(--muted);
+            font-style: italic;
+            font-family: 'Syne', sans-serif;
+            font-size: .68rem;
+            margin-bottom: .4rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .fn {
+            color: #d2a8ff;
+        }
+        .st {
+            color: #a5d6ff;
+        }
+        .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+
+        .sticky-toc {
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            width: var(--toc-width);
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            background: rgba(11, 18, 28, .92);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 12px 0;
+            z-index: 800;
+            scrollbar-width: thin;
+        }
+        .sticky-toc::-webkit-scrollbar {
+            width: 3px;
+        }
+        .sticky-toc::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sticky-toc::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 10px;
+        }
+        .sticky-toc-title {
+            font-size: .6rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 0 14px 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 6px;
+        }
+        .sticky-toc a {
+            display: block;
+            padding: 5px 14px;
+            font-size: .68rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .15s;
+            border-left: 2px solid transparent;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        .sticky-toc a:hover {
+            color: var(--text);
+            background: rgba(75, 139, 190, .06);
+        }
+        .sticky-toc a.active {
+            color: var(--gold);
+            border-left-color: var(--gold);
+            background: rgba(255, 217, 102, .06);
+        }
+        @media(max-width:1100px) {
+            .sticky-toc {
+                right: 10px;
+                width: 190px;
+                top: 70px;
+            }
+        }
+        @media(max-width:880px) {
+            .sticky-toc {
+                display: none;
+            }
+        }
+
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn.fs-copy:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+
+        .share-box {
+            text-align: center;
+        }
+        .share-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .share-btn {
+            height: var(--btn-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-size: .74rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .2s;
+            font-weight: 600;
+            background: var(--card);
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .share-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .1);
+        }
+        .share-btn:active {
+            transform: scale(.96);
+        }
+        .share-btn.copy-btn {
+            border-color: rgba(75, 139, 190, .3);
+        }
+        .share-btn.copy-btn:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .15);
+        }
+
+        .subscribe-box {
+            background: linear-gradient(135deg, #1a2a3a, #0f1c2f);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .subscribe-box h3 {
+            font-size: .95rem;
+            color: var(--text);
+            margin-bottom: .3rem;
+        }
+        .sub-form {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+            max-width: 340px;
+            margin: 1.2rem auto 0;
+        }
+        .sub-form input {
+            height: var(--btn-h);
+            padding: 0 .9rem;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-size: .8rem;
+            width: 100%;
+            transition: border-color .2s;
+        }
+        .sub-form input:focus {
+            border-color: var(--blue);
+            outline: none;
+        }
+        .sub-form button {
+            height: var(--btn-h);
+            background: var(--blue);
+            border: none;
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-weight: 700;
+            font-size: .8rem;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .sub-form button:hover {
+            background: var(--blue-deep);
+        }
+        .sub-message {
+            margin-top: .8rem;
+            font-size: .78rem;
+            display: none;
+        }
+        .sub-message.success {
+            color: var(--green);
+            display: block;
+        }
+        .sub-message.error {
+            color: var(--red);
+            display: block;
+        }
+
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3.5rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .sticky-toc {
+                display: none !important;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .share-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 240px;
+            }
+        }
+        @media(max-width:768px) {
+            .floating-share {
+                right: 14px;
+                bottom: 76px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html#toc">Curriculum</a></li>
+                <li><a href="index.html#new-lessons">New Lessons</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#instructor">Instructor</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="programming-history.html">History</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><button data-href="#intro"><i class="fas fa-flag"></i>Introduction</button></li>
+                <li><button data-href="#creating"><i class="fas fa-plus-circle"></i>Creating Sets</button></li>
+                <li><button data-href="#operations"><i class="fas fa-merge"></i>Set Operations</button></li>
+                <li><button data-href="#methods"><i class="fas fa-tools"></i>Set Methods</button></li>
+                <li><button data-href="#comprehensions"><i class="fas fa-list"></i>Comprehensions</button></li>
+                <li><button data-href="#frozenset"><i class="fas fa-snowflake"></i>Frozenset</button></li>
+                <li><button data-href="#membership"><i class="fas fa-search"></i>Membership</button></li>
+                <li><button data-href="#performance"><i class="fas fa-gauge-high"></i>Performance</button></li>
+                <li><button data-href="#use-cases"><i class="fas fa-briefcase"></i>Use Cases</button></li>
+                <li><button data-href="#exercises"><i class="fas fa-puzzle-piece"></i>Exercises</button></li>
+                <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X">
+            <i class="fab fa-twitter"></i>
+            <span class="tooltip">X</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip">LinkedIn</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="tooltip">Telegram</span>
+        </a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <nav class="sticky-toc" id="stickyToc" aria-label="Table of contents">
+        <div class="sticky-toc-title">On this page</div>
+        <a href="#intro">Introduction</a>
+        <a href="#creating">Creating Sets</a>
+        <a href="#operations">Set Operations</a>
+        <a href="#methods">Set Methods</a>
+        <a href="#comprehensions">Set Comprehensions</a>
+        <a href="#frozenset">Frozenset</a>
+        <a href="#membership">Membership Testing</a>
+        <a href="#performance">Performance</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#exercises">Exercises</a>
+    </nav>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python Sets — Complete Guide">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python 3.12+ · Data Structures</div>
+                <h1>Python Sets<br><span>Unordered, Unique Collections</span></h1>
+                <p class="lead">Master Python sets — the fastest way to handle unique items, test membership, and perform mathematical set operations. Learn set creation, methods, comprehensions, frozenset, and real‑world use cases with runnable examples.</p>
+                <div class="hero-btns" style="flex-direction:row;flex-wrap:wrap;">
+                    <a href="#creating" class="btn btn-primary"><i class="fas fa-play"></i> Start Learning</a>
+                    <a href="#exercises" class="btn btn-outline"><i class="fas fa-puzzle-piece"></i> Practice Exercises</a>
+                    <a href="index.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Curriculum</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="intro-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="intro-heading">🔵 What Are Python Sets?</h2>
+                    <p>An unordered collection of unique, hashable objects — built for speed</p>
+                </div>
+                <div class="oop-block">
+                    <p>A <strong style="color:var(--text);">set</strong> is an unordered collection of <strong style="color:var(--text);">unique</strong> elements. Sets are <strong style="color:var(--text);">mutable</strong> (you can add and remove items), but the items themselves must be <strong style="color:var(--text);">hashable</strong> (immutable). The defining characteristics:</p>
+                    <ul style="color:var(--muted);font-size:.78rem;margin:.6rem 0 .6rem 1.2rem;list-style:disc;line-height:1.8;">
+                        <li><strong style="color:var(--text);">Unordered</strong> — no index, no ordering guarantee</li>
+                        <li><strong style="color:var(--text);">Unique</strong> — duplicates are automatically removed</li>
+                        <li><strong style="color:var(--text);">Fast membership</strong> — O(1) average time for <code>in</code> checks</li>
+                        <li><strong style="color:var(--text);">Mathematical operations</strong> — union, intersection, difference, symmetric difference</li>
+                    </ul>
+                    <div class="code-snippet"><pre><span class="cmt"># A set of unique languages</span>
+languages = {<span class="st">"Python"</span>, <span class="st">"JavaScript"</span>, <span class="st">"Rust"</span>, <span class="st">"Python"</span>}
+<span class="fn">print</span>(languages)   <span class="cmt"># {'Python', 'JavaScript', 'Rust'} — duplicates removed</span>
+<span class="fn">print</span>(len(languages)) <span class="cmt"># 3</span>
+<span class="fn">print</span>(<span class="st">"Python"</span> <span class="kw">in</span> languages) <span class="cmt"># True — O(1) membership</span></pre></div>
+                    <div class="insight">💡 Sets are implemented as <strong>hash tables</strong> — the same underlying structure as dictionaries, but without the values. This gives them O(1) average time for add, remove, and membership tests.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="creating" aria-labelledby="creating-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="creating-heading">🔧 Creating Sets</h2>
+                    <p>Different ways to build a set in Python</p>
+                </div>
+                <div class="oop-block">
+                    <h3>📦 Set Literals &amp; Constructors</h3>
+                    <p>Use curly braces <code>{ }</code> for a set literal — but be careful: <code>{}</code> creates an empty <strong style="color:var(--text);">dictionary</strong>, not a set. Use <code>set()</code> for an empty set.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Set literal</span>
+colors = {<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>}
+<span class="fn">print</span>(colors)   <span class="cmt"># {'red', 'green', 'blue'}</span>
+
+<span class="cmt"># Empty set — must use set()</span>
+empty_set = set()
+empty_dict = {}
+<span class="fn">print</span>(type(empty_set))   <span class="cmt"># &lt;class 'set'&gt;</span>
+<span class="fn">print</span>(type(empty_dict))  <span class="cmt"># &lt;class 'dict'&gt;</span>
+
+<span class="cmt"># From a list (deduplicates automatically)</span>
+numbers = [1, 2, 2, 3, 3, 3, 4]
+unique_nums = set(numbers)
+<span class="fn">print</span>(unique_nums)   <span class="cmt"># {1, 2, 3, 4}</span>
+
+<span class="cmt"># From a string (unique characters)</span>
+chars = set(<span class="st">"hello"</span>)
+<span class="fn">print</span>(chars)   <span class="cmt"># {'h', 'e', 'l', 'o'} — 'l' appears once</span>
+
+<span class="cmt"># From a range</span>
+evens = set(range(0, 10, 2))
+<span class="fn">print</span>(evens)   <span class="cmt"># {0, 2, 4, 6, 8}</span></pre></div>
+                    <div class="insight">💡 <code>set()</code> accepts any iterable — lists, tuples, strings, ranges, and even other sets. Duplicates are automatically discarded.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>⚠️ What Can Go Inside a Set?</h3>
+                    <p>Set elements must be <strong style="color:var(--text);">hashable</strong> — that means they are immutable. Lists, dicts, and other sets cannot be elements of a set. Tuples are fine because they are immutable.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Valid set elements — all immutable types</span>
+valid = {42, 3.14, <span class="st">"hello"</span>, (1, 2, 3), True, <span class="kw">None</span>}
+<span class="fn">print</span>(valid)
+
+<span class="cmt"># Invalid — TypeError: unhashable type: 'list'</span>
+<span class="cmt"># invalid = {1, [2, 3], 4}</span>
+
+<span class="cmt"># Invalid — TypeError: unhashable type: 'dict'</span>
+<span class="cmt"># invalid = {1, {"a": 2}, 3}</span>
+
+<span class="cmt"># Invalid — TypeError: unhashable type: 'set'</span>
+<span class="cmt"># invalid = {1, {2, 3}, 4}</span>
+
+<span class="cmt"># But frozenset can be nested inside a set</span>
+valid = {1, frozenset({2, 3}), 4}
+<span class="fn">print</span>(valid)   <span class="cmt"># {1, 4, frozenset({2, 3})}</span></pre></div>
+                    <div class="note-warn">⚠️ Lists, dictionaries, and sets are <strong>not hashable</strong> — they cannot be stored in a set. Use tuples or frozensets instead.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="operations" aria-labelledby="operations-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="operations-heading">🔗 Set Operations — Union, Intersection, Difference</h2>
+                    <p>Python supports mathematical set operations with both operators and methods</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🔀 Union — <code>|</code> or <code>.union()</code></h3>
+                    <p>Returns a new set with all elements from both sets. Duplicates are removed.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Using the | operator</span>
+result = a | b
+<span class="fn">print</span>(result)   <span class="cmt"># {1, 2, 3, 4, 5, 6}</span>
+
+<span class="cmt"># Using the union() method</span>
+result = a.union(b)
+<span class="fn">print</span>(result)   <span class="cmt"># {1, 2, 3, 4, 5, 6}</span>
+
+<span class="cmt"># Union with multiple sets</span>
+c = {7, 8}
+result = a | b | c
+<span class="fn">print</span>(result)   <span class="cmt"># {1, 2, 3, 4, 5, 6, 7, 8}</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔀 Intersection — <code>&amp;</code> or <code>.intersection()</code></h3>
+                    <p>Returns a new set with elements that appear in <strong style="color:var(--text);">both</strong> sets.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Using the &amp; operator</span>
+result = a &amp; b
+<span class="fn">print</span>(result)   <span class="cmt"># {3, 4}</span>
+
+<span class="cmt"># Using the intersection() method</span>
+result = a.intersection(b)
+<span class="fn">print</span>(result)   <span class="cmt"># {3, 4}</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔀 Difference — <code>-</code> or <code>.difference()</code></h3>
+                    <p>Returns a new set with elements in the first set that are <strong style="color:var(--text);">not</strong> in the second.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Using the - operator</span>
+result = a - b
+<span class="fn">print</span>(result)   <span class="cmt"># {1, 2}</span>
+
+<span class="cmt"># Using the difference() method</span>
+result = a.difference(b)
+<span class="fn">print</span>(result)   <span class="cmt"># {1, 2}</span>
+
+<span class="cmt"># Order matters — b - a gives {5, 6}</span>
+result = b - a
+<span class="fn">print</span>(result)   <span class="cmt"># {5, 6}</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔀 Symmetric Difference — <code>^</code> or <code>.symmetric_difference()</code></h3>
+                    <p>Returns a new set with elements in either set, <strong style="color:var(--text);">but not both</strong>.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Using the ^ operator</span>
+result = a ^ b
+<span class="fn">print</span>(result)   <span class="cmt"># {1, 2, 5, 6}</span>
+
+<span class="cmt"># Using the symmetric_difference() method</span>
+result = a.symmetric_difference(b)
+<span class="fn">print</span>(result)   <span class="cmt"># {1, 2, 5, 6}</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔍 Subset &amp; Superset Checks</h3>
+                    <p>Test whether one set is contained in another.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3}
+b = {1, 2, 3, 4, 5}
+
+<span class="fn">print</span>(a.issubset(b))   <span class="cmt"># True — all elements of a are in b</span>
+<span class="fn">print</span>(a &lt;= b)          <span class="cmt"># True — subset (same operator)</span>
+<span class="fn">print</span>(a &lt; b)           <span class="cmt"># True — proper subset (a != b)</span>
+
+<span class="fn">print</span>(b.issuperset(a)) <span class="cmt"># True — all elements of a are in b</span>
+<span class="fn">print</span>(b &gt;= a)          <span class="cmt"># True — superset</span>
+<span class="fn">print</span>(b &gt; a)           <span class="cmt"># True — proper superset (b != a)</span>
+
+<span class="cmt"># Disjoint — no common elements</span>
+c = {7, 8, 9}
+<span class="fn">print</span>(a.isdisjoint(c)) <span class="cmt"># True</span></pre></div>
+                    <div class="insight">💡 The operators <code>&lt;=</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&gt;</code> are intuitive for subset and superset checks. Use <code>isdisjoint()</code> to test if two sets have no overlap — it's faster than <code>len(a &amp; b) == 0</code>.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="methods" aria-labelledby="methods-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="methods-heading">🛠️ Set Methods — Add, Remove, Discard, Pop</h2>
+                    <p>Mutating sets with essential methods</p>
+                </div>
+                <div class="oop-block">
+                    <h3>➕ Adding Elements — <code>.add()</code> &amp; <code>.update()</code></h3>
+                    <p><code>.add()</code> inserts a single element. <code>.update()</code> merges multiple elements from another iterable.</p>
+                    <div class="code-snippet"><pre>s = {1, 2, 3}
+
+<span class="cmt"># Add a single element</span>
+s.add(4)
+<span class="fn">print</span>(s)   <span class="cmt"># {1, 2, 3, 4}</span>
+
+<span class="cmt"># Add multiple elements from an iterable</span>
+s.update([5, 6, 7])
+<span class="fn">print</span>(s)   <span class="cmt"># {1, 2, 3, 4, 5, 6, 7}</span>
+
+<span class="cmt"># Update with another set</span>
+s.update({8, 9})
+<span class="fn">print</span>(s)   <span class="cmt"># {1, 2, 3, 4, 5, 6, 7, 8, 9}</span>
+
+<span class="cmt"># Duplicates are ignored</span>
+s.add(3)   <span class="cmt"># No change — 3 already exists</span>
+<span class="fn">print</span>(s)   <span class="cmt"># unchanged</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>➖ Removing Elements — <code>.remove()</code>, <code>.discard()</code>, <code>.pop()</code>, <code>.clear()</code></h3>
+                    <p><code>.remove()</code> raises <code>KeyError</code> if the element is missing. <code>.discard()</code> does nothing if the element is missing. <code>.pop()</code> removes and returns an arbitrary element. <code>.clear()</code> empties the set.</p>
+                    <div class="code-snippet"><pre>s = {1, 2, 3, 4, 5}
+
+<span class="cmt"># remove() — raises KeyError if missing</span>
+s.remove(3)
+<span class="fn">print</span>(s)   <span class="cmt"># {1, 2, 4, 5}</span>
+<span class="cmt"># s.remove(10)  # KeyError: 10</span>
+
+<span class="cmt"># discard() — safe, no error if missing</span>
+s.discard(4)
+<span class="fn">print</span>(s)   <span class="cmt"># {1, 2, 5}</span>
+s.discard(99)   <span class="cmt"># No error, does nothing</span>
+
+<span class="cmt"># pop() — removes and returns an arbitrary element</span>
+item = s.pop()
+<span class="fn">print</span>(item)   <span class="cmt"># 1 or 2 or 5 (arbitrary)</span>
+<span class="fn">print</span>(s)      <span class="cmt"># remaining elements</span>
+
+<span class="cmt"># clear() — removes all elements</span>
+s.clear()
+<span class="fn">print</span>(s)   <span class="cmt"># set()</span></pre></div>
+                    <div class="note-warn">⚠️ <code>.pop()</code> on an empty set raises <code>KeyError</code>. Always check <code>if s:</code> before calling <code>.pop()</code>.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>📋 Copying — <code>.copy()</code></h3>
+                    <p>Sets are mutable — use <code>.copy()</code> to create a shallow copy. Since sets cannot contain mutable elements, shallow copy is sufficient.</p>
+                    <div class="code-snippet"><pre>original = {1, 2, 3}
+copy = original.copy()
+copy.add(4)
+
+<span class="fn">print</span>(original)   <span class="cmt"># {1, 2, 3} — unchanged</span>
+<span class="fn">print</span>(copy)       <span class="cmt"># {1, 2, 3, 4}</span>
+
+<span class="cmt"># Assignment does NOT copy — both names point to the same set</span>
+alias = original
+alias.add(5)
+<span class="fn">print</span>(original)   <span class="cmt"># {1, 2, 3, 5} — original changed!</span></pre></div>
+                    <div class="insight">💡 Use <code>.copy()</code> when you need to modify a set without affecting the original. Simple assignment just creates another reference to the same object.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comprehensions" aria-labelledby="comprehensions-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="comprehensions-heading">📋 Set Comprehensions</h2>
+                    <p>Build sets concisely with comprehension syntax</p>
+                </div>
+                <div class="oop-block">
+                    <p>Set comprehensions use curly braces <code>{ }</code> with a <code>for</code> clause — similar to list comprehensions but producing a set (unique, unordered).</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Squares of even numbers from 0 to 9</span>
+squares = {x**2 <span class="kw">for</span> x <span class="kw">in</span> range(10) <span class="kw">if</span> x % 2 == 0}
+<span class="fn">print</span>(squares)   <span class="cmt"># {0, 4, 16, 36, 64}</span>
+
+<span class="cmt"># Unique lengths of words in a sentence</span>
+words = [<span class="st">"python"</span>, <span class="st">"is"</span>, <span class="st">"fun"</span>, <span class="st">"and"</span>, <span class="st">"powerful"</span>]
+lengths = {len(word) <span class="kw">for</span> word <span class="kw">in</span> words}
+<span class="fn">print</span>(lengths)   <span class="cmt"># {2, 3, 4, 6, 8}</span>
+
+<span class="cmt"># Characters in a string (unique)</span>
+unique_chars = {char <span class="kw">for</span> char <span class="kw">in</span> <span class="st">"mississippi"</span>}
+<span class="fn">print</span>(unique_chars)   <span class="cmt"># {'p', 's', 'i', 'm'}</span>
+
+<span class="cmt"># Filtering with conditions</span>
+nums = {x <span class="kw">for</span> x <span class="kw">in</span> range(-5, 6) <span class="kw">if</span> x &gt; 0}
+<span class="fn">print</span>(nums)   <span class="cmt"># {1, 2, 3, 4, 5}</span></pre></div>
+                    <div class="insight">💡 Set comprehensions are a concise way to transform data while automatically removing duplicates. They are often faster than building a list and then calling <code>set()</code>.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="frozenset" aria-labelledby="frozenset-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="frozenset-heading">❄️ Frozenset — Immutable Sets</h2>
+                    <p>An immutable, hashable version of a set</p>
+                </div>
+                <div class="oop-block">
+                    <p>A <strong style="color:var(--text);">frozenset</strong> is an immutable set. You cannot add or remove elements after creation. Because it is immutable, it is <strong style="color:var(--text);">hashable</strong> and can be used as a dictionary key or as an element of another set.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Creating a frozenset</span>
+frozen = frozenset({1, 2, 3, 4})
+<span class="fn">print</span>(frozen)   <span class="cmt"># frozenset({1, 2, 3, 4})</span>
+
+<span class="cmt"># All set operations work on frozensets</span>
+a = frozenset({1, 2, 3})
+b = frozenset({2, 3, 4})
+<span class="fn">print</span>(a | b)   <span class="cmt"># frozenset({1, 2, 3, 4})</span>
+<span class="fn">print</span>(a &amp; b)   <span class="cmt"># frozenset({2, 3})</span>
+
+<span class="cmt"># frozenset as a dict key</span>
+key = frozenset({<span class="st">"Python"</span>, <span class="st">"Rust"</span>})
+lookup = {key: <span class="st">"backend stack"</span>}
+<span class="fn">print</span>(lookup[key])   <span class="cmt"># "backend stack"</span>
+
+<span class="cmt"># frozenset inside a set</span>
+s = {1, 2, frozenset({3, 4})}
+<span class="fn">print</span>(s)   <span class="cmt"># {1, 2, frozenset({3, 4})}</span>
+
+<span class="cmt"># Cannot modify a frozenset</span>
+<span class="cmt"># frozen.add(5)  # AttributeError: 'frozenset' object has no attribute 'add'</span></pre></div>
+                    <div class="insight">💡 Use <code>frozenset</code> when you need an immutable, hashable set — for dictionary keys, caching, or when you want to guarantee that the data doesn't change.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="membership" aria-labelledby="membership-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="membership-heading">🔍 Membership Testing — The Superpower of Sets</h2>
+                    <p>Sets offer the fastest possible membership tests in Python</p>
+                </div>
+                <div class="oop-block">
+                    <p>Membership testing with <code>in</code> on a set is <strong style="color:var(--text);">O(1)</strong> — constant time, regardless of the set size. The same check on a list is <strong style="color:var(--text);">O(n)</strong> — it scans the entire list. This difference becomes dramatic with large collections.</p>
+                    <div class="code-snippet"><pre><span class="kw">import</span> time
+
+<span class="cmt"># Create a large collection</span>
+size = 100_000
+list_data = list(range(size))
+set_data = set(range(size))
+
+<span class="cmt"># Membership test on a list — O(n)</span>
+start = time.time()
+result = 99_999 <span class="kw">in</span> list_data
+list_time = time.time() - start
+
+<span class="cmt"># Membership test on a set — O(1)</span>
+start = time.time()
+result = 99_999 <span class="kw">in</span> set_data
+set_time = time.time() - start
+
+<span class="fn">print</span>(<span class="st">f"List: {list_time:.6f}s"</span>)
+<span class="fn">print</span>(<span class="st">f"Set:  {set_time:.6f}s"</span>)
+
+<span class="cmt"># For membership checks, always prefer a set over a list</span>
+<span class="cmt"># Especially when the collection is large or checked frequently</span></pre></div>
+                    <div class="insight">💡 If you only need to check whether an item exists (and don't need ordering or duplicates), <strong style="color:var(--text);">always use a set</strong> for membership testing. The performance difference is enormous.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance" aria-labelledby="performance-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="performance-heading">⚡ Performance — Sets vs Lists vs Tuples</h2>
+                    <p>When to use a set and when to choose another data structure</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card"><div class="card-icon">🔍</div><h4>Membership (<code>in</code>)</h4><p><strong style="color:var(--green);">Set: O(1)</strong> — hash table lookup. List: O(n) — scans every element. Tuple: O(n). Use a set when you frequently check for existence.</p></div>
+                    <div class="card"><div class="card-icon">📋</div><h4>Ordering</h4><p>Set: <strong style="color:var(--amber);">Unordered</strong> — no guarantee. List: ordered by insertion. Tuple: ordered. Use lists/tuples when order matters.</p></div>
+                    <div class="card"><div class="card-icon">🔁</div><h4>Duplicates</h4><p>Set: <strong style="color:var(--green);">No duplicates</strong> — automatically deduplicated. List: can contain duplicates. Use a set when you need unique elements.</p></div>
+                    <div class="card"><div class="card-icon">🔧</div><h4>Mutability</h4><p>Set: mutable (add/remove). Tuple: <strong style="color:var(--amber);">immutable</strong>. List: mutable. Use tuples for fixed data, sets for dynamic unique collections.</p></div>
+                    <div class="card"><div class="card-icon">🔑</div><h4>Hashable</h4><p>Set: <strong style="color:var(--red);">Not hashable</strong> — cannot be used as dict key. Frozenset: hashable. Tuple: hashable (if elements are hashable).</p></div>
+                    <div class="card"><div class="card-icon">📊</div><h4>Memory</h4><p>Set: <strong style="color:var(--amber);">More memory</strong> — hash table overhead. List: lower memory. Tuple: lowest memory (compact).</p></div>
+                </div>
+                <div class="info-box" style="margin-top:1.2rem;">
+                    <h4><i class="fas fa-lightbulb"></i> The Rule of Thumb</h4>
+                    <p>Use a <strong style="color:var(--text);">set</strong> when you need uniqueness, fast membership, and order doesn't matter. Use a <strong style="color:var(--text);">list</strong> when you need order, allow duplicates, or need index access. Use a <strong style="color:var(--text);">tuple</strong> for ordered, immutable, hashable collections.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases" aria-labelledby="use-cases-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="use-cases-heading">💼 Real-World Use Cases for Sets</h2>
+                    <p>Where sets shine in production code</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🔹 Removing Duplicates from a List</h3>
+                    <div class="code-snippet"><pre>items = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"cherry"</span>, <span class="st">"banana"</span>]
+unique = list(set(items))
+<span class="fn">print</span>(unique)   <span class="cmt"># ['apple', 'banana', 'cherry'] (order may vary)</span>
+
+<span class="cmt"># Preserve order (Python 3.7+ preserves dict insertion order)</span>
+unique_ordered = list(dict.fromkeys(items))
+<span class="fn">print</span>(unique_ordered)   <span class="cmt"># ['apple', 'banana', 'cherry']</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔹 Finding Common Elements Between Collections</h3>
+                    <div class="code-snippet"><pre>team_a = {<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"Diana"</span>}
+team_b = {<span class="st">"Charlie"</span>, <span class="st">"Eve"</span>, <span class="st">"Frank"</span>, <span class="st">"Alice"</span>}
+
+<span class="cmt"># Who is on both teams?</span>
+common = team_a &amp; team_b
+<span class="fn">print</span>(common)   <span class="cmt"># {'Alice', 'Charlie'}</span>
+
+<span class="cmt"># Who is only on team A?</span>
+only_a = team_a - team_b
+<span class="fn">print</span>(only_a)   <span class="cmt"># {'Bob', 'Diana'}</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔹 Tracking Visited Items</h3>
+                    <div class="code-snippet"><pre><span class="cmt"># Track which URLs have been processed</span>
+visited = set()
+urls = [<span class="st">"page1"</span>, <span class="st">"page2"</span>, <span class="st">"page1"</span>, <span class="st">"page3"</span>, <span class="st">"page2"</span>]
+
+<span class="kw">for</span> url <span class="kw">in</span> urls:
+    <span class="kw">if</span> url <span class="kw">not in</span> visited:
+        visited.add(url)
+        <span class="fn">print</span>(<span class="st">f"Processing: {url}"</span>)
+
+<span class="cmt"># Output: page1, page2, page3 (each only once)</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔹 Filtering Invalid Items</h3>
+                    <div class="code-snippet"><pre>valid_statuses = {200, 201, 202, 204}
+responses = [200, 404, 201, 500, 200, 202]
+
+<span class="cmt"># Keep only valid responses</span>
+valid = [r <span class="kw">for</span> r <span class="kw">in</span> responses <span class="kw">if</span> r <span class="kw">in</span> valid_statuses]
+<span class="fn">print</span>(valid)   <span class="cmt"># [200, 201, 200, 202]</span></pre></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" aria-labelledby="exercises-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="exercises-heading">🧩 Practice Exercises</h2>
+                    <p>Test your understanding with these hands‑on challenges</p>
+                </div>
+                <div class="oop-block">
+                    <h3>📝 Exercise 1 — Deduplicate a List</h3>
+                    <p>Write a function that takes a list and returns a new list with duplicates removed, preserving the original order.</p>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">deduplicate_preserve_order</span>(items):
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test it</span>
+<span class="fn">print</span>(deduplicate_preserve_order([3, 1, 2, 1, 3, 4, 2]))
+<span class="cmt"># Expected: [3, 1, 2, 4]</span>
+
+<span class="cmt"># Solution hint: use dict.fromkeys() or a set + list</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>📝 Exercise 2 — Find Missing Items</h3>
+                    <p>Given two lists, find all items that are in list A but not in list B.</p>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">missing_items</span>(a, b):
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test it</span>
+a = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>, <span class="st">"date"</span>]
+b = [<span class="st">"banana"</span>, <span class="st">"date"</span>, <span class="st">"elderberry"</span>]
+<span class="fn">print</span>(missing_items(a, b))
+<span class="cmt"># Expected: ['apple', 'cherry']</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>📝 Exercise 3 — Set of Vowels</h3>
+                    <p>Write a function that takes a string and returns a set of all vowels that appear in the string (case‑insensitive).</p>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">vowels_in_string</span>(s):
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test it</span>
+<span class="fn">print</span>(vowels_in_string(<span class="st">"Hello World"</span>))
+<span class="cmt"># Expected: {'e', 'o'}</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>📝 Exercise 4 — Symmetric Difference of Three Sets</h3>
+                    <p>Find the elements that appear in an odd number of the three sets (exactly one or three times).</p>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">odd_occurrences</span>(s1, s2, s3):
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test it</span>
+a = {1, 2, 3, 4}
+b = {2, 3, 5, 6}
+c = {3, 4, 6, 7}
+<span class="fn">print</span>(odd_occurrences(a, b, c))
+<span class="cmt"># Expected: {1, 5, 7} (1 appears once, 5 once, 7 once)</span>
+<span class="cmt"># 3 appears three times, 4 twice, 6 twice, 2 twice</span></pre></div>
+                </div>
+                <div style="background:rgba(75,139,190,.07);border:1px solid rgba(75,139,190,.2);border-radius:var(--card-r);padding:1.1rem 1.4rem;display:flex;flex-direction:column;align-items:flex-start;gap:.8rem;margin-top:1rem;">
+                    <span style="font-size:1.5rem;">💡</span>
+                    <div>
+                        <p style="font-size:.78rem;color:var(--text);font-weight:700;margin-bottom:.15rem;">Try the solutions yourself</p>
+                        <p style="font-size:.72rem;">Click the Run button on each code snippet to test your implementation. The snippets are pre‑filled with starter code.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Share this lesson">
+            <div class="page-col">
+                <div class="share-box" id="shareSection">
+                    <h3>📤 Share this lesson</h3>
+                    <p style="margin-top:.3rem;">Help other developers master Python sets</p>
+                    <div class="share-row" id="shareRowBottom">
+                        <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                        <a href="#" class="share-btn" id="shareEmailBottom" target="_blank" rel="noopener"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Subscribe for updates" id="subscribe-section">
+            <div class="page-col">
+                <div class="subscribe-box">
+                    <h3>📬 Python, weekly</h3>
+                    <p>Short lessons, real code, and ecosystem news — every week</p>
+                    <form class="sub-form" id="subscribeForm" novalidate>
+                        <input type="email" id="subEmail" name="email" placeholder="your@email.dev" required autocomplete="email" aria-label="Email address">
+                        <button type="submit" id="subBtn"><i class="fas fa-paper-plane"></i> Subscribe — it's free</button>
+                        <div class="sub-message" id="subMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Continue learning">
+            <div class="page-col" style="display:flex;flex-direction:column;gap:1rem;padding:2rem 0;">
+                <a href="index.html#toc" class="btn btn-primary" style="width:100%;"><i class="fas fa-book"></i> Back to Full Curriculum</a>
+                <a href="python-dictionaries.html" class="btn btn-outline" style="width:100%;"><i class="fas fa-arrow-right"></i> Next: Python Dictionaries</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" target="_blank" rel="noopener">Facebook</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" target="_blank" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" target="_blank" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/poeticglenn" target="_blank" rel="noopener">Instagram</a></li>
+                        <li><a href="https://www.youtube.com/@GlennPansensoy" target="_blank" rel="noopener">YouTube</a></li>
+                        <li><a href="mailto:pansensoyglenn150@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            var tocLinks = document.querySelectorAll('.sticky-toc a');
+            var tocSections = [];
+            tocLinks.forEach(function(a) {
+                var target = document.querySelector(a.getAttribute('href'));
+                if (target) tocSections.push({ el: target, link: a });
+            });
+
+            function updateToc() {
+                var scrollY = window.scrollY + 120;
+                var currentId = null;
+                tocSections.forEach(function(item) {
+                    var rect = item.el.getBoundingClientRect();
+                    var top = rect.top + window.scrollY;
+                    if (scrollY >= top - 60) {
+                        currentId = item.link.getAttribute('href');
+                    }
+                });
+                tocLinks.forEach(function(a) {
+                    a.classList.toggle('active', a.getAttribute('href') === currentId);
+                });
+            }
+
+            window.addEventListener('scroll', updateToc, { passive: true });
+            window.addEventListener('resize', updateToc, { passive: true });
+            setTimeout(updateToc, 300);
+
+            tocLinks.forEach(function(a) {
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = document.querySelector(a.getAttribute('href'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-sets.html');
+            var PAGE_TITLE = encodeURIComponent('Python Sets – Complete Guide with Examples | Poetic Bytes');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+
+            var shareFb = document.getElementById('shareFb');
+            if (shareFb) {
+                shareFb.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            }
+            var shareTw = document.getElementById('shareTw');
+            if (shareTw) {
+                shareTw.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            }
+            var shareLi = document.getElementById('shareLi');
+            if (shareLi) {
+                shareLi.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            }
+            var shareWa = document.getElementById('shareWa');
+            if (shareWa) {
+                shareWa.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            }
+            var shareTg = document.getElementById('shareTg');
+            if (shareTg) {
+                shareTg.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            }
+
+            var shareFbB = document.getElementById('shareFbBottom');
+            if (shareFbB) {
+                shareFbB.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            }
+            var shareTwB = document.getElementById('shareTwBottom');
+            if (shareTwB) {
+                shareTwB.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            }
+            var shareLiB = document.getElementById('shareLiBottom');
+            if (shareLiB) {
+                shareLiB.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            }
+            var shareWaB = document.getElementById('shareWaBottom');
+            if (shareWaB) {
+                shareWaB.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            }
+            var shareTgB = document.getElementById('shareTgBottom');
+            if (shareTgB) {
+                shareTgB.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            }
+            var shareEmailB = document.getElementById('shareEmailBottom');
+            if (shareEmailB) {
+                shareEmailB.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'mailto:?subject=' + PAGE_TITLE + '&body=Check%20out%20this%20Python%20sets%20guide%3A%20' +
+                        PAGE_URL;
+                });
+            }
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/python-sets.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() {
+                        var ta = document.createElement('textarea');
+                        ta.value = url;
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    });
+                } else {
+                    var ta = document.createElement('textarea');
+                    ta.value = url;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    var orig = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                }
+            }
+
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() { copyLink(this); });
+            }
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBottom) {
+                copyBottom.addEventListener('click', function() { copyLink(this); });
+            }
+
+            var subForm = document.getElementById('subscribeForm');
+            var subEmail = document.getElementById('subEmail');
+            var subMessage = document.getElementById('subMessage');
+            var subBtn = document.getElementById('subBtn');
+
+            if (subForm) {
+                subForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var email = subEmail.value.trim();
+                    if (!email || !email.includes('@') || !email.includes('.')) {
+                        subMessage.textContent = 'Please enter a valid email address.';
+                        subMessage.className = 'sub-message error';
+                        return;
+                    }
+                    subBtn.disabled = true;
+                    subBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing…';
+                    subMessage.className = 'sub-message';
+                    subMessage.textContent = '';
+
+                    try {
+                        setTimeout(function() {
+                            subMessage.textContent = '🎉 You\'re subscribed! Check your inbox for the welcome email.';
+                            subMessage.className = 'sub-message success';
+                            subEmail.value = '';
+                            subBtn.disabled = false;
+                            subBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe — it\'s free';
+                        }, 1200);
+                    } catch (err) {
+                        subMessage.textContent = 'Something went wrong. Please try again.';
+                        subMessage.className = 'sub-message error';
+                        subBtn.disabled = false;
+                        subBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe — it\'s free';
+                    }
+                });
+            }
+
+            var pyodideReadyPromise = null;
+
+            function loadPyodideOnce() {
+                if (!pyodideReadyPromise) {
+                    pyodideReadyPromise = new Promise(function(resolve, reject) {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.3/full/pyodide.js';
+                        script.onload = function() {
+                            window.loadPyodide({
+                                indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.3/full/'
+                            }).then(function(pyodide) {
+                                resolve(pyodide);
+                            }).catch(function(err) { reject(err); });
+                        };
+                        script.onerror = function() { reject(new Error('Failed to load Pyodide runtime')); };
+                        document.head.appendChild(script);
+                    });
+                }
+                return pyodideReadyPromise;
+            }
+
+            var SHELL_PREFIXES = [
+                'pip ', 'pip3 ', 'python -m', 'python3 -m', 'source ', '.venv', 'poetry ',
+                'black', 'ruff', 'mypy', 'pre-commit', 'sed ', 'npm ', 'git ', 'docker',
+                'export ', 'conda ', 'curl ', 'cd ', 'mkdir', 'ls ', 'cat ', 'pytest'
+            ];
+
+            function isShellSnippet(code) {
+                var lines = code.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l && !l
+                        .startsWith('#'); });
+                if (!lines.length) return true;
+                return lines.every(function(l) {
+                    return SHELL_PREFIXES.some(function(p) { return l.startsWith(p); });
+                });
+            }
+
+            function escapeHtmlCode(str) {
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            function makeCopyBtn(getCode) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'code-btn';
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                btn.addEventListener('click', function() {
+                    var code = getCode();
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(code).catch(function() {
+                            var ta = document.createElement('textarea');
+                            ta.value = code;
+                            ta.style.position = 'fixed';
+                            ta.style.opacity = '0';
+                            document.body.appendChild(ta);
+                            ta.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(ta);
+                        });
+                    } else {
+                        var ta = document.createElement('textarea');
+                        ta.value = code;
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                    }
+                    var original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                    setTimeout(function() { btn.innerHTML = original; }, 1500);
+                });
+                return btn;
+            }
+
+            function enhanceCodeSnippets() {
+                document.querySelectorAll('.code-snippet').forEach(function(snippet) {
+                    var pre = snippet.querySelector('pre');
+                    if (!pre || snippet.dataset.enhanced) return;
+                    snippet.dataset.enhanced = '1';
+
+                    var getCode = function() { return pre.textContent; };
+                    var toolbar = document.createElement('div');
+                    toolbar.className = 'code-toolbar';
+                    toolbar.appendChild(makeCopyBtn(getCode));
+
+                    if (!isShellSnippet(getCode())) {
+                        var runBtn = document.createElement('button');
+                        runBtn.type = 'button';
+                        runBtn.className = 'code-btn run-btn';
+                        runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+
+                        var output = document.createElement('div');
+                        output.className = 'code-output';
+
+                        runBtn.addEventListener('click', function() {
+                            var code = getCode();
+                            runBtn.disabled = true;
+                            output.classList.remove('error');
+                            output.classList.add('show');
+
+                            var firstRun = !pyodideReadyPromise;
+                            if (firstRun) {
+                                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Python…';
+                                output.innerHTML =
+                                    '<span class="out-label">Setting up Python runtime (first run only, ~10s)…</span>';
+                            } else {
+                                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+                                output.innerHTML = '<span class="out-label">Running…</span>';
+                            }
+
+                            loadPyodideOnce().then(function(pyodide) {
+                                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+
+                                var buffer = '';
+                                pyodide.setStdout({ batched: function(s) { buffer += s + '\n'; } });
+                                pyodide.setStderr({ batched: function(s) { buffer += s + '\n'; } });
+
+                                pyodide.runPythonAsync(code).then(function() {
+                                    output.innerHTML = '<span class="out-label">Output</span>' +
+                                        escapeHtmlCode(buffer || '(no output)');
+                                }).catch(function(err) {
+                                    output.classList.add('error');
+                                    output.innerHTML = '<span class="out-label">Error</span>' +
+                                        escapeHtmlCode(buffer + String(err));
+                                }).finally(function() {
+                                    runBtn.disabled = false;
+                                    runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+                                });
+                            }).catch(function(e) {
+                                output.classList.add('error');
+                                output.innerHTML = '<span class="out-label">Error</span>' +
+                                    escapeHtmlCode('Could not start Python runtime: ' + String(e));
+                                runBtn.disabled = false;
+                                runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+                            });
+                        });
+
+                        toolbar.appendChild(runBtn);
+                        snippet.insertBefore(toolbar, pre);
+                        snippet.appendChild(output);
+                    } else {
+                        snippet.insertBefore(toolbar, pre);
+                    }
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', enhanceCodeSnippets);
+            } else {
+                enhanceCodeSnippets();
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
