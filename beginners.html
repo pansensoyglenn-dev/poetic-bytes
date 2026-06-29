@@ -1,0 +1,3735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python for Beginners – Learn Python Free 2026 | Poetic Bytes</title>
+    <meta name="description" content="Start your Python journey here. Learn variables, data types, loops, functions, and more — with interactive code examples. By @PoeticGlenn." />
+    <meta name="keywords" content="python for beginners, learn python, python basics, python tutorial, python variables, python loops, python functions, python 2026, PoeticGlenn" />
+    <meta name="author" content="Glenn Junsay Pansensoy (@PoeticGlenn)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/beginners.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Python for Beginners – Free Interactive Tutorial | Poetic Bytes" />
+    <meta property="og:description" content="Start your Python journey here. Learn variables, data types, loops, functions, and more — with interactive code examples. By @PoeticGlenn." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/beginners.html" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-beginners.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="article:published_time" content="2026-06-29" />
+    <meta property="article:modified_time" content="2026-06-29" />
+    <meta property="article:author" content="https://www.linkedin.com/in/glenn-pansensoy" />
+    <meta property="article:section" content="Programming" />
+    <meta property="article:tag" content="Python" />
+    <meta property="article:tag" content="Beginners" />
+    <meta property="article:tag" content="Tutorial" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python for Beginners – Free Interactive Tutorial | Poetic Bytes" />
+    <meta name="twitter:description" content="Start your Python journey here. Learn variables, data types, loops, functions, and more — with interactive code examples. 20 lessons. By @PoeticGlenn." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-beginners.jpg" />
+    <meta name="twitter:image:alt" content="Python for Beginners tutorial cover – Learn Python with Poetic Bytes" />
+
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python for Beginners – Complete Beginner's Guide to Python",
+            "alternativeHeadline": "Learn Python from Scratch: the ultimate beginner's tutorial",
+            "description": "Start your Python journey here. Learn variables, data types, loops, functions, and more — with interactive code examples and step-by-step explanations. 20 lessons. By @PoeticGlenn.",
+            "datePublished": "2026-06-29",
+            "dateModified": "2026-06-29",
+            "author": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "url": "https://www.linkedin.com/in/glenn-pansensoy",
+                "sameAs": [
+                    "https://twitter.com/PoeticGlenn",
+                    "https://github.com/pansensoyglenn-dev",
+                    "https://www.instagram.com/glennpansensoy",
+                    "https://www.facebook.com/Glenn-Pansensoy"
+                ]
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Poetic Bytes",
+                "url": "https://poetic-bytes.vercel.app",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://poetic-bytes.vercel.app/logo.png"
+                },
+                "sameAs": [
+                    "https://twitter.com/PoeticGlenn",
+                    "https://github.com/pansensoyglenn-dev/poetic-bytes"
+                ]
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://poetic-bytes.vercel.app/beginners.html"
+            },
+            "about": {
+                "@type": "Thing",
+                "name": "Python Programming for Beginners"
+            },
+            "educationalUse": "tutorial",
+            "inLanguage": "en-US",
+            "isAccessibleForFree": true,
+            "teaches": [
+                "Python syntax and semantics",
+                "Variables and data types",
+                "Strings and string methods",
+                "Numbers and arithmetic",
+                "Lists and list operations",
+                "Tuples and tuple unpacking",
+                "Dictionaries and key-value pairs",
+                "Sets and set operations",
+                "Conditional statements (if/elif/else)",
+                "Loops (for and while)",
+                "Functions and parameters",
+                "Modules and imports",
+                "File input/output",
+                "Error handling with try/except"
+            ],
+            "learningResourceType": "Tutorial",
+            "timeRequired": "PT3H",
+            "keywords": "python for beginners, learn python, python basics, python tutorial, python variables, python loops, python functions, python 2026, PoeticGlenn",
+            "citation": [{
+                "@type": "CreativeWork",
+                "name": "Python Official Documentation",
+                "url": "https://docs.python.org/3/tutorial/index.html"
+            }]
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://poetic-bytes.vercel.app/"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Python Tutorials",
+                "item": "https://poetic-bytes.vercel.app/#toc"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Python for Beginners",
+                "item": "https://poetic-bytes.vercel.app/beginners.html"
+            }]
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": "Python for Beginners Tutorial",
+            "description": "Complete beginner's guide to Python: variables, data types, loops, functions, and more. 20 interactive lessons. By @PoeticGlenn.",
+            "thumbnailUrl": "https://poetic-bytes.vercel.app/og-beginners.jpg",
+            "uploadDate": "2026-06-29",
+            "contentUrl": "https://poetic-bytes.vercel.app/beginners.html",
+            "embedUrl": "https://poetic-bytes.vercel.app/beginners.html",
+            "duration": "PT3H",
+            "interactionCount": "1200"
+        }
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .btn-home {
+            background: rgba(75, 139, 190, .15);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-home:hover {
+            border-color: var(--gold);
+            background: rgba(255, 217, 102, .12);
+            color: var(--gold);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        .hero {
+            padding: 4rem 0 2.5rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .6rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.2rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-bottom: 1.5rem;
+        }
+        .back-home-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1rem;
+            background: var(--card);
+            border-radius: var(--card-r);
+            border: 1px solid var(--border);
+        }
+        .back-home-row .btn-home {
+            flex-shrink: 0;
+        }
+        .lesson-counter {
+            font-size: 0.65rem;
+            color: var(--muted);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.25rem 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-left: auto;
+        }
+        @media(max-width:480px) {
+            .back-home-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.6rem;
+            }
+            .lesson-counter {
+                margin-left: 0;
+                justify-content: center;
+            }
+        }
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-new {
+            background: rgba(251, 146, 60, .15);
+            color: var(--orange);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+            border-radius: var(--card-r);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+            user-select: none;
+        }
+        .code-btn:active {
+            transform: scale(0.95);
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border-top: 1px solid var(--border);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            padding: 0.9rem 1rem;
+            overflow-x: auto;
+            margin: 0;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+            margin-top: .6rem;
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .checklist li {
+            display: flex;
+            gap: .55rem;
+            align-items: flex-start;
+            font-size: .78rem;
+            color: var(--muted);
+            padding: .5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        .checklist li span.check {
+            color: var(--blue);
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            margin: 0.8rem 0 1rem 0;
+            padding: 0;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            padding: 0.45rem 0.45rem 0.45rem 2.6rem;
+            position: relative;
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(31, 64, 96, 0.25);
+        }
+        .step-list li:last-child {
+            border-bottom: none;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0.2rem;
+            top: 0.45rem;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: rgba(75, 139, 190, 0.15);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: var(--gold);
+        }
+        .step-list li strong {
+            color: var(--text);
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .note-warn {
+            font-size: .74rem;
+            color: var(--amber);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 300px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child {
+            color: var(--gold);
+        }
+        th:nth-child(2) {
+            color: var(--blue);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        td:nth-child(2) {
+            color: var(--green);
+            font-weight: 600;
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(75, 139, 190, .03);
+        }
+        .share-box {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .share-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .share-btn {
+            height: var(--btn-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-size: .74rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .2s;
+            font-weight: 600;
+            background: var(--card);
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .share-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .1);
+        }
+        .share-btn.copy-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        .copyright a:hover {
+            color: #fff;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3rem 0 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .share-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 240px;
+            }
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+        }
+        @media(max-width:768px) {
+            .floating-share {
+                right: 14px;
+                bottom: 76px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
+        }
+        .toc-grid a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.7rem 0.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: border-color .2s, color .2s, background .2s, transform .15s;
+            min-height: 44px;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        .toc-grid a:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .08);
+            transform: translateY(-2px);
+        }
+        @media(max-width:480px) {
+            .toc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .toc-grid a {
+                font-size: 0.6rem;
+                padding: 0.5rem 0.4rem;
+                min-height: 38px;
+            }
+        }
+        .pyodide-status {
+            font-size: 0.65rem;
+            color: var(--muted);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .pyodide-status .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            display: inline-block;
+            animation: pulse-dot 1.5s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+        .intro-grid .intro-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1.1rem;
+            text-align: center;
+            transition: border-color .2s;
+        }
+        .intro-grid .intro-item:hover {
+            border-color: var(--blue);
+        }
+        .intro-grid .intro-item i {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .intro-grid .intro-item h4 {
+            font-size: 0.78rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .intro-grid .intro-item p {
+            font-size: 0.68rem;
+            margin: 0;
+        }
+        @media(max-width:600px) {
+            .intro-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:400px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .why-grid .why-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1.1rem;
+            border-left: 3px solid var(--blue);
+        }
+        .why-grid .why-item h4 {
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 0.2rem;
+        }
+        .why-grid .why-item p {
+            font-size: 0.72rem;
+            margin: 0;
+        }
+        @media(max-width:500px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sig-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .sig-grid .sig-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1rem;
+            text-align: center;
+            transition: transform .2s;
+        }
+        .sig-grid .sig-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--blue);
+        }
+        .sig-grid .sig-item .sig-icon {
+            font-size: 1.8rem;
+            color: var(--blue-lt);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .sig-grid .sig-item h4 {
+            font-size: 0.78rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .sig-grid .sig-item p {
+            font-size: 0.68rem;
+            margin: 0;
+        }
+        @media(max-width:600px) {
+            .sig-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:400px) {
+            .sig-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .outro-box {
+            background: radial-gradient(ellipse at 50% 100%, rgba(75, 139, 190, .12) 0%, transparent 70%);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2rem 1.8rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .outro-box h2 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+        .outro-box p {
+            font-size: 0.85rem;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+            line-height: 1.8;
+        }
+        .outro-box .outro-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-top: 1.2rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 1.5rem 0;
+            border-left: 2px solid var(--blue);
+        }
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+        .timeline-item .year {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+        .timeline-item p {
+            font-size: 0.78rem;
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html#toc">Curriculum</a></li>
+                <li><a href="index.html#new-lessons">New Lessons</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pathways">Pathways</a></li>
+                <li><a href="index.html#instructor">Instructor</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="programming-history.html">History</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+                <li><button data-href="#toc"><i class="fas fa-list"></i>Table of Contents</button></li>
+                <li><button data-href="#intro"><i class="fas fa-star"></i>Introduction</button></li>
+                <li><button data-href="#history"><i class="fas fa-history"></i>History of Python</button></li>
+                <li><button data-href="#use-cases"><i class="fas fa-rocket"></i>Use in Technology</button></li>
+                <li><button data-href="#why-learn"><i class="fas fa-graduation-cap"></i>Why Learn This</button></li>
+                <li><button data-href="#significance"><i class="fas fa-globe"></i>Significance</button></li>
+                <li><button data-href="#what-is-python"><i class="fas fa-info-circle"></i>What is Python?</button></li>
+                <li><button data-href="#first-program"><i class="fas fa-code"></i>First Program</button></li>
+                <li><button data-href="#variables"><i class="fas fa-tag"></i>Variables</button></li>
+                <li><button data-href="#strings"><i class="fas fa-font"></i>Strings</button></li>
+                <li><button data-href="#numbers"><i class="fas fa-calculator"></i>Numbers</button></li>
+                <li><button data-href="#lists"><i class="fas fa-list"></i>Lists</button></li>
+                <li><button data-href="#tuples"><i class="fas fa-ellipsis-h"></i>Tuples</button></li>
+                <li><button data-href="#dictionaries"><i class="fas fa-book"></i>Dictionaries</button></li>
+                <li><button data-href="#sets"><i class="fas fa-bezier-curve"></i>Sets</button></li>
+                <li><button data-href="#conditionals"><i class="fas fa-sitemap"></i>Conditionals</button></li>
+                <li><button data-href="#loops"><i class="fas fa-sync"></i>Loops</button></li>
+                <li><button data-href="#functions"><i class="fas fa-cubes"></i>Functions</button></li>
+                <li><button data-href="#modules"><i class="fas fa-boxes"></i>Modules</button></li>
+                <li><button data-href="#file-io"><i class="fas fa-file"></i>File I/O</button></li>
+                <li><button data-href="#error-handling"><i class="fas fa-shield-alt"></i>Error Handling</button></li>
+                <li><button data-href="#faq-beg"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#outro"><i class="fas fa-heart"></i>Outro</button></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X">
+            <i class="fab fa-twitter"></i>
+            <span class="tooltip">X</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip">LinkedIn</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="tooltip">Telegram</span>
+        </a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python for Beginners Tutorial">
+            <div class="page-col">
+                <div class="back-home-row">
+                    <a href="index.html" class="btn btn-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                    <span class="lesson-counter"><i class="fas fa-book-open"></i> 20 lessons</span>
+                    <span class="pyodide-status"><span class="dot"></span> Pyodide ready</span>
+                </div>
+                <h1>Python for Beginners<br><span style="color:var(--blue-lt)">Start Your Coding Journey Here</span></h1>
+                <p class="lead">Learn Python from scratch — variables, data types, loops, functions, and more. 20 interactive lessons with step‑by‑step explanations and runnable code. Crafted by <strong style="color:var(--gold);">@PoeticGlenn</strong>.</p>
+                <div class="hero-btns">
+                    <a href="#toc" class="btn btn-outline"><i class="fas fa-list"></i> Browse All Lessons</a>
+                    <a href="#intro" class="btn btn-primary"><i class="fas fa-play"></i> Start Learning</a>
+                </div>
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> What you will learn</h4>
+                    <p>Everything you need to start programming in Python: what Python is, how to write your first program, variables and data types, strings, numbers, lists, tuples, dictionaries, sets, conditionals, loops, functions, modules, file I/O, and error handling — all with interactive code examples from <strong>@PoeticGlenn</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="intro-heading">
+            <div class="page-col">
+                <div class="section-label"><span>📖 Introduction</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="intro-heading" style="font-size:1.35rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Why Python is the Perfect First Language
+                    </h2>
+                    <p style="font-size:0.92rem;color:var(--text);line-height:1.85;margin-bottom:1rem;">
+                        Python is consistently ranked as the <strong>most popular</strong> and <strong>most beginner-friendly</strong>
+                        programming language in the world. Its clean, readable syntax reads like plain English, making it the
+                        ideal choice for your first programming language. But don't let its simplicity fool you — Python powers
+                        some of the most complex systems on the planet, from YouTube and Instagram to NASA and Netflix.
+                        <br><br>
+                        This curriculum, crafted by <strong style="color:var(--gold);">@PoeticGlenn</strong>, is designed
+                        to take you from absolute beginner to confident Python programmer. Every concept is broken down
+                        into digestible steps, with interactive code you can run right in your browser. No prior experience
+                        is required — just curiosity and a willingness to learn.
+                    </p>
+                    <div class="intro-grid">
+                        <div class="intro-item">
+                            <i class="fas fa-gem"></i>
+                            <h4>Simple &amp; Readable</h4>
+                            <p>Python's syntax is clean and intuitive. You'll spend less time fighting syntax and more time learning to think like a programmer.</p>
+                        </div>
+                        <div class="intro-item">
+                            <i class="fas fa-infinity"></i>
+                            <h4>Endless Possibilities</h4>
+                            <p>From web development to data science, automation to AI — Python opens doors to every corner of the tech industry.</p>
+                        </div>
+                        <div class="intro-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Huge Community</h4>
+                            <p>Millions of developers use Python. You'll never be alone — answers, libraries, and support are always available.</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem;color:var(--muted);">
+                        <i class="fas fa-quote-left" style="color:var(--gold);margin-right:0.3rem;"></i>
+                        This isn't just a tutorial — it's your first step into a larger world. Every lesson is designed to
+                        build your confidence and give you the skills you need to write real Python code.
+                        <span style="color:var(--gold);">🐍</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="history" aria-labelledby="history-heading">
+            <div class="page-col">
+                <div class="section-label"><span>📜 History of Python</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="history-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        The Story Behind the World's Most Loved Language
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        Python was created in the late 1980s by <strong>Guido van Rossum</strong> as a hobby project.
+                        He wanted a language that was both powerful and easy to read — one that would make programming
+                        feel natural and fun. The name "Python" was inspired by the British comedy group Monty Python,
+                        not the snake! Today, Python is one of the most widely used languages in the world, powering
+                        everything from web applications to artificial intelligence.
+                    </p>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="year">1989 — The Beginning</div>
+                            <p>Guido van Rossum starts working on Python as a Christmas project. His goal: a language that emphasises code readability and developer happiness.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1991 — First Release</div>
+                            <p>Python 0.9.0 is released. It already supported functions, exceptions, and the core data types that we still use today.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">2000 — Python 2.0</div>
+                            <p>Python 2.0 introduces list comprehensions, garbage collection, and Unicode support. It becomes the dominant version for over a decade.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">2008 — Python 3.0</div>
+                            <p>A major overhaul that fixes fundamental design flaws. While not backward-compatible, Python 3 is cleaner, more consistent, and more powerful.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">2020 — Python 2 EOL</div>
+                            <p>Python 2 is officially retired. The community fully transitions to Python 3, which continues to evolve with new features every year.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">Today — The Future</div>
+                            <p>Python is the fastest-growing programming language, with applications in AI, data science, web development, automation, and beyond.</p>
+                        </div>
+                    </div>
+                    <div class="insight" style="margin-top:0.6rem;">
+                        <i class="fas fa-gem" style="color:var(--gold);margin-right:0.4rem;"></i>
+                        <strong>@PoeticGlenn</strong> says: <em>"Python's philosophy — 'Simple is better than complex' — is a mindset that will serve you well throughout your programming career."</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases" aria-labelledby="use-heading">
+            <div class="page-col">
+                <div class="section-label"><span>🚀 Use in Technology</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="use-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Where Python is Used in the Real World
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        Python's versatility is unmatched. Here are just a few of the fields where Python is the language of choice.
+                    </p>
+                    <div class="sig-grid">
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-globe"></i></span>
+                            <h4>Web Development</h4>
+                            <p>Frameworks like Django and Flask power millions of websites, including Instagram, Pinterest, and The Washington Post.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-chart-line"></i></span>
+                            <h4>Data Science &amp; Analytics</h4>
+                            <p>Pandas, NumPy, and Matplotlib make Python the #1 language for data analysis, visualisation, and machine learning.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-robot"></i></span>
+                            <h4>Artificial Intelligence</h4>
+                            <p>TensorFlow, PyTorch, and scikit-learn — Python is the language of AI, driving breakthroughs in natural language processing and computer vision.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-cogs"></i></span>
+                            <h4>Automation &amp; Scripting</h4>
+                            <p>Python is the go‑to language for automating repetitive tasks — from file management to web scraping to system administration.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-gamepad"></i></span>
+                            <h4>Game Development</h4>
+                            <p>With libraries like Pygame, Python is used for prototyping and building 2D games, with frameworks like Godot also supporting Python.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-shield-alt"></i></span>
+                            <h4>Cybersecurity</h4>
+                            <p>Python is widely used for security testing, penetration testing, and building security tools due to its speed of development and extensive libraries.</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem;color:var(--muted);text-align:center;margin-top:0.6rem;">
+                        <i class="fas fa-quote-right" style="color:var(--gold);margin-left:0.3rem;"></i>
+                        The skills you'll learn in this curriculum are the foundation for all of these exciting career paths.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-learn" aria-labelledby="why-heading">
+            <div class="page-col">
+                <div class="section-label"><span>💡 Why Every Programmer Should Learn Python</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="why-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Python is the Foundation of Modern Programming
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        Whether you're aiming for a career in software engineering, data science, or just want to automate your daily tasks, Python is the perfect starting point. Here's why every programmer — beginner or experienced — should learn Python.
+                    </p>
+                    <div class="why-grid">
+                        <div class="why-item">
+                            <h4>🧠 Learn Programming Concepts</h4>
+                            <p>Python's clean syntax lets you focus on core concepts — variables, loops, functions, data structures — without getting bogged down by complex syntax. You learn to think like a programmer, not just to write code.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>🚀 Rapid Development</h4>
+                            <p>Python's "batteries included" philosophy means you have a vast standard library at your fingertips. Build prototypes and tools in days, not weeks.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>🌍 Universal Language</h4>
+                            <p>Python is used across every major industry — from finance to healthcare to entertainment. Learning Python opens doors everywhere.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>💼 High Demand</h4>
+                            <p>Python developers are among the most sought-after professionals in tech. Mastering Python is a direct path to a rewarding career.</p>
+                        </div>
+                    </div>
+                    <div class="insight" style="margin-top:0.6rem;">
+                        <i class="fas fa-gem" style="color:var(--gold);margin-right:0.4rem;"></i>
+                        <strong>@PoeticGlenn</strong> says: <em>"Python isn't just a language — it's a gateway. It gives you the power to turn your ideas into reality, faster than you ever thought possible."</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="significance" aria-labelledby="sig-heading">
+            <div class="page-col">
+                <div class="section-label"><span>🌍 Significance in the Programming World</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="sig-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Why Python is the Language That Changed Everything
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        Python's impact on the programming world cannot be overstated. It has democratised programming, making it accessible to people from all backgrounds. It has accelerated scientific discovery, powered the AI revolution, and become the default language for teaching programming in universities worldwide.
+                    </p>
+                    <div class="sig-grid">
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-school"></i></span>
+                            <h4>Education</h4>
+                            <p>Python is the #1 language taught in universities and coding bootcamps. Its simplicity makes it the ideal choice for teaching computer science fundamentals.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-atom"></i></span>
+                            <h4>Scientific Research</h4>
+                            <p>From physics to biology, researchers use Python to analyse data, run simulations, and share reproducible results. It has become the language of science.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-code-branch"></i></span>
+                            <h4>Open Source</h4>
+                            <p>Python has one of the largest and most active open‑source communities. Thousands of libraries and frameworks are available, freely and openly.</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem;color:var(--muted);text-align:center;margin-top:0.6rem;">
+                        <i class="fas fa-quote-right" style="color:var(--gold);margin-left:0.3rem;"></i>
+                        The curriculum you're about to start is built on decades of Python's evolution and community wisdom. You're learning from the best.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="toc" aria-labelledby="toc-heading" style="padding: 1.5rem 0;">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="toc-heading">📑 Table of Contents</h2>
+                    <p>Jump to any section — all entries are equal size</p>
+                </div>
+                <div class="toc-grid">
+                    <a href="#intro">📖 Introduction</a>
+                    <a href="#history">📜 History of Python</a>
+                    <a href="#use-cases">🚀 Use in Technology</a>
+                    <a href="#why-learn">💡 Why Learn This</a>
+                    <a href="#significance">🌍 Significance</a>
+                    <a href="#what-is-python">🐍 What is Python?</a>
+                    <a href="#first-program">👋 First Program</a>
+                    <a href="#variables">🏷️ Variables</a>
+                    <a href="#strings">🔤 Strings</a>
+                    <a href="#numbers">🔢 Numbers</a>
+                    <a href="#lists">📋 Lists</a>
+                    <a href="#tuples">🔗 Tuples</a>
+                    <a href="#dictionaries">📖 Dictionaries</a>
+                    <a href="#sets">⭕ Sets</a>
+                    <a href="#conditionals">🔀 Conditionals</a>
+                    <a href="#loops">🔄 Loops</a>
+                    <a href="#functions">🧩 Functions</a>
+                    <a href="#modules">📦 Modules</a>
+                    <a href="#file-io">📂 File I/O</a>
+                    <a href="#error-handling">🛡️ Error Handling</a>
+                    <a href="#faq-beg">❓ FAQ</a>
+                    <a href="#outro">💛 Outro</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── LESSONS ──────────────────────────────────────────────────────── -->
+
+        <section id="what-is-python" aria-labelledby="what-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="what-heading">🐍 What is Python?</h2>
+                    <p>Python is a high‑level, interpreted programming language known for its readability and versatility. Created by Guido van Rossum and first released in 1991, Python's design philosophy emphasises code readability through its use of significant whitespace.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🐍 1.1 Python's Key Features</h3>
+                    <p>Understanding what makes Python special will help you appreciate why it's such a powerful tool.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <strong>Readable and Clean</strong> — Python uses indentation to define blocks, making code visually clean and easy to understand.</li>
+                        <li><strong>Step 2:</strong> <strong>Interpreted</strong> — Python code is executed line by line, which makes development fast and interactive.</li>
+                        <li><strong>Step 3:</strong> <strong>Dynamically Typed</strong> — You don't need to declare variable types; Python figures them out automatically.</li>
+                        <li><strong>Step 4:</strong> <strong>Batteries Included</strong> — Python comes with a vast standard library that handles everything from file I/O to web services.</li>
+                        <li><strong>Step 5:</strong> <strong>Cross‑Platform</strong> — Python runs on Windows, macOS, Linux, and even in the browser (as you're experiencing now).</li>
+                        <li><strong>Step 6:</strong> <strong>Extensive Ecosystem</strong> — Over 300,000 packages are available through PyPI, the Python Package Index.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# This is a Python comment — it\'s ignored by the interpreter
+
+print("Hello, Python learner! 🐍")
+print("Python is:", type("Python"))
+print("This code runs in your browser with Pyodide!")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> This is a Python comment — it's ignored by the interpreter
+
+<span class="fn">print</span>(<span class="st">"Hello, Python learner! 🐍"</span>)
+<span class="fn">print</span>(<span class="st">"Python is:"</span>, <span class="fn">type</span>(<span class="st">"Python"</span>))
+<span class="fn">print</span>(<span class="st">"This code runs in your browser with Pyodide!"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Python's simplicity is its strength. You can write powerful programs with very little code, which is why it's the perfect first language.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="first-program" aria-labelledby="first-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="first-heading">👋 Your First Python Program</h2>
+                    <p>Every programmer starts with "Hello, World!" — let's write yours and understand what each part does.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>👋 2.1 Hello, World!</h3>
+                    <p>The simplest Python program that prints a message to the console.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>print()</code> is a built‑in function that outputs text to the screen.</li>
+                        <li><strong>Step 2:</strong> The text you want to print goes inside parentheses, wrapped in quotes (<code>"</code> or <code>'</code>).</li>
+                        <li><strong>Step 3:</strong> The <code>#</code> symbol starts a comment — Python ignores everything after it on that line.</li>
+                        <li><strong>Step 4:</strong> When you run the program, Python executes each line from top to bottom.</li>
+                        <li><strong>Step 5:</strong> The output appears in the console (the output panel below the code).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# My first Python program
+print("Hello, World! 🎉")
+print("Welcome to Python!")
+print("Let\'s learn together.")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> My first Python program
+<span class="fn">print</span>(<span class="st">"Hello, World! 🎉"</span>)
+<span class="fn">print</span>(<span class="st">"Welcome to Python!"</span>)
+<span class="fn">print</span>(<span class="st">"Let's learn together."</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 You can use either single quotes <code>'...'</code> or double quotes <code>"..."</code> for strings. Just be consistent!</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>👋 2.2 Printing Multiple Items</h3>
+                    <p><code>print()</code> can take multiple arguments, separated by commas. It adds a space between them by default.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Pass multiple values to <code>print()</code> separated by commas.</li>
+                        <li><strong>Step 2:</strong> Python automatically adds a space between each value.</li>
+                        <li><strong>Step 3:</strong> You can mix different types — strings, numbers, and even variables (which you'll learn soon).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='print("Hello", "World", "from", "Python!")
+print("The answer is", 42)
+print("Pi is approximately", 3.14159)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="fn">print</span>(<span class="st">"Hello"</span>, <span class="st">"World"</span>, <span class="st">"from"</span>, <span class="st">"Python!"</span>)
+<span class="fn">print</span>(<span class="st">"The answer is"</span>, 42)
+<span class="fn">print</span>(<span class="st">"Pi is approximately"</span>, 3.14159)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ You can change the separator using the <code>sep</code> parameter: <code>print("a", "b", "c", sep="-")</code> prints <code>a-b-c</code>.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="variables" aria-labelledby="vars-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="vars-heading">🏷️ Variables — Storing Data</h2>
+                    <p>Variables are like labelled boxes where you can store data. Python creates a variable when you assign a value to it.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🏷️ 3.1 Creating and Using Variables</h3>
+                    <p>Assign a value to a variable using the <code>=</code> operator. The variable name should be descriptive.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Choose a name for your variable (e.g., <code>name</code>, <code>age</code>).</li>
+                        <li><strong>Step 2:</strong> Use the <code>=</code> operator to assign a value.</li>
+                        <li><strong>Step 3:</strong> Variable names are case‑sensitive (<code>name</code> and <code>Name</code> are different).</li>
+                        <li><strong>Step 4:</strong> You can change the value of a variable at any time.</li>
+                        <li><strong>Step 5:</strong> Use <code>print()</code> to display the value of a variable.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Creating variables
+name = "Alice"
+age = 25
+height = 1.75
+
+# Using variables
+print("Name:", name)
+print("Age:", age)
+print("Height:", height)
+
+# Variables can be changed
+age = 26
+print("Next year I\'ll be", age)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Creating variables
+name = <span class="st">"Alice"</span>
+age = 25
+height = 1.75
+
+<span class="kw">#</span> Using variables
+<span class="fn">print</span>(<span class="st">"Name:"</span>, name)
+<span class="fn">print</span>(<span class="st">"Age:"</span>, age)
+<span class="fn">print</span>(<span class="st">"Height:"</span>, height)
+
+<span class="kw">#</span> Variables can be changed
+age = 26
+<span class="fn">print</span>(<span class="st">"Next year I'll be"</span>, age)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ Variable names must start with a letter or underscore, and can only contain letters, numbers, and underscores. No spaces or special characters!</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🏷️ 3.2 Variable Types</h3>
+                    <p>Python automatically figures out the type of a variable based on the value you assign. Use <code>type()</code> to check.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Assign values of different types to variables.</li>
+                        <li><strong>Step 2:</strong> Use <code>type()</code> to see what type Python has inferred.</li>
+                        <li><strong>Step 3:</strong> The main types you'll use are <code>str</code> (string), <code>int</code> (integer), <code>float</code> (decimal), and <code>bool</code> (boolean).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Different variable types
+message = "Hello"          # str (string)
+count = 10                 # int (integer)
+price = 19.99              # float (decimal)
+is_valid = True            # bool (boolean)
+
+print(type(message))
+print(type(count))
+print(type(price))
+print(type(is_valid))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Different variable types
+message = <span class="st">"Hello"</span>          <span class="kw">#</span> str (string)
+count = 10                 <span class="kw">#</span> int (integer)
+price = 19.99              <span class="kw">#</span> float (decimal)
+is_valid = <span class="kw">True</span>            <span class="kw">#</span> bool (boolean)
+
+<span class="fn">print</span>(<span class="fn">type</span>(message))
+<span class="fn">print</span>(<span class="fn">type</span>(count))
+<span class="fn">print</span>(<span class="fn">type</span>(price))
+<span class="fn">print</span>(<span class="fn">type</span>(is_valid))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Python is dynamically typed — you can change a variable's type by assigning a new value of a different type.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strings" aria-labelledby="strings-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="strings-heading">🔤 Strings — Working with Text</h2>
+                    <p>Strings are sequences of characters. Python makes it easy to manipulate text with many built‑in methods.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔤 4.1 Creating and Manipulating Strings</h3>
+                    <p>Strings can be created with single, double, or triple quotes. They support many useful operations.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a string using <code>"</code>, <code>'</code>, or <code>"""</code> for multiline.</li>
+                        <li><strong>Step 2:</strong> Use <code>+</code> to concatenate (join) strings.</li>
+                        <li><strong>Step 3:</strong> Use <code>*</code> to repeat a string.</li>
+                        <li><strong>Step 4:</strong> Access individual characters using indexing (<code>text[0]</code> gets the first character).</li>
+                        <li><strong>Step 5:</strong> Use built‑in methods like <code>.upper()</code>, <code>.lower()</code>, and <code>.strip()</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Creating strings
+greeting = "Hello"
+name = "Alice"
+
+# Concatenation
+message = greeting + ", " + name + "!"
+print(message)
+
+# Repetition
+print("Ha" * 3)
+
+# Indexing
+text = "Python"
+print(text[0])  # First character
+print(text[3])  # Fourth character
+
+# String methods
+print(text.upper())
+print(text.lower())
+print("  spaces  ".strip())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Creating strings
+greeting = <span class="st">"Hello"</span>
+name = <span class="st">"Alice"</span>
+
+<span class="kw">#</span> Concatenation
+message = greeting + <span class="st">", "</span> + name + <span class="st">"!"</span>
+<span class="fn">print</span>(message)
+
+<span class="kw">#</span> Repetition
+<span class="fn">print</span>(<span class="st">"Ha"</span> * 3)
+
+<span class="kw">#</span> Indexing
+text = <span class="st">"Python"</span>
+<span class="fn">print</span>(text[0])  <span class="kw">#</span> First character
+<span class="fn">print</span>(text[3])  <span class="kw">#</span> Fourth character
+
+<span class="kw">#</span> String methods
+<span class="fn">print</span>(text.upper())
+<span class="fn">print</span>(text.lower())
+<span class="fn">print</span>(<span class="st">"  spaces  "</span>.strip())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 String methods return a new string — they don't modify the original. Strings are immutable.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔤 4.2 F‑Strings — Formatted Strings</h3>
+                    <p>F‑strings (formatted string literals) let you embed variables directly into strings. They're the most readable way to create dynamic text.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Prefix the string with <code>f</code> (e.g., <code>f"Hello {name}"</code>).</li>
+                        <li><strong>Step 2:</strong> Place variables inside curly braces <code>{}</code>.</li>
+                        <li><strong>Step 3:</strong> You can even put expressions inside the braces, like <code>{age + 1}</code>.</li>
+                        <li><strong>Step 4:</strong> F‑strings are fast, readable, and the preferred way to format strings in modern Python.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='name = "Bob"
+age = 30
+
+# Using f-strings
+print(f"Hello, {name}!")
+print(f"Next year you\'ll be {age + 1}.")
+
+# You can use expressions
+print(f"Your name has {len(name)} characters.")
+
+# Formatting numbers
+price = 19.99
+print(f"The price is ${price:.2f}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre>name = <span class="st">"Bob"</span>
+age = 30
+
+<span class="kw">#</span> Using f-strings
+<span class="fn">print</span>(<span class="st">f"Hello, {name}!"</span>)
+<span class="fn">print</span>(<span class="st">f"Next year you'll be {age + 1}."</span>)
+
+<span class="kw">#</span> You can use expressions
+<span class="fn">print</span>(<span class="st">f"Your name has {len(name)} characters."</span>)
+
+<span class="kw">#</span> Formatting numbers
+price = 19.99
+<span class="fn">print</span>(<span class="st">f"The price is ${price:.2f}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ F‑strings are available in Python 3.6 and above. They're the most Pythonic way to format strings.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="numbers" aria-labelledby="numbers-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="numbers-heading">🔢 Numbers — Integers and Floats</h2>
+                    <p>Python supports integers (<code>int</code>) and floating‑point numbers (<code>float</code>) with the usual arithmetic operations.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔢 5.1 Arithmetic Operations</h3>
+                    <p>Python supports addition, subtraction, multiplication, division, and more.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Use <code>+</code> for addition, <code>-</code> for subtraction.</li>
+                        <li><strong>Step 2:</strong> Use <code>*</code> for multiplication, <code>/</code> for division (always returns a float).</li>
+                        <li><strong>Step 3:</strong> Use <code>//</code> for floor division (integer division), <code>%</code> for modulo (remainder).</li>
+                        <li><strong>Step 4:</strong> Use <code>**</code> for exponentiation (power).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='a = 10
+b = 3
+
+print(f"{a} + {b} = {a + b}")
+print(f"{a} - {b} = {a - b}")
+print(f"{a} * {b} = {a * b}")
+print(f"{a} / {b} = {a / b}")       # float division
+print(f"{a} // {b} = {a // b}")     # floor division
+print(f"{a} % {b} = {a % b}")       # modulo (remainder)
+print(f"{a} ** {b} = {a ** b}")     # exponentiation'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre>a = 10
+b = 3
+
+<span class="fn">print</span>(<span class="st">f"{a} + {b} = {a + b}"</span>)
+<span class="fn">print</span>(<span class="st">f"{a} - {b} = {a - b}"</span>)
+<span class="fn">print</span>(<span class="st">f"{a} * {b} = {a * b}"</span>)
+<span class="fn">print</span>(<span class="st">f"{a} / {b} = {a / b}"</span>)       <span class="kw">#</span> float division
+<span class="fn">print</span>(<span class="st">f"{a} // {b} = {a // b}"</span>)     <span class="kw">#</span> floor division
+<span class="fn">print</span>(<span class="st">f"{a} % {b} = {a % b}"</span>)       <span class="kw">#</span> modulo (remainder)
+<span class="fn">print</span>(<span class="st">f"{a} ** {b} = {a ** b}"</span>)     <span class="kw">#</span> exponentiation</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Division <code>/</code> always returns a float. Use <code>//</code> if you need an integer result.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔢 5.2 Type Conversion</h3>
+                    <p>Convert between types using <code>int()</code>, <code>float()</code>, and <code>str()</code>.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Use <code>int()</code> to convert to an integer.</li>
+                        <li><strong>Step 2:</strong> Use <code>float()</code> to convert to a float.</li>
+                        <li><strong>Step 3:</strong> Use <code>str()</code> to convert to a string.</li>
+                        <li><strong>Step 4:</strong> You can convert between numeric types, but converting a non‑numeric string to a number will raise an error.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# String to number
+num_str = "42"
+num_int = int(num_str)
+num_float = float(num_str)
+print(f'"{num_str}" → int: {num_int}, float: {num_float}')
+
+# Number to string
+value = 3.14
+value_str = str(value)
+print(f"{value} → string: {value_str}")
+
+# Mixing types — be careful!
+# print("The answer is " + 42)  # This would cause an error!
+print("The answer is " + str(42))  # This works'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> String to number
+num_str = <span class="st">"42"</span>
+num_int = <span class="fn">int</span>(num_str)
+num_float = <span class="fn">float</span>(num_str)
+<span class="fn">print</span>(<span class="st">f'"{num_str}" → int: {num_int}, float: {num_float}'</span>)
+
+<span class="kw">#</span> Number to string
+value = 3.14
+value_str = <span class="fn">str</span>(value)
+<span class="fn">print</span>(<span class="st">f"{value} → string: {value_str}"</span>)
+
+<span class="kw">#</span> Mixing types — be careful!
+<span class="kw">#</span> print("The answer is " + 42)  <span class="kw">#</span> This would cause an error!
+<span class="fn">print</span>(<span class="st">"The answer is "</span> + <span class="fn">str</span>(42))  <span class="kw">#</span> This works</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ You can't concatenate a string and a number directly. Always convert the number to a string first.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lists" aria-labelledby="lists-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="lists-heading">📋 Lists — Ordered Collections</h2>
+                    <p>Lists are ordered, mutable collections of items. They can hold any type of data, and you can add, remove, or change items after creation.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📋 6.1 Creating and Accessing Lists</h3>
+                    <p>Create a list using square brackets <code>[]</code>. Access items by index (starting from 0).</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a list with <code>[item1, item2, ...]</code>.</li>
+                        <li><strong>Step 2:</strong> Access items using indices: <code>my_list[0]</code> gets the first item.</li>
+                        <li><strong>Step 3:</strong> Negative indices count from the end: <code>my_list[-1]</code> gets the last item.</li>
+                        <li><strong>Step 4:</strong> Lists are mutable — you can change items: <code>my_list[0] = "new"</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Creating a list
+fruits = ["apple", "banana", "orange", "grape"]
+print(fruits)
+
+# Accessing items
+print(f"First fruit: {fruits[0]}")
+print(f"Last fruit: {fruits[-1]}")
+print(f"Second fruit: {fruits[1]}")
+
+# Lists are mutable — change an item
+fruits[1] = "blueberry"
+print(f"Updated list: {fruits}")
+
+# Adding and removing items
+fruits.append("kiwi")  # Add to the end
+print(f"After append: {fruits}")
+fruits.remove("apple") # Remove by value
+print(f"After remove: {fruits}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Creating a list
+fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"orange"</span>, <span class="st">"grape"</span>]
+<span class="fn">print</span>(fruits)
+
+<span class="kw">#</span> Accessing items
+<span class="fn">print</span>(<span class="st">f"First fruit: {fruits[0]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Last fruit: {fruits[-1]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Second fruit: {fruits[1]}"</span>)
+
+<span class="kw">#</span> Lists are mutable — change an item
+fruits[1] = <span class="st">"blueberry"</span>
+<span class="fn">print</span>(<span class="st">f"Updated list: {fruits}"</span>)
+
+<span class="kw">#</span> Adding and removing items
+fruits.append(<span class="st">"kiwi"</span>)  <span class="kw">#</span> Add to the end
+<span class="fn">print</span>(<span class="st">f"After append: {fruits}"</span>)
+fruits.remove(<span class="st">"apple"</span>) <span class="kw">#</span> Remove by value
+<span class="fn">print</span>(<span class="st">f"After remove: {fruits}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Lists are zero‑indexed — the first item is at index 0, not 1. This is common in most programming languages.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📋 6.2 List Operations</h3>
+                    <p>Lists support operations like slicing, concatenation, and checking membership.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Slicing <code>list[start:end]</code> extracts a portion of the list.</li>
+                        <li><strong>Step 2:</strong> <code>+</code> concatenates two lists.</li>
+                        <li><strong>Step 3:</strong> <code>*</code> repeats a list.</li>
+                        <li><strong>Step 4:</strong> <code>in</code> checks if an item is in the list.</li>
+                        <li><strong>Step 5:</strong> <code>len()</code> returns the number of items.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+# Slicing
+print(f"First three: {numbers[:3]}")
+print(f"Last two: {numbers[-2:]}")
+print(f"Middle: {numbers[2:6]}")
+
+# Concatenation
+a = [1, 2, 3]
+b = [4, 5, 6]
+print(f"Concatenated: {a + b}")
+
+# Repetition
+print(f"Repeated: {a * 2}")
+
+# Membership
+print(f"3 in numbers? {3 in numbers}")
+print(f"10 in numbers? {10 in numbers}")
+
+# Length
+print(f"Length: {len(numbers)}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre>numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+<span class="kw">#</span> Slicing
+<span class="fn">print</span>(<span class="st">f"First three: {numbers[:3]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Last two: {numbers[-2:]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Middle: {numbers[2:6]}"</span>)
+
+<span class="kw">#</span> Concatenation
+a = [1, 2, 3]
+b = [4, 5, 6]
+<span class="fn">print</span>(<span class="st">f"Concatenated: {a + b}"</span>)
+
+<span class="kw">#</span> Repetition
+<span class="fn">print</span>(<span class="st">f"Repeated: {a * 2}"</span>)
+
+<span class="kw">#</span> Membership
+<span class="fn">print</span>(<span class="st">f"3 in numbers? {3 in numbers}"</span>)
+<span class="fn">print</span>(<span class="st">f"10 in numbers? {10 in numbers}"</span>)
+
+<span class="kw">#</span> Length
+<span class="fn">print</span>(<span class="st">f"Length: {len(numbers)}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tuples" aria-labelledby="tuples-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="tuples-heading">🔗 Tuples — Immutable Collections</h2>
+                    <p>Tuples are similar to lists but immutable — once created, you cannot change them. Use tuples for data that shouldn't be modified.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔗 7.1 Creating and Using Tuples</h3>
+                    <p>Create a tuple with parentheses <code>()</code>. Access items like lists, but you can't modify them.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a tuple using <code>()</code> or just commas: <code>1, 2, 3</code>.</li>
+                        <li><strong>Step 2:</strong> Access items by index (same as lists).</li>
+                        <li><strong>Step 3:</strong> Tuples are immutable — trying to change an item raises an error.</li>
+                        <li><strong>Step 4:</strong> Use tuples for data that shouldn't change (e.g., coordinates, constant values).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Creating tuples
+point = (10, 20)
+coordinates = (3.14, 2.71, 1.0)
+
+print(f"Point: {point}")
+print(f"First coordinate: {coordinates[0]}")
+
+# Tuple unpacking
+x, y = point
+print(f"x = {x}, y = {y}")
+
+# Tuples are immutable — this would cause an error:
+# point[0] = 5  # TypeError
+
+# A tuple with one element needs a trailing comma
+single = (42,)
+print(f"Single element tuple: {single}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Creating tuples
+point = (10, 20)
+coordinates = (3.14, 2.71, 1.0)
+
+<span class="fn">print</span>(<span class="st">f"Point: {point}"</span>)
+<span class="fn">print</span>(<span class="st">f"First coordinate: {coordinates[0]}"</span>)
+
+<span class="kw">#</span> Tuple unpacking
+x, y = point
+<span class="fn">print</span>(<span class="st">f"x = {x}, y = {y}"</span>)
+
+<span class="kw">#</span> Tuples are immutable — this would cause an error:
+<span class="kw">#</span> point[0] = 5  <span class="kw">#</span> TypeError
+
+<span class="kw">#</span> A tuple with one element needs a trailing comma
+single = (42,)
+<span class="fn">print</span>(<span class="st">f"Single element tuple: {single}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Use tuples when you want to guarantee that data won't be accidentally modified. They're also more memory‑efficient than lists.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dictionaries" aria-labelledby="dict-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="dict-heading">📖 Dictionaries — Key‑Value Pairs</h2>
+                    <p>Dictionaries store data as key‑value pairs. They're like real‑world dictionaries — you look up a word (key) to find its definition (value).</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📖 8.1 Creating and Using Dictionaries</h3>
+                    <p>Create a dictionary with curly braces <code>{}</code>. Keys are separated from values by a colon <code>:</code>.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a dictionary with <code>{key: value, ...}</code>.</li>
+                        <li><strong>Step 2:</strong> Access values using square brackets: <code>my_dict["key"]</code>.</li>
+                        <li><strong>Step 3:</strong> Use <code>.get()</code> to safely access a value (returns <code>None</code> if the key doesn't exist).</li>
+                        <li><strong>Step 4:</strong> Add or update values by assigning to a key.</li>
+                        <li><strong>Step 5:</strong> Use <code>in</code> to check if a key exists.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Creating a dictionary
+person = {
+    "name": "Alice",
+    "age": 30,
+    "city": "New York"
+}
+print(person)
+
+# Accessing values
+print(f"Name: {person['name']}")
+print(f"Age: {person.get('age')}")
+
+# Adding a new key-value pair
+person["email"] = "alice@example.com"
+print(f"Updated: {person}")
+
+# Changing a value
+person["age"] = 31
+print(f"Changed age: {person}")
+
+# Checking if a key exists
+print(f"'city' in person? {'city' in person}")
+print(f"'country' in person? {'country' in person}")
+
+# Getting all keys and values
+print(f"Keys: {list(person.keys())}")
+print(f"Values: {list(person.values())}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Creating a dictionary
+person = {
+    <span class="st">"name"</span>: <span class="st">"Alice"</span>,
+    <span class="st">"age"</span>: 30,
+    <span class="st">"city"</span>: <span class="st">"New York"</span>
+}
+<span class="fn">print</span>(person)
+
+<span class="kw">#</span> Accessing values
+<span class="fn">print</span>(<span class="st">f"Name: {person['name']}"</span>)
+<span class="fn">print</span>(<span class="st">f"Age: {person.get('age')}"</span>)
+
+<span class="kw">#</span> Adding a new key-value pair
+person[<span class="st">"email"</span>] = <span class="st">"alice@example.com"</span>
+<span class="fn">print</span>(<span class="st">f"Updated: {person}"</span>)
+
+<span class="kw">#</span> Changing a value
+person[<span class="st">"age"</span>] = 31
+<span class="fn">print</span>(<span class="st">f"Changed age: {person}"</span>)
+
+<span class="kw">#</span> Checking if a key exists
+<span class="fn">print</span>(<span class="st">f"'city' in person? {'city' in person}"</span>)
+<span class="fn">print</span>(<span class="st">f"'country' in person? {'country' in person}"</span>)
+
+<span class="kw">#</span> Getting all keys and values
+<span class="fn">print</span>(<span class="st">f"Keys: {list(person.keys())}"</span>)
+<span class="fn">print</span>(<span class="st">f"Values: {list(person.values())}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Dictionaries are incredibly versatile. They're used everywhere in Python — from configuration files to JSON data to object attributes.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sets" aria-labelledby="sets-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="sets-heading">⭕ Sets — Unordered Collections of Unique Items</h2>
+                    <p>Sets are unordered collections of unique items. They're great for removing duplicates and performing set operations like union and intersection.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>⭕ 9.1 Creating and Using Sets</h3>
+                    <p>Create a set with curly braces <code>{}</code> or the <code>set()</code> function. Sets automatically remove duplicates.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a set with <code>{item1, item2, ...}</code>.</li>
+                        <li><strong>Step 2:</strong> Sets automatically remove duplicate values.</li>
+                        <li><strong>Step 3:</strong> Add items with <code>.add()</code>.</li>
+                        <li><strong>Step 4:</strong> Remove items with <code>.remove()</code>.</li>
+                        <li><strong>Step 5:</strong> Use set operations: <code>|</code> (union), <code>&amp;</code> (intersection), <code>-</code> (difference).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Creating a set — duplicates are removed
+colors = {"red", "blue", "green", "red", "blue"}
+print(f"Set (duplicates removed): {colors}")
+
+# Adding and removing
+colors.add("yellow")
+print(f"After add: {colors}")
+colors.remove("red")
+print(f"After remove: {colors}")
+
+# Set operations
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+print(f"Union: {a | b}")          # All items in either set
+print(f"Intersection: {a & b}")    # Items in both sets
+print(f"Difference: {a - b}")      # Items in a but not in b
+
+# Membership check
+print(f"2 in a? {2 in a}")
+print(f"5 in a? {5 in a}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Creating a set — duplicates are removed
+colors = {<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>}
+<span class="fn">print</span>(<span class="st">f"Set (duplicates removed): {colors}"</span>)
+
+<span class="kw">#</span> Adding and removing
+colors.add(<span class="st">"yellow"</span>)
+<span class="fn">print</span>(<span class="st">f"After add: {colors}"</span>)
+colors.remove(<span class="st">"red"</span>)
+<span class="fn">print</span>(<span class="st">f"After remove: {colors}"</span>)
+
+<span class="kw">#</span> Set operations
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+<span class="fn">print</span>(<span class="st">f"Union: {a | b}"</span>)          <span class="kw">#</span> All items in either set
+<span class="fn">print</span>(<span class="st">f"Intersection: {a & b}"</span>)    <span class="kw">#</span> Items in both sets
+<span class="fn">print</span>(<span class="st">f"Difference: {a - b}"</span>)      <span class="kw">#</span> Items in a but not in b
+
+<span class="kw">#</span> Membership check
+<span class="fn">print</span>(<span class="st">f"2 in a? {2 in a}"</span>)
+<span class="fn">print</span>(<span class="st">f"5 in a? {5 in a}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ Sets are unordered — the items don't have a fixed order. If you need order, use a list or tuple instead.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conditionals" aria-labelledby="cond-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="cond-heading">🔀 Conditionals — Making Decisions</h2>
+                    <p>Conditionals let your program make decisions based on conditions. The <code>if</code>, <code>elif</code>, and <code>else</code> statements are the building blocks of logic.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔀 10.1 if, elif, and else</h3>
+                    <p>Use <code>if</code> to check a condition, <code>elif</code> for additional conditions, and <code>else</code> for the default case.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>if condition:</code> — if the condition is <code>True</code>, execute the indented block.</li>
+                        <li><strong>Step 2:</strong> <code>elif condition:</code> — if the previous condition was <code>False</code>, check this one.</li>
+                        <li><strong>Step 3:</strong> <code>else:</code> — if all previous conditions were <code>False</code>, execute this block.</li>
+                        <li><strong>Step 4:</strong> Indentation is important — all code inside the block must be indented.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='age = 20
+
+if age >= 18:
+    print("You are an adult.")
+elif age >= 13:
+    print("You are a teenager.")
+else:
+    print("You are a child.")
+
+# Multiple conditions with and / or
+score = 85
+
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"Score: {score} → Grade: {grade}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre>age = 20
+
+<span class="kw">if</span> age &gt;= 18:
+    <span class="fn">print</span>(<span class="st">"You are an adult."</span>)
+<span class="kw">elif</span> age &gt;= 13:
+    <span class="fn">print</span>(<span class="st">"You are a teenager."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"You are a child."</span>)
+
+<span class="kw">#</span> Multiple conditions with and / or
+score = 85
+
+<span class="kw">if</span> score &gt;= 90:
+    grade = <span class="st">"A"</span>
+<span class="kw">elif</span> score &gt;= 80:
+    grade = <span class="st">"B"</span>
+<span class="kw">elif</span> score &gt;= 70:
+    grade = <span class="st">"C"</span>
+<span class="kw">elif</span> score &gt;= 60:
+    grade = <span class="st">"D"</span>
+<span class="kw">else</span>:
+    grade = <span class="st">"F"</span>
+
+<span class="fn">print</span>(<span class="st">f"Score: {score} → Grade: {grade}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Indentation is how Python defines blocks. Always use 4 spaces (or a tab) consistently. The standard is 4 spaces.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔀 10.2 Boolean Expressions</h3>
+                    <p>Conditions evaluate to <code>True</code> or <code>False</code>. Use comparison operators and logical operators to build complex conditions.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Comparison operators: <code>==</code> (equal), <code>!=</code> (not equal), <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>.</li>
+                        <li><strong>Step 2:</strong> Logical operators: <code>and</code>, <code>or</code>, <code>not</code>.</li>
+                        <li><strong>Step 3:</strong> Truthiness: <code>0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>None</code> are <code>False</code>; everything else is <code>True</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Comparison operators
+a = 10
+b = 20
+print(f"a == b? {a == b}")
+print(f"a != b? {a != b}")
+print(f"a < b? {a < b}")
+print(f"a > b? {a > b}")
+
+# Logical operators
+age = 25
+has_license = True
+
+if age >= 18 and has_license:
+    print("You can drive.")
+else:
+    print("You cannot drive.")
+
+# Truthiness
+empty_list = []
+if empty_list:
+    print("List is not empty")
+else:
+    print("List is empty")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Comparison operators
+a = 10
+b = 20
+<span class="fn">print</span>(<span class="st">f"a == b? {a == b}"</span>)
+<span class="fn">print</span>(<span class="st">f"a != b? {a != b}"</span>)
+<span class="fn">print</span>(<span class="st">f"a < b? {a < b}"</span>)
+<span class="fn">print</span>(<span class="st">f"a > b? {a > b}"</span>)
+
+<span class="kw">#</span> Logical operators
+age = 25
+has_license = <span class="kw">True</span>
+
+<span class="kw">if</span> age &gt;= 18 <span class="kw">and</span> has_license:
+    <span class="fn">print</span>(<span class="st">"You can drive."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"You cannot drive."</span>)
+
+<span class="kw">#</span> Truthiness
+empty_list = []
+<span class="kw">if</span> empty_list:
+    <span class="fn">print</span>(<span class="st">"List is not empty"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"List is empty"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="loops" aria-labelledby="loops-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="loops-heading">🔄 Loops — Repeating Code</h2>
+                    <p>Loops let you repeat code multiple times. Python has two types: <code>for</code> loops (iterate over a sequence) and <code>while</code> loops (repeat while a condition is true).</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔄 11.1 For Loops</h3>
+                    <p>Use <code>for</code> loops to iterate over sequences like lists, tuples, strings, and ranges.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>for item in sequence:</code> — loops through each item in the sequence.</li>
+                        <li><strong>Step 2:</strong> Use <code>range()</code> to generate a sequence of numbers.</li>
+                        <li><strong>Step 3:</strong> Use <code>enumerate()</code> to get both the index and the value.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Iterate over a list
+fruits = ["apple", "banana", "orange"]
+for fruit in fruits:
+    print(f"I like {fruit}")
+
+# Using range()
+print("\nNumbers 0 to 4:")
+for i in range(5):
+    print(i, end=" ")
+
+# Using enumerate() for index and value
+print("\n\nIndex and value:")
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")
+
+# Iterate over a string
+print("\nCharacters in 'hello':")
+for char in "hello":
+    print(char, end=" ")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Iterate over a list
+fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"orange"</span>]
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    <span class="fn">print</span>(<span class="st">f"I like {fruit}"</span>)
+
+<span class="kw">#</span> Using range()
+<span class="fn">print</span>(<span class="st">"\nNumbers 0 to 4:"</span>)
+<span class="kw">for</span> i <span class="kw">in</span> range(5):
+    <span class="fn">print</span>(i, end=<span class="st">" "</span>)
+
+<span class="kw">#</span> Using enumerate() for index and value
+<span class="fn">print</span>(<span class="st">"\n\nIndex and value:"</span>)
+<span class="kw">for</span> index, fruit <span class="kw">in</span> enumerate(fruits):
+    <span class="fn">print</span>(<span class="st">f"{index}: {fruit}"</span>)
+
+<span class="kw">#</span> Iterate over a string
+<span class="fn">print</span>(<span class="st">"\nCharacters in 'hello':"</span>)
+<span class="kw">for</span> char <span class="kw">in</span> <span class="st">"hello"</span>:
+    <span class="fn">print</span>(char, end=<span class="st">" "</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>range(start, stop, step)</code> gives you full control: <code>range(1, 10, 2)</code> → 1, 3, 5, 7, 9.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔄 11.2 While Loops</h3>
+                    <p>Use <code>while</code> loops when you need to repeat code until a condition changes. Be careful to avoid infinite loops!</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>while condition:</code> — repeat the block while the condition is <code>True</code>.</li>
+                        <li><strong>Step 2:</strong> Make sure the condition eventually becomes <code>False</code> to avoid an infinite loop.</li>
+                        <li><strong>Step 3:</strong> Use <code>break</code> to exit the loop early.</li>
+                        <li><strong>Step 4:</strong> Use <code>continue</code> to skip the rest of the current iteration.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Countdown
+count = 5
+while count > 0:
+    print(count)
+    count -= 1
+print("Blast off! 🚀")
+
+# User input loop (simulated)
+attempts = 0
+while attempts < 3:
+    # Simulating input
+    guess = "42" if attempts == 2 else "wrong"
+    if guess == "42":
+        print("Correct!")
+        break
+    attempts += 1
+    print(f"Wrong. Attempt {attempts} of 3")
+else:
+    print("Too many attempts.")
+
+# Using continue
+i = 0
+while i < 5:
+    i += 1
+    if i == 3:
+        continue
+    print(i, end=" ")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Countdown
+count = 5
+<span class="kw">while</span> count &gt; 0:
+    <span class="fn">print</span>(count)
+    count -= 1
+<span class="fn">print</span>(<span class="st">"Blast off! 🚀"</span>)
+
+<span class="kw">#</span> User input loop (simulated)
+attempts = 0
+<span class="kw">while</span> attempts &lt; 3:
+    <span class="kw">#</span> Simulating input
+    guess = <span class="st">"42"</span> <span class="kw">if</span> attempts == 2 <span class="kw">else</span> <span class="st">"wrong"</span>
+    <span class="kw">if</span> guess == <span class="st">"42"</span>:
+        <span class="fn">print</span>(<span class="st">"Correct!"</span>)
+        <span class="kw">break</span>
+    attempts += 1
+    <span class="fn">print</span>(<span class="st">f"Wrong. Attempt {attempts} of 3"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Too many attempts."</span>)
+
+<span class="kw">#</span> Using continue
+i = 0
+<span class="kw">while</span> i &lt; 5:
+    i += 1
+    <span class="kw">if</span> i == 3:
+        <span class="kw">continue</span>
+    <span class="fn">print</span>(i, end=<span class="st">" "</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ Infinite loops happen when the condition never becomes <code>False</code>. Always ensure your loop has a way to exit!</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="functions" aria-labelledby="func-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="func-heading">🧩 Functions — Reusable Code Blocks</h2>
+                    <p>Functions let you encapsulate code into reusable blocks. They help you organize your code, avoid repetition, and make your programs more maintainable.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧩 12.1 Defining and Calling Functions</h3>
+                    <p>Use <code>def</code> to define a function. Then call it by its name followed by parentheses.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>def function_name(parameters):</code> — defines a function.</li>
+                        <li><strong>Step 2:</strong> The body of the function is indented.</li>
+                        <li><strong>Step 3:</strong> Use <code>return</code> to send a value back to the caller.</li>
+                        <li><strong>Step 4:</strong> Call the function by its name with the required arguments.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Defining a simple function
+def greet(name):
+    print(f"Hello, {name}!")
+
+# Calling the function
+greet("Alice")
+greet("Bob")
+
+# Function with parameters and return value
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print(f"5 + 3 = {result}")
+
+# Function with default parameters
+def power(base, exponent=2):
+    return base ** exponent
+
+print(f"3 squared = {power(3)}")
+print(f"3 cubed = {power(3, 3)}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Defining a simple function
+<span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="fn">print</span>(<span class="st">f"Hello, {name}!"</span>)
+
+<span class="kw">#</span> Calling the function
+greet(<span class="st">"Alice"</span>)
+greet(<span class="st">"Bob"</span>)
+
+<span class="kw">#</span> Function with parameters and return value
+<span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+
+result = add(5, 3)
+<span class="fn">print</span>(<span class="st">f"5 + 3 = {result}"</span>)
+
+<span class="kw">#</span> Function with default parameters
+<span class="kw">def</span> <span class="fn">power</span>(base, exponent=2):
+    <span class="kw">return</span> base ** exponent
+
+<span class="fn">print</span>(<span class="st">f"3 squared = {power(3)}"</span>)
+<span class="fn">print</span>(<span class="st">f"3 cubed = {power(3, 3)}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Functions are the building blocks of modular programming. They let you write code once and reuse it everywhere.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧩 12.2 Docstrings — Documenting Functions</h3>
+                    <p>Use docstrings (triple‑quoted strings) to document what your function does. This is the Python way of adding documentation.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Place a string literal right after the function definition.</li>
+                        <li><strong>Step 2:</strong> Use triple quotes <code>"""..."""</code> for multi‑line docstrings.</li>
+                        <li><strong>Step 3:</strong> Describe what the function does, its parameters, and return value.</li>
+                        <li><strong>Step 4:</strong> Use <code>help()</code> to view the docstring.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='def calculate_area(length, width):
+    """Calculate the area of a rectangle.
+
+    Args:
+        length (float): The length of the rectangle.
+        width (float): The width of the rectangle.
+
+    Returns:
+        float: The area of the rectangle.
+    """
+    return length * width
+
+# View the docstring
+print(calculate_area.__doc__)
+
+# Or use help()
+# help(calculate_area)  # Uncomment to see the help
+
+area = calculate_area(5, 3)
+print(f"Area of 5x3 rectangle: {area}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">calculate_area</span>(length, width):
+    <span class="st">"""Calculate the area of a rectangle.
+
+    Args:
+        length (float): The length of the rectangle.
+        width (float): The width of the rectangle.
+
+    Returns:
+        float: The area of the rectangle.
+    """</span>
+    <span class="kw">return</span> length * width
+
+<span class="kw">#</span> View the docstring
+<span class="fn">print</span>(calculate_area.__doc__)
+
+<span class="kw">#</span> Or use help()
+<span class="kw">#</span> help(calculate_area)  <span class="kw">#</span> Uncomment to see the help
+
+area = calculate_area(5, 3)
+<span class="fn">print</span>(<span class="st">f"Area of 5x3 rectangle: {area}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ Good documentation is a sign of a professional programmer. Always document your functions!</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules" aria-labelledby="modules-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="modules-heading">📦 Modules — Organising Code</h2>
+                    <p>Modules let you organise your code into separate files. You can import modules to use their functions and classes.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📦 13.1 Importing and Using Modules</h3>
+                    <p>Use <code>import</code> to bring in modules from the Python standard library or third‑party packages.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>import module_name</code> — imports the entire module.</li>
+                        <li><strong>Step 2:</strong> Access functions with <code>module_name.function()</code>.</li>
+                        <li><strong>Step 3:</strong> <code>from module import function</code> — import specific functions.</li>
+                        <li><strong>Step 4:</strong> <code>import module as alias</code> — give the module a shorter name.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Import the math module
+import math
+
+print(f"Pi = {math.pi}")
+print(f"Square root of 16 = {math.sqrt(16)}")
+print(f"Sin of 0 = {math.sin(0)}")
+
+# Import specific functions
+from math import cos, tan
+print(f"Cos of 0 = {cos(0)}")
+
+# Import with an alias
+import random as rnd
+print(f"Random number (0-1): {rnd.random()}")
+print(f"Random integer (1-10): {rnd.randint(1, 10)}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Import the math module
+<span class="kw">import</span> math
+
+<span class="fn">print</span>(<span class="st">f"Pi = {math.pi}"</span>)
+<span class="fn">print</span>(<span class="st">f"Square root of 16 = {math.sqrt(16)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Sin of 0 = {math.sin(0)}"</span>)
+
+<span class="kw">#</span> Import specific functions
+<span class="kw">from</span> math <span class="kw">import</span> cos, tan
+<span class="fn">print</span>(<span class="st">f"Cos of 0 = {cos(0)}"</span>)
+
+<span class="kw">#</span> Import with an alias
+<span class="kw">import</span> random <span class="kw">as</span> rnd
+<span class="fn">print</span>(<span class="st">f"Random number (0-1): {rnd.random()}"</span>)
+<span class="fn">print</span>(<span class="st">f"Random integer (1-10): {rnd.randint(1, 10)}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 The Python standard library has modules for everything — file I/O, networking, date/time, mathematics, and much more. Always check the standard library before installing third‑party packages.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="file-io" aria-labelledby="fileio-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="fileio-heading">📂 File I/O — Reading and Writing Files</h2>
+                    <p>Python makes it easy to read from and write to files. Use the <code>open()</code> function with a context manager (<code>with</code> statement).</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📂 14.1 Reading and Writing Text Files</h3>
+                    <p>Use <code>open()</code> with mode <code>'r'</code> (read) or <code>'w'</code> (write). Always use a <code>with</code> statement to ensure the file is closed properly.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>with open(filename, 'w') as f:</code> — opens a file for writing (creates or overwrites).</li>
+                        <li><strong>Step 2:</strong> Use <code>f.write()</code> to write text to the file.</li>
+                        <li><strong>Step 3:</strong> <code>with open(filename, 'r') as f:</code> — opens a file for reading.</li>
+                        <li><strong>Step 4:</strong> Use <code>f.read()</code> to read the entire file, or <code>f.readline()</code> for a line at a time.</li>
+                        <li><strong>Step 5:</strong> The <code>with</code> statement automatically closes the file when the block ends.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Writing to a file
+with open("example.txt", "w") as f:
+    f.write("Hello, file!\n")
+    f.write("This is a second line.\n")
+
+# Reading from a file
+with open("example.txt", "r") as f:
+    content = f.read()
+    print("File content:")
+    print(content)
+
+# Reading line by line
+with open("example.txt", "r") as f:
+    print("Line by line:")
+    for line in f:
+        print(f"  {line.strip()}")  # strip() removes newline
+
+# Append to a file
+with open("example.txt", "a") as f:
+    f.write("This is appended.\n")
+
+# Read the updated file
+with open("example.txt", "r") as f:
+    print("\nUpdated file:")
+    print(f.read())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Writing to a file
+<span class="kw">with</span> open(<span class="st">"example.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"Hello, file!\n"</span>)
+    f.write(<span class="st">"This is a second line.\n"</span>)
+
+<span class="kw">#</span> Reading from a file
+<span class="kw">with</span> open(<span class="st">"example.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    content = f.read()
+    <span class="fn">print</span>(<span class="st">"File content:"</span>)
+    <span class="fn">print</span>(content)
+
+<span class="kw">#</span> Reading line by line
+<span class="kw">with</span> open(<span class="st">"example.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    <span class="fn">print</span>(<span class="st">"Line by line:"</span>)
+    <span class="kw">for</span> line <span class="kw">in</span> f:
+        <span class="fn">print</span>(<span class="st">f"  {line.strip()}"</span>)  <span class="kw">#</span> strip() removes newline
+
+<span class="kw">#</span> Append to a file
+<span class="kw">with</span> open(<span class="st">"example.txt"</span>, <span class="st">"a"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"This is appended.\n"</span>)
+
+<span class="kw">#</span> Read the updated file
+<span class="kw">with</span> open(<span class="st">"example.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    <span class="fn">print</span>(<span class="st">"\nUpdated file:"</span>)
+    <span class="fn">print</span>(f.read())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Always use <code>with</code> when working with files. It ensures the file is properly closed even if an exception occurs.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="error-handling" aria-labelledby="error-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="error-heading">🛡️ Error Handling — Making Your Code Robust</h2>
+                    <p>Errors happen. Python's <code>try/except</code> mechanism lets you handle errors gracefully instead of crashing.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🛡️ 15.1 Try/Except</h3>
+                    <p>Wrap code that might fail in a <code>try</code> block, and handle the error in an <code>except</code> block.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> <code>try:</code> — put code that might raise an exception.</li>
+                        <li><strong>Step 2:</strong> <code>except ExceptionType:</code> — handle specific exceptions.</li>
+                        <li><strong>Step 3:</strong> <code>except Exception as e:</code> — capture the exception object.</li>
+                        <li><strong>Step 4:</strong> <code>else:</code> — runs if no exception was raised.</li>
+                        <li><strong>Step 5:</strong> <code>finally:</code> — runs no matter what (cleanup code).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='# Handling division by zero
+def safe_divide(a, b):
+    try:
+        result = a / b
+    except ZeroDivisionError:
+        print("❌ Cannot divide by zero!")
+        return None
+    except TypeError:
+        print("❌ Both arguments must be numbers!")
+        return None
+    else:
+        print(f"✅ {a} / {b} = {result}")
+        return result
+    finally:
+        print("Division attempt completed.\n")
+
+safe_divide(10, 2)
+safe_divide(10, 0)
+safe_divide(10, "2")
+
+# Handling value errors
+def get_int_from_user(prompt):
+    try:
+        value = int(input(prompt))
+        return value
+    except ValueError:
+        print("❌ That\'s not a valid integer!")
+        return None
+
+# In the browser, we simulate input
+# get_int_from_user("Enter a number: ")  # Would work in a real terminal
+print("Simulating user input...")
+print(f"Result: {int('42')} (this works)")
+print(f"Result: {int('not a number')} (this would fail, but we catch it)")
+print("✅ Error handling is working!")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">#</span> Handling division by zero
+<span class="kw">def</span> <span class="fn">safe_divide</span>(a, b):
+    <span class="kw">try</span>:
+        result = a / b
+    <span class="kw">except</span> <span class="cl">ZeroDivisionError</span>:
+        <span class="fn">print</span>(<span class="st">"❌ Cannot divide by zero!"</span>)
+        <span class="kw">return</span> <span class="kw">None</span>
+    <span class="kw">except</span> <span class="cl">TypeError</span>:
+        <span class="fn">print</span>(<span class="st">"❌ Both arguments must be numbers!"</span>)
+        <span class="kw">return</span> <span class="kw">None</span>
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">f"✅ {a} / {b} = {result}"</span>)
+        <span class="kw">return</span> result
+    <span class="kw">finally</span>:
+        <span class="fn">print</span>(<span class="st">"Division attempt completed.\n"</span>)
+
+safe_divide(10, 2)
+safe_divide(10, 0)
+safe_divide(10, <span class="st">"2"</span>)
+
+<span class="kw">#</span> Handling value errors
+<span class="kw">def</span> <span class="fn">get_int_from_user</span>(prompt):
+    <span class="kw">try</span>:
+        value = <span class="fn">int</span>(<span class="fn">input</span>(prompt))
+        <span class="kw">return</span> value
+    <span class="kw">except</span> <span class="cl">ValueError</span>:
+        <span class="fn">print</span>(<span class="st">"❌ That's not a valid integer!"</span>)
+        <span class="kw">return</span> <span class="kw">None</span>
+
+<span class="fn">print</span>(<span class="st">"Simulating user input..."</span>)
+<span class="fn">print</span>(<span class="st">f"Result: {int('42')} (this works)"</span>)
+<span class="fn">print</span>(<span class="st">f"Result: {int('not a number')} (this would fail, but we catch it)"</span>)
+<span class="fn">print</span>(<span class="st">"✅ Error handling is working!"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Good error handling distinguishes robust software from fragile scripts. Always anticipate what could go wrong!</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq-beg" aria-labelledby="faq-beg-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="faq-beg-heading">❓ Frequently Asked Questions — Beginners</h2>
+                    <p>Common questions from new Python learners, answered.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What do I need to start coding in Python?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Just a computer and a web browser! You can run Python right here in this tutorial. For local development, download Python from python.org and install a code editor like VS Code.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How long does it take to learn Python?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>You can learn the basics in a few weeks of consistent practice. Mastery takes months or years, but you'll be writing useful scripts within your first week. The key is to practice daily.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Is Python a good first language?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Absolutely! Python is widely considered the best first programming language because of its clean syntax, readability, and huge community support.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What can I build with Python as a beginner?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Start with simple scripts: a calculator, a to‑do list, a password generator, a file organizer, a web scraper, or a simple game like Hangman or Tic‑Tac‑Toe.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Do I need to know math to learn Python?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Basic arithmetic (addition, subtraction, multiplication, division) is enough to start. You don't need calculus or advanced math unless you're going into data science or machine learning.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What's the difference between Python 2 and Python 3?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Python 3 is the modern version. Python 2 was officially retired in 2020. Always learn Python 3, which is what this tutorial teaches.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I remember all the syntax?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>You don't have to memorise everything! Experienced programmers constantly look things up. Focus on understanding concepts — syntax becomes natural with practice. Use cheat sheets and reference guides.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="outro" aria-labelledby="outro-heading">
+            <div class="page-col">
+                <div class="outro-box">
+                    <h2 id="outro-heading">💛 You've Taken Your First Step into Python</h2>
+                    <p>
+                        Congratulations! You've completed the Python for Beginners curriculum. You've learned the
+                        core building blocks of Python: variables, data types, strings, numbers, lists, tuples,
+                        dictionaries, sets, conditionals, loops, functions, modules, file I/O, and error handling.
+                    </p>
+                    <p>
+                        This is just the beginning. The skills you've acquired here are the foundation for everything
+                        you'll build next — whether it's web applications, data analysis, automation, AI, or anything
+                        else you can imagine. The journey of a thousand miles begins with a single step — and you've
+                        just taken it.
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin:1rem 0 0.6rem;">
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-check-circle" style="color:var(--green);"></i> 20 lessons
+                        </span>
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-code" style="color:var(--blue-lt);"></i> 25+ code examples
+                        </span>
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-users" style="color:var(--gold);"></i> 1200+ learners
+                        </span>
+                    </div>
+                    <div class="outro-cta">
+                        <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Explore More</a>
+                        <a href="python-automation.html" class="btn btn-outline"><i class="fas fa-cogs"></i> Next: Automation</a>
+                        <a href="https://twitter.com/PoeticGlenn" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-twitter"></i> Follow @PoeticGlenn</a>
+                        <a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i> Star on GitHub</a>
+                    </div>
+                    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.2rem;">
+                        <i class="fas fa-quote-left" style="color:var(--gold);margin-right:0.3rem;"></i>
+                        "The best way to learn programming is to build things. Start small, stay curious, and never stop learning."
+                        <span style="display:block;color:var(--gold);font-weight:600;margin-top:0.2rem;">— Glenn Junsay Pansensoy <span style="font-weight:400;color:var(--muted);">(@PoeticGlenn)</span></span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Share this resource">
+            <div class="page-col">
+                <div class="share-box" id="shareSection">
+                    <h3>📤 Share this guide</h3>
+                    <p style="margin-top:.3rem;">Help other beginners discover Python — spread the word!</p>
+                    <div class="share-row" id="shareRowBottom">
+                        <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning. · <a href="https://twitter.com/PoeticGlenn" rel="noopener">@PoeticGlenn</a></p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js">
+    </script>
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            window.toggleFaq = function(qEl) {
+                var item = qEl.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var toggle = qEl.querySelector('.faq-toggle');
+                var isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    a.closest('.faq-item').querySelector('.faq-toggle').textContent = '+';
+                });
+                if (!isOpen) { answer.classList.add('open');
+                    toggle.textContent = '−'; }
+            };
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/beginners.html');
+            var PAGE_TITLE = encodeURIComponent('Python for Beginners – Free Interactive Tutorial | Poetic Bytes');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+            document.querySelectorAll('#shareFb,#shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTw,#shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE +
+                        '&via=PoeticGlenn'); });
+            });
+            document.querySelectorAll('#shareLi,#shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareWa,#shareWaBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTg,#shareTgBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/beginners.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopy(url, btn); });
+                } else { fallbackCopy(url, btn); }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            var copyBtn = document.getElementById('copyLinkBtn');
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide({
+                        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/'
+                    });
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function dedent(code) {
+                var lines = code.split('\n');
+                var minIndent = Infinity;
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i];
+                    if (line.trim().length === 0) continue;
+                    var match = line.match(/^(\s+)/);
+                    if (match) { if (match[1].length < minIndent) minIndent = match[1].length; } else { minIndent = 0;
+                        break; }
+                }
+                if (!isFinite(minIndent) || minIndent === 0) return code;
+                return lines.map(function(l) { return l.trim().length === 0 ? l : l.slice(minIndent); }).join('\n');
+            }
+
+            var BROWSER_PREAMBLE = `
+import sys as _sys, types as _types, builtins as _builtins
+
+_sys.argv = ['script.py']
+
+try:
+    with open('example.txt', 'w', encoding='utf-8') as f:
+        f.write('Hello, file!\\nThis is a second line.\\n')
+except Exception:
+    pass
+`;
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalHTML = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime… (first run may take 8–12 s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var clean = dedent(code).trim();
+                    var outputRef = { text: '' };
+                    var printFn = function(text) {
+                        outputRef.text += text;
+                    };
+                    var inputFn = function(promptText) {
+                        var result = prompt(promptText != null ? String(promptText) : '');
+                        return result !== null ? result : '';
+                    };
+
+                    pyodide.globals.set('_js_print', printFn);
+                    pyodide.globals.set('_js_input', inputFn);
+
+                    await pyodide.runPythonAsync(`
+import builtins
+
+def _print(*args, sep=' ', end='\\n', file=None, flush=False):
+    output = sep.join(str(x) for x in args) + end
+    _js_print(output)
+
+builtins.print = _print
+builtins.input = lambda prompt='': _js_input(str(prompt) if prompt else '')
+                    `);
+
+                    await pyodide.runPythonAsync(BROWSER_PREAMBLE);
+                    await pyodide.runPythonAsync(clean);
+
+                    var finalOutput = outputRef.text;
+                    outputEl.textContent = finalOutput || '✓ Code executed successfully (no output).';
+                    outputEl.style.color = '#4ade80';
+
+                } catch (err) {
+                    outputEl.className = 'output-panel error';
+                    var msg = err.message || String(err);
+                    if (msg.includes('SystemExit')) {
+                        outputEl.textContent = '⚠️ Script called sys.exit() or argparse printed help.\n\n' + msg;
+                        outputEl.style.color = '#f59e0b';
+                    } else {
+                        outputEl.textContent = 'Error:\n' + msg;
+                        outputEl.style.color = '#f87171';
+                    }
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalHTML;
+                }
+            }
+
+            function copyCode(btn, code) {
+                var clean = dedent(code).trim();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(clean).then(function() { flashCopied(btn); })
+                        .catch(function() { fallbackCopyCode(btn, clean); });
+                } else { fallbackCopyCode(btn, clean); }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code;
+                ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                flashCopied(btn);
+            }
+
+            function flashCopied(btn) {
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.classList.add('copied');
+                setTimeout(function() { btn.innerHTML = orig;
+                    btn.classList.remove('copied'); }, 2000);
+            }
+
+            function initCodeContainers() {
+                document.querySelectorAll('.code-container').forEach(function(container) {
+                    if (container.classList.contains('no-run')) return;
+
+                    var codeAttr = container.getAttribute('data-code');
+                    if (!codeAttr) {
+                        var pre = container.querySelector('.code-snippet pre');
+                        if (pre) codeAttr = pre.textContent;
+                    }
+                    if (!codeAttr) return;
+
+                    var cpBtn = container.querySelector('.copy-btn');
+                    var rnBtn = container.querySelector('.run-btn');
+                    var outEl = container.querySelector('.output-panel');
+
+                    if (cpBtn) {
+                        cpBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            copyCode(cpBtn, codeAttr);
+                        });
+                    }
+                    if (rnBtn && outEl) {
+                        rnBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            runCode(codeAttr, outEl, rnBtn);
+                        });
+                    }
+                });
+            }
+
+            if (document.readyState === 'complete') { initCodeContainers(); } else { window.addEventListener('load',
+                    initCodeContainers); }
+
+        })();
+    </script>
+
+</body>
+</html>
