@@ -1,0 +1,3185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Sets – Complete Tutorial with 50+ Examples, Operations, Frozenset, and Exercises | Poetic Bytes</title>
+    <meta name="description" content="Master Python sets in 2026. Learn creation, union, intersection, difference, 15+ methods, set comprehensions, frozenset, and performance. 50+ runnable examples, quizzes, and real-world projects. Free tutorial." />
+    <meta name="keywords" content="python sets, set operations, union intersection difference, frozenset, python tutorial, learn python, set methods, hashable, python 3, interactive tutorial" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/python-sets.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/python-sets.html" />
+    <meta property="og:title" content="Python Sets – Complete Tutorial with 50+ Examples, Operations, Frozenset, and Exercises" />
+    <meta property="og:description" content="Master Python sets in 2026. Learn creation, union, intersection, difference, 15+ methods, set comprehensions, frozenset, and performance. 50+ runnable examples, quizzes, and real-world projects." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/assets/og-poetic-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Sets – Complete Tutorial with 50+ Examples" />
+    <meta name="twitter:description" content="Master Python sets in 2026. Learn creation, union, intersection, difference, 15+ methods, set comprehensions, frozenset, and performance." />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/assets/og-poetic-image.jpg" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "Python Sets – Complete Tutorial with 50+ Examples, Operations, Frozenset, and Exercises",
+            "description": "Master Python sets in 2026. Learn creation, union, intersection, difference, 15+ methods, set comprehensions, frozenset, and performance. 50+ runnable examples, quizzes, and real-world projects.",
+            "author": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "url": "https://www.linkedin.com/in/glenn-pansensoy"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Poetic Bytes",
+                "url": "https://poetic-bytes.vercel.app"
+            },
+            "datePublished": "2026-06-01",
+            "dateModified": "2026-06-01",
+            "mainEntityOfPage": "https://poetic-bytes.vercel.app/python-sets.html",
+            "keywords": "python sets, set operations, union intersection difference, frozenset, tutorial, interactive"
+        }
+    </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔵</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .btn-home {
+            background: rgba(255, 217, 102, .12);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+        .btn-home:hover {
+            background: rgba(255, 217, 102, .2);
+            transform: translateY(-2px);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+            }
+        }
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-bottom: 2rem;
+        }
+        .hero-btns .btn {
+            flex: 1 1 auto;
+            min-width: 160px;
+        }
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+            min-height: 140px;
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-new {
+            background: rgba(251, 146, 60, .15);
+            color: var(--orange);
+        }
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .insight strong {
+            color: var(--gold);
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 500px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+        .faq-a code {
+            font-size: .7rem;
+        }
+        .quiz-option {
+            display: block;
+            padding: 0.5rem 0.8rem;
+            margin: 0.3rem 0;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            font-size: 0.78rem;
+            color: var(--text);
+        }
+        .quiz-option:hover {
+            background: rgba(75, 139, 190, 0.1);
+            border-color: var(--blue);
+        }
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--green);
+        }
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--red);
+        }
+        .quiz-feedback {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .exercise-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            margin: 1rem 0;
+        }
+        .exercise-box h4 {
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+        }
+        .exercise-box p {
+            font-size: 0.78rem;
+        }
+        .exercise-solution {
+            background: rgba(16, 185, 129, .08);
+            border: 1px solid rgba(16, 185, 129, .2);
+            border-radius: 6px;
+            padding: .8rem 1rem;
+            margin-top: .6rem;
+            display: none;
+        }
+        .exercise-solution.open {
+            display: block;
+        }
+        .exercise-solution pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .72rem;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child {
+            color: var(--gold);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .floating-toc {
+            position: fixed;
+            right: 80px;
+            bottom: 80px;
+            width: 280px;
+            max-height: 60vh;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .7);
+            z-index: 950;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        .floating-toc.open {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating-toc .toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1rem;
+            background: rgba(75, 139, 190, .08);
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        .floating-toc .toc-header button {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.2rem 0.4rem;
+        }
+        .floating-toc .toc-body {
+            overflow-y: auto;
+            padding: 0.5rem 0;
+            flex: 1;
+        }
+        .floating-toc .toc-body a {
+            display: block;
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .floating-toc .toc-body a:hover {
+            background: rgba(75, 139, 190, .08);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+        .floating-toc .toc-body a.toc-highlight {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(255, 217, 102, .05);
+        }
+        .floating-share .fs-btn.fs-toc {
+            border-color: rgba(75, 139, 190, .3);
+        }
+        .floating-share .fs-btn.fs-toc:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        @media(max-width:768px) {
+            .floating-toc {
+                right: 10px;
+                bottom: 130px;
+                width: 220px;
+                max-height: 50vh;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3.5rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .hero-btns .btn {
+                min-width: 120px;
+                font-size: .7rem;
+            }
+        }
+        .subject-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: rgba(75, 139, 190, 0.06);
+            border-left: 3px solid var(--blue);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .subject-desc strong {
+            color: var(--text);
+        }
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .cat-label {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .68rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin: 1.8rem 0 .8rem;
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+        .share-box {
+            text-align: center;
+        }
+        .share-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .share-btn {
+            height: var(--btn-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-size: .74rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .2s;
+            font-weight: 600;
+            background: var(--card);
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .share-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .1);
+        }
+        .share-btn.copy-btn {
+            border-color: rgba(75, 139, 190, .3);
+        }
+        .share-btn.copy-btn:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .15);
+        }
+        .outro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .outro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .outro-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+        .intro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .intro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .intro-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .curriculum-desc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .curriculum-desc::before {
+            content: "🔵";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 4rem;
+            opacity: 0.06;
+            transform: rotate(8deg);
+        }
+        .curriculum-desc h2 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc .highlight {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .curriculum-desc .gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .curriculum-desc .desc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .curriculum-desc .desc-meta span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .curriculum-desc .desc-meta i {
+            color: var(--gold);
+        }
+        .show-solution-btn {
+            background: rgba(75, 139, 190, .15);
+            border: 1px solid var(--border);
+            color: var(--blue-lt);
+            padding: .3rem .9rem;
+            border-radius: 6px;
+            font-size: .7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s;
+            font-family: 'Syne', sans-serif;
+        }
+        .show-solution-btn:hover {
+            background: rgba(75, 139, 190, .25);
+        }
+        .code-preview {
+            background: var(--code-bg);
+            border-radius: var(--card-r);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .code-chrome {
+            background: #0a1a24;
+            padding: .6rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .code-chrome .dots {
+            display: flex;
+            gap: 6px;
+        }
+        .code-chrome .dot-r {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff5f57;
+        }
+        .code-chrome .dot-y {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ffbd2e;
+        }
+        .code-chrome .dot-g {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #28c840;
+        }
+        .code-chrome .win-title {
+            color: var(--muted);
+            font-size: .65rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+        }
+        .code-body {
+            padding: 1rem;
+        }
+        .code-body pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .terminal {
+            background: #0a1a24;
+            border-top: 1px solid var(--border);
+            padding: .8rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .7rem;
+            color: #4ade80;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .btn-home-large {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .7rem 1.6rem;
+            border-radius: var(--btn-r);
+            background: rgba(255, 217, 102, .12);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-weight: 700;
+            font-size: .78rem;
+            text-decoration: none;
+            transition: all .2s;
+            font-family: 'Syne', sans-serif;
+        }
+        .btn-home-large:hover {
+            background: rgba(255, 217, 102, .2);
+            transform: translateY(-2px);
+        }
+        .home-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .home-row .btn-home-large {
+            min-width: 180px;
+            justify-content: center;
+        }
+        .pyodide-status {
+            font-size: .7rem;
+            color: var(--muted);
+            padding: .4rem .8rem;
+            background: rgba(75, 139, 190, .08);
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            margin-top: .4rem;
+        }
+        .pyodide-status .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .pyodide-status .dot.green {
+            background: var(--green);
+        }
+        .pyodide-status .dot.amber {
+            background: var(--amber);
+        }
+        .pyodide-status .dot.red {
+            background: var(--red);
+        }
+    </style>
+<body>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#why">Why Sets?</a></li>
+                <li><a href="#basics">Basics</a></li>
+                <li><a href="#operations">Operations</a></li>
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#comprehensions">Comprehensions</a></li>
+                <li><a href="#frozenset">Frozenset</a></li>
+                <li><a href="#advanced">Advanced</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#exercises">Exercises</a></li>
+                <li><a href="#outro">Outro</a></li>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+                <li><button data-href="#why"><i class="fas fa-question"></i>Why Sets?</button></li>
+                <li><button data-href="#basics"><i class="fas fa-layer-group"></i>Basics</button></li>
+                <li><button data-href="#operations"><i class="fas fa-arrows-left-right"></i>Operations</button></li>
+                <li><button data-href="#methods"><i class="fas fa-list"></i>Methods</button></li>
+                <li><button data-href="#comprehensions"><i class="fas fa-magic"></i>Comprehensions</button></li>
+                <li><button data-href="#frozenset"><i class="fas fa-snowflake"></i>Frozenset</button></li>
+                <li><button data-href="#advanced"><i class="fas fa-microchip"></i>Advanced</button></li>
+                <li><button data-href="#projects"><i class="fas fa-briefcase"></i>Projects</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#exercises"><i class="fas fa-pencil-alt"></i>Exercises</button></li>
+                <li><button data-href="#outro"><i class="fas fa-flag-checkered"></i>Outro</button></li>
+                <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header">
+            <span>📚 Jump to</span>
+            <button id="tocCloseBtn" aria-label="Close table of contents"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="toc-body" id="tocBody">
+            <a href="#intro">📖 Introduction</a>
+            <a href="#why">🤔 Why Sets?</a>
+            <a href="#basics">🔤 Basics</a>
+            <a href="#operations">🔄 Operations</a>
+            <a href="#methods">📋 Methods</a>
+            <a href="#comprehensions">✨ Comprehensions</a>
+            <a href="#frozenset">❄️ Frozenset</a>
+            <a href="#advanced">⚙️ Advanced</a>
+            <a href="#projects">💼 Projects</a>
+            <a href="#faq">❓ FAQ</a>
+            <a href="#exercises">✏️ Exercises</a>
+            <a href="#outro">🏁 Outro</a>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents">
+            <i class="fas fa-list-ul"></i>
+            <span class="tooltip">Table of Contents</span>
+        </button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X">
+            <i class="fab fa-twitter"></i>
+            <span class="tooltip">X</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip">LinkedIn</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="tooltip">Telegram</span>
+        </a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python Sets Tutorial">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python 3.12+ · Updated June 2026</div>
+                <h1>Python Sets<br><span style="color:var(--blue-lt)">Unique Collections Done Right</span></h1>
+                <p class="lead">Master Python sets – from creation and membership to union, intersection, difference, 15+ methods, set comprehensions, frozenset, and performance. Over 50 runnable examples, each explained in depth: why it's used, how it operates, how it affects your program, how it shapes the outcome, and why it matters.</p>
+                <div class="hero-btns">
+                    <a href="#basics" class="btn btn-primary"><i class="fas fa-play"></i> Start Learning Sets</a>
+                    <a href="#operations" class="btn btn-outline"><i class="fas fa-arrows-left-right"></i> Explore Operations</a>
+                    <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Back to Home</a>
+                </div>
+                <div class="code-preview" aria-label="Python set example">
+                    <div class="code-chrome"><div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="win-title">sets_demo.py</span></div>
+                    <div class="code-body">
+                        <pre>fruits = {<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>, <span class="st">"apple"</span>}
+<span class="fn">print</span>(fruits)
+
+backend = {<span class="st">"Python"</span>, <span class="st">"Go"</span>, <span class="st">"Rust"</span>}
+frontend = {<span class="st">"JavaScript"</span>, <span class="st">"TypeScript"</span>, <span class="st">"Python"</span>}
+<span class="fn">print</span>(<span class="st">"Union:"</span>, backend | frontend)</pre>
+                    </div>
+                    <div class="terminal">$ python sets_demo.py<br>{'apple', 'cherry', 'banana'}<br>Union: {'Python', 'Go', 'Rust', 'TypeScript', 'JavaScript'}</div>
+                </div>
+                <div class="pyodide-status" id="pyodideStatus">
+                    <span class="dot amber" id="pyodideDot"></span>
+                    <span id="pyodideStatusText">Pyodide loading…</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="intro-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="intro-heading">📖 What Is a Python Set?</h2>
+                    <p style="max-width:100%; text-align:left; color:var(--text);">
+                        A <strong>set</strong> is Python's unordered collection of <strong>unique, hashable</strong> objects — it is the language's implementation of the mathematical set. A set automatically deduplicates: you can never have two identical elements in a set. This single property makes sets the perfect tool for membership testing, removing duplicates, and performing set operations like union, intersection, and difference.
+                    </p>
+                </div>
+                <div class="curriculum-desc">
+                    <h2>Why Every Programmer Must Learn This Curriculum</h2>
+                    <p>
+                        Sets are Python's implementation of the <span class="gold">hash set</span> — one of the most important data structures in all of computer science. They are the go-to tool for <span class="highlight">membership testing</span> (O(1) average case), <span class="highlight">deduplication</span>, and <span class="highlight">set-theoretic operations</span> that appear constantly in data processing, algorithms, and real-world programming. If lists taught you to think in <em>sequences</em> and dictionaries taught you to think in <em>key-value mappings</em>, sets teach you to think in <em>collections of distinct things</em>.
+                    </p>
+                    <p>
+                        This curriculum is sequenced from first principles to production patterns. You'll start with how sets are created and how they enforce uniqueness, move through every essential set operation (union, intersection, difference, symmetric difference), master set comprehensions, understand the immutability requirements for set elements, explore <span class="gold">frozenset</span> for hashable sets, and finish with the performance characteristics and real-world use cases that make sets indispensable.
+                    </p>
+                    <p>
+                        By the end, you'll understand not just the syntax but the <span class="highlight">why</span>: why sets are so fast for membership testing, why set elements must be hashable, why frozensets exist, and why a set is frequently the correct answer to "how do I remove duplicates?" or "how do I check if something is in a collection quickly?"
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-code"></i> 50+ runnable examples</span>
+                        <span><i class="fas fa-arrows-left-right"></i> 8+ set operations</span>
+                        <span><i class="fas fa-graduation-cap"></i> Beginner to Advanced</span>
+                        <span><i class="fas fa-clock"></i> 2–2.5 hours to complete</span>
+                    </div>
+                </div>
+                <div class="oop-block">
+                    <h3>🎯 What You Will Learn</h3>
+                    <ul class="intro-list">
+                        <li>How sets are created, and how they enforce uniqueness automatically</li>
+                        <li>Membership testing with <code>in</code> — O(1) average case, much faster than lists</li>
+                        <li>Set operations: union (<code>|</code>), intersection (<code>&</code>), difference (<code>-</code>), and symmetric difference (<code>^</code>)</li>
+                        <li>15+ set methods: <code>.add()</code>, <code>.remove()</code>, <code>.discard()</code>, <code>.pop()</code>, <code>.clear()</code>, and more</li>
+                        <li>Set comprehensions — the concise, Pythonic way to build new sets</li>
+                        <li><code>frozenset</code> — immutable, hashable sets for use as dictionary keys and set members</li>
+                        <li>Performance: why set membership is O(1) and why that matters</li>
+                        <li>Real-world use cases: duplicate removal, common element detection, data cleaning</li>
+                        <li>Three real-world mini projects that combine everything above</li>
+                    </ul>
+                </div>
+                <div class="oop-block">
+                    <h3>🌍 The Significance of Sets in the Programming World</h3>
+                    <p><strong style="color:var(--text);">Sets are how programs answer "is this item in this collection?" in constant time.</strong> That seemingly simple question — membership — appears in almost every program: checking if a username is already taken, ensuring a product isn't already in a cart, filtering duplicates from a list, finding common friends between two users. Sets make these operations fast and natural.</p>
+                    <ul class="intro-list">
+                        <li><strong>Database-style operations</strong> — union, intersection, difference are the same operations you'd perform on relational tables.</li>
+                        <li><strong>Data cleaning &amp; deduplication</strong> — removing duplicates from a list is a one-liner with a set.</li>
+                        <li><strong>Graph algorithms</strong> — sets represent visited nodes, neighborhoods, and reachable sets.</li>
+                        <li><strong>Search &amp; filtering</strong> — checking if a value is in a set is O(1), making it the right tool for large collections.</li>
+                        <li><strong>Tagging &amp; categories</strong> — a set of tags assigned to an item is the natural, deduplicated representation.</li>
+                        <li><strong>Set-theoretic reasoning</strong> — many algorithms are expressed most naturally in terms of set operations.</li>
+                    </ul>
+                    <p>Mastering sets means you'll write code that is faster, cleaner, and more mathematically grounded — because you'll recognise when a problem is fundamentally about collections of distinct items and choose the right tool.</p>
+                </div>
+                <div class="home-row">
+                    <a href="index.html" class="btn-home-large"><i class="fas fa-home"></i> Back to Home</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="why" aria-labelledby="why-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="why-heading">🤔 Why Programmers Should Master Python Sets</h2>
+                    <p>Because uniqueness and O(1) membership are powers you want</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🧩 Sets Eliminate Duplicates Automatically</h3>
+                    <p>Think about a list of user IDs, tags, or categories. The moment you need to <em>ensure uniqueness</em> — no duplicates allowed — a set is the natural tool. Unlike a list, where you'd have to manually check <code>if item not in list</code> (an O(n) operation), a set handles uniqueness at insertion time and makes membership testing O(1).</p>
+                    <ul class="intro-list">
+                        <li><strong>Deduplicate a list</strong> — <code>unique = set(my_list)</code> is all it takes.</li>
+                        <li><strong>Fast membership</strong> — <code>if item in my_set</code> is O(1), regardless of size.</li>
+                        <li><strong>Set operations</strong> — union, intersection, and difference express complex logic concisely.</li>
+                        <li><strong>Remove duplicates while preserving order</strong> — use <code>dict.fromkeys()</code> or a loop with a set.</li>
+                        <li><strong>Data cleaning</strong> — sets are the go-to for removing duplicates from datasets.</li>
+                    </ul>
+                    <div class="insight">💡 If you ever catch yourself writing <code>if item not in list</code> inside a loop over another list, that's a classic O(n²) pattern that a set turns into O(n). The performance difference can be enormous for large data.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>🚀 Sets Are the Fastest Way to Test Membership</h3>
+                    <p>A set uses a hash table internally — just like a dictionary — making membership testing O(1) on average. This means checking <code>if x in my_set</code> takes roughly the same amount of time whether the set has 10 elements or 10 million. This single property makes sets the tool of choice for any program that needs to test membership repeatedly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="basics" aria-labelledby="basics-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="basics-heading">🔤 Set Basics – Creation, Membership, and Uniqueness</h2>
+                    <p>The foundation everything else in this tutorial builds on</p>
+                </div>
+
+                <div class="cat-label"><span>📝</span> Creating Sets</div>
+                <div class="oop-block">
+                    <h3>Curly Braces and the set() Constructor</h3>
+                    <p>A set is created using curly braces <code>{}</code> with comma-separated values, or the <code>set()</code> constructor. Note that empty curly braces create a dictionary, not a set — use <code>set()</code> for an empty set.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Example 1: an empty set — use set(), not {}</span>
+empty = set()
+<span class="fn">print</span>(empty, type(empty))
+
+<span class="cmt"># Example 2: NOT a set — this is a dictionary</span>
+not_a_set = {}
+<span class="fn">print</span>(not_a_set, type(not_a_set))
+
+<span class="cmt"># Example 3: a set literal</span>
+fruits = {<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>}
+<span class="fn">print</span>(fruits)
+
+<span class="cmt"># Example 4: set() constructor from a list — deduplicates automatically</span>
+numbers = set([1, 2, 2, 3, 3, 3, 4])
+<span class="fn">print</span>(numbers)
+
+<span class="cmt"># Example 5: set() constructor from a string</span>
+letters = set(<span class="st">"hello"</span>)
+<span class="fn">print</span>(letters)  <span class="cmt"># duplicates removed</span></pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Sets can be created in several ways, and understanding the <code>{}</code> vs <code>set()</code> distinction prevents a common beginner mistake: accidentally creating a dictionary when you meant to create a set.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>{1, 2, 3}</code> creates a set directly. <code>{}</code> creates an empty dictionary — a design choice that's historical but frequently catches newcomers. <code>set()</code> is the only way to create an empty set. The <code>set()</code> constructor accepts any iterable and automatically removes duplicates.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 4 demonstrates that converting a list with duplicates to a set removes them in a single, simple operation — <code>set([1, 2, 2, 3, 3, 3, 4])</code> returns <code>{1, 2, 3, 4}</code>.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Example 5 shows that even strings (which are iterable) can be converted to sets — the result is a set of unique characters, with <code>"l"</code> appearing only once despite appearing twice in <code>"hello"</code>.
+                        <br><br>
+                        <strong>📌 Significance:</strong> The <code>set()</code> constructor is one of the most useful one-liners in Python — it's the primary tool for deduplicating any iterable.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔍</span> Membership Testing</div>
+                <div class="oop-block">
+                    <h3>The <code>in</code> Operator — O(1) Membership</h3>
+                    <div class="code-snippet"><pre>colors = {<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>}
+
+<span class="cmt"># Example 6: membership testing with 'in'</span>
+<span class="fn">print</span>(<span class="st">"red"</span> <span class="kw">in</span> colors)
+<span class="fn">print</span>(<span class="st">"yellow"</span> <span class="kw">in</span> colors)
+
+<span class="cmt"># Example 7: membership testing with 'not in'</span>
+<span class="fn">print</span>(<span class="st">"green"</span> <span class="kw">not in</span> colors)
+<span class="fn">print</span>(<span class="st">"purple"</span> <span class="kw">not in</span> colors)
+
+<span class="cmt"># Example 8: set membership is FAST — O(1) vs list O(n)</span>
+<span class="kw">import</span> time
+
+big_list = list(range(1000000))
+big_set = set(big_list)
+
+start = time.perf_counter()
+result_list = 999999 <span class="kw">in</span> big_list
+list_time = time.perf_counter() - start
+
+start = time.perf_counter()
+result_set = 999999 <span class="kw">in</span> big_set
+set_time = time.perf_counter() - start
+
+<span class="fn">print</span>(<span class="st">f"List membership: {list_time:.6f}s"</span>)
+<span class="fn">print</span>(<span class="st">f"Set membership: {set_time:.6f}s"</span>)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Membership testing is the single most common set operation — and it's where sets dramatically outperform lists.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>item in set</code> uses the set's hash table to find the item in O(1) average time. <code>item in list</code> scans the list element by element, O(n) in the worst case. Example 8 demonstrates this difference directly on a million-element collection.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> The performance difference is not theoretical — in real applications, using a set for membership can turn a program that takes seconds into one that takes milliseconds.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> This is why you should use a set whenever you need to test membership repeatedly — especially if the collection is large. The cost of building the set is usually worth the speed of every subsequent membership test.
+                        <br><br>
+                        <strong>📌 Significance:</strong> The O(1) membership guarantee is the primary reason sets exist in the language — it's a fundamental performance tool.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔒</span> Uniqueness</div>
+                <div class="oop-block">
+                    <h3>Sets Automatically Enforce Uniqueness</h3>
+                    <div class="code-snippet"><pre><span class="cmt"># Example 9: duplicates are silently ignored</span>
+s = {1, 2, 2, 3, 3, 3, 4}
+<span class="fn">print</span>(s)
+
+<span class="cmt"># Example 10: adding an existing element does nothing</span>
+s.add(2)
+<span class="fn">print</span>(s)
+
+<span class="cmt"># Example 11: sets contain only hashable types</span>
+<span class="kw">try</span>:
+    bad = {[1, 2], [3, 4]}
+<span class="kw">except</span> <span class="cl">TypeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">f"Error: {e}"</span>)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> The uniqueness guarantee is the defining feature of a set — understanding it is essential to using sets correctly.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> A set cannot contain duplicate elements. When you try to add a duplicate, it is simply ignored — the set remains unchanged. Set elements must be hashable (like dictionary keys) because the set uses a hash table to enforce uniqueness and provide O(1) membership.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 11 demonstrates that you cannot put a list (or any other mutable, unhashable type) in a set — trying to do so raises <code>TypeError</code>.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> This hashability requirement is the same as for dictionary keys — if you need to store mutable elements, use a list instead, but you'll lose O(1) membership.
+                        <br><br>
+                        <strong>📌 Significance:</strong> The uniqueness property makes sets the ideal tool for deduplication, and the hashability requirement follows naturally from the performance guarantee.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="operations" aria-labelledby="operations-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="operations-heading">🔄 Set Operations — Union, Intersection, Difference, and More</h2>
+                    <p>The set-theoretic operations that make sets so powerful</p>
+                </div>
+
+                <div class="cat-label"><span>🔗</span> Union</div>
+                <div class="oop-block">
+                    <h3>| Operator and .union() Method</h3>
+                    <p>The union of two sets contains all elements that are in either set. This is the set equivalent of logical OR.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3}
+b = {3, 4, 5}
+
+<span class="cmt"># Example 12: union with the | operator</span>
+<span class="fn">print</span>(a | b)
+
+<span class="cmt"># Example 13: union with the .union() method</span>
+<span class="fn">print</span>(a.union(b))
+
+<span class="cmt"># Example 14: union of multiple sets</span>
+c = {5, 6, 7}
+<span class="fn">print</span>(a.union(b, c))
+<span class="fn">print</span>(a | b | c)
+
+<span class="cmt"># Example 15: union with a list (any iterable)</span>
+<span class="fn">print</span>(a.union([10, 11, 12]))</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Union combines collections from different sources — combining user groups, merging feature sets, or aggregating tags.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> Both the <code>|</code> operator and the <code>.union()</code> method return a new set containing all elements from all input sets. The <code>.union()</code> method accepts any number of iterables, not just sets — it will iterate over them and add their elements to the result.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 14 shows that union is both associative and commutative — <code>a | b | c</code> gives the same result as <code>a.union(b, c)</code>.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Example 15 demonstrates that <code>.union()</code> works with any iterable — you can union a set with a list, tuple, or even a generator, without converting it to a set first.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Union is one of the most frequently used set operations — it's the foundation of "combine these collections" logic.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔀</span> Intersection</div>
+                <div class="oop-block">
+                    <h3>& Operator and .intersection() Method</h3>
+                    <p>The intersection of two sets contains only elements that are in both sets. This is the set equivalent of logical AND.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Example 16: intersection with the & operator</span>
+<span class="fn">print</span>(a & b)
+
+<span class="cmt"># Example 17: intersection with the .intersection() method</span>
+<span class="fn">print</span>(a.intersection(b))
+
+<span class="cmt"># Example 18: intersection of multiple sets</span>
+c = {4, 5, 6, 7}
+<span class="fn">print</span>(a.intersection(b, c))
+<span class="fn">print</span>(a & b & c)
+
+<span class="cmt"># Example 19: finding common elements between a set and a list</span>
+<span class="fn">print</span>(a.intersection([3, 10, 20]))</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Intersection finds common elements — common friends, overlapping interests, shared permissions.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> Both the <code>&</code> operator and the <code>.intersection()</code> method return a new set containing only elements present in all input sets. Like <code>.union()</code>, <code>.intersection()</code> accepts any iterable.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 18 shows that intersection is associative and commutative — <code>a & b & c</code> gives the same result as <code>a.intersection(b, c)</code>.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Intersection is the key to answering "what do these collections have in common?" — a question that appears constantly in data analysis, recommendation systems, and access control.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Intersection is one of the most powerful set operations for data analysis and filtering.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>➖</span> Difference</div>
+                <div class="oop-block">
+                    <h3>- Operator and .difference() Method</h3>
+                    <p>The difference of two sets contains elements that are in the first set but not in the second. This is the set equivalent of logical NOT-AND.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Example 20: difference with the - operator</span>
+<span class="fn">print</span>(a - b)
+
+<span class="cmt"># Example 21: difference with the .difference() method</span>
+<span class="fn">print</span>(a.difference(b))
+
+<span class="cmt"># Example 22: difference is NOT commutative</span>
+<span class="fn">print</span>(b - a)
+
+<span class="cmt"># Example 23: difference of multiple sets</span>
+c = {4, 5, 6}
+<span class="fn">print</span>(a.difference(b, c))
+
+<span class="cmt"># Example 24: difference with a list</span>
+<span class="fn">print</span>(a.difference([3, 4]))</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Difference finds elements unique to one collection — items in stock but not on order, users in a group but not in another, files that have been added but not yet processed.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>a - b</code> returns a new set with all elements from <code>a</code> that are not in <code>b</code>. This operation is <strong>not commutative</strong> — <code>a - b</code> is not the same as <code>b - a</code>, as demonstrated in Example 22.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 22 shows that the order of the operands matters critically — <code>a - b</code> and <code>b - a</code> are usually completely different sets.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Difference is the primary tool for "what's new" or "what's missing" comparisons — finding elements unique to one collection is a common real-world operation.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Difference is one of the most intuitively useful set operations — it directly answers questions about uniqueness.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔄</span> Symmetric Difference</div>
+                <div class="oop-block">
+                    <h3>^ Operator and .symmetric_difference() Method</h3>
+                    <p>The symmetric difference of two sets contains elements that are in exactly one of the sets (not in both). This is the set equivalent of exclusive OR (XOR).</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Example 25: symmetric difference with the ^ operator</span>
+<span class="fn">print</span>(a ^ b)
+
+<span class="cmt"># Example 26: symmetric difference with the .symmetric_difference() method</span>
+<span class="fn">print</span>(a.symmetric_difference(b))
+
+<span class="cmt"># Example 27: symmetric difference is commutative</span>
+<span class="fn">print</span>(b ^ a)
+
+<span class="cmt"># Example 28: symmetric difference with a list</span>
+<span class="fn">print</span>(a.symmetric_difference([3, 4, 10]))</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Symmetric difference finds elements that are in exactly one of two collections — changes between two versions, differences between two datasets.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>a ^ b</code> returns a new set containing elements that are in <code>a</code> or <code>b</code> but not both. This is equivalent to <code>(a - b) | (b - a)</code> or <code>(a | b) - (a & b)</code>.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 27 confirms that symmetric difference is commutative — <code>a ^ b</code> and <code>b ^ a</code> produce identical results.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Symmetric difference is the ideal operation for "what's different between these two collections" — used in version comparisons, syncing logic, and change detection.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Symmetric difference is often the most expressive way to answer "what's changed?" between two sets.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🧩</span> Subset and Superset</div>
+                <div class="oop-block">
+                    <h3>Checking Containment Relationships</h3>
+                    <div class="code-snippet"><pre>a = {1, 2, 3}
+b = {1, 2, 3, 4, 5}
+c = {1, 2, 3}
+
+<span class="cmt"># Example 29: .issubset() — is a contained in b?</span>
+<span class="fn">print</span>(a.issubset(b))
+<span class="fn">print</span>(a.issubset(c))
+
+<span class="cmt"># Example 30: <= operator for subset</span>
+<span class="fn">print</span>(a <= b)
+<span class="fn">print</span>(a <= c)
+
+<span class="cmt"># Example 31: proper subset with <</span>
+<span class="fn">print</span>(a < b)   <span class="cmt"># True — a is strictly smaller</span>
+<span class="fn">print</span>(a < c)   <span class="cmt"># False — a and c are equal</span>
+
+<span class="cmt"># Example 32: .issuperset() — is b a superset of a?</span>
+<span class="fn">print</span>(b.issuperset(a))
+<span class="fn">print</span>(b >= a)
+
+<span class="cmt"># Example 33: proper superset with ></span>
+<span class="fn">print</span>(b > a)   <span class="cmt"># True — b is strictly larger</span>
+<span class="fn">print</span>(c > a)   <span class="cmt"># False — c and a are equal</span></pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Subset and superset checks are essential for containment logic — checking if all required permissions are present, if a set of tags is a subset of allowed tags, or if a configuration is complete.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>A.issubset(B)</code> returns <code>True</code> if every element of <code>A</code> is also in <code>B</code>. <code>A <= B</code> is the operator form. <code>A < B</code> checks for a <em>proper</em> subset — <code>A</code> is a subset of <code>B</code> and they are not equal. The superset operators are the reverse: <code>B.issuperset(A)</code>, <code>B >= A</code>, and <code>B > A</code>.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 30–31 demonstrate the distinction between subset (<code><=</code>) and proper subset (<code><</code>) — a set is always a subset of itself, but not a proper subset.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> These operators are frequently used in validation logic — checking if a user's roles are a subset of permitted roles, or if required fields are present in a data structure.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Subset and superset relationships are fundamental to any system that uses sets to represent permissions, configurations, or required elements.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔍</span> Disjoint</div>
+                <div class="oop-block">
+                    <h3>.isdisjoint() — No Common Elements</h3>
+                    <div class="code-snippet"><pre>a = {1, 2, 3}
+b = {4, 5, 6}
+c = {3, 4, 5}
+
+<span class="cmt"># Example 34: .isdisjoint() returns True if sets have NO common elements</span>
+<span class="fn">print</span>(a.isdisjoint(b))
+<span class="fn">print</span>(a.isdisjoint(c))</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Disjointness checks are useful for ensuring two collections have no overlap — for example, checking that two groups of users are mutually exclusive, or that two schedules don't conflict.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>A.isdisjoint(B)</code> returns <code>True</code> if <code>A</code> and <code>B</code> have no elements in common (their intersection is empty). It's the opposite of a non-empty intersection.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 34 shows that <code>a.isdisjoint(b)</code> is <code>True</code> because they share no elements, while <code>a.isdisjoint(c)</code> is <code>False</code> because they share <code>3</code>.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> This method is more efficient than checking <code>len(a & b) == 0</code> because it can return <code>False</code> as soon as any common element is found, without building the full intersection.
+                        <br><br>
+                        <strong>📌 Significance:</strong> <code>.isdisjoint()</code> is a useful performance optimisation for conflict detection and mutual exclusivity checks.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="methods" aria-labelledby="methods-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="methods-heading">📋 Set Methods — Adding, Removing, and Updating</h2>
+                    <p>Every operation you'll need to modify sets</p>
+                </div>
+
+                <div class="cat-label"><span>➕</span> Adding Elements</div>
+                <div class="oop-block">
+                    <h3>.add() and .update()</h3>
+                    <div class="code-snippet"><pre>s = {1, 2, 3}
+
+<span class="cmt"># Example 35: .add() inserts a single element</span>
+s.add(4)
+<span class="fn">print</span>(s)
+
+<span class="cmt"># Example 36: .add() does nothing if the element already exists</span>
+s.add(2)
+<span class="fn">print</span>(s)
+
+<span class="cmt"># Example 37: .update() inserts multiple elements from an iterable</span>
+s.update([5, 6, 7])
+<span class="fn">print</span>(s)
+
+<span class="cmt"># Example 38: .update() with another set</span>
+s.update({8, 9, 10})
+<span class="fn">print</span>(s)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Adding elements is the primary way to build sets dynamically — from user input, data processing, or iterative collection.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>.add(element)</code> inserts a single element, silently ignoring duplicates. <code>.update(iterable)</code> adds all elements from the iterable — this is the set equivalent of list's <code>.extend()</code>.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 36 shows that <code>.add()</code> is idempotent — adding an already-present element has no effect and causes no error.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> <code>.update()</code> is the efficient way to merge multiple elements into a set in one operation, avoiding repeated <code>.add()</code> calls in a loop.
+                        <br><br>
+                        <strong>📌 Significance:</strong> These are the fundamental mutation methods for sets — they're how you build sets incrementally.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🗑️</span> Removing Elements</div>
+                <div class="oop-block">
+                    <h3>.remove(), .discard(), and .pop()</h3>
+                    <div class="code-snippet"><pre>s = {1, 2, 3, 4, 5}
+
+<span class="cmt"># Example 39: .remove() deletes a specific element — raises KeyError if missing</span>
+s.remove(3)
+<span class="fn">print</span>(s)
+
+<span class="cmt"># Example 40: .remove() raises KeyError if the element is not found</span>
+<span class="kw">try</span>:
+    s.remove(10)
+<span class="kw">except</span> <span class="cl">KeyError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">f"Error: {e}"</span>)
+
+<span class="cmt"># Example 41: .discard() is safer — does nothing if the element is missing</span>
+s.discard(4)
+<span class="fn">print</span>(s)
+s.discard(10)
+<span class="fn">print</span>(s)
+
+<span class="cmt"># Example 42: .pop() removes and returns an arbitrary element</span>
+popped = s.pop()
+<span class="fn">print</span>(<span class="st">"popped:"</span>, popped, <span class="st">"| remaining:"</span>, s)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Removing elements is as important as adding them — from processing items out of a set to removing duplicates or filtering.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>.remove(element)</code> deletes the element, raising <code>KeyError</code> if it's not present. <code>.discard(element)</code> is the safe version — it removes the element if it exists and does nothing otherwise. <code>.pop()</code> removes and returns an arbitrary element — useful when you don't care which element you process next.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 40 shows that <code>.remove()</code> can crash your program if you're not certain the element exists. Example 41 shows that <code>.discard()</code> is the safer choice in many scenarios.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> <code>.pop()</code> is particularly useful in algorithms that process elements from a set one by one — like graph traversal or task scheduling — when you don't need to process in a specific order.
+                        <br><br>
+                        <strong>📌 Significance:</strong> The choice between <code>.remove()</code> and <code>.discard()</code> is a trade-off between safety and explicitness — use <code>.discard()</code> when missing keys are expected, and <code>.remove()</code> when they represent an error condition.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🧹</span> Clearing and Copying</div>
+                <div class="oop-block">
+                    <h3>.clear() and .copy()</h3>
+                    <div class="code-snippet"><pre>s = {1, 2, 3, 4, 5}
+
+<span class="cmt"># Example 43: .copy() creates a shallow copy</span>
+t = s.copy()
+t.add(6)
+<span class="fn">print</span>(<span class="st">"s:"</span>, s)
+<span class="fn">print</span>(<span class="st">"t:"</span>, t)
+
+<span class="cmt"># Example 44: .clear() empties the set</span>
+s.clear()
+<span class="fn">print</span>(s)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Sometimes you need a copy of a set to modify independently, or you need to empty a set without reassigning it.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>.copy()</code> returns a new set with the same elements — a shallow copy (though sets only contain references, so the distinction matters more with nested structures). <code>.clear()</code> removes all elements from the set in place.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 43 shows that modifying the copy doesn't affect the original — they are independent objects.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> <code>.copy()</code> is useful when you need to iterate over a set while potentially modifying it — you can iterate over the copy and modify the original safely.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Copying and clearing are the basic lifecycle management operations for sets.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔄</span> In-Place Set Operations</div>
+                <div class="oop-block">
+                    <h3>.update(), .intersection_update(), .difference_update(), .symmetric_difference_update()</h3>
+                    <p>These methods modify the set in place, rather than returning a new set. They are the set equivalents of the <code>|=</code>, <code>&=</code>, <code>-=</code>, and <code>^=</code> operators.</p>
+                    <div class="code-snippet"><pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+<span class="cmt"># Example 45: .update() — in-place union (a |= b)</span>
+a.update(b)
+<span class="fn">print</span>(a)
+
+<span class="cmt"># Example 46: .intersection_update() — in-place intersection (a &= b)</span>
+a = {1, 2, 3, 4}
+a.intersection_update(b)
+<span class="fn">print</span>(a)
+
+<span class="cmt"># Example 47: .difference_update() — in-place difference (a -= b)</span>
+a = {1, 2, 3, 4}
+a.difference_update(b)
+<span class="fn">print</span>(a)
+
+<span class="cmt"># Example 48: .symmetric_difference_update() — in-place symmetric difference (a ^= b)</span>
+a = {1, 2, 3, 4}
+a.symmetric_difference_update(b)
+<span class="fn">print</span>(a)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> In-place operations are more efficient when you don't need to keep the original set — they avoid creating a new set object and reassigning it.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> Each method modifies the set it's called on, rather than returning a new set. The <code>|=</code>, <code>&=</code>, <code>-=</code>, and <code>^=</code> operators also work in-place.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 45 shows that <code>a.update(b)</code> modifies <code>a</code> in place — no new set is created, making it more memory-efficient for large sets.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Use in-place operations when you're done with the original set and want to update it directly. Use the non-mutating versions when you need to keep both sets unchanged.
+                        <br><br>
+                        <strong>📌 Significance:</strong> The in-place methods are the set equivalent of the dictionary's <code>.update()</code> method — they're the efficient way to combine sets without creating unnecessary copies.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comprehensions" aria-labelledby="comp-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="comp-heading">✨ Set Comprehensions</h2>
+                    <p>The concise, Pythonic way to build new sets</p>
+                </div>
+
+                <div class="cat-label"><span>✨</span> Comprehension Basics</div>
+                <div class="oop-block">
+                    <h3>{expression for item in iterable if condition}</h3>
+                    <div class="code-snippet"><pre><span class="cmt"># Example 49: the loop way (for comparison)</span>
+squares_loop = set()
+<span class="kw">for</span> n <span class="kw">in</span> range(6):
+    squares_loop.add(n ** 2)
+<span class="fn">print</span>(squares_loop)
+
+<span class="cmt"># Example 50: the same result as a set comprehension</span>
+squares_comp = {n ** 2 <span class="kw">for</span> n <span class="kw">in</span> range(6)}
+<span class="fn">print</span>(squares_comp)
+
+<span class="cmt"># Example 51: comprehension with a filter condition</span>
+even_squares = {n ** 2 <span class="kw">for</span> n <span class="kw">in</span> range(10) <span class="kw">if</span> n % 2 == 0}
+<span class="fn">print</span>(even_squares)
+
+<span class="cmt"># Example 52: building a set of lengths from a list of words</span>
+words = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"kiwi"</span>, <span class="st">"apple"</span>]
+lengths = {len(word) <span class="kw">for</span> word <span class="kw">in</span> words}
+<span class="fn">print</span>(lengths)  <span class="cmt"># duplicates removed</span>
+
+<span class="cmt"># Example 53: transforming an existing set</span>
+nums = {1, 2, 3, 4, 5}
+doubled = {n * 2 <span class="kw">for</span> n <span class="kw">in</span> nums <span class="kw">if</span> n % 2 == 0}
+<span class="fn">print</span>(doubled)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Set comprehensions provide the same concise syntax for building sets that list comprehensions and dictionary comprehensions provide for those types.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>{expression for item in iterable if condition}</code> evaluates the expression for each item that passes the filter, collecting the results into a new set. Because sets enforce uniqueness, duplicates are automatically removed.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 52 shows that set comprehensions automatically deduplicate — even though <code>"apple"</code> appears twice in the list, <code>len("apple")</code> is computed only once for the final set.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Set comprehensions are the direct counterpart to list comprehensions — they're the idiomatic way to apply a transformation to a collection and collect the unique results.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Set comprehensions are a clear, concise way to build sets from existing data — they combine mapping, filtering, and deduplication in one expression.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="frozenset" aria-labelledby="frozenset-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="frozenset-heading">❄️ Frozenset — Immutable, Hashable Sets</h2>
+                    <p>Sets that can be used as dictionary keys and set members</p>
+                </div>
+
+                <div class="cat-label"><span>❄️</span> Frozenset</div>
+                <div class="oop-block">
+                    <h3>Immutable Sets with the Same Operations</h3>
+                    <p>A <code>frozenset</code> is an immutable version of a set. It supports all the same set operations (union, intersection, difference, etc.) but does <em>not</em> support any mutation methods (<code>.add()</code>, <code>.remove()</code>, etc.). Because it's immutable, it is hashable and can be used as a dictionary key or as an element of another set.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Example 54: creating a frozenset</span>
+fs = frozenset({1, 2, 3, 4})
+<span class="fn">print</span>(fs, type(fs))
+
+<span class="cmt"># Example 55: frozensets support all set operations</span>
+fs2 = frozenset({3, 4, 5, 6})
+<span class="fn">print</span>(fs | fs2)
+<span class="fn">print</span>(fs & fs2)
+
+<span class="cmt"># Example 56: frozensets CANNOT be mutated</span>
+<span class="kw">try</span>:
+    fs.add(5)
+<span class="kw">except</span> <span class="cl">AttributeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">f"Error: {e}"</span>)
+
+<span class="cmt"># Example 57: frozenset as a dictionary key — valid because it's hashable</span>
+cache = {}
+cache[frozenset({1, 2, 3})] = <span class="st">"value"</span>
+<span class="fn">print</span>(cache)
+
+<span class="cmt"># Example 58: frozenset as a set element</span>
+s = {frozenset({1, 2}), frozenset({3, 4})}
+<span class="fn">print</span>(s)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Sometimes you need a set that is itself hashable — for use as a dictionary key, as a set member, or in any context that requires immutability.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>frozenset(iterable)</code> creates an immutable set from any iterable. All the set operations (union, intersection, difference, etc.) work exactly the same way on frozensets as on sets. Mutation methods are not available.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 57 shows that a frozenset can be used as a dictionary key — this is useful for caching results based on a set of inputs. Example 58 shows a set containing frozensets — a set of sets, where each inner set is immutable.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Frozensets are the set equivalent of tuples for lists — they provide immutability and hashability, unlocking uses that mutable sets cannot fulfill.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Frozensets are the answer to "I need a set that I can put in another set or use as a dictionary key" — a common need in advanced programming.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced" aria-labelledby="advanced-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="advanced-heading">⚙️ Advanced — Hashability, Performance, and Use Cases</h2>
+                    <p>The details that separate a working script from a well-designed one</p>
+                </div>
+
+                <div class="cat-label"><span>🔑</span> Hashability</div>
+                <div class="oop-block">
+                    <h3>Only Hashable Elements Can Be in a Set</h3>
+                    <div class="code-snippet"><pre><span class="cmt"># Example 59: hashable types — strings, numbers, tuples, frozensets</span>
+valid = {<span class="st">"hello"</span>, 42, (1, 2), frozenset({3, 4})}
+<span class="fn">print</span>(valid)
+
+<span class="cmt"># Example 60: unhashable types — lists, sets, dictionaries</span>
+<span class="kw">try</span>:
+    invalid = {[1, 2], [3, 4]}
+<span class="kw">except</span> <span class="cl">TypeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">f"Error: {e}"</span>)
+
+<span class="kw">try</span>:
+    invalid = {{1, 2}, {3, 4}}
+<span class="kw">except</span> <span class="cl">TypeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">f"Error: {e}"</span>)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> The hashability requirement is a direct consequence of the set's O(1) membership performance — understanding it helps you avoid TypeError.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> Sets use a hash table internally, just like dictionaries. This means every element in a set must be hashable — its hash must never change. Immutable types (strings, numbers, tuples of hashable elements, frozensets) are hashable. Mutable types (lists, sets, dictionaries) are not.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 60 shows that trying to create a set with lists or other sets raises <code>TypeError</code> — the same error you'd see when trying to use a list as a dictionary key.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> If you need to store mutable elements in a set-like structure, you'll need to use a list and accept O(n) membership, or use a tuple (converted from the list) if the data can be made immutable.
+                        <br><br>
+                        <strong>📌 Significance:</strong> This hashability rule is consistent across Python's hash-based collections (sets and dictionaries) — mastering it helps you avoid a whole category of errors.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>⚡</span> Performance</div>
+                <div class="oop-block">
+                    <h3>Set Operations Are Fast — O(1) Membership and O(len(s)) Unions</h3>
+                    <div class="code-snippet"><pre><span class="kw">import</span> time
+
+n = 100000
+big_list = list(range(n))
+big_set = set(big_list)
+
+<span class="cmt"># Example 61: membership in a set vs list — again</span>
+start = time.perf_counter()
+_ = 99999 <span class="kw">in</span> big_list
+list_time = time.perf_counter() - start
+
+start = time.perf_counter()
+_ = 99999 <span class="kw">in</span> big_set
+set_time = time.perf_counter() - start
+
+<span class="fn">print</span>(<span class="st">f"List membership (100k): {list_time:.6f}s"</span>)
+<span class="fn">print</span>(<span class="st">f"Set membership (100k): {set_time:.6f}s"</span>)
+
+<span class="cmt"># Example 62: union of two large sets is O(len(a) + len(b))</span>
+a = set(range(n // 2))
+b = set(range(n // 2, n))
+start = time.perf_counter()
+c = a | b
+union_time = time.perf_counter() - start
+<span class="fn">print</span>(<span class="st">f"Union of two 50k sets: {union_time:.6f}s"</span>)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Understanding the performance characteristics of sets helps you choose the right data structure for your use case.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> Membership testing in a set is O(1) on average — it uses a hash table directly. Union, intersection, and difference are O(len(a) + len(b)) on average — they iterate over the smaller set and check membership in the larger one. These operations are generally very fast.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 61 shows that set membership is dramatically faster than list membership for large collections. Example 62 shows that union operations are also fast — they're linear in the combined size of the sets.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> The performance of sets makes them the right choice for membership testing, deduplication, and set operations on large data. For very large collections, sets are almost always faster than lists for these operations.
+                        <br><br>
+                        <strong>📌 Significance:</strong> The performance characteristics of sets are the reason they exist in the language — they're the tool for any problem that involves testing membership or performing set-theoretic operations.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔀</span> Set vs List vs Tuple — When to Use Which</div>
+                <div class="oop-block">
+                    <h3>A Decision Guide</h3>
+                    <div class="code-snippet"><pre><span class="cmt"># Example 63: Use a set for deduplication</span>
+items = [1, 2, 2, 3, 3, 3, 4]
+unique = set(items)
+<span class="fn">print</span>(<span class="st">"Unique items:"</span>, unique)
+
+<span class="cmt"># Example 64: Use a set for fast membership</span>
+allowed = {<span class="st">"admin"</span>, <span class="st">"editor"</span>, <span class="st">"viewer"</span>}
+<span class="kw">def</span> <span class="fn">has_access</span>(role):
+    <span class="kw">return</span> role <span class="kw">in</span> allowed
+
+<span class="fn">print</span>(has_access(<span class="st">"admin"</span>))
+<span class="fn">print</span>(has_access(<span class="st">"guest"</span>))
+
+<span class="cmt"># Example 65: Use a set for set operations</span>
+python_devs = {<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Cara"</span>}
+javascript_devs = {<span class="st">"Bob"</span>, <span class="st">"David"</span>, <span class="st">"Eve"</span>}
+fullstack = python_devs & javascript_devs
+<span class="fn">print</span>(<span class="st">"Full-stack devs:"</span>, fullstack)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Choosing the right data structure for your use case is a fundamental design decision that affects readability, performance, and correctness.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> Use a set when: you need uniqueness, you need fast membership testing, you need set-theoretic operations, or you need to remove duplicates. Use a list when: you need order, you need duplicates, you need indexing, or you need to modify the collection frequently. Use a tuple when: you need immutability, you need hashability, or you need a fixed sequence.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> Example 63 shows deduplication with a set — a one-liner that would require a more complex loop with a list. Example 64 shows membership testing — O(1) with a set vs O(n) with a list. Example 65 shows set intersection — the natural, fast way to find common elements.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> Choosing a set when you need uniqueness and fast membership makes your code simpler, faster, and more expressive. Using a list for these purposes would be a design mistake.
+                        <br><br>
+                        <strong>📌 Significance:</strong> The set-vs-list decision is one of the most important design choices you'll make in Python — and sets are the right choice far more often than many programmers realise.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="projects-heading">💼 Real-World Mini Projects</h2>
+                    <p>Three self-contained programs that combine everything above</p>
+                </div>
+
+                <div class="cat-label"><span>🧹</span> Project 1 – Deduplicate and Clean User IDs</div>
+                <div class="oop-block">
+                    <h3>Removing Duplicates and Finding Invalid IDs</h3>
+                    <p>Demonstrates set creation, membership, and difference — the core of data cleaning and validation.</p>
+                    <div class="code-snippet"><pre>raw_ids = [101, 102, 103, 101, 104, 105, 102, 106, 107, 105]
+valid_ids = {101, 102, 103, 104, 105, 106, 107, 108, 109, 110}
+
+<span class="cmt"># Example 66: deduplicate using a set</span>
+unique_ids = set(raw_ids)
+<span class="fn">print</span>(<span class="st">"Unique IDs:"</span>, unique_ids)
+
+<span class="cmt"># Example 67: find invalid IDs — IDs present in raw but not in valid</span>
+invalid = unique_ids - valid_ids
+<span class="fn">print</span>(<span class="st">"Invalid IDs:"</span>, invalid)
+
+<span class="cmt"># Example 68: find missing IDs — valid IDs not present in raw</span>
+missing = valid_ids - unique_ids
+<span class="fn">print</span>(<span class="st">"Missing IDs:"</span>, missing)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Data validation often involves checking a set of values against a set of allowed values, finding both invalid entries and missing entries.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>set(raw_ids)</code> removes all duplicates. <code>unique_ids - valid_ids</code> finds IDs in the raw data that are not in the valid set — these are invalid. <code>valid_ids - unique_ids</code> finds IDs that are valid but absent from the raw data — these are missing.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> This pattern is the foundation of data validation — checking that a set of items matches expected values, finding both extras and omissions.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> These set operations are the cleanest way to perform data validation — they express the logic directly and run in O(n) time.
+                        <br><br>
+                        <strong>📌 Significance:</strong> This project demonstrates the practical power of sets for data cleaning and validation — tasks that appear in almost every real-world program.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>👥</span> Project 2 – Friend Recommendations</div>
+                <div class="oop-block">
+                    <h3>Finding Friends of Friends Using Set Intersection</h3>
+                    <div class="code-snippet"><pre>friends = {
+    <span class="st">"Alice"</span>: {<span class="st">"Bob"</span>, <span class="st">"Cara"</span>, <span class="st">"David"</span>},
+    <span class="st">"Bob"</span>: {<span class="st">"Alice"</span>, <span class="st">"Cara"</span>, <span class="st">"Eve"</span>},
+    <span class="st">"Cara"</span>: {<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Frank"</span>},
+    <span class="st">"David"</span>: {<span class="st">"Alice"</span>, <span class="st">"Eve"</span>},
+    <span class="st">"Eve"</span>: {<span class="st">"Bob"</span>, <span class="st">"David"</span>},
+}
+
+<span class="kw">def</span> <span class="fn">suggest_friends</span>(person):
+    <span class="kw">if</span> person <span class="kw">not in</span> friends:
+        <span class="kw">return</span> set()
+    my_friends = friends[person]
+    suggestions = set()
+    <span class="kw">for</span> friend <span class="kw">in</span> my_friends:
+        <span class="kw">if</span> friend <span class="kw">in</span> friends:
+            suggestions.update(friends[friend])
+    suggestions.difference_update(my_friends)
+    suggestions.discard(person)
+    <span class="kw">return</span> suggestions
+
+<span class="cmt"># Example 69: friend suggestions for Alice</span>
+<span class="fn">print</span>(<span class="st">"Suggested for Alice:"</span>, suggest_friends(<span class="st">"Alice"</span>))
+
+<span class="cmt"># Example 70: intersection of friends — mutual friends</span>
+<span class="fn">print</span>(<span class="st">"Mutual friends of Alice and Bob:"</span>, friends[<span class="st">"Alice"</span>] & friends[<span class="st">"Bob"</span>])</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Social networks rely heavily on set operations — finding friends of friends, mutual friends, and recommendations.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> The <code>suggest_friends()</code> function gathers all friends of the user's friends, then removes the user's existing friends and the user themselves. The <code>&</code> operator finds mutual friends between two users.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> The <code>.update()</code> and <code>.difference_update()</code> methods efficiently combine and filter sets in place.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> This is the basic logic behind "people you may know" features in social networks — and it's built entirely on set operations.
+                        <br><br>
+                        <strong>📌 Significance:</strong> This project demonstrates how sets naturally model relationships and enable sophisticated recommendations with minimal code.
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🏷️</span> Project 3 – Tag Management</div>
+                <div class="oop-block">
+                    <h3>Managing Tags with Union, Intersection, and Symmetric Difference</h3>
+                    <div class="code-snippet"><pre>posts = [
+    {<span class="st">"id"</span>: 1, <span class="st">"tags"</span>: {<span class="st">"python"</span>, <span class="st">"tutorial"</span>, <span class="st">"beginner"</span>}},
+    {<span class="st">"id"</span>: 2, <span class="st">"tags"</span>: {<span class="st">"python"</span>, <span class="st">"advanced"</span>, <span class="st">"performance"</span>}},
+    {<span class="st">"id"</span>: 3, <span class="st">"tags"</span>: {<span class="st">"tutorial"</span>, <span class="st">"data"</span>, <span class="st">"science"</span>}},
+    {<span class="st">"id"</span>: 4, <span class="st">"tags"</span>: {<span class="st">"python"</span>, <span class="st">"data"</span>, <span class="st">"analysis"</span>}},
+]
+
+<span class="cmt"># Example 71: all tags used across all posts</span>
+all_tags = set()
+<span class="kw">for</span> post <span class="kw">in</span> posts:
+    all_tags.update(post[<span class="st">"tags"</span>])
+<span class="fn">print</span>(<span class="st">"All tags:"</span>, all_tags)
+
+<span class="cmt"># Example 72: tags common to posts 1 and 2</span>
+common = posts[0][<span class="st">"tags"</span>] & posts[1][<span class="st">"tags"</span>]
+<span class="fn">print</span>(<span class="st">"Common tags (post 1 &amp; 2):"</span>, common)
+
+<span class="cmt"># Example 73: tags that appear in exactly one of post 1 and 2</span>
+unique_tags = posts[0][<span class="st">"tags"</span>] ^ posts[1][<span class="st">"tags"</span>]
+<span class="fn">print</span>(<span class="st">"Tags in exactly one post:"</span>, unique_tags)
+
+<span class="cmt"># Example 74: posts that have both 'python' and 'data' tags</span>
+<span class="kw">for</span> post <span class="kw">in</span> posts:
+    <span class="kw">if</span> {<span class="st">"python"</span>, <span class="st">"data"</span>}.issubset(post[<span class="st">"tags"</span>]):
+        <span class="fn">print</span>(<span class="st">f"Post {post['id']} has both tags"</span>)</pre></div>
+                    <div class="insight">
+                        <strong>🔍 Why this code is used:</strong> Tag management is a classic use case for sets — each item has a set of tags, and you need to combine, intersect, and compare tag sets.
+                        <br><br>
+                        <strong>⚙️ How it operates:</strong> <code>.update()</code> adds all tags from a post to the global set. <code>&</code> finds tags common to two posts. <code>^</code> finds tags that are in exactly one of the two posts. <code>.issubset()</code> checks if a tag set is a subset of a post's tags.
+                        <br><br>
+                        <strong>📊 How it affects the program:</strong> The <code>.issubset()</code> check in Example 74 is a clean, readable way to filter posts by required tags — much more expressive than a loop with multiple conditions.
+                        <br><br>
+                        <strong>🎯 How it stimulates the outcome:</strong> This project demonstrates the power of sets for categorisation, filtering, and discovery — tasks that are central to content management, e-commerce, and search.
+                        <br><br>
+                        <strong>📌 Significance:</strong> Tag management is one of the most common real-world uses of sets — from blog posts to product categories to social media hashtags.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" aria-labelledby="faq-heading">
+            <div class="page-col">
+                <div class="section-intro"><h2 id="faq-heading">❓ Frequently Asked Questions</h2><p>Common questions about Python sets, answered</p></div>
+                <div class="faq-list" style="margin-top:1.2rem;">
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What is the difference between a set and a list?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Sets are unordered collections of unique elements with O(1) membership testing. Lists are ordered, can contain duplicates, and have O(n) membership. Use sets for uniqueness and fast membership; use lists for order and indexed access.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I remove duplicates from a list?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>The simplest way is <code>unique = list(set(my_list))</code>. This preserves no particular order. If you need to preserve order, use <code>list(dict.fromkeys(my_list))</code> or a loop with a set.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Can a set contain a list?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>No — lists are mutable and unhashable, and set elements must be hashable. Use a tuple instead if you need a sequence, or a frozenset if you need a set.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What is the difference between .remove() and .discard()?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>.remove(element)</code> raises <code>KeyError</code> if the element is not found. <code>.discard(element)</code> does nothing if the element is not found — it's the safer, more forgiving version.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Are sets ordered?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>No — sets are unordered collections. The order of elements in a set is determined by the hash table and may change. If you need an ordered unique collection, consider using a list and manually checking uniqueness, or use <code>dict.fromkeys()</code>.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What is a frozenset?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>A frozenset is an immutable version of a set. It supports all set operations but no mutation methods. Because it's immutable, it is hashable and can be used as a dictionary key or as an element of another set.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Can I have a set of sets?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>No — regular sets are mutable and unhashable, so they cannot be elements of a set. Use a set of frozensets instead: <code>{frozenset({1,2}), frozenset({3,4})}</code>.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I find the union of multiple sets?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use the <code>.union()</code> method with multiple arguments: <code>result = a.union(b, c, d)</code>, or chain the <code>|</code> operator: <code>result = a | b | c | d</code>.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I check if a set is empty?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use <code>if not my_set:</code> — empty sets evaluate to <code>False</code> in a boolean context. You can also check <code>len(my_set) == 0</code> but the <code>not</code> version is more Pythonic.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>When should I use a set instead of a dictionary?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use a set when you need to store unique values without associated data. Use a dictionary when each value has an associated key or additional data. Sets are essentially dictionaries with keys but no values.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" aria-labelledby="exercises-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="exercises-heading">✏️ Practice Exercises &amp; Quizzes</h2>
+                    <p>Test your understanding with hands-on problems and multiple-choice questions</p>
+                </div>
+
+                <div class="cat-label"><span>🧪</span> Exercise 1 – Remove Duplicates from a List</div>
+                <div class="exercise-box">
+                    <h4>Task: Write a function that removes duplicates from a list while preserving the original order.</h4>
+                    <p><strong>Example:</strong> <code>deduplicate([1, 2, 2, 3, 3, 3, 4])</code> → <code>[1, 2, 3, 4]</code></p>
+                    <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+                        <pre><span class="kw">def</span> <span class="fn">deduplicate</span>(items: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test</span>
+<span class="fn">print</span>(deduplicate([1, 2, 2, 3, 3, 3, 4]))  <span class="cmt"># [1, 2, 3, 4]</span></pre>
+                    </div>
+                    <button class="show-solution-btn" onclick="toggleSolution('sol1')">Show Solution</button>
+                    <div class="exercise-solution" id="sol1">
+                        <pre><span class="kw">def</span> <span class="fn">deduplicate</span>(items: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    seen = set()
+    result = []
+    <span class="kw">for</span> item <span class="kw">in</span> items:
+        <span class="kw">if</span> item <span class="kw">not in</span> seen:
+            seen.add(item)
+            result.append(item)
+    <span class="kw">return</span> result
+
+<span class="cmt"># Explanation:</span>
+<span class="cmt"># 1. Use a set to track seen items (O(1) membership)</span>
+<span class="cmt"># 2. The list preserves the original order</span>
+<span class="cmt"># 3. Each item is added to the result only the first time it's seen</span></pre>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🧪</span> Exercise 2 – Common Elements of Two Lists</div>
+                <div class="exercise-box">
+                    <h4>Task: Write a function that returns the common elements of two lists as a list.</h4>
+                    <p><strong>Example:</strong> <code>common([1, 2, 3, 4], [3, 4, 5, 6])</code> → <code>[3, 4]</code></p>
+                    <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+                        <pre><span class="kw">def</span> <span class="fn">common</span>(a: <span class="cl">list</span>, b: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test</span>
+<span class="fn">print</span>(common([1, 2, 3, 4], [3, 4, 5, 6]))  <span class="cmt"># [3, 4]</span></pre>
+                    </div>
+                    <button class="show-solution-btn" onclick="toggleSolution('sol2')">Show Solution</button>
+                    <div class="exercise-solution" id="sol2">
+                        <pre><span class="kw">def</span> <span class="fn">common</span>(a: <span class="cl">list</span>, b: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    <span class="kw">return</span> list(set(a) & set(b))
+
+<span class="cmt"># Explanation:</span>
+<span class="cmt"># 1. Convert both lists to sets</span>
+<span class="cmt"># 2. Use the & operator for intersection</span>
+<span class="cmt"># 3. Convert back to a list</span></pre>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🧪</span> Exercise 3 – Find Missing Elements</div>
+                <div class="exercise-box">
+                    <h4>Task: Write a function that returns elements that are in the first list but not in the second.</h4>
+                    <p><strong>Example:</strong> <code>missing([1, 2, 3, 4], [3, 4, 5, 6])</code> → <code>[1, 2]</code></p>
+                    <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+                        <pre><span class="kw">def</span> <span class="fn">missing</span>(a: <span class="cl">list</span>, b: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test</span>
+<span class="fn">print</span>(missing([1, 2, 3, 4], [3, 4, 5, 6]))  <span class="cmt"># [1, 2]</span></pre>
+                    </div>
+                    <button class="show-solution-btn" onclick="toggleSolution('sol3')">Show Solution</button>
+                    <div class="exercise-solution" id="sol3">
+                        <pre><span class="kw">def</span> <span class="fn">missing</span>(a: <span class="cl">list</span>, b: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    <span class="kw">return</span> list(set(a) - set(b))
+
+<span class="cmt"># Explanation:</span>
+<span class="cmt"># 1. Convert both lists to sets</span>
+<span class="cmt"># 2. Use the - operator for difference</span>
+<span class="cmt"># 3. Convert back to a list</span></pre>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🧪</span> Exercise 4 – Symmetric Difference of Two Lists</div>
+                <div class="exercise-box">
+                    <h4>Task: Write a function that returns elements that are in exactly one of the two lists.</h4>
+                    <p><strong>Example:</strong> <code>symmetric_diff([1, 2, 3, 4], [3, 4, 5, 6])</code> → <code>[1, 2, 5, 6]</code></p>
+                    <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+                        <pre><span class="kw">def</span> <span class="fn">symmetric_diff</span>(a: <span class="cl">list</span>, b: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test</span>
+<span class="fn">print</span>(symmetric_diff([1, 2, 3, 4], [3, 4, 5, 6]))  <span class="cmt"># [1, 2, 5, 6]</span></pre>
+                    </div>
+                    <button class="show-solution-btn" onclick="toggleSolution('sol4')">Show Solution</button>
+                    <div class="exercise-solution" id="sol4">
+                        <pre><span class="kw">def</span> <span class="fn">symmetric_diff</span>(a: <span class="cl">list</span>, b: <span class="cl">list</span>) -&gt; <span class="cl">list</span>:
+    <span class="kw">return</span> list(set(a) ^ set(b))
+
+<span class="cmt"># Explanation:</span>
+<span class="cmt"># 1. Convert both lists to sets</span>
+<span class="cmt"># 2. Use the ^ operator for symmetric difference</span>
+<span class="cmt"># 3. Convert back to a list</span></pre>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🧪</span> Exercise 5 – Check if a Set of Tags Is a Subset</div>
+                <div class="exercise-box">
+                    <h4>Task: Write a function that checks if all required tags are present in a set of tags.</h4>
+                    <p><strong>Example:</strong> <code>has_all_tags({"python", "tutorial"}, {"python", "tutorial", "beginner"})</code> → <code>True</code></p>
+                    <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+                        <pre><span class="kw">def</span> <span class="fn">has_all_tags</span>(required: <span class="cl">set</span>, available: <span class="cl">set</span>) -&gt; <span class="cl">bool</span>:
+    <span class="cmt"># Your code here</span>
+    <span class="kw">pass</span>
+
+<span class="cmt"># Test</span>
+<span class="fn">print</span>(has_all_tags({<span class="st">"python"</span>, <span class="st">"tutorial"</span>}, {<span class="st">"python"</span>, <span class="st">"tutorial"</span>, <span class="st">"beginner"</span>}))  <span class="cmt"># True</span></pre>
+                    </div>
+                    <button class="show-solution-btn" onclick="toggleSolution('sol5')">Show Solution</button>
+                    <div class="exercise-solution" id="sol5">
+                        <pre><span class="kw">def</span> <span class="fn">has_all_tags</span>(required: <span class="cl">set</span>, available: <span class="cl">set</span>) -&gt; <span class="cl">bool</span>:
+    <span class="kw">return</span> required.issubset(available)
+
+<span class="cmt"># Explanation:</span>
+<span class="cmt"># 1. .issubset() checks if all elements of required are in available</span>
+<span class="cmt"># 2. This is the cleanest way to check tag coverage</span>
+<span class="cmt"># 3. The < operator (required <= available) also works</span></pre>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>📝</span> Quick Quiz</div>
+                <div class="oop-block">
+                    <h3>Multiple-Choice Questions</h3>
+                    <div id="quiz1" class="quiz-box">
+                        <p><strong>1. What is the time complexity of membership testing in a set?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'O(1)')">A) O(n)</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'O(1)')">B) O(1)</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'O(1)')">C) O(log n)</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'O(1)')">D) O(n²)</div>
+                        <div class="quiz-feedback" id="quiz1-feedback"></div>
+                    </div>
+                    <div id="quiz2" class="quiz-box" style="margin-top:1rem;">
+                        <p><strong>2. Which of these can be an element of a set?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'A tuple')">A) A list</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'A tuple')">B) A tuple</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'A tuple')">C) A set</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'A tuple')">D) A dictionary</div>
+                        <div class="quiz-feedback" id="quiz2-feedback"></div>
+                    </div>
+                    <div id="quiz3" class="quiz-box" style="margin-top:1rem;">
+                        <p><strong>3. What does <code>set([1, 2, 2, 3])</code> return?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, '{1, 2, 3}')">A) <code>[1, 2, 2, 3]</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '{1, 2, 3}')">B) <code>{1, 2, 3}</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '{1, 2, 3}')">C) <code>{1, 2, 2, 3}</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '{1, 2, 3}')">D) <code>[1, 2, 3]</code></div>
+                        <div class="quiz-feedback" id="quiz3-feedback"></div>
+                    </div>
+                    <div id="quiz4" class="quiz-box" style="margin-top:1rem;">
+                        <p><strong>4. What is the difference between <code>.remove()</code> and <code>.discard()</code>?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.discard() does nothing if missing')">A) <code>.remove()</code> is faster</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.discard() does nothing if missing')">B) <code>.discard()</code> raises an error if missing</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.discard() does nothing if missing')">C) <code>.discard()</code> does nothing if missing</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.discard() does nothing if missing')">D) They are the same</div>
+                        <div class="quiz-feedback" id="quiz4-feedback"></div>
+                    </div>
+                    <div id="quiz5" class="quiz-box" style="margin-top:1rem;">
+                        <p><strong>5. Which operator is used for set intersection?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, '&')">A) <code>|</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '&')">B) <code>&</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '&')">C) <code>-</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '&')">D) <code>^</code></div>
+                        <div class="quiz-feedback" id="quiz5-feedback"></div>
+                    </div>
+                    <div id="quiz6" class="quiz-box" style="margin-top:1rem;">
+                        <p><strong>6. What is a frozenset?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'An immutable set')">A) An immutable set</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'An immutable set')">B) A mutable set</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'An immutable set')">C) A set that can only contain frozen items</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'An immutable set')">D) A set that is always empty</div>
+                        <div class="quiz-feedback" id="quiz6-feedback"></div>
+                    </div>
+                    <div id="quiz7" class="quiz-box" style="margin-top:1rem;">
+                        <p><strong>7. Which method checks if a set is a subset of another?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.issubset()')">A) <code>.issubset()</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.issubset()')">B) <code>.issuperset()</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.issubset()')">C) <code>.isdisjoint()</code></div>
+                        <div class="quiz-option" onclick="answerQuiz(this, '.issubset()')">D) <code>.contains()</code></div>
+                        <div class="quiz-feedback" id="quiz7-feedback"></div>
+                    </div>
+                    <div id="quiz8" class="quiz-box" style="margin-top:1rem;">
+                        <p><strong>8. Can a set contain another set as an element?</strong></p>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'No, because sets are mutable')">A) Yes, always</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'No, because sets are mutable')">B) No, because sets are mutable</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'No, because sets are mutable')">C) Yes, but only if the inner set is empty</div>
+                        <div class="quiz-option" onclick="answerQuiz(this, 'No, because sets are mutable')">D) Yes, if you use frozenset</div>
+                        <div class="quiz-feedback" id="quiz8-feedback"></div>
+                    </div>
+                </div>
+                <div class="home-row">
+                    <a href="index.html" class="btn-home-large"><i class="fas fa-home"></i> Back to Home</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="outro" aria-labelledby="outro-heading" style="padding: 2rem 0 1.5rem;">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="outro-heading">🏁 Congratulations – You've Mastered Python Sets!</h2>
+                    <p style="max-width:100%; font-size:0.9rem; color:var(--text); text-align:left;">
+                        You've now covered Python's unordered collection of unique, hashable objects — a fundamental data structure that answers "is this item in the collection?" in constant time.
+                    </p>
+                </div>
+                <div class="oop-block" style="margin-top:0.5rem;">
+                    <h3>✅ What You've Accomplished</h3>
+                    <ul class="outro-list">
+                        <li>Understood set creation, uniqueness, and the <code>set()</code> vs <code>{}</code> distinction</li>
+                        <li>Mastered O(1) membership testing with the <code>in</code> operator</li>
+                        <li>Learned all set operations: union, intersection, difference, and symmetric difference</li>
+                        <li>Explored subset and superset relationships</li>
+                        <li>Used <code>.add()</code>, <code>.remove()</code>, <code>.discard()</code>, <code>.pop()</code>, and <code>.clear()</code></li>
+                        <li>Wrote set comprehensions for concise set building</li>
+                        <li>Understood <code>frozenset</code> — the immutable, hashable set</li>
+                        <li>Built three real-world mini projects: data cleaning, friend recommendations, and tag management</li>
+                        <li>Worked through 70+ runnable examples, five exercises, and eight quiz questions</li>
+                    </ul>
+
+                    <h3 style="margin-top:1.2rem;">🌍 Why This Matters Beyond This Page</h3>
+                    <p>Everything you learned here reappears constantly across Python programming. Every time you need to remove duplicates, test membership, or find common elements between collections, a set is the natural, fast, and readable choice. Data cleaning pipelines, social network algorithms, tag systems, and search filters all rely on sets. The performance — O(1) membership — makes sets indispensable for any program that handles non-trivial amounts of data.</p>
+
+                    <h3 style="margin-top:1.2rem;">📚 Next Steps</h3>
+                    <p>Now that sets feel natural, consider extending into:</p>
+                    <ul class="outro-list">
+                        <li><strong>Dictionaries</strong> — key-value storage, where set-like uniqueness applies to keys</li>
+                        <li><strong>Tuples</strong> — immutable sequences that can serve as set elements</li>
+                        <li><strong>List comprehensions</strong> — the mutable counterpart to set comprehensions</li>
+                        <li><strong>Data cleaning</strong> — sets are the primary tool for deduplication and validation</li>
+                        <li><strong>Graph algorithms</strong> — sets naturally represent visited nodes, frontiers, and neighborhoods</li>
+                    </ul>
+
+                    <h3 style="margin-top:1.2rem;">💌 A Final Word</h3>
+                    <p>Sets are where Python's philosophy of "simple is better than complex" meets algorithmic efficiency. <code>if x in my_set</code> tells a reader "I'm checking membership of a unique collection, and it's fast" in a way that <code>if x in my_list</code> never can. The gap between "I can write <code>s = {1, 2, 3}</code>" and "I understand hashability, O(1) membership, and the distinction between <code>.remove()</code> and <code>.discard()</code>" is the same gap that separates a beginner from a confident intermediate developer. You've just closed a large part of that gap for one of Python's most fundamental data structures. Keep experimenting, keep breaking things intentionally to see why they break, and keep building.</p>
+                    <p style="font-size:1.1rem; font-weight:700; color:var(--gold); margin-top:0.5rem;">Now go build something unique and fast with your sets! 🔵</p>
+                </div>
+                <div class="home-row">
+                    <a href="index.html" class="btn-home-large"><i class="fas fa-home"></i> Back to Home</a>
+                </div>
+                <div style="text-align:center; margin-top:1.2rem;">
+                    <p style="font-size:0.75rem; color:var(--muted);">Poetic Bytes · 2026 · Made with ❤️ by Glenn Junsay Pansensoy</p>
+                    <p style="font-size:0.75rem; color:var(--muted); font-style:italic;">"A set is a promise: every element is unique, and you can check membership in an instant."</p>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Share this resource">
+            <div class="page-col">
+                <div class="share-box" id="shareSection">
+                    <h3>📤 Share this tutorial</h3>
+                    <p style="margin-top:.3rem;">Help other developers master Python sets</p>
+                    <div class="share-row" id="shareRowBottom">
+                        <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js">
+    </script>
+    <script>
+        (function() {
+            'use strict';
+
+            // Progress bar
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            // Mobile drawer
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            // FAQ toggle
+            window.toggleFaq = function(qEl) {
+                var item = qEl.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var toggle = qEl.querySelector('.faq-toggle');
+                var isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    a.closest('.faq-item').querySelector('.faq-toggle').textContent = '+';
+                });
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    toggle.textContent = '−';
+                }
+            };
+
+            // Back to top
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Floating TOC
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            var tocBody = document.getElementById('tocBody');
+
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    tocPanel.classList.toggle('open');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        var target = e.target;
+                        if (!tocPanel.contains(target) && target !== tocToggle && !tocToggle.contains(target)) {
+                            tocPanel.classList.remove('open');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                    }
+                });
+            }
+            if (tocClose) {
+                tocClose.addEventListener('click', function() {
+                    if (tocPanel) tocPanel.classList.remove('open');
+                });
+            }
+            var tocLinks = tocBody ? tocBody.querySelectorAll('a') : [];
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY + 120;
+                var currentId = null;
+                document.querySelectorAll('section[id], div[id]').forEach(function(el) {
+                    if (el.offsetTop <= scrollY) {
+                        currentId = el.id;
+                    }
+                });
+                tocLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    if (href && href === '#' + currentId) {
+                        link.classList.add('toc-highlight');
+                    } else {
+                        link.classList.remove('toc-highlight');
+                    }
+                });
+            }, { passive: true });
+
+            // Share
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-sets.html');
+            var PAGE_TITLE = encodeURIComponent('Python Sets – Complete Tutorial');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+
+            document.querySelectorAll('#shareFb, #shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTw, #shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            document.querySelectorAll('#shareLi, #shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareWa, #shareWaBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTg, #shareTgBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/python-sets.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() {
+                        fallbackCopy(url, btn);
+                    });
+                } else {
+                    fallbackCopy(url, btn);
+                }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            // Pyodide status
+            var statusDot = document.getElementById('pyodideDot');
+            var statusText = document.getElementById('pyodideStatusText');
+
+            // Pyodide runner
+            let pyodideReady = false;
+            let pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    try {
+                        statusDot.className = 'dot amber';
+                        statusText.textContent = 'Pyodide loading… (may take 8–12s)';
+                        pyodideInstance = await loadPyodide();
+                        pyodideReady = true;
+                        statusDot.className = 'dot green';
+                        statusText.textContent = 'Pyodide ready — you can run Python code below!';
+                    } catch (err) {
+                        statusDot.className = 'dot red';
+                        statusText.textContent = 'Pyodide failed to load: ' + err.message;
+                        throw err;
+                    }
+                }
+                return pyodideInstance;
+            }
+
+            // Trigger Pyodide load on first interaction
+            var firstRun = true;
+            document.addEventListener('click', function() {
+                if (firstRun) {
+                    firstRun = false;
+                    loadPyodideAndPackages().catch(function() {});
+                }
+            }, { once: true });
+
+            function hasFileOperations(code) {
+                var patterns = [
+                    /open\s*\(/,
+                    /Path\s*\(/,
+                    /with\s+open\s*\(/,
+                    /\.read\s*\(/,
+                    /\.write\s*\(/,
+                    /os\.path/,
+                    /shutil\./,
+                    /glob\s*\(/,
+                    /__file__/
+                ];
+                return patterns.some(function(p) { return p.test(code); });
+            }
+
+            function indentCode(code, spaces) {
+                var pad = ' '.repeat(spaces);
+                return code
+                    .replace(/\r\n/g, '\n')
+                    .split('\n')
+                    .map(function(line) { return line.length ? pad + line : line; })
+                    .join('\n');
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    if (hasFileOperations(code)) {
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent =
+                            '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+
+                    var indented = indentCode(code, 4);
+                    var wrappedCode =
+                        `
+import sys
+from io import StringIO
+_captured_output = StringIO()
+_old_stdout = sys.stdout
+sys.stdout = _captured_output
+try:
+${indented}
+finally:
+    sys.stdout = _old_stdout
+_captured_output.getvalue()
+`;
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+
+                    if (outputEl.textContent.includes('⚠️')) {
+                        outputEl.textContent += result || '✓ Code executed successfully (no output).';
+                    } else {
+                        outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                        outputEl.style.color = '#4ade80';
+                    }
+                } catch (err) {
+                    if (outputEl.textContent.includes('⚠️')) {
+                        outputEl.textContent += '\n\nError:\n' + err.message;
+                    } else {
+                        outputEl.className = 'output-panel error';
+                        outputEl.textContent = 'Error:\n' + err.message;
+                        outputEl.style.color = '#f87171';
+                    }
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var original = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = original; }, 2000);
+                    }).catch(function() {
+                        fallbackCopyCode(btn, code);
+                    });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = original; }, 2000);
+            }
+
+            function enhanceCodeBlocks() {
+                var blocks = document.querySelectorAll('.code-snippet:not(.code-preview .code-snippet)');
+                blocks.forEach(function(block) {
+                    if (block.closest('.code-container')) return;
+                    var pre = block.querySelector('pre');
+                    if (!pre) return;
+                    var codeText = pre.textContent;
+
+                    var container = document.createElement('div');
+                    container.className = 'code-container';
+
+                    var header = document.createElement('div');
+                    header.className = 'code-header';
+                    header.innerHTML =
+                        `
+                        <span style="color:var(--muted);">python</span>
+                        <div class="code-actions">
+                            <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                            <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                        </div>
+                    `;
+
+                    var outputPanel = document.createElement('div');
+                    outputPanel.className = 'output-panel';
+
+                    block.parentNode.insertBefore(container, block);
+                    container.appendChild(header);
+                    container.appendChild(block);
+                    container.appendChild(outputPanel);
+
+                    var copyBtn = header.querySelector('.copy-btn');
+                    var runBtn = header.querySelector('.run-btn');
+
+                    copyBtn.addEventListener('click', function() { copyCode(copyBtn, codeText); });
+                    runBtn.addEventListener('click', function() { runCode(codeText, outputPanel, runBtn); });
+                });
+            }
+
+            // Quiz helper
+            window.answerQuiz = function(el, correctAnswer) {
+                var parent = el.closest('.quiz-box');
+                var options = parent.querySelectorAll('.quiz-option');
+                var feedback = parent.querySelector('.quiz-feedback');
+                options.forEach(function(opt) {
+                    opt.classList.remove('correct', 'incorrect');
+                });
+                var selected = el.textContent.trim();
+                if (selected.includes(correctAnswer)) {
+                    el.classList.add('correct');
+                    feedback.textContent = '✅ Correct! Well done.';
+                    feedback.style.color = 'var(--green)';
+                } else {
+                    el.classList.add('incorrect');
+                    feedback.textContent = '❌ Not quite. The correct answer is: ' + correctAnswer;
+                    feedback.style.color = 'var(--red)';
+                    options.forEach(function(opt) {
+                        if (opt.textContent.includes(correctAnswer)) {
+                            opt.classList.add('correct');
+                        }
+                    });
+                }
+            };
+
+            // Solution toggle
+            window.toggleSolution = function(id) {
+                var el = document.getElementById(id);
+                if (el) {
+                    el.classList.toggle('open');
+                    var btn = el.previousElementSibling;
+                    if (btn && btn.classList.contains('show-solution-btn')) {
+                        btn.textContent = el.classList.contains('open') ? 'Hide Solution' : 'Show Solution';
+                    }
+                }
+            };
+
+            window.addEventListener('load', enhanceCodeBlocks);
+
+            // Pre-warm Pyodide after a short delay
+            setTimeout(function() {
+                loadPyodideAndPackages().catch(function() {});
+            }, 2000);
+
+        })();
+    </script>
+</body>
+</html>
