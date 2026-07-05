@@ -1,0 +1,3163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>ML Fundamentals – Machine Learning with Python 2026 | Poetic Bytes</title>
+    <meta name="description" content="Learn machine learning fundamentals with Python 2026. Covers supervised, unsupervised learning, scikit-learn, TensorFlow, PyTorch, and real-world ML projects." />
+    <meta name="keywords" content="machine learning, python ml, scikit-learn, tensorflow, pytorch, supervised learning, unsupervised learning, ml fundamentals, ai" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/aiml.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/aiml.html" />
+    <meta property="og:title" content="ML Fundamentals – Machine Learning with Python 2026 | Poetic Bytes" />
+    <meta property="og:description" content="Complete machine learning fundamentals with Python: supervised, unsupervised, scikit-learn, TensorFlow, PyTorch, and real-world projects." />
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ML Fundamentals – Machine Learning with Python" />
+    <meta name="twitter:description" content="Learn ML fundamentals with Python: supervised, unsupervised, scikit-learn, TensorFlow, PyTorch, and real-world projects." />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": "ML Fundamentals – Machine Learning with Python 2026",
+            "description": "Complete machine learning fundamentals with Python. Covers supervised, unsupervised learning, scikit-learn, TensorFlow, PyTorch, and real-world ML projects.",
+            "provider": { "@type": "Organization", "name": "Poetic Bytes" },
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy" },
+            "url": "https://poetic-bytes.vercel.app/aiml.html",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "educationalLevel": "Intermediate to Advanced",
+            "teaches": ["Machine Learning", "Supervised Learning", "Unsupervised Learning", "scikit-learn", "TensorFlow", "PyTorch", "ML Workflow"]
+        }
+    </script>
+
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous">
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+
+    <style>
+        /* (all CSS stays exactly as before) */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--blue);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0 0 8px 8px;
+            font-weight: 700;
+            z-index: 9999;
+            text-decoration: none;
+            transition: top 0.2s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #A8C0D8;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        @media print {
+            .nav-bar,
+            .floating-share,
+            .back-top,
+            .floating-toc,
+            .ad-slot,
+            .subscribe-box,
+            .share-box,
+            #commentForm,
+            .code-container .code-header .code-actions,
+            .code-container .output-panel {
+                display: none !important;
+            }
+            body {
+                background: #fff;
+                color: #000;
+                font-size: 12pt;
+            }
+            .page-col {
+                max-width: 100%;
+                padding: 0 0.5in;
+            }
+            .card,
+            .project-card,
+            .oop-block {
+                break-inside: avoid;
+                border-color: #ccc;
+                background: #f9f9f9;
+            }
+            .code-snippet,
+            .code-body {
+                background: #f0f0f0;
+                border: 1px solid #ccc;
+                color: #000;
+            }
+            .terminal {
+                background: #eee;
+                color: #000;
+                border-top: 1px solid #ccc;
+            }
+            .hero {
+                background: none;
+            }
+            .metric-tile {
+                border-color: #ccc;
+                background: #f5f5f5;
+            }
+            .section-label::before,
+            .section-label::after {
+                background: #ccc;
+            }
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+            .page-footer {
+                background: #f5f5f5;
+                border-top: 1px solid #ccc;
+            }
+            .copyright {
+                border-top: 1px solid #ccc;
+            }
+            .curriculum-desc::before {
+                opacity: 0.1;
+            }
+            .code-container .code-header {
+                background: #eaeaea;
+                border-bottom: 1px solid #ccc;
+                color: #000;
+            }
+            .code-container .code-header span {
+                color: #000 !important;
+            }
+            .output-panel {
+                background: #f5f5f5;
+                border: 1px solid #ccc;
+                border-top: none;
+                color: #000;
+            }
+            .output-panel.error {
+                color: #c00;
+            }
+            .faq-item,
+            .info-box {
+                border-color: #ccc;
+                background: #f5f5f5;
+            }
+            table {
+                border-collapse: collapse;
+                font-size: 10pt;
+            }
+            th,
+            td {
+                border: 1px solid #aaa;
+                padding: 0.3rem 0.5rem;
+            }
+            thead tr {
+                background: #e0e0e0;
+            }
+            .badge {
+                border: 1px solid #999;
+                background: #eee !important;
+                color: #000 !important;
+            }
+            .badge-beg {
+                background: #e0f0e0 !important;
+                color: #000 !important;
+            }
+            .badge-int {
+                background: #f0f0d0 !important;
+                color: #000 !important;
+            }
+            .badge-adv {
+                background: #e0e0f0 !important;
+                color: #000 !important;
+            }
+            .badge-exp {
+                background: #f0e0e0 !important;
+                color: #000 !important;
+            }
+            .badge-oop {
+                background: #d0e0f0 !important;
+                color: #000 !important;
+            }
+            .badge-new {
+                background: #f0e0d0 !important;
+                color: #000 !important;
+            }
+        }
+
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        .nav-links .nav-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(75, 139, 190, .15);
+            border: 1px solid rgba(75, 139, 190, .3);
+            padding: .2rem .9rem;
+            border-radius: 40px;
+            color: var(--blue-lt);
+            font-size: .68rem;
+            transition: background .2s, border-color .2s, color .2s;
+        }
+        .nav-links .nav-home-btn:hover {
+            background: rgba(75, 139, 190, .25);
+            border-color: var(--blue);
+            color: #fff;
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        .drawer-body .drawer-home-btn {
+            background: rgba(75, 139, 190, .22);
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            margin-top: .3rem;
+        }
+        .drawer-body .drawer-home-btn i {
+            color: var(--blue-lt);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .btn-home {
+            background: rgba(255, 217, 102, .12);
+            border: 1px solid rgba(255, 217, 102, .25);
+            color: var(--gold);
+        }
+        .btn-home:hover {
+            background: rgba(255, 217, 102, .2);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(255, 217, 102, .15);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-bottom: 2rem;
+        }
+        .metrics-row {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+            margin-bottom: 2rem;
+        }
+        .metric-tile {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.1rem;
+            text-align: center;
+        }
+        .metric-tile .num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1.1;
+        }
+        .metric-tile .lbl {
+            font-size: .68rem;
+            color: var(--muted);
+            margin-top: .2rem;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+            min-height: 140px;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card:active {
+            transform: scale(.98);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .card-arrow {
+            margin-top: auto;
+            font-size: .65rem;
+            color: var(--blue);
+            opacity: 0;
+            transition: opacity .2s, transform .2s;
+        }
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-top: .2rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-exp {
+            background: rgba(239, 68, 68, .15);
+            color: #f87171;
+        }
+        .badge-new {
+            background: rgba(251, 146, 60, .15);
+            color: var(--orange);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .checklist li {
+            display: flex;
+            gap: .55rem;
+            align-items: flex-start;
+            font-size: .78rem;
+            color: var(--muted);
+            padding: .5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        .checklist li span.check {
+            color: var(--blue);
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child {
+            color: var(--gold);
+        }
+        th:nth-child(2) {
+            color: var(--blue);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        td:nth-child(2) {
+            color: var(--green);
+            font-weight: 600;
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(75, 139, 190, .03);
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+            background: transparent;
+            border: none;
+            width: 100%;
+            font-family: inherit;
+            text-align: left;
+            color: var(--text);
+            font-weight: 600;
+            font-size: .8rem;
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+            margin: 0;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            transition: transform .25s;
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(45deg);
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 300px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+
+        .instructor-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        .creds {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .creds li {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-size: .76rem;
+            color: var(--muted);
+            padding: .45rem 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        .creds li i {
+            color: var(--gold);
+            width: 1rem;
+        }
+        .social-row {
+            display: flex;
+            flex-direction: row;
+            gap: .5rem;
+            margin-top: .8rem;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .85rem;
+            transition: .2s;
+        }
+        .social-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+        }
+
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .note-warn {
+            font-size: .74rem;
+            color: var(--amber);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+
+        .explanation-box {
+            background: rgba(75, 139, 190, 0.05);
+            border: 1px solid rgba(75, 139, 190, 0.2);
+            border-radius: var(--card-r);
+            padding: 1rem 1.2rem;
+            margin: 0.8rem 0;
+        }
+        .explanation-box h4 {
+            color: var(--gold);
+            font-size: 0.82rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .explanation-box p {
+            font-size: 0.76rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 0.4rem;
+        }
+        .explanation-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .explanation-box li {
+            font-size: 0.74rem;
+            color: var(--text);
+            padding: 0.2rem 0 0.2rem 1.6rem;
+            position: relative;
+            line-height: 1.5;
+        }
+        .explanation-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0.2rem;
+            color: var(--blue);
+        }
+        .explanation-box strong {
+            color: var(--text);
+        }
+
+        .subscribe-box {
+            background: linear-gradient(135deg, #1a2a3a, #0f1c2f);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .subscribe-box h3 {
+            font-size: .95rem;
+            color: var(--text);
+            margin-bottom: .3rem;
+        }
+        .sub-form {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+            max-width: 340px;
+            margin: 1.2rem auto 0;
+        }
+        .sub-form input {
+            height: var(--btn-h);
+            padding: 0 .9rem;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-size: .8rem;
+            width: 100%;
+            transition: border-color .2s;
+        }
+        .sub-form input:focus {
+            border-color: var(--blue);
+            outline: none;
+        }
+        .sub-form button {
+            height: var(--btn-h);
+            background: var(--blue);
+            border: none;
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-weight: 700;
+            font-size: .8rem;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .sub-form button:hover {
+            background: var(--blue-deep);
+        }
+        .sub-message {
+            margin-top: .8rem;
+            font-size: .78rem;
+            display: none;
+        }
+        .sub-message.success {
+            color: var(--green);
+            display: block;
+        }
+        .sub-message.error {
+            color: var(--red);
+            display: block;
+        }
+
+        .share-box {
+            text-align: center;
+        }
+        .share-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .share-btn {
+            height: var(--btn-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-size: .74rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .2s;
+            font-weight: 600;
+            background: var(--card);
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .share-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .1);
+        }
+        .share-btn:active {
+            transform: scale(.96);
+        }
+        .share-btn.copy-btn {
+            border-color: rgba(75, 139, 190, .3);
+        }
+        .share-btn.copy-btn:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .15);
+        }
+
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+
+        .floating-toc {
+            position: fixed;
+            right: 80px;
+            bottom: 80px;
+            width: 280px;
+            max-height: 60vh;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .7);
+            z-index: 950;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        .floating-toc.open {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating-toc .toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1rem;
+            background: rgba(75, 139, 190, 0.08);
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        .floating-toc .toc-header button {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.2rem 0.4rem;
+        }
+        .floating-toc .toc-header button:hover {
+            color: var(--text);
+        }
+        .floating-toc .toc-body {
+            overflow-y: auto;
+            padding: 0.5rem 0;
+            flex: 1;
+        }
+        .floating-toc .toc-body a {
+            display: block;
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .floating-toc .toc-body a:hover {
+            background: rgba(75, 139, 190, 0.08);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+        .floating-toc .toc-body a.toc-highlight {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(255, 217, 102, 0.05);
+        }
+        .floating-share .fs-btn.fs-toc {
+            border-color: rgba(75, 139, 190, 0.3);
+        }
+        .floating-share .fs-btn.fs-toc:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        @media(max-width:768px) {
+            .floating-toc {
+                right: 10px;
+                bottom: 130px;
+                width: 220px;
+                max-height: 50vh;
+            }
+        }
+
+        .ad-slot {
+            text-align: center;
+            padding: .8rem 0;
+            background: var(--bg);
+        }
+
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3.5rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .share-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 240px;
+            }
+            .explanation-box {
+                padding: 0.8rem 1rem;
+            }
+            .explanation-box li {
+                font-size: 0.7rem;
+                padding-left: 1.2rem;
+            }
+        }
+        @media(max-width:768px) {
+            .floating-share {
+                right: 14px;
+                bottom: 76px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+        }
+
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-container .code-snippet {
+            border-radius: 0;
+            border-left: none;
+            margin-bottom: 0;
+            padding: 1rem;
+        }
+        .code-container .code-body {
+            padding: 1rem;
+            border-radius: 0;
+        }
+
+        @media(max-width:480px) {
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+        }
+
+        .intro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .intro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .intro-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .outro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .outro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .outro-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .curriculum-desc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .curriculum-desc::before {
+            content: "🤖";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 4rem;
+            opacity: 0.06;
+            transform: rotate(8deg);
+        }
+        .curriculum-desc h2 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc .highlight {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .curriculum-desc .gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .curriculum-desc .desc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .curriculum-desc .desc-meta span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .curriculum-desc .desc-meta i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        @media(max-width:480px) {
+            .curriculum-desc {
+                padding: 1.2rem 1rem;
+            }
+            .curriculum-desc h2 {
+                font-size: 1rem;
+            }
+            .curriculum-desc p {
+                font-size: 0.78rem;
+            }
+            .curriculum-desc .desc-meta {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+        }
+
+        .subject-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: rgba(75, 139, 190, 0.06);
+            border-left: 3px solid var(--blue);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .subject-desc strong {
+            color: var(--text);
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
+        }
+        .toc-grid a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.7rem 0.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            transition: border-color .2s, color .2s, background .2s, transform .15s;
+            min-height: 48px;
+            width: 100%;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+        .toc-grid a:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .08);
+            transform: translateY(-2px);
+        }
+        .toc-grid a:active {
+            transform: scale(0.98);
+        }
+        @media(max-width:480px) {
+            .toc-grid a {
+                font-size: 0.65rem;
+                padding: 0.6rem 0.5rem;
+                min-height: 40px;
+            }
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+        }
+        .comment-form input,
+        .comment-form textarea {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-size: .8rem;
+            padding: .7rem .9rem;
+            width: 100%;
+            transition: border-color .2s;
+        }
+        .comment-form input {
+            height: var(--btn-h);
+        }
+        .comment-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .comment-form input:focus,
+        .comment-form textarea:focus {
+            border-color: var(--blue);
+            outline: none;
+        }
+        .comment-form button {
+            height: var(--btn-h);
+            background: var(--blue);
+            border: none;
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .comment-form button:hover {
+            background: var(--blue-deep);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--card);
+            border-radius: var(--card-r);
+            border: 1px solid var(--border);
+        }
+        .empty-state i {
+            font-size: 2rem;
+            color: var(--muted);
+            display: block;
+            margin-bottom: .6rem;
+        }
+        .empty-state p {
+            font-size: .78rem;
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🤖</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#types">ML Types</a></li>
+                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="#libraries">Libraries</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="index.html" class="nav-home-btn"><i class="fas fa-home"></i> Home</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose" aria-label="Close navigation"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><button data-href="#intro"><i class="fas fa-rocket"></i>Introduction</button></li>
+                <li><button data-href="#types"><i class="fas fa-tags"></i>ML Types</button></li>
+                <li><button data-href="#workflow"><i class="fas fa-cogs"></i>Workflow</button></li>
+                <li><button data-href="#libraries"><i class="fas fa-cubes"></i>Libraries</button></li>
+                <li><button data-href="#projects"><i class="fas fa-folder-open"></i>Projects</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><a href="index.html" class="drawer-home-btn"><i class="fas fa-home"></i> Back to Home</a></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header">
+            <span>📚 Jump to</span>
+            <button id="tocCloseBtn" aria-label="Close table of contents"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="toc-body" id="tocBody">
+            <a href="#intro">🤖 Introduction</a>
+            <a href="#types">🏷️ ML Types</a>
+            <a href="#workflow">⚙️ ML Workflow</a>
+            <a href="#libraries">📦 Libraries</a>
+            <a href="#supervised">📊 Supervised</a>
+            <a href="#unsupervised">🔮 Unsupervised</a>
+            <a href="#evaluation">📈 Evaluation</a>
+            <a href="#projects">🏗️ Projects</a>
+            <a href="#faq">❓ FAQ</a>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents">
+            <i class="fas fa-list-ul"></i>
+            <span class="tooltip">Table of Contents</span>
+        </button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X">
+            <i class="fab fa-twitter"></i>
+            <span class="tooltip">X</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip">LinkedIn</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="tooltip">Telegram</span>
+        </a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main id="main-content" style="padding-top:56px;">
+
+        <section class="hero" aria-label="Hero — ML Fundamentals">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python 3.12+ · ML Fundamentals 2026</div>
+                <h1>Machine Learning<br><span style="color:var(--blue-lt)">with Python — From Zero to First Model</span></h1>
+                <p class="lead">Master the core concepts of machine learning using Python. Supervised, unsupervised, scikit-learn, TensorFlow, PyTorch — and real-world projects you can build today.</p>
+                <div class="metrics-row">
+                    <div class="metric-tile"><div class="num counter" data-target="15000">0</div><div class="lbl">ML learners</div></div>
+                    <div class="metric-tile"><div class="num counter" data-target="45">0</div><div class="lbl">Runnable examples</div></div>
+                    <div class="metric-tile"><div class="num counter" data-target="12">0</div><div class="lbl">Topic modules</div></div>
+                    <div class="metric-tile"><div class="num">4.8</div><div class="lbl stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div></div>
+                </div>
+                <div class="hero-btns">
+                    <a href="#types" class="btn btn-primary"><i class="fas fa-rocket"></i> Start Learning ML</a>
+                    <a href="#libraries" class="btn btn-outline"><i class="fas fa-cubes"></i> Explore ML Libraries</a>
+                    <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Back to Home</a>
+                </div>
+
+                <div style="margin-bottom:1.5rem;">
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-info-circle"></i> Why this code?</h4>
+                        <p>This is the <strong>first complete ML pipeline</strong> you will see. It demonstrates loading a classic dataset, splitting into training/test sets, training a Random Forest classifier, and evaluating accuracy. Its significance lies in showing the entire workflow in a few lines – a pattern you will reuse for every supervised learning problem.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> To give you a tangible example of ML in action – from data to prediction.</li>
+                            <li><strong>How it operates:</strong> <code>load_iris()</code> returns features (X) and labels (y). <code>train_test_split</code> randomly splits them so we can test on unseen data. <code>RandomForestClassifier</code> builds an ensemble of decision trees. <code>fit()</code> trains the model, <code>predict()</code> makes class predictions, and <code>accuracy_score</code> compares them with the true labels.</li>
+                            <li><strong>Effect on output:</strong> It prints a single number – accuracy (e.g., 1.00) – telling you how many test samples were correctly classified.</li>
+                            <li><strong>Role in program:</strong> It sets the stage for everything that follows – you will now learn each step in detail.</li>
+                        </ul>
+                    </div>
+                    <div class="code-preview" aria-label="Python ML code example">
+                        <div class="code-chrome"><div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="win-title">first_ml_model.py</span></div>
+                        <div class="code-body">
+                            <pre><span class="kw">from</span> sklearn.datasets <span class="kw">import</span> load_iris
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> accuracy_score
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+<span class="fn">print</span>(<span class="st">f"Accuracy: {accuracy_score(y_test, y_pred):.2f}"</span>)</pre>
+                        </div>
+                        <div class="terminal">$ python first_ml_model.py<br>Accuracy: 1.00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="intro-heading" style="padding: 2rem 0 1.5rem;">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="intro-heading">🤖 What is Machine Learning?</h2>
+                    <p style="max-width:100%; font-size:0.9rem; color:var(--text); text-align:left;">
+                        Machine Learning (ML) is a subset of artificial intelligence that enables systems to learn from data
+                        and improve over time without being explicitly programmed. Instead of writing rules, you show the
+                        computer examples — and it learns the patterns.
+                    </p>
+                </div>
+
+                <div class="curriculum-desc">
+                    <h2>📊 Why ML Matters in 2026</h2>
+                    <p>
+                        Machine learning is <span class="gold">transforming every industry</span> — from healthcare
+                        (diagnosing diseases from medical images) to finance (fraud detection and algorithmic trading)
+                        to retail (recommendation systems and demand forecasting). Python has become the <span class="highlight">dominant
+                        language for ML</span> because of its rich ecosystem of libraries and its accessibility to
+                        both researchers and practitioners.
+                    </p>
+                    <p>
+                        This module teaches you the <span class="gold">core concepts</span> that every ML practitioner
+                        needs: supervised and unsupervised learning, the ML workflow, evaluation metrics, and how to
+                        use Python's <span class="highlight">scikit-learn, TensorFlow, and PyTorch</span> to build and
+                        deploy models. You'll work with real datasets and build projects you can show to employers.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-layer-group"></i> 12 topic modules</span>
+                        <span><i class="fas fa-code"></i> 45+ runnable examples</span>
+                        <span><i class="fas fa-users"></i> 15,000+ learners</span>
+                        <span><i class="fas fa-star" style="color:var(--gold);"></i> 4.8 / 5 learner rating</span>
+                    </div>
+                </div>
+
+                <div class="oop-block" style="margin-top:0.5rem;">
+                    <h3>🧠 ML vs. Traditional Programming</h3>
+                    <div style="display:flex;flex-direction:column;gap:1rem;margin:0.8rem 0;">
+                        <div style="background:rgba(75,139,190,0.06);border-radius:8px;padding:1rem;border-left:3px solid var(--blue);">
+                            <p style="font-weight:700;color:var(--text);font-size:.8rem;">Traditional Programming</p>
+                            <p style="font-size:.75rem;">Rules (code) + Data → Answers</p>
+                        </div>
+                        <div style="background:rgba(255,217,102,0.06);border-radius:8px;padding:1rem;border-left:3px solid var(--gold);">
+                            <p style="font-weight:700;color:var(--gold);font-size:.8rem;">Machine Learning</p>
+                            <p style="font-size:.75rem;">Data + Answers → Rules (model)</p>
+                        </div>
+                    </div>
+                    <p>In ML, we provide the computer with examples (data) and the correct answers (labels). The model learns the <em>underlying patterns</em> that map inputs to outputs — and can then make predictions on new, unseen data.</p>
+                    <div class="insight">💡 This shift — from hand-coded rules to learned patterns — is what makes ML so powerful. The model discovers relationships that humans might never spot.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="types" aria-labelledby="types-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="types-heading">🏷️ Types of Machine Learning</h2>
+                    <p>The three main paradigms — and when to use each one</p>
+                </div>
+                <div class="card-grid" style="margin-top:1.2rem;">
+                    <div class="card" style="border-color:rgba(16,185,129,0.3);">
+                        <div class="card-icon">📊</div>
+                        <h4 style="color:#10b981;">Supervised Learning</h4>
+                        <p>Learn a mapping from inputs to outputs using <strong style="color:var(--text);">labelled data</strong>. Examples: classification (spam detection, image recognition) and regression (house price prediction, stock forecasting).</p>
+                        <div class="tags"><span class="tag">classification</span><span class="tag">regression</span><span class="tag">labelled</span></div>
+                    </div>
+                    <div class="card" style="border-color:rgba(245,158,11,0.3);">
+                        <div class="card-icon">🔮</div>
+                        <h4 style="color:#f59e0b;">Unsupervised Learning</h4>
+                        <p>Find hidden structure in <strong style="color:var(--text);">unlabelled data</strong>. Examples: clustering (customer segmentation, grouping similar documents) and dimensionality reduction (visualisation, compression).</p>
+                        <div class="tags"><span class="tag">clustering</span><span class="tag">dimensionality</span><span class="tag">unlabelled</span></div>
+                    </div>
+                    <div class="card" style="border-color:rgba(139,92,246,0.3);">
+                        <div class="card-icon">🎯</div>
+                        <h4 style="color:#a78bfa;">Reinforcement Learning</h4>
+                        <p>Learn by <strong style="color:var(--text);">trial and error</strong> through rewards and penalties. Examples: game AI (AlphaGo), robotics, autonomous driving, recommendation systems.</p>
+                        <div class="tags"><span class="tag">rewards</span><span class="tag">agents</span><span class="tag">environments</span></div>
+                    </div>
+                </div>
+                <div class="info-box" style="margin-top:1.2rem;">
+                    <h4><i class="fas fa-compass"></i> Which one should you learn first?</h4>
+                    <p>Start with <strong style="color:var(--text);">supervised learning</strong> — it's the most commonly used in industry and the foundation for most ML applications. Classification and regression problems appear everywhere: from spam filters to medical diagnosis.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="workflow" aria-labelledby="workflow-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="workflow-heading">⚙️ The ML Workflow — 7 Steps to a Working Model</h2>
+                    <p>Every ML project follows the same essential pipeline</p>
+                </div>
+                <div class="insight" style="margin-top:1rem;">💡 The code snippets in steps 2, 4, 5, 6, and 7 below build on each other — run them in order, top to bottom. Variables like <code>model</code> and <code>scaler</code> stay available in your browser's Python session as you go, the same way cells in a notebook share state.</div>
+                <div class="oop-block" style="margin-top:1.2rem;">
+                    <h3>1. Define the Problem</h3>
+                    <p>What are you trying to predict? What is the business goal? Is it a classification or regression problem? What success looks like?</p>
+                    <div class="insight">💡 Spend time here. A well-defined problem is half solved. Be specific: "Predict if a customer will churn in the next 30 days" is better than "Predict customer churn."</div>
+                </div>
+                <div class="oop-block">
+                    <h3>2. Collect and Prepare Data</h3>
+                    <p>Gather data from databases, APIs, or files. Handle missing values, encode categorical variables, scale numeric features, and split into training and test sets.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-code"></i> Data preparation code – why and how</h4>
+                        <p>This snippet covers the <strong>essential preprocessing</strong> steps: generating a sample dataset (standing in for a CSV you'd normally load), handling missing values by replacing them with the column mean, separating features (X) from target (y), splitting into training/test sets, and scaling features with StandardScaler.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> Real-world data is messy; you must clean and transform it before feeding to a model. This code shows the standard pipeline.</li>
+                            <li><strong>How it operates:</strong> <code>make_classification()</code> generates a synthetic dataset right in the browser (in a real project you'd use <code>pandas.read_csv()</code> to load your own file instead). <code>fillna()</code> replaces missing values. <code>train_test_split</code> holds out 20% for testing. <code>StandardScaler</code> centres and scales features so they have mean=0 and variance=1 – crucial for many algorithms.</li>
+                            <li><strong>Effect on output:</strong> You get four variables: <code>X_train_scaled</code>, <code>X_test_scaled</code>, <code>y_train</code>, <code>y_test</code>. The scaling prevents features with larger magnitudes from dominating the model.</li>
+                            <li><strong>Role in program:</strong> This is the <strong>foundation</strong> – without proper data prep, the subsequent model training and evaluation would be unreliable.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler
+<span class="kw">from</span> sklearn.datasets <span class="kw">import</span> make_classification
+
+<span class="cmt"># Simulate a raw dataset, the way you might receive it from a CSV export</span>
+X_raw, y_raw = make_classification(n_samples=<span class="num">500</span>, n_features=<span class="num">6</span>, n_informative=<span class="num">4</span>, random_state=<span class="num">42</span>)
+data = pd.DataFrame(X_raw, columns=[<span class="st">f"feature_{i}"</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">6</span>)])
+data[<span class="st">"target"</span>] = y_raw
+
+<span class="cmt"># Simulate a few missing values, just like real-world data</span>
+rng = np.random.default_rng(<span class="num">42</span>)
+missing_idx = rng.choice(data.index, size=<span class="num">10</span>, replace=<span class="kw">False</span>)
+data.loc[missing_idx, <span class="st">"feature_0"</span>] = np.nan
+data.fillna(data.mean(numeric_only=<span class="kw">True</span>), inplace=<span class="kw">True</span>)
+
+X = data.drop(<span class="st">"target"</span>, axis=1)
+y = data[<span class="st">"target"</span>]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="num">0.2</span>, random_state=<span class="num">42</span>)
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span class="fn">print</span>(<span class="st">"Training samples:"</span>, X_train_scaled.shape[0])
+<span class="fn">print</span>(<span class="st">"Test samples:"</span>, X_test_scaled.shape[0])</pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>3. Choose a Model</h3>
+                    <p>Select an algorithm based on your problem type and data size. For classification: Logistic Regression, Random Forest, XGBoost, or Neural Networks. For regression: Linear Regression, SVM, Gradient Boosting.</p>
+                </div>
+                <div class="oop-block">
+                    <h3>4. Train the Model</h3>
+                    <p>Feed the training data to the model. It learns the mapping from features to labels by adjusting its internal parameters.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-cogs"></i> Training a Random Forest</h4>
+                        <p>This code instantiates a <code>RandomForestClassifier</code> with 100 trees and then calls <code>.fit()</code> on the scaled training data from step 2 above. The <code>.fit()</code> method is where the <strong>learning happens</strong> – each tree is built on a random subset of the data, and their votes are combined to make a final prediction.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> Random Forest is a powerful, robust algorithm that works well on tabular data and requires little tuning.</li>
+                            <li><strong>How it operates:</strong> During <code>.fit()</code>, the algorithm creates a forest of decision trees, each trained on a bootstrapped sample of the data. It also randomly selects a subset of features at each split, which reduces overfitting.</li>
+                            <li><strong>Effect on output:</strong> The model parameters (tree structures) are stored in the <code>model</code> object. You can now use it to make predictions on new data.</li>
+                            <li><strong>Role in program:</strong> This is the <strong>core</strong> – the trained model is the artifact that captures the learned patterns from your data.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+
+model = RandomForestClassifier(n_estimators=100, max_depth=10, random_state=42)
+model.fit(X_train_scaled, y_train)
+<span class="fn">print</span>(<span class="st">"Model trained on"</span>, X_train_scaled.shape[0], <span class="st">"samples."</span>)</pre></div>
+                    <div class="note-warn">⚠️ Run step 2's snippet above first — this step reuses <code>X_train_scaled</code> and <code>y_train</code> from it.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>5. Evaluate</h3>
+                    <p>Use metrics to measure performance on the test set. Accuracy, precision, recall, F1-score for classification. MAE, RMSE, R² for regression.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-chart-bar"></i> Model evaluation</h4>
+                        <p>This snippet shows how to obtain a <strong>classification report</strong> (precision, recall, f1-score per class) and a <strong>confusion matrix</strong>. These give you a detailed view of where the model is making errors.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> Accuracy alone can be misleading, especially with imbalanced data. These metrics break down performance by class.</li>
+                            <li><strong>How it operates:</strong> <code>model.predict()</code> generates predictions on the test set. <code>classification_report</code> computes per-class metrics; <code>confusion_matrix</code> shows the counts of true positives, false positives, etc.</li>
+                            <li><strong>Effect on output:</strong> You see a textual report and a matrix – numbers that tell you which classes are confused. This helps you decide if the model is fit for purpose.</li>
+                            <li><strong>Role in program:</strong> Evaluation determines whether the model is good enough to deploy. It also guides further improvements (feature engineering, hyperparameter tuning).</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.metrics <span class="kw">import</span> classification_report, confusion_matrix
+
+y_pred = model.predict(X_test_scaled)
+<span class="fn">print</span>(classification_report(y_test, y_pred))
+<span class="fn">print</span>(<span class="st">"Confusion Matrix:"</span>, confusion_matrix(y_test, y_pred))</pre></div>
+                    <div class="note-warn">⚠️ Needs steps 2 and 4 above to have run first, so <code>model</code> and <code>X_test_scaled</code> exist.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>6. Tune Hyperparameters</h3>
+                    <p>Adjust model settings (not learned from data) to improve performance. Use Grid Search or Random Search to find the best combination.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-sliders-h"></i> Hyperparameter tuning with GridSearchCV</h4>
+                        <p>This code performs an <strong>exhaustive search</strong> over a grid of hyperparameters (number of trees and maximum depth) using cross-validation to select the best combination.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> Models have settings that you can't learn from the data (e.g., number of trees). Tuning them can significantly boost performance.</li>
+                            <li><strong>How it operates:</strong> <code>GridSearchCV</code> trains a model for every combination of parameters in the grid, using 5‑fold cross-validation to evaluate each. It then returns the best estimator and its parameters.</li>
+                            <li><strong>Effect on output:</strong> You get the optimal values (e.g., <code>{'max_depth': 10, 'n_estimators': 200}</code>) and the corresponding cross‑validated score.</li>
+                            <li><strong>Role in program:</strong> Tuning is the <strong>optimisation step</strong> – it squeezes extra performance out of the model before deployment.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> GridSearchCV
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+
+params = {<span class="st">"n_estimators"</span>: [50, 100, 200], <span class="st">"max_depth"</span>: [5, 10, 20]}
+grid = GridSearchCV(RandomForestClassifier(random_state=42), params, cv=5)
+grid.fit(X_train_scaled, y_train)
+<span class="fn">print</span>(<span class="st">"Best params:"</span>, grid.best_params_)</pre></div>
+                    <div class="note-warn">⚠️ Needs step 2 above to have run first, so <code>X_train_scaled</code> and <code>y_train</code> exist.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>7. Deploy</h3>
+                    <p>Save the model and integrate it into an application — a web app, an API, or a batch processing pipeline. Monitor its performance over time.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-cloud-upload-alt"></i> Model persistence</h4>
+                        <p>This snippet shows how to <strong>save</strong> your trained model (and scaler) to disk using <code>joblib</code>, and then <strong>load</strong> them later for inference on new data.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> You don't want to retrain the model every time you need a prediction – saving it allows re-use.</li>
+                            <li><strong>How it operates:</strong> <code>joblib.dump()</code> serialises the Python objects to files (<code>.pkl</code>). Later, <code>joblib.load()</code> reconstructs the objects.</li>
+                            <li><strong>Effect on output:</strong> It creates physical files on disk that can be versioned, shared, and loaded into other scripts.</li>
+                            <li><strong>Role in program:</strong> Deployment is the <strong>delivery</strong> – without it, your model remains a research prototype.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">import</span> joblib
+
+joblib.dump(model, <span class="st">"model.pkl"</span>)
+joblib.dump(scaler, <span class="st">"scaler.pkl"</span>)
+
+loaded_model = joblib.load(<span class="st">"model.pkl"</span>)
+loaded_scaler = joblib.load(<span class="st">"scaler.pkl"</span>)
+
+<span class="cmt"># A new sample must have the same 6 features as the training data</span>
+new_sample = [[0.5, -0.3, 1.2, 0.1, -0.7, 0.4]]
+new_prediction = loaded_model.predict(loaded_scaler.transform(new_sample))
+<span class="fn">print</span>(<span class="st">"Prediction for new sample:"</span>, new_prediction)</pre></div>
+                    <div class="note-warn">⚠️ Needs steps 2 and 4 above to have run first, so <code>model</code> and <code>scaler</code> exist.</div>
+                    <div class="note-new">✨ Pro tip: Use <code>joblib</code> for scikit-learn models, <code>torch.save()</code> for PyTorch, and <code>model.save()</code> for TensorFlow/Keras.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="libraries" aria-labelledby="libraries-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="libraries-heading">📦 Python ML Libraries — Your Toolbox</h2>
+                    <p>The essential libraries for every ML project, from data prep to deep learning</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card"><div class="card-icon">📊</div><h4>scikit-learn</h4><p>The go-to library for classical ML — regression, classification, clustering, and dimensionality reduction. Simple, consistent API, and battle-tested.</p><div class="tags"><span class="tag">pip install scikit-learn</span><span class="tag">classical ML</span></div></div>
+                    <div class="card"><div class="card-icon">🧠</div><h4>TensorFlow &amp; Keras</h4><p>Google's deep learning framework. Keras provides a high-level API for building and training neural networks. Best for production-scale deep learning.</p><div class="tags"><span class="tag">pip install tensorflow</span><span class="tag">deep learning</span></div></div>
+                    <div class="card"><div class="card-icon">🔥</div><h4>PyTorch</h4><p>Meta's deep learning library with dynamic computation graphs. Preferred by researchers for its flexibility and Pythonic feel. Growing fast in production.</p><div class="tags"><span class="tag">pip install torch</span><span class="tag">dynamic graphs</span></div></div>
+                    <div class="card"><div class="card-icon">📈</div><h4>Pandas &amp; NumPy</h4><p>The foundation of Python data science. NumPy for numerical arrays, Pandas for data manipulation and analysis. Used in every ML project.</p><div class="tags"><span class="tag">pip install pandas numpy</span><span class="tag">data prep</span></div></div>
+                    <div class="card"><div class="card-icon">📉</div><h4>Matplotlib &amp; Seaborn</h4><p>Visualisation libraries for plotting data distributions, model performance, feature importance, and more. Essential for EDA.</p><div class="tags"><span class="tag">pip install matplotlib seaborn</span><span class="tag">visualisation</span></div></div>
+                    <div class="card"><div class="card-icon">🚀</div><h4>XGBoost &amp; LightGBM</h4><p>Gradient boosting libraries that win competitions. XGBoost and LightGBM are the go-to models for tabular data — often outperforming deep learning.</p><div class="tags"><span class="tag">pip install xgboost</span><span class="tag">gradient boosting</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="supervised" aria-labelledby="supervised-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="supervised-heading">📊 Supervised Learning — In Depth</h2>
+                    <p>Classification and regression with real code examples</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🏷️ Classification — Predicting Categories</h3>
+                    <p>Given input features, predict which category (class) the sample belongs to. Binary classification (spam vs. not spam), multi-class classification (iris species, digit recognition).</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-crosshairs"></i> Classification with cross‑validation</h4>
+                        <p>This example uses <strong>cross‑validation</strong> to get a more robust estimate of model performance than a single train/test split. It also shows how to make predictions on a new sample.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> Cross‑validation reduces variance in performance estimation and helps prevent overfitting to a particular split.</li>
+                            <li><strong>How it operates:</strong> <code>cross_val_score</code> performs 5‑fold CV: it splits the data into 5 parts, trains on 4 and validates on 1, rotating the validation fold. It returns an array of 5 accuracy scores.</li>
+                            <li><strong>Effect on output:</strong> You see the mean accuracy across folds, which gives a better sense of how the model will perform on unseen data. The final <code>predict()</code> demonstrates model usage.</li>
+                            <li><strong>Role in program:</strong> This reinforces the importance of reliable evaluation and shows how to use the model for inference.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.datasets <span class="kw">import</span> load_iris
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> cross_val_score
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+model = RandomForestClassifier(n_estimators=50, random_state=42)
+scores = cross_val_score(model, X, y, cv=5)
+<span class="fn">print</span>(<span class="st">f"Mean CV accuracy: {scores.mean():.3f}"</span>)
+
+model.fit(X, y)
+<span class="fn">print</span>(<span class="st">"Predictions for new sample:"</span>, model.predict([[5.1, 3.5, 1.4, 0.2]]))</pre></div>
+                    <div class="insight">💡 <code>cross_val_score</code> gives a more reliable estimate of model performance than a single train/test split. Use it early in your workflow.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>📈 Regression — Predicting Numbers</h3>
+                    <p>Given input features, predict a continuous numeric value. Examples: house prices, stock prices, temperature, sales volume.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-chart-line"></i> Regression with Gradient Boosting</h4>
+                        <p>This snippet loads the diabetes progression dataset (built into scikit-learn, so it works fully offline with no download), trains a <code>GradientBoostingRegressor</code>, and evaluates it using RMSE (Root Mean Squared Error) and R² (coefficient of determination).</p>
+                        <ul>
+                            <li><strong>Why used:</strong> Regression is a fundamental task. Gradient Boosting is a powerful ensemble method that often wins Kaggle competitions.</li>
+                            <li><strong>How it operates:</strong> The model sequentially builds trees, each correcting the errors of the previous one. <code>RMSE</code> measures the average magnitude of errors (in the same units as the target). <code>R²</code> indicates how much variance is explained (1 = perfect).</li>
+                            <li><strong>Effect on output:</strong> You get two numbers: RMSE (lower is better) and R² (closer to 1 is better). These tell you how well the model predicts patient disease progression.</li>
+                            <li><strong>Role in program:</strong> It demonstrates a complete regression workflow and introduces key metrics for continuous targets.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.datasets <span class="kw">import</span> load_diabetes
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> GradientBoostingRegressor
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> mean_squared_error, r2_score
+
+diabetes = load_diabetes()
+X, y = diabetes.data, diabetes.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, random_state=42)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+<span class="fn">print</span>(<span class="st">f"RMSE: {mean_squared_error(y_test, y_pred, squared=False):.3f}"</span>)
+<span class="fn">print</span>(<span class="st">f"R²: {r2_score(y_test, y_pred):.3f}"</span>)</pre></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="unsupervised" aria-labelledby="unsupervised-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="unsupervised-heading">🔮 Unsupervised Learning — Finding Hidden Patterns</h2>
+                    <p>Clustering, dimensionality reduction, and anomaly detection</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🧩 Clustering — Grouping Similar Samples</h3>
+                    <p>K-Means, DBSCAN, Hierarchical Clustering. Used for customer segmentation, document grouping, and image compression.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-object-group"></i> K‑Means clustering</h4>
+                        <p>This code generates synthetic blobs and applies K‑Means to group them into 4 clusters. It prints the cluster centers and the first 10 labels.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> To illustrate the concept of clustering – finding natural groupings in data without labels.</li>
+                            <li><strong>How it operates:</strong> <code>KMeans</code> initialises cluster centers, then iteratively assigns points to the nearest center and recomputes the centers until convergence. <code>fit_predict</code> returns cluster labels for each sample.</li>
+                            <li><strong>Effect on output:</strong> You see the coordinates of the 4 cluster centers and the assigned cluster numbers for the first few points. This shows the algorithm's output.</li>
+                            <li><strong>Role in program:</strong> It gives a hands‑on feel for unsupervised learning and demonstrates a common use case.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.cluster <span class="kw">import</span> KMeans
+<span class="kw">from</span> sklearn.datasets <span class="kw">import</span> make_blobs
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+X, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.6, random_state=42)
+
+kmeans = KMeans(n_clusters=4, random_state=42)
+labels = kmeans.fit_predict(X)
+
+<span class="fn">print</span>(<span class="st">"Cluster centers:"</span>, kmeans.cluster_centers_)
+<span class="fn">print</span>(<span class="st">"Cluster labels:"</span>, labels[:10])</pre></div>
+                    <div class="insight">💡 K-Means requires you to specify the number of clusters upfront. Use the <em>elbow method</em> to choose K: plot inertia vs. number of clusters and look for the "elbow".</div>
+                </div>
+                <div class="oop-block">
+                    <h3>📉 Dimensionality Reduction — PCA</h3>
+                    <p>Principal Component Analysis (PCA) reduces the number of features while preserving most of the variance. Useful for visualisation, noise reduction, and speeding up other algorithms.</p>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-compress-alt"></i> PCA for visualisation</h4>
+                        <p>This example reduces the 64‑dimensional digits dataset down to 2 principal components, so you can plot the data in 2D. It prints the explained variance ratio and the new shape.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> High‑dimensional data is hard to visualise and can be slow for some algorithms. PCA compresses it.</li>
+                            <li><strong>How it operates:</strong> PCA finds the directions (principal components) that maximise variance. The first component captures the most variance, the second the next, and so on. <code>transform</code> projects the data onto these components.</li>
+                            <li><strong>Effect on output:</strong> You see the proportion of variance explained by each of the 2 components (e.g., 0.28, 0.13) and the reduced shape (1797, 2). This lets you judge how much information was preserved.</li>
+                            <li><strong>Role in program:</strong> It demonstrates a powerful preprocessing step that can speed up training and enable 2D visualisation.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.decomposition <span class="kw">import</span> PCA
+<span class="kw">from</span> sklearn.datasets <span class="kw">import</span> load_digits
+
+digits = load_digits()
+X, y = digits.data, digits.target
+
+pca = PCA(n_components=2)
+X_2d = pca.fit_transform(X)
+
+<span class="fn">print</span>(<span class="st">"Explained variance ratio:"</span>, pca.explained_variance_ratio_)
+<span class="fn">print</span>(<span class="st">"Reduced shape:"</span>, X_2d.shape)</pre></div>
+                    <div class="note-new">✨ PCA is often a first step in exploratory data analysis — project high-dimensional data down to 2D or 3D for human-readable visualisation.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="evaluation" aria-labelledby="eval-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="eval-heading">📈 Evaluation Metrics — How to Know if Your Model Works</h2>
+                    <p>Accuracy isn't enough — understand the full picture</p>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Metric</th><th>Classification</th><th>Regression</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong style="color:var(--text);">Accuracy</strong></td><td style="color:var(--green);">✓</td><td>—</td></tr>
+                            <tr><td><strong style="color:var(--text);">Precision</strong></td><td style="color:var(--green);">✓</td><td>—</td></tr>
+                            <tr><td><strong style="color:var(--text);">Recall</strong></td><td style="color:var(--green);">✓</td><td>—</td></tr>
+                            <tr><td><strong style="color:var(--text);">F1-Score</strong></td><td style="color:var(--green);">✓</td><td>—</td></tr>
+                            <tr><td><strong style="color:var(--text);">Confusion Matrix</strong></td><td style="color:var(--green);">✓</td><td>—</td></tr>
+                            <tr><td><strong style="color:var(--text);">ROC-AUC</strong></td><td style="color:var(--green);">✓</td><td>—</td></tr>
+                            <tr><td><strong style="color:var(--text);">MAE</strong></td><td>—</td><td style="color:var(--green);">✓</td></tr>
+                            <tr><td><strong style="color:var(--text);">RMSE</strong></td><td>—</td><td style="color:var(--green);">✓</td></tr>
+                            <tr><td><strong style="color:var(--text);">R²</strong></td><td>—</td><td style="color:var(--green);">✓</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-box" style="margin-top:1.2rem;">
+                    <h4><i class="fas fa-bullseye"></i> Choosing the Right Metric</h4>
+                    <p>For <strong style="color:var(--text);">imbalanced classification</strong> (fraud detection, rare disease diagnosis), use <strong style="color:var(--text);">precision/recall</strong> or <strong style="color:var(--text);">F1-score</strong> — accuracy can be misleading (99% accuracy on a dataset with 1% fraud could just be predicting "not fraud" for everything). For <strong style="color:var(--text);">regression</strong>, <strong style="color:var(--text);">RMSE</strong> punishes large errors more than MAE.</p>
+                </div>
+                <div class="oop-block">
+                    <h3>📊 Confusion Matrix — The Complete Picture</h3>
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-table"></i> Visualising the confusion matrix</h4>
+                        <p>This snippet is self-contained: it trains a quick classifier on the iris dataset, then computes the confusion matrix and displays it as a plot using <code>ConfusionMatrixDisplay</code>. The matrix shows how many samples of each true class were predicted as each class.</p>
+                        <ul>
+                            <li><strong>Why used:</strong> A confusion matrix gives a detailed breakdown of correct and incorrect predictions per class, which is invaluable for diagnosing model errors.</li>
+                            <li><strong>How it operates:</strong> <code>confusion_matrix</code> creates a 2D array where rows are true labels and columns are predicted labels. The display object renders it as a colour‑coded plot.</li>
+                            <li><strong>Effect on output:</strong> You get a visual heatmap that makes it easy to spot which classes are frequently misclassified.</li>
+                            <li><strong>Role in program:</strong> It helps you understand the model's strengths and weaknesses, guiding further improvements.</li>
+                        </ul>
+                    </div>
+                    <div class="code-snippet"><pre><span class="kw">from</span> sklearn.datasets <span class="kw">import</span> load_iris
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> confusion_matrix, ConfusionMatrixDisplay
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
+
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+cm = confusion_matrix(y_test, y_pred)
+
+<span class="fn">print</span>(<span class="st">"Confusion Matrix:\n"</span>, cm)
+
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+disp.plot()
+plt.show()</pre></div>
+                    <div class="insight">💡 The confusion matrix tells you <em>where</em> your model makes mistakes — which classes are being confused. This guides data collection and feature engineering.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="projects" aria-labelledby="projects-heading-title">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="projects-heading-title">🏗️ ML Projects You Can Build</h2>
+                    <p>Portfolio-ready projects with step-by-step guides</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card" style="border-color:rgba(16,185,129,0.3);">
+                        <div class="card-icon">🏠</div>
+                        <h4>House Price Predictor</h4>
+                        <p>Build a regression model to predict house prices using the California Housing dataset. Learn feature engineering, model selection, and evaluation.</p>
+                        <div class="tags"><span class="tag">regression</span><span class="tag">scikit-learn</span><span class="tag">pandas</span></div>
+                        <span class="card-arrow">View project →</span>
+                    </div>
+                    <div class="card" style="border-color:rgba(245,158,11,0.3);">
+                        <div class="card-icon">📧</div>
+                        <h4>Spam Email Classifier</h4>
+                        <p>Use TF-IDF and Naive Bayes to classify emails as spam or not spam. Learn text preprocessing, feature extraction, and model evaluation.</p>
+                        <div class="tags"><span class="tag">classification</span><span class="tag">NLP</span><span class="tag">Naive Bayes</span></div>
+                        <span class="card-arrow">View project →</span>
+                    </div>
+                    <div class="card" style="border-color:rgba(139,92,246,0.3);">
+                        <div class="card-icon">🛒</div>
+                        <h4>Customer Segmentation</h4>
+                        <p>Use K-Means clustering to group customers by purchasing behaviour. Learn unsupervised learning, visualisation, and business interpretation.</p>
+                        <div class="tags"><span class="tag">clustering</span><span class="tag">K-Means</span><span class="tag">visualisation</span></div>
+                        <span class="card-arrow">View project →</span>
+                    </div>
+                    <div class="card" style="border-color:rgba(239,68,68,0.3);">
+                        <div class="card-icon">🧠</div>
+                        <h4>MNIST Digit Recogniser</h4>
+                        <p>Build a neural network with TensorFlow/Keras to classify handwritten digits. The "Hello World" of deep learning.</p>
+                        <div class="tags"><span class="tag">neural networks</span><span class="tag">TensorFlow</span><span class="tag">image classification</span></div>
+                        <span class="card-arrow">View project →</span>
+                    </div>
+                </div>
+                <div style="background:rgba(75,139,190,.07);border:1px solid rgba(75,139,190,.2);border-radius:var(--card-r);padding:1.1rem 1.4rem;display:flex;flex-direction:column;align-items:flex-start;gap:.8rem;margin-top:1rem;">
+                    <span style="font-size:1.5rem;">🚀</span>
+                    <div>
+                        <p style="font-size:.78rem;color:var(--text);font-weight:700;margin-bottom:.15rem;">Each project includes a complete walkthrough</p>
+                        <p style="font-size:.72rem;">From data loading to model deployment — with code and explanations.</p>
+                    </div>
+                    <a href="#projects" class="btn btn-primary" style="width:100%;">Explore all ML projects <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="faq" aria-labelledby="faq-heading">
+            <div class="page-col">
+                <div class="section-intro"><h2 id="faq-heading">❓ ML FAQ — Common Questions</h2><p>Honest answers for learners</p></div>
+                <div class="faq-list" style="margin-top:1.2rem;">
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-ml-1"><h3>Do I need a maths degree to learn ML?</h3><span class="faq-toggle">+</span></button><div class="faq-a" id="faq-ml-1"><p>No. You need basic algebra and statistics — the same level you'd get from a high school math education. The Python libraries (scikit-learn, TensorFlow) handle the heavy mathematics for you. As you advance, you'll naturally deepen your understanding.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-ml-2"><h3>Which ML library should I learn first?</h3><span class="faq-toggle">+</span></button><div class="faq-a" id="faq-ml-2"><p><strong style="color:var(--text);">scikit-learn</strong> — it's the most accessible, has a consistent API, and covers 90% of classical ML tasks. Once you're comfortable with scikit-learn, learn <strong style="color:var(--text);">TensorFlow</strong> or <strong style="color:var(--text);">PyTorch</strong> for deep learning.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-ml-3"><h3>What's the difference between AI, ML, and deep learning?</h3><span class="faq-toggle">+</span></button><div class="faq-a" id="faq-ml-3"><p><strong style="color:var(--text);">AI</strong> is the broadest — any system that exhibits intelligent behaviour. <strong style="color:var(--text);">ML</strong> is a subset of AI where systems learn from data. <strong style="color:var(--text);">Deep learning</strong> is a subset of ML using neural networks with many layers — particularly powerful for image, audio, and text data.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-ml-4"><h3>How much data do I need to train a model?</h3><span class="faq-toggle">+</span></button><div class="faq-a" id="faq-ml-4"><p>It depends on the problem. Simple models (logistic regression) can work with hundreds of samples. Deep learning often requires tens of thousands to millions of samples. Start with small datasets (iris, housing, MNIST) to learn the workflow, then scale up.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-ml-5"><h3>What is overfitting and how do I prevent it?</h3><span class="faq-toggle">+</span></button><div class="faq-a" id="faq-ml-5"><p>Overfitting happens when your model learns the training data too well — including noise — and fails to generalise to new data. Prevent it with: <strong style="color:var(--text);">cross-validation</strong>, <strong style="color:var(--text);">regularisation</strong> (L1/L2), <strong style="color:var(--text);">early stopping</strong>, <strong style="color:var(--text);">simpler models</strong>, and <strong style="color:var(--text);">more training data</strong>.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-ml-6"><h3>Can I do ML on my laptop?</h3><span class="faq-toggle">+</span></button><div class="faq-a" id="faq-ml-6"><p>Yes — for most tasks. scikit-learn models run on any laptop. Deep learning with small datasets (MNIST, CIFAR-10) works on CPU. For larger models, use Google Colab (free GPU) or cloud services.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section id="community" aria-label="Newsletter">
+            <div class="page-col">
+                <div class="subscribe-box" id="subscribeBox">
+                    <h3>📬 ML Weekly — stay current</h3>
+                    <p>New research, practical tips, and Python ML news — every week</p>
+                    <form class="sub-form" id="subscribeForm" novalidate>
+                        <input type="email" id="subEmail" name="email" placeholder="your@email.dev" required autocomplete="email" aria-label="Email address">
+                        <button type="submit" id="subBtn"><i class="fas fa-paper-plane"></i> Subscribe — it's free</button>
+                        <div class="sub-message" id="subMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Share this resource">
+            <div class="page-col">
+                <div class="share-box" id="shareSection">
+                    <h3>📤 Share this ML guide</h3>
+                    <p style="margin-top:.3rem;">Help other developers start their ML journey</p>
+                    <div class="share-row" id="shareRowBottom">
+                        <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                        <a href="#" class="share-btn" id="shareEmailBottom" target="_blank" rel="noopener"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></div>
+
+        <section aria-labelledby="comments-heading">
+            <div class="page-col">
+                <h2 id="comments-heading" style="margin-bottom:1.2rem;">🗣️ Learner Voices</h2>
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;margin-bottom:1rem;">
+                    <form class="comment-form" id="commentForm" novalidate>
+                        <input type="text" id="commentName" placeholder="Display name" required autocomplete="name">
+                        <textarea id="commentText" placeholder="Ask a question, share your ML project, or leave a tip …" rows="3" required></textarea>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Publish comment</button>
+                    </form>
+                </div>
+                <div class="empty-state" id="commentEmpty"><i class="fas fa-comments"></i><p>No comments yet — start the ML conversation!</p></div>
+                <div id="commentList"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>ML Topics</h5>
+                    <ul>
+                        <li><a href="#supervised">Supervised Learning</a></li>
+                        <li><a href="#unsupervised">Unsupervised Learning</a></li>
+                        <li><a href="#evaluation">Evaluation Metrics</a></li>
+                        <li><a href="#libraries">ML Libraries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Python Learning</h5>
+                    <ul>
+                        <li><a href="index.html">Python Tutorial</a></li>
+                        <li><a href="python-basics.html">Python Basics</a></li>
+                        <li><a href="python-classes.html">Python Classes</a></li>
+                        <li><a href="python-async.html">Async Python</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://github.com/pansensoyglenn-dev" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · ML Fundamentals</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fas fa-brain" style="color:#4B8BBE;"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            function qs(sel, ctx) { return (ctx || document).querySelector(sel); }
+
+            function qsa(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+
+            function escapeHtml(str) {
+                var d = document.createElement('div');
+                d.textContent = str;
+                return d.innerHTML;
+            }
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+            var focusableDrawer = drawer ? qsa('button, a, [tabindex]:not([tabindex="-1"])', drawer) : [];
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                if (menuToggle) menuToggle.focus();
+            }
+
+            function openDrawer() {
+                if (menuToggle) menuToggle.classList.add('active');
+                if (drawer) drawer.classList.add('active');
+                if (overlay) overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (focusableDrawer.length) focusableDrawer[0].focus();
+            }
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (drawer.classList.contains('active')) {
+                        closeDrawer();
+                    } else {
+                        openDrawer();
+                    }
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeDrawer();
+            });
+
+            qsa('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            var counters = qsa('.counter');
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting && !e.target._done) {
+                        e.target._done = true;
+                        var target = parseInt(e.target.dataset.target, 10);
+                        var cur = 0;
+                        var step = Math.ceil(target / 60);
+                        var t = setInterval(function() {
+                            cur += step;
+                            if (cur >= target) { e.target.textContent = target.toLocaleString() + '+';
+                                clearInterval(t); } else e.target.textContent = cur.toLocaleString();
+                        }, 22);
+                    }
+                });
+            }, { threshold: .5 });
+            counters.forEach(function(c) { obs.observe(c); });
+
+            window.toggleFaq = function(btn) {
+                var item = btn.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var isOpen = answer.classList.contains('open');
+                qsa('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    var parentBtn = a.closest('.faq-item').querySelector('.faq-q');
+                    if (parentBtn) parentBtn.setAttribute('aria-expanded', 'false');
+                    var toggle = parentBtn ? parentBtn.querySelector('.faq-toggle') : null;
+                    if (toggle) toggle.textContent = '+';
+                });
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                    var toggle = btn.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '−';
+                } else {
+                    btn.setAttribute('aria-expanded', 'false');
+                    var toggle = btn.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '+';
+                }
+            };
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            var tocBody = document.getElementById('tocBody');
+            var tocLinks = tocBody ? qsa('a', tocBody) : [];
+
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = tocPanel.classList.toggle('open');
+                    tocToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        var target = e.target;
+                        if (!tocPanel.contains(target) && target !== tocToggle && !tocToggle.contains(target)) {
+                            tocPanel.classList.remove('open');
+                            tocToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                        tocToggle.setAttribute('aria-expanded', 'false');
+                        tocToggle.focus();
+                    }
+                });
+            }
+            if (tocClose) {
+                tocClose.addEventListener('click', function() {
+                    if (tocPanel) { tocPanel.classList.remove('open');
+                        tocToggle.setAttribute('aria-expanded', 'false'); }
+                });
+            }
+
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY + 120;
+                var currentId = null;
+                document.querySelectorAll('section[id], div[id]').forEach(function(el) {
+                    if (el.offsetTop <= scrollY) { currentId = el.id; }
+                });
+                tocLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    if (href && href === '#' + currentId) {
+                        link.classList.add('toc-highlight');
+                    } else {
+                        link.classList.remove('toc-highlight');
+                    }
+                });
+            }, { passive: true });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/aiml.html');
+            var PAGE_TITLE = encodeURIComponent('ML Fundamentals – Machine Learning with Python 2026');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+
+            qsa('#shareFb, #shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            qsa('#shareTw, #shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            qsa('#shareLi, #shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            qsa('#shareWa, #shareWaBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            qsa('#shareTg, #shareTgBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            var shareEmailB = document.getElementById('shareEmailBottom');
+            if (shareEmailB) {
+                shareEmailB.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'mailto:?subject=' + PAGE_TITLE + '&body=Check%20out%20this%20free%20ML%20fundamentals%20guide%3A%20' +
+                        PAGE_URL;
+                });
+            }
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/aiml.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() {
+                        fallbackCopy(url, btn);
+                    });
+                } else {
+                    fallbackCopy(url, btn);
+                }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            var subForm = document.getElementById('subscribeForm');
+            var subEmail = document.getElementById('subEmail');
+            var subMessage = document.getElementById('subMessage');
+            var subBtn = document.getElementById('subBtn');
+            if (subForm) {
+                subForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var email = subEmail.value.trim();
+                    if (!email || !email.includes('@') || !email.includes('.')) {
+                        subMessage.textContent = 'Please enter a valid email address.';
+                        subMessage.className = 'sub-message error';
+                        return;
+                    }
+                    subBtn.disabled = true;
+                    subBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing…';
+                    subMessage.className = 'sub-message';
+                    subMessage.textContent = '';
+                    setTimeout(function() {
+                        subMessage.textContent = '🎉 You\'re subscribed! Check your inbox for the welcome email.';
+                        subMessage.className = 'sub-message success';
+                        subEmail.value = '';
+                        subBtn.disabled = false;
+                        subBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe — it\'s free';
+                    }, 1200);
+                });
+            }
+
+            var commentForm = document.getElementById('commentForm');
+            var commentName = document.getElementById('commentName');
+            var commentText = document.getElementById('commentText');
+            var commentList = document.getElementById('commentList');
+            var commentEmpty = document.getElementById('commentEmpty');
+
+            var comments = [];
+            try {
+                var stored = localStorage.getItem('ml_tutorial_comments');
+                if (stored) comments = JSON.parse(stored);
+            } catch (_) {}
+
+            function renderComments() {
+                if (!commentList) return;
+                if (comments.length === 0) {
+                    commentList.innerHTML = '';
+                    if (commentEmpty) commentEmpty.style.display = 'block';
+                    return;
+                }
+                if (commentEmpty) commentEmpty.style.display = 'none';
+                commentList.innerHTML = comments.map(function(c, i) {
+                    return '<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem 1.2rem;margin-bottom:.6rem;">' +
+                        '<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">' +
+                        '<span style="font-weight:700;color:var(--gold);font-size:.8rem;">' + escapeHtml(c.name) +
+                        '</span>' +
+                        '<span style="font-size:.6rem;color:var(--muted);">' + (c.time || 'just now') + '</span>' +
+                        '</div>' +
+                        '<p style="font-size:.78rem;color:var(--text);margin:0;">' + escapeHtml(c.text) + '</p>' +
+                        '</div>';
+                }).join('');
+            }
+
+            if (commentForm) {
+                commentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var name = commentName.value.trim() || 'Anonymous';
+                    var text = commentText.value.trim();
+                    if (!text) return;
+                    comments.unshift({ name: name, text: text, time: new Date().toLocaleString() });
+                    try {
+                        localStorage.setItem('ml_tutorial_comments', JSON.stringify(comments));
+                    } catch (_) {}
+                    renderComments();
+                    commentText.value = '';
+                    commentName.value = '';
+                });
+            }
+            renderComments();
+
+            function indentCode(code, spaces) {
+                spaces = spaces || 4;
+                var prefix = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) {
+                    return line ? prefix + line : '';
+                }).join('\n');
+            }
+
+            function hasFileOperations(code) {
+                var patterns = [
+                    /open\s*\(/,
+                    /Path\s*\(/,
+                    /with\s+open\s*\(/,
+                    /\.read\s*\(/,
+                    /\.write\s*\(/,
+                    /os\.path/,
+                    /shutil\./,
+                    /glob\s*\(/,
+                    /__file__/
+                ];
+                for (var i = 0; i < patterns.length; i++) {
+                    if (patterns[i].test(code)) return true;
+                }
+                return false;
+            }
+
+            function detectRequiredPackages(code) {
+                var packages = [];
+                var importRegex = /(?:from|import)\s+([a-zA-Z0-9_]+)/g;
+                var match;
+                while ((match = importRegex.exec(code)) !== null) {
+                    var mod = match[1];
+                    var pkgMap = {
+                        'sklearn': 'scikit-learn',
+                        'pandas': 'pandas',
+                        'numpy': 'numpy',
+                        'matplotlib': 'matplotlib',
+                        'joblib': 'joblib',
+                        'seaborn': 'seaborn',
+                        'scipy': 'scipy',
+                        'torch': 'torch',
+                        'tensorflow': 'tensorflow',
+                        'xgboost': 'xgboost',
+                        'lightgbm': 'lightgbm'
+                    };
+                    if (pkgMap[mod] && !packages.includes(pkgMap[mod])) {
+                        packages.push(pkgMap[mod]);
+                    }
+                }
+                return packages;
+            }
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+            var pyodideLoading = false;
+            var loadedPackages = new Set();
+
+            function loadPyodideOnce() {
+                return new Promise(function(resolve, reject) {
+                    if (pyodideReady) {
+                        resolve(pyodideInstance);
+                        return;
+                    }
+                    if (pyodideLoading) {
+                        var check = setInterval(function() {
+                            if (pyodideReady) {
+                                clearInterval(check);
+                                resolve(pyodideInstance);
+                            }
+                        }, 100);
+                        return;
+                    }
+                    pyodideLoading = true;
+                    if (typeof loadPyodide === 'undefined') {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js';
+                        script.onload = function() {
+                            loadPyodide().then(function(py) {
+                                pyodideInstance = py;
+                                pyodideReady = true;
+                                pyodideLoading = false;
+                                resolve(pyodideInstance);
+                            }).catch(reject);
+                        };
+                        script.onerror = function() { reject(new Error('Failed to load Pyodide script')); };
+                        document.head.appendChild(script);
+                    } else {
+                        loadPyodide().then(function(py) {
+                            pyodideInstance = py;
+                            pyodideReady = true;
+                            pyodideLoading = false;
+                            resolve(pyodideInstance);
+                        }).catch(reject);
+                    }
+                });
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime and packages... (first run may take 10–15s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideOnce();
+
+                    var needed = detectRequiredPackages(code);
+                    var toLoad = needed.filter(function(pkg) { return !loadedPackages.has(pkg); });
+                    if (toLoad.length > 0) {
+                        outputEl.textContent += 'Loading packages: ' + toLoad.join(', ') + ' ...\n';
+                        for (var pkg of toLoad) {
+                            await pyodide.loadPackage(pkg);
+                            loadedPackages.add(pkg);
+                        }
+                        outputEl.textContent += 'Packages loaded.\n\n';
+                    }
+
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    if (hasFileOperations(code)) {
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent =
+                            '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+
+                    var indentedCode = indentCode(code, 4);
+                    var wrappedCode =
+                        'import sys\n' +
+                        'from io import StringIO\n' +
+                        '_captured_output = StringIO()\n' +
+                        '_old_stdout = sys.stdout\n' +
+                        'sys.stdout = _captured_output\n' +
+                        'try:\n' + indentedCode + '\n' +
+                        'finally:\n' +
+                        '    sys.stdout = _old_stdout\n' +
+                        '_captured_output.getvalue()\n';
+
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+
+                    if (outputEl.textContent.includes('⚠️')) {
+                        outputEl.textContent += result || '✓ Code executed successfully (no output).';
+                    } else {
+                        outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                        outputEl.style.color = '#4ade80';
+                    }
+                } catch (err) {
+                    if (outputEl.textContent.includes('⚠️')) {
+                        outputEl.textContent += '\n\nError:\n' + err.message;
+                    } else {
+                        outputEl.className = 'output-panel error';
+                        outputEl.textContent = 'Error:\n' + err.message;
+                        outputEl.style.color = '#f87171';
+                    }
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() {
+                        fallbackCopyCode(btn, code);
+                    });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+
+            function enhanceCodeBlocks() {
+                var blocks = qsa('.code-snippet:not(.code-preview .code-snippet)');
+                blocks.forEach(function(block) {
+                    if (block.closest('.code-container')) return;
+                    var pre = block.querySelector('pre');
+                    if (!pre) return;
+                    var codeText = pre.textContent;
+
+                    var container = document.createElement('div');
+                    container.className = 'code-container';
+
+                    var header = document.createElement('div');
+                    header.className = 'code-header';
+                    header.innerHTML =
+                        '<span style="color:var(--muted);">python</span>' +
+                        '<div class="code-actions">' +
+                        '<button class="code-btn copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>' +
+                        '<button class="code-btn run-btn" type="button"><i class="fas fa-play"></i> Run</button>' +
+                        '</div>';
+
+                    var outputPanel = document.createElement('div');
+                    outputPanel.className = 'output-panel';
+
+                    block.parentNode.insertBefore(container, block);
+                    container.appendChild(header);
+                    container.appendChild(block);
+                    container.appendChild(outputPanel);
+
+                    var copyBtnEl = header.querySelector('.copy-btn');
+                    var runBtnEl = header.querySelector('.run-btn');
+
+                    copyBtnEl.addEventListener('click', function() { copyCode(copyBtnEl, codeText); });
+                    runBtnEl.addEventListener('click', function() { runCode(codeText, outputPanel, runBtnEl); });
+                });
+            }
+
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                enhanceCodeBlocks();
+            } else {
+                document.addEventListener('DOMContentLoaded', enhanceCodeBlocks);
+            }
+
+        })();
+    </script>
+</body>
+</html>
