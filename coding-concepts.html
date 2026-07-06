@@ -1,0 +1,2947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Coding Concepts – Python Programming Guide | Poetic Bytes</title>
+    <meta name="description" content="Master Python coding concepts with practical examples. Learn variables, functions, OOP, data structures, decorators, generators, async, and more.">
+    <meta name="keywords" content="python coding concepts, python programming, python tutorial, python examples, learn python, python functions, python oop, python data structures">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/coding-concepts.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/coding-concepts.html">
+    <meta property="og:title" content="Coding Concepts – Python Programming Guide | Poetic Bytes">
+    <meta property="og:description" content="Master Python coding concepts with practical examples. Learn variables, functions, OOP, data structures, decorators, generators, async, and more.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/pansensoyglenn-dev/articles/main/assets/og-poetic-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@PoeticGlenn">
+    <meta name="twitter:creator" content="@PoeticGlenn">
+    <meta name="twitter:title" content="Coding Concepts – Python Programming Guide | Poetic Bytes">
+    <meta name="twitter:description" content="Master Python coding concepts with practical examples.">
+    <meta name="theme-color" content="#0B121C">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .explanation-box {
+            background: rgba(16, 185, 129, .06);
+            border-left: 3px solid var(--teal);
+            border-radius: 6px;
+            padding: .7rem 1rem;
+            margin: .6rem 0 .9rem 0;
+            font-size: .76rem;
+            color: var(--text);
+        }
+        .explanation-box strong {
+            color: var(--gold);
+        }
+        .explanation-box .why,
+        .explanation-box .how,
+        .explanation-box .significance,
+        .explanation-box .role,
+        .explanation-box .effects {
+            display: block;
+            margin-top: .3rem;
+        }
+        .explanation-box .why::before {
+            content: "❓ Why: ";
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .explanation-box .how::before {
+            content: "⚙️ How: ";
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .explanation-box .significance::before {
+            content: "⭐ Significance: ";
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .explanation-box .role::before {
+            content: "🎯 Role: ";
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .explanation-box .effects::before {
+            content: "📤 Effects on output: ";
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+
+        .code-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: .5rem;
+            padding: .6rem .7rem 0;
+        }
+        .code-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--blue-lt);
+            font-size: .66rem;
+            font-weight: 700;
+            padding: .35rem .7rem;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: .02em;
+            transition: background .2s, color .2s;
+        }
+        .code-btn:hover {
+            background: rgba(75, 139, 190, .28);
+        }
+        .code-btn:disabled {
+            opacity: .55;
+            cursor: wait;
+        }
+        .code-btn.run-btn {
+            color: var(--green);
+            border-color: rgba(16, 185, 129, .3);
+            background: rgba(16, 185, 129, .1);
+        }
+        .code-btn.run-btn:hover {
+            background: rgba(16, 185, 129, .22);
+        }
+        .code-output {
+            display: none;
+            background: #06101a;
+            border-top: 1px solid var(--border);
+            border-radius: 0 0 6px 6px;
+            padding: .8rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.6;
+            color: #4ade80;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 280px;
+            overflow-y: auto;
+            margin-top: .4rem;
+        }
+        .code-output.show {
+            display: block;
+        }
+        .code-output.error {
+            color: #f87171;
+        }
+        .code-output .out-label {
+            display: block;
+            color: var(--muted);
+            font-style: italic;
+            font-family: 'Syne', sans-serif;
+            font-size: .68rem;
+            margin-bottom: .4rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .fn {
+            color: #d2a8ff;
+        }
+        .st {
+            color: #a5d6ff;
+        }
+        .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+        }
+
+        .cat-label {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .68rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin: 1.8rem 0 .8rem;
+        }
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+            min-height: 140px;
+        }
+        .card h4 {
+            color: var(--gold);
+            font-size: .85rem;
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .card .card-icon {
+            font-size: 1.4rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-exp {
+            background: rgba(239, 68, 68, .15);
+            color: #f87171;
+        }
+
+        .intro-hero {
+            background: linear-gradient(145deg, var(--panel), var(--bg));
+            border-radius: var(--card-r);
+            padding: 2rem 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .intro-hero h1 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+        }
+        .intro-hero p {
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: .9rem;
+            color: var(--text);
+        }
+        .intro-hero .badge-strip {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .5rem;
+        }
+
+        .outro-box {
+            background: linear-gradient(145deg, var(--panel), var(--bg));
+            border-radius: var(--card-r);
+            padding: 2rem 1.8rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .outro-box h2 {
+            color: var(--gold);
+            font-size: 1.4rem;
+        }
+        .outro-box p {
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: .88rem;
+            color: var(--text);
+        }
+        .outro-box .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .8rem;
+            margin-top: 1.2rem;
+        }
+
+        .back-home-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: .8rem;
+            padding: 0.8rem 0 0.4rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.2rem;
+        }
+        .back-home-bar .btn {
+            width: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .back-home-bar .page-nav {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-size: .7rem;
+            color: var(--muted);
+        }
+        .back-home-bar .page-nav a {
+            color: var(--blue-lt);
+            text-decoration: none;
+        }
+        .back-home-bar .page-nav a:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width:480px) {
+            .intro-hero {
+                padding: 1.5rem 1rem;
+            }
+            .intro-hero h1 {
+                font-size: 1.4rem;
+            }
+            .outro-box {
+                padding: 1.5rem 1rem;
+            }
+            .outro-box h2 {
+                font-size: 1.1rem;
+            }
+            .back-home-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .back-home-bar .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#toc">Curriculum</a></li>
+                <li><a href="index.html#new-lessons">New Lessons</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pathways">Pathways</a></li>
+                <li><a href="index.html#instructor">Instructor</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="programming-history.html">History</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="index.html#toc"><i class="fas fa-book"></i>Curriculum</a></li>
+                <li><a href="index.html#new-lessons"><i class="fas fa-star"></i>New Lessons</a></li>
+                <li><a href="index.html#features"><i class="fas fa-magic"></i>Features</a></li>
+                <li><a href="index.html#pathways"><i class="fas fa-road"></i>Pathways</a></li>
+                <li><a href="index.html#instructor"><i class="fas fa-user"></i>Instructor</a></li>
+                <li><a href="index.html#faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
+                <li><a href="programming-history.html"><i class="fas fa-history"></i>History of Programming</a></li>
+            </ul></div>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main style="padding-top:56px;">
+
+        <div class="page-col">
+            <div class="back-home-bar">
+                <a href="index.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+                <div class="page-nav">
+                    <span><i class="fas fa-book-open"></i> Python Concepts</span>
+                    <span>•</span>
+                    <a href="#top">Top <i class="fas fa-chevron-up"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <section aria-labelledby="concepts-heading" id="top">
+            <div class="page-col">
+
+                <div class="intro-hero">
+                    <h1>🐍 Python Coding Concepts</h1>
+                    <p>A comprehensive guide to Python programming concepts with practical, copyable code examples. Each snippet is fully explained — why it matters, how it works, its role, significance, and effect on output. All comments have been removed for clarity, and every example is ready to run in your browser.</p>
+                    <div class="badge-strip">
+                        <span class="badge badge-beg">Beginner</span>
+                        <span class="badge badge-int">Intermediate</span>
+                        <span class="badge badge-adv">Advanced</span>
+                        <span class="badge badge-exp">Expert</span>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🔤</span> Variables &amp; Data Types</div>
+
+                <div class="oop-block">
+                    <h3>📦 Variables and Assignment</h3>
+                    <p>Python variables are dynamically typed – you don't need to declare types explicitly. Assignment uses the <code>=</code> operator.</p>
+                    <div class="code-snippet"><pre>name = "Glenn"
+age = 28
+height = 1.75
+is_student = True
+
+x, y, z = 10, 20, 30
+print(x, y, z)
+
+a, b = 5, 10
+a, b = b, a
+print(a, b)
+
+value = 42
+print(type(value))
+value = "Hello"
+print(type(value))</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">This code demonstrates the core concept of variable assignment in Python, which is fundamental to storing and manipulating data. Every program uses variables to hold values.</span>
+                        <span class="how">The assignment operator <code>=</code> binds a value to a name. Multiple assignment allows setting several variables at once. Swapping values with <code>a, b = b, a</code> is a Pythonic shortcut. Dynamic typing means the same variable can hold different types over time — <code>type()</code> reveals the current type.</span>
+                        <span class="significance">Dynamic typing is one of Python's defining features, enabling rapid development without type boilerplate. It reduces verbosity and makes code more flexible.</span>
+                        <span class="role">This snippet serves as the foundation for all subsequent examples. It establishes how data is stored, updated, and inspected, which is essential for every other operation in the program.</span>
+                        <span class="effects">The output shows the assigned values, the swapped values, and the changing type of <code>value</code> — from <code>int</code> to <code>str</code>. This visually reinforces Python's dynamic nature.</span>
+                    </div>
+                    <div class="insight">💡 Python is dynamically typed – variables can change type during runtime. Use <code>type()</code> to check the current type.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔢 Numeric Types</h3>
+                    <p>Python supports integers, floating-point numbers, and complex numbers.</p>
+                    <div class="code-snippet"><pre>integer_num = 42
+negative = -10
+big_num = 1_000_000
+
+float_num = 3.14159
+scientific = 1.5e6
+
+complex_num = 3 + 4j
+print(complex_num.real, complex_num.imag)
+
+print(int(3.14))
+print(float(42))
+print(complex(2, 3))</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Numeric types are the bedrock of mathematical and scientific computing. This snippet shows Python's handling of integers, floats, and complex numbers, which are used in virtually every non-trivial program.</span>
+                        <span class="how">Integers are arbitrary-precision. Floats are IEEE 754 double-precision. Complex numbers have a real and imaginary part, accessed via <code>.real</code> and <code>.imag</code>. Type conversion functions <code>int()</code>, <code>float()</code>, and <code>complex()</code> convert between types.</span>
+                        <span class="significance">Python's numeric types are robust and flexible. The underscore in <code>1_000_000</code> improves readability. Complex numbers are natively supported, which is rare among general-purpose languages.</span>
+                        <span class="role">This snippet provides the numeric toolkit for calculations, simulations, and data processing throughout the page.</span>
+                        <span class="effects">The output shows the real and imaginary parts of a complex number, and the results of type conversions — demonstrating how Python handles different numeric representations.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 Strings</h3>
+                    <p>Strings are immutable sequences of characters. Python offers powerful string manipulation methods.</p>
+                    <div class="code-snippet"><pre>single = 'Hello'
+double = "World"
+multiline = """This is a
+multiline string"""
+
+name = "Glenn"
+age = 28
+print(f"My name is {name} and I am {age} years old")
+
+text = "  Python Programming  "
+print(text.strip())
+print(text.upper())
+print(text.lower())
+print(text.replace("Python", "Java"))
+
+s = "Hello World"
+print(s[0:5])
+print(s[6:])
+print(s[::-1])
+
+words = ["Python", "is", "awesome"]
+sentence = " ".join(words)
+print(sentence)
+print(sentence.split())</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Strings are the primary way to handle text in Python. This snippet covers creation, formatting, manipulation, and slicing — all essential for user input, output, and data processing.</span>
+                        <span class="how">Strings can be created with single, double, or triple quotes. f-strings provide inline variable interpolation. Methods like <code>strip()</code>, <code>upper()</code>, and <code>lower()</code> transform text. Slicing <code>[start:end:step]</code> extracts substrings. <code>join()</code> and <code>split()</code> convert between strings and lists.</span>
+                        <span class="significance">String manipulation is ubiquitous in programming — from parsing files to building user interfaces. Python's string methods are both powerful and intuitive.</span>
+                        <span class="role">This snippet provides the text-handling tools used in data validation, output formatting, and string processing throughout the guide.</span>
+                        <span class="effects">The output demonstrates f-string interpolation, whitespace trimming, case conversion, substring extraction (including reversal), and list-to-string conversion — each showing a different aspect of string power.</span>
+                    </div>
+                    <div class="tags"><span class="tag">f-strings</span><span class="tag">slicing</span><span class="tag">join</span><span class="tag">split</span></div>
+                </div>
+
+                <div class="cat-label"><span>⚙️</span> Operators</div>
+
+                <div class="oop-block">
+                    <h3>➕ Arithmetic &amp; Comparison Operators</h3>
+                    <p>Python provides all standard arithmetic and comparison operators.</p>
+                    <div class="code-snippet"><pre>a, b = 10, 3
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a // b)
+print(a % b)
+print(a ** b)
+
+x, y = 5, 10
+print(x == y)
+print(x != y)
+print(x < y)
+print(x > y)
+print(x <= y)
+print(x >= y)
+
+is_raining = True
+has_umbrella = False
+print(is_raining and has_umbrella)
+print(is_raining or has_umbrella)
+print(not is_raining)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Operators are the building blocks of expressions. This snippet covers arithmetic (math), comparison (logic), and logical operators — everything needed to perform calculations and make decisions.</span>
+                        <span class="how">Arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> (float division), <code>//</code> (floor division), <code>%</code> (modulo), <code>**</code> (exponent). Comparison: <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Logical: <code>and</code>, <code>or</code>, <code>not</code>. Each operator returns a boolean or numeric result.</span>
+                        <span class="significance">Operators are the core of Python's expression syntax. Understanding operator precedence and behavior is crucial for writing correct, efficient code.</span>
+                        <span class="role">This snippet provides the decision-making and calculation machinery used in conditional statements, loops, and data transformations throughout the page.</span>
+                        <span class="effects">The output shows the results of each arithmetic operation, the truth values of comparisons, and the boolean results of logical combinations — demonstrating how Python evaluates expressions.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔗 Membership &amp; Identity Operators</h3>
+                    <p><code>in</code>, <code>not in</code> check membership. <code>is</code>, <code>is not</code> check identity (object reference).</p>
+                    <div class="code-snippet"><pre>fruits = ["apple", "banana", "cherry"]
+print("apple" in fruits)
+print("grape" in fruits)
+print("grape" not in fruits)
+
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+print(a is b)
+print(a is c)
+print(a is not b)
+
+while (n := int(input("Enter a number (0 to quit): "))) != 0:
+    print(f"Square of {n} is {n * n}")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Membership and identity operators are essential for checking containment and object equality. The walrus operator (<code>:=</code>) is a modern addition that simplifies loops and conditionals.</span>
+                        <span class="how"><code>in</code> and <code>not in</code> check if a value exists in a sequence. <code>is</code> and <code>is not</code> compare object identities (memory addresses), not values. The walrus operator assigns a value and returns it in a single expression, allowing <code>while (n := input())</code> to both get input and test it.</span>
+                        <span class="significance">Understanding the difference between <code>==</code> (value equality) and <code>is</code> (identity) is crucial for avoiding subtle bugs. The walrus operator improves code conciseness and readability.</span>
+                        <span class="role">Membership operators are used for data validation and filtering. Identity operators are used for singleton checks (e.g., <code>if x is None</code>). The walrus operator is used in loops to reduce repetition.</span>
+                        <span class="effects">The output shows boolean results for membership checks, identity comparisons (showing that <code>a is b</code> is False because they are distinct objects, while <code>a is c</code> is True), and the interactive square-calculating loop.</span>
+                    </div>
+                    <div class="insight">💡 Use <code>==</code> for value comparison, <code>is</code> for object identity. <code>is</code> is typically used with <code>None</code>: <code>if x is None:</code></div>
+                </div>
+
+                <div class="cat-label"><span>🔄</span> Control Flow</div>
+
+                <div class="oop-block">
+                    <h3>🔀 Conditionals – if, elif, else</h3>
+                    <p>Python uses indentation to define code blocks. No curly braces required.</p>
+                    <div class="code-snippet"><pre>score = 85
+
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"Grade: {grade}")
+
+age = 18
+status = "Adult" if age >= 18 else "Minor"
+print(status)
+
+x = 10
+if x > 0:
+    if x % 2 == 0:
+        print("Positive even number")
+    else:
+        print("Positive odd number")
+else:
+    print("Non-positive number")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Conditionals direct the flow of execution based on boolean expressions. They are the foundation of decision-making in programs, enabling different behavior for different inputs.</span>
+                        <span class="how">The <code>if</code>/<code>elif</code>/<code>else</code> chain evaluates conditions in order. The first true condition executes its block. The ternary operator <code>value_if_true if condition else value_if_false</code> provides inline conditional assignment. Nested conditionals allow multi-level decision trees.</span>
+                        <span class="significance">Indentation-based blocks are a distinctive feature of Python, enforcing readability. The ternary operator reduces verbosity for simple conditionals.</span>
+                        <span class="role">This snippet provides the decision-making logic used in validation, routing, and business logic throughout the page.</span>
+                        <span class="effects">The output shows the grade assignment for a score of 85, the status determination for age 18, and the nested conditional output for x=10 — each demonstrating a different conditional pattern.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔁 Loops – for and while</h3>
+                    <p>Python's <code>for</code> loop iterates over iterables. <code>while</code> loops run while a condition is true.</p>
+                    <div class="code-snippet"><pre>for i in range(5):
+    print(i, end=" ")
+
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+for i, fruit in enumerate(fruits, start=1):
+    print(f"{i}. {fruit}")
+
+count = 0
+while count < 5:
+    print(count, end=" ")
+    count += 1
+
+for i in range(10):
+    if i == 5:
+        break
+    if i % 2 == 0:
+        continue
+    print(i, end=" ")
+
+for i in range(3):
+    print(i)
+else:
+    print("Loop completed")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Loops are essential for repetitive tasks, iterating over data structures, and performing operations until a condition is met.</span>
+                        <span class="how"><code>for</code> iterates over any iterable (range, list, tuple, string, etc.). <code>enumerate()</code> provides both index and value. <code>while</code> repeats while its condition is true. <code>break</code> exits the loop, <code>continue</code> skips to the next iteration. The <code>else</code> clause on a loop runs if the loop completes without a <code>break</code>.</span>
+                        <span class="significance">Python's <code>for</code> loop is more flexible than C-style loops, as it works with any iterable. The <code>else</code> clause is a unique feature that simplifies search-and-fail patterns.</span>
+                        <span class="role">Loops are used to process collections, implement algorithms, and control repetitive execution throughout the page.</span>
+                        <span class="effects">The output shows range iteration, list iteration with enumeration, while-loop counting, break/continue behavior (printing odd numbers less than 5), and the for-else completion message.</span>
+                    </div>
+                    <div class="tags"><span class="tag">range</span><span class="tag">enumerate</span><span class="tag">break</span><span class="tag">continue</span><span class="tag">for-else</span></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🎯 Match Statement (Python 3.10+)</h3>
+                    <p>Structural pattern matching – like a powerful switch statement.</p>
+                    <div class="code-snippet"><pre>value = 42
+
+match value:
+    case 0:
+        print("Zero")
+    case 1:
+        print("One")
+    case 42:
+        print("The answer")
+    case _:
+        print("Other")
+
+match value:
+    case n if n > 0:
+        print("Positive")
+    case n if n < 0:
+        print("Negative")
+    case _:
+        print("Zero")
+
+point = (3, 4)
+match point:
+    case (0, 0):
+        print("Origin")
+    case (x, 0):
+        print(f"On X-axis at {x}")
+    case (0, y):
+        print(f"On Y-axis at {y}")
+    case (x, y):
+        print(f"Point at ({x}, {y})")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">The <code>match</code> statement is a modern addition that brings powerful pattern matching to Python, replacing long if-elif chains with cleaner, more expressive code.</span>
+                        <span class="how"><code>match</code> compares a value against multiple <code>case</code> patterns. The wildcard <code>_</code> matches anything. Guards (<code>if</code> after a pattern) add conditions. Structural matching works with tuples, lists, and data classes, extracting values into variables.</span>
+                        <span class="significance">Pattern matching makes code more declarative and less error-prone. It's particularly useful for parsing, handling different data shapes, and implementing state machines.</span>
+                        <span class="role">This snippet demonstrates how to use match for value-based branching, conditional guards, and destructuring complex data structures.</span>
+                        <span class="effects">The output shows "The answer" for value 42, "Positive" for the guard match, and "Point at (3, 4)" for the tuple destructuring — each demonstrating a different pattern-matching capability.</span>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>📋</span> Data Structures</div>
+
+                <div class="oop-block">
+                    <h3>📋 Lists – Mutable Sequences</h3>
+                    <p>Lists are ordered, mutable collections that can hold any type of data.</p>
+                    <div class="code-snippet"><pre>empty = []
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "hello", 3.14, True]
+
+print(numbers[0])
+print(numbers[-1])
+print(numbers[1:4])
+
+numbers.append(6)
+numbers.insert(0, 0)
+numbers.remove(3)
+popped = numbers.pop()
+print(numbers)
+print(popped)
+
+squares = [x**2 for x in range(10)]
+evens = [x for x in range(10) if x % 2 == 0]
+print(squares)
+print(evens)
+
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(matrix[1][1])
+
+numbers = [3, 1, 4, 1, 5, 9, 2]
+numbers.sort()
+print(numbers)
+numbers.sort(reverse=True)
+print(numbers)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Lists are the most versatile and frequently used data structure in Python. This snippet covers creation, indexing, slicing, methods, comprehensions, nesting, and sorting.</span>
+                        <span class="how">Lists are created with square brackets. Indexing uses <code>[]</code> with 0-based indices. Slicing <code>[start:end:step]</code> returns a new list. Methods like <code>append()</code>, <code>insert()</code>, <code>remove()</code>, and <code>pop()</code> modify the list. List comprehensions provide concise creation syntax. <code>sort()</code> sorts in place.</span>
+                        <span class="significance">Lists are the workhorse of Python data handling. Their mutability and dynamic sizing make them suitable for a wide range of applications.</span>
+                        <span class="role">Lists are used throughout the page for storing collections of data, implementing algorithms, and organizing information.</span>
+                        <span class="effects">The output demonstrates indexing (first, last, slice), the effects of list methods (append, insert, remove, pop), the results of comprehensions (squares, evens), nested list access, and sorting (ascending and descending).</span>
+                    </div>
+                    <div class="tags"><span class="tag">append</span><span class="tag">pop</span><span class="tag">comprehensions</span><span class="tag">sort</span><span class="tag">nested</span></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📖 Dictionaries – Key-Value Stores</h3>
+                    <p>Dictionaries map keys to values with O(1) lookup. Keys must be immutable.</p>
+                    <div class="code-snippet"><pre>empty = {}
+person = {"name": "Glenn", "age": 28, "city": "Manila"}
+
+print(person["name"])
+print(person.get("country", "Unknown"))
+
+person["country"] = "Philippines"
+person["age"] = 29
+
+for key, value in person.items():
+    print(f"{key}: {value}")
+
+squares = {x: x**2 for x in range(5)}
+print(squares)
+
+d1 = {"a": 1, "b": 2}
+d2 = {"c": 3, "d": 4}
+merged = d1 | d2
+print(merged)
+
+from collections import defaultdict
+counts = defaultdict(int)
+counts["apple"] += 1
+print(counts)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Dictionaries are essential for fast lookups, configuration, and mapping relationships. They are used extensively in data processing and application development.</span>
+                        <span class="how">Dictionaries use <code>{key: value}</code> syntax. Access with <code>[]</code> raises KeyError if missing; <code>.get()</code> returns a default. Adding a key assigns a value. <code>.items()</code> iterates over key-value pairs. Dictionary comprehensions create dictionaries concisely. The <code>|</code> operator (Python 3.9+) merges dictionaries. <code>defaultdict</code> provides default values for missing keys.</span>
+                        <span class="significance">Dictionaries are one of Python's most powerful features, enabling efficient data organization and retrieval. Their flexibility makes them suitable for a wide range of use cases.</span>
+                        <span class="role">Dictionaries are used for configuration, data mapping, caching, and representing structured data throughout the page.</span>
+                        <span class="effects">The output shows name lookup with <code>get()</code>, the updated dictionary with country and age, iteration over items, the squares dictionary comprehension, the merged dictionary using the <code>|</code> operator, and the defaultdict count for "apple".</span>
+                    </div>
+                    <div class="tags"><span class="tag">get</span><span class="tag">items</span><span class="tag">defaultdict</span><span class="tag">merge |</span><span class="tag">comprehensions</span></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🎯 Tuples – Immutable Sequences</h3>
+                    <p>Tuples are immutable, ordered collections. They are faster than lists and can be used as dictionary keys.</p>
+                    <div class="code-snippet"><pre>empty = ()
+coords = (3, 4)
+single = (42,)
+
+x, y = coords
+print(x, y)
+
+from collections import namedtuple
+Point = namedtuple("Point", ["x", "y"])
+p = Point(3, 4)
+print(p.x, p.y)
+
+location = {(3, 4): "Home", (10, 20): "Work"}
+print(location[(3, 4)])
+
+data = 1, 2, 3
+a, b, c = data
+print(a, b, c)
+
+first, *rest = [1, 2, 3, 4, 5]
+print(first, rest)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Tuples are used when immutability is desired — for dictionary keys, function return values, and data that should not be modified. They are more memory-efficient than lists.</span>
+                        <span class="how">Tuples are created with parentheses or just commas. Unpacking assigns tuple elements to variables. <code>namedtuple</code> provides field names for clarity. Tuples can be dictionary keys because they are hashable. Extended unpacking (<code>*rest</code>) captures remaining elements.</span>
+                        <span class="significance">Immutable data structures are safer and can be used as keys in dictionaries. Named tuples combine the efficiency of tuples with the readability of classes.</span>
+                        <span class="role">Tuples are used for fixed-size data, function return values, and as dictionary keys throughout the page.</span>
+                        <span class="effects">The output shows unpacking coordinates, namedtuple field access, tuple-based dictionary lookup, tuple packing/unpacking, and extended unpacking with <code>*rest</code>.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔵 Sets – Unordered Unique Collections</h3>
+                    <p>Sets store unique, hashable elements. Perfect for deduplication and set operations.</p>
+                    <div class="code-snippet"><pre>empty = set()
+numbers = {1, 2, 3, 4, 5}
+mixed = {1, "hello", 3.14}
+
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a | b)
+print(a & b)
+print(a - b)
+print(a ^ b)
+
+a.add(7)
+a.discard(1)
+a.remove(2)
+
+squares = {x**2 for x in range(5)}
+print(squares)
+
+fs = frozenset([1, 2, 3])
+print(fs)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Sets are ideal for removing duplicates, testing membership, and performing mathematical set operations. They provide fast O(1) lookup.</span>
+                        <span class="how">Sets are created with <code>{}</code> or <code>set()</code>. Set operations: <code>|</code> (union), <code>&amp;</code> (intersection), <code>-</code> (difference), <code>^</code> (symmetric difference). <code>add()</code> inserts an element, <code>discard()</code> removes if present, <code>remove()</code> raises KeyError if missing. Set comprehensions create sets concisely. <code>frozenset</code> is immutable and hashable.</span>
+                        <span class="significance">Sets are essential for data deduplication, membership testing, and implementing set-based algorithms. Their O(1) operations make them efficient for large datasets.</span>
+                        <span class="role">Sets are used for deduplication, intersection operations, and membership testing throughout the page.</span>
+                        <span class="effects">The output shows the results of union, intersection, difference, and symmetric difference operations, the modified set after add/discard/remove, the squares set comprehension, and the frozenset.</span>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>🛠️</span> Functions</div>
+
+                <div class="oop-block">
+                    <h3>📞 Defining and Calling Functions</h3>
+                    <p>Functions are defined with <code>def</code>. They can take positional, keyword, and default arguments.</p>
+                    <div class="code-snippet"><pre>def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Glenn"))
+
+def power(base, exponent=2):
+    return base ** exponent
+
+print(power(3))
+print(power(3, 3))
+
+def describe(name, age, city):
+    return f"{name} is {age} years old and lives in {city}"
+
+print(describe(name="Glenn", age=28, city="Manila"))
+
+def sum_all(*args):
+    return sum(args)
+
+def print_kwargs(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print(sum_all(1, 2, 3, 4, 5))
+print_kwargs(name="Glenn", age=28)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Functions are the primary mechanism for code reuse, modularity, and abstraction. This snippet covers the essential patterns for defining and calling functions.</span>
+                        <span class="how"><code>def</code> defines a function. Parameters can have default values. Keyword arguments are specified by name. <code>*args</code> collects positional arguments into a tuple, <code>**kwargs</code> collects keyword arguments into a dictionary.</span>
+                        <span class="significance">Functions are fundamental to structured programming. They enable code reuse, reduce duplication, and make programs easier to test and maintain.</span>
+                        <span class="role">Functions are used throughout the page to encapsulate logic, perform calculations, and process data.</span>
+                        <span class="effects">The output shows the greeting for "Glenn", the power function with default and explicit exponent, the describe function with keyword arguments, the sum of arbitrary arguments, and the keyword argument iteration.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔁 Lambda Functions</h3>
+                    <p>Lambda functions are anonymous, single-expression functions.</p>
+                    <div class="code-snippet"><pre>square = lambda x: x ** 2
+print(square(5))
+
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x ** 2, numbers))
+print(squared)
+
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+print(evens)
+
+people = [{"name": "Alice", "age": 30}, {"name": "Bob", "age": 25}]
+sorted_people = sorted(people, key=lambda p: p["age"])
+print(sorted_people)
+
+from functools import reduce
+product = reduce(lambda x, y: x * y, numbers)
+print(product)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Lambdas provide a concise way to define small, single-use functions inline. They are commonly used with <code>map()</code>, <code>filter()</code>, <code>sorted()</code>, and <code>reduce()</code>.</span>
+                        <span class="how"><code>lambda args: expression</code> defines an anonymous function. <code>map()</code> applies a function to every element of an iterable. <code>filter()</code> selects elements that satisfy a predicate. <code>sorted()</code> uses a key function for custom sorting. <code>reduce()</code> cumulatively applies a function to combine elements.</span>
+                        <span class="significance">Lambdas enable functional programming patterns in Python. They reduce verbosity and make code more expressive for simple transformations.</span>
+                        <span class="role">Lambdas are used for lightweight transformations, filtering, and custom sorting throughout the page.</span>
+                        <span class="effects">The output shows the square of 5, the squared list using map, the filtered evens list, the people list sorted by age, and the product of all numbers using reduce.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔄 Closures</h3>
+                    <p>A closure is a function that remembers its enclosing scope even when called outside that scope.</p>
+                    <div class="code-snippet"><pre>def make_multiplier(factor):
+    def multiplier(x):
+        return x * factor
+    return multiplier
+
+double = make_multiplier(2)
+triple = make_multiplier(3)
+
+print(double(5))
+print(triple(5))
+
+def counter():
+    count = 0
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+    return increment
+
+c = counter()
+print(c())
+print(c())
+print(c())</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Closures are a powerful functional programming pattern that enables data hiding and function factories. They are used to create stateful functions without classes.</span>
+                        <span class="how">A closure is created when a nested function references variables from its enclosing scope. The <code>nonlocal</code> keyword allows the inner function to modify variables from the outer scope. Each call to the outer function creates a new closure with its own state.</span>
+                        <span class="significance">Closures enable encapsulation and state management without classes. They are used in decorators, callback functions, and function factories.</span>
+                        <span class="role">Closures are used to create specialized functions, maintain private state, and implement function factories throughout the page.</span>
+                        <span class="effects">The output shows double and triple multipliers working with their captured factors, and the counter incrementing its state across calls.</span>
+                    </div>
+                    <div class="insight">💡 Closures are powerful for data hiding and function factories. The <code>nonlocal</code> keyword allows modifying variables from the enclosing scope.</div>
+                </div>
+
+                <div class="cat-label"><span>🏗️</span> Object-Oriented Programming</div>
+
+                <div class="oop-block">
+                    <h3>🏛️ Classes and Objects</h3>
+                    <p>Classes are blueprints for creating objects. They encapsulate data (attributes) and behaviour (methods).</p>
+                    <div class="code-snippet"><pre>class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer = 0
+
+    def drive(self, miles):
+        self.odometer += miles
+        return f"Driven {miles} miles. Total: {self.odometer}"
+
+    def __str__(self):
+        return f"{self.year} {self.make} {self.model}"
+
+    def __repr__(self):
+        return f"Car('{self.make}', '{self.model}', {self.year})"
+
+car = Car("Toyota", "Camry", 2023)
+print(car)
+print(car.drive(50))
+print(car)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Classes are the foundation of object-oriented programming, allowing you to model real-world entities with data and behavior.</span>
+                        <span class="how"><code>class</code> defines a new type. <code>__init__</code> is the constructor, initializing instance attributes with <code>self</code>. Methods are functions defined inside the class. <code>__str__</code> defines the string representation for <code>print()</code>. <code>__repr__</code> defines the developer-friendly representation.</span>
+                        <span class="significance">OOP enables encapsulation, inheritance, and polymorphism, making code more modular, reusable, and easier to maintain.</span>
+                        <span class="role">Classes are used throughout the page to model domain entities, encapsulate state, and organize complex logic.</span>
+                        <span class="effects">The output shows the string representation of the car, the drive method updating odometer, and the repr representation of the car object.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔒 Encapsulation and Properties</h3>
+                    <p>Use <code>@property</code> to control access to attributes, enabling getters and setters.</p>
+                    <div class="code-snippet"><pre>class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self._balance = balance
+
+    @property
+    def balance(self):
+        return self._balance
+
+    @balance.setter
+    def balance(self, value):
+        if value < 0:
+            raise ValueError("Balance cannot be negative")
+        self._balance = value
+
+    def deposit(self, amount):
+        if amount <= 0:
+            raise ValueError("Deposit amount must be positive")
+        self._balance += amount
+
+    def withdraw(self, amount):
+        if amount > self._balance:
+            raise ValueError("Insufficient funds")
+        self._balance -= amount
+
+acc = BankAccount("Glenn", 1000)
+print(acc.balance)
+acc.deposit(500)
+print(acc.balance)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Encapsulation hides internal state and exposes controlled access. Properties provide a clean way to implement getters and setters without breaking the external interface.</span>
+                        <span class="how">The <code>@property</code> decorator turns a method into a read-only attribute. The <code>@balance.setter</code> decorator allows assignment with validation. Private attributes (with a leading underscore) signal internal use. Methods like <code>deposit()</code> and <code>withdraw()</code> provide controlled operations.</span>
+                        <span class="significance">Encapsulation is a key principle of OOP, protecting internal consistency and enabling validation. Properties provide a Pythonic way to implement it without verbose getter/setter methods.</span>
+                        <span class="role">Properties are used to control attribute access, enforce validation, and maintain invariants throughout the page.</span>
+                        <span class="effects">The output shows the initial balance, the deposit operation increasing the balance, and the property-based access to <code>balance</code>.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🌿 Inheritance</h3>
+                    <p>Inheritance allows a class to extend and reuse behaviour from a parent class.</p>
+                    <div class="code-snippet"><pre>class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        raise NotImplementedError("Subclass must implement speak()")
+
+    def __str__(self):
+        return f"Animal: {self.name}"
+
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} says Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} says Meow!"
+
+dog = Dog("Rex")
+cat = Cat("Whiskers")
+
+print(dog.speak())
+print(cat.speak())
+
+class GoldenRetriever(Dog):
+    def speak(self):
+        parent_speak = super().speak()
+        return f"{parent_speak} And I'm a Golden Retriever!"
+
+golden = GoldenRetriever("Buddy")
+print(golden.speak())</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Inheritance promotes code reuse and establishes hierarchical relationships between classes.</span>
+                        <span class="how">A subclass is defined with <code>class Subclass(Parent)</code>. The <code>super()</code> function calls methods from the parent class. Abstract methods (with <code>raise NotImplementedError</code>) enforce that subclasses provide implementations.</span>
+                        <span class="significance">Inheritance is a cornerstone of OOP, enabling polymorphic behavior and code organization. It reduces duplication and makes relationships explicit.</span>
+                        <span class="role">Inheritance is used to create specialized classes that extend or override parent behavior throughout the page.</span>
+                        <span class="effects">The output shows Dog and Cat speaking with their own implementations, and GoldenRetriever extending Dog's speak method with additional text.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🎭 Polymorphism</h3>
+                    <p>Polymorphism allows objects of different classes to be treated uniformly through a common interface.</p>
+                    <div class="code-snippet"><pre>def make_sound(animal):
+    return animal.speak()
+
+print(make_sound(dog))
+print(make_sound(cat))
+
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+rect = Rectangle(5, 3)
+print(rect.area())
+print(rect.perimeter())</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Polymorphism enables writing code that works with objects of different types through a common interface, making systems more flexible and extensible.</span>
+                        <span class="how">Duck typing allows any object with a <code>speak()</code> method to be passed to <code>make_sound()</code>. Abstract base classes (ABC) define interfaces that concrete subclasses must implement. The <code>@abstractmethod</code> decorator enforces implementation.</span>
+                        <span class="significance">Polymorphism is what makes OOP powerful — it allows substitution and extensibility without modifying existing code. ABCs provide formal interface contracts.</span>
+                        <span class="role">Polymorphism is used throughout the page to write generic code that works with various types.</span>
+                        <span class="effects">The output shows that both Dog and Cat can be passed to <code>make_sound()</code>, and that Rectangle correctly computes area and perimeter.</span>
+                    </div>
+                </div>
+
+                <div class="cat-label"><span>⚡</span> Advanced Python</div>
+
+                <div class="oop-block">
+                    <h3>🎨 Decorators</h3>
+                    <p>Decorators are functions that modify or extend the behaviour of other functions.</p>
+                    <div class="code-snippet"><pre>import time
+from functools import wraps
+
+def timer(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"{func.__name__} took {end - start:.4f} seconds")
+        return result
+    return wrapper
+
+def retry(times=3, delay=1):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            attempts = 0
+            while attempts < times:
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    attempts += 1
+                    if attempts == times:
+                        raise
+                    time.sleep(delay)
+        return wrapper
+    return decorator
+
+@timer
+def slow_function():
+    time.sleep(1)
+    return "Done"
+
+@retry(times=3, delay=0.5)
+def unreliable_function():
+    import random
+    if random.random() < 0.7:
+        raise ValueError("Random failure")
+    return "Success!"
+
+print(slow_function())
+print(unreliable_function())</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Decorators are a powerful metaprogramming feature that allows you to modify or enhance functions without changing their source code. They are used for logging, timing, access control, and more.</span>
+                        <span class="how">A decorator is a function that takes another function as an argument and returns a wrapped version. The <code>@decorator</code> syntax is syntactic sugar for <code>func = decorator(func)</code>. <code>@wraps</code> preserves the original function's metadata. Decorator factories (like <code>retry</code>) take parameters and return a decorator.</span>
+                        <span class="significance">Decorators enable separation of concerns — cross-cutting concerns like timing, logging, and retry logic are factored out of business logic.</span>
+                        <span class="role">Decorators are used throughout the page for timing, retrying, and extending function behavior.</span>
+                        <span class="effects">The output shows the timing message for <code>slow_function</code> and the result of <code>unreliable_function</code> which retries on random failure.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>⚡ Generators and Iterators</h3>
+                    <p>Generators produce values lazily using <code>yield</code>, saving memory for large datasets.</p>
+                    <div class="code-snippet"><pre>def fibonacci(limit):
+    a, b = 0, 1
+    while a < limit:
+        yield a
+        a, b = b, a + b
+
+for num in fibonacci(100):
+    print(num, end=" ")
+
+squares = (x**2 for x in range(10))
+for sq in squares:
+    print(sq, end=" ")
+
+class CountDown:
+    def __init__(self, start):
+        self.start = start
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.start < 0:
+            raise StopIteration
+        current = self.start
+        self.start -= 1
+        return current
+
+for n in CountDown(5):
+    print(n, end=" ")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Generators are memory-efficient for processing large datasets because they produce values on demand rather than storing them all in memory.</span>
+                        <span class="how">A generator function uses <code>yield</code> to produce values one at a time. Generator expressions use parentheses <code>()</code>. A custom iterator implements <code>__iter__</code> and <code>__next__</code>, raising <code>StopIteration</code> when done.</span>
+                        <span class="significance">Generators are essential for lazy evaluation, enabling efficient processing of large files, infinite sequences, and data streams.</span>
+                        <span class="role">Generators are used for lazy iteration, memory-efficient processing, and infinite sequences throughout the page.</span>
+                        <span class="effects">The output shows the Fibonacci sequence up to 100, the squares of numbers 0-9, and a countdown from 5 to 0.</span>
+                    </div>
+                    <div class="tags"><span class="tag">yield</span><span class="tag">generator</span><span class="tag">iterator</span><span class="tag">__iter__</span><span class="tag">__next__</span></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔐 Context Managers</h3>
+                    <p>Context managers manage resources with <code>with</code> statements, ensuring proper setup and teardown.</p>
+                    <div class="code-snippet"><pre>with open("example.txt", "w") as f:
+    f.write("Hello, World!")
+
+class ManagedFile:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        if exc_type is not None:
+            print(f"Exception occurred: {exc_val}")
+        return False
+
+with ManagedFile("example.txt", "r") as f:
+    content = f.read()
+    print(content)
+
+from contextlib import contextmanager
+
+@contextmanager
+def managed_resource(resource):
+    print("Acquiring resource")
+    yield resource
+    print("Releasing resource")
+
+with managed_resource("database") as res:
+    print(f"Using {res}")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Context managers ensure reliable resource management — files are closed, locks are released, and connections are cleaned up even when exceptions occur.</span>
+                        <span class="how">The <code>with</code> statement calls <code>__enter__</code> on entry and <code>__exit__</code> on exit. The <code>@contextmanager</code> decorator from <code>contextlib</code> turns a generator into a context manager. <code>yield</code> marks the point where the block runs.</span>
+                        <span class="significance">Context managers are crucial for writing robust code that correctly manages external resources. They eliminate the need for manual try-finally blocks.</span>
+                        <span class="role">Context managers are used for file I/O, database connections, locks, and resource cleanup throughout the page.</span>
+                        <span class="effects">The output shows file writing, file reading, and resource acquisition/release messages.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔍 Type Hints</h3>
+                    <p>Type hints improve code readability and enable static type checking with <code>mypy</code>.</p>
+                    <div class="code-snippet"><pre>from typing import List, Dict, Optional, Union, Tuple, TypeVar
+
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+def process_numbers(numbers: List[int]) -> List[int]:
+    return [n * 2 for n in numbers]
+
+def find_user(user_id: int) -> Optional[Dict[str, str]]:
+    if user_id == 1:
+        return {"name": "Glenn", "email": "glenn@example.com"}
+    return None
+
+def parse_value(value: Union[str, int]) -> float:
+    return float(value)
+
+def get_coordinates() -> Tuple[int, int]:
+    return (3, 4)
+
+T = TypeVar("T")
+
+def first(items: List[T]) -> T:
+    return items[0]
+
+def parse(value: str | int | None) -> str:
+    if value is None:
+        return ""
+    return str(value)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Type hints make code more self-documenting and enable static type checking, catching type-related errors before runtime.</span>
+                        <span class="how">Type hints use <code>: type</code> for parameters and <code>-> type</code> for return values. <code>typing</code> provides generic types like <code>List</code>, <code>Dict</code>, <code>Optional</code>, <code>Union</code>, <code>Tuple</code>. <code>TypeVar</code> enables generic functions. Python 3.10+ supports <code>|</code> for union types.</span>
+                        <span class="significance">Type hints improve code maintainability, help with IDE autocomplete, and enable tools like mypy for static analysis. They are increasingly standard in modern Python codebases.</span>
+                        <span class="role">Type hints are used to document function interfaces and enable static type checking throughout the page.</span>
+                        <span class="effects">The output is not shown for type hints as they are annotations — they don't change runtime behavior but are used by static analysis tools.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🚀 Async/Await</h3>
+                    <p>Async functions allow non-blocking I/O operations, improving performance for network-heavy workloads.</p>
+                    <div class="code-snippet"><pre>import asyncio
+
+async def say_hello(delay, name):
+    await asyncio.sleep(delay)
+    return f"Hello, {name}!"
+
+async def main():
+    result = await say_hello(1, "Glenn")
+    print(result)
+
+asyncio.run(main())
+
+async def fetch_all():
+    tasks = [
+        say_hello(2, "Alice"),
+        say_hello(1, "Bob"),
+        say_hello(3, "Charlie")
+    ]
+    results = await asyncio.gather(*tasks)
+    return results
+
+results = asyncio.run(fetch_all())
+print(results)
+
+async def main_with_group():
+    async with asyncio.TaskGroup() as tg:
+        task1 = tg.create_task(say_hello(1, "Task 1"))
+        task2 = tg.create_task(say_hello(2, "Task 2"))
+    print(task1.result())
+    print(task2.result())</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Async/await enables concurrent I/O operations, improving performance for network calls, database queries, and file I/O without the complexity of threading.</span>
+                        <span class="how"><code>async def</code> defines a coroutine. <code>await</code> suspends execution until the awaited coroutine completes. <code>asyncio.run()</code> runs the top-level coroutine. <code>asyncio.gather()</code> runs multiple coroutines concurrently. <code>TaskGroup</code> (Python 3.11+) provides structured concurrency.</span>
+                        <span class="significance">Async is essential for building responsive web servers, API clients, and any application that performs many I/O operations. It enables high concurrency with minimal overhead.</span>
+                        <span class="role">Async is used for network requests, database operations, and concurrent I/O throughout the page.</span>
+                        <span class="effects">The output shows the async greeting for "Glenn", the list of results from concurrent tasks (Alice, Bob, Charlie), and the TaskGroup results (Task 1, Task 2).</span>
+                    </div>
+                    <div class="insight">💡 Async is ideal for I/O-bound tasks like network requests, database queries, and file operations. For CPU-bound tasks, use <code>multiprocessing</code> instead.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧩 Dataclasses</h3>
+                    <p>Dataclasses reduce boilerplate by auto-generating <code>__init__</code>, <code>__repr__</code>, and <code>__eq__</code>.</p>
+                    <div class="code-snippet"><pre>from dataclasses import dataclass, field
+from typing import List
+
+@dataclass
+class Person:
+    name: str
+    age: int
+    email: str = field(default="")
+    hobbies: List[str] = field(default_factory=list)
+
+    @property
+    def is_adult(self) -> bool:
+        return self.age >= 18
+
+    def add_hobby(self, hobby: str):
+        self.hobbies.append(hobby)
+
+person = Person("Glenn", 28, "glenn@example.com")
+person.add_hobby("coding")
+person.add_hobby("reading")
+print(person)
+print(person.is_adult)
+
+@dataclass(frozen=True)
+class Point:
+    x: int
+    y: int
+
+p = Point(3, 4)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Dataclasses eliminate repetitive boilerplate for classes that primarily hold data, making code cleaner and more maintainable.</span>
+                        <span class="how">The <code>@dataclass</code> decorator automatically generates <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>, and <code>__hash__</code>. Fields are defined with type annotations. <code>field()</code> allows customization. <code>default_factory</code> creates new mutable defaults. <code>frozen=True</code> makes the dataclass immutable.</span>
+                        <span class="significance">Dataclasses are a modern replacement for namedtuple and manual class definitions for data containers. They reduce code duplication and improve readability.</span>
+                        <span class="role">Dataclasses are used for data modeling, configuration, and structured data throughout the page.</span>
+                        <span class="effects">The output shows the Person dataclass with its string representation, the is_adult property, and the immutable Point dataclass.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📦 Modules and Packages</h3>
+                    <p>Modules are Python files. Packages are directories with <code>__init__.py</code> files.</p>
+                    <div class="code-snippet"><pre>import math
+import datetime as dt
+from random import randint, choice
+
+print(math.sqrt(16))
+print(dt.datetime.now())
+print(randint(1, 10))</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Modules and packages are the mechanism for organizing code into reusable, maintainable units. They enable separation of concerns and code sharing.</span>
+                        <span class="how"><code>import module</code> imports the whole module. <code>import module as alias</code> gives it a shorter name. <code>from module import item</code> imports specific items directly into the namespace.</span>
+                        <span class="significance">The module system is fundamental to Python's ecosystem, enabling the vast collection of third-party libraries and the standard library.</span>
+                        <span class="role">Modules and packages are used to organize code, reuse functionality, and structure applications throughout the page.</span>
+                        <span class="effects">The output shows the square root of 16, the current datetime, and a random integer between 1 and 10.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🛡️ Exception Handling</h3>
+                    <p>Handle errors gracefully with <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code> and custom exceptions.</p>
+                    <div class="code-snippet"><pre>try:
+    result = 10 / 0
+except ZeroDivisionError as e:
+    print(f"Error: {e}")
+
+try:
+    value = int("abc")
+except ValueError:
+    print("Invalid value")
+except TypeError:
+    print("Wrong type")
+
+try:
+    file = open("data.txt", "r")
+    content = file.read()
+except FileNotFoundError:
+    print("File not found")
+else:
+    print(content)
+finally:
+    file.close()
+
+class CustomError(Exception):
+    def __init__(self, message, code):
+        super().__init__(message)
+        self.code = code
+
+try:
+    raise CustomError("Something went wrong", 500)
+except CustomError as e:
+    print(f"Error {e.code}: {e}")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Exception handling allows programs to recover gracefully from errors, improving robustness and user experience.</span>
+                        <span class="how"><code>try</code> contains code that might raise an exception. <code>except</code> catches specific exception types. <code>else</code> runs if no exception occurred. <code>finally</code> always runs (cleanup). Custom exceptions subclass <code>Exception</code> and can carry additional information.</span>
+                        <span class="significance">Exception handling is crucial for production-ready code. It prevents crashes, enables graceful error recovery, and makes debugging easier.</span>
+                        <span class="role">Exception handling is used throughout the page for input validation, file I/O, and network operations.</span>
+                        <span class="effects">The output shows the ZeroDivisionError message, the ValueError message for invalid input, file handling messages, and the custom exception with code 500.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📁 File I/O</h3>
+                    <p>Read and write files using built-in functions and the <code>pathlib</code> module.</p>
+                    <div class="code-snippet"><pre>from pathlib import Path
+
+with open("data.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    print(content)
+
+with open("output.txt", "w", encoding="utf-8") as f:
+    f.write("Hello, World!\n")
+    f.writelines(["Line 1\n", "Line 2\n"])
+
+with open("log.txt", "a", encoding="utf-8") as f:
+    f.write("New entry\n")
+
+import json
+
+data = {"name": "Glenn", "age": 28}
+with open("data.json", "w") as f:
+    json.dump(data, f, indent=2)
+
+with open("data.json", "r") as f:
+    loaded = json.load(f)
+    print(loaded)
+
+path = Path("example.txt")
+path.write_text("Hello, World!", encoding="utf-8")
+content = path.read_text(encoding="utf-8")
+print(content)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">File I/O is essential for persistent storage, configuration, logging, and data exchange. Every application interacts with the filesystem.</span>
+                        <span class="how"><code>open()</code> with modes <code>r</code> (read), <code>w</code> (write), <code>a</code> (append). Context managers (<code>with</code>) ensure files are closed. <code>json</code> module handles structured data serialization. <code>pathlib</code> provides an object-oriented filesystem interface.</span>
+                        <span class="significance">File I/O is a fundamental skill for any programmer. Understanding reading, writing, and serialization is essential for building real-world applications.</span>
+                        <span class="role">File I/O is used for configuration, data persistence, logging, and data exchange throughout the page.</span>
+                        <span class="effects">The output shows the content of data.txt, the JSON data loaded from file, and the content read from example.txt using pathlib.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧮 Recursion</h3>
+                    <p>Recursive functions call themselves to solve problems that have smaller subproblems.</p>
+                    <div class="code-snippet"><pre>def factorial(n: int) -> int:
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))
+
+def fibonacci(n: int) -> int:
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))
+
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib_memo(n: int) -> int:
+    if n <= 1:
+        return n
+    return fib_memo(n - 1) + fib_memo(n - 2)
+
+print(fib_memo(50))
+
+import os
+
+def list_files(path, indent=0):
+    for item in os.listdir(path):
+        full_path = os.path.join(path, item)
+        print("  " * indent + item)
+        if os.path.isdir(full_path):
+            list_files(full_path, indent + 1)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Recursion elegantly solves problems that have a recursive structure — tree traversal, divide-and-conquer algorithms, and mathematical sequences.</span>
+                        <span class="how">A recursive function calls itself with a smaller input. A base case stops recursion. <code>lru_cache</code> memoizes results, dramatically improving performance for overlapping subproblems. Directory traversal recursively explores the filesystem.</span>
+                        <span class="significance">Recursion is a fundamental programming paradigm. Understanding it enables solving complex problems like tree traversal, parsing, and divide-and-conquer algorithms.</span>
+                        <span class="role">Recursion is used for mathematical functions, tree traversal, and algorithmic problems throughout the page.</span>
+                        <span class="effects">The output shows factorial(5) = 120, fibonacci(10) = 55, fib_memo(50) = 12586269025 (computed efficiently with memoization), and directory listing.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧪 Testing with Pytest</h3>
+                    <p>Write tests to ensure your code works correctly and catches regressions.</p>
+                    <div class="code-snippet"><pre>def add(a, b):
+    return a + b
+
+def divide(a, b):
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero")
+    return a / b
+
+def test_add():
+    assert add(2, 3) == 5
+    assert add(-1, 1) == 0
+
+def test_divide():
+    assert divide(10, 2) == 5
+    assert divide(7, 3) == 7/3
+
+def test_divide_by_zero():
+    import pytest
+    with pytest.raises(ZeroDivisionError):
+        divide(10, 0)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Testing is critical for ensuring code correctness, preventing regressions, and enabling confident refactoring.</span>
+                        <span class="how">Pytest uses simple functions with <code>assert</code> statements. <code>pytest.raises</code> tests that exceptions are raised. Test functions are discovered by naming convention (<code>test_*</code>).</span>
+                        <span class="significance">Tests are essential for maintaining code quality in production systems. They catch bugs early and serve as executable documentation.</span>
+                        <span class="role">Testing ensures that functions behave correctly and that changes don't introduce regressions throughout the page.</span>
+                        <span class="effects">The tests would pass when run with pytest, showing that add and divide work correctly and that divide raises ZeroDivisionError for b=0.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📊 List Comprehensions and Generator Expressions</h3>
+                    <p>Comprehensions provide a concise way to create lists, dicts, and sets.</p>
+                    <div class="code-snippet"><pre>squares = [x**2 for x in range(10)]
+even_squares = [x**2 for x in range(10) if x % 2 == 0]
+nested = [(x, y) for x in range(3) for y in range(3)]
+
+square_dict = {x: x**2 for x in range(5)}
+filtered_dict = {k: v for k, v in square_dict.items() if v % 2 == 0}
+
+unique_squares = {x**2 for x in [1, 2, 2, 3, 3, 3]}
+
+sum_squares = sum(x**2 for x in range(1000000))
+
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flattened = [num for row in matrix for num in row]
+print(flattened)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Comprehensions are a Pythonic and efficient way to create collections. They are more concise and often faster than explicit loops.</span>
+                        <span class="how">List comprehensions use <code>[expr for item in iterable if condition]</code>. Dictionary comprehensions use <code>{key: value for key, value in iterable}</code>. Set comprehensions use <code>{expr for item in iterable}</code>. Generator expressions use parentheses <code>()</code> for lazy evaluation.</span>
+                        <span class="significance">Comprehensions are a distinctive and powerful feature of Python. They reduce code verbosity and improve readability for collection transformations.</span>
+                        <span class="role">Comprehensions are used for data transformation, filtering, and collection creation throughout the page.</span>
+                        <span class="effects">The output shows the flattened matrix [1, 2, 3, 4, 5, 6, 7, 8, 9] from nested list comprehension.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔧 The itertools Module</h3>
+                    <p><code>itertools</code> provides efficient looping tools for working with iterators.</p>
+                    <div class="code-snippet"><pre>import itertools
+
+counter = itertools.count(start=1, step=2)
+first5 = list(itertools.islice(counter, 5))
+
+cycle = itertools.cycle(["A", "B", "C"])
+first10 = list(itertools.islice(cycle, 10))
+
+repeat = itertools.repeat("Hello", 3)
+
+permutations = list(itertools.permutations([1, 2, 3], 2))
+combinations = list(itertools.combinations([1, 2, 3, 4], 2))
+combinations_with_replacement = list(itertools.combinations_with_replacement([1, 2, 3], 2))
+product = list(itertools.product([1, 2], ["A", "B"]))
+
+data = [("A", 1), ("A", 2), ("B", 3), ("B", 4)]
+for key, group in itertools.groupby(data, key=lambda x: x[0]):
+    print(key, list(group))
+
+chained = list(itertools.chain([1, 2], [3, 4], [5, 6]))
+zipped = list(itertools.zip_longest([1, 2], ["A", "B", "C"], fillvalue="X"))</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why"><code>itertools</code> is a powerful module that provides high-performance iterator building blocks. It is essential for efficient data processing and combinatorial operations.</span>
+                        <span class="how"><code>count()</code> creates infinite sequences. <code>islice()</code> slices iterators. <code>cycle()</code> repeats indefinitely. <code>permutations()</code>, <code>combinations()</code>, <code>product()</code> generate combinatorial structures. <code>groupby()</code> groups adjacent elements. <code>chain()</code> concatenates iterables. <code>zip_longest()</code> zips with fill values.</span>
+                        <span class="significance">itertools is a core library for data processing pipelines. It provides efficient, memory-friendly operations that are often faster than manual implementations.</span>
+                        <span class="role">itertools is used for combinatorial generation, grouping, and efficient iteration throughout the page.</span>
+                        <span class="effects">The output shows the first 5 odd numbers from count, the first 10 cycled elements, permutations, combinations, groupby results, chained list, and zipped list with fillvalue.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧵 Threading vs Multiprocessing</h3>
+                    <p>Threading for I/O-bound tasks, multiprocessing for CPU-bound tasks.</p>
+                    <div class="code-snippet"><pre>from threading import Thread
+from multiprocessing import Process
+import time
+
+def io_task(name, delay):
+    time.sleep(delay)
+    return f"Task {name} finished"
+
+threads = []
+for i in range(5):
+    t = Thread(target=io_task, args=(i, 1))
+    threads.append(t)
+    t.start()
+
+for t in threads:
+    t.join()
+
+def cpu_task(n):
+    return sum(i * i for i in range(n))
+
+from concurrent.futures import ProcessPoolExecutor
+
+with ProcessPoolExecutor(max_workers=4) as executor:
+    results = list(executor.map(cpu_task, [1000000, 1000000, 1000000]))</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Concurrency and parallelism are essential for performance. Threading handles I/O-bound tasks, while multiprocessing handles CPU-bound tasks.</span>
+                        <span class="how"><code>Thread</code> runs tasks in the same process, sharing memory. Due to the GIL, threads are suitable for I/O-bound work. <code>Process</code> spawns separate processes, bypassing the GIL. <code>ProcessPoolExecutor</code> provides a high-level API for process pools.</span>
+                        <span class="significance">Understanding threading vs multiprocessing is crucial for writing performant applications. Choosing the right model can dramatically improve throughput.</span>
+                        <span class="role">Threading is used for I/O-bound operations, while multiprocessing is used for CPU-intensive computations throughout the page.</span>
+                        <span class="effects">The output shows threads completing their io_task after 1 second each, and the ProcessPoolExecutor computing sums efficiently across multiple processes.</span>
+                    </div>
+                    <div class="insight">💡 <code>threading</code> works well for I/O-bound tasks because the GIL is released during I/O operations. For CPU-bound tasks, use <code>multiprocessing</code> to bypass the GIL.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 Decorators with Arguments (Decorator Factories)</h3>
+                    <p>Decorator factories return decorators that accept parameters.</p>
+                    <div class="code-snippet"><pre>from functools import wraps
+import time
+import logging
+
+def log(level=logging.INFO):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            logging.log(level, f"Calling {func.__name__}")
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+@log(level=logging.DEBUG)
+def process_data(data):
+    return data * 2
+
+def add_method(func):
+    def decorator(cls):
+        setattr(cls, func.__name__, func)
+        return cls
+    return decorator
+
+@add_method
+def hello(self):
+    return "Hello from the class!"
+
+@add_method(hello)
+class MyClass:
+    pass
+
+obj = MyClass()
+print(obj.hello())</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Decorator factories enable parameterized decorators, adding flexibility and configurability to decorator patterns.</span>
+                        <span class="how">A decorator factory is a function that takes parameters and returns a decorator. The returned decorator then wraps the target function. Class decorators can add methods to classes using <code>setattr</code>.</span>
+                        <span class="significance">Parameterized decorators are a powerful pattern for configuration, logging, caching, and access control. They make decorators more reusable and adaptable.</span>
+                        <span class="role">Decorator factories are used for configurable logging, retry logic, and timing throughout the page.</span>
+                        <span class="effects">The output shows the log message "Calling process_data" at DEBUG level, and the hello method added to MyClass returning "Hello from the class!".</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔮 Metaclasses (Advanced)</h3>
+                    <p>Metaclasses are classes of classes. They define how classes behave.</p>
+                    <div class="code-snippet"><pre>class Meta(type):
+    def __new__(cls, name, bases, dct):
+        dct["version"] = "1.0"
+        return super().__new__(cls, name, bases, dct)
+
+    def __call__(cls, *args, **kwargs):
+        instance = super().__call__(*args, **kwargs)
+        instance.created_at = time.time()
+        return instance
+
+class MyClass(metaclass=Meta):
+    def __init__(self, name):
+        self.name = name
+
+obj = MyClass("Glenn")
+print(obj.version)
+print(obj.created_at)
+
+class Singleton(type):
+    _instances = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+class Database(metaclass=Singleton):
+    def __init__(self):
+        self.connected = False
+
+db1 = Database()
+db2 = Database()
+print(db1 is db2)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Metaclasses are the most advanced metaprogramming feature in Python. They control class creation and behavior, enabling frameworks like Django and SQLAlchemy.</span>
+                        <span class="how"><code>__new__</code> in a metaclass runs when the class is defined, allowing modification of the class before it's created. <code>__call__</code> runs when an instance is created, allowing interception of object creation. The Singleton metaclass ensures only one instance exists.</span>
+                        <span class="significance">Metaclasses are powerful but rarely needed in everyday code. They are used in frameworks and libraries to implement advanced patterns like ORMs, serialization, and dependency injection.</span>
+                        <span class="role">Metaclasses are used for framework-level concerns like singleton management, validation, and attribute injection throughout the page.</span>
+                        <span class="effects">The output shows the version attribute added by the metaclass, the created_at timestamp, and True for db1 is db2 (singleton).</span>
+                    </div>
+                    <div class="insight">💡 Metaclasses are powerful but rarely needed in everyday Python. They're used in frameworks like Django and SQLAlchemy.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📊 Working with Data: Pandas</h3>
+                    <p>Pandas is the go-to library for data manipulation and analysis.</p>
+                    <div class="code-snippet"><pre>import pandas as pd
+import numpy as np
+
+data = {
+    "name": ["Alice", "Bob", "Charlie"],
+    "age": [25, 30, 35],
+    "score": [85, 92, 78]
+}
+df = pd.DataFrame(data)
+
+print(df)
+print(df.head())
+print(df.info())
+print(df.describe())
+
+print(df["name"])
+print(df[df["age"] > 28])
+print(df.iloc[0:2])
+print(df.loc[df["score"] > 80])
+
+df["grade"] = df["score"].apply(lambda x: "A" if x >= 90 else "B" if x >= 80 else "C")
+
+grouped = df.groupby("grade")["score"].mean()
+print(grouped)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Pandas is the foundation of data analysis in Python. It provides powerful data structures and operations for cleaning, transforming, and analyzing data.</span>
+                        <span class="how"><code>DataFrame</code> is the core structure — a 2D table with labeled rows and columns. <code>head()</code> shows the first rows. <code>info()</code> shows data types and memory usage. <code>describe()</code> provides summary statistics. <code>iloc</code> indexes by position, <code>loc</code> by label. <code>apply()</code> applies functions. <code>groupby()</code> enables aggregation.</span>
+                        <span class="significance">Pandas is essential for any data-intensive work in Python. It's used in data science, finance, analytics, and machine learning preprocessing.</span>
+                        <span class="role">Pandas is used for data loading, cleaning, transformation, and analysis throughout the page.</span>
+                        <span class="effects">The output shows the DataFrame, head, info, describe, column selection, filtering, row selection, grade assignment, and groupby mean.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📈 Plotting with Matplotlib</h3>
+                    <p>Matplotlib is the foundational plotting library for Python.</p>
+                    <div class="code-snippet"><pre>import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+plt.plot(x, y, label="sin(x)", color="#4B8BBE")
+plt.title("Sine Wave")
+plt.xlabel("x")
+plt.ylabel("sin(x)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+categories = ["A", "B", "C", "D"]
+values = [23, 45, 12, 67]
+
+plt.bar(categories, values, color="#4B8BBE")
+plt.title("Bar Chart")
+plt.xlabel("Category")
+plt.ylabel("Value")
+plt.show()
+
+x = np.random.randn(100)
+y = np.random.randn(100)
+
+plt.scatter(x, y, alpha=0.5)
+plt.title("Scatter Plot")
+plt.show()</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Visualization is crucial for understanding data and communicating insights. Matplotlib is the foundation of Python's plotting ecosystem.</span>
+                        <span class="how"><code>plt.plot()</code> creates line plots. <code>plt.bar()</code> creates bar charts. <code>plt.scatter()</code> creates scatter plots. <code>plt.title()</code>, <code>xlabel()</code>, <code>ylabel()</code> add labels. <code>plt.legend()</code> adds a legend. <code>plt.grid()</code> adds a grid. <code>plt.show()</code> displays the plot.</span>
+                        <span class="significance">Matplotlib is the most widely used plotting library in Python. It's the foundation for many higher-level libraries like Seaborn and Plotly.</span>
+                        <span class="role">Matplotlib is used for exploratory data analysis, result visualization, and reporting throughout the page.</span>
+                        <span class="effects">The output shows three plots: a sine wave line plot, a bar chart with categories, and a scatter plot of random data.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🤖 Machine Learning with scikit-learn</h3>
+                    <p>scikit-learn provides simple and efficient tools for machine learning.</p>
+                    <div class="code-snippet"><pre>from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+clf.fit(X_train, y_train)
+
+predictions = clf.predict(X_test)
+
+accuracy = accuracy_score(y_test, predictions)
+print(f"Accuracy: {accuracy:.2f}")
+
+importance = clf.feature_importances_
+for name, imp in zip(iris.feature_names, importance):
+    print(f"{name}: {imp:.3f}")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">scikit-learn is the premier machine learning library in Python, providing a consistent API for a wide range of algorithms.</span>
+                        <span class="how"><code>load_iris()</code> loads a classic dataset. <code>train_test_split()</code> splits data for training and testing. <code>RandomForestClassifier</code> is an ensemble model. <code>fit()</code> trains the model. <code>predict()</code> makes predictions. <code>accuracy_score()</code> evaluates performance. <code>feature_importances_</code> shows feature importance.</span>
+                        <span class="significance">scikit-learn is the standard library for machine learning in Python. It's used in research, industry, and education for building predictive models.</span>
+                        <span class="role">scikit-learn is used for model training, evaluation, and feature analysis throughout the page.</span>
+                        <span class="effects">The output shows the accuracy of the Random Forest classifier on the Iris test set (typically around 1.0 or 0.97), and the feature importance for each of the 4 features.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🌐 Web Scraping with BeautifulSoup</h3>
+                    <p>BeautifulSoup makes it easy to parse HTML and extract data from web pages.</p>
+                    <div class="code-snippet"><pre>import requests
+from bs4 import BeautifulSoup
+
+url = "https://example.com"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+title = soup.title.text
+print(title)
+
+links = soup.find_all("a")
+for link in links[:5]:
+    print(link.get("href"))
+
+paragraphs = soup.select("p")
+for p in paragraphs[:3]:
+    print(p.text)
+
+content = soup.find_all(class_="content")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Web scraping enables automated data extraction from websites, useful for research, analytics, and building datasets.</span>
+                        <span class="how"><code>requests.get()</code> fetches a webpage. <code>BeautifulSoup</code> parses the HTML. <code>.title.text</code> extracts the page title. <code>.find_all("a")</code> finds all links. <code>.select("p")</code> uses CSS selectors. <code>.find_all(class_="content")</code> finds elements by class.</span>
+                        <span class="significance">Web scraping is a powerful tool for data acquisition. BeautifulSoup simplifies HTML parsing and makes scraping accessible to Python developers.</span>
+                        <span class="role">BeautifulSoup is used for extracting data from web pages, parsing HTML, and building datasets throughout the page.</span>
+                        <span class="effects">The output shows the page title, the href attributes of the first 5 links, and the text of the first 3 paragraphs.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧠 Regular Expressions (re)</h3>
+                    <p>Regular expressions are powerful for pattern matching and text processing.</p>
+                    <div class="code-snippet"><pre>import re
+
+text = "Contact me at glenn@example.com or call +1-555-1234"
+
+email_pattern = r"[\w.+-]+@[\w-]+\.\w+"
+emails = re.findall(email_pattern, text)
+print(emails)
+
+phone_pattern = r"\+\d-\d{3}-\d{4}"
+phones = re.findall(phone_pattern, text)
+print(phones)
+
+new_text = re.sub(email_pattern, "[REDACTED]", text)
+print(new_text)
+
+pattern = re.compile(r"\b\w+\b")
+words = pattern.findall(text)
+print(words)
+
+date_pattern = re.compile(r"(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})")
+match = date_pattern.search("2026-06-18")
+if match:
+    print(match.group("year"))
+    print(match.group("month"))
+    print(match.group("day"))
+
+html = "<div>Content 1</div><div>Content 2</div>"
+greedy = re.findall(r"<div>.*</div>", html)
+non_greedy = re.findall(r"<div>.*?</div>", html)
+print(greedy)
+print(non_greedy)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Regular expressions are the most powerful tool for pattern-based text processing. They are used for validation, extraction, and transformation.</span>
+                        <span class="how"><code>re.findall()</code> finds all matches. <code>re.sub()</code> replaces matches. <code>re.compile()</code> creates a reusable pattern. Named groups <code>(?P&lt;name&gt;...)</code> extract parts of matches. Greedy quantifiers (<code>.*</code>) match as much as possible; non-greedy (<code>.*?</code>) match as little as possible.</span>
+                        <span class="significance">Regex is a critical tool for text processing in any language. Python's <code>re</code> module provides a comprehensive regex implementation.</span>
+                        <span class="role">Regex is used for text validation, extraction, and transformation throughout the page.</span>
+                        <span class="effects">The output shows extracted email addresses, phone numbers, redacted text, all words, named group extraction, and the difference between greedy and non-greedy matching.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🗄️ Working with Databases (SQLite)</h3>
+                    <p>SQLite is a lightweight, file-based database that comes with Python.</p>
+                    <div class="code-snippet"><pre>import sqlite3
+
+conn = sqlite3.connect("example.db")
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    age INTEGER,
+    email TEXT UNIQUE
+)
+""")
+
+cursor.execute("INSERT INTO users (name, age, email) VALUES (?, ?, ?)",
+               ("Glenn", 28, "glenn@example.com"))
+conn.commit()
+
+users = [
+    ("Alice", 25, "alice@example.com"),
+    ("Bob", 30, "bob@example.com")
+]
+cursor.executemany("INSERT INTO users (name, age, email) VALUES (?, ?, ?)", users)
+conn.commit()
+
+cursor.execute("SELECT * FROM users")
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+cursor.execute("SELECT * FROM users WHERE age > ?", (25,))
+rows = cursor.fetchall()
+print(rows)
+
+cursor.execute("UPDATE users SET age = ? WHERE name = ?", (29, "Glenn"))
+conn.commit()
+
+cursor.execute("DELETE FROM users WHERE name = ?", ("Bob",))
+conn.commit()
+
+conn.close()</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Database integration is essential for persistent storage, data management, and building data-driven applications.</span>
+                        <span class="how"><code>sqlite3.connect()</code> opens a database connection. <code>cursor.execute()</code> runs SQL statements. Placeholders (<code>?</code>) prevent SQL injection. <code>executemany()</code> inserts multiple rows. <code>fetchall()</code> retrieves all results. <code>commit()</code> saves changes.</span>
+                        <span class="significance">SQLite is a zero-configuration database that's perfect for prototyping and small to medium applications. Python's built-in support makes it easy to get started.</span>
+                        <span class="role">SQLite is used for data persistence, configuration storage, and application state throughout the page.</span>
+                        <span class="effects">The output shows the inserted rows, filtered rows by age, and the results of update and delete operations.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📦 Virtual Environments</h3>
+                    <p>Virtual environments isolate project dependencies.</p>
+                    <div class="code-snippet"><pre># Create a virtual environment
+# python -m venv .venv
+
+# Activate (macOS/Linux)
+# source .venv/bin/activate
+
+# Activate (Windows)
+# .venv\Scripts\activate
+
+# Install packages
+# pip install requests pandas
+
+# Freeze dependencies
+# pip freeze > requirements.txt
+
+# Install from requirements.txt
+# pip install -r requirements.txt
+
+# Deactivate
+# deactivate</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Virtual environments are essential for managing dependencies, avoiding version conflicts, and ensuring reproducible environments.</span>
+                        <span class="how"><code>venv</code> creates isolated Python environments with their own pip and packages. <code>pip freeze</code> exports installed packages. <code>requirements.txt</code> stores dependencies for reproducibility.</span>
+                        <span class="significance">Virtual environments are a best practice for Python development. They prevent dependency conflicts between projects and make collaboration easier.</span>
+                        <span class="role">Virtual environments are used for dependency isolation, project reproducibility, and environment management throughout the page.</span>
+                        <span class="effects">The output shows the commands needed to create, activate, use, and deactivate a virtual environment.</span>
+                    </div>
+                    <div class="insight">💡 Always use virtual environments for Python projects. It keeps dependencies isolated and reproducible.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 Context Managers with contextlib</h3>
+                    <p>The <code>contextlib</code> module provides utilities for creating context managers.</p>
+                    <div class="code-snippet"><pre>from contextlib import contextmanager, suppress, closing
+import urllib.request
+
+with suppress(FileNotFoundError):
+    with open("nonexistent.txt") as f:
+        content = f.read()
+
+with closing(urllib.request.urlopen("https://example.com")) as response:
+    data = response.read()
+
+@contextmanager
+def timed(name):
+    print(f"Starting {name}")
+    start = time.time()
+    try:
+        yield
+    finally:
+        end = time.time()
+        print(f"{name} took {end - start:.2f} seconds")
+
+with timed("sleep"):
+    time.sleep(1)
+
+from contextlib import ExitStack
+
+with ExitStack() as stack:
+    files = [
+        stack.enter_context(open("file1.txt", "w")),
+        stack.enter_context(open("file2.txt", "w"))
+    ]
+    for f in files:
+        f.write("Hello")</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why"><code>contextlib</code> provides additional context manager utilities for common patterns like suppression, closing, and stacking.</span>
+                        <span class="how"><code>suppress()</code> ignores specified exceptions. <code>closing()</code> calls <code>close()</code> on exit. <code>@contextmanager</code> turns a generator into a context manager. <code>ExitStack</code> manages multiple context managers programmatically.</span>
+                        <span class="significance">These utilities reduce boilerplate and make code more robust. They're particularly useful for resource management and cleanup.</span>
+                        <span class="role">contextlib utilities are used for resource management, exception suppression, and clean code throughout the page.</span>
+                        <span class="effects">The output shows the suppress context manager handling a missing file, the closing context manager fetching a URL, the timed context manager measuring execution time, and ExitStack managing multiple files.</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧬 Descriptors</h3>
+                    <p>Descriptors control attribute access in classes. They power <code>@property</code> and <code>@classmethod</code>.</p>
+                    <div class="code-snippet"><pre>class PositiveNumber:
+    def __set_name__(self, owner, name):
+        self.name = name
+
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        return obj.__dict__.get(self.name, 0)
+
+    def __set__(self, obj, value):
+        if value < 0:
+            raise ValueError(f"{self.name} must be positive")
+        obj.__dict__[self.name] = value
+
+class Product:
+    price = PositiveNumber()
+    quantity = PositiveNumber()
+
+    def __init__(self, price, quantity):
+        self.price = price
+        self.quantity = quantity
+
+p = Product(10, 5)
+print(p.price)
+
+class LazyAttribute:
+    def __init__(self, func):
+        self.func = func
+
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        value = self.func(obj)
+        setattr(obj, self.func.__name__, value)
+        return value
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    @LazyAttribute
+    def area(self):
+        print("Calculating area...")
+        return 3.14159 * self.radius ** 2
+
+c = Circle(5)
+print(c.area)
+print(c.area)</pre></div>
+                    <div class="explanation-box">
+                        <strong>📘 Comprehensive Explanation</strong>
+                        <span class="why">Descriptors are the mechanism behind Python's property system. They enable reusable attribute logic across multiple classes.</span>
+                        <span class="how"><code>__set_name__</code> captures the attribute name. <code>__get__</code> retrieves the value, <code>__set__</code> validates and sets it. Data descriptors have both <code>__get__</code> and <code>__set__</code>. Non-data descriptors only have <code>__get__</code> and are used for lazy attributes.</span>
+                        <span class="significance">Descriptors are a fundamental but often overlooked feature of Python. They power properties, class methods, and static methods.</span>
+                        <span class="role">Descriptors are used for validation, lazy loading, and attribute management throughout the page.</span>
+                        <span class="effects">The output shows the price (10) from the PositiveNumber descriptor, and the lazy area calculation that runs only once (the second access returns the cached value).</span>
+                    </div>
+                </div>
+
+                <div class="outro-box">
+                    <h2>🐍 Master Python, One Concept at a Time</h2>
+                    <p>You've explored the essential building blocks of Python — from variables and loops to decorators and metaclasses. Each concept you've seen here is a tool in your programmer's toolkit. Practice them, combine them, and build something amazing. The journey of mastering Python is a marathon, not a sprint. Keep coding, keep learning, and remember: every expert was once a beginner.</p>
+                    <div class="btn-group">
+                        <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Return to Home</a>
+                        <a href="#top" class="btn btn-outline"><i class="fas fa-chevron-up"></i> Back to Top</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var pyodideReadyPromise = null;
+
+            function loadPyodideOnce() {
+                if (!pyodideReadyPromise) {
+                    pyodideReadyPromise = new Promise(function(resolve, reject) {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js';
+                        script.onload = function() {
+                            loadPyodide().then(function(pyodide) {
+                                resolve(pyodide);
+                            }).catch(function(err) { reject(err); });
+                        };
+                        script.onerror = function() { reject(new Error('Failed to load Python runtime')); };
+                        document.head.appendChild(script);
+                    });
+                }
+                return pyodideReadyPromise;
+            }
+
+            function isShellSnippet(code) {
+                var lines = code.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l && !l.startsWith('#'); });
+                if (!lines.length) return true;
+                var prefixes = ['pip ', 'pip3 ', 'python -m', 'python3 -m', 'source ', '.venv', 'poetry ',
+                    'black', 'ruff', 'mypy', 'pre-commit', 'sed ', 'npm ', 'git ', 'docker',
+                    'export ', 'conda ', 'curl ', 'cd ', 'mkdir', 'ls ', 'cat ', 'pytest'
+                ];
+                return lines.every(function(l) {
+                    return prefixes.some(function(p) { return l.startsWith(p); });
+                });
+            }
+
+            function escapeHtmlCode(str) {
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            function makeCopyBtn(getCode) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'code-btn';
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                btn.addEventListener('click', function() {
+                    var code = getCode();
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(code).catch(function() {
+                            var ta = document.createElement('textarea');
+                            ta.value = code;
+                            ta.style.position = 'fixed';
+                            ta.style.opacity = '0';
+                            document.body.appendChild(ta);
+                            ta.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(ta);
+                        });
+                    } else {
+                        var ta = document.createElement('textarea');
+                        ta.value = code;
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                    }
+                    var original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                    setTimeout(function() { btn.innerHTML = original; }, 1500);
+                });
+                return btn;
+            }
+
+            function enhanceCodeSnippets() {
+                document.querySelectorAll('.code-snippet').forEach(function(snippet) {
+                    var pre = snippet.querySelector('pre');
+                    if (!pre || snippet.dataset.enhanced) return;
+                    snippet.dataset.enhanced = '1';
+
+                    var getCode = function() { return pre.textContent; };
+                    var toolbar = document.createElement('div');
+                    toolbar.className = 'code-toolbar';
+                    toolbar.appendChild(makeCopyBtn(getCode));
+
+                    if (!isShellSnippet(getCode())) {
+                        var runBtn = document.createElement('button');
+                        runBtn.type = 'button';
+                        runBtn.className = 'code-btn run-btn';
+                        runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+
+                        var output = document.createElement('div');
+                        output.className = 'code-output';
+
+                        runBtn.addEventListener('click', function() {
+                            var code = getCode();
+                            runBtn.disabled = true;
+                            output.classList.remove('error');
+                            output.classList.add('show');
+
+                            var firstRun = !pyodideReadyPromise;
+                            if (firstRun) {
+                                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Python…';
+                                output.innerHTML = '<span class="out-label">Setting up Python runtime (first run only, ~10s)…</span>';
+                            } else {
+                                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+                                output.innerHTML = '<span class="out-label">Running…</span>';
+                            }
+
+                            loadPyodideOnce().then(function(pyodide) {
+                                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+
+                                var buffer = '';
+                                pyodide.setStdout({ batched: function(s) { buffer += s + '\n'; } });
+                                pyodide.setStderr({ batched: function(s) { buffer += s + '\n'; } });
+
+                                pyodide.runPythonAsync(code).then(function() {
+                                    output.innerHTML = '<span class="out-label">Output</span>' + escapeHtmlCode(buffer || '(no output)');
+                                }).catch(function(err) {
+                                    output.classList.add('error');
+                                    output.innerHTML = '<span class="out-label">Error</span>' + escapeHtmlCode(buffer + String(err));
+                                }).finally(function() {
+                                    runBtn.disabled = false;
+                                    runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+                                });
+                            }).catch(function(e) {
+                                output.classList.add('error');
+                                output.innerHTML = '<span class="out-label">Error</span>' + escapeHtmlCode('Could not start the Python runtime: ' + String(e));
+                                runBtn.disabled = false;
+                                runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+                            });
+                        });
+
+                        toolbar.appendChild(runBtn);
+                        snippet.insertBefore(toolbar, pre);
+                        snippet.appendChild(output);
+                    } else {
+                        snippet.insertBefore(toolbar, pre);
+                    }
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', enhanceCodeSnippets);
+            } else {
+                enhanceCodeSnippets();
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
