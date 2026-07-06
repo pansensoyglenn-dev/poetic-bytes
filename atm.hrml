@@ -1,0 +1,4594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>ATM System in Python OOP – Master Encapsulation | Poetic Bytes</title>
+    <meta name="description" content="Build a production-ready ATM in Python and master encapsulation, SHA-256 security, design patterns, and testing. Complete with live simulator and step-by-step explanations." />
+    <meta name="keywords" content="Python ATM, OOP encapsulation, Python OOP project, SHA-256 PIN hashing, design patterns Python, unit testing Python, ATM simulator, Python banking project, Poetic Bytes" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/atm.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="ATM System in Python – Encapsulation Masterclass" />
+    <meta property="og:description" content="Learn encapsulation by building a complete ATM system: OOP design, security, patterns, and testing. Live simulator included." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/atm.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ATM System in Python – Encapsulation Masterclass preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ATM System in Python OOP | Poetic Bytes" />
+    <meta name="twitter:description" content="Master encapsulation through a real-world ATM project. Live simulator, complete code, and deep explanations." />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "ATM System in Python – Encapsulation Masterclass",
+            "description": "A comprehensive guide to building an ATM system in Python, focusing on encapsulation, security, design patterns, and testing. Includes live interactive simulator.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+            "datePublished": "2026-02-28",
+            "dateModified": "2026-02-28",
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/atm.html" },
+            "keywords": "Python ATM, Encapsulation, OOP, SHA-256, Design Patterns, Unit Testing",
+            "articleSection": "Python Programming",
+            "inLanguage": "en-US",
+            "learningResourceType": "Tutorial",
+            "educationalLevel": "Intermediate to Advanced"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+            }
+        }
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-bottom: 2rem;
+        }
+        .metrics-row {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+            margin-bottom: 2rem;
+        }
+        .metric-tile {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.1rem;
+            text-align: center;
+        }
+        .metric-tile .num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1.1;
+        }
+        .metric-tile .lbl {
+            font-size: .68rem;
+            color: var(--muted);
+            margin-top: .2rem;
+        }
+        .metric-tile .stars i {
+            color: #ffb83b;
+            font-size: .65rem;
+        }
+        .code-preview {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .code-chrome {
+            background: #0a1a24;
+            padding: .6rem .9rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .dots {
+            display: flex;
+            gap: .35rem;
+        }
+        .dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-r {
+            background: #ff5f56;
+        }
+        .dot-y {
+            background: #ffbd2e;
+        }
+        .dot-g {
+            background: #27c93f;
+        }
+        .win-title {
+            font-size: .68rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: .4rem;
+        }
+        .code-body {
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            line-height: 1.7;
+        }
+        .code-body pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .terminal {
+            background: #0a1a24;
+            border-top: 1px solid var(--border);
+            padding: .7rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            color: #4ade80;
+        }
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            min-height: 140px;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card:active {
+            transform: scale(.98);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .card-arrow {
+            margin-top: auto;
+            font-size: .65rem;
+            color: var(--blue);
+            opacity: 0;
+            transition: opacity .2s, transform .2s;
+        }
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-top: .2rem;
+        }
+        .lesson-count {
+            font-size: .6rem;
+            color: var(--teal);
+            background: rgba(45, 212, 191, .1);
+            border: 1px solid rgba(45, 212, 191, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+        }
+        .new-badge {
+            font-size: .58rem;
+            background: rgba(251, 146, 60, .15);
+            color: var(--orange);
+            border: 1px solid rgba(251, 146, 60, .25);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-exp {
+            background: rgba(239, 68, 68, .15);
+            color: #f87171;
+        }
+        .badge-oop {
+            background: rgba(75, 139, 190, .15);
+            color: var(--blue-lt);
+        }
+        .badge-new {
+            background: rgba(251, 146, 60, .15);
+            color: var(--orange);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .card.oop-enc {
+            border-color: #2a6496;
+        }
+        .card.oop-enc:hover {
+            border-color: var(--blue);
+        }
+        .card.oop-inh {
+            border-color: #1a6b3a;
+        }
+        .card.oop-inh:hover {
+            border-color: #22c55e;
+        }
+        .card.oop-abs {
+            border-color: #6b5700;
+        }
+        .card.oop-abs:hover {
+            border-color: var(--gold);
+        }
+        .card.oop-pol {
+            border-color: #6b3096;
+        }
+        .card.oop-pol:hover {
+            border-color: #a855f7;
+        }
+        .stats-2 {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.1rem;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .stat-card .big {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .stat-card .sm {
+            font-size: .7rem;
+            color: var(--muted);
+            margin-top: .2rem;
+        }
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .checklist li {
+            display: flex;
+            gap: .55rem;
+            align-items: flex-start;
+            font-size: .78rem;
+            color: var(--muted);
+            padding: .5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        .checklist li span.check {
+            color: var(--blue);
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .roadmap-step {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .78rem;
+        }
+        .step-body {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem;
+            flex: 1;
+        }
+        .step-title {
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: .3rem;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child {
+            color: var(--gold);
+        }
+        th:nth-child(2) {
+            color: var(--blue);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        td:nth-child(2) {
+            color: var(--green);
+            font-weight: 600;
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(75, 139, 190, .03);
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 300px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+        .instructor-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        .creds {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .creds li {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-size: .76rem;
+            color: var(--muted);
+            padding: .45rem 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        .creds li i {
+            color: var(--gold);
+            width: 1rem;
+        }
+        .social-row {
+            display: flex;
+            flex-direction: row;
+            gap: .5rem;
+            margin-top: .8rem;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .85rem;
+            transition: .2s;
+        }
+        .social-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+        }
+        blockquote {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            font-size: .9rem;
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: .6rem;
+        }
+        .testi-meta {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+        .testi-ava {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--panel);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+        }
+        .testi-name {
+            font-size: .75rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .testi-role {
+            font-size: .68rem;
+            color: var(--muted);
+        }
+        .achiev {
+            display: inline-block;
+            margin-top: .6rem;
+            padding: .18rem .65rem;
+            border-radius: 20px;
+            font-size: .62rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid rgba(75, 139, 190, .25);
+            color: var(--blue-lt);
+        }
+        .cat-label {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .68rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin: 1.8rem 0 .8rem;
+        }
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .note-warn {
+            font-size: .74rem;
+            color: var(--amber);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .subscribe-box {
+            background: linear-gradient(135deg, #1a2a3a, #0f1c2f);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .subscribe-box h3 {
+            font-size: .95rem;
+            color: var(--text);
+            margin-bottom: .3rem;
+        }
+        .sub-form {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+            max-width: 340px;
+            margin: 1.2rem auto 0;
+        }
+        .sub-form input {
+            height: var(--btn-h);
+            padding: 0 .9rem;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-size: .8rem;
+            width: 100%;
+            transition: border-color .2s;
+        }
+        .sub-form input:focus {
+            border-color: var(--blue);
+            outline: none;
+        }
+        .sub-form button {
+            height: var(--btn-h);
+            background: var(--blue);
+            border: none;
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-weight: 700;
+            font-size: .8rem;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .sub-form button:hover {
+            background: var(--blue-deep);
+        }
+        .sub-message {
+            margin-top: .8rem;
+            font-size: .78rem;
+            display: none;
+        }
+        .sub-message.success {
+            color: var(--green);
+            display: block;
+        }
+        .sub-message.error {
+            color: var(--red);
+            display: block;
+        }
+        .share-box {
+            text-align: center;
+        }
+        .share-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .share-btn {
+            height: var(--btn-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-size: .74rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .2s;
+            font-weight: 600;
+            background: var(--card);
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .share-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .1);
+        }
+        .share-btn:active {
+            transform: scale(.96);
+        }
+        .share-btn.copy-btn {
+            border-color: rgba(75, 139, 190, .3);
+        }
+        .share-btn.copy-btn:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .15);
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn.fs-copy:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+        }
+        .comment-form input,
+        .comment-form textarea {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-size: .8rem;
+            padding: .7rem .9rem;
+            width: 100%;
+            transition: border-color .2s;
+        }
+        .comment-form input {
+            height: var(--btn-h);
+        }
+        .comment-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .comment-form input:focus,
+        .comment-form textarea:focus {
+            border-color: var(--blue);
+            outline: none;
+        }
+        .comment-form button {
+            height: var(--btn-h);
+            background: var(--blue);
+            border: none;
+            border-radius: var(--btn-r);
+            color: #fff;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .comment-form button:hover {
+            background: var(--blue-deep);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--card);
+            border-radius: var(--card-r);
+            border: 1px solid var(--border);
+        }
+        .empty-state i {
+            font-size: 2rem;
+            color: var(--muted);
+            display: block;
+            margin-bottom: .6rem;
+        }
+        .empty-state p {
+            font-size: .78rem;
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+        .ad-slot {
+            text-align: center;
+            padding: .8rem 0;
+            background: var(--bg);
+        }
+        .snippet-note {
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin-top: 0.3rem;
+            padding-left: 0.5rem;
+            opacity: 0.7;
+        }
+        .snippet-note i {
+            margin-right: 0.3rem;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
+        }
+        .toc-grid a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.7rem 0.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            transition: border-color .2s, color .2s, background .2s, transform .15s;
+            min-height: 48px;
+            width: 100%;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+        .toc-grid a:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .08);
+            transform: translateY(-2px);
+        }
+        .toc-grid a:active {
+            transform: scale(0.98);
+        }
+        @media(max-width:480px) {
+            .toc-grid a {
+                font-size: 0.65rem;
+                padding: 0.6rem 0.5rem;
+                min-height: 40px;
+            }
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3.5rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .share-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 240px;
+            }
+            .toc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.4rem;
+            }
+        }
+        @media(max-width:768px) {
+            .floating-share {
+                right: 14px;
+                bottom: 76px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+        }
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-container .code-snippet {
+            border-radius: 0;
+            border-left: none;
+            margin-bottom: 0;
+            padding: 1rem;
+        }
+        .code-container .code-body {
+            padding: 1rem;
+            border-radius: 0;
+        }
+        .code-preview .code-container {
+            margin: 0;
+        }
+        .code-preview .code-header {
+            border-radius: 0;
+        }
+        .code-preview .output-panel {
+            border-radius: 0;
+        }
+        .code-preview .code-container .code-body {
+            padding: 1rem;
+        }
+        @media(max-width:480px) {
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+        }
+        .intro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .intro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .intro-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .outro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .outro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .outro-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+        .intro-em {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .curriculum-desc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .curriculum-desc::before {
+            content: "📜";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 4rem;
+            opacity: 0.06;
+            transform: rotate(8deg);
+        }
+        .curriculum-desc h2 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc .highlight {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .curriculum-desc .gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .curriculum-desc .desc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .curriculum-desc .desc-meta span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .curriculum-desc .desc-meta i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        @media(max-width:480px) {
+            .curriculum-desc {
+                padding: 1.2rem 1rem;
+            }
+            .curriculum-desc h2 {
+                font-size: 1rem;
+            }
+            .curriculum-desc p {
+                font-size: 0.78rem;
+            }
+            .curriculum-desc .desc-meta {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+        }
+        .subject-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: rgba(75, 139, 190, 0.06);
+            border-left: 3px solid var(--blue);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .subject-desc strong {
+            color: var(--text);
+        }
+        .floating-toc {
+            position: fixed;
+            right: 80px;
+            bottom: 80px;
+            width: 280px;
+            max-height: 60vh;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+            z-index: 950;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        .floating-toc.open {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating-toc .toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1rem;
+            background: rgba(75, 139, 190, 0.08);
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        .floating-toc .toc-header button {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.2rem 0.4rem;
+        }
+        .floating-toc .toc-header button:hover {
+            color: var(--text);
+        }
+        .floating-toc .toc-body {
+            overflow-y: auto;
+            padding: 0.5rem 0;
+            flex: 1;
+        }
+        .floating-toc .toc-body a {
+            display: block;
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .floating-toc .toc-body a:hover {
+            background: rgba(75, 139, 190, 0.08);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+        .floating-toc .toc-body a:active {
+            background: rgba(75, 139, 190, 0.15);
+        }
+        .floating-toc .toc-body a.toc-highlight {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(255, 217, 102, 0.05);
+        }
+        .floating-share .fs-btn.fs-toc {
+            border-color: rgba(75, 139, 190, 0.3);
+        }
+        .floating-share .fs-btn.fs-toc:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .run-local-label {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--amber);
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-left: 0.4rem;
+        }
+        .local-warning-box {
+            background: rgba(245, 158, 11, 0.06);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-radius: 6px;
+            padding: 0.6rem 0.9rem;
+            font-size: 0.74rem;
+            color: var(--amber);
+            margin: 0.6rem 0 0.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .local-warning-box i {
+            font-size: 1rem;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+        @media(max-width:768px) {
+            .floating-toc {
+                right: 10px;
+                bottom: 130px;
+                width: 220px;
+                max-height: 50vh;
+            }
+        }
+        .callout {
+            border-left: 3px solid var(--blue);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(75, 139, 190, .06);
+            border-radius: 4px;
+        }
+        .callout p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout strong {
+            color: var(--blue-lt);
+        }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 212, 59, .06);
+            border-radius: 4px;
+        }
+        .callout-yellow p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-yellow strong {
+            color: var(--gold);
+        }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(16, 185, 129, .06);
+            border-radius: 4px;
+        }
+        .callout-green p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-green strong {
+            color: var(--green);
+        }
+        .access-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.2rem;
+            font-size: .76rem;
+        }
+        .access-table th {
+            background: var(--surface2);
+            color: var(--text);
+            font-weight: 600;
+            padding: .7rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .access-table td {
+            padding: .65rem 1rem;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+        .access-table tr:hover td {
+            background: var(--surface);
+        }
+        .t-pub {
+            color: var(--green);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .t-prot {
+            color: var(--gold);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .t-priv {
+            color: var(--red);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: .9rem;
+            margin-top: 1.5rem;
+        }
+        .pillar-card {
+            border-bottom: 1px solid var(--border);
+            padding: .9rem 0;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: all .25s;
+            position: relative;
+        }
+        .pillar-card:hover {
+            opacity: .85;
+        }
+        .pillar-card[data-p="enc"]:hover {
+            border-color: rgba(75, 139, 190, .5);
+        }
+        .pillar-card[data-p="abs"]:hover {
+            border-color: rgba(106, 174, 214, .5);
+        }
+        .pillar-card[data-p="inh"]:hover {
+            border-color: rgba(255, 212, 59, .5);
+        }
+        .pillar-card[data-p="pol"]:hover {
+            border-color: rgba(181, 158, 232, .5);
+        }
+        .pico {
+            font-size: 1.6rem;
+            margin-bottom: .5rem;
+        }
+        .ptitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+            color: var(--text);
+        }
+        .pdesc {
+            font-size: .72rem;
+            color: var(--muted);
+            margin: 0 0 1.2rem;
+            line-height: 1.65;
+        }
+        .pbtn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .68rem;
+            padding: .42rem .9rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .pillar-card[data-p="enc"] .pbtn {
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+        }
+        .pillar-card[data-p="abs"] .pbtn {
+            background: rgba(106, 174, 214, .12);
+            color: #6aaed6;
+        }
+        .pillar-card[data-p="inh"] .pbtn {
+            background: rgba(255, 212, 59, .12);
+            color: var(--gold);
+        }
+        .pillar-card[data-p="pol"] .pbtn {
+            background: rgba(181, 158, 232, .12);
+            color: #b59ee8;
+        }
+        .pbtn:hover {
+            filter: brightness(1.25);
+            transform: translateX(3px);
+        }
+        .pbtn::after {
+            content: '→';
+        }
+        .current-pill {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            background: rgba(75, 139, 190, .2);
+            border: 1px solid rgba(75, 139, 190, .4);
+            color: var(--blue-lt);
+            font-size: .55rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .ai-card {
+            border-bottom: 1px solid var(--border);
+            padding: .75rem 0;
+            transition: opacity .2s;
+        }
+        .ai-card:hover {
+            opacity: .85;
+        }
+        .ai-card-icon {
+            font-size: 1.5rem;
+            margin-bottom: .6rem;
+        }
+        .ai-card h3 {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: .4rem;
+        }
+        .ai-card p {
+            font-size: .78rem;
+            margin: 0;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.8rem;
+        }
+        .app-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .6rem;
+            padding: .75rem .5rem;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+        .app-btn:hover {
+            opacity: .8;
+        }
+        .app-btn:active {
+            opacity: .65;
+        }
+        .app-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            transition: transform .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            z-index: 1;
+        }
+        .app-btn:hover .app-logo {
+            transform: scale(1.1) rotate(-4deg);
+        }
+        .app-atm .app-logo {
+            background: rgba(75, 139, 190, .15);
+            border: 1px solid rgba(75, 139, 190, .3);
+        }
+        .app-veggie .app-logo {
+            background: rgba(141, 200, 150, .15);
+            border: 1px solid rgba(141, 200, 150, .3);
+        }
+        .app-book .app-logo {
+            background: rgba(255, 212, 59, .12);
+            border: 1px solid rgba(255, 212, 59, .3);
+        }
+        .app-lechon .app-logo {
+            background: rgba(232, 149, 109, .15);
+            border: 1px solid rgba(232, 149, 109, .3);
+        }
+        .app-flower .app-logo {
+            background: rgba(212, 88, 136, .15);
+            border: 1px solid rgba(212, 88, 136, .3);
+        }
+        .app-info {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .app-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--text);
+            margin-bottom: .2rem;
+        }
+        .app-desc {
+            font-size: .68rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+        .app-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .56rem;
+            padding: .18rem .55rem;
+            border-radius: 100px;
+            margin-top: .5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .app-atm .app-tag {
+            background: rgba(75, 139, 190, .15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, .25);
+        }
+        .app-veggie .app-tag {
+            background: rgba(141, 200, 150, .12);
+            color: var(--green);
+            border: 1px solid rgba(141, 200, 150, .25);
+        }
+        .app-book .app-tag {
+            background: rgba(255, 212, 59, .1);
+            color: var(--gold);
+            border: 1px solid rgba(255, 212, 59, .25);
+        }
+        .app-lechon .app-tag {
+            background: rgba(232, 149, 109, .12);
+            color: #e8956d;
+            border: 1px solid rgba(232, 149, 109, .25);
+        }
+        .app-flower .app-tag {
+            background: rgba(212, 88, 136, .12);
+            color: var(--red);
+            border: 1px solid rgba(212, 88, 136, .25);
+        }
+        .cheat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.4rem;
+        }
+        .cheat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            transition: border-color .2s;
+        }
+        .cheat-card:hover {
+            border-color: var(--border-hov);
+        }
+        .cheat-card h3 {
+            font-size: .88rem;
+            margin-bottom: .75rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            color: var(--text);
+        }
+        .cheat-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .72rem;
+        }
+        .cheat-table th {
+            background: var(--panel);
+            color: var(--muted);
+            padding: .4rem .65rem;
+            text-align: left;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: .05em;
+            border-bottom: 1px solid var(--border);
+        }
+        .cheat-table td {
+            padding: .4rem .65rem;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(75, 139, 190, .06);
+            vertical-align: top;
+        }
+        .cheat-table td:first-child {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--blue-lt);
+            white-space: nowrap;
+        }
+        .cheat-table tr:last-child td {
+            border-bottom: none;
+        }
+        .cheat-table tr:hover td {
+            background: var(--surface);
+        }
+        .lang-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .75rem;
+            margin-top: 1.4rem;
+        }
+        @media(max-width:600px) {
+            .lang-compare {
+                grid-template-columns: 1fr;
+            }
+        }
+        .lang-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem;
+        }
+        .lang-card h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .65rem;
+            color: var(--blue-lt);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .65rem;
+        }
+        .lang-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .35rem;
+        }
+        .lang-card li {
+            font-size: .72rem;
+            color: var(--muted);
+            padding: .3rem .5rem;
+            background: var(--surface);
+            border-radius: 5px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .lang-card li::before {
+            content: '• ';
+            color: var(--blue);
+        }
+        .quiz-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .quiz-q {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            transition: border-color .3s;
+        }
+        .quiz-q.correct {
+            border-color: var(--green) !important;
+        }
+        .quiz-q.wrong {
+            border-color: var(--red) !important;
+        }
+        .quiz-prompt {
+            font-size: .82rem;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: .8rem;
+            line-height: 1.6;
+        }
+        .quiz-opts {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .quiz-opt {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .5rem .8rem;
+            border-radius: 7px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: .76rem;
+            color: var(--muted);
+            transition: all .2s;
+            user-select: none;
+        }
+        .quiz-opt:hover:not(.disabled) {
+            background: var(--surface2);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+        .quiz-opt.correct-ans {
+            background: rgba(141, 200, 150, .12);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .quiz-opt.wrong-ans {
+            background: rgba(212, 88, 136, .1);
+            border-color: var(--red);
+            color: var(--red);
+        }
+        .quiz-opt.disabled {
+            cursor: default;
+        }
+        .quiz-feedback {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .65rem;
+            margin-top: .7rem;
+            min-height: .9rem;
+            line-height: 1.6;
+        }
+        .quiz-feedback.ok {
+            color: var(--green);
+        }
+        .quiz-feedback.bad {
+            color: var(--red);
+        }
+        .quiz-score {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            margin-top: 1rem;
+            display: none;
+        }
+        .quiz-score .score-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            color: var(--blue-lt);
+            display: block;
+            line-height: 1.1;
+        }
+        .quiz-score p {
+            font-size: .78rem;
+            color: var(--muted);
+            margin: .5rem 0 0;
+        }
+        .quiz-reset {
+            margin-top: .8rem;
+            padding: .55rem 1.5rem;
+            border-radius: 100px;
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, .28);
+            cursor: pointer;
+            font-size: .74rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            transition: all .2s;
+        }
+        .quiz-reset:hover {
+            background: rgba(75, 139, 190, .25);
+        }
+        .share-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2.8rem 2.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .share-wrap::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(75, 139, 190, .07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .share-wrap h2 {
+            font-size: 1.2rem;
+            margin-bottom: .3rem;
+        }
+        .share-sub {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 420px;
+            margin: .4rem auto 1.6rem;
+            line-height: 1.7;
+        }
+        .share-ai-msg {
+            background: rgba(75, 139, 190, .07);
+            border: 1px solid rgba(75, 139, 190, .18);
+            border-radius: var(--card-r);
+            padding: .85rem 1.2rem;
+            margin: 0 auto 1.6rem;
+            max-width: 560px;
+            font-size: .76rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.65;
+            min-height: 3.5rem;
+            text-align: justify;
+            position: relative;
+            transition: opacity .4s;
+        }
+        .ai-typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: .9em;
+            background: var(--blue-lt);
+            margin-left: 1px;
+            vertical-align: middle;
+            animation: blink .7s infinite;
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: 0
+            }
+        }
+        .share-btns {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: .65rem;
+            margin-top: .4rem;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .sbtn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .65rem 1.3rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .sbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+        }
+        .sbtn svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+        .sbtn.s-fb:hover {
+            background: rgba(24, 119, 242, .14);
+            border-color: rgba(24, 119, 242, .38);
+            color: #5597ee;
+        }
+        .sbtn.s-li:hover {
+            background: rgba(10, 102, 194, .14);
+            border-color: rgba(10, 102, 194, .38);
+            color: #5b9bd5;
+        }
+        .sbtn.s-x:hover {
+            background: rgba(255, 255, 255, .07);
+            border-color: rgba(255, 255, 255, .2);
+        }
+        .sbtn.s-wa:hover {
+            background: rgba(37, 211, 102, .12);
+            border-color: rgba(37, 211, 102, .35);
+            color: #25d366;
+        }
+        .sbtn.s-yt:hover {
+            background: rgba(255, 0, 0, .1);
+            border-color: rgba(255, 0, 0, .32);
+            color: #ff5555;
+        }
+        .sbtn.s-rd:hover {
+            background: rgba(255, 69, 0, .14);
+            border-color: rgba(255, 69, 0, .38);
+            color: #ff6534;
+        }
+        .sbtn.s-dt:hover {
+            background: rgba(0, 0, 0, .2);
+            border-color: rgba(255, 255, 255, .3);
+            color: #ffffff;
+        }
+        .sbtn.s-hn:hover {
+            background: rgba(36, 99, 235, .14);
+            border-color: rgba(36, 99, 235, .38);
+            color: #6096ff;
+        }
+        .sbtn.s-dc:hover {
+            background: rgba(88, 101, 242, .14);
+            border-color: rgba(88, 101, 242, .38);
+            color: #8b9aff;
+        }
+        .sbtn.s-fbg:hover {
+            background: rgba(24, 119, 242, .14);
+            border-color: rgba(24, 119, 242, .38);
+            color: #5597ee;
+        }
+        .sbtn.s-tk:hover {
+            background: rgba(255, 0, 80, .1);
+            border-color: rgba(255, 0, 80, .35);
+            color: #ff0050;
+        }
+        .sbtn.s-ig:hover {
+            background: rgba(225, 48, 108, .12);
+            border-color: rgba(225, 48, 108, .38);
+            color: #e1306c;
+        }
+        .sbtn.s-tg:hover {
+            background: rgba(0, 136, 204, .14);
+            border-color: rgba(0, 136, 204, .38);
+            color: #29b6f6;
+        }
+        .sbtn.s-pi:hover {
+            background: rgba(230, 0, 35, .12);
+            border-color: rgba(230, 0, 35, .35);
+            color: #e60023;
+        }
+        .sbtn.s-md:hover {
+            background: rgba(255, 255, 255, .08);
+            border-color: rgba(255, 255, 255, .25);
+            color: #ffffff;
+        }
+        .sbtn.s-qr:hover {
+            background: rgba(185, 43, 39, .12);
+            border-color: rgba(185, 43, 39, .35);
+            color: #b92b27;
+        }
+        .sbtn.s-sl:hover {
+            background: rgba(74, 21, 75, .2);
+            border-color: rgba(224, 30, 90, .35);
+            color: #e01e5a;
+        }
+        .share-toast {
+            margin-top: .9rem;
+            font-size: .7rem;
+            color: var(--blue-lt);
+            min-height: 1.1rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: opacity .4s;
+            opacity: 0;
+        }
+        .comments-wrap {
+            position: relative;
+        }
+        .cform-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.6rem;
+            margin-bottom: 1.8rem;
+        }
+        .cform-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .frow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .8rem;
+            margin-bottom: .8rem;
+        }
+        @media(max-width:520px) {
+            .frow {
+                grid-template-columns: 1fr;
+            }
+        }
+        .fg {
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+        }
+        .fg label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .58rem;
+            color: var(--muted);
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+        .cinput {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: .6rem .85rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: .82rem;
+            width: 100%;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .cinput:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(75, 139, 190, .11);
+        }
+        textarea.cinput {
+            resize: vertical;
+            min-height: 90px;
+            margin-bottom: .8rem;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            padding: .65rem 1.75rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .76rem;
+            cursor: pointer;
+            transition: all .25s;
+        }
+        .btn-submit:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .3);
+        }
+        .btn-submit:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .cform-msg {
+            font-size: .7rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: .6rem;
+            min-height: 1rem;
+            transition: opacity .4s;
+        }
+        .clist {
+            display: flex;
+            flex-direction: column;
+            gap: .9rem;
+        }
+        .comment-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.15rem;
+            transition: border-color .2s;
+            animation: fu .4s ease both;
+        }
+        .comment-card:hover {
+            border-color: var(--border-hov);
+        }
+        .chdr {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: .55rem;
+        }
+        .ava {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: .75rem;
+            border: 1px solid var(--border);
+        }
+        .cname {
+            font-weight: 600;
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .cdate {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .58rem;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+        .cbody {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: .75rem;
+        }
+        .creact {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .rbtn {
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: .28rem .75rem;
+            cursor: pointer;
+            color: var(--muted);
+            font-size: .7rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 500;
+            transition: all .2s;
+            user-select: none;
+        }
+        .rbtn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+        .rbtn.liked {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: rgba(75, 139, 190, .1);
+        }
+        .rbtn.loved {
+            border-color: #d45888;
+            color: #d45888;
+            background: rgba(212, 88, 136, .1);
+        }
+        .rbtn .rbtn-count {
+            font-weight: 700;
+            min-width: 1.2ch;
+            text-align: center;
+        }
+        .comment-sort {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .sort-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .6rem;
+            color: var(--subtle);
+            letter-spacing: .08em;
+        }
+        .sort-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: .22rem .65rem;
+            font-size: .68rem;
+            color: var(--muted);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            transition: all .2s;
+        }
+        .sort-btn.active,
+        .sort-btn:hover {
+            background: rgba(75, 139, 190, .12);
+            border-color: rgba(75, 139, 190, .3);
+            color: var(--blue-lt);
+        }
+        .empty-comments {
+            text-align: center;
+            padding: 2rem;
+            color: var(--subtle);
+            font-size: .78rem;
+        }
+        .empty-comments .empty-ico {
+            font-size: 2rem;
+            margin-bottom: .5rem;
+        }
+        .sub-wrap {
+            background: linear-gradient(135deg, var(--card) 0%, var(--panel) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 3.2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .sub-wrap::before {
+            content: '🐍';
+            position: absolute;
+            font-size: 7rem;
+            opacity: .03;
+            top: 50%;
+            left: 2%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .sub-wrap::after {
+            content: '{ }';
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 5rem;
+            opacity: .03;
+            top: 50%;
+            right: 2%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--blue);
+        }
+        .sub-wrap h2 {
+            font-size: 1.2rem;
+            margin-bottom: .35rem;
+        }
+        .sub-desc {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 440px;
+            margin: .3rem auto 0;
+        }
+        .perks {
+            display: flex;
+            justify-content: center;
+            gap: 1.3rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 1.4rem;
+        }
+        .perk {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .perk::before {
+            content: '✓';
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .sub-form {
+            display: flex;
+            gap: .55rem;
+            max-width: 460px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .sub-form .cinput {
+            flex: 1;
+            min-width: min(180px, 100%);
+        }
+        .sub-plans {
+            display: flex;
+            gap: .65rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.3rem;
+        }
+        .plan-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .45rem 1.1rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-size: .72rem;
+            color: var(--muted);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 500;
+            transition: all .22s;
+        }
+        .plan-chip:hover,
+        .plan-chip.active {
+            border-color: rgba(75, 139, 190, .4);
+            background: rgba(75, 139, 190, .1);
+            color: var(--blue-lt);
+        }
+        .plan-chip.premium.active {
+            border-color: rgba(255, 212, 59, .4);
+            background: rgba(255, 212, 59, .08);
+            color: var(--gold);
+        }
+        .sub-note {
+            font-size: .62rem;
+            color: var(--subtle);
+            margin-top: .7rem;
+        }
+        .sub-msg {
+            font-size: .7rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 1rem;
+            transition: opacity .4s;
+            margin-top: .5rem;
+        }
+        .follow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.6rem;
+        }
+        .follow-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.6rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: .65rem;
+            transition: all .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .follow-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--card-r);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        .follow-card.fc-fb::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(24, 119, 242, .15), transparent 65%);
+        }
+        .follow-card.fc-li::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(10, 102, 194, .15), transparent 65%);
+        }
+        .follow-card.fc-x::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, .06), transparent 65%);
+        }
+        .follow-card.fc-yt::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 0, 0, .12), transparent 65%);
+        }
+        .follow-card.fc-gh::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(110, 110, 110, .15), transparent 65%);
+        }
+        .follow-card:hover {
+            transform: translateY(-5px);
+        }
+        .follow-card:hover::before {
+            opacity: 1;
+        }
+        .follow-card.fc-fb:hover {
+            border-color: rgba(24, 119, 242, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-li:hover {
+            border-color: rgba(10, 102, 194, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-x:hover {
+            border-color: rgba(255, 255, 255, .2);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-yt:hover {
+            border-color: rgba(255, 0, 0, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-gh:hover {
+            border-color: rgba(150, 150, 150, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            transition: transform .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-card:hover .follow-icon {
+            transform: scale(1.12) rotate(-5deg);
+        }
+        .fc-fb .follow-icon {
+            background: rgba(24, 119, 242, .15);
+            border: 1px solid rgba(24, 119, 242, .25);
+        }
+        .fc-li .follow-icon {
+            background: rgba(10, 102, 194, .15);
+            border: 1px solid rgba(10, 102, 194, .25);
+        }
+        .fc-x .follow-icon {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-icon {
+            background: rgba(255, 0, 0, .12);
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .fc-gh .follow-icon {
+            background: rgba(150, 150, 150, .12);
+            border: 1px solid rgba(150, 150, 150, .25);
+        }
+        .follow-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .62rem;
+            color: var(--subtle);
+            margin-top: -.3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .follow-stat {
+            font-size: .7rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .45rem 1.2rem;
+            border-radius: 100px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            cursor: pointer;
+            border: none;
+            transition: all .25s;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            margin-top: .2rem;
+        }
+        .follow-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+        }
+        .follow-btn.following {
+            background: var(--surface2) !important;
+            color: var(--subtle) !important;
+            border: 1px solid var(--border) !important;
+        }
+        .fc-fb .follow-btn {
+            background: rgba(24, 119, 242, .2);
+            color: #5597ee;
+            border: 1px solid rgba(24, 119, 242, .3);
+        }
+        .fc-li .follow-btn {
+            background: rgba(10, 102, 194, .2);
+            color: #5b9bd5;
+            border: 1px solid rgba(10, 102, 194, .3);
+        }
+        .fc-x .follow-btn {
+            background: rgba(255, 255, 255, .08);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-btn {
+            background: rgba(255, 0, 0, .15);
+            color: #ff5555;
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .fc-gh .follow-btn {
+            background: rgba(150, 150, 150, .15);
+            color: var(--muted);
+            border: 1px solid rgba(150, 150, 150, .25);
+        }
+        .atm-simulator-container {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .atm-simulator-container .code-chrome {
+            background: #0a1a24;
+            padding: .6rem .9rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .atm-simulator-container .dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .atm-simulator-container .dot-r {
+            background: #ff5f56;
+        }
+        .atm-simulator-container .dot-y {
+            background: #ffbd2e;
+        }
+        .atm-simulator-container .dot-g {
+            background: #27c93f;
+        }
+        .atm-simulator-container .win-title {
+            font-size: .68rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: .4rem;
+        }
+        #atmScreen {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .78rem;
+            color: #7dd3fc;
+            padding: 1.2rem;
+            min-height: 300px;
+            white-space: pre-wrap;
+            line-height: 1.75;
+            overflow-y: auto;
+            max-height: 420px;
+            background: #0a1a24;
+        }
+        .atm-controls {
+            padding: 0.8rem 1rem;
+            background: #0a1a24;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .atm-controls input {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--btn-r);
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .8rem;
+            outline: none;
+            transition: border-color .2s;
+        }
+        .atm-controls input:focus {
+            border-color: var(--blue);
+        }
+        .atm-controls button {
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--btn-r);
+            border: none;
+            background: var(--blue);
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .8rem;
+            cursor: pointer;
+            transition: background .2s;
+            white-space: nowrap;
+        }
+        .atm-controls button:hover {
+            background: var(--blue-deep);
+        }
+        .atm-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .atm-start-btn {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            border: none;
+            background: var(--blue);
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .85rem;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .atm-start-btn:hover {
+            background: var(--blue-deep);
+        }
+        .back-to-hub {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            z-index: 8000;
+        }
+        .back-to-hub a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .68rem;
+            font-weight: 400;
+            letter-spacing: .08em;
+            color: var(--silver, #cbd5e1);
+            background: rgba(10, 10, 15, .92);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, .55), 0 0 0 1px rgba(37, 99, 235, .12);
+            transition: color .2s, border-color .2s, background .2s, transform .2s, box-shadow .2s;
+            white-space: nowrap;
+        }
+        .back-to-hub a:hover {
+            color: var(--blue-lt);
+            border-color: var(--blue-mid);
+            background: rgba(13, 27, 62, .95);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(37, 99, 235, .22), 0 0 0 1px rgba(59, 130, 246, .3);
+        }
+        .back-to-hub .back-arrow {
+            font-size: .9rem;
+            line-height: 1;
+            transition: transform .2s;
+        }
+        .back-to-hub a:hover .back-arrow {
+            transform: translateX(-2px);
+        }
+        .exercise-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .exercise-block h4 {
+            color: var(--gold);
+            font-size: .9rem;
+            margin-bottom: .5rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .exercise-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .exercise-block ul {
+            list-style: none;
+            padding: 0;
+            margin: .5rem 0;
+        }
+        .exercise-block ul li {
+            padding: .2rem 0 .2rem 1.5rem;
+            position: relative;
+            font-size: .76rem;
+            color: var(--muted);
+        }
+        .exercise-block ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--blue-lt);
+        }
+        .exercise-block .hint {
+            background: rgba(75, 139, 190, .06);
+            border-left: 3px solid var(--blue);
+            padding: .6rem 1rem;
+            font-size: .74rem;
+            color: var(--blue-lt);
+            margin-top: .5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar-wrap">
+        <div class="progress-bar" id="pbar"></div>
+    </div>
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home">
+                <div class="brand-icon">🐍</div>POETIC BYTES
+            </a>
+            <ul class="nav-links">
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#simulator">Simulator</a></li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#patterns">Patterns</a></li>
+                <li><a href="#testing">Testing</a></li>
+                <li><a href="#ai-role">AI Role</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#exercises">Exercises</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#share">Share</a></li>
+                <li><a href="#comments">Comments</a></li>
+                <li><a href="#subscribe">Subscribe</a></li>
+                <li><a href="encapsulation.html">← Encapsulation Hub</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#intro"><i class="fas fa-book-open"></i>Intro</button></li>
+                <li><button data-href="#simulator"><i class="fas fa-gamepad"></i>Simulator</button></li>
+                <li><button data-href="#code"><i class="fas fa-code"></i>Code</button></li>
+                <li><button data-href="#concepts"><i class="fas fa-lightbulb"></i>Concepts</button></li>
+                <li><button data-href="#patterns"><i class="fas fa-puzzle-piece"></i>Patterns</button></li>
+                <li><button data-href="#testing"><i class="fas fa-vial"></i>Testing</button></li>
+                <li><button data-href="#ai-role"><i class="fas fa-robot"></i>AI Role</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#exercises"><i class="fas fa-dumbbell"></i>Exercises</button></li>
+                <li><button data-href="#quiz"><i class="fas fa-brain"></i>Quiz</button></li>
+                <li><button data-href="#share"><i class="fas fa-share-alt"></i>Share</button></li>
+                <li><button data-href="#comments"><i class="fas fa-comments"></i>Comments</button></li>
+                <li><button data-href="#subscribe"><i class="fas fa-envelope"></i>Subscribe</button></li>
+                <li><a href="encapsulation.html"><i class="fas fa-arrow-left"></i>Back to Encapsulation Hub</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header"><span>📚 Jump to</span><button id="tocCloseBtn"><i class="fas fa-times"></i></button></div>
+        <div class="toc-body" id="tocBody">
+            <a href="#intro">📖 Introduction</a>
+            <a href="#simulator">🎮 Simulator</a>
+            <a href="#code">💻 Code</a>
+            <a href="#concepts">🔬 Concepts</a>
+            <a href="#patterns">🏗️ Patterns</a>
+            <a href="#testing">🧪 Testing</a>
+            <a href="#ai-role">🤖 AI Role</a>
+            <a href="#faq">❓ FAQ</a>
+            <a href="#exercises">🏋️ Exercises</a>
+            <a href="#quiz">🎯 Quiz</a>
+            <a href="#share">📤 Share</a>
+            <a href="#comments">💬 Comments</a>
+            <a href="#subscribe">📧 Subscribe</a>
+        </div>
+    </div>
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents"><i class="fas fa-list-ul"></i><span class="tooltip">Table of Contents</span></button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i><span class="tooltip">Telegram</span></a>
+    </div>
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <div class="back-to-hub">
+        <a href="encapsulation.html"><span class="back-arrow">←</span> Back to Encapsulation Hub</a>
+    </div>
+    <main style="padding-top:56px;">
+        <section class="hero" aria-label="ATM System in Python OOP">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Encapsulation in Action · Production-Ready ATM</div>
+                <h1 style="font-size:clamp(1.8rem,4.5vw,3.2rem);">
+                    <span style="color:var(--blue);">ATM System</span> —<br>
+                    <span style="color:var(--gold);">Mastering Encapsulation</span><br>
+                    Through Real Banking Software
+                </h1>
+                <p class="lead">
+                    Build a complete, professional ATM system in Python. Learn encapsulation, security, design patterns, and testing — all while creating a live interactive simulator you can use right in your browser.
+                </p>
+                <div class="meta-row" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;">
+                    <span class="chip" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📅 February 28, 2026</span>
+                    <span class="chip" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 3–4 hours</span>
+                    <span class="chip" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🎓 Intermediate–Advanced</span>
+                    <span class="chip" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">Python 3.9+</span>
+                </div>
+                <div style="margin-top:1.5rem;">
+                    <a href="#simulator" class="btn btn-primary"><i class="fas fa-play"></i> Try Live Simulator</a>
+                    <a href="#code" class="btn btn-outline" style="margin-left:.5rem;"><i class="fas fa-code"></i> View Code</a>
+                </div>
+            </div>
+        </section>
+        <section id="intro" aria-labelledby="h-intro">
+            <div class="page-col">
+                <div class="section-label">01 — The Why</div>
+                <h2 id="h-intro">Why an ATM System?</h2>
+                <div style="margin-top:1rem;">
+                    <div class="oop-block">
+                        <h3>The Perfect Vehicle for Encapsulation</h3>
+                        <p>Every person on the planet has used an ATM. That familiarity is your superpower — you already understand the expected behavior, which means you can focus entirely on the <strong>engineering</strong> rather than the domain. But ATMs are deceptively complex: they involve authentication, transaction processing, concurrent state management, security hardening, audit trails, hardware abstraction, and strict business rules. These are exactly the same challenges you'll face in any serious application — from e‑commerce to AI systems.</p>
+                        <p>Banking software has <strong style="color:var(--blue-lt);">zero tolerance for bugs</strong>. A mistake in your ATM code doesn't just break a feature — it could drain someone's account or lock them out of their money. Building in this mindset trains you to write better software in every domain. This tutorial will teach you how to think like a senior engineer, not just how to write code.</p>
+                        <div class="callout"><p><strong>What you'll learn:</strong> Encapsulation, SHA‑256 security, Command &amp; Observer design patterns, unit testing, and production‑grade error handling — all through one cohesive project.</p></div>
+                    </div>
+                    <div class="oop-block">
+                        <h3>Prerequisites &amp; Who This Is For</h3>
+                        <p>You should know basic Python syntax (variables, loops, functions, and maybe a little about classes). You don't need to be an OOP expert — that's what this tutorial is for. Estimated time: 3–4 hours for reading, plus experimentation with the live simulator.</p>
+                        <ul class="intro-list">
+                            <li>You're a self‑taught developer looking to level up from scripts to systems.</li>
+                            <li>You're a CS student bridging the gap between theory and practice.</li>
+                            <li>You're a working programmer sharpening your OOP and testing skills.</li>
+                            <li>You want to see how encapsulation is applied in a real, working project.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="simulator" aria-labelledby="h-sim">
+            <div class="page-col">
+                <div class="section-label">02 — Interactive Demo</div>
+                <h2 id="h-sim">🎮 Live ATM Simulator</h2>
+                <p>Try the ATM yourself! Use card <strong style="color:var(--blue-lt);">1234</strong> with PIN <strong style="color:var(--blue-lt);">1234</strong>. The simulator mirrors the exact Python logic we'll dissect below — test invalid PINs, insufficient funds, daily limits, PIN changes, and more.</p>
+                <div class="atm-simulator-container" style="margin:1.5rem 0;">
+                    <div class="code-chrome">
+                        <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+                        <span class="win-title">ATM Simulator — Interactive Session</span>
+                    </div>
+                    <div id="atmScreen">==================================
+        POETIC BYTES ATM v2.0
+==================================
+
+Welcome to the ATM Simulator
+
+→ Press START to begin your session
+→ Test card: 1234
+→ PIN: 1234
+→ Balance: ₱12,500.75
+
+This simulator mirrors the exact logic
+of our Python implementation below.</div>
+                    <div class="atm-controls">
+                        <input type="text" id="atmInput" placeholder="Enter input..." disabled>
+                        <button id="atmSubmit" disabled>Submit</button>
+                    </div>
+                    <button class="atm-start-btn" id="atmStart">▶ START ATM SIMULATOR</button>
+                </div>
+            </div>
+        </section>
+        <section id="code" aria-labelledby="h-code">
+            <div class="page-col">
+                <div class="section-label">03 — Implementation</div>
+                <h2 id="h-code">💻 Complete Production‑Ready Implementation</h2>
+                <p>Below is our ATM system with professional features: multi‑account support, transaction limits, audit logging, and comprehensive error handling. Every design decision is explained in detail in the sections that follow.</p>
+                <div class="code-preview" style="margin-top:1.5rem;">
+                    <div class="code-chrome">
+                        <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+                        <span class="win-title">atm_system.py</span>
+                        <button class="code-btn copy-btn" id="copyCodeBtn" style="margin-left:auto;"><i class="fas fa-copy"></i> Copy Code</button>
+                    </div>
+                    <div class="code-body" id="atmCodeBody" style="background:#0a1a24;color:#a5d6ff;font-size:.76rem;line-height:1.7;padding:1.2rem;">
+                        <pre style="margin:0;white-space:pre-wrap;word-break:break-word;">import hashlib
+import datetime
+from typing import Dict, List, Optional, Tuple
+
+class Account:
+    def __init__(self, account_number: str, pin_hash: str,
+                 holder_name: str, initial_balance: float = 0.0,
+                 account_type: str = "savings"):
+        self.account_number = account_number
+        self.pin_hash = pin_hash
+        self.holder_name = holder_name
+        self.balance = initial_balance
+        self.account_type = account_type
+        self.is_locked = False
+        self.failed_attempts = 0
+        self.transaction_history: List[Dict] = []
+        self.daily_withdrawal_total = 0.0
+        self.last_transaction_date = datetime.date.today()
+
+    def verify_pin(self, plain_pin: str) -> bool:
+        input_hash = hashlib.sha256(plain_pin.encode()).hexdigest()
+        return input_hash == self.pin_hash
+
+    def can_withdraw(self, amount: float,
+                     daily_limit: float = 10000.0) -> Tuple[bool, str]:
+        if self.last_transaction_date < datetime.date.today():
+            self.daily_withdrawal_total = 0.0
+            self.last_transaction_date = datetime.date.today()
+        if self.is_locked:
+            return False, "Account is locked. Please contact support."
+        if amount <= 0:
+            return False, "Amount must be positive."
+        if amount > self.balance:
+            return False, "Insufficient funds."
+        if amount % 100 != 0:
+            return False, "Withdrawals must be in multiples of 100."
+        if self.daily_withdrawal_total + amount > daily_limit:
+            return False, f"Daily withdrawal limit of ₱{daily_limit:,.2f} exceeded."
+        return True, "Approved"
+
+    def withdraw(self, amount: float) -> Dict:
+        can_withdraw, message = self.can_withdraw(amount)
+        if not can_withdraw:
+            return {"success": False, "message": message}
+        self.balance -= amount
+        self.daily_withdrawal_total += amount
+        transaction = {
+            "type": "withdrawal", "amount": amount,
+            "balance_after": self.balance,
+            "timestamp": datetime.datetime.now().isoformat()
+        }
+        self.transaction_history.append(transaction)
+        return {"success": True,
+                "message": f"Withdrawn ₱{amount:,.2f}",
+                "new_balance": self.balance,
+                "transaction": transaction}
+
+class ATM:
+    DAILY_WITHDRAWAL_LIMIT = 10000.0
+    MAX_FAILED_ATTEMPTS = 3
+
+    def __init__(self):
+        self.accounts: Dict[str, Account] = {}
+        self.current_account: Optional[Account] = None
+        self.session_start = None
+        self._initialize_test_accounts()
+
+    def _initialize_test_accounts(self):
+        demo_hash = hashlib.sha256("1234".encode()).hexdigest()
+        self.accounts["1234"] = Account("1234", demo_hash,
+            "Glenn Junsay Pansensoy", 12500.75, "savings")
+        self.accounts["5678"] = Account("5678", demo_hash,
+            "Maria Santos", 25000.00, "checking")
+
+    def authenticate(self, card_number: str, pin: str) -> Tuple[bool, str]:
+        if card_number not in self.accounts:
+            return False, "Card not recognized"
+        account = self.accounts[card_number]
+        if account.is_locked:
+            return False, "Account locked. Please contact customer service."
+        if account.verify_pin(pin):
+            account.failed_attempts = 0
+            self.current_account = account
+            self.session_start = datetime.datetime.now()
+            return True, f"Welcome, {account.holder_name}!"
+        account.failed_attempts += 1
+        if account.failed_attempts >= self.MAX_FAILED_ATTEMPTS:
+            account.is_locked = True
+            return False, "Too many failed attempts. Account locked."
+        remaining = self.MAX_FAILED_ATTEMPTS - account.failed_attempts
+        return False, f"Incorrect PIN. {remaining} attempt(s) remaining."
+
+    def check_balance(self) -> str:
+        if not self.current_account:
+            return "No active session"
+        return f"Current Balance: ₱{self.current_account.balance:,.2f}"
+
+    def deposit(self, amount: float) -> Dict:
+        if not self.current_account:
+            return {"success": False, "message": "No active session"}
+        if amount <= 0:
+            return {"success": False, "message": "Deposit must be positive"}
+        if amount > 50000:
+            return {"success": False, "message": "Over ₱50,000 requires teller"}
+        self.current_account.balance += amount
+        tx = {"type": "deposit", "amount": amount,
+              "balance_after": self.current_account.balance,
+              "timestamp": datetime.datetime.now().isoformat()}
+        self.current_account.transaction_history.append(tx)
+        return {"success": True, "message": f"Deposited ₱{amount:,.2f}",
+                "new_balance": self.current_account.balance, "transaction": tx}
+
+    def withdraw(self, amount: float) -> Dict:
+        if not self.current_account:
+            return {"success": False, "message": "No active session"}
+        return self.current_account.withdraw(amount)
+
+    def change_pin(self, old_pin: str, new_pin: str) -> Dict:
+        if not self.current_account:
+            return {"success": False, "message": "No active session"}
+        if not self.current_account.verify_pin(old_pin):
+            return {"success": False, "message": "Current PIN is incorrect"}
+        if len(new_pin) != 4 or not new_pin.isdigit():
+            return {"success": False, "message": "PIN must be exactly 4 digits"}
+        if new_pin == old_pin:
+            return {"success": False, "message": "New PIN must differ from old"}
+        self.current_account.pin_hash = hashlib.sha256(new_pin.encode()).hexdigest()
+        return {"success": True, "message": "PIN changed successfully."}
+
+    def get_transaction_history(self, limit: int = 10) -> List[Dict]:
+        if not self.current_account:
+            return []
+        return self.current_account.transaction_history[-limit:]
+
+    def logout(self):
+        self.current_account = None
+        self.session_start = None</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="concepts" aria-labelledby="h-concepts">
+            <div class="page-col">
+                <div class="section-label">04 — Deep Dive</div>
+                <h2 id="h-concepts">🔬 Understanding Every Design Decision</h2>
+                <div class="card-grid">
+                    <div class="card" style="border-color:var(--blue);">
+                        <div class="card-icon">🏛️</div>
+                        <h3>Separation of Concerns</h3>
+                        <p>We split <code>Account</code> (data + individual operations) from <code>ATM</code> (system‑wide coordination). Each class has exactly one reason to change — a core SRP principle that makes maintenance straightforward.</p>
+                    </div>
+                    <div class="card" style="border-color:var(--green);">
+                        <div class="card-icon">🔐</div>
+                        <h3>Security Architecture</h3>
+                        <p>Never store plaintext PINs. SHA‑256 hashing here for clarity; real systems use <code>bcrypt</code> or <code>Argon2</code> with per‑user salts. Failed attempt tracking stops brute force: 3 wrong PINs locks the account permanently.</p>
+                    </div>
+                    <div class="card" style="border-color:var(--gold);">
+                        <div class="card-icon">📊</div>
+                        <h3>State Management</h3>
+                        <p>Each account tracks its own state: balance, lock status, failed attempts, and daily withdrawal total. This encapsulation means one account's state can never corrupt another's — naturally thread‑safe at the account level.</p>
+                    </div>
+                    <div class="card" style="border-color:var(--purple);">
+                        <div class="card-icon">💼</div>
+                        <h3>Business Rules Encapsulation</h3>
+                        <p>All withdrawal rules live in <code>can_withdraw()</code>. When compliance says "add a minimum withdrawal of ₱200," there's exactly one place to make that change — no scattered checks to miss.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="patterns" aria-labelledby="h-patterns">
+            <div class="page-col">
+                <div class="section-label">05 — Design Patterns</div>
+                <h2 id="h-patterns">🏗️ Professional Design Patterns in Action</h2>
+                <p>Our ATM system demonstrates several Gang of Four design patterns that appear constantly in professional software:</p>
+                <div class="card-grid" style="margin-top:1rem;">
+                    <div class="card" style="border-color:var(--blue);">
+                        <div class="card-icon">⚡</div>
+                        <h3>Command Pattern</h3>
+                        <p>Each ATM operation (deposit, withdraw, balance check) could be encapsulated as a command object — enabling queued transactions, undo operations, and complete audit logging.</p>
+                        <div class="tags"><span class="tag">Behavioral</span></div>
+                    </div>
+                    <div class="card" style="border-color:var(--green);">
+                        <div class="card-icon">👀</div>
+                        <h3>Observer Pattern</h3>
+                        <p>Transaction history demonstrates Observer‑like behavior — accounts notify interested parties (ATM screen, receipt printer, fraud detector) when state changes, decoupling account from presentation.</p>
+                        <div class="tags"><span class="tag">Behavioral</span></div>
+                    </div>
+                    <div class="card" style="border-color:var(--gold);">
+                        <div class="card-icon">🏭</div>
+                        <h3>Factory Pattern</h3>
+                        <p>Account creation could use a factory to handle different account types (savings, checking, business) each with different rules. The factory centralises all creation logic.</p>
+                        <div class="tags"><span class="tag">Creational</span></div>
+                    </div>
+                    <div class="card" style="border-color:var(--purple);">
+                        <div class="card-icon">🎯</div>
+                        <h3>Strategy Pattern</h3>
+                        <p>Withdrawal rules could be swapped out based on account type. A savings account has different limits from a business account — Strategy makes these interchangeable and independently testable.</p>
+                        <div class="tags"><span class="tag">Behavioral</span></div>
+                    </div>
+                </div>
+                <div class="callout" style="margin-top:1.5rem;">
+                    <p><strong>💡 Key Insight:</strong> A withdrawal command (Command) uses a withdrawal strategy (Strategy) that checks business rules, then notifies observers (Observer) — all without the Account class knowing any of those systems exist. This decoupling is the hallmark of maintainable software.</p>
+                </div>
+            </div>
+        </section>
+        <section id="testing" aria-labelledby="h-testing">
+            <div class="page-col">
+                <div class="section-label">06 — Testing Strategy</div>
+                <h2 id="h-testing">🧪 Comprehensive Testing Strategy</h2>
+                <p>Professional code requires professional testing. Here's how we'd test our ATM system — covering the four most critical scenarios:</p>
+                <div class="code-preview" style="margin-top:1.5rem;">
+                    <div class="code-chrome">
+                        <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+                        <span class="win-title">test_atm.py</span>
+                    </div>
+                    <div class="code-body" style="background:#0a1a24;color:#a5d6ff;font-size:.76rem;line-height:1.7;padding:1.2rem;">
+                        <pre style="margin:0;white-space:pre-wrap;word-break:break-word;">import unittest
+
+class TestATM(unittest.TestCase):
+    def setUp(self):
+        self.atm = ATM()
+
+    def test_successful_authentication(self):
+        success, message = self.atm.authenticate("1234", "1234")
+        self.assertTrue(success)
+        self.assertIn("Welcome", message)
+
+    def test_failed_authentication_locks_account(self):
+        for i in range(3):
+            success, _ = self.atm.authenticate("1234", "wrong")
+            self.assertFalse(success)
+        success, message = self.atm.authenticate("1234", "1234")
+        self.assertFalse(success)
+        self.assertIn("locked", message.lower())
+
+    def test_withdrawal_rules(self):
+        self.atm.authenticate("1234", "1234")
+        self.assertFalse(self.atm.withdraw(-100)["success"])
+        self.assertFalse(self.atm.withdraw(999999)["success"])
+        self.assertFalse(self.atm.withdraw(150)["success"])
+        self.assertTrue(self.atm.withdraw(1000)["success"])
+
+    def test_daily_limit(self):
+        self.atm.authenticate("1234", "1234")
+        self.assertTrue(self.atm.withdraw(5000)["success"])
+        self.assertTrue(self.atm.withdraw(5000)["success"])
+        result = self.atm.withdraw(1000)
+        self.assertFalse(result["success"])
+        self.assertIn("daily withdrawal limit", result["message"].lower())</pre>
+                    </div>
+                </div>
+                <div class="callout" style="margin-top:1rem;">
+                    <p><strong>Why these tests?</strong> Each test is self‑contained — <code>setUp()</code> creates a fresh ATM before every test, so a failure in one test can never corrupt another. This isolation is the difference between tests you trust and tests that give you false confidence.</p>
+                </div>
+                <p>In a real project, you'd also test concurrent access, database integration, and mocked external API calls. Aim for &gt;90% code coverage and run these tests automatically on every commit via CI/CD pipelines.</p>
+            </div>
+        </section>
+        <section id="ai-role" aria-labelledby="h-ai">
+            <div class="page-col">
+                <div class="section-label">07 — Encapsulation × AI</div>
+                <h2 id="h-ai">The Vital Role of Encapsulation in the Age of AI</h2>
+                <p>Encapsulation is not a relic of classical software engineering — it is <strong>more relevant than ever</strong> in the age of machine learning, large language models, and AI‑driven systems. Here's why.</p>
+                <div class="ai-grid">
+                    <div class="ai-card"><div class="ai-card-icon">🧠</div><h3>ML Model Abstraction</h3><p>Libraries like PyTorch and TensorFlow use deep encapsulation. <code>nn.Module</code> encapsulates weights, forward pass logic, and gradient tracking — you call <code>model(x)</code> without touching any internals.</p></div>
+                    <div class="ai-card"><div class="ai-card-icon">🔐</div><h3>Data Privacy &amp; GDPR</h3><p>AI systems processing personal data must protect it rigorously. Encapsulation enforces access control — PII fields remain private, only accessible through validated, logged accessor methods that satisfy compliance requirements.</p></div>
+                    <div class="ai-card"><div class="ai-card-icon">🔄</div><h3>Model Versioning</h3><p>When you swap a model from BERT to GPT‑4 internally, encapsulation ensures nothing outside breaks. The interface stays constant — only the encapsulated implementation changes. This is the foundation of agile AI deployment.</p></div>
+                    <div class="ai-card"><div class="ai-card-icon">📦</div><h3>Microservice Design</h3><p>Modern AI microservices are essentially encapsulated objects at scale. Each service hides its implementation, exposes only a clean API, and can be updated independently — classical encapsulation applied at the architectural level.</p></div>
+                    <div class="ai-card"><div class="ai-card-icon">⚡</div><h3>Prompt Engineering</h3><p>LLM wrapper classes encapsulate prompt templates, retry logic, token counting, and caching behind a single <code>.ask()</code> method. The caller never needs to know about rate limits or context windows.</p></div>
+                    <div class="ai-card"><div class="ai-card-icon">🛡️</div><h3>Safety Guardrails</h3><p>AI safety systems use encapsulation to enforce content filters and output validation at the class level — ensuring no output can bypass safety checks regardless of how the model is called internally.</p></div>
+                </div>
+                <div class="callout" style="margin-top:1.5rem;">
+                    <p><strong>Connecting the dots:</strong> The ATM system you just built uses the same encapsulation principles that power production AI systems. The <code>Account</code> class is like a neural network — it hides its internal state (weights, biases) and only exposes controlled methods (forward pass). The <code>ATM</code> class is like the API layer — it coordinates requests without exposing internals. This is how professional software is built, whether for banking or artificial intelligence.</p>
+                </div>
+            </div>
+        </section>
+        <section id="faq" aria-labelledby="h-faq">
+            <div class="page-col">
+                <div class="section-label">08 — Frequently Asked Questions</div>
+                <h2 id="h-faq">❓ Common Questions About OOP &amp; Encapsulation</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)"><h3>Why can't we just use plain functions instead of classes?</h3><span class="faq-toggle">+</span></div>
+                        <div class="faq-a"><p>You can, but classes give you <strong>encapsulation</strong> — the ability to bundle data with the functions that operate on it, and control access to that data. In the ATM system, the <code>Account</code> class ensures that only its own methods can modify the balance. With plain functions, any part of the program could accidentally corrupt the balance. Classes also enable <strong>inheritance</strong> and <strong>polymorphism</strong>, which are essential for large‑scale systems.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)"><h3>Is SHA‑256 secure enough for PINs in production?</h3><span class="faq-toggle">+</span></div>
+                        <div class="faq-a"><p>SHA‑256 is a cryptographic hash, but it's <strong>fast</strong> — which is actually a weakness for password hashing. In production, you'd use <code>bcrypt</code>, <code>Argon2</code>, or <code>PBKDF2</code> with a per‑user salt and a work factor (cost) that slows down brute‑force attacks. However, SHA‑256 is fine for learning and demonstrates the core principle of <strong>never storing plaintext secrets</strong>.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)"><h3>How does encapsulation relate to SOLID principles?</h3><span class="faq-toggle">+</span></div>
+                        <div class="faq-a"><p>Encapsulation is the foundation for the Single Responsibility Principle (SRP) and the Open‑Closed Principle (OCP). By hiding internal details, you can change the implementation of a class without affecting its users (OCP). And by grouping related data and behaviour together, each class has a single, well‑defined responsibility (SRP). The ATM system shows SRP: <code>Account</code> handles account logic, <code>ATM</code> handles session coordination.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)"><h3>Why use tuples to return results instead of exceptions?</h3><span class="faq-toggle">+</span></div>
+                        <div class="faq-a"><p>Returning <code>(bool, str)</code> makes it explicit that a failure is an <strong>expected outcome</strong>, not an exceptional one. In banking, failed PINs and insufficient funds are common — they aren't bugs, they're normal flow. Using tuples forces the caller to handle both success and failure paths, leading to more robust code. Exceptions should be reserved for truly unexpected errors (e.g., network failure, database corruption).</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)"><h3>How would you extend this ATM to support multiple currencies?</h3><span class="faq-toggle">+</span></div>
+                        <div class="faq-a"><p>You'd add a <code>currency</code> attribute to <code>Account</code> and a <code>CurrencyConverter</code> class. The <code>withdraw</code> method would use the converter to ensure the amount is in the account's currency. This demonstrates the <strong>Strategy pattern</strong> — you'd inject the converter as a dependency, making the system flexible and testable.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="exercises" aria-labelledby="h-exercises">
+            <div class="page-col">
+                <div class="section-label">09 — Practice Exercises</div>
+                <h2 id="h-exercises">🏋️ Hands‑On Exercises</h2>
+                <p>Reinforce your understanding by extending the ATM system. Each exercise builds on the previous one and explores a different aspect of encapsulation and OOP.</p>
+                <div class="exercise-block">
+                    <h4>1️⃣ Add a Minimum Balance Rule</h4>
+                    <p>Modify the <code>Account</code> class so that a savings account must maintain a minimum balance of ₱500. If a withdrawal would bring the balance below ₱500, reject it with an appropriate message.</p>
+                    <ul>
+                        <li>Hint: Add a <code>minimum_balance</code> attribute to <code>Account</code>.</li>
+                        <li>Update <code>can_withdraw()</code> to check <code>self.balance - amount &gt;= self.minimum_balance</code>.</li>
+                    </ul>
+                    <div class="hint">💡 Think about where to place this check — after the "positive amount" check but before the "sufficient funds" check. This ensures the minimum balance is enforced even when the account has enough raw funds.</div>
+                </div>
+                <div class="exercise-block">
+                    <h4>2️⃣ Implement a Transfer Feature</h4>
+                    <p>Add a <code>transfer()</code> method to the <code>ATM</code> class that moves money from the current account to another account (by account number). The method should:</p>
+                    <ul>
+                        <li>Validate that the target account exists.</li>
+                        <li>Check that the source account has enough funds (respecting daily limits).</li>
+                        <li>Debit the source and credit the target atomically (both or neither succeed).</li>
+                    </ul>
+                    <div class="hint">💡 Use the existing <code>withdraw()</code> and <code>deposit()</code> methods, but wrap them in a single transaction. If either fails, rollback the changes.</div>
+                </div>
+                <div class="exercise-block">
+                    <h4>3️⃣ Add a Transaction Fee for Withdrawals</h4>
+                    <p>Modify the withdrawal logic so that each withdrawal incurs a fee of ₱15.00 if the account is a checking account, and ₱5.00 if it's a savings account. The fee should be deducted from the balance after the withdrawal.</p>
+                    <ul>
+                        <li>Hint: Extend the <code>withdraw()</code> method to compute the fee based on <code>self.account_type</code>.</li>
+                        <li>Ensure the fee is logged in the transaction history.</li>
+                    </ul>
+                    <div class="hint">💡 Be careful with the fee logic — the fee should be applied <em>after</em> the withdrawal amount is validated, but you should check that the balance can cover both the withdrawal and the fee.</div>
+                </div>
+                <div class="exercise-block">
+                    <h4>4️⃣ Create a Savings Goal Feature</h4>
+                    <p>Extend the <code>Account</code> class to include a <code>savings_goal</code> attribute. Add a method <code>check_goal_progress()</code> that returns the percentage of the goal achieved. Also, add a <code>reset_goal()</code> method.</p>
+                    <ul>
+                        <li>Goal can be set via a new method <code>set_goal(amount)</code>.</li>
+                        <li>Progress = (current balance / goal) * 100.</li>
+                    </ul>
+                    <div class="hint">💡 This exercise is about <strong>encapsulation</strong> — the goal and the progress logic belong inside the <code>Account</code> class, not the <code>ATM</code> class.</div>
+                </div>
+            </div>
+        </section>
+        <section id="quiz" aria-labelledby="h-quiz">
+            <div class="page-col">
+                <div class="section-label">10 — Test Yourself</div>
+                <h2 id="h-quiz">🎯 Knowledge Check</h2>
+                <p>Reinforce what you've learned. Each question targets a core encapsulation or ATM concept from this guide.</p>
+                <div class="quiz-wrap" id="quizWrap"></div>
+                <div class="quiz-score" id="quizScore">
+                    <span class="score-num" id="quizScoreNum">0/5</span>
+                    <p id="quizScoreMsg">Great effort — review any missed questions above.</p>
+                    <button class="quiz-reset" onclick="resetQuiz()">↺ Retry Quiz</button>
+                </div>
+            </div>
+        </section>
+        <section id="share" aria-labelledby="h-share">
+            <div class="page-col">
+                <div class="section-label">11 — Spread the Knowledge</div>
+                <h2 id="h-share">Share This Guide</h2>
+                <div class="share-wrap" style="margin-top:1rem;">
+                    <h2>Found this useful? Share it.</h2>
+                    <p class="share-sub">Help fellow developers discover the power of encapsulation through real‑world projects.</p>
+                    <div class="share-ai-msg" id="shareAiMsg" aria-live="polite">
+                        <span id="shareAiText">Click a platform below to preview your AI‑generated share message…</span>
+                    </div>
+                    <div class="share-btns">
+                        <button class="sbtn s-fb" onclick="previewShare('facebook')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</button>
+                        <button class="sbtn s-li" onclick="previewShare('linkedin')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>LinkedIn</button>
+                        <button class="sbtn s-x" onclick="previewShare('twitter')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</button>
+                        <button class="sbtn s-wa" onclick="previewShare('whatsapp')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37C7.35 7.6 6.6 8.3 6.6 9.77s1.07 3.06 1.22 3.27c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34zm-5.47 7.45h-.01A9.93 9.93 0 017.17 20L3 21.15l1.17-4.13A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>WhatsApp</button>
+                        <button class="sbtn s-yt" onclick="previewShare('youtube')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>YouTube</button>
+                    </div>
+                    <div id="shareToast" class="share-toast" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+        <section id="comments" aria-labelledby="h-comments">
+            <div class="page-col">
+                <div class="section-label">12 — Join the Discussion</div>
+                <h2 id="h-comments">💬 Comments</h2>
+                <div style="margin-top:1rem;">
+                    <div class="cform-card">
+                        <h3>Leave a Comment</h3>
+                        <div class="frow">
+                            <div class="fg"><label for="cName">Name *</label><input class="cinput" id="cName" type="text" placeholder="Your name" autocomplete="name"></div>
+                            <div class="fg"><label for="cEmail">Email * <span style="font-size:.55rem;opacity:.6">(not displayed)</span></label><input class="cinput" id="cEmail" type="email" placeholder="your@email.com" autocomplete="email"></div>
+                        </div>
+                        <div class="fg"><label for="cText">Comment *</label><textarea class="cinput" id="cText" placeholder="Share your thoughts, questions, or insights about ATM programming…"></textarea></div>
+                        <button class="btn-submit" id="cSubmitBtn" onclick="postComment()">Post Comment →</button>
+                        <div class="cform-msg" id="cFormMsg" aria-live="polite"></div>
+                    </div>
+                    <div class="comment-sort">
+                        <span class="sort-lbl">Sort by:</span>
+                        <button class="sort-btn active" onclick="sortComments('newest')" id="sortNewest">Newest</button>
+                        <button class="sort-btn" onclick="sortComments('popular')" id="sortPopular">Most Popular</button>
+                    </div>
+                    <div class="clist" id="cList"></div>
+                </div>
+            </div>
+        </section>
+        <section id="subscribe" aria-labelledby="h-sub">
+            <div class="page-col">
+                <div class="section-label">13 — Stay in the Loop</div>
+                <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
+                <div style="margin-top:1rem;">
+                    <div class="sub-wrap">
+                        <h2>Level up your Python knowledge.</h2>
+                        <p class="sub-desc">In‑depth Python tutorials, AI insights, and software engineering guides — delivered straight to your inbox. No spam, ever.</p>
+                        <div class="perks">
+                            <span class="perk">Weekly Python tutorials</span>
+                            <span class="perk">AI &amp; ML deep‑dives</span>
+                            <span class="perk">OOP series updates</span>
+                            <span class="perk">Free, cancel anytime</span>
+                        </div>
+                        <div class="sub-plans">
+                            <button class="plan-chip active" id="planFree" onclick="selectPlan('free')">🆓 Free Weekly</button>
+                            <button class="plan-chip premium" id="planPro" onclick="selectPlan('pro')">⭐ Pro Monthly — Deep Dives</button>
+                        </div>
+                        <div class="sub-form" style="margin-top:1.2rem">
+                            <input class="cinput" type="email" id="subEmail" placeholder="your@email.com" autocomplete="email">
+                            <button class="btn-submit" onclick="handleSubscribe()">Subscribe Free →</button>
+                        </div>
+                        <p class="sub-note">🔒 Join 8,400+ developers. Your email is never shared or sold.</p>
+                        <div class="sub-msg" id="subMsg" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First‑time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        (function() {
+            'use strict';
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    tocPanel.classList.toggle('open');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        var target = e.target;
+                        if (!tocPanel.contains(target) && target !== tocToggle && !tocToggle.contains(target)) {
+                            tocPanel.classList.remove('open');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                    }
+                });
+            }
+            if (tocClose) {
+                tocClose.addEventListener('click', function() {
+                    if (tocPanel) tocPanel.classList.remove('open');
+                });
+            }
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/atm.html');
+            var PAGE_TITLE = encodeURIComponent('ATM System in Python OOP – Encapsulation Masterclass');
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+            document.querySelectorAll('#shareFb, #shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTw, #shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            document.querySelectorAll('#shareLi, #shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareWa, #shareWaBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTg, #shareTgBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/atm.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() {
+                        fallbackCopy(url, btn);
+                    });
+                } else {
+                    fallbackCopy(url, btn);
+                }
+            }
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+            var commentName = document.getElementById('cName');
+            var commentText = document.getElementById('cText');
+            var comments = [];
+            try {
+                var stored = localStorage.getItem('atm_comments');
+                if (stored) comments = JSON.parse(stored);
+            } catch (_) {}
+            function renderAllComments() {
+                var list = document.getElementById('cList');
+                if (!list) return;
+                try {
+                    comments = JSON.parse(localStorage.getItem('atm_comments') || '[]');
+                } catch (_) {}
+                if (!comments.length) {
+                    list.innerHTML =
+                        '<div class="empty-comments"><div class="empty-ico">💬</div><p>No comments yet — be the first!</p></div>';
+                    return;
+                }
+                list.innerHTML = comments.map(function(c) {
+                    var name = c.name || 'Anonymous';
+                    return '<div class="comment-card"><div class="chdr"><div class="ava">' + name.slice(0, 2)
+                        .toUpperCase() +
+                        '</div><div><div class="cname">' + escapeHtml(name) +
+                        '</div><div class="cdate">' + (c.time || 'just now') + '</div></div></div><div class="cbody">' +
+                        escapeHtml(c.text) + '</div></div>';
+                }).join('');
+            }
+            function escapeHtml(str) {
+                var div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+            window.postComment = function() {
+                var name = document.getElementById('cName').value.trim();
+                var email = document.getElementById('cEmail').value.trim();
+                var text = document.getElementById('cText').value.trim();
+                var msg = document.getElementById('cFormMsg');
+                if (!name) { msg.textContent = '⚠ Please enter your name.';
+                    msg.style.color = 'var(--red)'; return; }
+                if (!email || !email.includes('@')) { msg.textContent = '⚠ Please enter a valid email.';
+                    msg.style.color = 'var(--red)'; return; }
+                if (text.length < 10) { msg.textContent = '⚠ Comment too short — write at least a sentence.';
+                    msg.style.color = 'var(--red)'; return; }
+                var comment = { name: name, text: text, time: new Date().toLocaleString() };
+                var list = [];
+                try { list = JSON.parse(localStorage.getItem('atm_comments') || '[]'); } catch (_) {}
+                list.unshift(comment);
+                localStorage.setItem('atm_comments', JSON.stringify(list));
+                renderAllComments();
+                document.getElementById('cText').value = '';
+                msg.textContent = '✓ Comment posted! Thanks for joining the discussion.';
+                msg.style.color = 'var(--green)';
+            };
+            window.sortComments = function(type) {
+                document.querySelectorAll('.sort-btn').forEach(function(b) { b.classList.remove('active'); });
+                if (type === 'newest') document.getElementById('sortNewest').classList.add('active');
+                else document.getElementById('sortPopular').classList.add('active');
+                renderAllComments();
+            };
+            renderAllComments();
+            var QUIZ = [
+                { q: "What is the primary purpose of encapsulation in OOP?",
+                    opts: ["To make code run faster", "To bundle data and methods and control access",
+                        "To allow multiple inheritance", "To simplify syntax"
+                    ], ans: 1,
+                    fb: "Correct! Encapsulation bundles data with the methods that operate on it, and controls access to that data — ensuring integrity and reducing complexity." },
+                { q: "Why is the PIN stored as a SHA‑256 hash instead of plaintext?",
+                    opts: ["To save memory", "To prevent recovery of the original PIN if the database is compromised",
+                        "To make the code run faster", "To comply with PEP 8"
+                    ], ans: 1,
+                    fb: "Exactly right. Hashing is a one‑way transformation — even if an attacker gets the hash, they cannot easily recover the original PIN." },
+                { q: "What does the `can_withdraw()` method return when a withdrawal is not allowed?",
+                    opts: ["An exception", "A tuple `(False, reason)`", "A boolean `False`", "A string with the error"
+                    ], ans: 1,
+                    fb: "Correct! Returning a tuple `(bool, str)` makes the outcome explicit and forces the caller to handle both cases." },
+                { q: "In the ATM system, why is the `Account` class separate from the `ATM` class?",
+                    opts: ["To reduce the number of files", "To follow the Single Responsibility Principle",
+                        "To make it harder to understand", "Because Python requires it"
+                    ], ans: 1,
+                    fb: "Right. The `Account` handles account‑specific logic; the `ATM` handles session coordination. Each has a single, focused responsibility." },
+                { q: "Which design pattern is demonstrated by the fact that an account notifies the ATM screen when a transaction occurs?",
+                    opts: ["Command", "Observer", "Factory", "Strategy"], ans: 1,
+                    fb: "Yes! The Observer pattern decouples the subject (account) from its observers (screen, receipt printer, etc.) so that they can react to state changes without tight coupling." },
+            ];
+            var answered = 0,
+                correct = 0;
+            function buildQuiz() {
+                var wrap = document.getElementById('quizWrap');
+                if (!wrap) return;
+                wrap.innerHTML = QUIZ.map(function(item, i) {
+                    return '<div class="quiz-q" id="qq-' + i +
+                        '"><div class="quiz-prompt">Q' + (i + 1) + '. ' + item.q +
+                        '</div><div class="quiz-opts">' + item.opts.map(function(opt, j) {
+                            return '<div class="quiz-opt" id="qo-' + i + '-' + j + '" onclick="answerQ(' + i +
+                                ',' + j +
+                                ')"><span style="font-family:\'JetBrains Mono\',monospace;font-size:.65rem;opacity:.5;flex-shrink:0">' +
+                                'ABCD' [j] + '.</span>' + opt + '</div>';
+                        }).join('') +
+                        '</div><div class="quiz-feedback" id="qf-' + i + '"></div></div>';
+                }).join('');
+            }
+            window.answerQ = function(qi, oi) {
+                var item = QUIZ[qi];
+                var qEl = document.getElementById('qq-' + qi);
+                if (qEl.classList.contains('correct') || qEl.classList.contains('wrong')) return;
+                var opts = qEl.querySelectorAll('.quiz-opt');
+                opts.forEach(function(o) { o.classList.add('disabled'); });
+                var chosen = document.getElementById('qo-' + qi + '-' + oi);
+                var fb = document.getElementById('qf-' + qi);
+                if (oi === item.ans) {
+                    chosen.classList.add('correct-ans');
+                    qEl.classList.add('correct');
+                    fb.textContent = '✓ ' + item.fb;
+                    fb.className = 'quiz-feedback ok';
+                    correct++;
+                } else {
+                    chosen.classList.add('wrong-ans');
+                    document.getElementById('qo-' + qi + '-' + item.ans).classList.add('correct-ans');
+                    qEl.classList.add('wrong');
+                    fb.textContent = '✗ The correct answer is ' + 'ABCD' [item.ans] + '. ' + item.fb;
+                    fb.className = 'quiz-feedback bad';
+                }
+                answered++;
+                if (answered === QUIZ.length) showScore();
+            };
+            function showScore() {
+                var scoreEl = document.getElementById('quizScore');
+                var numEl = document.getElementById('quizScoreNum');
+                var msgEl = document.getElementById('quizScoreMsg');
+                if (!scoreEl) return;
+                numEl.textContent = correct + '/' + QUIZ.length;
+                var msgs = ['Keep studying — revisit the sections above.', 'Good start — review the questions you missed.',
+                    'Solid understanding! A few gaps to close.', 'Great work — almost perfect!',
+                    'Perfect score! You have mastered encapsulation in ATM design. 🎉'
+                ];
+                msgEl.textContent = msgs[Math.min(correct, msgs.length - 1)];
+                scoreEl.style.display = 'block';
+                scoreEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            window.resetQuiz = function() {
+                answered = 0;
+                correct = 0;
+                document.getElementById('quizScore').style.display = 'none';
+                buildQuiz();
+            };
+            buildQuiz();
+            var fallbackMessages = {
+                facebook: "Just finished building a production-ready ATM system in Python! 🏧\nThis tutorial from Poetic Bytes covers encapsulation, SHA-256 security, design patterns, and testing — all with a live simulator.\n\nhttps://poetic-bytes.vercel.app/atm.html",
+                linkedin: "🐍 Built a complete ATM system in Python — and learned encapsulation, security, and design patterns along the way.\n\nFull guide with step-by-step code explanations and a live simulator:\nhttps://poetic-bytes.vercel.app/atm.html\n\n#Python #OOP #SoftwareEngineering",
+                twitter: "Just built an ATM system in Python! 🏧\nCovers encapsulation, SHA-256 security, patterns & testing.\nLive simulator included!\n\nhttps://poetic-bytes.vercel.app/atm.html\n#Python #OOP #100DaysOfCode",
+                whatsapp: "Hey! 👋 Found this amazing Python ATM tutorial — full OOP, security, patterns, and a live simulator. Check it out: https://poetic-bytes.vercel.app/atm.html",
+                youtube: "🐍 Have you ever wondered how a real ATM system is built?\n\nThis deep-dive covers encapsulation, SHA-256, design patterns, and testing — all with a live simulator.\n\nWatch the tutorial: https://poetic-bytes.vercel.app/atm.html",
+            };
+            window.previewShare = function(platform) {
+                var msgEl = document.getElementById('shareAiMsg');
+                var textEl = document.getElementById('shareAiText');
+                var toastEl = document.getElementById('shareToast');
+                var text = fallbackMessages[platform] || '';
+                if (!text) return;
+                textEl.textContent = '';
+                var cursor = Object.assign(document.createElement('span'), { className: 'ai-typing-cursor' });
+                textEl.appendChild(cursor);
+                var i = 0;
+                function type() {
+                    if (i < text.length) {
+                        textEl.insertBefore(document.createTextNode(text[i++]), cursor);
+                        setTimeout(type, 11);
+                    } else {
+                        cursor.remove();
+                        doShare(platform, text);
+                    }
+                }
+                type();
+            };
+            function doShare(platform, text) {
+                var toastEl = document.getElementById('shareToast');
+                var eu = encodeURIComponent('https://poetic-bytes.vercel.app/atm.html');
+                var et = encodeURIComponent(text);
+                var urls = {
+                    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + eu,
+                    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + eu,
+                    twitter: 'https://twitter.com/intent/tweet?text=' + et,
+                    whatsapp: 'https://api.whatsapp.com/send?text=' + et,
+                    youtube: '#',
+                };
+                if (platform === 'youtube') {
+                    toast(toastEl, '📹 YouTube post copied — paste it in your community tab!', 4000);
+                    navigator.clipboard.writeText(text).catch(function() {});
+                    return;
+                }
+                if (urls[platform]) {
+                    window.open(urls[platform], '_blank', 'width=640,height=540,noopener,noreferrer');
+                    toast(toastEl, '✓ Opening ' + platform + ' share dialog…', 3000);
+                }
+            }
+            function toast(el, msg, ms) {
+                el.textContent = msg;
+                el.style.opacity = '1';
+                setTimeout(function() { el.style.opacity = '0'; }, ms || 5000);
+            }
+            window.selectPlan = function(plan) {
+                document.getElementById('planFree').classList.toggle('active', plan === 'free');
+                document.getElementById('planPro').classList.toggle('active', plan === 'pro');
+            };
+            window.handleSubscribe = function() {
+                var el = document.getElementById('subEmail');
+                var msg = document.getElementById('subMsg');
+                var email = el.value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    toast(msg, '✗ Please enter a valid email address.', 4000);
+                    return;
+                }
+                var list = JSON.parse(localStorage.getItem('pb_subs_atm') || '[]');
+                if (list.find(function(s) { return s.email === email; })) {
+                    toast(msg, '✓ You are already subscribed!', 4000);
+                    return;
+                }
+                list.push({ email: email, plan: document.getElementById('planFree').classList.contains('active') ?
+                        'free' : 'pro', date: new Date().toISOString() });
+                localStorage.setItem('pb_subs_atm', JSON.stringify(list));
+                el.value = '';
+                toast(msg, '✓ Welcome aboard! Subscribed successfully.', 6000);
+            };
+            class ATMSimulator {
+                constructor() {
+                    this.screen = document.getElementById('atmScreen');
+                    this.input = document.getElementById('atmInput');
+                    this.submitBtn = document.getElementById('atmSubmit');
+                    this.startBtn = document.getElementById('atmStart');
+                    this.state = 'idle';
+                    this.attempts = 3;
+                    this.balance = 12500.75;
+                    this.pin = '1234';
+                    this.name = 'Glenn Junsay Pansensoy';
+                    this.authenticated = false;
+                    this.dailyWithdrawal = 0;
+                    this.lastDate = new Date().toDateString();
+                }
+                start() {
+                    this.state = 'waiting_card';
+                    this.updateScreen(
+                        '==================================\n   POETIC BYTES ATM v2.0\n==================================\n\nEnter card number:\n→ Use 1234 for demo account\n→ PIN will be requested after\n\nCard number: '
+                        );
+                    this.input.disabled = false;
+                    this.submitBtn.disabled = false;
+                    this.input.focus();
+                }
+                updateScreen(text) {
+                    this.screen.innerHTML = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                        .replace(/\n/g, '<br>');
+                }
+                handleInput(value) {
+                    if (this.state === 'waiting_card') {
+                        if (value === '1234') {
+                            this.state = 'waiting_pin';
+                            this.updateScreen('Card accepted: ' + this.name +
+                                '\n\nEnter PIN (' + this.attempts +
+                                ' attempts remaining):\n→ 4-digit PIN required\n→ 3 attempts before card lock\n\nPIN: '
+                                );
+                        } else {
+                            this.updateScreen('Invalid card number: ' + value +
+                                '\n\nOnly card 1234 is available in this demo.\n\nPress ENTER to try again');
+                            this.state = 'menu_return';
+                            var self = this;
+                            setTimeout(function() {
+                                self.state = 'waiting_card';
+                                self.updateScreen('Enter card number:\n\nCard number: ');
+                            }, 2000);
+                        }
+                    } else if (this.state === 'waiting_pin') {
+                        if (value === this.pin) {
+                            this.authenticated = true;
+                            this.attempts = 3;
+                            this.showMenu();
+                        } else {
+                            this.attempts--;
+                            if (this.attempts <= 0) {
+                                this.updateScreen(
+                                    'Card blocked.\n\nToo many incorrect PIN attempts.\nPlease contact your bank.\n\nFor security, please restart.'
+                                    );
+                                this.state = 'idle';
+                                this.input.disabled = true;
+                                this.submitBtn.disabled = true;
+                            } else {
+                                this.updateScreen('Incorrect PIN. ' + this.attempts +
+                                    ' attempt(s) remaining.\n\nEnter PIN: ');
+                            }
+                        }
+                    } else if (this.state === 'menu') {
+                        this.handleMenu(value);
+                    } else if (this.state === 'deposit') {
+                        this.handleDeposit(value);
+                    } else if (this.state === 'withdraw') {
+                        this.handleWithdraw(value);
+                    } else if (this.state === 'pin_old') {
+                        this.handlePinChange(value);
+                    } else if (this.state === 'pin_new') {
+                        this.handleNewPin(value);
+                    } else if (this.state === 'menu_return') {
+                        this.showMenu();
+                    }
+                }
+                showMenu() {
+                    this.state = 'menu';
+                    this.updateScreen('==================================\n   MAIN MENU — ' + this.name +
+                        '\n==================================\n\n  Balance: ₱' + this.balance.toFixed(2) +
+                        '\n\n  [1] Check Balance\n  [2] Withdraw\n  [3] Deposit\n  [4] Change PIN\n  [5] Exit\n\nSelect option: '
+                        );
+                }
+                handleMenu(option) {
+                    if (option === '1') {
+                        this.updateScreen('==================================\n        ACCOUNT BALANCE\n==================================\n\nCurrent Balance: ₱' +
+                            this.balance.toFixed(2) +
+                            '\n\nAvailable: ₱' + Math.min(this.balance, 10000 - this.dailyWithdrawal).toFixed(
+                            2) +
+                            '\nDaily Withdrawal Used: ₱' + this.dailyWithdrawal.toFixed(2) +
+                            '\n\nPress ENTER to return to menu');
+                        this.state = 'menu_return';
+                    } else if (option === '2') {
+                        this.state = 'withdraw';
+                        this.updateScreen('==================================\n          WITHDRAWAL\n==================================\n\nAvailable balance: ₱' +
+                            this.balance.toFixed(2) +
+                            '\nDaily limit remaining: ₱' + (10000 - this.dailyWithdrawal).toFixed(2) +
+                            '\n\nNote: Multiples of ₱100 only\n\nEnter amount: ');
+                    } else if (option === '3') {
+                        this.state = 'deposit';
+                        this.updateScreen('==================================\n           DEPOSIT\n==================================\n\nCurrent balance: ₱' +
+                            this.balance.toFixed(2) +
+                            '\nMaximum single deposit: ₱50,000\n\nEnter amount: ');
+                    } else if (option === '4') {
+                        this.state = 'pin_old';
+                        this.updateScreen(
+                            '==================================\n          CHANGE PIN\n==================================\n\nFor security, enter your CURRENT PIN\nto authorize this change.\n\nCurrent PIN: '
+                            );
+                    } else if (option === '5') {
+                        this.updateScreen(
+                            '==================================\n  THANK YOU FOR BANKING WITH US\n==================================\n\nGoodbye, ' +
+                            this.name + '!\n\nPlease take your card.\n\nHave a great day! 🏦');
+                        this.state = 'idle';
+                        this.authenticated = false;
+                        this.attempts = 3;
+                        this.input.disabled = true;
+                        this.submitBtn.disabled = true;
+                    } else {
+                        this.updateScreen('Invalid option: ' + option +
+                            '\n\nPlease enter 1, 2, 3, 4, or 5.\n\nPress ENTER to try again');
+                        this.state = 'menu_return';
+                    }
+                }
+                handleDeposit(amount) {
+                    amount = parseFloat(amount);
+                    if (isNaN(amount) || amount <= 0) {
+                        this.updateScreen(
+                            'Invalid amount.\n\nAmount must be a positive number.\n\nPress ENTER to try again');
+                    } else if (amount > 50000) {
+                        this.updateScreen('Deposit declined: Amount exceeds ₱50,000\n\nYou attempted: ₱' + amount
+                            .toFixed(2) +
+                            '\n\nPlease visit a teller for larger deposits.\n\nPress ENTER to continue');
+                    } else {
+                        this.balance += amount;
+                        this.updateScreen('==================================\n        DEPOSIT SUCCESSFUL\n==================================\n\nAmount deposited: ₱' +
+                            amount.toFixed(2) + '\nNew balance:      ₱' + this.balance.toFixed(2) +
+                            '\n\nTransaction complete.\n\nPress ENTER to return to menu');
+                    }
+                    this.state = 'menu_return';
+                }
+                handleWithdraw(amount) {
+                    amount = parseFloat(amount);
+                    var today = new Date().toDateString();
+                    if (today !== this.lastDate) { this.dailyWithdrawal = 0;
+                        this.lastDate = today; }
+                    if (isNaN(amount) || amount <= 0) {
+                        this.updateScreen('Invalid amount: ' + amount +
+                            '\n\nAmount must be a positive number.\n\nPress ENTER to try again');
+                    } else if (amount > this.balance) {
+                        this.updateScreen('Withdrawal declined: Insufficient funds\n\nAvailable balance: ₱' + this
+                            .balance.toFixed(2) + '\nRequested amount:  ₱' + amount.toFixed(2) +
+                            '\n\nPress ENTER to continue');
+                    } else if (amount % 100 !== 0) {
+                        this.updateScreen(
+                            'Withdrawal declined: Invalid denomination\n\nThis ATM only dispenses ₱100 bills.\nPlease enter a multiple of 100.\n\nExample: 100, 200, 500, 1000\n\nPress ENTER to try again'
+                            );
+                    } else if (this.dailyWithdrawal + amount > 10000) {
+                        this.updateScreen('Withdrawal declined: Daily limit exceeded\n\nDaily limit:      ₱10,000.00\nUsed today:       ₱' +
+                            this.dailyWithdrawal.toFixed(2) + '\nRemaining today:  ₱' + (10000 - this
+                            .dailyWithdrawal).toFixed(2) + '\nRequested:        ₱' + amount.toFixed(2) +
+                            '\n\nPress ENTER to continue');
+                    } else {
+                        this.balance -= amount;
+                        this.dailyWithdrawal += amount;
+                        this.updateScreen(
+                            '==================================\n       WITHDRAWAL SUCCESSFUL\n==================================\n\nAmount withdrawn: ₱' +
+                            amount.toFixed(2) + '\nPlease take your cash.\n\nNew balance:      ₱' + this.balance
+                            .toFixed(2) + '\nDaily remaining:  ₱' + (10000 - this.dailyWithdrawal).toFixed(2) +
+                            '\n\nPress ENTER to return to menu');
+                    }
+                    this.state = 'menu_return';
+                }
+                handlePinChange(oldPin) {
+                    if (oldPin !== this.pin) {
+                        this.updateScreen(
+                            'Incorrect PIN\n\nThe PIN you entered does not match.\nThis attempt has been logged.\n\nPress ENTER to return to menu'
+                            );
+                        this.state = 'menu_return';
+                    } else {
+                        this.state = 'pin_new';
+                        this.updateScreen(
+                            'Enter NEW 4-digit PIN:\n\nRequirements:\n→ Exactly 4 digits\n→ Numbers only (0-9)\n→ Cannot be same as old PIN\n\nNew PIN: '
+                            );
+                    }
+                }
+                handleNewPin(newPin) {
+                    if (newPin.length !== 4 || !/^\d+$/.test(newPin)) {
+                        this.updateScreen('Invalid PIN format\n\nPIN must be exactly 4 digits (0-9 only).\n\nPress ENTER to try again'
+                            );
+                        this.state = 'menu_return';
+                    } else if (newPin === this.pin) {
+                        this.updateScreen('PIN unchanged\n\nNew PIN cannot be the same as your current PIN.\n\nPress ENTER to continue'
+                            );
+                        this.state = 'menu_return';
+                    } else {
+                        this.pin = newPin;
+                        this.updateScreen(
+                            '==================================\n        PIN CHANGE SUCCESSFUL\n==================================\n\nYour PIN has been updated.\n\nIMPORTANT: Remember your new PIN.\nFor security, memorize this number.\n\nPress ENTER to return to menu'
+                            );
+                        this.state = 'menu_return';
+                    }
+                }
+                reset() {
+                    this.state = 'idle';
+                    this.authenticated = false;
+                    this.attempts = 3;
+                    this.input.disabled = true;
+                    this.submitBtn.disabled = true;
+                }
+            }
+            var atmSim = new ATMSimulator();
+            document.getElementById('atmStart').addEventListener('click', function() { atmSim.start(); });
+            document.getElementById('atmSubmit').addEventListener('click', function() {
+                var input = document.getElementById('atmInput');
+                if (input.value.trim() && atmSim.state !== 'idle') {
+                    atmSim.handleInput(input.value.trim());
+                    input.value = '';
+                }
+            });
+            document.getElementById('atmInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('atmSubmit').click();
+            });
+            document.getElementById('atmInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && atmSim.state === 'menu_return') {
+                    e.preventDefault();
+                    atmSim.showMenu();
+                    this.value = '';
+                }
+            });
+            document.getElementById('copyCodeBtn').addEventListener('click', function() {
+                var code = document.querySelector('#atmCodeBody pre').textContent;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code).then(function() {
+                        this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { this.innerHTML = '<i class="fas fa-copy"></i> Copy Code'; }
+                            .bind(this), 2000);
+                    }.bind(this)).catch(function() {});
+                } else {
+                    var ta = document.createElement('textarea');
+                    ta.value = code;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(function() { this.innerHTML = '<i class="fas fa-copy"></i> Copy Code'; }.bind(
+                        this), 2000);
+                }
+            });
+            window.toggleFaq = function(el) {
+                var answer = el.nextElementSibling;
+                var toggle = el.querySelector('.faq-toggle');
+                if (answer.classList.contains('open')) {
+                    answer.classList.remove('open');
+                    toggle.textContent = '+';
+                } else {
+                    answer.classList.add('open');
+                    toggle.textContent = '−';
+                }
+            };
+            function highlightToc() {
+                var sections = document.querySelectorAll('section[id]');
+                var links = document.querySelectorAll('#tocBody a');
+                if (!links.length) return;
+                var current = '';
+                sections.forEach(function(s) {
+                    var rect = s.getBoundingClientRect();
+                    if (rect.top <= 120) current = s.id;
+                });
+                links.forEach(function(a) {
+                    a.classList.toggle('toc-highlight', a.getAttribute('href') === '#' + current);
+                });
+            }
+            window.addEventListener('scroll', highlightToc, { passive: true });
+            window.addEventListener('load', highlightToc);
+        })();
+    </script>
+</body>
+</html>
