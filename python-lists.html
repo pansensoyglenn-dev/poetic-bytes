@@ -1,0 +1,3233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Python Lists – Complete Tutorial with 50+ Examples, Methods, and Exercises | Poetic Bytes</title>
+  <meta name="description" content="Master Python lists in 2026. Learn creation, indexing, slicing, 20+ methods, comprehensions, nested lists, and performance. 50+ runnable examples, quizzes, and real-world projects. Free tutorial." />
+  <meta name="keywords" content="python lists, list methods, list comprehension, slicing, python tutorial, learn python, list operations, nested lists, mutable sequences, python 3, interactive tutorial" />
+  <meta name="author" content="Glenn Junsay Pansensoy" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://poetic-bytes.vercel.app/python-lists.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://poetic-bytes.vercel.app/python-lists.html" />
+  <meta property="og:title" content="Python Lists – Complete Tutorial with 50+ Examples, Methods, and Exercises" />
+  <meta property="og:description" content="Master Python lists in 2026. Learn creation, indexing, slicing, 20+ methods, comprehensions, and nested lists. 50+ runnable examples, quizzes, and real-world projects." />
+  <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Poetic Bytes" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@PoeticGlenn" />
+  <meta name="twitter:creator" content="@PoeticGlenn" />
+  <meta name="twitter:title" content="Python Lists – Complete Tutorial with 50+ Examples" />
+  <meta name="twitter:description" content="Master Python lists in 2026. Learn creation, indexing, slicing, 20+ methods, comprehensions, and nested lists. 50+ runnable examples, quizzes, and real-world projects." />
+  <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Python Lists – Complete Tutorial with 50+ Examples, Methods, and Exercises",
+      "description": "Master Python lists in 2026. Learn creation, indexing, slicing, 20+ methods, comprehensions, and nested lists. 50+ runnable examples, quizzes, and real-world projects.",
+      "author": {
+        "@type": "Person",
+        "name": "Glenn Junsay Pansensoy",
+        "url": "https://www.linkedin.com/in/glenn-pansensoy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Poetic Bytes",
+        "url": "https://poetic-bytes.vercel.app"
+      },
+      "datePublished": "2026-06-01",
+      "dateModified": "2026-06-01",
+      "mainEntityOfPage": "https://poetic-bytes.vercel.app/python-lists.html",
+      "keywords": "python lists, list methods, list comprehension, slicing, nested lists, tutorial, interactive"
+    }
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #0B121C;
+      --panel: #0F1C2F;
+      --card: #111e30;
+      --border: #1F4060;
+      --blue: #4B8BBE;
+      --blue-deep: #306998;
+      --blue-lt: #78B9E6;
+      --gold: #FFD966;
+      --text: #E2E8F0;
+      --muted: #8BA3BF;
+      --code-bg: #0A1A24;
+      --green: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #c084fc;
+      --teal: #2DD4BF;
+      --orange: #FB923C;
+      --btn-h: 44px;
+      --btn-r: 8px;
+      --card-r: 12px;
+      --gap: 1rem;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+    .page-col {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-child {
+      border-bottom: none;
+    }
+    .progress-bar-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(31, 64, 96, .3);
+      z-index: 2000;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+      width: 0%;
+      transition: width .2s;
+    }
+    .nav-bar {
+      position: fixed;
+      top: 3px;
+      left: 0;
+      right: 0;
+      background: rgba(11, 18, 28, .97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: .6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: .85rem;
+      letter-spacing: .08em;
+    }
+    .brand-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 6px;
+      background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      transition: color .2s;
+      letter-spacing: .04em;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    @media(max-width:680px) {
+      .nav-links {
+        display: none;
+      }
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(75, 139, 190, .1);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: .25s;
+    }
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    @media(max-width:680px) {
+      .menu-toggle {
+        display: flex;
+      }
+    }
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .8);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: .2s;
+      backdrop-filter: blur(4px);
+    }
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background: var(--panel);
+      border-left: 1px solid var(--border);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      transition: right .3s;
+      box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+    }
+    .mobile-drawer.active {
+      right: 0;
+    }
+    .drawer-hd {
+      padding: .8rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+    }
+    .drawer-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: .8rem;
+    }
+    .drawer-body li {
+      list-style: none;
+      margin-bottom: .5rem;
+    }
+    .drawer-body a,
+    .drawer-body button {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      width: 100%;
+      padding: .7rem .9rem;
+      background: rgba(75, 139, 190, .12);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .drawer-body a:active,
+    .drawer-body button:active {
+      background: rgba(75, 139, 190, .3);
+    }
+    .drawer-body i {
+      color: var(--gold);
+      width: 1.2rem;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Syne', sans-serif;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 1.6rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: .5rem;
+    }
+    h3 {
+      font-size: .95rem;
+    }
+    h4 {
+      font-size: .85rem;
+    }
+    p {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      color: #a5d6ff;
+    }
+    .section-label {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: 1.2rem;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-intro {
+      max-width: 640px;
+      margin: 0 auto .5rem;
+      text-align: center;
+    }
+    .section-intro h2 {
+      color: var(--text);
+    }
+    .section-intro p {
+      font-size: .8rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      height: var(--btn-h);
+      padding: 0 1.4rem;
+      border-radius: var(--btn-r);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      cursor: pointer;
+      transition: all .2s;
+      border: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+    }
+    .btn-primary:active {
+      transform: scale(.97);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      border-color: var(--blue);
+      background: rgba(75, 139, 190, .08);
+    }
+    .btn-home {
+      background: rgba(255, 217, 102, .12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-home:hover {
+      background: rgba(255, 217, 102, .2);
+      transform: translateY(-2px);
+    }
+    @media(max-width:480px) {
+      .btn {
+        width: 100%;
+      }
+    }
+    .hero {
+      padding: 5rem 0 3rem;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: .3rem .9rem;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      margin-bottom: 1.2rem;
+      background: var(--card);
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--blue-lt);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: .5;
+        transform: scale(.8);
+      }
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--gold);
+      margin-bottom: .8rem;
+    }
+    .hero p.lead {
+      font-size: .88rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 1.6rem;
+      line-height: 1.75;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-bottom: 2rem;
+    }
+    .hero-btns .btn {
+      flex: 1 1 auto;
+      min-width: 160px;
+    }
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--card-r);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      text-decoration: none;
+      color: inherit;
+      cursor: default;
+      min-height: 140px;
+    }
+    .card-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    .card h3,
+    .card h4 {
+      font-size: .82rem;
+      color: var(--text);
+    }
+    .card p {
+      font-size: .74rem;
+      margin: 0;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+      margin-top: .3rem;
+    }
+    .tag {
+      font-size: .6rem;
+      background: rgba(75, 139, 190, .1);
+      border: 1px solid rgba(75, 139, 190, .2);
+      border-radius: 20px;
+      padding: .1rem .45rem;
+      color: var(--blue-lt);
+    }
+    .badge {
+      display: inline-block;
+      padding: .12rem .55rem;
+      border-radius: 20px;
+      font-size: .6rem;
+      font-weight: 700;
+    }
+    .badge-beg {
+      background: rgba(16, 185, 129, .15);
+      color: #10b981;
+    }
+    .badge-int {
+      background: rgba(245, 158, 11, .15);
+      color: #f59e0b;
+    }
+    .badge-adv {
+      background: rgba(139, 92, 246, .15);
+      color: #a78bfa;
+    }
+    .badge-new {
+      background: rgba(251, 146, 60, .15);
+      color: var(--orange);
+    }
+    .code-container {
+      position: relative;
+      margin: 1rem 0;
+    }
+    .code-header {
+      background: #0a1a24;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      border-radius: var(--card-r) var(--card-r) 0 0;
+      font-size: 0.72rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .code-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .code-btn {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Syne', sans-serif;
+      border: none;
+    }
+    .copy-btn {
+      background: rgba(75, 139, 190, 0.15);
+      color: var(--blue-lt);
+      border: 1px solid rgba(75, 139, 190, 0.3);
+    }
+    .copy-btn:hover {
+      background: rgba(75, 139, 190, 0.25);
+    }
+    .run-btn {
+      background: var(--green);
+      color: #000;
+      border: none;
+      font-weight: 700;
+    }
+    .run-btn:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+    .run-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .output-panel {
+      background: #0a1a24;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--card-r) var(--card-r);
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      color: #4ade80;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+    .output-panel.error {
+      color: #f87171;
+    }
+    .output-panel.loading {
+      color: var(--blue-lt);
+    }
+    .output-panel.file-warning {
+      color: var(--amber);
+      border-left: 3px solid var(--amber);
+      padding-left: 1rem;
+    }
+    .code-snippet {
+      background: var(--code-bg);
+      border-radius: 6px;
+      border-left: 3px solid var(--blue);
+      padding: .9rem 1rem;
+      overflow-x: auto;
+      margin-bottom: .7rem;
+      position: relative;
+    }
+    .code-snippet pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .73rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .code-snippet .kw {
+      color: #ff7b72;
+      font-weight: 600;
+    }
+    .code-snippet .fn {
+      color: #d2a8ff;
+    }
+    .code-snippet .st {
+      color: #a5d6ff;
+    }
+    .code-snippet .cl {
+      color: #FFD966;
+      font-weight: 600;
+    }
+    .code-snippet .cmt {
+      color: #546e7a;
+      font-style: italic;
+    }
+    .code-snippet .num {
+      color: #f78c6c;
+    }
+    .code-snippet .op {
+      color: #89ddff;
+    }
+    .insight {
+      background: rgba(75, 139, 190, .08);
+      border: 1px solid rgba(75, 139, 190, .25);
+      border-radius: 6px;
+      padding: .6rem .9rem;
+      font-size: .75rem;
+      color: var(--blue-lt);
+    }
+    .insight strong {
+      color: var(--gold);
+    }
+    .note-new {
+      font-size: .74rem;
+      color: var(--teal);
+      font-style: italic;
+      margin-top: .4rem;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--card-r);
+      overflow: hidden;
+    }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.1rem;
+      cursor: pointer;
+      gap: .8rem;
+      min-height: var(--btn-h);
+    }
+    .faq-q h3 {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+    .faq-toggle {
+      font-size: .9rem;
+      color: var(--blue);
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease, padding .28s;
+    }
+    .faq-a.open {
+      max-height: 500px;
+      padding: 0 1.1rem 1rem;
+    }
+    .faq-a p {
+      font-size: .78rem;
+    }
+    .faq-a code {
+      font-size: .7rem;
+    }
+    .quiz-option {
+      display: block;
+      padding: 0.5rem 0.8rem;
+      margin: 0.3rem 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 0.78rem;
+      color: var(--text);
+    }
+    .quiz-option:hover {
+      background: rgba(75, 139, 190, 0.1);
+      border-color: var(--blue);
+    }
+    .quiz-option.correct {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--green);
+    }
+    .quiz-option.incorrect {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: var(--red);
+    }
+    .quiz-feedback {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .exercise-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--card-r);
+      padding: 1.2rem;
+      margin: 1rem 0;
+    }
+    .exercise-box h4 {
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .exercise-box p {
+      font-size: 0.78rem;
+    }
+    .exercise-solution {
+      background: rgba(16, 185, 129, .08);
+      border: 1px solid rgba(16, 185, 129, .2);
+      border-radius: 6px;
+      padding: .8rem 1rem;
+      margin-top: .6rem;
+      display: none;
+    }
+    .exercise-solution.open {
+      display: block;
+    }
+    .exercise-solution pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      color: var(--text);
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .76rem;
+      min-width: 480px;
+    }
+    thead tr {
+      background: var(--card);
+      border-bottom: 2px solid var(--blue);
+    }
+    th {
+      padding: .75rem .8rem;
+      text-align: left;
+    }
+    th:first-child {
+      color: var(--gold);
+    }
+    td {
+      padding: .65rem .8rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .floating-share {
+      position: fixed;
+      right: 20px;
+      bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 900;
+    }
+    .floating-share .fs-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: .2s;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+      position: relative;
+    }
+    .floating-share .fs-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue-lt);
+      transform: scale(1.08);
+    }
+    .floating-share .fs-btn .tooltip {
+      position: absolute;
+      right: 56px;
+      background: var(--panel);
+      color: var(--text);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: .65rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s;
+      white-space: nowrap;
+    }
+    .floating-share .fs-btn:hover .tooltip {
+      opacity: 1;
+    }
+    .back-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 900;
+      transition: .2s;
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+    }
+    .back-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-top:hover {
+      border-color: var(--blue);
+      color: var(--blue-lt);
+      transform: translateY(-2px);
+    }
+    .floating-toc {
+      position: fixed;
+      right: 80px;
+      bottom: 80px;
+      width: 280px;
+      max-height: 60vh;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--card-r);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .7);
+      z-index: 950;
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    .floating-toc.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .floating-toc .toc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 1rem;
+      background: rgba(75, 139, 190, .08);
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+    .floating-toc .toc-header button {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.2rem 0.4rem;
+    }
+    .floating-toc .toc-body {
+      overflow-y: auto;
+      padding: 0.5rem 0;
+      flex: 1;
+    }
+    .floating-toc .toc-body a {
+      display: block;
+      padding: 0.4rem 1rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .floating-toc .toc-body a:hover {
+      background: rgba(75, 139, 190, .08);
+      border-color: var(--blue);
+      color: var(--text);
+    }
+    .floating-toc .toc-body a.toc-highlight {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(255, 217, 102, .05);
+    }
+    .floating-share .fs-btn.fs-toc {
+      border-color: rgba(75, 139, 190, .3);
+    }
+    .floating-share .fs-btn.fs-toc:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    @media(max-width:768px) {
+      .floating-toc {
+        right: 10px;
+        bottom: 130px;
+        width: 220px;
+        max-height: 50vh;
+      }
+      .floating-share {
+        right: 10px;
+        bottom: 70px;
+      }
+      .floating-share .fs-btn {
+        width: 40px;
+        height: 40px;
+        font-size: .9rem;
+      }
+      .floating-share .fs-btn .tooltip {
+        display: none;
+      }
+      .back-top {
+        width: 36px;
+        height: 36px;
+        right: 10px;
+        bottom: 10px;
+        font-size: .9rem;
+      }
+    }
+    .page-footer {
+      padding: 3rem 0 1.5rem;
+      background: #1a2535;
+      border-top: 1px solid var(--border);
+    }
+    .footer-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer-col h5 {
+      font-size: .72rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: .4rem;
+    }
+    .footer-col a {
+      color: rgba(255, 255, 255, .65);
+      text-decoration: none;
+      font-size: .74rem;
+      transition: color .2s;
+    }
+    .footer-col a:hover {
+      color: #fff;
+    }
+    .copyright {
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: .72rem;
+      color: var(--muted);
+    }
+    .copyright a {
+      color: rgba(255, 255, 255, .5);
+      text-decoration: none;
+    }
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--border);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--blue);
+      border-radius: 3px;
+    }
+    @media(max-width:480px) {
+      .page-col {
+        padding: 0 .8rem;
+      }
+      section {
+        padding: 2rem 0;
+      }
+      .hero {
+        padding: 3.5rem 0 2rem;
+      }
+      .hero h1 {
+        font-size: 1.3rem;
+      }
+      .hero-btns .btn {
+        min-width: 120px;
+        font-size: .7rem;
+      }
+    }
+    .subject-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: rgba(75, 139, 190, 0.06);
+      border-left: 3px solid var(--blue);
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+    .subject-desc strong {
+      color: var(--text);
+    }
+    .oop-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--card-r);
+      padding: 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+    .oop-block h3 {
+      font-size: .88rem;
+      color: var(--gold);
+      margin-bottom: .6rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .oop-block p {
+      font-size: .78rem;
+      margin-bottom: .8rem;
+    }
+    .cat-label {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .68rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin: 1.8rem 0 .8rem;
+    }
+    .info-box {
+      background: rgba(75, 139, 190, .06);
+      border: 1px solid rgba(75, 139, 190, .22);
+      border-radius: var(--card-r);
+      padding: 1.1rem 1.3rem;
+    }
+    .info-box h4 {
+      font-size: .8rem;
+      color: var(--blue-lt);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-bottom: .4rem;
+    }
+    .info-box p {
+      font-size: .76rem;
+    }
+    .share-box {
+      text-align: center;
+    }
+    .share-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    .share-btn {
+      height: var(--btn-h);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      border: 1px solid var(--border);
+      border-radius: var(--btn-r);
+      font-size: .74rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: .2s;
+      font-weight: 600;
+      background: var(--card);
+      cursor: pointer;
+      padding: 0 1rem;
+    }
+    .share-btn:hover {
+      border-color: var(--blue);
+      color: var(--text);
+      background: rgba(75, 139, 190, .1);
+    }
+    .share-btn.copy-btn {
+      border-color: rgba(75, 139, 190, .3);
+    }
+    .share-btn.copy-btn:hover {
+      border-color: var(--blue);
+      background: rgba(75, 139, 190, .15);
+    }
+    .outro-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.6rem 0;
+    }
+    .outro-list li {
+      padding: 0.3rem 0 0.3rem 1.8rem;
+      position: relative;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .outro-list li::before {
+      content: "✅";
+      position: absolute;
+      left: 0;
+    }
+    .intro-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.6rem 0;
+    }
+    .intro-list li {
+      padding: 0.3rem 0 0.3rem 1.8rem;
+      position: relative;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .intro-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .curriculum-desc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--card-r);
+      padding: 1.8rem 2rem;
+      margin: 1.5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .curriculum-desc::before {
+      content: "📝";
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      font-size: 4rem;
+      opacity: 0.06;
+      transform: rotate(8deg);
+    }
+    .curriculum-desc h2 {
+      color: var(--gold);
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .curriculum-desc p {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 0.6rem;
+    }
+    .curriculum-desc .highlight {
+      color: var(--blue-lt);
+      font-weight: 600;
+    }
+    .curriculum-desc .gold {
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .curriculum-desc .desc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    .curriculum-desc .desc-meta span {
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .curriculum-desc .desc-meta i {
+      color: var(--gold);
+    }
+    .show-solution-btn {
+      background: rgba(75, 139, 190, .15);
+      border: 1px solid var(--border);
+      color: var(--blue-lt);
+      padding: .3rem .9rem;
+      border-radius: 6px;
+      font-size: .7rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+      font-family: 'Syne', sans-serif;
+    }
+    .show-solution-btn:hover {
+      background: rgba(75, 139, 190, .25);
+    }
+    .code-preview {
+      background: var(--code-bg);
+      border-radius: var(--card-r);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    .code-chrome {
+      background: #0a1a24;
+      padding: .6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .code-chrome .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .code-chrome .dot-r {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff5f57;
+    }
+    .code-chrome .dot-y {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ffbd2e;
+    }
+    .code-chrome .dot-g {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #28c840;
+    }
+    .code-chrome .win-title {
+      color: var(--muted);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .code-body {
+      padding: 1rem;
+    }
+    .code-body pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .73rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .terminal {
+      background: #0a1a24;
+      border-top: 1px solid var(--border);
+      padding: .8rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      color: #4ade80;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .btn-home-large {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .7rem 1.6rem;
+      border-radius: var(--btn-r);
+      background: rgba(255, 217, 102, .12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: .78rem;
+      text-decoration: none;
+      transition: all .2s;
+      font-family: 'Syne', sans-serif;
+    }
+    .btn-home-large:hover {
+      background: rgba(255, 217, 102, .2);
+      transform: translateY(-2px);
+    }
+    .home-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 0.5rem;
+    }
+    .home-row .btn-home-large {
+      min-width: 180px;
+      justify-content: center;
+    }
+    .pyodide-status {
+      font-size: .7rem;
+      color: var(--muted);
+      padding: .4rem .8rem;
+      background: rgba(75, 139, 190, .08);
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .4rem;
+    }
+    .pyodide-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .pyodide-status .dot.green {
+      background: var(--green);
+    }
+    .pyodide-status .dot.amber {
+      background: var(--amber);
+    }
+    .pyodide-status .dot.red {
+      background: var(--red);
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+      <ul class="nav-links">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#why">Why Lists?</a></li>
+        <li><a href="#basics">Basics</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#comprehensions">Comprehensions</a></li>
+        <li><a href="#working">Working With Lists</a></li>
+        <li><a href="#advanced">Advanced</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#exercises">Exercises</a></li>
+        <li><a href="#outro">Outro</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+    <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+    <div class="drawer-body"><ul>
+        <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+        <li><button data-href="#why"><i class="fas fa-question"></i>Why Lists?</button></li>
+        <li><button data-href="#basics"><i class="fas fa-layer-group"></i>Basics</button></li>
+        <li><button data-href="#methods"><i class="fas fa-list"></i>Methods</button></li>
+        <li><button data-href="#comprehensions"><i class="fas fa-magic"></i>Comprehensions</button></li>
+        <li><button data-href="#working"><i class="fas fa-cogs"></i>Working With Lists</button></li>
+        <li><button data-href="#advanced"><i class="fas fa-microchip"></i>Advanced</button></li>
+        <li><button data-href="#projects"><i class="fas fa-briefcase"></i>Projects</button></li>
+        <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+        <li><button data-href="#exercises"><i class="fas fa-pencil-alt"></i>Exercises</button></li>
+        <li><button data-href="#outro"><i class="fas fa-flag-checkered"></i>Outro</button></li>
+        <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+      </ul></div>
+  </div>
+
+  <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+    <div class="toc-header">
+      <span>📚 Jump to</span>
+      <button id="tocCloseBtn" aria-label="Close table of contents"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="toc-body" id="tocBody">
+      <a href="#intro">📖 Introduction</a>
+      <a href="#why">🤔 Why Lists?</a>
+      <a href="#basics">🔤 Basics</a>
+      <a href="#methods">📋 Methods</a>
+      <a href="#comprehensions">✨ Comprehensions</a>
+      <a href="#working">🧩 Working With Lists</a>
+      <a href="#advanced">⚙️ Advanced</a>
+      <a href="#projects">💼 Projects</a>
+      <a href="#faq">❓ FAQ</a>
+      <a href="#exercises">✏️ Exercises</a>
+      <a href="#outro">🏁 Outro</a>
+    </div>
+  </div>
+
+  <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+    <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents">
+      <i class="fas fa-list-ul"></i>
+      <span class="tooltip">Table of Contents</span>
+    </button>
+    <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+      <i class="fas fa-link"></i>
+      <span class="tooltip">Copy link</span>
+    </button>
+    <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook">
+      <i class="fab fa-facebook-f"></i>
+      <span class="tooltip">Facebook</span>
+    </a>
+    <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X">
+      <i class="fab fa-twitter"></i>
+      <span class="tooltip">X</span>
+    </a>
+    <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+      <span class="tooltip">LinkedIn</span>
+    </a>
+    <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+      <span class="tooltip">WhatsApp</span>
+    </a>
+    <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram">
+      <i class="fab fa-telegram-plane"></i>
+      <span class="tooltip">Telegram</span>
+    </a>
+  </div>
+
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main style="padding-top:56px;">
+
+    <section class="hero" aria-label="Python Lists Tutorial">
+      <div class="page-col">
+        <div class="hero-tag"><span class="live-dot"></span> Python 3.12+ · Updated June 2026</div>
+        <h1>Python Lists<br><span style="color:var(--blue-lt)">The Workhorse of Every Program</span></h1>
+        <p class="lead">Master Python lists – from creation, indexing, and slicing to 20+ methods, comprehensions, nested lists, and performance. Over 50 runnable examples, each explained in depth: why it's used, how it operates, how it affects your program, how it shapes the outcome, and why it matters.</p>
+        <div class="hero-btns">
+          <a href="#basics" class="btn btn-primary"><i class="fas fa-play"></i> Start Learning Lists</a>
+          <a href="#methods" class="btn btn-outline"><i class="fas fa-list"></i> Explore All Methods</a>
+          <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Back to Home</a>
+        </div>
+        <div class="code-preview" aria-label="Python list example">
+          <div class="code-chrome"><div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="win-title">lists_demo.py</span></div>
+          <div class="code-body">
+            <pre>groceries = [<span class="st">"eggs"</span>, <span class="st">"milk"</span>, <span class="st">"bread"</span>]
+groceries.append(<span class="st">"butter"</span>)
+groceries.sort()
+
+<span class="kw">for</span> i, item <span class="kw">in</span> enumerate(groceries, start=1):
+    <span class="fn">print</span>(<span class="st">f"{i}. {item}"</span>)</pre>
+          </div>
+          <div class="terminal">$ python lists_demo.py<br>1. bread<br>2. butter<br>3. eggs<br>4. milk</div>
+        </div>
+        <div class="pyodide-status" id="pyodideStatus">
+          <span class="dot amber" id="pyodideDot"></span>
+          <span id="pyodideStatusText">Pyodide loading…</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="intro" aria-labelledby="intro-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="intro-heading">📖 What Is a Python List?</h2>
+          <p style="max-width:100%; text-align:left; color:var(--text);">
+            A <strong>list</strong> is Python's built-in, ordered, mutable collection type. It can hold any mix of values — numbers, strings, other lists, even functions — and it can grow, shrink, and change shape freely for as long as your program runs. If strings are how Python represents text, lists are how Python represents <em>sequences of anything</em>.
+          </p>
+        </div>
+        <div class="curriculum-desc">
+          <h2>Why Every Programmer Must Learn This Curriculum</h2>
+          <p>
+            Lists are the single most-used data structure in the entire Python language. Every beginner tutorial teaches them early because <span class="gold">almost nothing you build works without them</span> — a shopping cart, a leaderboard, a list of user records pulled from a database, the rows of a CSV file, the results of a web scrape, the weights of a neural network layer. If you cannot confidently create, search, transform, and reorganise a list, you cannot write real Python programs.
+          </p>
+          <p>
+            This curriculum is <span class="highlight">sequenced from first principles to production patterns</span>. You'll start with what a list literally is in memory, move through every built-in method, master list comprehensions (the single most "Pythonic" feature in the language), handle nested and two-dimensional lists, and finish with the performance characteristics that separate a script that works from a script that scales.
+          </p>
+          <p>
+            By the end, you won't just know the syntax — you'll understand <span class="gold">why</span> Python lists behave the way they do: why they're mutable, why slicing never raises an <code>IndexError</code>, why <code>my_list = my_list_2</code> is more dangerous than it looks, and why a five-line list comprehension can outperform a fifteen-line loop.
+          </p>
+          <div class="desc-meta">
+            <span><i class="fas fa-code"></i> 70+ runnable examples</span>
+            <span><i class="fas fa-list"></i> 20+ list methods</span>
+            <span><i class="fas fa-graduation-cap"></i> Beginner to Advanced</span>
+            <span><i class="fas fa-clock"></i> 2.5–3 hours to complete</span>
+          </div>
+        </div>
+        <div class="oop-block">
+          <h3>🎯 What You Will Learn</h3>
+          <ul class="intro-list">
+            <li>How lists are created, stored, and how Python represents them internally</li>
+            <li>Indexing and slicing — reading and extracting data with precision</li>
+            <li>Mutability — what it means for a list to change "in place," and the traps it creates</li>
+            <li>20+ built-in list methods: adding, removing, searching, sorting, and copying</li>
+            <li>List comprehensions — the concise, Pythonic way to build new lists</li>
+            <li>Nested lists and 2D "matrix" structures</li>
+            <li>Unpacking, <code>enumerate()</code>, <code>zip()</code>, and other patterns you'll use constantly</li>
+            <li>Performance: lists vs tuples vs sets, and when each one is the right tool</li>
+            <li>Three real-world mini projects that combine everything above</li>
+          </ul>
+        </div>
+        <div class="oop-block">
+          <h3>🌍 The Significance of Lists in the Programming World</h3>
+          <p><strong style="color:var(--text);">Lists are the bridge between raw data and useful information.</strong> Every time a program needs to hold "more than one of something" — and almost every real program does — a list (or a structure built on the same principles) is usually the answer. This significance shows up everywhere:</p>
+          <ul class="intro-list">
+            <li><strong>Data science</strong> — NumPy arrays and Pandas Series are conceptually lists with superpowers; understanding plain Python lists is the prerequisite for understanding both.</li>
+            <li><strong>Web development</strong> — API responses are frequently JSON arrays, which Python parses directly into lists.</li>
+            <li><strong>Automation &amp; scripting</strong> — file names, log lines, and command results are naturally handled as lists.</li>
+            <li><strong>Algorithms &amp; interviews</strong> — the overwhelming majority of coding interview problems (sorting, searching, two-pointer techniques, sliding windows) are literally "do something clever with a list."</li>
+            <li><strong>Computer science fundamentals</strong> — lists are the concrete, approachable introduction to the abstract idea of a "sequence," which underlies strings, tuples, arrays, and even linked lists in other languages.</li>
+          </ul>
+          <p>Mastering lists is not a small, isolated skill — it is a multiplier that makes every other Python topic easier to learn, because so many other structures and libraries are built directly on top of the same ideas.</p>
+        </div>
+        <div class="home-row">
+          <a href="index.html" class="btn-home-large"><i class="fas fa-home"></i> Back to Home</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="why" aria-labelledby="why-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="why-heading">🤔 Why Programmers Should Master Python Lists</h2>
+          <p>Because "a bunch of things" is the most common shape data takes</p>
+        </div>
+        <div class="oop-block">
+          <h3>🧩 Lists Are the Default Container</h3>
+          <p>When you don't yet know exactly what data structure you need, a list is almost always the right starting point. It's ordered (items keep the position you put them in), it's mutable (you can change it after creation), and it accepts duplicates and mixed types without complaint. This flexibility is why lists appear in beginner "Hello World" scripts and in machine learning pipelines processing millions of records alike.</p>
+          <ul class="intro-list">
+            <li><strong>Hold collections</strong> — usernames, prices, coordinates, search results.</li>
+            <li><strong>Preserve order</strong> — the sequence of steps in a recipe, the order of moves in a game.</li>
+            <li><strong>Grow and shrink dynamically</strong> — a shopping cart that changes as the user clicks.</li>
+            <li><strong>Feed algorithms</strong> — sorting, searching, filtering, and aggregating data.</li>
+            <li><strong>Represent grids</strong> — nested lists model spreadsheets, game boards, and images.</li>
+          </ul>
+          <div class="insight">💡 If you're ever unsure which data structure to reach for, start with a list. You can always convert to a set, tuple, or dictionary later once you understand your actual requirements (uniqueness, immutability, key-based lookup).</div>
+        </div>
+        <div class="oop-block">
+          <h3>🚀 Lists Unlock Every Other Python Skill</h3>
+          <p>Loops, comprehensions, sorting algorithms, recursion exercises, data cleaning, plotting — nearly every intermediate Python topic assumes you're comfortable iterating over and manipulating a list. Weakness here creates friction in everything that follows. Strength here makes everything that follows easier.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="basics" aria-labelledby="basics-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="basics-heading">🔤 List Basics – Creation, Indexing, and Slicing</h2>
+          <p>The foundation everything else in this tutorial builds on</p>
+        </div>
+
+        <div class="cat-label"><span>📝</span> Creating Lists</div>
+        <div class="oop-block">
+          <h3>Literals, the list() Constructor, and range()</h3>
+          <p>A list literal uses square brackets. You can also build a list from any iterable using the <code>list()</code> constructor, which is especially useful with <code>range()</code>.</p>
+          <div class="code-snippet"><pre><span class="cmt"># Example 1: an empty list</span>
+empty = []
+print(empty, type(empty))
+
+<span class="cmt"># Example 2: a list literal with mixed types</span>
+mixed = ["Glenn", 30, 5.9, True]
+print(mixed)
+
+<span class="cmt"># Example 3: list() constructor from a range</span>
+numbers = list(range(1, 6))
+print(numbers)
+
+<span class="cmt"># Example 4: list() constructor from a string</span>
+letters = list("python")
+print(letters)
+
+<span class="cmt"># Example 5: a list containing another list (nested)</span>
+nested = [1, [2, 3], "four"]
+print(nested)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Every program needs a starting point for a collection — either empty and filled later, built directly from literal values, or derived from another iterable like a string or range.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Square brackets <code>[]</code> create a list object directly. <code>list(iterable)</code> walks the iterable once and copies each item into a new list. A list can hold <em>any</em> object — including other lists — because Python lists store references, not fixed-size values.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> The choice of how you build a list determines what's inside it and its initial size. <code>list(range(1,6))</code> materializes numbers that would otherwise stay lazy; forgetting the <code>list()</code> wrapper leaves you with a range object instead of a list, which supports fewer operations.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Getting creation right up front avoids a whole class of bugs later — for example, calling <code>.append()</code> on something that turned out to be a string instead of a list of characters.
+            <br><br>
+            <strong>📌 Significance:</strong> This is the doorway into every other topic in this tutorial. Every method, comprehension, and algorithm assumes you already have a list to work with.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🔍</span> Indexing</div>
+        <div class="oop-block">
+          <h3>Accessing Elements by Position</h3>
+          <p>Like strings, lists are zero-indexed sequences. Negative indexes count backward from the end.</p>
+          <div class="code-snippet"><pre>fruits = ["apple", "banana", "cherry", "date"]
+
+<span class="cmt"># Example 6: positive indexing</span>
+print(fruits[0])
+
+<span class="cmt"># Example 7: negative indexing (last item)</span>
+print(fruits[-1])
+
+<span class="cmt"># Example 8: modifying an element by index (mutability!)</span>
+fruits[1] = "blueberry"
+print(fruits)
+
+<span class="cmt"># Example 9: IndexError when the index doesn't exist</span>
+try:
+    print(fruits[10])
+except IndexError as e:
+    print(f"Error: {e}")</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Indexing is how you retrieve or update one specific item without touching the rest of the list.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>fruits[0]</code> reads the first element. <code>fruits[-1]</code> reads the last, since Python interprets negative indexes as "count from the end." Because lists are mutable, <code>fruits[1] = "blueberry"</code> replaces that single slot in place — no new list is created.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Indexing out of range raises <code>IndexError</code> and crashes the program if uncaught. This is different from string slicing, which never errors — indexing a single position is stricter than slicing a range.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Correct indexing means your program reads and writes exactly the data it intends to; off-by-one indexing errors are one of the most common beginner bugs and usually trace back to a misunderstanding here.
+            <br><br>
+            <strong>📌 Significance:</strong> Indexing is the atomic operation every list algorithm is built from — sorting, searching, and comprehensions all reduce to repeated indexing under the hood.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>✂️</span> Slicing</div>
+        <div class="oop-block">
+          <h3>Extracting Sub-Lists with [start:stop:step]</h3>
+          <p>Slicing returns a brand-new list containing a range of elements — it never raises an error, even if the range is out of bounds.</p>
+          <div class="code-snippet"><pre>nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+<span class="cmt"># Example 10: basic slice [start:stop]</span>
+print(nums[2:5])
+
+<span class="cmt"># Example 11: omitting start (from the beginning)</span>
+print(nums[:4])
+
+<span class="cmt"># Example 12: omitting stop (to the end)</span>
+print(nums[7:])
+
+<span class="cmt"># Example 13: step — every second element</span>
+print(nums[::2])
+
+<span class="cmt"># Example 14: reversing a list with a negative step</span>
+print(nums[::-1])</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Slicing lets you pull out a meaningful "chunk" of data — the first N results, the last 3 items, every other row — in a single expression instead of a manual loop.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>[start:stop:step]</code> builds a new list by walking from <code>start</code> (inclusive) to <code>stop</code> (exclusive) in increments of <code>step</code>. Omitted values default sensibly: no <code>start</code> means "from 0," no <code>stop</code> means "to the end," and <code>step=-1</code> walks backward, which is the idiomatic way to reverse a list.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Unlike indexing, an out-of-range slice never raises an error — it simply returns as much as exists (even an empty list). This makes slicing forgiving but means a silent typo in bounds won't be caught by Python; you have to verify the result is what you expect.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Slicing produces a shallow copy, so modifying the sliced result does not affect the original list — a property you'll rely on constantly for pagination, batching, and safe iteration.
+            <br><br>
+            <strong>📌 Significance:</strong> Slicing is one of Python's most distinctive, expressive features. Mastering it turns multi-line loops into single, readable expressions.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🔄</span> Mutability</div>
+        <div class="oop-block">
+          <h3>Lists Change in Place — Strings Do Not</h3>
+          <p>This is the single biggest conceptual difference between lists and the strings you studied previously.</p>
+          <div class="code-snippet"><pre><span class="cmt"># Example 15: the SAME list object changes across calls</span>
+scores = [80, 90]
+original_id = id(scores)
+scores.append(100)
+print(scores, id(scores) == original_id)
+
+<span class="cmt"># Example 16: two names pointing to the same list (aliasing)</span>
+a = [1, 2, 3]
+b = a
+b.append(4)
+print("a:", a)
+print("b:", b)
+
+<span class="cmt"># Example 17: contrast with immutable strings</span>
+name = "glenn"
+name_id = id(name)
+name = name.upper()
+print(name, id(name) == name_id)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Understanding mutability is essential before touching a single list method — every method in the next section either changes the list in place or explicitly returns a new one, and confusing the two causes real bugs.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>id()</code> returns an object's memory identity. Because <code>scores.append(100)</code> keeps the same <code>id()</code>, we've proven the list was modified in place rather than replaced. In Example 16, <code>b = a</code> does not copy the list — it makes <code>b</code> a second name for the exact same object, so mutating through either name is visible through both.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Aliasing (Example 16) is a common source of "spooky action at a distance" bugs — you change what looks like a separate variable and something else, somewhere else in your program, changes too.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Once you internalise that <code>list1 = list2</code> shares the object, you'll instinctively reach for <code>.copy()</code> or slicing (<code>list2[:]</code>) whenever you actually want an independent list — preventing an entire category of bugs before they happen.
+            <br><br>
+            <strong>📌 Significance:</strong> Mutability is what makes lists efficient for building up and modifying data over time, but it is also the single most important "gotcha" in Python for anyone coming from a language with copy-by-value semantics.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods" aria-labelledby="methods-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="methods-heading">📋 Essential List Methods (20+)</h2>
+          <p>Every operation you'll reach for again and again</p>
+        </div>
+
+        <div class="cat-label"><span>➕</span> Adding Elements</div>
+        <div class="oop-block">
+          <h3>append(), extend(), insert()</h3>
+          <div class="code-snippet"><pre>queue = ["Ana", "Bob"]
+
+<span class="cmt"># Example 18: append() adds ONE item to the end</span>
+queue.append("Cara")
+print(queue)
+
+<span class="cmt"># Example 19: extend() adds EACH item from another iterable</span>
+queue.extend(["Dara", "Eli"])
+print(queue)
+
+<span class="cmt"># Example 20: the append() vs extend() trap</span>
+wrong = ["Ana"]
+wrong.append(["Bob", "Cara"])   <span class="cmt"># adds the WHOLE list as one item</span>
+print("append with a list:", wrong)
+
+<span class="cmt"># Example 21: insert() places an item at a specific index</span>
+queue.insert(0, "VIP")
+print(queue)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Programs rarely know their full dataset up front — users submit forms, files stream in line by line, API results arrive in pages. Adding methods let a list grow as new data becomes available.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>append(x)</code> adds exactly one object (whatever <code>x</code> is) to the end. <code>extend(iterable)</code> iterates over its argument and appends each individual element. <code>insert(index, x)</code> shifts every element from <code>index</code> onward one position to the right to make room.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Example 20 shows the classic trap: calling <code>.append()</code> with a list argument nests that list as a single element instead of merging its contents — this silently produces a list-of-lists when you expected a flat list.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Choosing the right method changes your data's shape. Using <code>extend()</code> where you meant <code>append()</code> (or vice versa) is one of the most common list bugs — always ask "am I adding one thing, or merging many things?"
+            <br><br>
+            <strong>📌 Significance:</strong> These three methods cover the vast majority of "build up a list over time" logic — think shopping carts, chat message logs, or accumulating results inside a loop.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>➖</span> Removing Elements</div>
+        <div class="oop-block">
+          <h3>remove(), pop(), clear(), and del</h3>
+          <div class="code-snippet"><pre>cart = ["pen", "notebook", "eraser", "pen"]
+
+<span class="cmt"># Example 22: remove() deletes the FIRST matching value</span>
+cart.remove("pen")
+print(cart)
+
+<span class="cmt"># Example 23: pop() removes and RETURNS an item (default: last)</span>
+last_item = cart.pop()
+print("popped:", last_item, "| remaining:", cart)
+
+<span class="cmt"># Example 24: pop(index) removes from a specific position</span>
+first_item = cart.pop(0)
+print("popped:", first_item, "| remaining:", cart)
+
+<span class="cmt"># Example 25: del and clear() for bulk / index-based removal</span>
+nums = [10, 20, 30, 40, 50]
+del nums[1]         <span class="cmt"># removes index 1 (value 20)</span>
+print("after del:", nums)
+nums.clear()        <span class="cmt"># empties the list entirely</span>
+print("after clear:", nums)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Data needs to be removed just as often as it's added — cancelled orders, completed tasks, expired sessions.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>remove(value)</code> searches for the first match and deletes it, raising <code>ValueError</code> if nothing matches. <code>pop()</code> (no argument) removes and returns the last element — useful for stack-like behaviour. <code>pop(index)</code> removes and returns from that position. <code>del list[index]</code> deletes by position without returning anything. <code>clear()</code> empties the list in place.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> <code>pop()</code> is the only one of these that gives you the removed value back — useful when you need to act on what you just took out, like processing the next item in a task queue.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Choosing <code>remove()</code> when you meant <code>pop(index)</code> (or vice versa) is a common mistake — <code>remove()</code> searches by <em>value</em>, while <code>pop()</code>/<code>del</code> operate by <em>position</em>. Mixing these up either removes the wrong item or crashes with the wrong exception type.
+            <br><br>
+            <strong>📌 Significance:</strong> Together, these four removal tools cover every "take something out" scenario — value-based, position-based, single-item, or bulk.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🔎</span> Searching</div>
+        <div class="oop-block">
+          <h3>index(), count(), and the in operator</h3>
+          <div class="code-snippet"><pre>inventory = ["sword", "shield", "potion", "potion", "bow"]
+
+<span class="cmt"># Example 26: index() finds the position of the first match</span>
+print(inventory.index("potion"))
+
+<span class="cmt"># Example 27: count() tallies how many times a value appears</span>
+print(inventory.count("potion"))
+
+<span class="cmt"># Example 28: 'in' for a fast True/False membership check</span>
+print("bow" in inventory)
+print("axe" in inventory)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Before you can act on data, you often need to know whether it's present, where it is, or how often it occurs.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>index(value)</code> scans left to right and returns the first matching position, raising <code>ValueError</code> if nothing matches. <code>count(value)</code> scans the entire list and tallies exact matches. <code>in</code> scans until it finds a match (or reaches the end) and returns a boolean.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> All three are O(n) — they may need to check every element. For very large lists searched repeatedly, this becomes a performance bottleneck the Advanced section addresses directly (converting to a <code>set</code> for O(1) lookups).
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Guarding an <code>index()</code> call with an <code>in</code> check first avoids crashing your program with <code>ValueError</code> on missing values — a defensive pattern you'll use constantly.
+            <br><br>
+            <strong>📌 Significance:</strong> Searching operations are the backbone of validation logic — "has this user already voted," "is this item in stock," "how many duplicate entries exist."
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🔀</span> Sorting</div>
+        <div class="oop-block">
+          <h3>sort(), sorted(), reverse=, and key=</h3>
+          <div class="code-snippet"><pre>scores = [88, 95, 72, 100, 61]
+
+<span class="cmt"># Example 29: sort() rearranges the list IN PLACE (returns None)</span>
+scores.sort()
+print(scores)
+
+<span class="cmt"># Example 30: sorted() returns a NEW list, original untouched</span>
+words = ["banana", "Apple", "cherry"]
+result = sorted(words)
+print("sorted result:", result)
+print("original words:", words)
+
+<span class="cmt"># Example 31: reverse=True for descending order</span>
+print(sorted(scores, reverse=True))
+
+<span class="cmt"># Example 32: key= for custom sort logic (case-insensitive)</span>
+print(sorted(words, key=str.lower))
+
+<span class="cmt"># Example 33: key= with a lambda, sorting objects by an attribute</span>
+students = [{"name": "Bob", "gpa": 3.4}, {"name": "Ana", "gpa": 3.9}]
+top_first = sorted(students, key=lambda s: s["gpa"], reverse=True)
+print(top_first)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Ordering data — leaderboards, price comparisons, alphabetised names — is one of the most common transformations a program performs.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>.sort()</code> reorders the existing list object and returns <code>None</code> — assigning <code>scores = scores.sort()</code> is a classic bug that silently sets <code>scores</code> to <code>None</code>. <code>sorted()</code> is a built-in function (not a method) that works on any iterable and always returns a brand-new sorted list. Both accept <code>reverse=True</code> for descending order and <code>key=</code> — a function called on each element to decide sort order — for custom logic.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Using <code>key=</code> changes <em>what is compared</em> without changing <em>what is returned</em> — Example 32 sorts by lowercase value but the original casing is preserved in the output. This separation (compare-by vs return-value) is what makes Python's sort so flexible.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Sorting a list of dictionaries or objects by a specific field (Example 33) is the pattern behind virtually every leaderboard, ranking, or "top N" feature you'll ever build.
+            <br><br>
+            <strong>📌 Significance:</strong> Python's sort is a highly-optimised, stable sort (Timsort) — meaning items that compare equal keep their original relative order, which matters when sorting by multiple criteria in sequence.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>📄</span> Copying</div>
+        <div class="oop-block">
+          <h3>copy(), Slicing, and deepcopy()</h3>
+          <div class="code-snippet"><pre>import copy
+
+<span class="cmt"># Example 34: .copy() makes a shallow, independent top-level copy</span>
+original = [1, 2, 3]
+shallow = original.copy()
+shallow.append(4)
+print("original:", original)
+print("shallow:", shallow)
+
+<span class="cmt"># Example 35: slicing [:] is an equivalent way to shallow-copy</span>
+also_shallow = original[:]
+print(also_shallow is original)
+
+<span class="cmt"># Example 36: shallow copy still shares NESTED objects</span>
+matrix = [[1, 2], [3, 4]]
+shallow_matrix = matrix.copy()
+shallow_matrix[0][0] = 99         <span class="cmt"># mutates the SHARED inner list</span>
+print("matrix affected too:", matrix)
+
+deep_matrix = copy.deepcopy(matrix)
+deep_matrix[0][0] = 0
+print("matrix NOT affected:", matrix)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Whenever you need to experiment with, transform, or back up a list without disturbing the original, you need a genuine copy — not another name for the same object (recall Example 16).
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>.copy()</code> and slicing (<code>[:]</code>) both create a new top-level list object containing the same elements. If those elements are themselves mutable (like nested lists), the <em>inner</em> objects are still shared — this is what "shallow" means. <code>copy.deepcopy()</code> recursively copies every nested level, producing a fully independent structure.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Example 36 demonstrates the shallow-copy trap directly: even after copying the outer list, mutating a nested list inside the copy still changes the original — a bug that only appears with nested data and is notoriously hard to trace.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Knowing when a shallow copy is sufficient (flat lists of numbers or strings) versus when you truly need <code>deepcopy()</code> (nested lists, lists of objects) prevents subtle data-corruption bugs before they reach production.
+            <br><br>
+            <strong>📌 Significance:</strong> This distinction — shallow vs deep — reappears throughout Python (dictionaries, custom objects) and is one of the most frequently misunderstood aspects of the language.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="comprehensions" aria-labelledby="comp-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="comp-heading">✨ List Comprehensions &amp; Nested Lists</h2>
+          <p>The most "Pythonic" way to build new lists</p>
+        </div>
+
+        <div class="cat-label"><span>✨</span> Comprehension Basics</div>
+        <div class="oop-block">
+          <h3>[expression for item in iterable if condition]</h3>
+          <p>A list comprehension packs a <code>for</code> loop and an optional filter into a single, readable expression that builds a new list.</p>
+          <div class="code-snippet"><pre><span class="cmt"># Example 37: the loop way (for comparison)</span>
+squares_loop = []
+for n in range(6):
+    squares_loop.append(n ** 2)
+print(squares_loop)
+
+<span class="cmt"># Example 38: the same result as a comprehension</span>
+squares_comp = [n ** 2 for n in range(6)]
+print(squares_comp)
+
+<span class="cmt"># Example 39: comprehension with a filter condition</span>
+evens = [n for n in range(20) if n % 2 == 0]
+print(evens)
+
+<span class="cmt"># Example 40: transforming an existing list of strings</span>
+names = ["ana", "bob", "cara"]
+titled = [name.title() for name in names]
+print(titled)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> The "build an empty list, loop, append" pattern is so common that Python gives it dedicated, more efficient syntax — the list comprehension.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>[expression for item in iterable if condition]</code> evaluates <code>expression</code> once for every <code>item</code> in <code>iterable</code> that satisfies the optional <code>if condition</code>, collecting the results into a new list — all internally, without a separate <code>.append()</code> call each time.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Comprehensions are typically <em>faster</em> than the equivalent explicit loop because the append step is optimised at the bytecode level, and they reduce the amount of mutable state (no separate accumulator variable) your code has to track.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Because a comprehension is a single expression, it can be embedded directly inside a function call, a return statement, or another data structure — enabling denser, more declarative code once you're comfortable reading them.
+            <br><br>
+            <strong>📌 Significance:</strong> List comprehensions are considered the definitive mark of "Pythonic" code. Reading and writing them fluently is a strong signal of Python proficiency in code review and interviews alike.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🧠</span> Advanced Comprehensions</div>
+        <div class="oop-block">
+          <h3>Nested Loops, Conditional Expressions, and Function Calls</h3>
+          <div class="code-snippet"><pre><span class="cmt"># Example 41: nested loop inside a comprehension (Cartesian product)</span>
+pairs = [(x, y) for x in range(3) for y in range(2)]
+print(pairs)
+
+<span class="cmt"># Example 42: if/else INSIDE the expression (ternary, not a filter)</span>
+labels = ["even" if n % 2 == 0 else "odd" for n in range(6)]
+print(labels)
+
+<span class="cmt"># Example 43: calling a function inside a comprehension</span>
+def celsius_to_fahrenheit(c):
+    return c * 9/5 + 32
+
+celsius_readings = [0, 20, 37, 100]
+fahrenheit_readings = [celsius_to_fahrenheit(c) for c in celsius_readings]
+print(fahrenheit_readings)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Real-world data transformations are rarely a single flat filter — you often need combinations, branching logic, or reusable functions applied across a dataset.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Example 41 chains two <code>for</code> clauses, producing every combination of <code>x</code> and <code>y</code> — equivalent to a nested loop. Example 42 uses a ternary (<code>value_if_true if condition else value_if_false</code>) as the expression itself — this is different from the trailing <code>if</code> filter in Example 39, which discards items rather than relabelling them. Example 43 shows that the expression can be any callable, including your own functions.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Nested-loop comprehensions can grow expensive quickly — two loops of length 1,000 produce a million-item result — so it's worth estimating the output size before writing one.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Combining a comprehension with a well-named helper function (Example 43) keeps the comprehension itself short and readable while the actual transformation logic stays testable in its own function.
+            <br><br>
+            <strong>📌 Significance:</strong> Knowing the difference between a filtering <code>if</code> (at the end) and a ternary <code>if/else</code> (inside the expression) is one of the most common points of confusion for intermediate Python learners — get this right and comprehensions become a superpower rather than a source of bugs.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🧮</span> Nested Lists &amp; 2D Structures</div>
+        <div class="oop-block">
+          <h3>Lists of Lists — Modelling Grids, Tables, and Matrices</h3>
+          <div class="code-snippet"><pre><span class="cmt"># Example 44: a 3x3 matrix as a list of lists</span>
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print("row 1:", matrix[1])
+print("element at row 1, col 2:", matrix[1][2])
+
+<span class="cmt"># Example 45: iterating over a nested structure</span>
+for row in matrix:
+    for value in row:
+        print(value, end=" ")
+print()
+
+<span class="cmt"># Example 46: transposing a matrix with a nested comprehension</span>
+transposed = [[row[i] for row in matrix] for i in range(3)]
+print("transposed:", transposed)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Anything grid-shaped — a spreadsheet, a chess board, a black-and-white image, a seating chart — naturally maps onto a list of lists.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Each element of the outer list is itself a list (a "row"). Double indexing — <code>matrix[1][2]</code> — first selects the row, then the column within that row. A nested comprehension (Example 46) builds a new outer list where each inner list is itself built by its own comprehension.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Building a matrix with <code>[[0] * 3] * 3</code> instead of Example 44's explicit rows would trigger the exact aliasing bug from Example 16 — all three "rows" would secretly be the same list object, so changing one row changes all of them.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Transposition (swapping rows and columns, Example 46) is a foundational operation in data processing and appears constantly in spreadsheet manipulation, image processing, and linear algebra — understanding it in plain Python makes the equivalent NumPy operations far less mysterious later.
+            <br><br>
+            <strong>📌 Significance:</strong> Nested lists are the plain-Python precursor to NumPy's 2D arrays and Pandas' DataFrames — every data scientist first learns to think in nested lists before graduating to specialised libraries.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="working" aria-labelledby="working-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="working-heading">🧩 Working With Lists — Patterns You'll Use Constantly</h2>
+          <p>Unpacking, enumerate(), zip(), and the built-in functions that pair naturally with lists</p>
+        </div>
+
+        <div class="cat-label"><span>📦</span> Unpacking</div>
+        <div class="oop-block">
+          <h3>Assigning Multiple Variables at Once</h3>
+          <div class="code-snippet"><pre><span class="cmt"># Example 47: basic unpacking — count must match exactly</span>
+coordinates = [10, 20, 30]
+x, y, z = coordinates
+print(x, y, z)
+
+<span class="cmt"># Example 48: star-unpacking to capture "the rest"</span>
+scores = [100, 85, 90, 76, 88]
+highest, *remaining = scores
+print("highest:", highest, "| remaining:", remaining)
+
+<span class="cmt"># Example 49: unpacking first, middle, and last simultaneously</span>
+first, *middle, last = scores
+print("first:", first, "middle:", middle, "last:", last)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Unpacking replaces verbose, error-prone indexing (<code>coordinates[0]</code>, <code>coordinates[1]</code>...) with clear, self-documenting variable names in a single line.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Python matches variable names on the left to positions in the list on the right. A single starred name (<code>*remaining</code>) absorbs however many leftover items exist into a new list, while the non-starred names take exactly one item each — even when the starred name is in the middle, as in Example 49.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Standard unpacking (Example 47) raises <code>ValueError</code> if the number of variables doesn't exactly match the list length — this is a feature, not a bug, since it catches shape mismatches immediately instead of silently proceeding with wrong data.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Star-unpacking is the idiomatic way to separate "the important first item" from "everything else" — a pattern used constantly for processing headers vs data rows, or a winner vs the rest of a leaderboard.
+            <br><br>
+            <strong>📌 Significance:</strong> Unpacking makes function return values (which are frequently tuples or lists) immediately usable as named variables, improving readability across your entire codebase.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🔢</span> enumerate() and zip()</div>
+        <div class="oop-block">
+          <h3>Looping With Index, and Looping Over Multiple Lists Together</h3>
+          <div class="code-snippet"><pre>players = ["Ana", "Bob", "Cara"]
+scores = [95, 88, 76]
+
+<span class="cmt"># Example 50: enumerate() gives (index, value) pairs</span>
+for i, player in enumerate(players):
+    print(f"{i}: {player}")
+
+<span class="cmt"># Example 51: enumerate(start=1) to begin counting from 1</span>
+for rank, player in enumerate(players, start=1):
+    print(f"Rank {rank}: {player}")
+
+<span class="cmt"># Example 52: zip() pairs up TWO lists element by element</span>
+for player, score in zip(players, scores):
+    print(f"{player} scored {score}")</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> A plain <code>for item in list</code> loop discards positional information; <code>enumerate()</code> and <code>zip()</code> add it back cleanly, without a manual counter variable or index-based access into two separate lists.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>enumerate(iterable, start=0)</code> wraps any iterable in a lazy generator of <code>(index, value)</code> tuples, unpacked directly in the <code>for</code> statement. <code>zip(list_a, list_b)</code> walks both lists simultaneously, producing <code>(a_item, b_item)</code> pairs, and stops as soon as the <em>shorter</em> of the two lists runs out.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> If <code>players</code> and <code>scores</code> have different lengths, <code>zip()</code> silently truncates to the shorter length instead of raising an error — a detail worth verifying explicitly (e.g. with <code>len()</code> checks) when correctness depends on both lists matching.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> These two functions eliminate the classic <code>for i in range(len(players)): print(players[i], scores[i])</code> anti-pattern, producing code that is both more readable and less prone to off-by-one errors.
+            <br><br>
+            <strong>📌 Significance:</strong> <code>enumerate()</code> and <code>zip()</code> appear in a huge fraction of real Python code — anywhere you need position alongside value, or need to correlate two parallel datasets (names and scores, dates and prices, questions and answers).
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🧰</span> Built-in Functions That Pair With Lists</div>
+        <div class="oop-block">
+          <h3>sum(), min(), max(), len(), any(), all()</h3>
+          <div class="code-snippet"><pre>grades = [88, 92, 76, 95, 60, 84]
+
+<span class="cmt"># Example 53: sum() — total of all numeric items</span>
+print("total:", sum(grades))
+
+<span class="cmt"># Example 54: len() — how many items</span>
+print("count:", len(grades))
+
+<span class="cmt"># Example 55: combining sum() and len() for an average</span>
+average = sum(grades) / len(grades)
+print(f"average: {average:.1f}")
+
+<span class="cmt"># Example 56: min() and max() — smallest and largest</span>
+print("lowest:", min(grades), "| highest:", max(grades))
+
+<span class="cmt"># Example 57: any() — True if AT LEAST ONE item is truthy</span>
+print("any failing (<70)?", any(g < 70 for g in grades))
+
+<span class="cmt"># Example 58: all() — True only if EVERY item is truthy</span>
+print("all passing (>=60)?", all(g >= 60 for g in grades))</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Aggregation — turning a whole list into a single summary number or boolean — is one of the most frequent operations in any data-processing task.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>sum()</code>, <code>min()</code>, and <code>max()</code> walk the entire list once, combining values as they go. <code>any()</code> and <code>all()</code> accept any iterable of booleans (here, generator expressions) and short-circuit — <code>any()</code> stops at the first <code>True</code>, <code>all()</code> stops at the first <code>False</code> — so they don't necessarily scan the whole list.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Because these are built-in C-level functions, they are significantly faster than an equivalent hand-written loop, especially on large lists.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Example 55's average calculation is the pattern behind virtually every "compute a statistic from a dataset" task; Examples 57–58 are the pattern behind validation logic across an entire collection ("did every test pass," "is at least one item out of stock").
+            <br><br>
+            <strong>📌 Significance:</strong> These built-ins remove the need to hand-roll aggregation loops for the most common cases, reducing both code volume and the surface area for bugs.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="advanced" aria-labelledby="advanced-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="advanced-heading">⚙️ Advanced — Aliasing, Performance, and Choosing the Right Structure</h2>
+          <p>The details that separate a working script from a scalable one</p>
+        </div>
+
+        <div class="cat-label"><span>⚠️</span> Aliasing &amp; Mutable Default Argument Trap</div>
+        <div class="oop-block">
+          <h3>The Most Common List-Related Bug in Python</h3>
+          <div class="code-snippet"><pre><span class="cmt"># Example 59: passing a list into a function shares the reference</span>
+def add_tax(prices):
+    for i in range(len(prices)):
+        prices[i] = round(prices[i] * 1.12, 2)
+
+cart = [10.00, 25.00, 5.00]
+add_tax(cart)
+print("cart mutated by the function:", cart)
+
+<span class="cmt"># Example 60: the infamous mutable default argument bug</span>
+def add_item_bad(item, basket=[]):
+    basket.append(item)
+    return basket
+
+print(add_item_bad("apple"))
+print(add_item_bad("banana"))   <span class="cmt"># the SAME list is reused across calls!</span>
+
+<span class="cmt"># Example 61: the correct, safe pattern</span>
+def add_item_good(item, basket=None):
+    if basket is None:
+        basket = []
+    basket.append(item)
+    return basket
+
+print(add_item_good("apple"))
+print(add_item_good("banana"))</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> This is the single most common list bug reported by Python beginners and even experienced developers coming from other languages — it deserves dedicated attention.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Lists are passed to functions by reference (technically, by object reference), so mutating a list parameter inside a function mutates the caller's original list too — Example 59 shows this directly. Worse, default argument values in Python are evaluated exactly <em>once</em>, when the function is defined, not each time it's called — so a mutable default like <code>basket=[]</code> is silently shared and accumulated across every call that doesn't supply its own list.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Example 60's output is not <code>["banana"]</code> as a beginner would expect — it's <code>["apple", "banana"]</code>, because both calls operated on the exact same list object created once at function-definition time.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> The fix (Example 61) uses <code>None</code> as a sentinel default and creates a fresh list inside the function body on each call — this is such a standard idiom that seeing <code>=None</code> followed by an <code>if x is None: x = []</code> check is instantly recognisable to experienced Python developers.
+            <br><br>
+            <strong>📌 Significance:</strong> This single pattern — "never use a mutable object as a default argument" — prevents one of the most confusing, hard-to-diagnose classes of bugs in the entire language.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>📊</span> Lists vs Tuples vs Sets</div>
+        <div class="oop-block">
+          <h3>Choosing the Right Sequence Type</h3>
+          <div class="code-snippet"><pre>import sys, time
+
+<span class="cmt"># Example 62: memory footprint — tuples are lighter than lists</span>
+my_list = [1, 2, 3, 4, 5]
+my_tuple = (1, 2, 3, 4, 5)
+print("list bytes:", sys.getsizeof(my_list))
+print("tuple bytes:", sys.getsizeof(my_tuple))
+
+<span class="cmt"># Example 63: membership speed — set vs list on a larger dataset</span>
+big_list = list(range(100000))
+big_set  = set(big_list)
+
+start = time.perf_counter()
+found_in_list = 99999 in big_list
+list_time = time.perf_counter() - start
+
+start = time.perf_counter()
+found_in_set = 99999 in big_set
+set_time = time.perf_counter() - start
+
+print(f"list search: {list_time:.6f}s")
+print(f"set search:  {set_time:.6f}s")
+
+<span class="cmt"># Example 64: converting between the three types</span>
+data = [3, 1, 2, 3, 1]
+as_tuple = tuple(data)       <span class="cmt"># now immutable</span>
+as_set   = set(data)         <span class="cmt"># now unique, unordered</span>
+print("tuple:", as_tuple, "| set:", as_set)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Once you're comfortable with lists, the natural next question is "when should I use something else instead?" — this comparison directly answers that.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Tuples are immutable, so Python can store them more compactly (no room reserved for future growth) — Example 62 makes this measurable. Sets use a hash table internally, so checking membership (<code>in</code>) is O(1) on average regardless of size, while a list's <code>in</code> check is O(n) — it must scan element by element, which Example 63 demonstrates with a timing comparison.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> On a list of 100,000 items, repeated membership checks inside a loop can make an otherwise fast program crawl; converting to a set once, up front, turns an O(n²) pattern into an O(n) one.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Use a <strong>list</strong> when order matters and you'll mutate the collection. Use a <strong>tuple</strong> for fixed, immutable records (like coordinates) or as dictionary keys. Use a <strong>set</strong> when you need fast membership testing or automatic de-duplication and don't care about order.
+            <br><br>
+            <strong>📌 Significance:</strong> This decision — list vs tuple vs set — is a recurring, practical design choice in virtually every Python program, and picking correctly can be the difference between code that scales and code that doesn't.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>📚</span> Lists as Stacks and Queues</div>
+        <div class="oop-block">
+          <h3>append()/pop() vs collections.deque</h3>
+          <div class="code-snippet"><pre>from collections import deque
+
+<span class="cmt"># Example 65: a list as a STACK (Last-In, First-Out)</span>
+stack = []
+stack.append("page1")
+stack.append("page2")
+stack.append("page3")
+print("go back to:", stack.pop())   <span class="cmt"># page3 — the most recent</span>
+
+<span class="cmt"># Example 66: a list as a (slow) QUEUE (First-In, First-Out)</span>
+queue_as_list = ["Ana", "Bob", "Cara"]
+next_customer = queue_as_list.pop(0)   <span class="cmt"># O(n) — shifts everyone left</span>
+print("serving:", next_customer)
+
+<span class="cmt"># Example 67: the efficient alternative — deque for queues</span>
+queue_as_deque = deque(["Ana", "Bob", "Cara"])
+next_customer2 = queue_as_deque.popleft()  <span class="cmt"># O(1)</span>
+print("serving:", next_customer2, "| remaining:", list(queue_as_deque))</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> "Undo" history, browser back-buttons, print queues, and task schedulers are all classic real-world stack/queue problems, and lists are the natural first tool reached for.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Using <code>append()</code> and <code>pop()</code> (both operating on the end of the list) gives you stack behaviour — Last-In, First-Out — in O(1) time each. But <code>pop(0)</code> (removing from the <em>front</em>) is O(n), because Python must shift every remaining element one position to the left to close the gap — this is invisible in small lists but measurably slow at scale.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> A program that repeatedly calls <code>list.pop(0)</code> on a growing list — implementing a queue the "naive" way — silently degrades from fast to slow as the queue grows, a performance bug that's easy to miss in testing with small inputs.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> <code>collections.deque</code> (double-ended queue) is optimised for O(1) operations at <em>both</em> ends, making it the correct tool whenever you need queue behaviour rather than stack behaviour.
+            <br><br>
+            <strong>📌 Significance:</strong> This is a concrete example of "know your data structure's Big-O" mattering in practice — the same-looking code (<code>.pop()</code>) can be instant or catastrophically slow depending on which end of the list you operate on and how large it grows.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>⚡</span> Performance: Comprehensions vs Loops</div>
+        <div class="oop-block">
+          <h3>Measuring the Difference</h3>
+          <div class="code-snippet"><pre>import time
+
+n = 200000
+
+<span class="cmt"># Example 68: explicit loop with append()</span>
+start = time.perf_counter()
+result_loop = []
+for i in range(n):
+    result_loop.append(i * 2)
+loop_time = time.perf_counter() - start
+
+<span class="cmt"># Example 69: equivalent list comprehension</span>
+start = time.perf_counter()
+result_comp = [i * 2 for i in range(n)]
+comp_time = time.perf_counter() - start
+
+print(f"loop:          {loop_time:.4f}s")
+print(f"comprehension: {comp_time:.4f}s")
+print("results equal:", result_loop == result_comp)
+
+<span class="cmt"># Example 70: pre-allocating vs growing — list multiplication for fixed size</span>
+fixed_size = [0] * 5
+print("pre-sized list:", fixed_size)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> "Comprehensions are faster" is a common claim in Python education — measuring it directly builds genuine understanding instead of taking it on faith.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Both approaches produce an identical list, but the comprehension avoids the repeated attribute lookup and function-call overhead of calling <code>.append()</code> on every iteration, since the append behaviour is built directly into specialised bytecode.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> The performance gap is modest on small lists but becomes noticeable as <code>n</code> grows into the hundreds of thousands — exactly the kind of workload found in data processing scripts.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> Example 70's <code>[0] * 5</code> pattern pre-allocates a fixed-size list in one step — useful for grids or buffers of known size — but remember the aliasing warning from Example 59's discussion: this trick is only safe for immutable elements like <code>0</code>, not for mutable ones like empty inner lists.
+            <br><br>
+            <strong>📌 Significance:</strong> Performance intuition — knowing roughly which patterns are fast and which are slow — is what separates code that merely works from code that scales gracefully as real-world data grows.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="projects-heading">💼 Real-World Mini Projects</h2>
+          <p>Three self-contained programs that combine everything above</p>
+        </div>
+
+        <div class="cat-label"><span>✅</span> Project 1 – To-Do List Manager</div>
+        <div class="oop-block">
+          <h3>A Command-Line Task Tracker</h3>
+          <p>Combines list-of-dictionaries storage, comprehensions for filtering, and enumerate() for numbered display — the exact backbone of any task management app.</p>
+          <div class="code-snippet"><pre>tasks = []
+
+def add_task(description):
+    tasks.append({"description": description, "done": False})
+
+def complete_task(index):
+    if 0 <= index < len(tasks):
+        tasks[index]["done"] = True
+
+def show_tasks():
+    for i, task in enumerate(tasks):
+        status = "✓" if task["done"] else " "
+        print(f"[{status}] {i}. {task['description']}")
+
+add_task("Write the lists tutorial")
+add_task("Fix the Pyodide indentation bug")
+add_task("Publish to Poetic Bytes")
+complete_task(1)
+
+show_tasks()
+
+pending = [t["description"] for t in tasks if not t["done"]]
+print("\nStill pending:", pending)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Task managers are one of the most common beginner-to-intermediate portfolio projects because they require nearly every list skill in this tutorial working together.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> Each task is a small dictionary stored inside the outer <code>tasks</code> list — a list of dictionaries, the natural Python equivalent of a database table. <code>complete_task()</code> mutates a specific task's <code>"done"</code> key in place, using the same in-place mutation principle from Example 15. <code>show_tasks()</code> uses <code>enumerate()</code> so each line can display its own index for later reference.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> The final comprehension filters down to only pending tasks in a single readable line, directly applying the comprehension-with-filter pattern from Example 39.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> This structure scales naturally — add a <code>"priority"</code> or <code>"due_date"</code> key to each dictionary and the same list-of-dicts pattern still works, just with richer sorting and filtering.
+            <br><br>
+            <strong>📌 Significance:</strong> "List of dictionaries" is arguably the single most common data shape in real-world Python — it's exactly how JSON API responses and database query results are represented once parsed into Python.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>📊</span> Project 2 – Grade Book Statistics</div>
+        <div class="oop-block">
+          <h3>Compute a Class Report From Raw Scores</h3>
+          <div class="code-snippet"><pre>gradebook = {
+    "Ana": [88, 92, 95],
+    "Bob": [72, 68, 74],
+    "Cara": [100, 98, 96],
+}
+
+def average(scores):
+    return sum(scores) / len(scores)
+
+report = sorted(
+    [(name, average(scores)) for name, scores in gradebook.items()],
+    key=lambda pair: pair[1],
+    reverse=True
+)
+
+print("Class ranking (highest average first):")
+for rank, (name, avg) in enumerate(report, start=1):
+    print(f"  {rank}. {name}: {avg:.1f}")
+
+class_average = sum(avg for _, avg in report) / len(report)
+print(f"\nOverall class average: {class_average:.1f}")
+
+honor_roll = [name for name, avg in report if avg >= 90]
+print("Honor roll:", honor_roll)</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Turning a raw set of scores into a ranked report with an overall average and a filtered honor roll is exactly the kind of task a teacher, coach, or analyst needs automated.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> A comprehension builds a list of <code>(name, average)</code> tuples from the dictionary's items, which <code>sorted()</code> then orders using <code>key=</code> on the average — directly reusing the sort-by-field pattern from Example 33. The ranking loop uses <code>enumerate(start=1)</code> combined with tuple unpacking inside the loop variable itself.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> The class average uses a generator expression (no square brackets) inside <code>sum()</code> — this avoids building an intermediate list just to sum it once, a small but idiomatic efficiency habit.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> The final line reapplies the filtering comprehension pattern to answer a specific business question — "who qualifies for the honor roll" — directly from already-processed data, without touching the original <code>gradebook</code> dictionary.
+            <br><br>
+            <strong>📌 Significance:</strong> This project demonstrates the full pipeline — raw data → transform → sort → aggregate → filter — that underlies the vast majority of real-world reporting and analytics code, whether the final tool is plain Python or Pandas.
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🔲</span> Project 3 – Matrix Operations</div>
+        <div class="oop-block">
+          <h3>Add, Transpose, and Flatten a Grid of Numbers</h3>
+          <div class="code-snippet"><pre>def add_matrices(a, b):
+    return [
+        [a[row][col] + b[row][col] for col in range(len(a[0]))]
+        for row in range(len(a))
+    ]
+
+def transpose(m):
+    return [[row[i] for row in m] for i in range(len(m[0]))]
+
+def flatten(m):
+    return [value for row in m for value in row]
+
+matrix_a = [[1, 2], [3, 4]]
+matrix_b = [[10, 20], [30, 40]]
+
+print("sum:", add_matrices(matrix_a, matrix_b))
+print("transposed A:", transpose(matrix_a))
+print("flattened A:", flatten(matrix_a))</pre></div>
+          <div class="insight">
+            <strong>🔍 Why this code is used:</strong> Matrix-style operations underpin image processing, game boards, spreadsheets, and — at a larger scale — every neural network in machine learning.
+            <br><br>
+            <strong>⚙️ How it operates:</strong> <code>add_matrices()</code> uses a nested comprehension that mirrors the shape of the input — an outer comprehension over rows containing an inner comprehension over columns. <code>transpose()</code> reuses the exact technique from Example 46. <code>flatten()</code> introduces a new nested-comprehension shape: two <code>for</code> clauses in a single (non-nested) comprehension, collapsing a 2D structure into a 1D one.
+            <br><br>
+            <strong>📊 How it affects the program:</strong> Because these functions never mutate their inputs — they always build and return new lists — <code>matrix_a</code> and <code>matrix_b</code> remain safe to reuse afterward, avoiding the aliasing pitfalls covered earlier.
+            <br><br>
+            <strong>🎯 How it stimulates the outcome:</strong> <code>flatten()</code>'s double-<code>for</code> comprehension is worth comparing carefully against Project 3's other two functions' nested comprehensions — the difference between "two <code>for</code> clauses in one comprehension" and "a comprehension nested inside another" is subtle but changes the output shape completely.
+            <br><br>
+            <strong>📌 Significance:</strong> This project is a direct, hands-on bridge to NumPy: every one of these three functions has a single built-in NumPy equivalent (<code>+</code>, <code>.T</code>, <code>.flatten()</code>) that becomes far more intuitive once you've implemented the logic yourself in plain lists.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-heading">
+      <div class="page-col">
+        <div class="section-intro"><h2 id="faq-heading">❓ Frequently Asked Questions</h2><p>Common questions about Python lists, answered</p></div>
+        <div class="faq-list" style="margin-top:1.2rem;">
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Are Python lists mutable?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Yes. Lists can be changed in place after creation — items added, removed, replaced, or reordered — without creating a new list object. This is the defining difference between lists and immutable sequences like strings and tuples.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What is the difference between append() and extend()?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>append(x)</code> adds exactly one object to the end of the list, even if that object is itself a list (it gets nested). <code>extend(iterable)</code> adds each individual element from the given iterable, flattening it into the list one level.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Why did my function change the list I passed into it?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Lists are passed by reference. When you pass a list into a function, the function receives the same object, not a copy — mutating it (with <code>.append()</code>, <code>.sort()</code>, indexed assignment, etc.) affects the caller's original list too. If you need the function to work on an independent copy, pass <code>my_list.copy()</code> or <code>my_list[:]</code> instead.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Why is my_list.sort() returning None?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>.sort()</code> reorders the list in place and always returns <code>None</code> — writing <code>my_list = my_list.sort()</code> overwrites your list with <code>None</code>. Either call <code>my_list.sort()</code> on its own line, or use the built-in function <code>sorted(my_list)</code>, which returns a new sorted list instead.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What is the difference between a list and a tuple?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Lists are mutable and use square brackets <code>[]</code>; tuples are immutable and use parentheses <code>()</code>. Use a tuple for fixed data that shouldn't change (coordinates, a database row) and a list for a collection you expect to grow, shrink, or reorder.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Should I use a list comprehension or a for loop?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use a comprehension when you're building a new list from an existing iterable with a simple transformation and/or filter — it's more concise and often faster. Use a regular <code>for</code> loop when the logic involves multiple steps, side effects (like printing), or is complex enough that a comprehension would hurt readability.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Why did copying my nested list not fully protect the original?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>.copy()</code> and slicing (<code>[:]</code>) only create a shallow copy — the outer list is new, but any nested lists inside it are still shared with the original. Use <code>copy.deepcopy()</code> when your list contains other mutable objects (like nested lists) and you need a fully independent structure.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I remove duplicates from a list?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>The simplest way is <code>list(set(my_list))</code>, but this loses the original order and requires the elements to be hashable. To preserve order, use <code>list(dict.fromkeys(my_list))</code>, which relies on the fact that dictionaries in modern Python remember insertion order while automatically discarding duplicate keys.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Why is checking membership in a large list slow?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>The <code>in</code> operator on a list is O(n) — Python may have to check every element before concluding a value isn't present. If you're checking membership repeatedly against a large collection, convert it to a <code>set</code> first; set membership checks are O(1) on average.</p></div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Why shouldn't I use a mutable list as a default function argument?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Default argument values are evaluated once, when the function is defined — not on every call. A mutable default like <code>def f(items=[])</code> means every call that doesn't supply its own list shares and mutates the exact same list object. Use <code>items=None</code> and create a new list inside the function body instead.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercises" aria-labelledby="exercises-heading">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="exercises-heading">✏️ Practice Exercises &amp; Quizzes</h2>
+          <p>Test your understanding with hands-on problems and multiple-choice questions</p>
+        </div>
+
+        <div class="cat-label"><span>🧪</span> Exercise 1 – Deduplicate While Preserving Order</div>
+        <div class="exercise-box">
+          <h4>Task: Write a function that removes duplicates from a list, keeping the first occurrence and the original order.</h4>
+          <p><strong>Example:</strong> <code>dedupe([3, 1, 3, 2, 1, 4])</code> → <code>[3, 1, 2, 4]</code></p>
+          <div class="insight">💡 <strong>Hint:</strong> Track what you've already seen with a <code>set</code> while building the result list.</div>
+          <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+            <pre>def dedupe(items: list) -> list:
+    # Your code here
+    pass
+
+# Test
+print(dedupe([3, 1, 3, 2, 1, 4]))  # Should print [3, 1, 2, 4]</pre>
+          </div>
+          <button class="show-solution-btn" onclick="toggleSolution('sol1')">Show Solution</button>
+          <div class="exercise-solution" id="sol1">
+            <pre>def dedupe(items: list) -> list:
+    seen = set()
+    result = []
+    for item in items:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+# Explanation:
+# 1. seen tracks values already added, for O(1) membership checks
+# 2. result preserves the original order (a set alone would not)
+# 3. Each unseen item is added to both seen and result</pre>
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🧪</span> Exercise 2 – Flatten a Nested List</div>
+        <div class="exercise-box">
+          <h4>Task: Write a function that flattens a list containing other lists into a single flat list (one level deep).</h4>
+          <p><strong>Example:</strong> <code>flatten([[1, 2], [3], [4, 5, 6]])</code> → <code>[1, 2, 3, 4, 5, 6]</code></p>
+          <div class="insight">💡 <strong>Hint:</strong> A double-<code>for</code> list comprehension solves this in one line — see Project 3.</div>
+          <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+            <pre>def flatten(nested: list) -> list:
+    # Your code here
+    pass
+
+# Test
+print(flatten([[1, 2], [3], [4, 5, 6]]))  # [1, 2, 3, 4, 5, 6]</pre>
+          </div>
+          <button class="show-solution-btn" onclick="toggleSolution('sol2')">Show Solution</button>
+          <div class="exercise-solution" id="sol2">
+            <pre>def flatten(nested: list) -> list:
+    return [item for sublist in nested for item in sublist]
+
+# Explanation:
+# 1. The first 'for' walks each sublist in the outer list
+# 2. The second 'for' walks each item inside that sublist
+# 3. Every item, from every sublist, lands in one flat result list</pre>
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🧪</span> Exercise 3 – Find the Second Largest Number</div>
+        <div class="exercise-box">
+          <h4>Task: Write a function that returns the second-largest unique value in a list, without using <code>sorted()</code> or <code>.sort()</code>.</h4>
+          <p><strong>Example:</strong> <code>second_largest([10, 30, 20, 30])</code> → <code>20</code></p>
+          <div class="insight">💡 <strong>Hint:</strong> Track the largest and second-largest values seen so far in a single pass.</div>
+          <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+            <pre>def second_largest(nums: list) -> int:
+    # Your code here
+    pass
+
+# Test
+print(second_largest([10, 30, 20, 30]))  # 20</pre>
+          </div>
+          <button class="show-solution-btn" onclick="toggleSolution('sol3')">Show Solution</button>
+          <div class="exercise-solution" id="sol3">
+            <pre>def second_largest(nums: list) -> int:
+    unique = list(set(nums))
+    largest = max(unique)
+    unique.remove(largest)
+    return max(unique)
+
+# Explanation:
+# 1. set(nums) removes duplicates so "second largest" means second UNIQUE value
+# 2. max() finds the largest, which is then removed from consideration
+# 3. max() again on what remains gives the second-largest unique value</pre>
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🧪</span> Exercise 4 – Chunk a List Into Fixed-Size Groups</div>
+        <div class="exercise-box">
+          <h4>Task: Write a function that splits a list into consecutive chunks of a given size.</h4>
+          <p><strong>Example:</strong> <code>chunk([1,2,3,4,5,6,7], 3)</code> → <code>[[1,2,3],[4,5,6],[7]]</code></p>
+          <div class="insight">💡 <strong>Hint:</strong> Use slicing with a step equal to the chunk size, inside a comprehension over <code>range(0, len(items), size)</code>.</div>
+          <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+            <pre>def chunk(items: list, size: int) -> list:
+    # Your code here
+    pass
+
+# Test
+print(chunk([1,2,3,4,5,6,7], 3))  # [[1,2,3],[4,5,6],[7]]</pre>
+          </div>
+          <button class="show-solution-btn" onclick="toggleSolution('sol4')">Show Solution</button>
+          <div class="exercise-solution" id="sol4">
+            <pre>def chunk(items: list, size: int) -> list:
+    return [items[i:i + size] for i in range(0, len(items), size)]
+
+# Explanation:
+# 1. range(0, len(items), size) produces the START index of each chunk
+# 2. items[i:i+size] slices out exactly one chunk at each start position
+# 3. Slicing never errors even if the final chunk is shorter than 'size'</pre>
+          </div>
+        </div>
+
+        <div class="cat-label"><span>🧪</span> Exercise 5 – Rotate a List</div>
+        <div class="exercise-box">
+          <h4>Task: Write a function that rotates a list to the left by <code>k</code> positions.</h4>
+          <p><strong>Example:</strong> <code>rotate([1,2,3,4,5], 2)</code> → <code>[3,4,5,1,2]</code></p>
+          <div class="insight">💡 <strong>Hint:</strong> Slice the list into two pieces at index <code>k</code> and swap their order.</div>
+          <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
+            <pre>def rotate(items: list, k: int) -> list:
+    # Your code here
+    pass
+
+# Test
+print(rotate([1,2,3,4,5], 2))  # [3, 4, 5, 1, 2]</pre>
+          </div>
+          <button class="show-solution-btn" onclick="toggleSolution('sol5')">Show Solution</button>
+          <div class="exercise-solution" id="sol5">
+            <pre>def rotate(items: list, k: int) -> list:
+    k = k % len(items)   # handles k larger than the list length
+    return items[k:] + items[:k]
+
+# Explanation:
+# 1. items[k:] is everything from position k onward — the new "front"
+# 2. items[:k] is everything before position k — moved to the "back"
+# 3. Concatenating them produces the rotated list without mutating the original</pre>
+          </div>
+        </div>
+
+        <div class="cat-label"><span>📝</span> Quick Quiz</div>
+        <div class="oop-block">
+          <h3>Multiple-Choice Questions</h3>
+          <div id="quiz1" class="quiz-box">
+            <p><strong>1. What does <code>my_list.append([1, 2])</code> do?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, 'one nested list')">A) Adds one nested list item</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'one nested list')">B) Adds 1 and 2 as two separate items</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'one nested list')">C) Raises a TypeError</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'one nested list')">D) Replaces the whole list</div>
+            <div class="quiz-feedback" id="quiz1-feedback"></div>
+          </div>
+          <div id="quiz2" class="quiz-box" style="margin-top:1rem;">
+            <p><strong>2. What does <code>my_list.sort()</code> return?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, 'None')">A) The sorted list</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'None')">B) <code>None</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'None')">C) <code>True</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'None')">D) A copy of the list</div>
+            <div class="quiz-feedback" id="quiz2-feedback"></div>
+          </div>
+          <div id="quiz3" class="quiz-box" style="margin-top:1rem;">
+            <p><strong>3. What does <code>[1, 2, 3][::-1]</code> produce?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, '[3, 2, 1]')">A) <code>[1, 2, 3]</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, '[3, 2, 1]')">B) <code>[3, 2, 1]</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, '[3, 2, 1]')">C) <code>[]</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, '[3, 2, 1]')">D) An error</div>
+            <div class="quiz-feedback" id="quiz3-feedback"></div>
+          </div>
+          <div id="quiz4" class="quiz-box" style="margin-top:1rem;">
+            <p><strong>4. Which is true about <code>b = a</code> where <code>a</code> is a list?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, 'same object')">A) <code>b</code> is an independent copy</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'same object')">B) <code>b</code> and <code>a</code> point to the same object</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'same object')">C) This raises an error</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'same object')">D) <code>b</code> is always empty</div>
+            <div class="quiz-feedback" id="quiz4-feedback"></div>
+          </div>
+          <div id="quiz5" class="quiz-box" style="margin-top:1rem;">
+            <p><strong>5. Which data structure gives the fastest average membership check (<code>in</code>)?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, 'set')">A) list</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'set')">B) tuple</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'set')">C) set</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'set')">D) they're all equal</div>
+            <div class="quiz-feedback" id="quiz5-feedback"></div>
+          </div>
+          <div id="quiz6" class="quiz-box" style="margin-top:1rem;">
+            <p><strong>6. What is wrong with <code>def add(item, basket=[]):</code>?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, 'shared default')">A) Nothing, it's a good pattern</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'shared default')">B) The default list is shared across every call</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'shared default')">C) It raises a SyntaxError</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'shared default')">D) Lists cannot be default arguments</div>
+            <div class="quiz-feedback" id="quiz6-feedback"></div>
+          </div>
+          <div id="quiz7" class="quiz-box" style="margin-top:1rem;">
+            <p><strong>7. What does <code>list.pop(0)</code> repeatedly used in a loop suffer from?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, 'O(n) shifting')">A) Nothing — it's O(1) like append</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'O(n) shifting')">B) It's O(n) because remaining items shift left</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'O(n) shifting')">C) It raises an IndexError</div>
+            <div class="quiz-option" onclick="answerQuiz(this, 'O(n) shifting')">D) It only works on tuples</div>
+            <div class="quiz-feedback" id="quiz7-feedback"></div>
+          </div>
+          <div id="quiz8" class="quiz-box" style="margin-top:1rem;">
+            <p><strong>8. What does <code>[x for x in range(5) if x % 2 == 0]</code> produce?</strong></p>
+            <div class="quiz-option" onclick="answerQuiz(this, '[0, 2, 4]')">A) <code>[0, 1, 2, 3, 4]</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, '[0, 2, 4]')">B) <code>[0, 2, 4]</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, '[0, 2, 4]')">C) <code>[1, 3]</code></div>
+            <div class="quiz-option" onclick="answerQuiz(this, '[0, 2, 4]')">D) An empty list</div>
+            <div class="quiz-feedback" id="quiz8-feedback"></div>
+          </div>
+        </div>
+        <div class="home-row">
+          <a href="index.html" class="btn-home-large"><i class="fas fa-home"></i> Back to Home</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="outro" aria-labelledby="outro-heading" style="padding: 2rem 0 1.5rem;">
+      <div class="page-col">
+        <div class="section-intro">
+          <h2 id="outro-heading">🏁 Congratulations – You've Mastered Python Lists!</h2>
+          <p style="max-width:100%; font-size:0.9rem; color:var(--text); text-align:left;">
+            You've now covered the single most-used data structure in the entire Python language — in depth, not just in passing. That is not a small achievement.
+          </p>
+        </div>
+        <div class="oop-block" style="margin-top:0.5rem;">
+          <h3>✅ What You've Accomplished</h3>
+          <ul class="outro-list">
+            <li>Understood list creation, indexing, slicing, and — critically — mutability</li>
+            <li>Mastered 20+ list methods for adding, removing, searching, sorting, and copying</li>
+            <li>Learned to write and read list comprehensions fluently, including nested and conditional forms</li>
+            <li>Worked confidently with nested lists and 2D matrix-style structures</li>
+            <li>Applied unpacking, <code>enumerate()</code>, and <code>zip()</code> to write cleaner, more Pythonic loops</li>
+            <li>Diagnosed and avoided the two most common list bugs: aliasing and mutable default arguments</li>
+            <li>Compared lists, tuples, and sets, and learned when to reach for each one</li>
+            <li>Built three real-world mini projects: a to-do manager, a grade book, and a matrix toolkit</li>
+            <li>Worked through 70+ runnable examples, five exercises, and eight quiz questions</li>
+          </ul>
+
+          <h3 style="margin-top:1.2rem;">🌍 Why This Matters Beyond This Page</h3>
+          <p>Every skill in this tutorial reappears constantly across the rest of Python. Dictionaries store their <code>.items()</code> as sequences of tuples you'll unpack exactly like Example 47. Pandas DataFrames are, conceptually, a supercharged nested list. NumPy arrays enforce the same indexing and slicing rules you just practiced, extended into more dimensions. Algorithm interview questions — the ones asked at nearly every software engineering interview — are overwhelmingly "manipulate a list cleverly" problems. What you learned here is not a side skill. It is the foundation everything else in Python programming stands on.</p>
+
+          <h3 style="margin-top:1.2rem;">📚 Next Steps</h3>
+          <p>Now that lists feel natural, consider extending into:</p>
+          <ul class="outro-list">
+            <li><strong>Dictionaries</strong> – key-value mapping, the natural next data structure</li>
+            <li><strong>Tuples &amp; Sets</strong> – deepen the comparison started in the Advanced section</li>
+            <li><strong>NumPy</strong> – vectorised operations built on the same nested-list intuition</li>
+            <li><strong>Algorithms</strong> – sorting, searching, and two-pointer techniques applied to lists</li>
+            <li><strong>Iterators &amp; Generators</strong> – for processing sequences too large to hold in memory at once</li>
+          </ul>
+
+          <h3 style="margin-top:1.2rem;">💌 A Final Word</h3>
+          <p>Lists are deceptively simple to start using and genuinely deep to master. The gap between "I can write <code>my_list.append(x)</code>" and "I understand exactly why aliasing, shallow copies, and O(n) membership checks matter" is the gap between a beginner and a confident intermediate developer. You've just closed a large part of that gap. Keep experimenting with the examples above, try modifying them, and don't be afraid to break things — that's still how you learn best.</p>
+          <p style="font-size:1.1rem; font-weight:700; color:var(--gold); margin-top:0.5rem;">Now go build something with your lists! 📋</p>
+        </div>
+        <div class="home-row">
+          <a href="index.html" class="btn-home-large"><i class="fas fa-home"></i> Back to Home</a>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;">
+          <p style="font-size:0.75rem; color:var(--muted);">Poetic Bytes · 2026 · Made with ❤️ by Glenn Junsay Pansensoy</p>
+          <p style="font-size:0.75rem; color:var(--muted); font-style:italic;">"A list is nothing but an idea for a sequence, made real."</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Share this resource">
+      <div class="page-col">
+        <div class="share-box" id="shareSection">
+          <h3>📤 Share this tutorial</h3>
+          <p style="margin-top:.3rem;">Help other developers master Python lists</p>
+          <div class="share-row" id="shareRowBottom">
+            <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+            <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X</a>
+            <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer" aria-label="Site footer">
+    <div class="page-col">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>Guided Tracks</h5>
+          <ul>
+            <li><a href="beginners.html">First-time dev</a></li>
+            <li><a href="data-science.html">Data &amp; statistics</a></li>
+            <li><a href="backend.html">Backend / Django</a></li>
+            <li><a href="aiml.html">ML fundamentals</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+            <li><a href="automation.html">Automation</a></li>
+            <li><a href="sample-programs.html">Sample Programs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>New Modules</h5>
+          <ul>
+            <li><a href="python-sets.html">Python Sets</a></li>
+            <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+            <li><a href="python-exceptions.html">Exception Handling</a></li>
+            <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+            <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+            <li><a href="python-decorators.html">Decorators In Depth</a></li>
+            <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Toolkit</h5>
+          <ul>
+            <li><a href="algorithm-history.html">History of Algorithm</a></li>
+            <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+            <li><a href="snippet-library.html">Snippet library</a></li>
+            <li><a href="code-runner.html">Code runner</a></li>
+            <li><a href="design-patterns.html">Design Patterns</a></li>
+            <li><a href="coding-concepts.html">Coding Concepts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+            <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+            <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Policies</h5>
+          <ul>
+            <li><a href="privacy.html">Data privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="cookie.html">Cookies</a></li>
+            <li><a href="disclaimer.html">Disclaimers</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+        <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js">
+  </script>
+  <script>
+    (function() {
+      'use strict';
+
+      // Progress bar
+      var pbar = document.getElementById('pbar');
+      window.addEventListener('scroll', function() {
+        var h = document.documentElement;
+        var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+        if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+      }, { passive: true });
+
+      // Mobile drawer
+      var menuToggle = document.getElementById('menuToggle');
+      var drawer = document.getElementById('mobileDrawer');
+      var overlay = document.getElementById('drawerOverlay');
+      var drawerClose = document.getElementById('drawerClose');
+
+      function closeDrawer() {
+        if (menuToggle) menuToggle.classList.remove('active');
+        if (drawer) drawer.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      if (menuToggle) {
+        menuToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var open = drawer.classList.toggle('active');
+          menuToggle.classList.toggle('active', open);
+          overlay.classList.toggle('active', open);
+          document.body.style.overflow = open ? 'hidden' : '';
+        });
+      }
+      if (overlay) overlay.addEventListener('click', closeDrawer);
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+
+      document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var target = document.querySelector(btn.dataset.href);
+          if (target) { target.scrollIntoView({ behavior: 'smooth' });
+            closeDrawer(); }
+        });
+      });
+
+      // FAQ toggle
+      window.toggleFaq = function(qEl) {
+        var item = qEl.closest('.faq-item');
+        var answer = item.querySelector('.faq-a');
+        var toggle = qEl.querySelector('.faq-toggle');
+        var isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-a.open').forEach(function(a) {
+          a.classList.remove('open');
+          a.closest('.faq-item').querySelector('.faq-toggle').textContent = '+';
+        });
+        if (!isOpen) {
+          answer.classList.add('open');
+          toggle.textContent = '−';
+        }
+      };
+
+      // Back to top
+      var backTop = document.getElementById('backTop');
+      window.addEventListener('scroll', function() {
+        backTop.classList.toggle('visible', window.scrollY > 500);
+      }, { passive: true });
+      backTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Floating TOC
+      var tocToggle = document.getElementById('tocToggleBtn');
+      var tocPanel = document.getElementById('floatingToc');
+      var tocClose = document.getElementById('tocCloseBtn');
+      var tocBody = document.getElementById('tocBody');
+
+      if (tocToggle && tocPanel) {
+        tocToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          tocPanel.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (tocPanel.classList.contains('open')) {
+            var target = e.target;
+            if (!tocPanel.contains(target) && target !== tocToggle && !tocToggle.contains(target)) {
+              tocPanel.classList.remove('open');
+            }
+          }
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+            tocPanel.classList.remove('open');
+          }
+        });
+      }
+      if (tocClose) {
+        tocClose.addEventListener('click', function() {
+          if (tocPanel) tocPanel.classList.remove('open');
+        });
+      }
+      var tocLinks = tocBody ? tocBody.querySelectorAll('a') : [];
+      window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY + 120;
+        var currentId = null;
+        document.querySelectorAll('section[id], div[id]').forEach(function(el) {
+          if (el.offsetTop <= scrollY) {
+            currentId = el.id;
+          }
+        });
+        tocLinks.forEach(function(link) {
+          var href = link.getAttribute('href');
+          if (href && href === '#' + currentId) {
+            link.classList.add('toc-highlight');
+          } else {
+            link.classList.remove('toc-highlight');
+          }
+        });
+      }, { passive: true });
+
+      // Share
+      var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-lists.html');
+      var PAGE_TITLE = encodeURIComponent('Python Lists – Complete Tutorial');
+
+      function shareTo(url) {
+        window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+      }
+
+      document.querySelectorAll('#shareFb, #shareFbBottom').forEach(function(el) {
+        if (el) el.addEventListener('click', function(e) { e.preventDefault();
+          shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+      });
+      document.querySelectorAll('#shareTw, #shareTwBottom').forEach(function(el) {
+        if (el) el.addEventListener('click', function(e) { e.preventDefault();
+          shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+      });
+      document.querySelectorAll('#shareLi, #shareLiBottom').forEach(function(el) {
+        if (el) el.addEventListener('click', function(e) { e.preventDefault();
+          shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+      });
+      document.querySelectorAll('#shareWa, #shareWaBottom').forEach(function(el) {
+        if (el) el.addEventListener('click', function(e) { e.preventDefault();
+          shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+      });
+      document.querySelectorAll('#shareTg, #shareTgBottom').forEach(function(el) {
+        if (el) el.addEventListener('click', function(e) { e.preventDefault();
+          shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+      });
+
+      function copyLink(btn) {
+        var url = 'https://poetic-bytes.vercel.app/python-lists.html';
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(function() {
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(function() { btn.innerHTML = orig; }, 2000);
+          }).catch(function() {
+            fallbackCopy(url, btn);
+          });
+        } else {
+          fallbackCopy(url, btn);
+        }
+      }
+
+      function fallbackCopy(text, btn) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        var orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+      }
+
+      var copyBtn = document.getElementById('copyLinkBtn');
+      if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+      var copyBottom = document.getElementById('copyLinkBottom');
+      if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+      // Pyodide status
+      var statusDot = document.getElementById('pyodideDot');
+      var statusText = document.getElementById('pyodideStatusText');
+
+      // Pyodide runner
+      let pyodideReady = false;
+      let pyodideInstance = null;
+
+      async function loadPyodideAndPackages() {
+        if (!pyodideReady) {
+          try {
+            statusDot.className = 'dot amber';
+            statusText.textContent = 'Pyodide loading… (may take 8–12s)';
+            pyodideInstance = await loadPyodide();
+            pyodideReady = true;
+            statusDot.className = 'dot green';
+            statusText.textContent = 'Pyodide ready — you can run Python code below!';
+          } catch (err) {
+            statusDot.className = 'dot red';
+            statusText.textContent = 'Pyodide failed to load: ' + err.message;
+            throw err;
+          }
+        }
+        return pyodideInstance;
+      }
+
+      // Trigger Pyodide load on first interaction
+      var firstRun = true;
+      document.addEventListener('click', function() {
+        if (firstRun) {
+          firstRun = false;
+          loadPyodideAndPackages().catch(function() {});
+        }
+      }, { once: true });
+
+      function hasFileOperations(code) {
+        var patterns = [
+          /open\s*\(/,
+          /Path\s*\(/,
+          /with\s+open\s*\(/,
+          /\.read\s*\(/,
+          /\.write\s*\(/,
+          /os\.path/,
+          /shutil\./,
+          /glob\s*\(/,
+          /__file__/
+        ];
+        return patterns.some(function(p) { return p.test(code); });
+      }
+
+      // Indent every line of a multi-line code block so it slots correctly
+      // beneath a `try:` (or any) block when embedded in a wrapper template.
+      // Fixes: "IndentationError: expected an indented block after 'try'
+      // statement" that occurred whenever a snippet had more than one line,
+      // because only the first line inherited the template's indentation.
+      function indentCode(code, spaces) {
+        var pad = ' '.repeat(spaces);
+        return code
+          .replace(/\r\n/g, '\n')
+          .split('\n')
+          .map(function(line) { return line.length ? pad + line : line; })
+          .join('\n');
+      }
+
+      async function runCode(code, outputEl, runBtn) {
+        runBtn.disabled = true;
+        var originalText = runBtn.innerHTML;
+        runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+        outputEl.style.display = 'block';
+        outputEl.className = 'output-panel loading';
+        outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+        try {
+          var pyodide = await loadPyodideAndPackages();
+          outputEl.textContent = '';
+          outputEl.className = 'output-panel';
+
+          if (hasFileOperations(code)) {
+            outputEl.className = 'output-panel file-warning';
+            outputEl.textContent =
+              '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+          }
+
+          var indented = indentCode(code, 4);
+          var wrappedCode =
+            `
+import sys
+from io import StringIO
+_captured_output = StringIO()
+_old_stdout = sys.stdout
+sys.stdout = _captured_output
+try:
+${indented}
+finally:
+    sys.stdout = _old_stdout
+_captured_output.getvalue()
+`;
+          var result = await pyodide.runPythonAsync(wrappedCode);
+
+          if (outputEl.textContent.includes('⚠️')) {
+            outputEl.textContent += result || '✓ Code executed successfully (no output).';
+          } else {
+            outputEl.textContent = result || '✓ Code executed successfully (no output).';
+            outputEl.style.color = '#4ade80';
+          }
+        } catch (err) {
+          if (outputEl.textContent.includes('⚠️')) {
+            outputEl.textContent += '\n\nError:\n' + err.message;
+          } else {
+            outputEl.className = 'output-panel error';
+            outputEl.textContent = 'Error:\n' + err.message;
+            outputEl.style.color = '#f87171';
+          }
+        } finally {
+          runBtn.disabled = false;
+          runBtn.innerHTML = originalText;
+        }
+      }
+
+      function copyCode(btn, code) {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(code.trim()).then(function() {
+            var original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(function() { btn.innerHTML = original; }, 2000);
+          }).catch(function() {
+            fallbackCopyCode(btn, code);
+          });
+        } else {
+          fallbackCopyCode(btn, code);
+        }
+      }
+
+      function fallbackCopyCode(btn, code) {
+        var ta = document.createElement('textarea');
+        ta.value = code.trim();
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        var original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(function() { btn.innerHTML = original; }, 2000);
+      }
+
+      function enhanceCodeBlocks() {
+        var blocks = document.querySelectorAll('.code-snippet:not(.code-preview .code-snippet)');
+        blocks.forEach(function(block) {
+          if (block.closest('.code-container')) return;
+          var pre = block.querySelector('pre');
+          if (!pre) return;
+          var codeText = pre.textContent;
+
+          var container = document.createElement('div');
+          container.className = 'code-container';
+
+          var header = document.createElement('div');
+          header.className = 'code-header';
+          header.innerHTML =
+            `
+            <span style="color:var(--muted);">python</span>
+            <div class="code-actions">
+                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+            </div>
+          `;
+
+          var outputPanel = document.createElement('div');
+          outputPanel.className = 'output-panel';
+
+          block.parentNode.insertBefore(container, block);
+          container.appendChild(header);
+          container.appendChild(block);
+          container.appendChild(outputPanel);
+
+          var copyBtn = header.querySelector('.copy-btn');
+          var runBtn = header.querySelector('.run-btn');
+
+          copyBtn.addEventListener('click', function() { copyCode(copyBtn, codeText); });
+          runBtn.addEventListener('click', function() { runCode(codeText, outputPanel, runBtn); });
+        });
+      }
+
+      // Quiz helper
+      window.answerQuiz = function(el, correctAnswer) {
+        var parent = el.closest('.quiz-box');
+        var options = parent.querySelectorAll('.quiz-option');
+        var feedback = parent.querySelector('.quiz-feedback');
+        options.forEach(function(opt) {
+          opt.classList.remove('correct', 'incorrect');
+        });
+        var selected = el.textContent.trim();
+        if (selected.includes(correctAnswer)) {
+          el.classList.add('correct');
+          feedback.textContent = '✅ Correct! Well done.';
+          feedback.style.color = 'var(--green)';
+        } else {
+          el.classList.add('incorrect');
+          feedback.textContent = '❌ Not quite. The correct answer is: ' + correctAnswer;
+          feedback.style.color = 'var(--red)';
+          options.forEach(function(opt) {
+            if (opt.textContent.includes(correctAnswer)) {
+              opt.classList.add('correct');
+            }
+          });
+        }
+      };
+
+      // Solution toggle
+      window.toggleSolution = function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.classList.toggle('open');
+          var btn = el.previousElementSibling;
+          if (btn && btn.classList.contains('show-solution-btn')) {
+            btn.textContent = el.classList.contains('open') ? 'Hide Solution' : 'Show Solution';
+          }
+        }
+      };
+
+      window.addEventListener('load', enhanceCodeBlocks);
+
+      // Pre-warm Pyodide after a short delay
+      setTimeout(function() {
+        loadPyodideAndPackages().catch(function() {});
+      }, 2000);
+
+    })();
+  </script>
+</body>
+</html>
