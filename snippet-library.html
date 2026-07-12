@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Snippet Library – 100+ Ready-to-Use Code Examples | Poetic Bytes</title>
+    <meta name="description" content="A comprehensive Python snippet library with 100+ ready-to-use code examples for variables, functions, OOP, data structures, algorithms, and more. Copy, run, and learn with line-by-line explanations." />
+    <meta name="keywords" content="python snippets, python code examples, python functions, python algorithms, python data structures, python oop, learn python, python tutorial, python programming, code snippets" />
+    <meta name="author" content="Glenn Pansensoy (@PoeticGlenn)" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/snippet-library.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/snippet-library.html" />
+    <meta property="og:title" content="Python Snippet Library – 100+ Ready-to-Use Code Examples | Poetic Bytes" />
+    <meta property="og:description" content="A comprehensive Python snippet library with 100+ ready-to-use code examples. Includes line-by-line explanations, copy & run functionality. Perfect for beginners and professionals." />
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Snippet Library – 100+ Ready-to-Use Code Examples" />
+    <meta name="twitter:description" content="Curated Python snippets with line-by-line explanations, copy & run functionality. Learn faster, code smarter." />
+    <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Python Snippet Library",
+      "description": "A curated library of Python code snippets with line-by-line explanations for variables, functions, OOP, data structures, algorithms, and more.",
+      "url": "https://poetic-bytes.vercel.app/snippet-library.html",
+      "author": {
+        "@type": "Person",
+        "name": "Glenn Pansensoy",
+        "url": "https://twitter.com/PoeticGlenn",
+        "email": "pansensoyglenn150@gmail.com"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Python Programming"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Variables & Data Types"},
+          {"@type": "ListItem", "position": 2, "name": "Control Flow"},
+          {"@type": "ListItem", "position": 3, "name": "Data Structures"},
+          {"@type": "ListItem", "position": 4, "name": "Functions & Lambdas"},
+          {"@type": "ListItem", "position": 5, "name": "Object-Oriented Programming"},
+          {"@type": "ListItem", "position": 6, "name": "Advanced Python"},
+          {"@type": "ListItem", "position": 7, "name": "Algorithms & Patterns"},
+          {"@type": "ListItem", "position": 8, "name": "File I/O & Data"},
+          {"@type": "ListItem", "position": 9, "name": "Testing & Error Handling"},
+          {"@type": "ListItem", "position": 10, "name": "Standard Library Modules"}
+        ]
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+
+    <style>
+        :root { --bg: #0B121C; --panel: #0F1C2F; --card: #111e30; --border: #1F4060; --blue: #4B8BBE; --blue-deep: #306998; --blue-lt: #78B9E6; --gold: #FFD966; --text: #E2E8F0; --muted: #8BA3BF; --code-bg: #0A1A24; --green: #10B981; --amber: #F59E0B; --red: #EF4444; --purple: #c084fc; --teal: #2DD4BF; --orange: #FB923C; --btn-h: 44px; --btn-r: 8px; --card-r: 12px; --gap: 1rem; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; overflow-x: hidden; padding-bottom: 80px; }
+        .page-col { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+        section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+        section:last-child { border-bottom: none; }
+        .progress-bar-wrap { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: rgba(31,64,96,.3); z-index: 2000; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--blue-lt)); width: 0%; transition: width .2s; }
+        .nav-bar { position: fixed; top: 3px; left: 0; right: 0; background: rgba(11,18,28,.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .nav-inner { max-width: 860px; margin: 0 auto; padding: .6rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .brand { display: flex; align-items: center; gap: .5rem; text-decoration: none; color: #fff; font-weight: 800; font-size: .85rem; letter-spacing: .08em; }
+        .brand-icon { width: 2rem; height: 2rem; border-radius: 6px; background: linear-gradient(145deg, var(--blue), var(--blue-deep)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .btn-back-home { display: inline-flex; align-items: center; gap: .5rem; background: var(--blue); color: #fff; padding: 0.4rem 1rem; border-radius: var(--btn-r); font-weight: 700; font-size: .78rem; text-decoration: none; transition: background .2s, transform .2s; border: none; cursor: pointer; }
+        .btn-back-home:hover { background: var(--blue-deep); transform: scale(1.03); }
+        .floating-back { position: fixed; bottom: 90px; left: 20px; z-index: 900; background: var(--card); border: 1px solid var(--border); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: var(--text); font-size: 1.2rem; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,.5); transition: background .2s, transform .2s; }
+        .floating-back:hover { background: var(--blue); color: #fff; transform: scale(1.1); }
+        .snippet-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1rem; margin-bottom: 1rem; border-left: 3px solid var(--blue); transition: border-color .2s; }
+        .snippet-box:hover { border-color: var(--blue-lt); }
+        .snippet-box h4 { color: var(--gold); font-size: .82rem; margin-bottom: .3rem; }
+        .snippet-box p { font-size: .74rem; margin-bottom: .6rem; color: var(--muted); }
+        .code-snippet { background: var(--code-bg); border-radius: 6px; padding: .8rem 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: .73rem; line-height: 1.65; color: var(--text); position: relative; }
+        .code-snippet pre { font-family: 'JetBrains Mono', monospace; font-size: .73rem; line-height: 1.65; color: var(--text); white-space: pre-wrap; word-break: break-word; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .btn-sm { display: inline-flex; align-items: center; gap: .3rem; padding: .25rem .8rem; border-radius: 6px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: .65rem; border: none; cursor: pointer; transition: all .2s; }
+        .btn-copy { background: rgba(75,139,190,.12); border: 1px solid var(--border); color: var(--blue-lt); }
+        .btn-copy:hover { background: rgba(75,139,190,.25); }
+        .btn-copy.copied { color: var(--green); border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.1); }
+        .btn-run { background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.3); color: var(--green); }
+        .btn-run:hover { background: rgba(16,185,129,.25); }
+        .btn-run:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-explain { background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.2); color: var(--amber); }
+        .btn-explain:hover { background: rgba(245,158,11,.2); }
+        .explanation { margin-top: 0.8rem; padding: 0.8rem 1rem; background: rgba(11,18,28,.5); border-left: 3px solid var(--amber); border-radius: 0 6px 6px 0; font-size: .78rem; color: var(--muted); line-height: 1.7; }
+        .explanation details { cursor: pointer; }
+        .explanation summary { font-weight: 600; color: var(--gold); margin-bottom: 0.3rem; }
+        .explanation table { width: 100%; border-collapse: collapse; font-size: .72rem; }
+        .explanation td, .explanation th { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .explanation th { text-align: left; color: var(--blue-lt); font-weight: 600; }
+        .console-output { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,26,36,.95); backdrop-filter: blur(10px); border-top: 2px solid var(--blue); max-height: 200px; overflow-y: auto; padding: 0.6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: #a5d6ff; z-index: 800; display: none; }
+        .console-output.active { display: block; }
+        .console-output .console-header { display: flex; justify-content: space-between; color: var(--muted); font-weight: 600; font-size: .7rem; border-bottom: 1px solid var(--border); padding-bottom: 0.2rem; margin-bottom: 0.4rem; }
+        .console-output .console-header button { background: none; border: none; color: var(--red); cursor: pointer; }
+        .console-output pre { margin: 0; white-space: pre-wrap; word-break: break-all; color: #e2e8f0; }
+        .console-output .error { color: var(--red); }
+        .tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .4rem; }
+        .tags .tag { font-size: .55rem; background: rgba(75,139,190,.1); border: 1px solid rgba(75,139,190,.2); border-radius: 20px; padding: .05rem .5rem; color: var(--blue-lt); }
+        .cat-label { display: flex; align-items: center; gap: .5rem; font-size: .68rem; font-weight: 700; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; margin: 1.8rem 0 .8rem; }
+        .footer { margin-top: 3rem; padding: 1.5rem 0; border-top: 1px solid var(--border); text-align: center; font-size: .8rem; color: var(--muted); }
+        .footer a { color: var(--blue-lt); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .footer .contact { margin-top: .5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        @media (max-width:680px) { .btn-group { flex-direction: column; align-items: stretch; } .btn-sm { justify-content: center; } .floating-back { width: 40px; height: 40px; font-size: 1rem; bottom: 70px; left: 10px; } }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--border); }
+        ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+        .cmt { color: #546e7a; font-style: italic; }
+        .kw { color: #ff7b72; font-weight: 600; }
+        .fn { color: #d2a8ff; }
+        .st { color: #a5d6ff; }
+        .cl { color: #FFD966; font-weight: 600; }
+        .num { color: #79c0ff; }
+        .intro-section { background: linear-gradient(135deg, rgba(75,139,190,0.08), transparent); border-radius: var(--card-r); padding: 2rem; margin-bottom: 2rem; border: 1px solid var(--border); }
+        .intro-section h1 { color: var(--gold); font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .intro-section h2 { color: var(--blue-lt); font-size: 1.1rem; margin: 1.2rem 0 0.5rem; }
+        .intro-section p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; }
+        .intro-section ul { list-style: none; padding: 0; margin: 0.5rem 0; }
+        .intro-section ul li { padding: 0.3rem 0 0.3rem 1.8rem; position: relative; font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+        .intro-section ul li::before { content: "▹"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+        .outro-section { background: linear-gradient(135deg, rgba(255,217,102,0.06), transparent); border-radius: var(--card-r); padding: 2rem; margin-top: 2rem; border: 1px solid var(--border); }
+        .outro-section h2 { color: var(--gold); font-size: 1.4rem; margin-bottom: 0.8rem; }
+        .outro-section p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; }
+        .outro-section ul { list-style: none; padding: 0; margin: 0.5rem 0; }
+        .outro-section ul li { padding: 0.3rem 0 0.3rem 1.8rem; position: relative; font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+        .outro-section ul li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+        .why-section { background: rgba(16,185,129,0.05); border-radius: var(--card-r); padding: 1.5rem; margin: 1.5rem 0; border: 1px solid rgba(16,185,129,0.2); }
+        .why-section h3 { color: var(--green); font-size: 1rem; margin-bottom: 0.5rem; }
+        .why-section p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+        .highlight-text { color: var(--gold); font-weight: 600; }
+        .page-footer { padding: 3rem 0 1.5rem; background: #1a2535; border-top: 1px solid var(--border); }
+        .footer-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+        .footer-col h5 { font-size: .72rem; font-weight: 800; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .7rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: .4rem; }
+        .footer-col a { color: rgba(255, 255, 255, .65); text-decoration: none; font-size: .74rem; transition: color .2s; }
+        .footer-col a:hover { color: #fff; }
+        .copyright { border-top: 1px solid var(--border); padding-top: 1.2rem; text-align: center; font-size: .72rem; color: var(--muted); }
+        .copyright a { color: rgba(255, 255, 255, .5); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="index.html" class="brand"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+        <div style="display:flex; align-items:center; gap:1rem;">
+            <a href="index.html" class="btn-back-home"><i class="fas fa-arrow-left"></i> Home</a>
+        </div>
+    </div>
+</nav>
+
+<a href="index.html" class="floating-back" aria-label="Back to Home"><i class="fas fa-home"></i></a>
+
+<main style="padding-top:66px;">
+
+<section>
+    <div class="page-col">
+
+        <div class="intro-section">
+            <h1>🐍 Python Snippet Library</h1>
+            <p>Welcome to the most comprehensive Python snippet library on the web. This curated collection contains <span class="highlight-text">100+ ready-to-use Python code examples</span> covering everything from basic variables to advanced algorithms. Each snippet includes a detailed line-by-line explanation, making it perfect for both beginners learning Python and experienced developers looking for quick reference.</p>
+
+            <h2>What You'll Find Here</h2>
+            <ul>
+                <li><strong>Variables &amp; Data Types</strong> – Learn how Python handles dynamic typing, strings, numbers, and more</li>
+                <li><strong>Control Flow</strong> – Master if/elif/else, for loops, while loops, and pattern matching</li>
+                <li><strong>Data Structures</strong> – Lists, dictionaries, sets, tuples with comprehensions and advanced operations</li>
+                <li><strong>Functions &amp; Lambdas</strong> – From basic functions to decorators, *args, **kwargs, and lambda expressions</li>
+                <li><strong>Object-Oriented Programming</strong> – Classes, inheritance, properties, dataclasses, and the four pillars of OOP</li>
+                <li><strong>Advanced Python</strong> – Generators, context managers, async/await, and type hints</li>
+                <li><strong>Algorithms &amp; Patterns</strong> – Binary search, quicksort, recursion, and design patterns like Singleton</li>
+                <li><strong>File I/O &amp; Data</strong> – Reading/writing files, JSON, CSV, and pathlib operations</li>
+                <li><strong>Standard Library Modules</strong> – datetime, random, collections, itertools, re, and more</li>
+            </ul>
+
+            <div class="why-section">
+                <h3>🚀 Why Every Programmer Should Learn Python</h3>
+                <p>Python has become the <span class="highlight-text">most influential programming language of the 21st century</span>. From powering AI algorithms and machine learning models to automating office tasks and building web backends, Python is everywhere. Its philosophy of <em>"readable code is better than clever code"</em> makes it accessible to beginners while remaining powerful enough for experts. Learning Python opens doors to careers in data science, backend engineering, DevOps, AI research, and more. The skills you gain here transfer directly to real-world applications, making you a more versatile and valuable developer.</p>
+                <p style="margin-top:0.5rem;">This library is designed to accelerate your Python learning journey. <span class="highlight-text">Every snippet is interactive</span> – you can copy, run, and modify code directly in your browser. Bookmark this page and return whenever you need a quick reference or want to learn a new Python concept.</p>
+            </div>
+        </div>
+
+        <div class="section-intro" style="text-align:center; margin-bottom:1.5rem;">
+            <p style="font-size:.7rem; color:var(--muted);"><i class="fas fa-play"></i> Click <strong>Run</strong> to execute code in your browser using Pyodide. Click <strong>Explain</strong> for line-by-line breakdowns.</p>
+        </div>
+
+        <div class="cat-label"><span>🔤</span> Variables & Data Types</div>
+
+        <div class="snippet-box">
+            <h4>Variable Assignment &amp; Dynamic Typing</h4>
+            <p>Python variables are dynamically typed — no type declaration needed. This example demonstrates assignment, multiple assignment, and swapping values.</p>
+            <div class="code-snippet" id="code-snippet-1"><pre><span class="kw">name</span> = <span class="st">"Glenn"</span>
+<span class="kw">age</span> = <span class="num">28</span>
+<span class="kw">height</span> = <span class="num">1.75</span>
+<span class="kw">is_student</span> = <span class="kw">True</span>
+
+<span class="fn">print</span>(<span class="st">f"Name: {name}, Age: {age}, Height: {height}"</span>)
+
+<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">z</span> = <span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>
+<span class="kw">a</span>, <span class="kw">b</span> = <span class="num">5</span>, <span class="num">10</span>
+<span class="kw">a</span>, <span class="kw">b</span> = <span class="kw">b</span>, <span class="kw">a</span></pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="name = 'Glenn'\nage = 28\nheight = 1.75\nis_student = True\n\nprint(f'Name: {name}, Age: {age}, Height: {height}')\n\nx, y, z = 10, 20, 30\na, b = 5, 10\na, b = b, a"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="1"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-1"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-1" style="display:none;">
+                <details open>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>name = "Glenn"</code></td><td>Creates a string variable with value "Glenn"</td></tr>
+                        <tr><td><code>age = 28</code></td><td>Creates an integer variable with value 28</td></tr>
+                        <tr><td><code>height = 1.75</code></td><td>Creates a float variable with value 1.75</td></tr>
+                        <tr><td><code>is_student = True</code></td><td>Creates a boolean variable with value True (capitalized in Python)</td></tr>
+                        <tr><td><code>print(f"Name: {name}...")</code></td><td>f-string interpolation prints: Name: Glenn, Age: 28, Height: 1.75</td></tr>
+                        <tr><td><code>x, y, z = 10, 20, 30</code></td><td>Tuple unpacking: assigns three variables at once</td></tr>
+                        <tr><td><code>a, b = 5, 10</code></td><td>Assigns a=5, b=10</td></tr>
+                        <tr><td><code>a, b = b, a</code></td><td>Swaps values without a temporary variable: now a=10, b=5</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">variables</span><span class="tag">dynamic typing</span><span class="tag">assignment</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>String Operations</h4>
+            <p>Common string methods including stripping whitespace, changing case, replacing substrings, joining, splitting, and slicing.</p>
+            <div class="code-snippet" id="code-snippet-2"><pre><span class="kw">text</span> = <span class="st">"  Python Programming  "</span>
+<span class="fn">print</span>(text.<span class="fn">strip</span>())
+<span class="fn">print</span>(text.<span class="fn">upper</span>())
+<span class="fn">print</span>(text.<span class="fn">lower</span>())
+<span class="fn">print</span>(text.<span class="fn">replace</span>(<span class="st">"Python"</span>, <span class="st">"Java"</span>))
+
+<span class="kw">words</span> = [<span class="st">"Python"</span>, <span class="st">"is"</span>, <span class="st">"awesome"</span>]
+<span class="kw">sentence</span> = <span class="st">" "</span>.<span class="fn">join</span>(words)
+<span class="kw">parts</span> = sentence.<span class="fn">split</span>()
+
+<span class="kw">name</span> = <span class="st">"Glenn"</span>
+<span class="kw">age</span> = <span class="num">28</span>
+<span class="fn">print</span>(<span class="st">f"My name is {name} and I am {age} years old"</span>)
+
+<span class="kw">s</span> = <span class="st">"Hello World"</span>
+<span class="fn">print</span>(s[<span class="num">0</span>:<span class="num">5</span>])
+<span class="fn">print</span>(s[<span class="num">6</span>:])
+<span class="fn">print</span>(s[::<span class="num">-1</span>])</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="text = '  Python Programming  '\nprint(text.strip())\nprint(text.upper())\nprint(text.lower())\nprint(text.replace('Python', 'Java'))\n\nwords = ['Python', 'is', 'awesome']\nsentence = ' '.join(words)\nparts = sentence.split()\n\nname = 'Glenn'\nage = 28\nprint(f'My name is {name} and I am {age} years old')\n\ns = 'Hello World'\nprint(s[0:5])\nprint(s[6:])\nprint(s[::-1])"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="2"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-2"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-2" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>text = "  Python Programming  "</code></td><td>Creates a string with leading/trailing spaces</td></tr>
+                        <tr><td><code>text.strip()</code></td><td>Removes whitespace → "Python Programming"</td></tr>
+                        <tr><td><code>text.upper()</code></td><td>Converts to uppercase → "  PYTHON PROGRAMMING  "</td></tr>
+                        <tr><td><code>text.lower()</code></td><td>Converts to lowercase → "  python programming  "</td></tr>
+                        <tr><td><code>text.replace("Python","Java")</code></td><td>Replaces substring → "  Java Programming  "</td></tr>
+                        <tr><td><code>" ".join(words)</code></td><td>Joins list elements with space → "Python is awesome"</td></tr>
+                        <tr><td><code>sentence.split()</code></td><td>Splits by whitespace → ["Python","is","awesome"]</td></tr>
+                        <tr><td><code>f"My name is {name}..."</code></td><td>f-string interpolation with variables</td></tr>
+                        <tr><td><code>s[0:5]</code></td><td>Slicing: characters 0-4 → "Hello"</td></tr>
+                        <tr><td><code>s[6:]</code></td><td>Slicing: from index 6 to end → "World"</td></tr>
+                        <tr><td><code>s[::-1]</code></td><td>Reverse string using step -1 → "dlroW olleH"</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">strings</span><span class="tag">f-strings</span><span class="tag">slicing</span><span class="tag">join</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Numeric Operations</h4>
+            <p>Working with integers, floats, arithmetic operators, floor division, modulo, exponentiation, and the math module.</p>
+            <div class="code-snippet" id="code-snippet-3"><pre><span class="kw">import</span> math
+
+<span class="kw">a</span>, <span class="kw">b</span> = <span class="num">10</span>, <span class="num">3</span>
+<span class="fn">print</span>(<span class="kw">a</span> + <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> - <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> * <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> / <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> // <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> % <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> ** <span class="kw">b</span>)
+
+<span class="fn">print</span>(math.<span class="fn">sqrt</span>(<span class="num">16</span>))
+<span class="fn">print</span>(math.<span class="fn">ceil</span>(<span class="num">3.14</span>))
+<span class="fn">print</span>(math.<span class="fn">floor</span>(<span class="num">3.14</span>))
+<span class="fn">print</span>(math.<span class="fn">pow</span>(<span class="num">2</span>, <span class="num">8</span>))
+<span class="fn">print</span>(math.<span class="fn">pi</span>)
+<span class="fn">print</span>(math.<span class="fn">e</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import math\n\na, b = 10, 3\nprint(a + b)\nprint(a - b)\nprint(a * b)\nprint(a / b)\nprint(a // b)\nprint(a % b)\nprint(a ** b)\n\nprint(math.sqrt(16))\nprint(math.ceil(3.14))\nprint(math.floor(3.14))\nprint(math.pow(2, 8))\nprint(math.pi)\nprint(math.e)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="3"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-3"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-3" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import math</code></td><td>Imports the math module for mathematical functions</td></tr>
+                        <tr><td><code>a, b = 10, 3</code></td><td>Assigns a=10, b=3</td></tr>
+                        <tr><td><code>a + b</code></td><td>Addition → 13</td></tr>
+                        <tr><td><code>a - b</code></td><td>Subtraction → 7</td></tr>
+                        <tr><td><code>a * b</code></td><td>Multiplication → 30</td></tr>
+                        <tr><td><code>a / b</code></td><td>Division (float) → 3.333...</td></tr>
+                        <tr><td><code>a // b</code></td><td>Floor division (integer) → 3</td></tr>
+                        <tr><td><code>a % b</code></td><td>Modulo (remainder) → 1</td></tr>
+                        <tr><td><code>a ** b</code></td><td>Exponentiation → 1000 (10³)</td></tr>
+                        <tr><td><code>math.sqrt(16)</code></td><td>Square root → 4.0</td></tr>
+                        <tr><td><code>math.ceil(3.14)</code></td><td>Ceiling (rounds up) → 4</td></tr>
+                        <tr><td><code>math.floor(3.14)</code></td><td>Floor (rounds down) → 3</td></tr>
+                        <tr><td><code>math.pow(2, 8)</code></td><td>Power function → 256.0 (2⁸)</td></tr>
+                        <tr><td><code>math.pi</code></td><td>Pi constant (π ≈ 3.14159...)</td></tr>
+                        <tr><td><code>math.e</code></td><td>Euler's number (e ≈ 2.71828...)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">numbers</span><span class="tag">math</span><span class="tag">operators</span></div>
+        </div>
+
+        <div class="cat-label"><span>🔄</span> Control Flow</div>
+
+        <div class="snippet-box">
+            <h4>If-Elif-Else Conditions</h4>
+            <p>Conditional statements with indentation, including the ternary operator for concise conditionals.</p>
+            <div class="code-snippet" id="code-snippet-4"><pre><span class="kw">score</span> = <span class="num">85</span>
+
+<span class="kw">if</span> <span class="kw">score</span> >= <span class="num">90</span>:
+    <span class="kw">grade</span> = <span class="st">"A"</span>
+<span class="kw">elif</span> <span class="kw">score</span> >= <span class="num">80</span>:
+    <span class="kw">grade</span> = <span class="st">"B"</span>
+<span class="kw">elif</span> <span class="kw">score</span> >= <span class="num">70</span>:
+    <span class="kw">grade</span> = <span class="st">"C"</span>
+<span class="kw">else</span>:
+    <span class="kw">grade</span> = <span class="st">"F"</span>
+
+<span class="fn">print</span>(<span class="st">f"Grade: {grade}"</span>)
+
+<span class="kw">age</span> = <span class="num">18</span>
+<span class="kw">status</span> = <span class="st">"Adult"</span> <span class="kw">if</span> <span class="kw">age</span> >= <span class="num">18</span> <span class="kw">else</span> <span class="st">"Minor"</span>
+<span class="fn">print</span>(<span class="kw">status</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="score = 85\n\nif score >= 90:\n    grade = 'A'\nelif score >= 80:\n    grade = 'B'\nelif score >= 70:\n    grade = 'C'\nelse:\n    grade = 'F'\n\nprint(f'Grade: {grade}')\n\nage = 18\nstatus = 'Adult' if age >= 18 else 'Minor'\nprint(status)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="4"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-4"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-4" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>score = 85</code></td><td>Sets the score value</td></tr>
+                        <tr><td><code>if score >= 90:</code></td><td>Checks if score is 90 or higher → False (85≥90 is false)</td></tr>
+                        <tr><td><code>elif score >= 80:</code></td><td>Checks if score is 80 or higher → True (85≥80), so grade = "B"</td></tr>
+                        <tr><td><code>elif score >= 70:</code></td><td>Skipped because previous condition was true</td></tr>
+                        <tr><td><code>else:</code></td><td>Skipped because previous condition was true</td></tr>
+                        <tr><td><code>print(f"Grade: {grade}")</code></td><td>Outputs "Grade: B"</td></tr>
+                        <tr><td><code>age = 18</code></td><td>Sets age value</td></tr>
+                        <tr><td><code>status = "Adult" if age >= 18 else "Minor"</code></td><td>Ternary operator: if age≥18, returns "Adult", else "Minor"</td></tr>
+                        <tr><td><code>print(status)</code></td><td>Outputs "Adult"</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">if/elif/else</span><span class="tag">ternary</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>For Loops</h4>
+            <p>Iterating over iterables including lists, using enumerate for index-value pairs, and the range function.</p>
+            <div class="code-snippet" id="code-snippet-5"><pre><span class="kw">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="kw">for</span> <span class="kw">fruit</span> <span class="kw">in</span> <span class="kw">fruits</span>:
+    <span class="fn">print</span>(<span class="kw">fruit</span>)
+
+<span class="kw">for</span> <span class="kw">i</span>, <span class="kw">fruit</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="kw">fruits</span>, <span class="num">1</span>):
+    <span class="fn">print</span>(<span class="st">f"{i}. {fruit}"</span>)
+
+<span class="kw">for</span> <span class="kw">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(<span class="kw">i</span>, <span class="kw">end</span>=<span class="st">" "</span>)
+
+<span class="kw">for</span> <span class="kw">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, <span class="num">10</span>, <span class="num">2</span>):
+    <span class="fn">print</span>(<span class="kw">i</span>, <span class="kw">end</span>=<span class="st">" "</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="fruits = ['apple', 'banana', 'cherry']\nfor fruit in fruits:\n    print(fruit)\n\nfor i, fruit in enumerate(fruits, 1):\n    print(f'{i}. {fruit}')\n\nfor i in range(5):\n    print(i, end=' ')\n\nfor i in range(2, 10, 2):\n    print(i, end=' ')"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="5"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-5"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-5" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>fruits = ["apple", "banana", "cherry"]</code></td><td>Creates a list of fruit names</td></tr>
+                        <tr><td><code>for fruit in fruits:</code></td><td>Iterates through each element in the list</td></tr>
+                        <tr><td><code>print(fruit)</code></td><td>Prints each fruit on a new line</td></tr>
+                        <tr><td><code>enumerate(fruits, 1)</code></td><td>Returns (index, value) pairs starting from 1</td></tr>
+                        <tr><td><code>print(f"{i}. {fruit}")</code></td><td>Prints numbered list: "1. apple", "2. banana", etc.</td></tr>
+                        <tr><td><code>range(5)</code></td><td>Generates numbers 0, 1, 2, 3, 4</td></tr>
+                        <tr><td><code>range(2, 10, 2)</code></td><td>Generates even numbers: 2, 4, 6, 8</td></tr>
+                        <tr><td><code>end=" "</code></td><td>Prints on same line with space separator</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">for loops</span><span class="tag">range</span><span class="tag">enumerate</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>While Loops</h4>
+            <p>Loops that run while a condition is true, including infinite loops with break statements.</p>
+            <div class="code-snippet" id="code-snippet-6"><pre><span class="kw">count</span> = <span class="num">0</span>
+<span class="kw">while</span> <span class="kw">count</span> < <span class="num">5</span>:
+    <span class="fn">print</span>(<span class="kw">count</span>, <span class="kw">end</span>=<span class="st">" "</span>)
+    <span class="kw">count</span> += <span class="num">1</span>
+
+<span class="kw">num</span> = <span class="num">10</span>
+<span class="kw">while</span> <span class="kw">num</span> > <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="kw">num</span>, <span class="kw">end</span>=<span class="st">" "</span>)
+    <span class="kw">num</span> -= <span class="num">1</span>
+
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="kw">user_input</span> = <span class="fn">input</span>(<span class="st">"Enter 'quit' to exit: "</span>)
+    <span class="kw">if</span> <span class="kw">user_input</span> == <span class="st">"quit"</span>:
+        <span class="kw">break</span></pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="count = 0\nwhile count < 5:\n    print(count, end=' ')\n    count += 1\n\nnum = 10\nwhile num > 0:\n    print(num, end=' ')\n    num -= 1\n\nwhile True:\n    user_input = input('Enter quit to exit: ')\n    if user_input == 'quit':\n        break"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="6"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-6"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-6" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>count = 0</code></td><td>Initializes counter</td></tr>
+                        <tr><td><code>while count < 5:</code></td><td>Loop continues while count is less than 5</td></tr>
+                        <tr><td><code>print(count, end=" ")</code></td><td>Prints count on same line with space</td></tr>
+                        <tr><td><code>count += 1</code></td><td>Increments count by 1</td></tr>
+                        <tr><td><code>num = 10</code></td><td>Sets starting value for countdown</td></tr>
+                        <tr><td><code>while num > 0:</code></td><td>Loop continues while num is positive</td></tr>
+                        <tr><td><code>num -= 1</code></td><td>Decrements num by 1</td></tr>
+                        <tr><td><code>while True:</code></td><td>Infinite loop</td></tr>
+                        <tr><td><code>if user_input == "quit":</code></td><td>Checks for exit condition</td></tr>
+                        <tr><td><code>break</code></td><td>Exits the loop immediately</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">while loops</span><span class="tag">break</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Match Statement (Python 3.10+)</h4>
+            <p>Structural pattern matching for elegant conditional logic, including pattern guards and tuple patterns.</p>
+            <div class="code-snippet" id="code-snippet-7"><pre><span class="kw">value</span> = <span class="num">42</span>
+
+<span class="kw">match</span> <span class="kw">value</span>:
+    <span class="kw">case</span> <span class="num">0</span>:
+        <span class="fn">print</span>(<span class="st">"Zero"</span>)
+    <span class="kw">case</span> <span class="num">42</span>:
+        <span class="fn">print</span>(<span class="st">"The answer"</span>)
+    <span class="kw">case</span> <span class="kw">n</span> <span class="kw">if</span> <span class="kw">n</span> > <span class="num">0</span>:
+        <span class="fn">print</span>(<span class="st">"Positive"</span>)
+    <span class="kw">case</span> <span class="kw">_</span>:
+        <span class="fn">print</span>(<span class="st">"Other"</span>)
+
+<span class="kw">point</span> = (<span class="num">3</span>, <span class="num">4</span>)
+<span class="kw">match</span> <span class="kw">point</span>:
+    <span class="kw">case</span> (<span class="num">0</span>, <span class="num">0</span>):
+        <span class="fn">print</span>(<span class="st">"Origin"</span>)
+    <span class="kw">case</span> (<span class="kw">x</span>, <span class="num">0</span>):
+        <span class="fn">print</span>(<span class="st">f"On X-axis at {x}"</span>)
+    <span class="kw">case</span> (<span class="num">0</span>, <span class="kw">y</span>):
+        <span class="fn">print</span>(<span class="st">f"On Y-axis at {y}"</span>)
+    <span class="kw">case</span> (<span class="kw">x</span>, <span class="kw">y</span>):
+        <span class="fn">print</span>(<span class="st">f"Point at ({x}, {y})"</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="value = 42\n\nmatch value:\n    case 0:\n        print('Zero')\n    case 42:\n        print('The answer')\n    case n if n > 0:\n        print('Positive')\n    case _:\n        print('Other')\n\npoint = (3, 4)\nmatch point:\n    case (0, 0):\n        print('Origin')\n    case (x, 0):\n        print(f'On X-axis at {x}')\n    case (0, y):\n        print(f'On Y-axis at {y}')\n    case (x, y):\n        print(f'Point at ({x}, {y})')"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="7"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-7"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-7" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>value = 42</code></td><td>Sets the value to match</td></tr>
+                        <tr><td><code>match value:</code></td><td>Begins pattern matching on value</td></tr>
+                        <tr><td><code>case 42:</code></td><td>Matches if value is exactly 42 → prints "The answer"</td></tr>
+                        <tr><td><code>case n if n > 0:</code></td><td>Pattern guard: matches any positive number (n > 0)</td></tr>
+                        <tr><td><code>case _:</code></td><td>Wildcard: matches anything (fallback)</td></tr>
+                        <tr><td><code>point = (3, 4)</code></td><td>Creates a tuple representing a point</td></tr>
+                        <tr><td><code>match point:</code></td><td>Begins pattern matching on the tuple</td></tr>
+                        <tr><td><code>case (0, 0):</code></td><td>Matches origin point</td></tr>
+                        <tr><td><code>case (x, 0):</code></td><td>Matches any point on X-axis (y=0), captures x</td></tr>
+                        <tr><td><code>case (0, y):</code></td><td>Matches any point on Y-axis (x=0), captures y</td></tr>
+                        <tr><td><code>case (x, y):</code></td><td>Matches any point, captures both coordinates</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">match</span><span class="tag">pattern matching</span></div>
+        </div>
+
+        <div class="cat-label"><span>📋</span> Data Structures</div>
+
+        <div class="snippet-box">
+            <h4>List Operations</h4>
+            <p>Comprehensive list operations including append, insert, pop, remove, list comprehensions, and matrix indexing.</p>
+            <div class="code-snippet" id="code-snippet-8"><pre><span class="kw">numbers</span> = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+<span class="kw">numbers</span>.<span class="fn">append</span>(<span class="num">6</span>)
+<span class="kw">numbers</span>.<span class="fn">insert</span>(<span class="num">0</span>, <span class="num">0</span>)
+<span class="kw">popped</span> = <span class="kw">numbers</span>.<span class="fn">pop</span>()
+<span class="kw">numbers</span>.<span class="fn">remove</span>(<span class="num">3</span>)
+
+<span class="kw">squares</span> = [<span class="kw">x</span>**<span class="num">2</span> <span class="kw">for</span> <span class="kw">x</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>)]
+<span class="kw">evens</span> = [<span class="kw">x</span> <span class="kw">for</span> <span class="kw">x</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>) <span class="kw">if</span> <span class="kw">x</span> % <span class="num">2</span> == <span class="num">0</span>]
+
+<span class="kw">matrix</span> = [[<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>], [<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>], [<span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>]]
+<span class="fn">print</span>(<span class="kw">matrix</span>[<span class="num">1</span>][<span class="num">1</span>])
+
+<span class="kw">nums</span> = [<span class="num">3</span>, <span class="num">1</span>, <span class="num">4</span>, <span class="num">1</span>, <span class="num">5</span>, <span class="num">9</span>, <span class="num">2</span>]
+<span class="kw">nums</span>.<span class="fn">sort</span>()
+<span class="kw">nums</span>.<span class="fn">sort</span>(<span class="kw">reverse</span>=<span class="kw">True</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="numbers = [1, 2, 3, 4, 5]\nnumbers.append(6)\nnumbers.insert(0, 0)\npopped = numbers.pop()\nnumbers.remove(3)\n\nsquares = [x**2 for x in range(10)]\nevens = [x for x in range(10) if x % 2 == 0]\n\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nprint(matrix[1][1])\n\nnums = [3, 1, 4, 1, 5, 9, 2]\nnums.sort()\nnums.sort(reverse=True)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="8"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-8"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-8" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>numbers = [1, 2, 3, 4, 5]</code></td><td>Creates a list of numbers</td></tr>
+                        <tr><td><code>numbers.append(6)</code></td><td>Adds 6 to the end of the list → [1,2,3,4,5,6]</td></tr>
+                        <tr><td><code>numbers.insert(0, 0)</code></td><td>Inserts 0 at index 0 → [0,1,2,3,4,5,6]</td></tr>
+                        <tr><td><code>popped = numbers.pop()</code></td><td>Removes and returns the last element (6)</td></tr>
+                        <tr><td><code>numbers.remove(3)</code></td><td>Removes the first occurrence of 3</td></tr>
+                        <tr><td><code>[x**2 for x in range(10)]</code></td><td>List comprehension: squares of 0-9</td></tr>
+                        <tr><td><code>[x for x in range(10) if x%2==0]</code></td><td>List comprehension with filter: even numbers 0-9</td></tr>
+                        <tr><td><code>matrix[1][1]</code></td><td>Accesses element at row 1, column 1 → 5</td></tr>
+                        <tr><td><code>nums.sort()</code></td><td>Sorts list in ascending order</td></tr>
+                        <tr><td><code>nums.sort(reverse=True)</code></td><td>Sorts list in descending order</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">lists</span><span class="tag">comprehensions</span><span class="tag">sort</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Dictionary Operations</h4>
+            <p>Key-value stores with O(1) lookup, safe access with get(), iteration, comprehensions, and defaultdict.</p>
+            <div class="code-snippet" id="code-snippet-9"><pre><span class="kw">person</span> = {<span class="st">"name"</span>: <span class="st">"Glenn"</span>, <span class="st">"age"</span>: <span class="num">28</span>, <span class="st">"city"</span>: <span class="st">"Manila"</span>}
+<span class="fn">print</span>(<span class="kw">person</span>[<span class="st">"name"</span>])
+<span class="fn">print</span>(<span class="kw">person</span>.<span class="fn">get</span>(<span class="st">"country"</span>, <span class="st">"Unknown"</span>))
+
+<span class="kw">person</span>[<span class="st">"country"</span>] = <span class="st">"Philippines"</span>
+
+<span class="kw">for</span> <span class="kw">key</span>, <span class="kw">value</span> <span class="kw">in</span> <span class="kw">person</span>.<span class="fn">items</span>():
+    <span class="fn">print</span>(<span class="st">f"{key}: {value}"</span>)
+
+<span class="kw">squares</span> = {<span class="kw">x</span>: <span class="kw">x</span>**<span class="num">2</span> <span class="kw">for</span> <span class="kw">x</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>)}
+
+<span class="kw">from</span> collections <span class="kw">import</span> defaultdict
+<span class="kw">counts</span> = <span class="fn">defaultdict</span>(<span class="kw">int</span>)
+<span class="kw">counts</span>[<span class="st">"apple"</span>] += <span class="num">1</span></pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="person = {'name': 'Glenn', 'age': 28, 'city': 'Manila'}\nprint(person['name'])\nprint(person.get('country', 'Unknown'))\n\nperson['country'] = 'Philippines'\n\nfor key, value in person.items():\n    print(f'{key}: {value}')\n\nsquares = {x: x**2 for x in range(5)}\n\nfrom collections import defaultdict\ncounts = defaultdict(int)\ncounts['apple'] += 1"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="9"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-9"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-9" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>person = {"name":"Glenn", ...}</code></td><td>Creates a dictionary with key-value pairs</td></tr>
+                        <tr><td><code>person["name"]</code></td><td>Accesses value by key → "Glenn"</td></tr>
+                        <tr><td><code>person.get("country", "Unknown")</code></td><td>Safely accesses key with default → "Unknown"</td></tr>
+                        <tr><td><code>person["country"] = "Philippines"</code></td><td>Adds a new key-value pair</td></tr>
+                        <tr><td><code>for key, value in person.items():</code></td><td>Iterates over all key-value pairs</td></tr>
+                        <tr><td><code>{x: x**2 for x in range(5)}</code></td><td>Dictionary comprehension: {0:0, 1:1, 2:4, 3:9, 4:16}</td></tr>
+                        <tr><td><code>defaultdict(int)</code></td><td>Creates a dict that auto-creates missing keys with default value 0</td></tr>
+                        <tr><td><code>counts["apple"] += 1</code></td><td>Increments count for "apple" (auto-creates if missing)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">dictionaries</span><span class="tag">defaultdict</span><span class="tag">comprehensions</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Set Operations</h4>
+            <p>Unordered collections of unique elements with set operations: union, intersection, difference, and symmetric difference.</p>
+            <div class="code-snippet" id="code-snippet-10"><pre><span class="kw">a</span> = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>}
+<span class="kw">b</span> = {<span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>}
+
+<span class="fn">print</span>(<span class="kw">a</span> | <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> & <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> - <span class="kw">b</span>)
+<span class="fn">print</span>(<span class="kw">a</span> ^ <span class="kw">b</span>)
+
+<span class="kw">a</span>.<span class="fn">add</span>(<span class="num">7</span>)
+<span class="kw">a</span>.<span class="fn">discard</span>(<span class="num">1</span>)
+
+<span class="kw">unique</span> = <span class="fn">set</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">3</span>, <span class="num">3</span>])
+<span class="kw">squares</span> = {<span class="kw">x</span>**<span class="num">2</span> <span class="kw">for</span> <span class="kw">x</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>)}</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\n\nprint(a | b)\nprint(a & b)\nprint(a - b)\nprint(a ^ b)\n\na.add(7)\na.discard(1)\n\nunique = set([1, 2, 2, 3, 3, 3])\nsquares = {x**2 for x in range(5)}"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="10"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-10"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-10" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>a = {1, 2, 3, 4}</code></td><td>Creates set a with elements 1,2,3,4</td></tr>
+                        <tr><td><code>b = {3, 4, 5, 6}</code></td><td>Creates set b with elements 3,4,5,6</td></tr>
+                        <tr><td><code>a | b</code></td><td>Union: combines both sets → {1,2,3,4,5,6}</td></tr>
+                        <tr><td><code>a & b</code></td><td>Intersection: common elements → {3,4}</td></tr>
+                        <tr><td><code>a - b</code></td><td>Difference: elements in a but not b → {1,2}</td></tr>
+                        <tr><td><code>a ^ b</code></td><td>Symmetric difference: elements in either but not both → {1,2,5,6}</td></tr>
+                        <tr><td><code>a.add(7)</code></td><td>Adds element 7 to set a</td></tr>
+                        <tr><td><code>a.discard(1)</code></td><td>Removes element 1 if present (no error if missing)</td></tr>
+                        <tr><td><code>set([1,2,2,3,3,3])</code></td><td>Creates a set from list, removing duplicates → {1,2,3}</td></tr>
+                        <tr><td><code>{x**2 for x in range(5)}</code></td><td>Set comprehension: squares of 0-4 → {0,1,4,9,16}</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">sets</span><span class="tag">union</span><span class="tag">intersection</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Tuples &amp; Unpacking</h4>
+            <p>Immutable sequences with packing, unpacking, extended unpacking, and namedtuple.</p>
+            <div class="code-snippet" id="code-snippet-11"><pre><span class="kw">coords</span> = (<span class="num">3</span>, <span class="num">4</span>)
+<span class="kw">x</span>, <span class="kw">y</span> = <span class="kw">coords</span>
+
+<span class="kw">first</span>, <span class="kw">*rest</span> = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+<span class="kw">from</span> collections <span class="kw">import</span> namedtuple
+<span class="kw">Point</span> = <span class="fn">namedtuple</span>(<span class="st">"Point"</span>, [<span class="st">"x"</span>, <span class="st">"y"</span>])
+<span class="kw">p</span> = <span class="kw">Point</span>(<span class="num">3</span>, <span class="num">4</span>)
+<span class="fn">print</span>(<span class="kw">p</span>.<span class="kw">x</span>, <span class="kw">p</span>.<span class="kw">y</span>)
+
+<span class="kw">data</span> = <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>
+<span class="kw">a</span>, <span class="kw">b</span>, <span class="kw">c</span> = <span class="kw">data</span></pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="coords = (3, 4)\nx, y = coords\n\nfirst, *rest = [1, 2, 3, 4, 5]\n\nfrom collections import namedtuple\nPoint = namedtuple('Point', ['x', 'y'])\np = Point(3, 4)\nprint(p.x, p.y)\n\ndata = 1, 2, 3\na, b, c = data"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="11"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-11"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-11" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>coords = (3, 4)</code></td><td>Creates a tuple with two elements</td></tr>
+                        <tr><td><code>x, y = coords</code></td><td>Tuple unpacking: x=3, y=4</td></tr>
+                        <tr><td><code>first, *rest = [1,2,3,4,5]</code></td><td>Extended unpacking: first=1, rest=[2,3,4,5]</td></tr>
+                        <tr><td><code>namedtuple("Point", ["x","y"])</code></td><td>Creates a namedtuple class with fields x and y</td></tr>
+                        <tr><td><code>p = Point(3, 4)</code></td><td>Creates a namedtuple instance</td></tr>
+                        <tr><td><code>p.x, p.y</code></td><td>Accesses fields by name (also supports index access)</td></tr>
+                        <tr><td><code>data = 1, 2, 3</code></td><td>Implicit tuple creation (parentheses optional)</td></tr>
+                        <tr><td><code>a, b, c = data</code></td><td>Unpacks tuple into three variables</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">tuples</span><span class="tag">unpacking</span><span class="tag">namedtuple</span></div>
+        </div>
+
+        <div class="cat-label"><span>🛠️</span> Functions &amp; Lambdas</div>
+
+        <div class="snippet-box">
+            <h4>Function Definition &amp; Arguments</h4>
+            <p>Defining functions with default arguments, variable positional arguments (*args), and keyword arguments (**kwargs).</p>
+            <div class="code-snippet" id="code-snippet-12"><pre><span class="kw">def</span> <span class="fn">greet</span>(<span class="kw">name</span>, <span class="kw">greeting</span>=<span class="st">"Hello"</span>):
+    <span class="kw">return</span> <span class="st">f"{greeting}, {name}!"</span>
+
+<span class="kw">def</span> <span class="fn">sum_all</span>(<span class="kw">*args</span>):
+    <span class="kw">return</span> <span class="fn">sum</span>(<span class="kw">args</span>)
+
+<span class="kw">def</span> <span class="fn">print_kwargs</span>(<span class="kw">**kwargs</span>):
+    <span class="kw">for</span> <span class="kw">key</span>, <span class="kw">value</span> <span class="kw">in</span> <span class="kw">kwargs</span>.<span class="fn">items</span>():
+        <span class="fn">print</span>(<span class="st">f"{key}: {value}"</span>)
+
+<span class="kw">def</span> <span class="fn">describe</span>(<span class="kw">name</span>, <span class="kw">age</span>, <span class="kw">city</span>=<span class="st">"Unknown"</span>):
+    <span class="kw">return</span> <span class="st">f"{name} is {age} years old from {city}"</span>
+
+<span class="fn">print</span>(<span class="fn">greet</span>(<span class="st">"Glenn"</span>))
+<span class="fn">print</span>(<span class="fn">sum_all</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>))
+<span class="fn">print_kwargs</span>(<span class="kw">name</span>=<span class="st">"Alice"</span>, <span class="kw">age</span>=<span class="num">30</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="def greet(name, greeting='Hello'):\n    return f'{greeting}, {name}!'\n\ndef sum_all(*args):\n    return sum(args)\n\ndef print_kwargs(**kwargs):\n    for key, value in kwargs.items():\n        print(f'{key}: {value}')\n\ndef describe(name, age, city='Unknown'):\n    return f'{name} is {age} years old from {city}'\n\nprint(greet('Glenn'))\nprint(sum_all(1, 2, 3, 4, 5))\nprint_kwargs(name='Alice', age=30)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="12"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-12"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-12" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>def greet(name, greeting="Hello"):</code></td><td>Defines a function with a default parameter</td></tr>
+                        <tr><td><code>return f"{greeting}, {name}!"</code></td><td>Returns a formatted greeting string</td></tr>
+                        <tr><td><code>def sum_all(*args):</code></td><td>Accepts any number of positional arguments as a tuple</td></tr>
+                        <tr><td><code>return sum(args)</code></td><td>Calculates sum of all arguments</td></tr>
+                        <tr><td><code>def print_kwargs(**kwargs):</code></td><td>Accepts any number of keyword arguments as a dict</td></tr>
+                        <tr><td><code>for key, value in kwargs.items():</code></td><td>Iterates through keyword arguments</td></tr>
+                        <tr><td><code>print(greet("Glenn"))</code></td><td>Calls function with only required argument → "Hello, Glenn!"</td></tr>
+                        <tr><td><code>sum_all(1,2,3,4,5)</code></td><td>Passes multiple arguments to *args → returns 15</td></tr>
+                        <tr><td><code>print_kwargs(name="Alice", age=30)</code></td><td>Passes keyword arguments → prints "name: Alice", "age: 30"</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">functions</span><span class="tag">*args</span><span class="tag">**kwargs</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Lambda Functions</h4>
+            <p>Anonymous functions used with map, filter, and sorted for concise functional programming.</p>
+            <div class="code-snippet" id="code-snippet-13"><pre><span class="kw">square</span> = <span class="kw">lambda</span> <span class="kw">x</span>: <span class="kw">x</span> ** <span class="num">2</span>
+<span class="kw">add</span> = <span class="kw">lambda</span> <span class="kw">a</span>, <span class="kw">b</span>: <span class="kw">a</span> + <span class="kw">b</span>
+
+<span class="kw">numbers</span> = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+<span class="kw">squared</span> = <span class="fn">list</span>(<span class="fn">map</span>(<span class="kw">lambda</span> <span class="kw">x</span>: <span class="kw">x</span> ** <span class="num">2</span>, <span class="kw">numbers</span>))
+<span class="kw">evens</span> = <span class="fn">list</span>(<span class="fn">filter</span>(<span class="kw">lambda</span> <span class="kw">x</span>: <span class="kw">x</span> % <span class="num">2</span> == <span class="num">0</span>, <span class="kw">numbers</span>))
+
+<span class="kw">people</span> = [{<span class="st">"name"</span>: <span class="st">"Alice"</span>, <span class="st">"age"</span>: <span class="num">30</span>}, {<span class="st">"name"</span>: <span class="st">"Bob"</span>, <span class="st">"age"</span>: <span class="num">25</span>}]
+<span class="kw">sorted_people</span> = <span class="fn">sorted</span>(<span class="kw">people</span>, <span class="kw">key</span>=<span class="kw">lambda</span> <span class="kw">p</span>: <span class="kw">p</span>[<span class="st">"age"</span>])</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="square = lambda x: x ** 2\nadd = lambda a, b: a + b\n\nnumbers = [1, 2, 3, 4, 5]\nsquared = list(map(lambda x: x ** 2, numbers))\nevens = list(filter(lambda x: x % 2 == 0, numbers))\n\npeople = [{'name': 'Alice', 'age': 30}, {'name': 'Bob', 'age': 25}]\nsorted_people = sorted(people, key=lambda p: p['age'])"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="13"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-13"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-13" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>square = lambda x: x ** 2</code></td><td>Lambda that squares its argument</td></tr>
+                        <tr><td><code>add = lambda a, b: a + b</code></td><td>Lambda with two arguments</td></tr>
+                        <tr><td><code>map(lambda x: x**2, numbers)</code></td><td>Applies lambda to each element → [1,4,9,16,25]</td></tr>
+                        <tr><td><code>filter(lambda x: x%2==0, numbers)</code></td><td>Keeps only even numbers → [2,4]</td></tr>
+                        <tr><td><code>sorted(people, key=lambda p: p['age'])</code></td><td>Sorts list of dicts by the 'age' key → Bob (25) then Alice (30)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">lambda</span><span class="tag">map</span><span class="tag">filter</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Decorators</h4>
+            <p>Functions that modify other functions, with timing example and proper metadata preservation using functools.wraps.</p>
+            <div class="code-snippet" id="code-snippet-14"><pre><span class="kw">import</span> time
+<span class="kw">from</span> functools <span class="kw">import</span> wraps
+
+<span class="kw">def</span> <span class="fn">timer</span>(<span class="kw">func</span>):
+    @<span class="fn">wraps</span>(<span class="kw">func</span>)
+    <span class="kw">def</span> <span class="fn">wrapper</span>(<span class="kw">*args</span>, <span class="kw">**kwargs</span>):
+        <span class="kw">start</span> = time.<span class="fn">time</span>()
+        <span class="kw">result</span> = <span class="kw">func</span>(<span class="kw">*args</span>, <span class="kw">**kwargs</span>)
+        <span class="kw">end</span> = time.<span class="fn">time</span>()
+        <span class="fn">print</span>(<span class="st">f"{func.__name__} took {end - start:.4f} seconds"</span>)
+        <span class="kw">return</span> <span class="kw">result</span>
+    <span class="kw">return</span> <span class="kw">wrapper</span>
+
+@<span class="fn">timer</span>
+<span class="kw">def</span> <span class="fn">slow_function</span>():
+    time.<span class="fn">sleep</span>(<span class="num">1</span>)
+    <span class="kw">return</span> <span class="st">"Done"</span></pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import time\nfrom functools import wraps\n\ndef timer(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        end = time.time()\n        print(f'{func.__name__} took {end - start:.4f} seconds')\n        return result\n    return wrapper\n\n@timer\ndef slow_function():\n    time.sleep(1)\n    return 'Done'"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="14"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-14"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-14" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import time</code></td><td>Imports time module for measuring execution</td></tr>
+                        <tr><td><code>from functools import wraps</code></td><td>Imports wraps to preserve function metadata</td></tr>
+                        <tr><td><code>def timer(func):</code></td><td>Decorator factory that takes a function</td></tr>
+                        <tr><td><code>@wraps(func)</code></td><td>Preserves the original function's name, docstring, etc.</td></tr>
+                        <tr><td><code>def wrapper(*args, **kwargs):</code></td><td>Wrapper function that adds timing</td></tr>
+                        <tr><td><code>start = time.time()</code></td><td>Records start time</td></tr>
+                        <tr><td><code>result = func(*args, **kwargs)</code></td><td>Calls the original function</td></tr>
+                        <tr><td><code>end = time.time()</code></td><td>Records end time</td></tr>
+                        <tr><td><code>print(f"{func.__name__} took...")</code></td><td>Prints execution time</td></tr>
+                        <tr><td><code>@timer</code></td><td>Applies the timer decorator to slow_function</td></tr>
+                        <tr><td><code>time.sleep(1)</code></td><td>Simulates a slow operation (1 second)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">decorators</span><span class="tag">timing</span></div>
+        </div>
+
+        <div class="cat-label"><span>🏗️</span> Object-Oriented Programming</div>
+
+        <div class="snippet-box">
+            <h4>Class Definition &amp; Methods</h4>
+            <p>Creating classes with attributes, methods, __init__ constructor, and __str__ representation.</p>
+            <div class="code-snippet" id="code-snippet-15"><pre><span class="kw">class</span> <span class="cl">Car</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, <span class="kw">make</span>, <span class="kw">model</span>, <span class="kw">year</span>):
+        <span class="kw">self</span>.<span class="kw">make</span> = <span class="kw">make</span>
+        <span class="kw">self</span>.<span class="kw">model</span> = <span class="kw">model</span>
+        <span class="kw">self</span>.<span class="kw">year</span> = <span class="kw">year</span>
+        <span class="kw">self</span>.<span class="kw">odometer</span> = <span class="num">0</span>
+
+    <span class="kw">def</span> <span class="fn">drive</span>(<span class="kw">self</span>, <span class="kw">miles</span>):
+        <span class="kw">self</span>.<span class="kw">odometer</span> += <span class="kw">miles</span>
+        <span class="kw">return</span> <span class="st">f"Driven {miles} miles. Total: {self.odometer}"</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"{self.year} {self.make} {self.model}"</span>
+
+<span class="kw">car</span> = <span class="cl">Car</span>(<span class="st">"Toyota"</span>, <span class="st">"Camry"</span>, <span class="num">2023</span>)
+<span class="fn">print</span>(<span class="kw">car</span>)
+<span class="fn">print</span>(<span class="kw">car</span>.<span class="fn">drive</span>(<span class="num">50</span>))</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class Car:\n    def __init__(self, make, model, year):\n        self.make = make\n        self.model = model\n        self.year = year\n        self.odometer = 0\n\n    def drive(self, miles):\n        self.odometer += miles\n        return f'Driven {miles} miles. Total: {self.odometer}'\n\n    def __str__(self):\n        return f'{self.year} {self.make} {self.model}'\n\ncar = Car('Toyota', 'Camry', 2023)\nprint(car)\nprint(car.drive(50))"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="15"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-15"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-15" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>class Car:</code></td><td>Defines a new class named Car</td></tr>
+                        <tr><td><code>def __init__(self, make, model, year):</code></td><td>Constructor called when creating a new instance</td></tr>
+                        <tr><td><code>self.make = make</code></td><td>Assigns instance attribute make</td></tr>
+                        <tr><td><code>self.odometer = 0</code></td><td>Sets default attribute value</td></tr>
+                        <tr><td><code>def drive(self, miles):</code></td><td>Instance method that updates odometer</td></tr>
+                        <tr><td><code>self.odometer += miles</code></td><td>Adds miles to the odometer</td></tr>
+                        <tr><td><code>def __str__(self):</code></td><td>String representation method (called by print())</td></tr>
+                        <tr><td><code>return f"{self.year} {self.make} {self.model}"</code></td><td>Returns readable string representation</td></tr>
+                        <tr><td><code>car = Car("Toyota", "Camry", 2023)</code></td><td>Creates an instance of Car</td></tr>
+                        <tr><td><code>print(car)</code></td><td>Calls __str__ method → "2023 Toyota Camry"</td></tr>
+                        <tr><td><code>car.drive(50)</code></td><td>Calls drive method → "Driven 50 miles. Total: 50"</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">class</span><span class="tag">__init__</span><span class="tag">__str__</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Inheritance &amp; super()</h4>
+            <p>Extending classes with inheritance and using super() to call parent methods.</p>
+            <div class="code-snippet" id="code-snippet-16"><pre><span class="kw">class</span> <span class="cl">Animal</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, <span class="kw">name</span>):
+        <span class="kw">self</span>.<span class="kw">name</span> = <span class="kw">name</span>
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>):
+        <span class="kw">raise</span> <span class="cl">NotImplementedError</span>
+
+<span class="kw">class</span> <span class="cl">Dog</span>(<span class="cl">Animal</span>):
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"{self.name} says Woof!"</span>
+
+<span class="kw">class</span> <span class="cl">GoldenRetriever</span>(<span class="cl">Dog</span>):
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"{super().speak()} And I'm a Golden Retriever!"</span>
+
+<span class="kw">dog</span> = <span class="cl">Dog</span>(<span class="st">"Rex"</span>)
+<span class="kw">golden</span> = <span class="cl">GoldenRetriever</span>(<span class="st">"Buddy"</span>)
+<span class="fn">print</span>(<span class="kw">dog</span>.<span class="fn">speak</span>())
+<span class="fn">print</span>(<span class="kw">golden</span>.<span class="fn">speak</span>())</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class Animal:\n    def __init__(self, name):\n        self.name = name\n    def speak(self):\n        raise NotImplementedError\n\nclass Dog(Animal):\n    def speak(self):\n        return f'{self.name} says Woof!'\n\nclass GoldenRetriever(Dog):\n    def speak(self):\n        return f'{super().speak()} And I\\'m a Golden Retriever!'\n\ndog = Dog('Rex')\ngolden = GoldenRetriever('Buddy')\nprint(dog.speak())\nprint(golden.speak())"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="16"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-16"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-16" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>class Animal:</code></td><td>Base class (parent)</td></tr>
+                        <tr><td><code>def speak(self):</code></td><td>Abstract method that must be overridden</td></tr>
+                        <tr><td><code>raise NotImplementedError</code></td><td>Forces subclasses to implement speak()</td></tr>
+                        <tr><td><code>class Dog(Animal):</code></td><td>Dog inherits from Animal</td></tr>
+                        <tr><td><code>def speak(self):</code></td><td>Overrides speak method</td></tr>
+                        <tr><td><code>return f"{self.name} says Woof!"</code></td><td>Returns dog's sound</td></tr>
+                        <tr><td><code>class GoldenRetriever(Dog):</code></td><td>GoldenRetriever inherits from Dog</td></tr>
+                        <tr><td><code>super().speak()</code></td><td>Calls parent's speak method</td></tr>
+                        <tr><td><code>dog = Dog("Rex")</code></td><td>Creates Dog instance</td></tr>
+                        <tr><td><code>golden = GoldenRetriever("Buddy")</code></td><td>Creates GoldenRetriever instance</td></tr>
+                        <tr><td><code>dog.speak()</code></td><td>Calls Dog's speak → "Rex says Woof!"</td></tr>
+                        <tr><td><code>golden.speak()</code></td><td>Calls GoldenRetriever's speak → "Buddy says Woof! And I'm a Golden Retriever!"</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">inheritance</span><span class="tag">super</span><span class="tag">polymorphism</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Property Decorators</h4>
+            <p>Getters and setters with validation using @property and @setter decorators.</p>
+            <div class="code-snippet" id="code-snippet-17"><pre><span class="kw">class</span> <span class="cl">BankAccount</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, <span class="kw">owner</span>, <span class="kw">balance</span>=<span class="num">0</span>):
+        <span class="kw">self</span>.<span class="kw">owner</span> = <span class="kw">owner</span>
+        <span class="kw">self</span>.<span class="kw">_balance</span> = <span class="kw">balance</span>
+
+    @<span class="kw">property</span>
+    <span class="kw">def</span> <span class="fn">balance</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="kw">self</span>.<span class="kw">_balance</span>
+
+    @<span class="kw">balance</span>.<span class="fn">setter</span>
+    <span class="kw">def</span> <span class="fn">balance</span>(<span class="kw">self</span>, <span class="kw">value</span>):
+        <span class="kw">if</span> <span class="kw">value</span> < <span class="num">0</span>:
+            <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">"Balance cannot be negative"</span>)
+        <span class="kw">self</span>.<span class="kw">_balance</span> = <span class="kw">value</span>
+
+    <span class="kw">def</span> <span class="fn">deposit</span>(<span class="kw">self</span>, <span class="kw">amount</span>):
+        <span class="kw">if</span> <span class="kw">amount</span> <= <span class="num">0</span>:
+            <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">"Amount must be positive"</span>)
+        <span class="kw">self</span>.<span class="kw">_balance</span> += <span class="kw">amount</span>
+
+<span class="kw">acc</span> = <span class="cl">BankAccount</span>(<span class="st">"Glenn"</span>, <span class="num">1000</span>)
+<span class="fn">print</span>(<span class="kw">acc</span>.<span class="kw">balance</span>)
+<span class="kw">acc</span>.<span class="fn">deposit</span>(<span class="num">500</span>)
+<span class="fn">print</span>(<span class="kw">acc</span>.<span class="kw">balance</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class BankAccount:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self._balance = balance\n\n    @property\n    def balance(self):\n        return self._balance\n\n    @balance.setter\n    def balance(self, value):\n        if value < 0:\n            raise ValueError('Balance cannot be negative')\n        self._balance = value\n\n    def deposit(self, amount):\n        if amount <= 0:\n            raise ValueError('Amount must be positive')\n        self._balance += amount\n\nacc = BankAccount('Glenn', 1000)\nprint(acc.balance)\nacc.deposit(500)\nprint(acc.balance)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="17"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-17"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-17" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>@property</code></td><td>Makes balance method a getter (accessed like attribute)</td></tr>
+                        <tr><td><code>@balance.setter</code></td><td>Makes balance method a setter with validation</td></tr>
+                        <tr><td><code>if value < 0: raise ValueError</code></td><td>Prevents negative balance assignment</td></tr>
+                        <tr><td><code>self._balance = value</code></td><td>Sets the internal balance value</td></tr>
+                        <tr><td><code>def deposit(self, amount):</code></td><td>Method that adds money</td></tr>
+                        <tr><td><code>if amount <= 0: raise ValueError</code></td><td>Validates deposit amount</td></tr>
+                        <tr><td><code>acc.balance</code></td><td>Property access (calls getter) → 1000</td></tr>
+                        <tr><td><code>acc.deposit(500)</code></td><td>Adds 500 to balance → 1500</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">@property</span><span class="tag">getter</span><span class="tag">setter</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Dataclasses</h4>
+            <p>Reducing boilerplate with dataclasses, including default values and mutable defaults with default_factory.</p>
+            <div class="code-snippet" id="code-snippet-18"><pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+<span class="kw">from</span> typing <span class="kw">import</span> List
+
+@<span class="fn">dataclass</span>
+<span class="kw">class</span> <span class="cl">Person</span>:
+    <span class="kw">name</span>: <span class="kw">str</span>
+    <span class="kw">age</span>: <span class="kw">int</span>
+    <span class="kw">email</span>: <span class="kw">str</span> = <span class="st">""</span>
+    <span class="kw">hobbies</span>: <span class="cl">List</span>[<span class="kw">str</span>] = <span class="fn">field</span>(<span class="kw">default_factory</span>=<span class="kw">list</span>)
+
+    @<span class="kw">property</span>
+    <span class="kw">def</span> <span class="fn">is_adult</span>(<span class="kw">self</span>) -> <span class="kw">bool</span>:
+        <span class="kw">return</span> <span class="kw">self</span>.<span class="kw">age</span> >= <span class="num">18</span>
+
+<span class="kw">person</span> = <span class="cl">Person</span>(<span class="st">"Alice"</span>, <span class="num">30</span>, <span class="st">"alice@example.com"</span>)
+<span class="kw">person</span>.<span class="kw">hobbies</span>.<span class="fn">extend</span>([<span class="st">"reading"</span>, <span class="st">"coding"</span>])
+<span class="fn">print</span>(<span class="kw">person</span>)
+<span class="fn">print</span>(<span class="kw">person</span>.<span class="kw">is_adult</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="from dataclasses import dataclass, field\nfrom typing import List\n\n@dataclass\nclass Person:\n    name: str\n    age: int\n    email: str = ''\n    hobbies: List[str] = field(default_factory=list)\n\n    @property\n    def is_adult(self) -> bool:\n        return self.age >= 18\n\nperson = Person('Alice', 30, 'alice@example.com')\nperson.hobbies.extend(['reading', 'coding'])\nprint(person)\nprint(person.is_adult)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="18"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-18"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-18" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>@dataclass</code></td><td>Auto-generates __init__, __repr__, __eq__, and other methods</td></tr>
+                        <tr><td><code>name: str</code></td><td>Field with type annotation (required)</td></tr>
+                        <tr><td><code>email: str = ""</code></td><td>Field with default value</td></tr>
+                        <tr><td><code>hobbies: List[str] = field(default_factory=list)</code></td><td>Mutable default: uses factory to create new list per instance</td></tr>
+                        <tr><td><code>@property</code></td><td>Computed property that returns boolean based on age</td></tr>
+                        <tr><td><code>person = Person("Alice", 30, ...)</code></td><td>Creates instance with provided values</td></tr>
+                        <tr><td><code>person.hobbies.extend([...])</code></td><td>Adds hobbies to the list</td></tr>
+                        <tr><td><code>print(person)</code></td><td>Calls auto-generated __repr__ → "Person(name='Alice', age=30, email='alice@example.com', hobbies=['reading', 'coding'])"</td></tr>
+                        <tr><td><code>print(person.is_adult)</code></td><td>Property access → True (age 30 >= 18)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">dataclass</span><span class="tag">boilerplate</span></div>
+        </div>
+
+        <div class="cat-label"><span>⚡</span> Advanced Python</div>
+
+        <div class="snippet-box">
+            <h4>Generators &amp; Yield</h4>
+            <p>Lazy iteration using generator functions that yield values one at a time, saving memory.</p>
+            <div class="code-snippet" id="code-snippet-19"><pre><span class="kw">def</span> <span class="fn">fibonacci_generator</span>(<span class="kw">n</span>):
+    <span class="kw">a</span>, <span class="kw">b</span> = <span class="num">0</span>, <span class="num">1</span>
+    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="kw">n</span>):
+        <span class="kw">yield</span> <span class="kw">a</span>
+        <span class="kw">a</span>, <span class="kw">b</span> = <span class="kw">b</span>, <span class="kw">a</span> + <span class="kw">b</span>
+
+<span class="kw">gen</span> = <span class="fn">fibonacci_generator</span>(<span class="num">10</span>)
+<span class="kw">for</span> <span class="kw">num</span> <span class="kw">in</span> <span class="kw">gen</span>:
+    <span class="fn">print</span>(<span class="kw">num</span>, <span class="kw">end</span>=<span class="st">" "</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="def fibonacci_generator(n):\n    a, b = 0, 1\n    for _ in range(n):\n        yield a\n        a, b = b, a + b\n\ngen = fibonacci_generator(10)\nfor num in gen:\n    print(num, end=' ')"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="19"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-19"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-19" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>def fibonacci_generator(n):</code></td><td>Defines a generator function</td></tr>
+                        <tr><td><code>a, b = 0, 1</code></td><td>Initializes Fibonacci sequence</td></tr>
+                        <tr><td><code>for _ in range(n):</code></td><td>Loops n times</td></tr>
+                        <tr><td><code>yield a</code></td><td>Pauses and returns current value (lazy evaluation)</td></tr>
+                        <tr><td><code>a, b = b, a + b</code></td><td>Updates to next Fibonacci numbers</td></tr>
+                        <tr><td><code>gen = fibonacci_generator(10)</code></td><td>Creates generator object (no computation yet)</td></tr>
+                        <tr><td><code>for num in gen:</code></td><td>Iterates through generator (computes on demand)</td></tr>
+                        <tr><td><code>print(num, end=" ")</code></td><td>Prints: 0 1 1 2 3 5 8 13 21 34</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">generators</span><span class="tag">yield</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Context Managers</h4>
+            <p>Resource management with the with statement, implementing __enter__ and __exit__.</p>
+            <div class="code-snippet" id="code-snippet-20"><pre><span class="kw">class</span> <span class="cl">ManagedFile</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, <span class="kw">filename</span>, <span class="kw">mode</span>):
+        <span class="kw">self</span>.<span class="kw">filename</span> = <span class="kw">filename</span>
+        <span class="kw">self</span>.<span class="kw">mode</span> = <span class="kw">mode</span>
+    <span class="kw">def</span> <span class="fn">__enter__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.<span class="kw">file</span> = <span class="fn">open</span>(<span class="kw">self</span>.<span class="kw">filename</span>, <span class="kw">self</span>.<span class="kw">mode</span>)
+        <span class="kw">return</span> <span class="kw">self</span>.<span class="kw">file</span>
+    <span class="kw">def</span> <span class="fn">__exit__</span>(<span class="kw">self</span>, <span class="kw">exc_type</span>, <span class="kw">exc_val</span>, <span class="kw">exc_tb</span>):
+        <span class="kw">if</span> <span class="kw">self</span>.<span class="kw">file</span>:
+            <span class="kw">self</span>.<span class="kw">file</span>.<span class="fn">close</span>()
+
+<span class="kw">with</span> <span class="fn">ManagedFile</span>(<span class="st">"example.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="kw">f</span>:
+    <span class="kw">f</span>.<span class="fn">write</span>(<span class="st">"Hello, World!"</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class ManagedFile:\n    def __init__(self, filename, mode):\n        self.filename = filename\n        self.mode = mode\n    def __enter__(self):\n        self.file = open(self.filename, self.mode)\n        return self.file\n    def __exit__(self, exc_type, exc_val, exc_tb):\n        if self.file:\n            self.file.close()\n\nwith ManagedFile('example.txt', 'w') as f:\n    f.write('Hello, World!')"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="20"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-20"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-20" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>class ManagedFile:</code></td><td>Defines a context manager class</td></tr>
+                        <tr><td><code>def __enter__(self):</code></td><td>Called when entering with statement</td></tr>
+                        <tr><td><code>self.file = open(...)</code></td><td>Opens the file</td></tr>
+                        <tr><td><code>return self.file</code></td><td>Returns the file object to be used in the with block</td></tr>
+                        <tr><td><code>def __exit__(...):</code></td><td>Called when exiting the with block (even if exception occurs)</td></tr>
+                        <tr><td><code>if self.file: self.file.close()</code></td><td>Closes the file if it was opened</td></tr>
+                        <tr><td><code>with ManagedFile(...) as f:</code></td><td>Uses the context manager</td></tr>
+                        <tr><td><code>f.write("Hello, World!")</code></td><td>Writes to the file</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">context manager</span><span class="tag">with</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Async/Await</h4>
+            <p>Asynchronous programming with asyncio for concurrent I/O operations.</p>
+            <div class="code-snippet" id="code-snippet-21"><pre><span class="kw">import</span> asyncio
+
+<span class="kw">async def</span> <span class="fn">fetch_data</span>(<span class="kw">name</span>, <span class="kw">delay</span>):
+    <span class="kw">await</span> asyncio.<span class="fn">sleep</span>(<span class="kw">delay</span>)
+    <span class="kw">return</span> <span class="st">f"Data from {name}"</span>
+
+<span class="kw">async def</span> <span class="fn">main</span>():
+    <span class="kw">results</span> = <span class="kw">await</span> asyncio.<span class="fn">gather</span>(
+        <span class="fn">fetch_data</span>(<span class="st">"API 1"</span>, <span class="num">1</span>),
+        <span class="fn">fetch_data</span>(<span class="st">"API 2"</span>, <span class="num">0.5</span>),
+        <span class="fn">fetch_data</span>(<span class="st">"API 3"</span>, <span class="num">1.5</span>)
+    )
+    <span class="kw">for</span> <span class="kw">result</span> <span class="kw">in</span> <span class="kw">results</span>:
+        <span class="fn">print</span>(<span class="kw">result</span>)
+
+<span class="kw">asyncio</span>.<span class="fn">run</span>(<span class="fn">main</span>())</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import asyncio\n\nasync def fetch_data(name, delay):\n    await asyncio.sleep(delay)\n    return f'Data from {name}'\n\nasync def main():\n    results = await asyncio.gather(\n        fetch_data('API 1', 1),\n        fetch_data('API 2', 0.5),\n        fetch_data('API 3', 1.5)\n    )\n    for result in results:\n        print(result)\n\nasyncio.run(main())"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="21"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-21"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-21" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import asyncio</code></td><td>Imports the asyncio library for async programming</td></tr>
+                        <tr><td><code>async def fetch_data(...):</code></td><td>Defines an asynchronous coroutine</td></tr>
+                        <tr><td><code>await asyncio.sleep(delay)</code></td><td>Pauses coroutine without blocking the event loop</td></tr>
+                        <tr><td><code>async def main():</code></td><td>Main async function</td></tr>
+                        <tr><td><code>await asyncio.gather(...)</code></td><td>Runs multiple coroutines concurrently</td></tr>
+                        <tr><td><code>asyncio.run(main())</code></td><td>Starts the event loop and runs the main coroutine</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">async</span><span class="tag">await</span><span class="tag">asyncio</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Type Hints</h4>
+            <p>Adding type information for better code documentation and static analysis with mypy.</p>
+            <div class="code-snippet" id="code-snippet-22"><pre><span class="kw">from</span> typing <span class="kw">import</span> List, Dict, Optional
+
+<span class="kw">def</span> <span class="fn">greet</span>(<span class="kw">name</span>: <span class="kw">str</span>) -> <span class="kw">str</span>:
+    <span class="kw">return</span> <span class="st">f"Hello, {name}"</span>
+
+<span class="kw">def</span> <span class="fn">process_numbers</span>(<span class="kw">numbers</span>: <span class="cl">List</span>[<span class="kw">int</span>]) -> <span class="cl">List</span>[<span class="kw">int</span>]:
+    <span class="kw">return</span> [<span class="kw">n</span> * <span class="num">2</span> <span class="kw">for</span> <span class="kw">n</span> <span class="kw">in</span> <span class="kw">numbers</span>]
+
+<span class="kw">def</span> <span class="fn">find_user</span>(<span class="kw">user_id</span>: <span class="kw">int</span>) -> <span class="cl">Optional</span>[<span class="cl">Dict</span>[<span class="kw">str</span>, <span class="kw">str</span>]]:
+    <span class="kw">if</span> <span class="kw">user_id</span> == <span class="num">1</span>:
+        <span class="kw">return</span> {<span class="st">"name"</span>: <span class="st">"Glenn"</span>}
+    <span class="kw">return</span> <span class="kw">None</span></pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="from typing import List, Dict, Optional\n\ndef greet(name: str) -> str:\n    return f'Hello, {name}'\n\ndef process_numbers(numbers: List[int]) -> List[int]:\n    return [n * 2 for n in numbers]\n\ndef find_user(user_id: int) -> Optional[Dict[str, str]]:\n    if user_id == 1:\n        return {'name': 'Glenn'}\n    return None"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="22"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-22"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-22" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>from typing import List, Dict, Optional</code></td><td>Imports type hinting utilities</td></tr>
+                        <tr><td><code>def greet(name: str) -> str:</code></td><td>Function takes string, returns string</td></tr>
+                        <tr><td><code>def process_numbers(numbers: List[int]) -> List[int]:</code></td><td>Function takes list of ints, returns list of ints</td></tr>
+                        <tr><td><code>-> Optional[Dict[str, str]]</code></td><td>Function may return a dict or None</td></tr>
+                        <tr><td><code>if user_id == 1: return {"name": "Glenn"}</code></td><td>Returns a dict if user exists</td></tr>
+                        <tr><td><code>return None</code></td><td>Returns None if user not found</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">type hints</span><span class="tag">typing</span></div>
+        </div>
+
+        <div class="cat-label"><span>🧮</span> Algorithms &amp; Patterns</div>
+
+        <div class="snippet-box">
+            <h4>Binary Search</h4>
+            <p>Efficient O(log n) search algorithm for sorted arrays.</p>
+            <div class="code-snippet" id="code-snippet-23"><pre><span class="kw">def</span> <span class="fn">binary_search</span>(<span class="kw">arr</span>, <span class="kw">target</span>):
+    <span class="kw">left</span>, <span class="kw">right</span> = <span class="num">0</span>, <span class="fn">len</span>(<span class="kw">arr</span>) - <span class="num">1</span>
+    <span class="kw">while</span> <span class="kw">left</span> <= <span class="kw">right</span>:
+        <span class="kw">mid</span> = (<span class="kw">left</span> + <span class="kw">right</span>) // <span class="num">2</span>
+        <span class="kw">if</span> <span class="kw">arr</span>[<span class="kw">mid</span>] == <span class="kw">target</span>:
+            <span class="kw">return</span> <span class="kw">mid</span>
+        <span class="kw">elif</span> <span class="kw">arr</span>[<span class="kw">mid</span>] < <span class="kw">target</span>:
+            <span class="kw">left</span> = <span class="kw">mid</span> + <span class="num">1</span>
+        <span class="kw">else</span>:
+            <span class="kw">right</span> = <span class="kw">mid</span> - <span class="num">1</span>
+    <span class="kw">return</span> -<span class="num">1</span>
+
+<span class="kw">arr</span> = [<span class="num">1</span>, <span class="num">3</span>, <span class="num">5</span>, <span class="num">7</span>, <span class="num">9</span>, <span class="num">11</span>, <span class="num">13</span>]
+<span class="fn">print</span>(<span class="fn">binary_search</span>(<span class="kw">arr</span>, <span class="num">7</span>))
+<span class="fn">print</span>(<span class="fn">binary_search</span>(<span class="kw">arr</span>, <span class="num">4</span>))</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n\narr = [1, 3, 5, 7, 9, 11, 13]\nprint(binary_search(arr, 7))\nprint(binary_search(arr, 4))"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="23"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-23"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-23" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>left, right = 0, len(arr) - 1</code></td><td>Sets search boundaries</td></tr>
+                        <tr><td><code>while left <= right:</code></td><td>Continues while search space is valid</td></tr>
+                        <tr><td><code>mid = (left + right) // 2</code></td><td>Calculates middle index (floor division)</td></tr>
+                        <tr><td><code>if arr[mid] == target:</code></td><td>Found the target → returns index</td></tr>
+                        <tr><td><code>elif arr[mid] < target:</code></td><td>Target is in right half → moves left boundary</td></tr>
+                        <tr><td><code>else:</code></td><td>Target is in left half → moves right boundary</td></tr>
+                        <tr><td><code>return -1</code></td><td>Target not found in array</td></tr>
+                        <tr><td><code>arr = [1,3,5,7,9,11,13]</code></td><td>Sorted array for searching</td></tr>
+                        <tr><td><code>binary_search(arr, 7)</code></td><td>Searches for 7 → returns 3 (index position)</td></tr>
+                        <tr><td><code>binary_search(arr, 4)</code></td><td>Searches for 4 → returns -1 (not found)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">binary search</span><span class="tag">algorithm</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Quicksort</h4>
+            <p>Divide and conquer sorting algorithm with O(n log n) average time complexity.</p>
+            <div class="code-snippet" id="code-snippet-24"><pre><span class="kw">def</span> <span class="fn">quicksort</span>(<span class="kw">arr</span>):
+    <span class="kw">if</span> <span class="fn">len</span>(<span class="kw">arr</span>) <= <span class="num">1</span>:
+        <span class="kw">return</span> <span class="kw">arr</span>
+    <span class="kw">pivot</span> = <span class="kw">arr</span>[<span class="fn">len</span>(<span class="kw">arr</span>) // <span class="num">2</span>]
+    <span class="kw">left</span> = [<span class="kw">x</span> <span class="kw">for</span> <span class="kw">x</span> <span class="kw">in</span> <span class="kw">arr</span> <span class="kw">if</span> <span class="kw">x</span> < <span class="kw">pivot</span>]
+    <span class="kw">middle</span> = [<span class="kw">x</span> <span class="kw">for</span> <span class="kw">x</span> <span class="kw">in</span> <span class="kw">arr</span> <span class="kw">if</span> <span class="kw">x</span> == <span class="kw">pivot</span>]
+    <span class="kw">right</span> = [<span class="kw">x</span> <span class="kw">for</span> <span class="kw">x</span> <span class="kw">in</span> <span class="kw">arr</span> <span class="kw">if</span> <span class="kw">x</span> > <span class="kw">pivot</span>]
+    <span class="kw">return</span> <span class="fn">quicksort</span>(<span class="kw">left</span>) + <span class="kw">middle</span> + <span class="fn">quicksort</span>(<span class="kw">right</span>)
+
+<span class="kw">data</span> = [<span class="num">3</span>, <span class="num">6</span>, <span class="num">8</span>, <span class="num">10</span>, <span class="num">1</span>, <span class="num">2</span>, <span class="num">1</span>]
+<span class="fn">print</span>(<span class="fn">quicksort</span>(<span class="kw">data</span>))</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quicksort(left) + middle + quicksort(right)\n\ndata = [3, 6, 8, 10, 1, 2, 1]\nprint(quicksort(data))"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="24"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-24"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-24" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>if len(arr) <= 1: return arr</code></td><td>Base case: arrays with 0 or 1 elements are already sorted</td></tr>
+                        <tr><td><code>pivot = arr[len(arr) // 2]</code></td><td>Selects the middle element as pivot</td></tr>
+                        <tr><td><code>left = [x for x in arr if x < pivot]</code></td><td>List comprehension: elements less than pivot</td></tr>
+                        <tr><td><code>middle = [x for x in arr if x == pivot]</code></td><td>Elements equal to pivot</td></tr>
+                        <tr><td><code>right = [x for x in arr if x > pivot]</code></td><td>Elements greater than pivot</td></tr>
+                        <tr><td><code>return quicksort(left) + middle + quicksort(right)</code></td><td>Recursively sorts left and right, then combines</td></tr>
+                        <tr><td><code>data = [3,6,8,10,1,2,1]</code></td><td>Unsorted array</td></tr>
+                        <tr><td><code>print(quicksort(data))</code></td><td>Outputs sorted array: [1,1,2,3,6,8,10]</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">quicksort</span><span class="tag">sorting</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Recursive Factorial</h4>
+            <p>Classic recursion example: calculating factorial with base case and recursive step.</p>
+            <div class="code-snippet" id="code-snippet-25"><pre><span class="kw">def</span> <span class="fn">factorial</span>(<span class="kw">n</span>):
+    <span class="kw">if</span> <span class="kw">n</span> <= <span class="num">1</span>:
+        <span class="kw">return</span> <span class="num">1</span>
+    <span class="kw">return</span> <span class="kw">n</span> * <span class="fn">factorial</span>(<span class="kw">n</span> - <span class="num">1</span>)
+
+<span class="fn">print</span>(<span class="fn">factorial</span>(<span class="num">5</span>))</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="25"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-25"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-25" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>def factorial(n):</code></td><td>Defines recursive factorial function</td></tr>
+                        <tr><td><code>if n <= 1: return 1</code></td><td>Base case: 0! = 1 and 1! = 1</td></tr>
+                        <tr><td><code>return n * factorial(n - 1)</code></td><td>Recursive step: n! = n * (n-1)!</td></tr>
+                        <tr><td><code>print(factorial(5))</code></td><td>Calculates 5! = 5*4*3*2*1 = 120</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">recursion</span><span class="tag">factorial</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Singleton Pattern</h4>
+            <p>Design pattern that ensures only one instance of a class exists.</p>
+            <div class="code-snippet" id="code-snippet-26"><pre><span class="kw">class</span> <span class="cl">SingletonMeta</span>(<span class="kw">type</span>):
+    <span class="kw">_instances</span> = {}
+    <span class="kw">def</span> <span class="fn">__call__</span>(<span class="kw">cls</span>, <span class="kw">*args</span>, <span class="kw">**kwargs</span>):
+        <span class="kw">if</span> <span class="kw">cls</span> <span class="kw">not in</span> <span class="kw">cls</span>.<span class="kw">_instances</span>:
+            <span class="kw">cls</span>.<span class="kw">_instances</span>[<span class="kw">cls</span>] = <span class="kw">super</span>().<span class="fn">__call__</span>(<span class="kw">*args</span>, <span class="kw">**kwargs</span>)
+        <span class="kw">return</span> <span class="kw">cls</span>.<span class="kw">_instances</span>[<span class="kw">cls</span>]
+
+<span class="kw">class</span> <span class="cl">Config</span>(<span class="kw">metaclass</span>=<span class="cl">SingletonMeta</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.<span class="kw">settings</span> = {<span class="st">"debug"</span>: <span class="kw">True</span>}
+
+<span class="kw">c1</span> = <span class="cl">Config</span>()
+<span class="kw">c2</span> = <span class="cl">Config</span>()
+<span class="fn">print</span>(<span class="kw">c1</span> <span class="kw">is</span> <span class="kw">c2</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class SingletonMeta(type):\n    _instances = {}\n    def __call__(cls, *args, **kwargs):\n        if cls not in cls._instances:\n            cls._instances[cls] = super().__call__(*args, **kwargs)\n        return cls._instances[cls]\n\nclass Config(metaclass=SingletonMeta):\n    def __init__(self):\n        self.settings = {'debug': True}\n\nc1 = Config()\nc2 = Config()\nprint(c1 is c2)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="26"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-26"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-26" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>class SingletonMeta(type):</code></td><td>Metaclass for Singleton pattern</td></tr>
+                        <tr><td><code>_instances = {}</code></td><td>Dictionary to store instances</td></tr>
+                        <tr><td><code>def __call__(cls, *args, **kwargs):</code></td><td>Intercepts instance creation</td></tr>
+                        <tr><td><code>if cls not in cls._instances:</code></td><td>Checks if instance already exists</td></tr>
+                        <tr><td><code>cls._instances[cls] = super().__call__(...)</code></td><td>Creates instance only once</td></tr>
+                        <tr><td><code>return cls._instances[cls]</code></td><td>Returns the single instance</td></tr>
+                        <tr><td><code>class Config(metaclass=SingletonMeta):</code></td><td>Config class using Singleton metaclass</td></tr>
+                        <tr><td><code>c1 = Config(); c2 = Config()</code></td><td>Both calls return the same instance</td></tr>
+                        <tr><td><code>print(c1 is c2)</code></td><td>True (both variables point to same object)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">singleton</span><span class="tag">design pattern</span></div>
+        </div>
+
+        <div class="cat-label"><span>📁</span> File I/O &amp; Data</div>
+
+        <div class="snippet-box">
+            <h4>Reading &amp; Writing Files</h4>
+            <p>Using context managers to safely read, write, and append files with proper encoding.</p>
+            <div class="code-snippet" id="code-snippet-27"><pre><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"data.txt"</span>, <span class="st">"r"</span>, <span class="kw">encoding</span>=<span class="st">"utf-8"</span>) <span class="kw">as</span> <span class="kw">f</span>:
+    <span class="kw">content</span> = <span class="kw">f</span>.<span class="fn">read</span>()
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"output.txt"</span>, <span class="st">"w"</span>, <span class="kw">encoding</span>=<span class="st">"utf-8"</span>) <span class="kw">as</span> <span class="kw">f</span>:
+    <span class="kw">f</span>.<span class="fn">write</span>(<span class="st">"Hello, World!\n"</span>)
+    <span class="kw">f</span>.<span class="fn">writelines</span>([<span class="st">"Line 1\n"</span>, <span class="st">"Line 2\n"</span>])
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"log.txt"</span>, <span class="st">"a"</span>, <span class="kw">encoding</span>=<span class="st">"utf-8"</span>) <span class="kw">as</span> <span class="kw">f</span>:
+    <span class="kw">f</span>.<span class="fn">write</span>(<span class="st">"New entry\n"</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="with open('data.txt', 'r', encoding='utf-8') as f:\n    content = f.read()\n\nwith open('output.txt', 'w', encoding='utf-8') as f:\n    f.write('Hello, World!\\n')\n    f.writelines(['Line 1\\n', 'Line 2\\n'])\n\nwith open('log.txt', 'a', encoding='utf-8') as f:\n    f.write('New entry\\n')"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="27"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-27"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-27" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>with open("data.txt", "r", encoding="utf-8") as f:</code></td><td>Opens file in read mode with UTF-8 encoding</td></tr>
+                        <tr><td><code>content = f.read()</code></td><td>Reads entire file content into string</td></tr>
+                        <tr><td><code>with open("output.txt", "w", encoding="utf-8") as f:</code></td><td>Opens file in write mode (overwrites if exists)</td></tr>
+                        <tr><td><code>f.write("Hello, World!\n")</code></td><td>Writes a line to the file</td></tr>
+                        <tr><td><code>f.writelines(["Line 1\n", "Line 2\n"])</code></td><td>Writes multiple lines at once</td></tr>
+                        <tr><td><code>with open("log.txt", "a", encoding="utf-8") as f:</code></td><td>Opens file in append mode (adds to end)</td></tr>
+                        <tr><td><code>f.write("New entry\n")</code></td><td>Appends a line to the file</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">file I/O</span><span class="tag">read</span><span class="tag">write</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>JSON Handling</h4>
+            <p>Encoding Python objects to JSON and decoding JSON back to Python objects.</p>
+            <div class="code-snippet" id="code-snippet-28"><pre><span class="kw">import</span> json
+
+<span class="kw">data</span> = {<span class="st">"name"</span>: <span class="st">"Glenn"</span>, <span class="st">"age"</span>: <span class="num">28</span>, <span class="st">"hobbies"</span>: [<span class="st">"coding"</span>, <span class="st">"reading"</span>]}
+
+<span class="kw">json_str</span> = json.<span class="fn">dumps</span>(<span class="kw">data</span>, <span class="kw">indent</span>=<span class="num">2</span>)
+<span class="fn">print</span>(<span class="kw">json_str</span>)
+
+<span class="kw">parsed</span> = json.<span class="fn">loads</span>(<span class="kw">json_str</span>)
+<span class="fn">print</span>(<span class="kw">parsed</span>[<span class="st">"name"</span>])
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"data.json"</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="kw">f</span>:
+    json.<span class="fn">dump</span>(<span class="kw">data</span>, <span class="kw">f</span>, <span class="kw">indent</span>=<span class="num">2</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import json\n\ndata = {'name': 'Glenn', 'age': 28, 'hobbies': ['coding', 'reading']}\n\njson_str = json.dumps(data, indent=2)\nprint(json_str)\n\nparsed = json.loads(json_str)\nprint(parsed['name'])\n\nwith open('data.json', 'w') as f:\n    json.dump(data, f, indent=2)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="28"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-28"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-28" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import json</code></td><td>Imports JSON module</td></tr>
+                        <tr><td><code>data = {"name": "Glenn", ...}</code></td><td>Python dictionary</td></tr>
+                        <tr><td><code>json.dumps(data, indent=2)</code></td><td>Converts Python dict to JSON string with indentation</td></tr>
+                        <tr><td><code>json.loads(json_str)</code></td><td>Parses JSON string back to Python dict</td></tr>
+                        <tr><td><code>parsed["name"]</code></td><td>Accesses value from parsed data → "Glenn"</td></tr>
+                        <tr><td><code>with open("data.json", "w") as f:</code></td><td>Opens file for writing</td></tr>
+                        <tr><td><code>json.dump(data, f, indent=2)</code></td><td>Writes JSON to file with indentation</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">json</span><span class="tag">dumps</span><span class="tag">loads</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>CSV Parsing</h4>
+            <p>Reading and writing CSV files using DictReader and DictWriter.</p>
+            <div class="code-snippet" id="code-snippet-29"><pre><span class="kw">import</span> csv
+<span class="kw">from</span> io <span class="kw">import</span> StringIO
+
+<span class="kw">data</span> = <span class="st">"""name,age,city
+Alice,30,New York
+Bob,25,Los Angeles
+Charlie,35,Chicago"""</span>
+
+<span class="kw">reader</span> = csv.<span class="fn">DictReader</span>(<span class="kw">StringIO</span>(<span class="kw">data</span>))
+<span class="kw">for</span> <span class="kw">row</span> <span class="kw">in</span> <span class="kw">reader</span>:
+    <span class="fn">print</span>(<span class="st">f"{row['name']} is {row['age']} in {row['city']}"</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import csv\nfrom io import StringIO\n\ndata = '''name,age,city\nAlice,30,New York\nBob,25,Los Angeles\nCharlie,35,Chicago'''\n\nreader = csv.DictReader(StringIO(data))\nfor row in reader:\n    print(f\"{row['name']} is {row['age']} in {row['city']}\")"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="29"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-29"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-29" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import csv</code></td><td>Imports csv module</td></tr>
+                        <tr><td><code>from io import StringIO</code></td><td>Imports StringIO for in-memory file operations</td></tr>
+                        <tr><td><code>data = """..."""</code></td><td>Multi-line string containing CSV data</td></tr>
+                        <tr><td><code>csv.DictReader(StringIO(data))</code></td><td>Creates CSV reader that treats each row as dict</td></tr>
+                        <tr><td><code>for row in reader:</code></td><td>Iterates through each row</td></tr>
+                        <tr><td><code>print(f"{row['name']} is {row['age']} in {row['city']}")</code></td><td>Accesses values by column name</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">csv</span><span class="tag">DictReader</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>pathlib Path Operations</h4>
+            <p>Modern path handling with pathlib for cross-platform file operations.</p>
+            <div class="code-snippet" id="code-snippet-30"><pre><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+
+<span class="kw">path</span> = <span class="cl">Path</span>(<span class="st">"example.txt"</span>)
+<span class="kw">path</span>.<span class="fn">write_text</span>(<span class="st">"Hello, World!"</span>, <span class="kw">encoding</span>=<span class="st">"utf-8"</span>)
+<span class="kw">content</span> = <span class="kw">path</span>.<span class="fn">read_text</span>(<span class="kw">encoding</span>=<span class="st">"utf-8"</span>)
+
+<span class="fn">print</span>(<span class="kw">path</span>.<span class="kw">name</span>)
+<span class="fn">print</span>(<span class="kw">path</span>.<span class="kw">stem</span>)
+<span class="fn">print</span>(<span class="kw">path</span>.<span class="kw">suffix</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="from pathlib import Path\n\npath = Path('example.txt')\npath.write_text('Hello, World!', encoding='utf-8')\ncontent = path.read_text(encoding='utf-8')\n\nprint(path.name)\nprint(path.stem)\nprint(path.suffix)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="30"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-30"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-30" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>from pathlib import Path</code></td><td>Imports Path class for object-oriented path handling</td></tr>
+                        <tr><td><code>path = Path("example.txt")</code></td><td>Creates a Path object</td></tr>
+                        <tr><td><code>path.write_text("Hello, World!", encoding="utf-8")</code></td><td>Writes text to file (creates if doesn't exist)</td></tr>
+                        <tr><td><code>content = path.read_text(encoding="utf-8")</code></td><td>Reads text from file</td></tr>
+                        <tr><td><code>path.name</code></td><td>Returns filename with extension: "example.txt"</td></tr>
+                        <tr><td><code>path.stem</code></td><td>Returns filename without extension: "example"</td></tr>
+                        <tr><td><code>path.suffix</code></td><td>Returns file extension: ".txt"</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">pathlib</span><span class="tag">Path</span></div>
+        </div>
+
+        <div class="cat-label"><span>🧪</span> Testing &amp; Error Handling</div>
+
+        <div class="snippet-box">
+            <h4>Exception Handling</h4>
+            <p>Graceful error handling with try/except/else/finally blocks.</p>
+            <div class="code-snippet" id="code-snippet-31"><pre><span class="kw">try</span>:
+    <span class="kw">result</span> = <span class="num">10</span> / <span class="num">0</span>
+<span class="kw">except</span> <span class="cl">ZeroDivisionError</span> <span class="kw">as</span> <span class="kw">e</span>:
+    <span class="fn">print</span>(<span class="st">f"Error: {e}"</span>)
+
+<span class="kw">try</span>:
+    <span class="kw">value</span> = <span class="fn">int</span>(<span class="st">"abc"</span>)
+<span class="kw">except</span> <span class="cl">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Invalid value"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Success!"</span>)
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="st">"Cleanup"</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="try:\n    result = 10 / 0\nexcept ZeroDivisionError as e:\n    print(f'Error: {e}')\n\ntry:\n    value = int('abc')\nexcept ValueError:\n    print('Invalid value')\nelse:\n    print('Success!')\nfinally:\n    print('Cleanup')"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="31"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-31"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-31" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>try: result = 10 / 0</code></td><td>Attempts division by zero (raises ZeroDivisionError)</td></tr>
+                        <tr><td><code>except ZeroDivisionError as e:</code></td><td>Catches the specific exception</td></tr>
+                        <tr><td><code>print(f"Error: {e}")</code></td><td>Prints error message</td></tr>
+                        <tr><td><code>try: value = int("abc")</code></td><td>Attempts to convert string to int (raises ValueError)</td></tr>
+                        <tr><td><code>except ValueError:</code></td><td>Catches ValueError</td></tr>
+                        <tr><td><code>else:</code></td><td>Runs only if no exception occurred in try block</td></tr>
+                        <tr><td><code>finally:</code></td><td>Always runs regardless of exception (for cleanup)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">exceptions</span><span class="tag">try/except</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Pytest Basics</h4>
+            <p>Writing simple tests with assert statements.</p>
+            <div class="code-snippet" id="code-snippet-32"><pre><span class="kw">def</span> <span class="fn">add</span>(<span class="kw">a</span>, <span class="kw">b</span>):
+    <span class="kw">return</span> <span class="kw">a</span> + <span class="kw">b</span>
+
+<span class="kw">def</span> <span class="fn">test_add</span>():
+    <span class="kw">assert</span> <span class="fn">add</span>(<span class="num">2</span>, <span class="num">3</span>) == <span class="num">5</span>
+    <span class="kw">assert</span> <span class="fn">add</span>(-<span class="num">1</span>, <span class="num">1</span>) == <span class="num">0</span>
+
+<span class="fn">test_add</span>()</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="def add(a, b):\n    return a + b\n\ndef test_add():\n    assert add(2, 3) == 5\n    assert add(-1, 1) == 0\n\ntest_add()"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="32"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-32"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-32" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>def add(a, b): return a + b</code></td><td>Simple function to test</td></tr>
+                        <tr><td><code>def test_add():</code></td><td>Test function (pytest convention)</td></tr>
+                        <tr><td><code>assert add(2, 3) == 5</code></td><td>Assertion: verifies expected output</td></tr>
+                        <tr><td><code>assert add(-1, 1) == 0</code></td><td>Another assertion test</td></tr>
+                        <tr><td><code>test_add()</code></td><td>Runs the test (assertions pass silently if no errors)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">testing</span><span class="tag">pytest</span><span class="tag">assert</span></div>
+        </div>
+
+        <div class="cat-label"><span>🧰</span> Standard Library Modules</div>
+
+        <div class="snippet-box">
+            <h4>datetime</h4>
+            <p>Working with dates and times: formatting, parsing, and arithmetic.</p>
+            <div class="code-snippet" id="code-snippet-33"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime, timedelta
+
+<span class="kw">now</span> = datetime.<span class="fn">now</span>()
+<span class="fn">print</span>(now.<span class="fn">strftime</span>(<span class="st">"%Y-%m-%d %H:%M"</span>))
+
+<span class="kw">tomorrow</span> = <span class="kw">now</span> + <span class="fn">timedelta</span>(<span class="kw">days</span>=<span class="num">1</span>)
+<span class="kw">dt</span> = datetime.<span class="fn">strptime</span>(<span class="st">"2026-06-18"</span>, <span class="st">"%Y-%m-%d"</span>)
+<span class="fn">print</span>(<span class="kw">dt</span>.<span class="kw">year</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="from datetime import datetime, timedelta\n\nnow = datetime.now()\nprint(now.strftime('%Y-%m-%d %H:%M'))\n\ntomorrow = now + timedelta(days=1)\ndt = datetime.strptime('2026-06-18', '%Y-%m-%d')\nprint(dt.year)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="33"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-33"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-33" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>from datetime import datetime, timedelta</code></td><td>Imports datetime and timedelta classes</td></tr>
+                        <tr><td><code>now = datetime.now()</code></td><td>Gets current date and time</td></tr>
+                        <tr><td><code>now.strftime("%Y-%m-%d %H:%M")</code></td><td>Formats datetime as string</td></tr>
+                        <tr><td><code>now + timedelta(days=1)</code></td><td>Adds one day to current date</td></tr>
+                        <tr><td><code>datetime.strptime("2026-06-18", "%Y-%m-%d")</code></td><td>Parses string to datetime object</td></tr>
+                        <tr><td><code>dt.year</code></td><td>Accesses year component → 2026</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">datetime</span><span class="tag">strftime</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>random</h4>
+            <p>Generating random numbers and making random selections.</p>
+            <div class="code-snippet" id="code-snippet-34"><pre><span class="kw">import</span> random
+
+<span class="kw">rand_int</span> = random.<span class="fn">randint</span>(<span class="num">1</span>, <span class="num">100</span>)
+<span class="kw">rand_float</span> = random.<span class="fn">random</span>()
+<span class="kw">choice</span> = random.<span class="fn">choice</span>([<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>])
+<span class="fn">print</span>(<span class="kw">rand_int</span>, <span class="kw">rand_float</span>, <span class="kw">choice</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import random\n\nrand_int = random.randint(1, 100)\nrand_float = random.random()\nchoice = random.choice(['apple', 'banana', 'cherry'])\nprint(rand_int, rand_float, choice)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="34"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-34"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-34" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import random</code></td><td>Imports random module</td></tr>
+                        <tr><td><code>random.randint(1, 100)</code></td><td>Random integer between 1 and 100 (inclusive)</td></tr>
+                        <tr><td><code>random.random()</code></td><td>Random float between 0.0 and 1.0</td></tr>
+                        <tr><td><code>random.choice(["apple", "banana", "cherry"])</code></td><td>Randomly selects one element from list</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">random</span><span class="tag">randint</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>collections – Counter &amp; defaultdict</h4>
+            <p>Specialized containers: Counter for counting, defaultdict for auto-creating missing keys.</p>
+            <div class="code-snippet" id="code-snippet-35"><pre><span class="kw">from</span> collections <span class="kw">import</span> Counter, defaultdict
+
+<span class="kw">words</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"cherry"</span>, <span class="st">"banana"</span>, <span class="st">"apple"</span>]
+<span class="kw">counter</span> = <span class="cl">Counter</span>(<span class="kw">words</span>)
+<span class="fn">print</span>(<span class="kw">counter</span>.<span class="fn">most_common</span>(<span class="num">1</span>))
+
+<span class="kw">graph</span> = <span class="fn">defaultdict</span>(<span class="kw">list</span>)
+<span class="kw">graph</span>[<span class="st">"A"</span>].<span class="fn">append</span>(<span class="st">"B"</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="from collections import Counter, defaultdict\n\nwords = ['apple', 'banana', 'apple', 'cherry', 'banana', 'apple']\ncounter = Counter(words)\nprint(counter.most_common(1))\n\ngraph = defaultdict(list)\ngraph['A'].append('B')"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="35"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-35"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-35" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>from collections import Counter, defaultdict</code></td><td>Imports Counter and defaultdict</td></tr>
+                        <tr><td><code>words = ["apple", "banana", ...]</code></td><td>List with duplicate entries</td></tr>
+                        <tr><td><code>Counter(words)</code></td><td>Counts occurrences of each element</td></tr>
+                        <tr><td><code>counter.most_common(1)</code></td><td>Returns the most frequent element: [("apple", 3)]</td></tr>
+                        <tr><td><code>defaultdict(list)</code></td><td>Creates a dict that auto-creates list for missing keys</td></tr>
+                        <tr><td><code>graph["A"].append("B")</code></td><td>Appends "B" to list at key "A" (auto-creates list)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">collections</span><span class="tag">Counter</span><span class="tag">defaultdict</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>itertools</h4>
+            <p>Efficient looping with combinatoric iterators.</p>
+            <div class="code-snippet" id="code-snippet-36"><pre><span class="kw">import</span> itertools
+
+<span class="kw">perms</span> = <span class="fn">list</span>(itertools.<span class="fn">permutations</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>], <span class="num">2</span>))
+<span class="fn">print</span>(<span class="kw">perms</span>[:<span class="num">3</span>])</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import itertools\n\nperms = list(itertools.permutations([1, 2, 3], 2))\nprint(perms[:3])"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="36"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-36"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-36" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import itertools</code></td><td>Imports itertools for efficient looping</td></tr>
+                        <tr><td><code>itertools.permutations([1,2,3], 2)</code></td><td>Generates all ordered permutations of length 2</td></tr>
+                        <tr><td><code>list(...)</code></td><td>Converts iterator to list</td></tr>
+                        <tr><td><code>perms[:3]</code></td><td>First 3 permutations: [(1,2), (1,3), (2,1)]</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">itertools</span><span class="tag">permutations</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>re – Regular Expressions</h4>
+            <p>Pattern matching and extraction using regular expressions.</p>
+            <div class="code-snippet" id="code-snippet-37"><pre><span class="kw">import</span> re
+
+<span class="kw">text</span> = <span class="st">"Contact: glenn@example.com"</span>
+<span class="kw">emails</span> = re.<span class="fn">findall</span>(<span class="st">r"[\w.+-]+@[\w-]+\.\w+"</span>, <span class="kw">text</span>)
+<span class="fn">print</span>(<span class="kw">emails</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="import re\n\ntext = 'Contact: glenn@example.com'\nemails = re.findall(r'[\\w.+-]+@[\\w-]+\\.\\w+', text)\nprint(emails)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="37"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-37"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-37" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>import re</code></td><td>Imports regular expression module</td></tr>
+                        <tr><td><code>text = "Contact: glenn@example.com"</code></td><td>Sample text containing an email</td></tr>
+                        <tr><td><code>re.findall(r"[\w.+-]+@[\w-]+\.\w+", text)</code></td><td>Finds all email addresses using regex pattern</td></tr>
+                        <tr><td><code>print(emails)</code></td><td>Outputs: ["glenn@example.com"]</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">regex</span><span class="tag">re</span></div>
+        </div>
+
+        <div class="cat-label"><span>📦</span> Data Structures &amp; Algorithms (New)</div>
+
+        <div class="snippet-box">
+            <h4>Singly Linked List</h4>
+            <p>Implementation with traversal and insertion using Node and LinkedList classes.</p>
+            <div class="code-snippet" id="code-snippet-38"><pre><span class="kw">class</span> <span class="cl">Node</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, <span class="kw">data</span>):
+        <span class="kw">self</span>.<span class="kw">data</span> = <span class="kw">data</span>
+        <span class="kw">self</span>.<span class="kw">next</span> = <span class="kw">None</span>
+
+<span class="kw">class</span> <span class="cl">LinkedList</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.<span class="kw">head</span> = <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">append</span>(<span class="kw">self</span>, <span class="kw">data</span>):
+        <span class="kw">new_node</span> = <span class="cl">Node</span>(<span class="kw">data</span>)
+        <span class="kw">if</span> <span class="kw">not</span> <span class="kw">self</span>.<span class="kw">head</span>:
+            <span class="kw">self</span>.<span class="kw">head</span> = <span class="kw">new_node</span>
+            <span class="kw">return</span>
+        <span class="kw">current</span> = <span class="kw">self</span>.<span class="kw">head</span>
+        <span class="kw">while</span> <span class="kw">current</span>.<span class="kw">next</span>:
+            <span class="kw">current</span> = <span class="kw">current</span>.<span class="kw">next</span>
+        <span class="kw">current</span>.<span class="kw">next</span> = <span class="kw">new_node</span>
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>):
+        <span class="kw">elements</span> = []
+        <span class="kw">current</span> = <span class="kw">self</span>.<span class="kw">head</span>
+        <span class="kw">while</span> <span class="kw">current</span>:
+            <span class="kw">elements</span>.<span class="fn">append</span>(<span class="kw">current</span>.<span class="kw">data</span>)
+            <span class="kw">current</span> = <span class="kw">current</span>.<span class="kw">next</span>
+        <span class="kw">return</span> <span class="kw">elements</span>
+
+<span class="kw">ll</span> = <span class="cl">LinkedList</span>()
+<span class="kw">for</span> <span class="kw">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>):
+    <span class="kw">ll</span>.<span class="fn">append</span>(<span class="kw">i</span>)
+<span class="fn">print</span>(<span class="kw">ll</span>.<span class="fn">display</span>())</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n            return\n        current = self.head\n        while current.next:\n            current = current.next\n        current.next = new_node\n\n    def display(self):\n        elements = []\n        current = self.head\n        while current:\n            elements.append(current.data)\n            current = current.next\n        return elements\n\nll = LinkedList()\nfor i in range(1, 6):\n    ll.append(i)\nprint(ll.display())"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="38"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-38"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-38" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>class Node:</code></td><td>Node class with data and pointer to next node</td></tr>
+                        <tr><td><code>def __init__(self, data):</code></td><td>Initializes node with data</td></tr>
+                        <tr><td><code>self.next = None</code></td><td>Pointer to next node (initially None)</td></tr>
+                        <tr><td><code>class LinkedList:</code></td><td>Linked list class with head pointer</td></tr>
+                        <tr><td><code>def append(self, data):</code></td><td>Adds node to end of list</td></tr>
+                        <tr><td><code>if not self.head:</code></td><td>If list is empty, set head to new node</td></tr>
+                        <tr><td><code>while current.next:</code></td><td>Traverses to last node</td></tr>
+                        <tr><td><code>current.next = new_node</code></td><td>Links last node to new node</td></tr>
+                        <tr><td><code>def display(self):</code></td><td>Returns list of all data values</td></tr>
+                        <tr><td><code>for i in range(1,6): ll.append(i)</code></td><td>Builds list 1→5</td></tr>
+                        <tr><td><code>print(ll.display())</code></td><td>Outputs [1, 2, 3, 4, 5]</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">linked list</span><span class="tag">data structure</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Stack (LIFO) with List</h4>
+            <p>Stack implementation using a list with push, pop, and peek operations.</p>
+            <div class="code-snippet" id="code-snippet-39"><pre><span class="kw">class</span> <span class="cl">Stack</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.<span class="kw">items</span> = []
+
+    <span class="kw">def</span> <span class="fn">push</span>(<span class="kw">self</span>, <span class="kw">item</span>):
+        <span class="kw">self</span>.<span class="kw">items</span>.<span class="fn">append</span>(<span class="kw">item</span>)
+
+    <span class="kw">def</span> <span class="fn">pop</span>(<span class="kw">self</span>):
+        <span class="kw">if</span> <span class="kw">not</span> <span class="kw">self</span>.<span class="fn">is_empty</span>():
+            <span class="kw">return</span> <span class="kw">self</span>.<span class="kw">items</span>.<span class="fn">pop</span>()
+
+    <span class="kw">def</span> <span class="fn">peek</span>(<span class="kw">self</span>):
+        <span class="kw">if</span> <span class="kw">not</span> <span class="kw">self</span>.<span class="fn">is_empty</span>():
+            <span class="kw">return</span> <span class="kw">self</span>.<span class="kw">items</span>[<span class="num">-1</span>]
+
+    <span class="kw">def</span> <span class="fn">is_empty</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="fn">len</span>(<span class="kw">self</span>.<span class="kw">items</span>) == <span class="num">0</span>
+
+<span class="kw">s</span> = <span class="cl">Stack</span>()
+<span class="kw">s</span>.<span class="fn">push</span>(<span class="num">1</span>)
+<span class="kw">s</span>.<span class="fn">push</span>(<span class="num">2</span>)
+<span class="kw">s</span>.<span class="fn">push</span>(<span class="num">3</span>)
+<span class="fn">print</span>(<span class="kw">s</span>.<span class="fn">pop</span>())
+<span class="fn">print</span>(<span class="kw">s</span>.<span class="fn">peek</span>())</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class Stack:\n    def __init__(self):\n        self.items = []\n\n    def push(self, item):\n        self.items.append(item)\n\n    def pop(self):\n        if not self.is_empty():\n            return self.items.pop()\n\n    def peek(self):\n        if not self.is_empty():\n            return self.items[-1]\n\n    def is_empty(self):\n        return len(self.items) == 0\n\ns = Stack()\ns.push(1)\ns.push(2)\ns.push(3)\nprint(s.pop())\nprint(s.peek())"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="39"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-39"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-39" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>class Stack:</code></td><td>Stack class using list as underlying storage</td></tr>
+                        <tr><td><code>def push(self, item):</code></td><td>Adds item to top (end of list)</td></tr>
+                        <tr><td><code>self.items.append(item)</code></td><td>Appends to list</td></tr>
+                        <tr><td><code>def pop(self):</code></td><td>Removes and returns top item</td></tr>
+                        <tr><td><code>return self.items.pop()</code></td><td>Removes last element (LIFO)</td></tr>
+                        <tr><td><code>def peek(self):</code></td><td>Returns top item without removing</td></tr>
+                        <tr><td><code>return self.items[-1]</code></td><td>Accesses last element</td></tr>
+                        <tr><td><code>s.push(1); s.push(2); s.push(3)</code></td><td>Stack: [1, 2, 3]</td></tr>
+                        <tr><td><code>s.pop()</code></td><td>Returns 3 (last in, first out)</td></tr>
+                        <tr><td><code>s.peek()</code></td><td>Returns 2 (top of stack after pop)</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">stack</span><span class="tag">LIFO</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Queue (FIFO) with deque</h4>
+            <p>Queue implementation using collections.deque for efficient append and popleft operations.</p>
+            <div class="code-snippet" id="code-snippet-40"><pre><span class="kw">from</span> collections <span class="kw">import</span> deque
+
+<span class="kw">queue</span> = <span class="fn">deque</span>()
+<span class="kw">queue</span>.<span class="fn">append</span>(<span class="st">"first"</span>)
+<span class="kw">queue</span>.<span class="fn">append</span>(<span class="st">"second"</span>)
+<span class="kw">queue</span>.<span class="fn">append</span>(<span class="st">"third"</span>)
+
+<span class="fn">print</span>(<span class="kw">queue</span>.<span class="fn">popleft</span>())
+<span class="fn">print</span>(<span class="kw">queue</span>.<span class="fn">popleft</span>())
+<span class="fn">print</span>(<span class="kw">queue</span>)</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="from collections import deque\n\nqueue = deque()\nqueue.append('first')\nqueue.append('second')\nqueue.append('third')\n\nprint(queue.popleft())\nprint(queue.popleft())\nprint(queue)"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="40"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-40"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-40" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>from collections import deque</code></td><td>Imports deque for efficient queue operations</td></tr>
+                        <tr><td><code>queue = deque()</code></td><td>Creates an empty deque</td></tr>
+                        <tr><td><code>queue.append("first")</code></td><td>Adds to right end (enqueue)</td></tr>
+                        <tr><td><code>queue.popleft()</code></td><td>Removes from left end (dequeue) → "first"</td></tr>
+                        <tr><td><code>queue.popleft()</code></td><td>Removes next → "second"</td></tr>
+                        <tr><td><code>print(queue)</code></td><td>Remaining queue: deque(['third'])</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">queue</span><span class="tag">deque</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Binary Tree Traversal (In-order)</h4>
+            <p>Recursive tree traversal implementing in-order: left, root, right.</p>
+            <div class="code-snippet" id="code-snippet-41"><pre><span class="kw">class</span> <span class="cl">TreeNode</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, <span class="kw">val</span>):
+        <span class="kw">self</span>.<span class="kw">val</span> = <span class="kw">val</span>
+        <span class="kw">self</span>.<span class="kw">left</span> = <span class="kw">None</span>
+        <span class="kw">self</span>.<span class="kw">right</span> = <span class="kw">None</span>
+
+<span class="kw">def</span> <span class="fn">inorder</span>(<span class="kw">root</span>):
+    <span class="kw">if</span> <span class="kw">root</span> <span class="kw">is</span> <span class="kw">None</span>:
+        <span class="kw">return</span> []
+    <span class="kw">return</span> <span class="fn">inorder</span>(<span class="kw">root</span>.<span class="kw">left</span>) + [<span class="kw">root</span>.<span class="kw">val</span>] + <span class="fn">inorder</span>(<span class="kw">root</span>.<span class="kw">right</span>)
+
+<span class="kw">root</span> = <span class="cl">TreeNode</span>(<span class="num">1</span>)
+<span class="kw">root</span>.<span class="kw">left</span> = <span class="cl">TreeNode</span>(<span class="num">2</span>)
+<span class="kw">root</span>.<span class="kw">right</span> = <span class="cl">TreeNode</span>(<span class="num">3</span>)
+<span class="kw">root</span>.<span class="kw">left</span>.<span class="kw">left</span> = <span class="cl">TreeNode</span>(<span class="num">4</span>)
+<span class="kw">root</span>.<span class="kw">left</span>.<span class="kw">right</span> = <span class="cl">TreeNode</span>(<span class="num">5</span>)
+<span class="fn">print</span>(<span class="fn">inorder</span>(<span class="kw">root</span>))</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="class TreeNode:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef inorder(root):\n    if root is None:\n        return []\n    return inorder(root.left) + [root.val] + inorder(root.right)\n\nroot = TreeNode(1)\nroot.left = TreeNode(2)\nroot.right = TreeNode(3)\nroot.left.left = TreeNode(4)\nroot.left.right = TreeNode(5)\nprint(inorder(root))"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="41"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-41"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-41" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>class TreeNode:</code></td><td>Binary tree node with left and right children</td></tr>
+                        <tr><td><code>def inorder(root):</code></td><td>Recursive in-order traversal function</td></tr>
+                        <tr><td><code>if root is None: return []</code></td><td>Base case: empty tree</td></tr>
+                        <tr><td><code>return inorder(root.left) + [root.val] + inorder(root.right)</code></td><td>Visits left subtree, then root, then right subtree</td></tr>
+                        <tr><td>Tree built: 1 (left:2 with children 4,5; right:3)</td><td>Creates sample binary tree</td></tr>
+                        <tr><td><code>print(inorder(root))</code></td><td>Outputs [4, 2, 5, 1, 3]</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">binary tree</span><span class="tag">traversal</span><span class="tag">recursion</span></div>
+        </div>
+
+        <div class="snippet-box">
+            <h4>Memoized Fibonacci (Dynamic Programming)</h4>
+            <p>Efficient recursion with caching using lru_cache for O(n) performance.</p>
+            <div class="code-snippet" id="code-snippet-42"><pre><span class="kw">from</span> functools <span class="kw">import</span> lru_cache
+
+@<span class="fn">lru_cache</span>(<span class="kw">maxsize</span>=<span class="kw">None</span>)
+<span class="kw">def</span> <span class="fn">fib</span>(<span class="kw">n</span>):
+    <span class="kw">if</span> <span class="kw">n</span> < <span class="num">2</span>:
+        <span class="kw">return</span> <span class="kw">n</span>
+    <span class="kw">return</span> <span class="fn">fib</span>(<span class="kw">n</span>-<span class="num">1</span>) + <span class="fn">fib</span>(<span class="kw">n</span>-<span class="num">2</span>)
+
+<span class="fn">print</span>([<span class="fn">fib</span>(<span class="kw">i</span>) <span class="kw">for</span> <span class="kw">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>)])</pre></div>
+            <div class="btn-group">
+                <button class="btn-sm btn-copy" data-code="from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fib(n):\n    if n < 2:\n        return n\n    return fib(n-1) + fib(n-2)\n\nprint([fib(i) for i in range(10)])"><i class="fas fa-copy"></i> Copy</button>
+                <button class="btn-sm btn-run" data-snippet="42"><i class="fas fa-play"></i> Run</button>
+                <button class="btn-sm btn-explain" data-target="expl-42"><i class="fas fa-list-ul"></i> Explain</button>
+            </div>
+            <div class="explanation" id="expl-42" style="display:none;">
+                <details>
+                    <summary>Line-by-line explanation</summary>
+                    <table>
+                        <tr><th>Line</th><th>Explanation</th></tr>
+                        <tr><td><code>from functools import lru_cache</code></td><td>Imports LRU cache decorator</td></tr>
+                        <tr><td><code>@lru_cache(maxsize=None)</code></td><td>Caches all results (unbounded cache)</td></tr>
+                        <tr><td><code>def fib(n):</code></td><td>Recursive Fibonacci with memoization</td></tr>
+                        <tr><td><code>if n < 2: return n</code></td><td>Base cases: fib(0)=0, fib(1)=1</td></tr>
+                        <tr><td><code>return fib(n-1) + fib(n-2)</code></td><td>Recursive step (cached results prevent exponential time)</td></tr>
+                        <tr><td><code>[fib(i) for i in range(10)]</code></td><td>Outputs: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</td></tr>
+                    </table>
+                </details>
+            </div>
+            <div class="tags"><span class="tag">DP</span><span class="tag">memoization</span><span class="tag">fibonacci</span></div>
+        </div>
+
+        <div class="outro-section">
+            <h2>🏁 What's Next After Mastering These Snippets?</h2>
+            <p>You've now explored the most important Python concepts through 40+ curated code snippets with detailed explanations. This library is designed to be your go-to reference as you continue your Python journey.</p>
+
+            <h2 style="font-size:1.1rem; margin-top:1rem;">🚀 Why Every Programmer Should Master These Concepts</h2>
+            <ul>
+                <li><strong>Python is the language of AI and Data Science</strong> – These snippets build the foundation for machine learning, data analysis, and artificial intelligence</li>
+                <li><strong>Python powers modern web development</strong> – Understanding these fundamentals is essential for Flask, Django, and FastAPI</li>
+                <li><strong>Python automates the world</strong> – From simple scripts to complex automation pipelines, these patterns appear everywhere</li>
+                <li><strong>Python is the most in-demand skill</strong> – Companies across every industry seek Python developers</li>
+                <li><strong>These patterns transfer to other languages</strong> – Mastering Python's approach to OOP, algorithms, and data structures makes learning any other language easier</li>
+            </ul>
+
+            <h2 style="font-size:1.1rem; margin-top:1rem;">📚 How to Continue Your Learning</h2>
+            <ul>
+                <li><strong>Practice daily</strong> – Write code every day, even if it's just 15 minutes</li>
+                <li><strong>Build projects</strong> – Apply these snippets to real problems you care about</li>
+                <li><strong>Contribute to open source</strong> – Start with documentation or small bug fixes</li>
+                <li><strong>Join the community</strong> – Engage with other Python developers on Discord, Reddit, or local meetups</li>
+                <li><strong>Never stop learning</strong> – Python evolves rapidly; stay current with new features in 3.12 and beyond</li>
+            </ul>
+
+            <p style="margin-top:1rem; text-align:center; font-size:1.1rem; color:var(--gold);">🐍 Keep coding, keep building, keep growing. The Python community is waiting for you.</p>
+            <p style="text-align:center; color:var(--muted); font-size:0.8rem;">Poetic Bytes · 2026 · Made with ❤️ by Glenn Junsay Pansensoy</p>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="page-footer" aria-label="Site footer">
+    <div class="page-col">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h5>Guided Tracks</h5>
+                <ul>
+                    <li><a href="beginners.html">First-time dev</a></li>
+                    <li><a href="data-science.html">Data &amp; statistics</a></li>
+                    <li><a href="backend.html">Backend / Django</a></li>
+                    <li><a href="aiml.html">ML fundamentals</a></li>
+                    <li><a href="web-development.html">Web Development</a></li>
+                    <li><a href="automation.html">Automation</a></li>
+                    <li><a href="sample-programs.html">Sample Programs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>New Modules</h5>
+                <ul>
+                    <li><a href="python-sets.html">Python Sets</a></li>
+                    <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                    <li><a href="python-exceptions.html">Exception Handling</a></li>
+                    <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                    <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                    <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                    <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Toolkit</h5>
+                <ul>
+                    <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                    <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                    <li><a href="snippet-library.html">Snippet library</a></li>
+                    <li><a href="code-runner.html">Code runner</a></li>
+                    <li><a href="design-patterns.html">Design Patterns</a></li>
+                    <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Connect</h5>
+                <ul>
+                    <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                    <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                    <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                    <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Policies</h5>
+                <ul>
+                    <li><a href="privacy.html">Data privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookie.html">Cookies</a></li>
+                    <li><a href="disclaimer.html">Disclaimers</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+            <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+        </div>
+    </div>
+</footer>
+
+<div class="console-output" id="consoleOutput">
+    <div class="console-header">
+        <span><i class="fas fa-terminal"></i> Python Output</span>
+        <button id="clearConsole"><i class="fas fa-times"></i></button>
+    </div>
+    <pre id="consoleContent"></pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<script>
+(function() {
+    'use strict';
+
+    const pbar = document.getElementById('pbar');
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement;
+        const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+        if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+    }, { passive: true });
+
+    document.querySelectorAll('.btn-copy').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const code = this.dataset.code;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(code).then(() => {
+                    this.classList.add('copied');
+                    this.innerHTML = '<i class="fas fa-check"></i> Copied';
+                    setTimeout(() => {
+                        this.classList.remove('copied');
+                        this.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    }, 2000);
+                }).catch(() => fallbackCopy(code, this));
+            } else {
+                fallbackCopy(code, this);
+            }
+        });
+    });
+
+    function fallbackCopy(code, btn) {
+        const ta = document.createElement('textarea');
+        ta.value = code;
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+            document.execCommand('copy');
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            }, 2000);
+        } catch (e) {
+            alert('Could not copy. Please select and copy manually.');
+        }
+        document.body.removeChild(ta);
+    }
+
+    document.querySelectorAll('.btn-explain').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = document.getElementById(this.dataset.target);
+            if (target) {
+                target.style.display = target.style.display === 'none' ? 'block' : 'none';
+                this.innerHTML = target.style.display === 'none' ?
+                    '<i class="fas fa-list-ul"></i> Explain' :
+                    '<i class="fas fa-minus-circle"></i> Hide';
+            }
+        });
+    });
+
+    let pyodideReady = false;
+    let pyodide = null;
+    const consoleOutput = document.getElementById('consoleOutput');
+    const consoleContent = document.getElementById('consoleContent');
+
+    function showConsole() {
+        consoleOutput.classList.add('active');
+    }
+
+    function appendOutput(text, isError = false) {
+        const span = document.createElement('span');
+        if (isError) span.className = 'error';
+        span.textContent = text;
+        consoleContent.appendChild(span);
+        consoleContent.appendChild(document.createTextNode('\n'));
+        consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        showConsole();
+    }
+
+    document.getElementById('clearConsole').addEventListener('click', function() {
+        consoleContent.innerHTML = '';
+        consoleOutput.classList.remove('active');
+    });
+
+    async function initPyodide() {
+        if (pyodideReady) return;
+        try {
+            appendOutput('Loading Python runtime... (may take a few seconds)');
+            pyodide = await globalThis.loadPyodide({
+                indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/'
+            });
+            pyodideReady = true;
+            appendOutput('✅ Python ready.');
+        } catch (err) {
+            appendOutput('❌ Failed to load Pyodide: ' + err.message, true);
+        }
+    }
+
+    document.querySelectorAll('.btn-run').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const snippetId = this.dataset.snippet;
+            const snippetBox = this.closest('.snippet-box');
+            const codeElem = snippetBox.querySelector('.code-snippet pre');
+            if (!codeElem) return;
+
+            const code = codeElem.textContent;
+            this.disabled = true;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running...';
+
+            if (!pyodideReady) {
+                await initPyodide();
+                if (!pyodideReady) {
+                    this.disabled = false;
+                    this.innerHTML = '<i class="fas fa-play"></i> Run';
+                    return;
+                }
+            }
+
+            appendOutput(`\n--- Running snippet ${snippetId} ---`);
+
+            try {
+                pyodide.runPython(`
+                    import sys
+                    from io import StringIO
+                    sys.stdout = StringIO()
+                    sys.stderr = StringIO()
+                `);
+                pyodide.runPython(code);
+                const stdout = pyodide.runPython('sys.stdout.getvalue()');
+                const stderr = pyodide.runPython('sys.stderr.getvalue()');
+                if (stdout) appendOutput(stdout);
+                if (stderr) appendOutput(stderr, true);
+                if (!stdout && !stderr) appendOutput('(no output)');
+            } catch (err) {
+                appendOutput('Error: ' + err.message, true);
+            } finally {
+                pyodide.runPython(`
+                    sys.stdout = sys.__stdout__
+                    sys.stderr = sys.__stderr__
+                `);
+            }
+
+            this.disabled = false;
+            this.innerHTML = '<i class="fas fa-play"></i> Run';
+        });
+    });
+
+    window.addEventListener('load', function() {
+        setTimeout(initPyodide, 1000);
+    });
+
+})();
+</script>
+
+</body>
+</html>
