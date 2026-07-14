@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowerShop Python OOP — Fully Explained | Poetic Bytes</title>
+  <meta name="description" content="Complete Python OOP tutorial: FlowerShop program explained line-by-line. Learn classes, __init__, input validation, try/except, and more.">
+  <meta name="keywords" content="Python, OOP, tutorial, FlowerShop, programming, Philippine pesos, beginner, class, __init__, while loop, try except, Encapsulation Python, Python OOP tutorial 2026, Poetic Bytes">
+  <meta name="author" content="Glenn Junsay Pansensoy">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://poetic-bytes.vercel.app/flower.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Poetic Bytes">
+  <meta property="og:title" content="FlowerShop Python OOP — Fully Explained">
+  <meta property="og:description" content="Complete Python OOP tutorial: FlowerShop program explained line-by-line. Learn classes, __init__, input validation, try/except, and more.">
+  <meta property="og:url" content="https://poetic-bytes.vercel.app/flower.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FlowerShop Python OOP — Fully Explained by Poetic Bytes">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FlowerShop Python OOP — Fully Explained | Poetic Bytes">
+  <meta name="twitter:description" content="Complete Python OOP tutorial: FlowerShop program explained line-by-line. Learn classes, __init__, input validation, try/except, and more.">
+  <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "FlowerShop Python OOP — Fully Explained",
+      "description": "Complete Python OOP tutorial: FlowerShop program explained line-by-line. Learn classes, __init__, input validation, try/except, and more.",
+      "author": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+      "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
+      "datePublished": "2026-02-28",
+      "dateModified": "2026-02-28",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/flower.html" },
+      "keywords": "Python, OOP, tutorial, FlowerShop, programming, Philippine pesos, beginner, class, __init__, while loop, try except, Encapsulation Python, Python OOP tutorial 2026",
+      "articleSection": "Python Programming",
+      "inLanguage": "en-US",
+      "learningResourceType": "Tutorial",
+      "educationalLevel": "Beginner to Intermediate"
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #0d0e12;
+      --surface:  #13141a;
+      --surface2: #1a1c24;
+      --surface3: #21232e;
+      --border:   rgba(77,158,255,0.12);
+      --border2:  rgba(255,255,255,0.06);
+      --blue:     #4d9eff;
+      --blue-dim: rgba(77,158,255,0.1);
+      --violet:   #7c9eff;
+      --gold:     #ffd166;
+      --rose:     #ff6b6b;
+      --green:    #4ade80;
+      --text:     #dce6f5;
+      --muted:    #5e6f90;
+      --muted2:   #8fa0be;
+      --code-bg:  #090a0f;
+      --nav-h:    60px;
+      --radius:   14px;
+      --radius-sm:8px;
+      --mono: 'IBM Plex Mono', monospace;
+      --display: 'Syne', sans-serif;
+      --body: 'Lora', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.8;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(77,158,255,0.3); border-radius: 3px; }
+
+    #read-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+      z-index: 2000; transition: width 0.1s linear;
+    }
+
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9000;
+      background: var(--surface2); color: var(--text);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 12px 20px; font-family: var(--mono); font-size: 13px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      opacity: 0; transform: translateY(12px);
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none; max-width: 300px;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    .btt {
+      position: fixed; bottom: 24px; left: 24px; z-index: 8000;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--blue); font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s; pointer-events: none;
+    }
+    .btt.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .btt:hover { background: var(--blue); color: var(--bg); }
+
+    .navbar {
+      position: fixed; top: 3px; left: 0; right: 0; height: var(--nav-h);
+      background: rgba(13,14,18,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; z-index: 1000;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 17px; flex-shrink: 0;
+    }
+    .brand-name {
+      font-family: var(--display); font-weight: 800; font-size: 15px;
+      color: var(--text); letter-spacing: -0.2px;
+    }
+    .brand-name span { color: var(--blue); }
+    .brand-sub {
+      font-family: var(--mono); font-size: 9px; color: var(--muted);
+      letter-spacing: 2.5px; text-transform: uppercase; margin-top: 1px;
+    }
+    .hamburger {
+      background: none; border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); width: 42px; height: 42px;
+      cursor: pointer; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 5px;
+      transition: all 0.2s; flex-shrink: 0;
+    }
+    .hamburger:hover { border-color: var(--blue); background: var(--blue-dim); }
+    .hamburger span {
+      display: block; width: 18px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .drawer-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .drawer-overlay.open { opacity: 1; pointer-events: all; }
+    .drawer {
+      position: fixed; top: 0; right: 0; width: min(320px,92vw);
+      height: 100vh; background: var(--surface);
+      border-left: 1px solid var(--border2); z-index: 1001;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      overflow-y: auto; display: flex; flex-direction: column;
+    }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head {
+      padding: 18px 16px 14px; border-bottom: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; background: var(--surface); z-index: 1;
+    }
+    .drawer-head h3 { font-family: var(--display); font-weight: 700; font-size: 14px; }
+    .drawer-close {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 26px; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.2s; border-radius: var(--radius-sm);
+    }
+    .drawer-close:hover { color: var(--rose); background: rgba(255,107,107,0.08); }
+    .drawer-lbl {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted);
+      padding: 16px 16px 8px;
+    }
+    .drawer-nav-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 8px; padding: 4px 12px 8px;
+    }
+    .drawer-nav-btn {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 6px; padding: 14px 6px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--display); font-size: 11.5px; font-weight: 600;
+      cursor: pointer; text-align: center; transition: all 0.2s;
+      text-decoration: none; line-height: 1.3; min-height: 76px;
+    }
+    .drawer-nav-btn .dni { font-size: 22px; }
+    .drawer-nav-btn:hover {
+      border-color: var(--blue); color: var(--blue);
+      background: var(--blue-dim); transform: translateY(-1px);
+    }
+    .drawer-action-list { display: flex; flex-direction: column; gap: 6px; padding: 4px 12px; }
+    .drawer-action-btn {
+      display: flex; align-items: center; gap: 10px; width: 100%;
+      padding: 12px 14px; background: var(--surface2);
+      border: 1px solid var(--border2); border-radius: var(--radius);
+      color: var(--text); font-family: var(--display); font-size: 12.5px;
+      font-weight: 600; cursor: pointer; text-align: left;
+      transition: all 0.18s;
+    }
+    .drawer-action-btn:hover { border-color: var(--blue); background: var(--blue-dim); color: var(--blue); }
+    .dab-icon { font-size: 18px; flex-shrink: 0; }
+    .dab-body { display: flex; flex-direction: column; gap: 2px; }
+    .dab-body strong { font-size: 12.5px; }
+    .dab-body span { font-size: 11px; color: var(--muted); font-family: var(--mono); font-weight: 400; }
+    .drawer-tag-wrap { display: flex; flex-wrap: wrap; gap: 7px; padding: 4px 12px 8px; }
+    .drawer-tag-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; background: var(--surface2);
+      border: 1px solid var(--border2); border-radius: 30px;
+      font-family: var(--mono); font-size: 11px; color: var(--muted2);
+      cursor: pointer; transition: all 0.18s; font-weight: 500;
+    }
+    .drawer-tag-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .tag-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .drawer-footer { padding: 10px 12px 28px; display: flex; flex-direction: column; gap: 8px; }
+    .drawer-cta {
+      width: 100%; padding: 13px 16px; border-radius: var(--radius);
+      font-family: var(--display); font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; display: flex;
+      align-items: center; justify-content: center; gap: 8px; border: none;
+    }
+    .drawer-cta.primary { background: var(--blue); color: var(--bg); }
+    .drawer-cta.primary:hover { background: #6aaeff; transform: translateY(-1px); }
+    .drawer-cta.secondary {
+      background: none; border: 1px solid var(--border2); color: var(--muted2);
+    }
+    .drawer-cta.secondary:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .drawer-divider { height: 1px; background: var(--border2); margin: 6px 12px; }
+
+    .page { padding-top: var(--nav-h); }
+
+    .back-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
+      padding: 10px 20px; background: var(--surface);
+      border-bottom: 1px solid var(--border2); font-size: 13px;
+    }
+    .back-banner p { color: var(--muted); font-family: var(--mono); font-size: 11.5px; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 16px; background: var(--surface2);
+      border: 1px solid var(--border2); border-radius: var(--radius-sm);
+      color: var(--blue); font-family: var(--display); font-size: 12.5px;
+      font-weight: 700; cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: var(--blue); color: var(--bg); border-color: var(--blue); }
+
+    .hero {
+      padding: 52px 20px 44px;
+      background: linear-gradient(160deg, var(--bg) 0%, #101525 55%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border2); position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(77,158,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 760px; position: relative; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue);
+      background: rgba(77,158,255,0.08); border: 1px solid rgba(77,158,255,0.2);
+      border-radius: 30px; padding: 5px 14px; margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(24px, 5vw, 42px); /* Adjusted to be smaller */
+      font-weight: 800; line-height: 1.1; color: var(--text); margin-bottom: 14px;
+    }
+    .hero h1 em { color: var(--blue); font-style: normal; }
+    .hero-desc {
+      color: var(--muted2); font-size: 15.5px; max-width: 600px;
+      margin-bottom: 24px; line-height: 1.75; text-align: justify;
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .pill {
+      font-family: var(--mono); font-size: 11.5px; padding: 5px 12px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 30px; color: var(--muted2); transition: all 0.18s;
+    }
+    .pill:hover { border-color: var(--blue); color: var(--blue); }
+
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue);
+      background: rgba(77,158,255,0.08); border: 1px solid rgba(77,158,255,0.18);
+      border-radius: 6px; padding: 4px 12px; margin-bottom: 12px;
+    }
+
+    .source-section { background: var(--code-bg); border-bottom: 1px solid var(--border2); }
+    .source-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; padding: 20px 20px 0;
+    }
+    .source-header h2 { font-family: var(--display); font-weight: 700; font-size: 19px; }
+    .source-header p { color: var(--muted); font-size: 13px; font-family: var(--mono); margin-top: 3px; }
+    .src-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .src-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 16px; background: var(--surface);
+      border: 1px solid var(--border2); border-radius: var(--radius-sm);
+      color: var(--muted2); font-family: var(--display); font-size: 12.5px;
+      font-weight: 700; cursor: pointer; transition: all 0.2s;
+    }
+    .src-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .code-file-tab {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 20px; background: var(--surface);
+      border-bottom: 1px solid var(--border2); border-top: 1px solid var(--border2);
+      margin-top: 14px; overflow-x: auto;
+    }
+    .file-tab {
+      font-family: var(--mono); font-size: 12px; color: var(--blue);
+      padding: 5px 14px; background: var(--surface2);
+      border: 1px solid rgba(77,158,255,0.25); border-radius: 6px;
+    }
+    .code-dots { display: flex; gap: 5px; margin-left: auto; flex-shrink: 0; }
+    .dot-r { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
+    .dot-y { width: 10px; height: 10px; border-radius: 50%; background: #febc2e; }
+    .dot-g { width: 10px; height: 10px; border-radius: 50%; background: #28c840; }
+    pre.source {
+      padding: 24px 20px 28px; overflow-x: auto;
+      font-family: var(--mono); font-size: clamp(12px,2.6vw,14px);
+      line-height: 1.85; tab-size: 4; color: #c9d3e8;
+    }
+    .ln {
+      display: inline-block; width: 30px; text-align: right;
+      color: #2a3550; user-select: none; margin-right: 14px; font-size: 11px;
+    }
+
+    .kw { color: #60a5fa; }
+    .fn { color: #a5f3fc; }
+    .cl { color: #93c5fd; }
+    .st { color: #bfdbfe; }
+    .dc { color: #4b5e8a; font-style: italic; }
+    .nm { color: #fbbf24; }
+    .op { color: #818cf8; }
+    .sf { color: #67e8f9; }
+    .bi { color: #a5f3fc; }
+    .cm { color: #3d4f74; font-style: italic; }
+
+    .content-section { padding: 48px 0; border-bottom: 1px solid var(--border2); }
+    .section-title {
+      font-family: var(--display); font-size: clamp(22px,4.5vw,30px);
+      font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.2;
+    }
+    .section-desc {
+      color: var(--muted2); font-size: 14.5px; margin-bottom: 28px;
+      max-width: 560px; text-align: justify; line-height: 1.75;
+    }
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 16px; }
+    .content-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); overflow: hidden; transition: all 0.22s;
+    }
+    .content-card:hover { border-color: rgba(77,158,255,0.3); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .cc-thumb {
+      height: 72px; display: flex; align-items: center;
+      justify-content: center; font-size: 28px;
+    }
+    .cc-body { padding: 16px 18px 20px; }
+    .cc-tag { font-family: var(--mono); font-size: 10.5px; font-weight: 600; margin-bottom: 6px; letter-spacing: 0.5px; }
+    .cc-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+    .cc-desc { color: var(--muted2); font-size: 13.5px; line-height: 1.65; margin-bottom: 14px; text-align: justify; }
+    .cc-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--display); font-size: 12.5px; font-weight: 700;
+      color: var(--blue); background: none; border: none; cursor: pointer;
+      padding: 0; transition: gap 0.2s;
+    }
+    .cc-link:hover { gap: 8px; }
+
+    .exp-section {
+      padding: 44px 0; border-bottom: 1px solid var(--border2);
+    }
+    .exp-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .exp-num {
+      font-family: var(--mono); font-size: 10.5px; color: var(--blue);
+      background: rgba(77,158,255,0.08); border: 1px solid rgba(77,158,255,0.2);
+      border-radius: 6px; padding: 4px 12px; white-space: nowrap; margin-top: 3px;
+    }
+    .exp-title {
+      font-family: var(--display); font-size: clamp(18px,3.8vw,24px);
+      font-weight: 700; color: var(--text); line-height: 1.2;
+    }
+    .exp-title .mono { font-family: var(--mono); color: var(--blue); font-size: 0.88em; }
+    .sub-h {
+      font-family: var(--display); font-size: 13.5px; font-weight: 700;
+      color: var(--blue); text-transform: uppercase; letter-spacing: 1px;
+      margin: 20px 0 10px;
+    }
+    .explain-text {
+      color: var(--muted2); font-size: 15px; line-height: 1.8;
+      margin: 8px 0; text-align: justify;
+    }
+    .explain-text strong { color: var(--text); }
+    .explain-text code, code {
+      font-family: var(--mono); font-size: 0.87em;
+      background: var(--surface2); border: 1px solid var(--border2);
+      color: var(--blue); padding: 1px 6px; border-radius: 4px;
+    }
+
+    .mini-code {
+      background: var(--code-bg); border: 1px solid var(--border2);
+      border-radius: var(--radius); overflow: hidden; margin: 18px 0;
+    }
+    .mini-code-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 14px; background: var(--surface);
+      border-bottom: 1px solid var(--border2);
+    }
+    .lang { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .mini-code pre {
+      padding: 16px 18px; font-family: var(--mono);
+      font-size: clamp(11.5px,2.5vw,13.5px); line-height: 1.8;
+      overflow-x: auto; white-space: pre-wrap; word-break: break-word;
+      color: #c9d3e8;
+    }
+
+    .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; border-radius: var(--radius); border: 1px solid var(--border2); }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    thead tr { background: var(--surface2); }
+    thead th { padding: 11px 14px; text-align: left; font-family: var(--display); font-weight: 700; font-size: 12px; color: var(--blue); letter-spacing: 0.5px; white-space: nowrap; }
+    tbody td { padding: 10px 14px; border-top: 1px solid var(--border2); color: var(--muted2); line-height: 1.6; }
+    tbody tr:hover td { background: var(--surface2); color: var(--text); }
+    tbody td:first-child { font-family: var(--mono); font-size: 12.5px; color: var(--text); }
+
+    .info-box {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-left: 3px solid var(--blue); border-radius: var(--radius);
+      padding: 16px 18px; margin: 16px 0;
+    }
+    .info-box.warn { border-left-color: var(--gold); }
+    .info-box.tip { border-left-color: var(--green); }
+    .ib-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .info-box > div { flex: 1; }
+    .info-box strong { font-family: var(--display); font-weight: 700; color: var(--text); display: block; margin-bottom: 5px; font-size: 14px; }
+    .info-box p { color: var(--muted2); font-size: 13.5px; line-height: 1.7; text-align: justify; margin-top: 4px; }
+
+    .flow { display: flex; flex-direction: column; margin: 20px 0; }
+    .flow-step { display: flex; gap: 14px; }
+    .flow-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .flow-circle {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--blue-dim); border: 1.5px solid var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--blue);
+      flex-shrink: 0;
+    }
+    .flow-vline { flex: 1; width: 1.5px; background: var(--border2); margin: 4px 0; min-height: 20px; }
+    .flow-content { padding: 4px 0 20px; }
+    .flow-label { font-family: var(--display); font-weight: 700; color: var(--text); font-size: 14px; margin-bottom: 3px; }
+    .flow-desc { color: var(--muted2); font-size: 13px; font-family: var(--mono); }
+
+    .layer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+    @media(max-width:540px) { .layer-grid { grid-template-columns: 1fr; } }
+    .layer-card {
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 18px;
+    }
+    .lc-num { font-family: var(--mono); font-size: 10px; color: var(--blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .lc-title { font-family: var(--display); font-weight: 700; color: var(--text); font-size: 14px; margin-bottom: 8px; }
+    .layer-card p { color: var(--muted2); font-size: 13px; line-height: 1.65; text-align: justify; }
+
+    .takeaways-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 14px; margin: 20px 0 8px; }
+    .takeaway-card {
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 20px 18px; transition: all 0.2s;
+    }
+    .takeaway-card:hover { border-color: rgba(77,158,255,0.35); transform: translateY(-2px); }
+    .tk-emoji { font-size: 26px; margin-bottom: 10px; display: block; }
+    .takeaway-card h4 { font-family: var(--display); font-weight: 700; font-size: 14.5px; margin-bottom: 7px; color: var(--text); line-height: 1.3; }
+    .takeaway-card p { color: var(--muted2); font-size: 13px; line-height: 1.65; text-align: justify; }
+
+    .highlight-cards { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 16px; margin-top: 24px; }
+    .highlight-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 22px 20px; transition: all 0.22s;
+    }
+    .highlight-card:hover { border-color: rgba(77,158,255,0.3); transform: translateY(-2px); }
+    .hc-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; }
+    .hc-title { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+    .hc-desc { color: var(--muted2); font-size: 13.5px; line-height: 1.65; margin-bottom: 12px; text-align: justify; }
+    .hc-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .hc-list li { color: var(--muted2); font-size: 13px; padding-left: 14px; position: relative; text-align: justify; line-height: 1.6; }
+    .hc-list li::before { content: '›'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+    .quiz-section { padding: 48px 0; border-bottom: 1px solid var(--border2); }
+    .quiz-grid { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+    .quiz-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s;
+    }
+    .quiz-q {
+      padding: 16px 18px; font-family: var(--display); font-weight: 700;
+      font-size: 14.5px; color: var(--text); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      transition: background 0.2s;
+    }
+    .quiz-q:hover { background: var(--surface2); }
+    .quiz-arrow { color: var(--blue); font-size: 18px; flex-shrink: 0; transition: transform 0.3s; }
+    .quiz-card.open .quiz-arrow { transform: rotate(90deg); }
+    .quiz-a {
+      display: none; padding: 0 18px 18px;
+      color: var(--muted2); font-size: 14px; line-height: 1.75; text-align: justify;
+    }
+    .quiz-card.open .quiz-a { display: block; }
+    .quiz-a code { font-family: var(--mono); font-size: 0.87em; background: var(--surface2); border: 1px solid var(--border2); color: var(--blue); padding: 1px 6px; border-radius: 4px; }
+    .quiz-a strong { color: var(--text); }
+
+    .mistake-grid { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+    .mistake-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .mistake-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 18px; background: var(--surface2);
+      border-bottom: 1px solid var(--border2);
+    }
+    .mistake-badge {
+      font-family: var(--mono); font-size: 10px; padding: 3px 10px;
+      border-radius: 30px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .mb-wrong { background: rgba(255,107,107,0.1); color: var(--rose); border: 1px solid rgba(255,107,107,0.2); }
+    .mb-right { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+    .mistake-title { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); }
+    .mistake-body { padding: 16px 18px; }
+    .mistake-body p { color: var(--muted2); font-size: 13.5px; margin-bottom: 12px; line-height: 1.7; text-align: justify; }
+    .vs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media(max-width:520px) { .vs-row { grid-template-columns: 1fr; } }
+    .vs-block { border-radius: var(--radius-sm); overflow: hidden; }
+    .vs-label {
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 12px; font-family: var(--mono); font-size: 10px;
+      font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .vs-wrong-label { background: rgba(255,107,107,0.12); color: var(--rose); }
+    .vs-right-label { background: rgba(74,222,128,0.1); color: var(--green); }
+    .vs-code {
+      padding: 12px 14px; background: var(--code-bg);
+      font-family: var(--mono); font-size: clamp(11px,2.3vw,13px);
+      line-height: 1.75; overflow-x: auto; white-space: pre-wrap; word-break: break-word;
+      color: #c9d3e8;
+    }
+
+    .cheatsheet { margin-top: 24px; }
+    .cs-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px;
+    }
+    @media(max-width:620px) { .cs-row { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:420px) { .cs-row { grid-template-columns: 1fr; } }
+    .cs-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 16px 16px 14px;
+      transition: border-color 0.2s;
+    }
+    .cs-card:hover { border-color: rgba(77,158,255,0.3); }
+    .cs-concept { font-family: var(--mono); font-size: 10px; color: var(--blue); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+    .cs-code {
+      background: var(--code-bg); border-radius: 6px;
+      padding: 8px 10px; font-family: var(--mono);
+      font-size: clamp(10.5px,2vw,12.5px); line-height: 1.7;
+      overflow-x: auto; white-space: pre-wrap; word-break: break-word;
+      color: #bfd0e8; margin-bottom: 8px;
+    }
+    .cs-note { color: var(--muted); font-size: 12px; line-height: 1.55; }
+
+    .share-section { padding: 48px 0; border-bottom: 1px solid var(--border2); }
+    .share-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 14px; margin-top: 24px; }
+    .share-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 20px 18px; transition: all 0.22s;
+    }
+    .share-card:hover { border-color: rgba(77,158,255,0.3); transform: translateY(-2px); }
+    .share-card-icon { font-size: 26px; margin-bottom: 10px; }
+    .share-card h4 { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 5px; }
+    .share-card p { color: var(--muted2); font-size: 12.5px; margin-bottom: 14px; line-height: 1.5; }
+    .share-btn {
+      width: 100%; padding: 10px 12px; border: 1px solid rgba(77,158,255,0.25);
+      border-radius: var(--radius-sm); background: var(--blue-dim); color: var(--blue);
+      font-family: var(--display); font-size: 12.5px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; display: flex;
+      align-items: center; justify-content: center; gap: 6px;
+    }
+    .share-btn:hover { background: var(--blue); color: var(--bg); border-color: var(--blue); }
+    .ai-caption-box {
+      margin-top: 24px; background: var(--surface2);
+      border: 1px solid rgba(77,158,255,0.2); border-radius: var(--radius); overflow: hidden;
+    }
+    .ai-caption-head {
+      padding: 12px 18px; background: var(--surface);
+      border-bottom: 1px solid var(--border2);
+      font-family: var(--mono); font-size: 10px; color: var(--blue);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .ai-caption-text {
+      padding: 18px; color: var(--text); font-size: 14px;
+      line-height: 1.8; white-space: pre-line; min-height: 80px;
+    }
+    .ai-caption-actions {
+      display: flex; gap: 10px; padding: 12px 18px;
+      border-top: 1px solid var(--border2); flex-wrap: wrap;
+    }
+    .cap-btn {
+      padding: 8px 16px; border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); background: none; color: var(--muted2);
+      font-family: var(--display); font-size: 12.5px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .cap-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .cap-btn.active { background: var(--blue); color: var(--bg); border-color: var(--blue); }
+
+    .comments-section { padding: 48px 0; border-bottom: 1px solid var(--border2); }
+    .comment-form {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 24px 22px; margin-bottom: 32px;
+    }
+    .comment-form h3 { font-family: var(--display); font-weight: 700; font-size: 16px; margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    @media(max-width:520px) { .form-row { grid-template-columns: 1fr; } }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field label { font-family: var(--display); font-size: 12px; font-weight: 700; color: var(--muted2); letter-spacing: 0.5px; }
+    .form-field input, .form-field textarea, .form-field select {
+      width: 100%; padding: 11px 14px; font-size: 15px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-family: var(--body); transition: border-color 0.2s; outline: none;
+    }
+    .form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-color: var(--blue); }
+    .form-field textarea { min-height: 110px; resize: vertical; line-height: 1.6; }
+    .form-field select { cursor: pointer; }
+    .submit-btn {
+      margin-top: 16px; width: 100%; padding: 13px; border: none;
+      border-radius: var(--radius-sm); background: var(--blue); color: var(--bg);
+      font-family: var(--display); font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; display: flex;
+      align-items: center; justify-content: center; gap: 7px;
+    }
+    .submit-btn:hover { background: #6aaeff; transform: translateY(-1px); }
+    .comments-count-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; flex-wrap: wrap; gap: 10px;
+    }
+    .comments-count-bar h3 { font-family: var(--display); font-size: 15px; font-weight: 700; }
+    .sort-select {
+      padding: 7px 12px; background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--muted2);
+      font-family: var(--mono); font-size: 12px; cursor: pointer; outline: none;
+    }
+    .comment-item { padding: 20px 0; border-bottom: 1px solid var(--border2); }
+    .comment-item:last-child { border-bottom: none; }
+    .comment-header { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+    .comment-avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display); font-size: 13px; font-weight: 800;
+    }
+    .comment-meta { flex: 1; }
+    .comment-meta strong { font-family: var(--display); font-size: 14px; color: var(--text); display: block; }
+    .comment-meta span { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .comment-badge {
+      font-family: var(--mono); font-size: 10px; padding: 2px 8px;
+      border-radius: 30px; margin-left: 7px; font-weight: 600;
+    }
+    .comment-body { color: var(--muted2); font-size: 14px; line-height: 1.75; margin-bottom: 12px; text-align: justify; }
+    .comment-body code { font-family: var(--mono); font-size: 0.87em; background: var(--surface2); border: 1px solid var(--border2); color: var(--blue); padding: 1px 6px; border-radius: 4px; }
+    .comment-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .comment-act-btn {
+      padding: 6px 14px; background: none; border: 1px solid var(--border2);
+      border-radius: 30px; color: var(--muted); font-family: var(--mono);
+      font-size: 12px; cursor: pointer; transition: all 0.18s;
+    }
+    .comment-act-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .comment-act-btn.liked { color: var(--rose); border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.05); }
+
+    .sub-section {
+      padding: 56px 0; border-bottom: 1px solid var(--border2);
+      background: linear-gradient(160deg, var(--bg) 0%, #0e1620 100%);
+      text-align: center;
+    }
+    .sub-section h2 { font-family: var(--display); font-size: clamp(24px,5vw,36px); font-weight: 800; margin-bottom: 10px; line-height: 1.2; }
+    .sub-section h2 span { color: var(--blue); }
+    .sub-section > .wrap > p { color: var(--muted2); font-size: 15px; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; text-align: center; }
+    .sub-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto 20px; flex-wrap: wrap; }
+    .sub-form input {
+      flex: 1; min-width: 200px; padding: 13px 16px;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-family: var(--body); font-size: 14.5px; outline: none; transition: border-color 0.2s;
+    }
+    .sub-form input:focus { border-color: var(--blue); }
+    .sub-form button {
+      padding: 13px 22px; background: var(--blue); border: none;
+      border-radius: var(--radius-sm); color: var(--bg);
+      font-family: var(--display); font-size: 13.5px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .sub-form button:hover { background: #6aaeff; transform: translateY(-1px); }
+    .sub-perks { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .sub-perk {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 30px; padding: 5px 13px;
+    }
+
+    .extend-section { padding: 48px 0; border-bottom: 1px solid var(--border2); }
+    .extend-btn {
+      margin-top: 12px; padding: 9px 16px; border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); background: none; color: var(--blue);
+      font-family: var(--display); font-size: 12.5px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .extend-btn:hover { background: var(--blue); color: var(--bg); border-color: var(--blue); }
+
+    .more-section { padding: 48px 0; border-bottom: 1px solid var(--border2); }
+
+    .outro-section {
+      padding: 48px 0; border-bottom: 1px solid var(--border2);
+      background: linear-gradient(160deg, var(--bg) 0%, #0f1320 100%);
+    }
+    .outro-box {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-left: 3px solid var(--blue); border-radius: var(--radius);
+      padding: 24px 22px;
+    }
+    .outro-box p { color: var(--muted2); font-size: 15px; line-height: 1.8; text-align: justify; margin-bottom: 14px; }
+    .outro-box p:last-child { margin-bottom: 0; }
+    .outro-box strong { color: var(--text); }
+    .outro-cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .outro-btn {
+      padding: 11px 18px; border-radius: var(--radius-sm);
+      font-family: var(--display); font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; border: 1px solid var(--border2);
+      background: none; color: var(--muted2); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .outro-btn.primary { background: var(--blue); color: var(--bg); border-color: var(--blue); }
+    .outro-btn.primary:hover { background: #6aaeff; }
+    .outro-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .outro-btn.primary:hover { color: var(--bg); }
+
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border2);
+      padding: 48px 20px 28px;
+    }
+    .footer-grid {
+      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px;
+      text-align: center;
+    }
+    .footer-brand-name {
+      font-family: var(--display); font-weight: 800; font-size: 18px; margin-bottom: 10px;
+    }
+    .footer-brand-name span { color: var(--blue); }
+    .footer-brand-desc { color: var(--muted2); font-size: 13.5px; line-height: 1.7; margin-bottom: 18px; text-align: center; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .footer-socials { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .social-btn {
+      padding: 8px 14px; background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--muted2);
+      font-family: var(--display); font-size: 12px; font-weight: 700;
+      cursor: pointer; transition: all 0.18s;
+    }
+    .social-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .footer-col h4 {
+      font-family: var(--display); font-weight: 700; font-size: 12px; color: var(--blue);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 6px; max-width: 380px; margin: 0 auto; }
+    .footer-link-btn {
+      display: flex; align-items: center; gap: 8px; width: 100%;
+      padding: 9px 12px; background: none; border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--muted2);
+      font-family: var(--display); font-size: 12.5px; font-weight: 600;
+      cursor: pointer; text-align: left; transition: all 0.18s;
+    }
+    .footer-link-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .flb-icon { font-size: 14px; flex-shrink: 0; }
+
+    .follow-col h4 {
+      font-family: var(--display); font-weight: 700; font-size: 12px; color: var(--blue);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;
+    }
+    .follow-links { display: flex; flex-direction: column; gap: 8px; max-width: 380px; margin: 0 auto; }
+    .follow-btn {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 11px 14px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--muted2);
+      font-family: var(--display); font-size: 12.5px; font-weight: 700;
+      cursor: pointer; text-align: left; text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+      position: relative; overflow: hidden;
+    }
+    .follow-btn::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; border-radius: 0 2px 2px 0;
+      transform: scaleY(0); transition: transform 0.2s;
+    }
+    .follow-btn:hover { color: #fff; transform: translateX(3px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+    .follow-btn:hover::before { transform: scaleY(1); }
+
+    .follow-btn.fb::before  { background: #1877f2; }
+    .follow-btn.li::before  { background: #0a66c2; }
+    .follow-btn.tw::before  { background: #e7e7e7; }
+    .follow-btn.yt::before  { background: #ff0000; }
+
+    .follow-btn.fb:hover { background: rgba(24,119,242,0.18); border-color: rgba(24,119,242,0.5); }
+    .follow-btn.li:hover { background: rgba(10,102,194,0.18); border-color: rgba(10,102,194,0.5); }
+    .follow-btn.tw:hover { background: rgba(231,231,231,0.1);  border-color: rgba(231,231,231,0.3); }
+    .follow-btn.yt:hover { background: rgba(255,0,0,0.15);    border-color: rgba(255,0,0,0.45); }
+
+    .follow-btn svg { flex-shrink: 0; width: 16px; height: 16px; }
+    .follow-btn-text { flex: 1; }
+    .follow-btn-arrow {
+      font-size: 16px; opacity: 0; transform: translateX(-4px);
+      transition: all 0.18s; color: var(--blue);
+    }
+    .follow-btn:hover .follow-btn-arrow { opacity: 1; transform: translateX(0); }
+    .footer-bottom {
+      max-width: 1060px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      border-top: 1px solid var(--border2); padding-top: 24px;
+    }
+    .footer-copy { text-align: center; }
+    .footer-copy p { color: var(--muted); font-size: 12.5px; font-family: var(--mono); margin-bottom: 3px; }
+    .footer-legal { display: flex; flex-direction: column; gap: 7px; width: 100%; max-width: 380px; }
+    .fb-btn {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 9px 14px; background: none; border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--muted2);
+      font-family: var(--display); font-size: 12.5px; font-weight: 700;
+      cursor: pointer; transition: all 0.18s; text-decoration: none;
+      white-space: nowrap; width: 100%;
+    }
+    .fb-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+    .fb-btn.accent { background: var(--blue-dim); border-color: rgba(77,158,255,0.3); color: var(--blue); }
+    .fb-btn.accent:hover { background: var(--blue); color: var(--bg); }
+
+    @media(max-width:480px) {
+      .wrap { padding: 0 16px; }
+      .hero { padding: 40px 16px 34px; }
+      .hero-desc, .section-desc, .explain-text, .outro-box p { text-align: left; }
+      .footer-brand-desc { text-align: left; }
+      .content-section, .exp-section, .quiz-section, .share-section,
+      .comments-section, .extend-section, .more-section, .outro-section { padding: 36px 0; }
+      .source-header { padding: 16px 16px 0; }
+      .code-file-tab { padding: 10px 16px; }
+      pre.source { padding: 18px 16px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+<div class="toast" id="toast"></div>
+<button class="btt" id="btt" title="Back to top">↑</button>
+
+<nav class="navbar">
+  <a class="brand" href="#top">
+    <div class="brand-icon">🌸</div>
+    <div>
+      <div class="brand-name">Poetic <span>Bytes</span></div>
+      <div class="brand-sub">Dev Learning</div>
+    </div>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>🌸 Poetic Bytes</h3>
+    <button class="drawer-close" id="drawerClose">&times;</button>
+  </div>
+
+  <div class="drawer-lbl">Navigate</div>
+  <div class="drawer-nav-grid">
+    <a class="drawer-nav-btn" href="#full-source" onclick="closeDrawer()"><span class="dni">💻</span>Source Code</a>
+    <a class="drawer-nav-btn" href="#explanation" onclick="closeDrawer()"><span class="dni">📖</span>Explanation</a>
+    <a class="drawer-nav-btn" href="#quiz-section" onclick="closeDrawer()"><span class="dni">🧠</span>Quiz</a>
+    <a class="drawer-nav-btn" href="#mistakes-section" onclick="closeDrawer()"><span class="dni">⚠️</span>Mistakes</a>
+    <a class="drawer-nav-btn" href="#cheatsheet-section" onclick="closeDrawer()"><span class="dni">📋</span>Cheatsheet</a>
+    <a class="drawer-nav-btn" href="#share-section" onclick="closeDrawer()"><span class="dni">🤖</span>AI Share</a>
+    <a class="drawer-nav-btn" href="#comments-section" onclick="closeDrawer()"><span class="dni">💬</span>Comments</a>
+    <a class="drawer-nav-btn" href="#subscribe" onclick="closeDrawer()"><span class="dni">📬</span>Subscribe</a>
+  </div>
+
+  <div class="drawer-divider"></div>
+  <div class="drawer-lbl">Quick Actions</div>
+  <div class="drawer-action-list">
+    <button class="drawer-action-btn" onclick="copyCode(); closeDrawer()">
+      <span class="dab-icon">📋</span>
+      <div class="dab-body"><strong>Copy Source Code</strong><span>Copy full Python program</span></div>
+    </button>
+    <button class="drawer-action-btn" onclick="downloadCode(); closeDrawer()">
+      <span class="dab-icon">⬇️</span>
+      <div class="dab-body"><strong>Download .py File</strong><span>Save flower_shop.py locally</span></div>
+    </button>
+    <button class="drawer-action-btn" onclick="generateAICaption('twitter'); closeDrawer()">
+      <span class="dab-icon">✨</span>
+      <div class="dab-body"><strong>Generate AI Caption</strong><span>Create a shareable social post</span></div>
+    </button>
+  </div>
+
+  <div class="drawer-divider"></div>
+  <div class="drawer-lbl">Browse by Topic</div>
+  <div class="drawer-tag-wrap">
+    <button class="drawer-tag-btn" onclick="showToast('📘 OOP & Classes selected'); closeDrawer()"><span class="tag-dot"></span>OOP &amp; Classes</button>
+    <button class="drawer-tag-btn" onclick="showToast('🐍 Python Basics selected'); closeDrawer()"><span class="tag-dot" style="background:var(--violet)"></span>Python Basics</button>
+    <button class="drawer-tag-btn" onclick="showToast('🛡️ Input Validation selected'); closeDrawer()"><span class="tag-dot" style="background:var(--rose)"></span>Validation</button>
+    <button class="drawer-tag-btn" onclick="showToast('📚 Dictionaries selected'); closeDrawer()"><span class="tag-dot" style="background:var(--gold)"></span>Dictionaries</button>
+    <button class="drawer-tag-btn" onclick="showToast('🇵🇭 Philippine Tech selected'); closeDrawer()"><span class="tag-dot" style="background:#ff8c42"></span>🇵🇭 PH Tech</button>
+    <button class="drawer-tag-btn" onclick="showToast('🌱 Beginners selected'); closeDrawer()"><span class="tag-dot" style="background:#6eb5ff"></span>Beginners</button>
+  </div>
+
+  <div class="drawer-footer">
+    <button class="drawer-cta primary" onclick="document.getElementById('sub-email').focus(); closeDrawer()">📬 Subscribe to Newsletter</button>
+    <button class="drawer-cta secondary" onclick="showToast('⭐ Opening GitHub…'); closeDrawer()">⭐ Star on GitHub</button>
+  </div>
+</div>
+
+<div class="page" id="top">
+
+  <div class="back-banner">
+    <p>📦 Part of the Encapsulation series</p>
+    <a class="back-btn" href="encapsulation.html">← Back to Encapsulation Hub</a>
+  </div>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">🐍 Python OOP Tutorial</div>
+      <h1>FlowerShop Program<br><em>Fully Explained</em></h1>
+      <p class="hero-desc">A complete, line-by-line walkthrough of a Python OOP program — every method, every decision, every concept clarified from the ground up. Built with Philippine Pesos and real-world patterns you'll use in production.</p>
+      <div class="pills">
+        <span class="pill">class</span>
+        <span class="pill">__init__</span>
+        <span class="pill">while True</span>
+        <span class="pill">try / except</span>
+        <span class="pill">f-strings</span>
+        <span class="pill">dict</span>
+        <span class="pill">self</span>
+        <span class="pill">PHP ₱</span>
+        <span class="pill">OOP</span>
+        <span class="pill">__name__</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section" id="intro-section">
+    <div class="wrap">
+      <div class="badge">👋 Before We Start</div>
+      <h2 class="section-title">Introduction</h2>
+      <p class="explain-text">If you have ever wondered how a single Python file can feel organized, predictable, and easy to extend, this tutorial exists to answer that question with a real, working example instead of an abstract explanation. <strong>FlowerShop</strong> is a small command-line program, but it was deliberately written to demonstrate the habits that separate a beginner script from a maintainable Python module.</p>
+      <p class="explain-text">Here is what you are about to walk through: a single class that owns its own inventory, three separate methods dedicated to gathering safe user input, one method dedicated purely to calculation, and one orchestrator method that ties everything together. Every design decision in this file exists for a reason, and this page unpacks each one — line by line, concept by concept — so that by the end, you are not just able to read this program, you are able to write your own version of it from scratch.</p>
+      <p class="explain-text">This tutorial is built for three kinds of readers: complete beginners who have just learned what a Python class is and want to see one used properly; intermediate learners who already write functions comfortably but want to understand why OOP structure matters; and self-taught developers preparing for their first real project who want a template they can trust. Prices are shown in Philippine Pesos (₱) to keep the example grounded in something real, but every pattern here — input validation, exception handling, single-responsibility methods — applies no matter what country, currency, or industry you are building for.</p>
+      <div class="info-box tip">
+        <span class="ib-icon">🧭</span>
+        <div><strong>How to use this page</strong><p>Start with the full source code below to get a feel for the whole program at once. Then scroll through the explanation section, where every method is broken down individually. Finish with the quiz and common-mistakes sections to confirm the concepts have actually stuck, not just been read.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-section" id="full-source">
+    <div class="source-header">
+      <div>
+        <h2>📄 Full Source Code</h2>
+        <p>Complete, syntax-highlighted Python — copy or download below</p>
+      </div>
+      <div class="src-actions">
+        <button class="src-btn" onclick="copyCode()">📋 Copy</button>
+        <button class="src-btn" onclick="downloadCode()">⬇ Download</button>
+      </div>
+    </div>
+    <div class="code-file-tab">
+      <div class="file-tab">flower_shop.py</div>
+      <div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+    </div>
+<pre class="source" id="source-code"><span class="ln">1</span> <span class="kw">class</span> <span class="cl">FlowerShop</span><span class="op">:</span>
+<span class="ln">2</span>     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="sf">self</span>)<span class="op">:</span>
+<span class="ln">3</span>         <span class="sf">self</span>.flowers <span class="op">=</span> {
+<span class="ln">4</span>             <span class="st">"Rose"</span><span class="op">:</span>      <span class="nm">50.00</span>,
+<span class="ln">5</span>             <span class="st">"Tulip"</span><span class="op">:</span>     <span class="nm">40.00</span>,
+<span class="ln">6</span>             <span class="st">"Orchid"</span><span class="op">:</span>    <span class="nm">60.00</span>,
+<span class="ln">7</span>             <span class="st">"Sunflower"</span><span class="op">:</span> <span class="nm">30.00</span>,
+<span class="ln">8</span>             <span class="st">"Lily"</span><span class="op">:</span>      <span class="nm">55.00</span>
+<span class="ln">9</span>         }
+<span class="ln">10</span>
+<span class="ln">11</span>     <span class="kw">def</span> <span class="fn">display_available_flowers</span>(<span class="sf">self</span>)<span class="op">:</span>
+<span class="ln">12</span>         <span class="dc">"""Display the list of available flowers with their prices."""</span>
+<span class="ln">13</span>         <span class="bi">print</span>(<span class="st">"Available Flowers in the Shop:"</span>)
+<span class="ln">14</span>         <span class="kw">for</span> flower, price <span class="kw">in</span> <span class="sf">self</span>.flowers.<span class="fn">items</span>()<span class="op">:</span>
+<span class="ln">15</span>             <span class="bi">print</span>(<span class="st">f"</span>{flower}<span class="st">: PHP </span>{price<span class="op">:</span>.2f}<span class="st"> per stem"</span>)
+<span class="ln">16</span>
+<span class="ln">17</span>     <span class="kw">def</span> <span class="fn">get_chosen_flower</span>(<span class="sf">self</span>)<span class="op">:</span>
+<span class="ln">18</span>         <span class="dc">"""Prompt the user to choose a flower from the available list."""</span>
+<span class="ln">19</span>         <span class="kw">while</span> <span class="bi">True</span><span class="op">:</span>
+<span class="ln">20</span>             chosen_flower <span class="op">=</span> <span class="bi">input</span>(<span class="st">"Enter the flower name: "</span>).<span class="fn">strip</span>().<span class="fn">title</span>()
+<span class="ln">21</span>             <span class="kw">if</span> chosen_flower <span class="kw">in</span> <span class="sf">self</span>.flowers<span class="op">:</span>
+<span class="ln">22</span>                 <span class="kw">return</span> chosen_flower
+<span class="ln">23</span>             <span class="kw">else</span><span class="op">:</span>
+<span class="ln">24</span>                 <span class="bi">print</span>(<span class="st">"Invalid flower. Please choose from the list."</span>)
+<span class="ln">25</span>
+<span class="ln">26</span>     <span class="kw">def</span> <span class="fn">get_quantity</span>(<span class="sf">self</span>)<span class="op">:</span>
+<span class="ln">27</span>         <span class="dc">"""Prompt the user to enter the quantity of flowers."""</span>
+<span class="ln">28</span>         <span class="kw">while</span> <span class="bi">True</span><span class="op">:</span>
+<span class="ln">29</span>             <span class="kw">try</span><span class="op">:</span>
+<span class="ln">30</span>                 quantity <span class="op">=</span> <span class="bi">int</span>(<span class="bi">input</span>(<span class="st">"Enter the quantity: "</span>))
+<span class="ln">31</span>                 <span class="kw">if</span> quantity <span class="op">&gt;</span> <span class="nm">0</span><span class="op">:</span>
+<span class="ln">32</span>                     <span class="kw">return</span> quantity
+<span class="ln">33</span>                 <span class="kw">else</span><span class="op">:</span>
+<span class="ln">34</span>                     <span class="bi">print</span>(<span class="st">"Quantity must be a positive integer."</span>)
+<span class="ln">35</span>             <span class="kw">except</span> <span class="bi">ValueError</span><span class="op">:</span>
+<span class="ln">36</span>                 <span class="bi">print</span>(<span class="st">"Invalid input. Please enter a positive integer."</span>)
+<span class="ln">37</span>
+<span class="ln">38</span>     <span class="kw">def</span> <span class="fn">calculate_total_cost</span>(<span class="sf">self</span>, flower, quantity)<span class="op">:</span>
+<span class="ln">39</span>         <span class="dc">"""Calculate and return total cost based on flower and quantity."""</span>
+<span class="ln">40</span>         price_per_stem <span class="op">=</span> <span class="sf">self</span>.flowers[flower]
+<span class="ln">41</span>         total_cost <span class="op">=</span> price_per_stem <span class="op">*</span> quantity
+<span class="ln">42</span>         <span class="kw">return</span> total_cost
+<span class="ln">43</span>
+<span class="ln">44</span>     <span class="kw">def</span> <span class="fn">run</span>(<span class="sf">self</span>)<span class="op">:</span>
+<span class="ln">45</span>         <span class="dc">"""Main method to run the flower shop program."""</span>
+<span class="ln">46</span>         <span class="sf">self</span>.<span class="fn">display_available_flowers</span>()
+<span class="ln">47</span>         chosen_flower <span class="op">=</span> <span class="sf">self</span>.<span class="fn">get_chosen_flower</span>()
+<span class="ln">48</span>         quantity <span class="op">=</span> <span class="sf">self</span>.<span class="fn">get_quantity</span>()
+<span class="ln">49</span>         total_cost <span class="op">=</span> <span class="sf">self</span>.<span class="fn">calculate_total_cost</span>(chosen_flower, quantity)
+<span class="ln">50</span>         <span class="bi">print</span>(<span class="st">f"\nChosen Flower: </span>{chosen_flower}<span class="st">"</span>)
+<span class="ln">51</span>         <span class="bi">print</span>(<span class="st">f"Quantity: </span>{quantity}<span class="st">"</span>)
+<span class="ln">52</span>         <span class="bi">print</span>(<span class="st">f"Total Cost: PHP </span>{total_cost<span class="op">:</span>.2f}<span class="st">"</span>)
+<span class="ln">53</span>
+<span class="ln">54</span> <span class="kw">if</span> <span class="fn">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span><span class="op">:</span>
+<span class="ln">55</span>     shop <span class="op">=</span> <span class="cl">FlowerShop</span>()
+<span class="ln">56</span>     shop.<span class="fn">run</span>()</pre>
+  </div>
+
+  <div class="content-section">
+    <div class="wrap">
+      <div class="badge">💡 About This Program</div>
+      <h2 class="section-title">What You'll Learn</h2>
+      <p class="section-desc">This program is a gateway into real-world Python concepts. Here's why it matters for every beginner learning OOP.</p>
+      <div class="content-grid">
+        <div class="content-card">
+          <div class="cc-thumb" style="background:linear-gradient(135deg,#0e1a2e,#131a2a);">🏗️</div>
+          <div class="cc-body">
+            <div class="cc-tag" style="color:var(--blue)">Foundation</div>
+            <div class="cc-title">Object-Oriented Programming</div>
+            <div class="cc-desc">FlowerShop is a textbook OOP example — one class, clean methods, and shared state through <code>self</code>. Master this and every Python project becomes approachable.</div>
+            <button class="cc-link" onclick="document.getElementById('explanation').scrollIntoView({behavior:'smooth'})">Explore OOP sections →</button>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="cc-thumb" style="background:linear-gradient(135deg,#0f1630,#12192a);">🛡️</div>
+          <div class="cc-body">
+            <div class="cc-tag" style="color:var(--violet)">Defensive Coding</div>
+            <div class="cc-title">Input Validation Patterns</div>
+            <div class="cc-desc">The <code>while True + try/except</code> pattern used here is the gold standard for CLI input validation — used in production tools, not just beginner code.</div>
+            <button class="cc-link" onclick="document.querySelector('#s6').scrollIntoView({behavior:'smooth'})">See validation →</button>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="cc-thumb" style="background:linear-gradient(135deg,#161a30,#0e1226);">💰</div>
+          <div class="cc-body">
+            <div class="cc-tag" style="color:var(--gold)">Real World</div>
+            <div class="cc-title">Currency &amp; Formatting</div>
+            <div class="cc-desc">The <code>:.2f</code> f-string format used for Philippine Pesos (PHP) is the exact technique used in e-commerce apps and financial dashboards.</div>
+            <button class="cc-link" onclick="document.querySelector('#s4').scrollIntoView({behavior:'smooth'})">See formatting →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="explanation">
+
+    <div class="exp-section" id="s1">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 01</div><h3 class="exp-title">Program Overview</h3></div>
+        <p class="explain-text">The <strong>FlowerShop</strong> program simulates a real-world flower purchasing system using Object-Oriented Programming — a class that bundles all related data and behaviour into one organized, reusable unit.</p>
+        <p class="explain-text" style="margin-top:10px;">The user flow: browse available flowers → choose one → specify a quantity → receive a total cost in <strong>Philippine Pesos (PHP ₱)</strong>.</p>
+        <p class="explain-text" style="margin-top:10px;">What makes this program an excellent learning tool is that it is small enough to fully understand in one sitting, yet it demonstrates every major concept you will encounter in real Python applications: classes, constructors, instance variables, input validation, exception handling, dictionary operations, and f-string formatting — all working together in a coherent, purposeful flow.</p>
+        <div class="info-box" style="margin-top:18px;">
+          <span class="ib-icon">💡</span>
+          <div><strong>Why OOP?</strong><p>Using a class instead of loose functions keeps all shop logic self-contained and easy to extend. Each method has exactly one responsibility — a principle called Single Responsibility. If you ever need to add a discount system, a loyalty program, or a receipt printer, you add a method — you do not rewrite the whole program.</p></div>
+        </div>
+        <div class="info-box warn" style="margin-top:10px;">
+          <span class="ib-icon">🎯</span>
+          <div><strong>What to focus on</strong><p>As you read through the explanations, ask yourself: "Why was this designed this way?" Not just "what does this do?" Understanding intent is the difference between copying code and truly writing it.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s2">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 02</div><h3 class="exp-title">Class Declaration — <span class="mono">class FlowerShop</span></h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">class</span> <span class="cl">FlowerShop</span><span class="op">:</span></pre></div>
+        <div class="sub-h">Why This Line Is Used</div>
+        <p class="explain-text">This declares a <strong>blueprint</strong> called <code>FlowerShop</code>. Without a class, all variables and functions would be scattered globally — hard to manage, hard to reuse, and impossible to instantiate multiple independent shops.</p>
+        <p class="explain-text" style="margin-top:10px;">Think of the class as an architect's drawing. The drawing itself is not a building — it is a precise specification that can be used to construct as many identical buildings as needed. Every time you call <code>FlowerShop()</code>, Python uses this class definition as instructions to build a fresh, independent object in memory.</p>
+        <div class="sub-h">How It Works</div>
+        <p class="explain-text">A class is a template. Writing <code>FlowerShop()</code> creates a live <strong>instance</strong> from it. The instance carries its own data and methods. Note there is no <code>(object)</code> after the class name — in Python 3, all classes implicitly inherit from <code>object</code>, so this is valid, modern Python.</p>
+        <div class="info-box" style="margin-top:16px;">
+          <span class="ib-icon">🏗️</span>
+          <div><strong>Naming Convention</strong><p>Class names in Python use <em>PascalCase</em> (each word capitalised, no underscores). Functions and variables use <em>snake_case</em>. <code>FlowerShop</code> follows PEP 8 correctly. This consistency is why Python codebases are easy to read across teams and projects.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s3">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 03</div><h3 class="exp-title">Constructor — <span class="mono">__init__</span></h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">def</span> <span class="fn">__init__</span>(<span class="sf">self</span>)<span class="op">:</span>
+    <span class="sf">self</span>.flowers <span class="op">=</span> {
+        <span class="st">"Rose"</span><span class="op">:</span> <span class="nm">50.00</span>, <span class="st">"Tulip"</span><span class="op">:</span> <span class="nm">40.00</span>,
+        <span class="st">"Orchid"</span><span class="op">:</span> <span class="nm">60.00</span>, <span class="st">"Sunflower"</span><span class="op">:</span> <span class="nm">30.00</span>, <span class="st">"Lily"</span><span class="op">:</span> <span class="nm">55.00</span>
+    }</pre></div>
+        <div class="sub-h">Why This Is Used</div>
+        <p class="explain-text"><code>__init__</code> is the <strong>constructor</strong> — it fires automatically when a <code>FlowerShop</code> object is created. It builds <code>self.flowers</code> — the shop's inventory, mapping each flower name to its PHP price per stem. The double underscores make this a <em>dunder method</em> (double underscore). Python calls it automatically; you never invoke it directly.</p>
+        <div class="sub-h">The <code>self</code> Keyword</div>
+        <p class="explain-text"><code>self</code> refers to the specific instance being created. <code>self.flowers</code> attaches the dictionary to that object so every method in the class can access the same shared data without passing it as an argument each time. <code>self</code> is always the first parameter of every instance method, and Python passes it automatically.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Data Type</th><th>Why It Was Chosen</th></tr></thead>
+            <tbody>
+              <tr><td>dict (self.flowers)</td><td>Maps flower name → price directly; instant O(1) lookup by key</td></tr>
+              <tr><td>float (50.00)</td><td>Represents currency with decimal precision for PHP formatting</td></tr>
+              <tr><td>str keys ("Rose")</td><td>Human-readable; used for both display and validation simultaneously</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-box" style="margin-top:12px;">
+          <span class="ib-icon">📌</span>
+          <div><strong>Why initialise data inside __init__, not at class level?</strong><p>Defining <code>self.flowers</code> inside <code>__init__</code> means every instance gets its own independent copy of the dictionary. If you defined it at class level, all instances would share the same dictionary — a subtle and dangerous bug when you have multiple shop objects modifying inventory.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s4">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 04</div><h3 class="exp-title"><span class="mono">display_available_flowers()</span></h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">def</span> <span class="fn">display_available_flowers</span>(<span class="sf">self</span>)<span class="op">:</span>
+    <span class="bi">print</span>(<span class="st">"Available Flowers in the Shop:"</span>)
+    <span class="kw">for</span> flower, price <span class="kw">in</span> <span class="sf">self</span>.flowers.<span class="fn">items</span>()<span class="op">:</span>
+        <span class="bi">print</span>(<span class="st">f"</span>{flower}<span class="st">: PHP </span>{price<span class="op">:</span>.2f}<span class="st"> per stem"</span>)</pre></div>
+        <div class="sub-h">Why This Method Is Used</div>
+        <p class="explain-text">Before a customer can choose, they must see what is available. This method is the shop's <strong>menu board</strong> — always the first thing called. Isolating it means display logic can be updated without touching any other method.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Code</th><th>What Happens</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>.items()</td><td>Returns each (name, price) pair as a tuple for simultaneous unpacking</td></tr>
+              <tr><td>2</td><td>for flower, price in …</td><td>Unpacks each tuple into two named variables cleanly</td></tr>
+              <tr><td>3</td><td>{price:.2f}</td><td>Format specifier — always shows exactly 2 decimal places (e.g. 50.00)</td></tr>
+              <tr><td>4</td><td>print(…)</td><td>Outputs the formatted string directly to the terminal</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-box">
+          <span class="ib-icon">🔢</span>
+          <div><strong>Why <code>:.2f</code> matters for currency</strong><p>Without this format specifier, Python might print <code>50.0</code> instead of <code>50.00</code>. In a financial context, showing two decimal places is not just stylistic — it communicates precision and professionalism. The same technique is used in every e-commerce checkout, banking app, and invoice system you have ever used.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s5">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 05</div><h3 class="exp-title"><span class="mono">get_chosen_flower()</span></h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">def</span> <span class="fn">get_chosen_flower</span>(<span class="sf">self</span>)<span class="op">:</span>
+    <span class="kw">while</span> <span class="bi">True</span><span class="op">:</span>
+        chosen_flower <span class="op">=</span> <span class="bi">input</span>(<span class="st">"Enter the flower name: "</span>).<span class="fn">strip</span>().<span class="fn">title</span>()
+        <span class="kw">if</span> chosen_flower <span class="kw">in</span> <span class="sf">self</span>.flowers<span class="op">:</span>
+            <span class="kw">return</span> chosen_flower
+        <span class="kw">else</span><span class="op">:</span>
+            <span class="bi">print</span>(<span class="st">"Invalid flower. Please choose from the list."</span>)</pre></div>
+        <div class="sub-h">Three Defensive Techniques</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Technique</th><th>What It Does &amp; Why</th></tr></thead>
+            <tbody>
+              <tr><td>.strip()</td><td>Removes accidental whitespace — "  Rose  " becomes "Rose"</td></tr>
+              <tr><td>.title()</td><td>Normalises case — "rOSE", "rose", "ROSE" all become "Rose"</td></tr>
+              <tr><td>while True:</td><td>Infinite loop — only exits via return when valid input is received</td></tr>
+              <tr><td>in self.flowers</td><td>Dictionary membership check — O(1) speed, clean and readable</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sub-h">Loop Flow Diagram</div>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">1</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">Enter loop</div><div class="flow-desc">while True begins — runs until explicitly returned from</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">2</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">Prompt user</div><div class="flow-desc">input() waits for the user to type and press Enter</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">3</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">Clean input</div><div class="flow-desc">.strip().title() normalises the text in one chain</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">4</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">Validate</div><div class="flow-desc">in self.flowers checks dictionary membership</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle" style="border-color:var(--green);color:var(--green);background:rgba(74,222,128,0.08);">✓</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">Valid → return</div><div class="flow-desc">Name is sent back to run() and the loop exits immediately</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle" style="border-color:var(--rose);color:var(--rose);background:rgba(255,107,107,0.08);">✗</div></div><div class="flow-content"><div class="flow-label">Invalid → repeat</div><div class="flow-desc">Error printed; loop restarts from Step 2 — no crash possible</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s6">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 06</div><h3 class="exp-title"><span class="mono">get_quantity()</span></h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">def</span> <span class="fn">get_quantity</span>(<span class="sf">self</span>)<span class="op">:</span>
+    <span class="kw">while</span> <span class="bi">True</span><span class="op">:</span>
+        <span class="kw">try</span><span class="op">:</span>
+            quantity <span class="op">=</span> <span class="bi">int</span>(<span class="bi">input</span>(<span class="st">"Enter the quantity: "</span>))
+            <span class="kw">if</span> quantity <span class="op">&gt;</span> <span class="nm">0</span><span class="op">:</span>
+                <span class="kw">return</span> quantity
+            <span class="kw">else</span><span class="op">:</span>
+                <span class="bi">print</span>(<span class="st">"Quantity must be a positive integer."</span>)
+        <span class="kw">except</span> <span class="bi">ValueError</span><span class="op">:</span>
+            <span class="bi">print</span>(<span class="st">"Invalid input. Please enter a positive integer."</span>)</pre></div>
+        <div class="sub-h">Two Layers of Protection</div>
+        <div class="layer-grid">
+          <div class="layer-card">
+            <div class="lc-num">Layer 1</div>
+            <div class="lc-title">try / except ValueError</div>
+            <p>If the user types "abc" or "3.5", <code>int()</code> raises a <code>ValueError</code>. The except block catches it and prints a helpful message instead of crashing the program entirely.</p>
+          </div>
+          <div class="layer-card">
+            <div class="lc-num">Layer 2</div>
+            <div class="lc-title">if quantity &gt; 0</div>
+            <p>Even if conversion succeeds, 0 or -5 must be rejected. These are logically invalid for a purchase even though they are mathematically valid integers.</p>
+          </div>
+        </div>
+        <div class="info-box warn">
+          <span class="ib-icon">⚠️</span>
+          <div><strong>Why while True again?</strong><p>The only escape is the <code>return</code> inside <code>if quantity &gt; 0</code>. The loop keeps prompting until both layers of validation pass simultaneously. This guarantees the caller always receives a valid, usable value — never garbage.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s7">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 07</div><h3 class="exp-title"><span class="mono">calculate_total_cost()</span></h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">def</span> <span class="fn">calculate_total_cost</span>(<span class="sf">self</span>, flower, quantity)<span class="op">:</span>
+    price_per_stem <span class="op">=</span> <span class="sf">self</span>.flowers[flower]
+    total_cost <span class="op">=</span> price_per_stem <span class="op">*</span> quantity
+    <span class="kw">return</span> total_cost</pre></div>
+        <div class="sub-h">Why Separate This Into Its Own Method?</div>
+        <p class="explain-text"><strong>Single Responsibility Principle</strong> — each method does exactly one thing. This makes the calculation easy to test, read, and modify later (for example, adding discounts or taxes) without touching display or input methods.</p>
+        <p class="explain-text" style="margin-top:10px;">Imagine a future requirement: "Apply a 10% senior citizen discount." With this design, you only change one method. If the calculation lived inside <code>run()</code>, you would be mixing concerns — hunting through display code to find math code.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Action</th><th>What Happens</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Receive args</td><td>Gets flower (string) and quantity (integer) from the caller</td></tr>
+              <tr><td>2</td><td>Dict lookup</td><td>self.flowers[flower] retrieves the price in O(1) time</td></tr>
+              <tr><td>3</td><td>Multiply</td><td>price_per_stem × quantity — e.g. 50.00 × 3 = 150.00</td></tr>
+              <tr><td>4</td><td>Return</td><td>Sends the number back to run() for display — caller decides what to do</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-box">
+          <span class="ib-icon">💡</span>
+          <div><strong>Why return, not print?</strong><p>Returning gives the caller control. Printing inside the calculator mixes display with logic — a design flaw that reduces flexibility. With <code>return</code>, the same method can be used in a terminal app, a web API, a receipt generator, or a unit test — with zero changes. The caller decides how to use the result.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s8">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 08</div><h3 class="exp-title"><span class="mono">run()</span> — The Orchestrator</h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">def</span> <span class="fn">run</span>(<span class="sf">self</span>)<span class="op">:</span>
+    <span class="sf">self</span>.<span class="fn">display_available_flowers</span>()
+    chosen_flower <span class="op">=</span> <span class="sf">self</span>.<span class="fn">get_chosen_flower</span>()
+    quantity <span class="op">=</span> <span class="sf">self</span>.<span class="fn">get_quantity</span>()
+    total_cost <span class="op">=</span> <span class="sf">self</span>.<span class="fn">calculate_total_cost</span>(chosen_flower, quantity)
+    <span class="bi">print</span>(<span class="st">f"\nChosen Flower: </span>{chosen_flower}<span class="st">"</span>)
+    <span class="bi">print</span>(<span class="st">f"Quantity: </span>{quantity}<span class="st">"</span>)
+    <span class="bi">print</span>(<span class="st">f"Total Cost: PHP </span>{total_cost<span class="op">:</span>.2f}<span class="st">"</span>)</pre></div>
+        <p class="explain-text" style="margin-top:8px;"><code>run()</code> is the <strong>conductor</strong>. It calls every other method in the correct sequence. Without it, all individual methods would exist but never be coordinated into a complete user experience. Notice that <code>run()</code> does almost no work itself — it delegates everything.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Call</th><th>What Happens</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>display_available_flowers()</td><td>Shows the menu so the user knows their options</td></tr>
+              <tr><td>2</td><td>get_chosen_flower()</td><td>Prompts and validates. Returns valid flower name</td></tr>
+              <tr><td>3</td><td>get_quantity()</td><td>Prompts and validates. Returns positive integer</td></tr>
+              <tr><td>4</td><td>calculate_total_cost(…)</td><td>Computes and returns the total cost as a float</td></tr>
+              <tr><td>5</td><td>print() × 3</td><td>Displays the full order summary to the user</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-box">
+          <span class="ib-icon">🎼</span>
+          <div><strong>The Orchestrator Pattern</strong><p><code>run()</code> reads like plain English: display, choose, get quantity, calculate, print. Each line maps directly to a specific, testable unit of behaviour. If anything breaks, you know exactly which method to investigate — the structure enforces clarity.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s9">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 09</div><h3 class="exp-title">Entry Point — <span class="mono">if __name__ == '__main__'</span></h3></div>
+        <div class="mini-code"><div class="mini-code-head"><div class="code-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="lang">python</span></div>
+<pre><span class="kw">if</span> <span class="fn">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span><span class="op">:</span>
+    shop <span class="op">=</span> <span class="cl">FlowerShop</span>()
+    shop.<span class="fn">run</span>()</pre></div>
+        <p class="explain-text">The <strong>entry point</strong> — the starting gun. Python sets <code>__name__</code> to <code>"__main__"</code> only when the file is executed directly, not when imported by another script. This guard prevents accidental execution.</p>
+        <p class="explain-text" style="margin-top:10px;">Without this guard, importing <code>flower_shop</code> into a test suite would immediately launch the program and start prompting for input — a catastrophic side effect. The guard is a professional safety mechanism that every production Python script should include.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Line</th><th>What It Does</th></tr></thead>
+            <tbody>
+              <tr><td>if __name__ == "__main__":</td><td>Guard clause — only runs on direct execution, not on import</td></tr>
+              <tr><td>shop = FlowerShop()</td><td>Instantiates the object, triggering __init__ and building the dictionary</td></tr>
+              <tr><td>shop.run()</td><td>Launches the full user interaction sequence from start to finish</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-box">
+          <span class="ib-icon">🔍</span>
+          <div><strong>How does Python know?</strong><p>When you run <code>python flower_shop.py</code>, Python sets <code>__name__ = "__main__"</code> for that file. When another script does <code>import flower_shop</code>, Python sets <code>__name__ = "flower_shop"</code> instead — and the guard block is skipped entirely. Two characters of context tell Python exactly what role the file is playing.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s10">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 10</div><h3 class="exp-title">Full Program Execution Flow</h3></div>
+        <p class="explain-text">From the moment you run <code>python flower_shop.py</code> to the moment Python exits:</p>
+        <div class="flow" style="margin-top:20px;">
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">1</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">Python reads the file</div><div class="flow-desc">class FlowerShop is registered as a blueprint — no code runs yet</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">2</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">__name__ check passes</div><div class="flow-desc">Python confirms direct execution and enters the if block</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">3</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">FlowerShop() is called</div><div class="flow-desc">__init__ fires — self.flowers dictionary is built with 5 entries</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">4</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">shop.run() begins</div><div class="flow-desc">Orchestrator starts by calling display_available_flowers()</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">5</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">Menu is printed</div><div class="flow-desc">All 5 flowers with PHP prices are shown to the user</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">6</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">get_chosen_flower() loops</div><div class="flow-desc">User prompted until a valid, recognised flower name is entered</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">7</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">get_quantity() loops</div><div class="flow-desc">User prompted until a valid positive integer is entered</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle">8</div><div class="flow-vline"></div></div><div class="flow-content"><div class="flow-label">calculate_total_cost() runs</div><div class="flow-desc">Price looked up; multiplication performed; result returned</div></div></div>
+          <div class="flow-step"><div class="flow-left"><div class="flow-circle" style="border-color:var(--green);color:var(--green);background:rgba(74,222,128,0.08);">✓</div></div><div class="flow-content"><div class="flow-label">Summary printed → program ends cleanly</div><div class="flow-desc">Flower, quantity, and PHP total displayed; run() finishes; Python exits</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s11">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 11</div><h3 class="exp-title">Key Concepts Summary</h3></div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Concept</th><th>Where &amp; Why Used</th></tr></thead>
+            <tbody>
+              <tr><td>OOP / Class</td><td>Entire program — bundles data and methods into one reusable unit</td></tr>
+              <tr><td>Encapsulation</td><td>self.flowers is private to the instance, shared across all methods</td></tr>
+              <tr><td>Constructor (__init__)</td><td>Guarantees inventory is set up before any method is called</td></tr>
+              <tr><td>Infinite Loop</td><td>get_chosen_flower &amp; get_quantity — re-prompts until valid input received</td></tr>
+              <tr><td>Exception Handling</td><td>get_quantity — catches non-integer input, prevents crash</td></tr>
+              <tr><td>Dictionary Lookup</td><td>calculate_total_cost — O(1) price retrieval by key</td></tr>
+              <tr><td>f-Strings :.2f</td><td>display &amp; run — currency always shows exactly 2 decimal places</td></tr>
+              <tr><td>.strip().title()</td><td>get_chosen_flower — case-insensitive, whitespace-tolerant input</td></tr>
+              <tr><td>Single Responsibility</td><td>Each method does exactly one thing — no mixed concerns anywhere</td></tr>
+              <tr><td>__name__ guard</td><td>Entry point — prevents accidental execution on import</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section" id="s12">
+      <div class="wrap">
+        <div class="exp-header"><div class="exp-num">§ 12</div><h3 class="exp-title">Key Takeaways for Beginners</h3></div>
+        <p class="explain-text">If you take only five things away from this tutorial, make them these:</p>
+        <div class="takeaways-grid">
+          <div class="takeaway-card"><span class="tk-emoji">🏛️</span><h4>OOP bundles data + behaviour together</h4><p><code>FlowerShop</code> holds its own flowers and all related methods. That is encapsulation — the foundation of every Python class you will ever write going forward.</p></div>
+          <div class="takeaway-card"><span class="tk-emoji">🔄</span><h4>while True + return = bulletproof input</h4><p>Never write <code>input()</code> without a validation loop. The pattern in <code>get_chosen_flower()</code> is copy-paste ready for any project at any skill level.</p></div>
+          <div class="takeaway-card"><span class="tk-emoji">🛡️</span><h4>try/except isolates expected errors</h4><p><code>ValueError</code> from <code>int()</code> is caught, not crashed. Defensive programming means planning for what users will inevitably do wrong.</p></div>
+          <div class="takeaway-card"><span class="tk-emoji">🧩</span><h4>Single Responsibility Principle</h4><p>Each method does one thing. <code>run()</code> orchestrates, <code>calculate_total_cost()</code> calculates, <code>display_…()</code> displays. Change one without breaking the others.</p></div>
+          <div class="takeaway-card"><span class="tk-emoji">🚪</span><h4>Always use <code>if __name__ == '__main__'</code></h4><p>This guard lets you import your class without accidentally running the whole program. It is the mark of a professional, production-ready Python file.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quiz-section" id="quiz-section">
+    <div class="wrap">
+      <div class="badge">🧠 Test Yourself</div>
+      <h2 class="section-title">Quick Knowledge Check</h2>
+      <p class="section-desc">Click each question to reveal the answer. Use these to check your understanding before moving on to the next tutorial.</p>
+      <div class="quiz-grid">
+        <div class="quiz-card" onclick="this.classList.toggle('open')">
+          <div class="quiz-q">What would happen if you removed the <code>while True</code> loop from <code>get_chosen_flower()</code>?<span class="quiz-arrow">›</span></div>
+          <div class="quiz-a">The function would only ask the user once. If they typed an invalid flower name, the <code>else</code> branch would print an error — but then the function would end and return <code>None</code>. The program would crash when <code>run()</code> tried to use <code>None</code> as a dictionary key. The <code>while True</code> loop is essential for keeping the prompt alive until valid input is received.</div>
+        </div>
+        <div class="quiz-card" onclick="this.classList.toggle('open')">
+          <div class="quiz-q">Why does <code>get_quantity()</code> need <strong>both</strong> a <code>try/except</code> and an <code>if quantity &gt; 0</code> check?<span class="quiz-arrow">›</span></div>
+          <div class="quiz-a"><strong>try/except</strong> handles the type error: if the user types "abc", <code>int("abc")</code> raises a <code>ValueError</code> before any comparison can happen. But even after a successful <code>int()</code> conversion, the user could type 0 or -3 — valid integers but logically impossible quantities. The <strong>if quantity &gt; 0</strong> check catches this second category. You need both layers because they defend against completely different classes of invalid input.</div>
+        </div>
+        <div class="quiz-card" onclick="this.classList.toggle('open')">
+          <div class="quiz-q">If you created two <code>FlowerShop</code> instances and added a flower to one, would the other be affected?<span class="quiz-arrow">›</span></div>
+          <div class="quiz-a">No. Because <code>self.flowers</code> is defined inside <code>__init__</code>, each instance gets its <strong>own independent copy</strong> of the dictionary. Modifying <code>shop1.flowers["Carnation"] = 35.00</code> has zero effect on <code>shop2.flowers</code>. This is why instance variables (defined with <code>self</code> inside <code>__init__</code>) are safer than class-level variables — each object owns its own data.</div>
+        </div>
+        <div class="quiz-card" onclick="this.classList.toggle('open')">
+          <div class="quiz-q">What does <code>.strip().title()</code> do, and why is the order important?<span class="quiz-arrow">›</span></div>
+          <div class="quiz-a"><code>.strip()</code> removes leading and trailing whitespace first — turning <code>"  rose  "</code> into <code>"rose"</code>. Then <code>.title()</code> capitalises the first letter of each word — turning <code>"rose"</code> into <code>"Rose"</code>. The order matters: if you called <code>.title()</code> first on <code>"  rose"</code>, the leading space could interfere with capitalisation behaviour depending on the Python version. Strip always comes first — clean before you transform.</div>
+        </div>
+        <div class="quiz-card" onclick="this.classList.toggle('open')">
+          <div class="quiz-q">How would you add a 10% discount for senior citizens to this program?<span class="quiz-arrow">›</span></div>
+          <div class="quiz-a">Add a new method: <code>def apply_discount(self, total, rate=0.10): return total * (1 - rate)</code>. Then in <code>run()</code>, ask <code>is_senior = input("Senior citizen? y/n: ").lower() == 'y'</code>, and apply: <code>if is_senior: total_cost = self.apply_discount(total_cost)</code>. Because <code>calculate_total_cost()</code> returns a value instead of printing directly, you can manipulate the result freely before displaying it. This is exactly why separation of concerns matters.</div>
+        </div>
+        <div class="quiz-card" onclick="this.classList.toggle('open')">
+          <div class="quiz-q">What does <code>:.2f</code> mean inside an f-string, and when should you use it?<span class="quiz-arrow">›</span></div>
+          <div class="quiz-a"><code>:</code> introduces the format specification. <code>.2</code> means "2 digits after the decimal point". <code>f</code> means "format as a fixed-point float." Together, <code>:.2f</code> guarantees the number always displays with exactly two decimal places — <code>50.0</code> becomes <code>50.00</code>, and <code>150.555</code> becomes <code>150.56</code> (rounded). Use it any time you display currency, measurements, or percentages where precision matters to the user.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-section" id="mistakes-section">
+    <div class="wrap">
+      <div class="badge">⚠️ Watch Out</div>
+      <h2 class="section-title">Common Beginner Mistakes</h2>
+      <p class="section-desc">These are the most frequent errors students make when first writing programs like FlowerShop — and how to fix them correctly.</p>
+      <div class="mistake-grid">
+
+        <div class="mistake-card">
+          <div class="mistake-header">
+            <span class="mistake-badge mb-wrong">❌ Wrong</span>
+            <span class="mistake-title">Printing instead of returning from calculator</span>
+          </div>
+          <div class="mistake-body">
+            <p>Printing inside <code>calculate_total_cost()</code> mixes display logic with business logic. The method becomes impossible to reuse silently in tests, APIs, or receipt systems. Always <strong>return</strong> computed values.</p>
+            <div class="vs-row">
+              <div class="vs-block">
+                <div class="vs-label vs-wrong-label">❌ Bad practice</div>
+                <div class="vs-code"><span class="kw">def</span> <span class="fn">calculate_total_cost</span>(self, flower, qty):
+    total = self.flowers[flower] * qty
+    <span class="bi">print</span>(f<span class="st">"Total: {total:.2f}"</span>)  <span class="cm"># 🚫</span></div>
+              </div>
+              <div class="vs-block">
+                <div class="vs-label vs-right-label">✅ Correct</div>
+                <div class="vs-code"><span class="kw">def</span> <span class="fn">calculate_total_cost</span>(self, flower, qty):
+    total = self.flowers[flower] * qty
+    <span class="kw">return</span> total  <span class="cm"># ✓ caller decides</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mistake-card">
+          <div class="mistake-header">
+            <span class="mistake-badge mb-wrong">❌ Wrong</span>
+            <span class="mistake-title">Not handling invalid input — no try/except</span>
+          </div>
+          <div class="mistake-body">
+            <p>Without a <code>try/except</code> block, typing "abc" when a number is expected will crash the program with an unhandled <code>ValueError</code>. Always wrap <code>int(input())</code> in a try block.</p>
+            <div class="vs-row">
+              <div class="vs-block">
+                <div class="vs-label vs-wrong-label">❌ Crashes on "abc"</div>
+                <div class="vs-code">quantity = <span class="bi">int</span>(<span class="bi">input</span>(<span class="st">"Quantity: "</span>))
+<span class="cm"># Unhandled ValueError if not a number</span></div>
+              </div>
+              <div class="vs-block">
+                <div class="vs-label vs-right-label">✅ Handles gracefully</div>
+                <div class="vs-code"><span class="kw">try</span>:
+    quantity = <span class="bi">int</span>(<span class="bi">input</span>(<span class="st">"Quantity: "</span>))
+<span class="kw">except</span> <span class="bi">ValueError</span>:
+    <span class="bi">print</span>(<span class="st">"Numbers only!"</span>)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mistake-card">
+          <div class="mistake-header">
+            <span class="mistake-badge mb-wrong">❌ Wrong</span>
+            <span class="mistake-title">Defining mutable data at class level</span>
+          </div>
+          <div class="mistake-body">
+            <p>Placing <code>flowers = {}</code> at class level means all instances share the <strong>same</strong> dictionary. Changing it in one object changes it everywhere — a silent, dangerous bug.</p>
+            <div class="vs-row">
+              <div class="vs-block">
+                <div class="vs-label vs-wrong-label">❌ Shared (dangerous)</div>
+                <div class="vs-code"><span class="kw">class</span> <span class="cl">FlowerShop</span>:
+    flowers = {<span class="st">"Rose"</span>: <span class="nm">50</span>}  <span class="cm"># 🚫 class-level</span></div>
+              </div>
+              <div class="vs-block">
+                <div class="vs-label vs-right-label">✅ Per-instance (safe)</div>
+                <div class="vs-code"><span class="kw">class</span> <span class="cl">FlowerShop</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self.flowers = {<span class="st">"Rose"</span>: <span class="nm">50</span>}  <span class="cm"># ✓</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mistake-card">
+          <div class="mistake-header">
+            <span class="mistake-badge mb-wrong">❌ Wrong</span>
+            <span class="mistake-title">Missing the __name__ guard</span>
+          </div>
+          <div class="mistake-body">
+            <p>Without <code>if __name__ == "__main__":</code>, importing your file in a test or another script immediately executes the program and prompts for input — completely breaking your test suite.</p>
+            <div class="vs-row">
+              <div class="vs-block">
+                <div class="vs-label vs-wrong-label">❌ Runs on import</div>
+                <div class="vs-code">shop = <span class="cl">FlowerShop</span>()
+shop.<span class="fn">run</span>()  <span class="cm"># 🚫 runs immediately always</span></div>
+              </div>
+              <div class="vs-block">
+                <div class="vs-label vs-right-label">✅ Safe guard</div>
+                <div class="vs-code"><span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    shop = <span class="cl">FlowerShop</span>()
+    shop.<span class="fn">run</span>()  <span class="cm"># ✓ direct run only</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-section" id="cheatsheet-section">
+    <div class="wrap">
+      <div class="badge">📋 Quick Reference</div>
+      <h2 class="section-title">Python OOP Cheatsheet</h2>
+      <p class="section-desc">The essential patterns used in FlowerShop — ready to copy into your own projects.</p>
+      <div class="cheatsheet">
+        <div class="cs-row">
+          <div class="cs-card">
+            <div class="cs-concept">Class + Constructor</div>
+            <div class="cs-code"><span class="kw">class</span> <span class="cl">MyClass</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self.data = {}</div>
+            <div class="cs-note">Always define instance variables in __init__ for safety and clarity.</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-concept">String Input Validation</div>
+            <div class="cs-code"><span class="kw">while</span> <span class="bi">True</span>:
+    val = <span class="bi">input</span>(<span class="st">"Enter: "</span>).<span class="fn">strip</span>().<span class="fn">title</span>()
+    <span class="kw">if</span> val <span class="kw">in</span> valid_set:
+        <span class="kw">return</span> val</div>
+            <div class="cs-note">strip() then title() — always clean before you transform.</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-concept">Integer Input Validation</div>
+            <div class="cs-code"><span class="kw">while</span> <span class="bi">True</span>:
+    <span class="kw">try</span>:
+        n = <span class="bi">int</span>(<span class="bi">input</span>(<span class="st">"Qty: "</span>))
+        <span class="kw">if</span> n > <span class="nm">0</span>: <span class="kw">return</span> n
+    <span class="kw">except</span> <span class="bi">ValueError</span>:
+        <span class="bi">print</span>(<span class="st">"Numbers only"</span>)</div>
+            <div class="cs-note">Two layers: type error first, logic error second.</div>
+          </div>
+        </div>
+        <div class="cs-row">
+          <div class="cs-card">
+            <div class="cs-concept">Currency Formatting</div>
+            <div class="cs-code">total = <span class="nm">150.5</span>
+<span class="bi">print</span>(f<span class="st">"PHP {total:.2f}"</span>)
+<span class="cm"># → PHP 150.50</span></div>
+            <div class="cs-note">:.2f always shows exactly 2 decimal places — essential for money.</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-concept">Dict Iteration</div>
+            <div class="cs-code"><span class="kw">for</span> key, val <span class="kw">in</span> d.<span class="fn">items</span>():
+    <span class="bi">print</span>(f<span class="st">"{key}: {val:.2f}"</span>)</div>
+            <div class="cs-note">.items() gives (key, value) tuples for simultaneous unpacking.</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-concept">Entry Point Guard</div>
+            <div class="cs-code"><span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    obj = <span class="cl">MyClass</span>()
+    obj.<span class="fn">run</span>()</div>
+            <div class="cs-note">Every Python script file should end with this guard. No exceptions.</div>
+          </div>
+        </div>
+        <div class="cs-row">
+          <div class="cs-card">
+            <div class="cs-concept">Docstrings</div>
+            <div class="cs-code"><span class="kw">def</span> <span class="fn">my_method</span>(self):
+    <span class="dc">"""One-line description here.
+    
+    Longer explanation if needed.
+    """</span></div>
+            <div class="cs-note">Triple-quoted strings immediately after def — used by help() and IDEs.</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-concept">Single Responsibility</div>
+            <div class="cs-code"><span class="cm"># ✓ Each method → one job</span>
+<span class="kw">def</span> <span class="fn">display</span>(self): ...
+<span class="kw">def</span> <span class="fn">get_input</span>(self): ...
+<span class="kw">def</span> <span class="fn">calculate</span>(self): ...</div>
+            <div class="cs-note">If a method name uses "and", it probably does too much. Split it.</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-concept">Return vs Print</div>
+            <div class="cs-code"><span class="cm"># ✓ Return — caller decides</span>
+<span class="kw">def</span> <span class="fn">calculate</span>(self, qty):
+    <span class="kw">return</span> self.price * qty
+
+<span class="cm"># 🚫 Don't print in calculators</span></div>
+            <div class="cs-note">Functions that compute should return. Only UI functions should print.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="more-section" id="more-content">
+    <div class="wrap">
+      <div class="badge">📚 Deep Dive</div>
+      <h2 class="section-title">Concepts Behind the Code</h2>
+      <p class="section-desc">Understanding why the code is designed this way unlocks every Python project you will ever build.</p>
+      <div class="highlight-cards">
+        <div class="highlight-card">
+          <div class="hc-icon" style="background:rgba(77,158,255,0.1);">🏗️</div>
+          <div class="hc-title">Why OOP for This Program?</div>
+          <div class="hc-desc">A procedural version with loose functions would work, but OOP offers real advantages here that grow more valuable as programs scale.</div>
+          <ul class="hc-list">
+            <li>All data (flowers, prices) lives with its methods — nothing is lost or mismatched</li>
+            <li>You can create multiple instances: <code>shop_manila = FlowerShop()</code></li>
+            <li>Adding features means adding methods, not rewriting existing logic</li>
+            <li>Unit testing is trivial — just instantiate and call a single method</li>
+          </ul>
+        </div>
+        <div class="highlight-card">
+          <div class="hc-icon" style="background:rgba(124,158,255,0.1);">🔒</div>
+          <div class="hc-title">The Validation Philosophy</div>
+          <div class="hc-desc">This program never crashes from user input. Here is the defensive strategy applied at every input boundary.</div>
+          <ul class="hc-list">
+            <li><strong>Sanitise before validate</strong> — .strip().title() runs before the if-check</li>
+            <li><strong>Catch type errors first</strong> — try/except handles ValueError before logic checks</li>
+            <li><strong>Never trust user input</strong> — assume it will be wrong and design for that reality</li>
+            <li><strong>Keep prompting</strong> — while True ensures the program never silently gives up</li>
+          </ul>
+        </div>
+        <div class="highlight-card">
+          <div class="hc-icon" style="background:rgba(255,209,102,0.1);">📐</div>
+          <div class="hc-title">Design Patterns at Work</div>
+          <div class="hc-desc">Professional design patterns visible in this beginner program — the same ones used in enterprise Python codebases.</div>
+          <ul class="hc-list">
+            <li><strong>Template Method</strong> — run() orchestrates a fixed sequence of abstract steps</li>
+            <li><strong>Single Responsibility</strong> — each method does exactly one thing cleanly</li>
+            <li><strong>Guard Clause</strong> — __name__ == "__main__" prevents side effects on import</li>
+            <li><strong>Fail Fast</strong> — validation happens at the boundary, not deep inside logic</li>
+          </ul>
+        </div>
+        <div class="highlight-card">
+          <div class="hc-icon" style="background:rgba(255,107,107,0.1);">🇵🇭</div>
+          <div class="hc-title">Philippine Context</div>
+          <div class="hc-desc">This program uses real Philippine Pesos (₱ PHP) and local flower culture — grounding OOP concepts in a familiar, relatable setting.</div>
+          <ul class="hc-list">
+            <li>Prices reflect typical Philippine market rates per stem in 2024</li>
+            <li>Orchids (PHP 60) are popular for Filipino celebrations and <em>pasalubong</em></li>
+            <li>Sunflowers (PHP 30) are the most affordable — accessible for everyday gifting</li>
+            <li>Strong base for a <em>tindahan</em> (local shop) management app with SQLite</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extend-section">
+    <div class="wrap">
+      <div class="badge">🚀 Go Further</div>
+      <h2 class="section-title">Extend This Program</h2>
+      <p class="section-desc">Once you understand FlowerShop, here are natural next steps to level up your Python skills progressively.</p>
+      <div class="content-grid">
+        <div class="content-card">
+          <div class="cc-thumb" style="background:linear-gradient(135deg,#0d182e,#111828);">🗃️</div>
+          <div class="cc-body">
+            <div class="cc-tag" style="color:var(--violet)">Level Up</div>
+            <div class="cc-title">Add a SQLite Database</div>
+            <div class="cc-desc">Replace the hardcoded dictionary with SQLite. Store flowers, prices, and order history — your first real persistence layer. Learn <code>sqlite3</code> module.</div>
+            <button class="extend-btn" onclick="showToast('📚 Tutorial coming soon!')">Read Tutorial →</button>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="cc-thumb" style="background:linear-gradient(135deg,#161a30,#0e1226);">🌐</div>
+          <div class="cc-body">
+            <div class="cc-tag" style="color:var(--gold)">Web Dev</div>
+            <div class="cc-title">Build a Flask API</div>
+            <div class="cc-desc">Wrap the FlowerShop logic in a Flask REST API. Add endpoints for listing flowers, placing orders, and getting receipts as JSON — your first web service.</div>
+            <button class="extend-btn" onclick="showToast('📚 Tutorial coming soon!')">Read Tutorial →</button>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="cc-thumb" style="background:linear-gradient(135deg,#0e1a2e,#131a2a);">🧪</div>
+          <div class="cc-body">
+            <div class="cc-tag" style="color:var(--blue)">Best Practices</div>
+            <div class="cc-title">Write Unit Tests</div>
+            <div class="cc-desc">Use <code>unittest</code> to test <code>calculate_total_cost()</code> and input validation logic. Testing OOP code is a critical skill for any professional Python developer.</div>
+            <button class="extend-btn" onclick="showToast('📚 Tutorial coming soon!')">Read Tutorial →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="outro-section" id="outro-section">
+    <div class="wrap">
+      <div class="badge">🌸 Wrapping Up</div>
+      <h2 class="section-title">Closing Thoughts</h2>
+      <div class="outro-box">
+        <p>FlowerShop started as a small, 56-line program, but by the time you reach this point on the page, it has become something bigger: a working reference for how a Python class should be structured. <strong>Every method here had one job.</strong> The constructor built the inventory. The two input methods gathered safe data. The calculator computed a number and handed it back. The orchestrator tied it all together. Nothing was doing two things at once, and that is exactly why the program stayed easy to follow from the first line to the last.</p>
+        <p>The habits you picked up along the way are not specific to flower shops. The <code>while True</code> validation loop belongs in every program that asks a human for input. The <code>try/except ValueError</code> pattern belongs anywhere a string might need to become a number. The <code>if __name__ == "__main__"</code> guard belongs at the bottom of every Python file you intend to import elsewhere. These are not FlowerShop tricks — they are Python fundamentals that this program simply gave you a reason to practise.</p>
+        <p>From here, the best next step is to stop reading and start typing. Open a blank file, retype <code>flower_shop.py</code> from memory instead of copying it, and see where you stumble — that is exactly where the real learning happens. Once it runs cleanly, try the extensions above: add a discount method, wrap it in a Flask API, or give it a SQLite-backed inventory. Each one reuses the same class structure you just learned, proving that a well-designed program is not just correct — it is reusable.</p>
+        <div class="outro-cta-row">
+          <button class="outro-btn primary" onclick="document.getElementById('full-source').scrollIntoView({behavior:'smooth'})">💻 Revisit the Source Code</button>
+          <button class="outro-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})">🧠 Take the Quiz</button>
+          <button class="outro-btn" onclick="document.getElementById('subscribe').scrollIntoView({behavior:'smooth'})">📬 Get the Next Tutorial</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="share-section" id="share-section">
+    <div class="wrap">
+      <div class="badge">🤖 AI-Powered</div>
+      <h2 class="section-title">Share This Article</h2>
+      <p class="section-desc">Generate smart, AI-written captions tailored to each platform — then share with one click to your network.</p>
+      <div class="share-grid">
+        <div class="share-card">
+          <div class="share-card-icon">🐦</div>
+          <h4>Share on X / Twitter</h4>
+          <p>Crisp, thread-ready Python tip with hashtags for maximum reach</p>
+          <button class="share-btn" onclick="generateAICaption('twitter')">✨ Generate AI Caption</button>
+        </div>
+        <div class="share-card">
+          <div class="share-card-icon">💼</div>
+          <h4>Share on LinkedIn</h4>
+          <p>Professional insight post for your developer network</p>
+          <button class="share-btn" onclick="generateAICaption('linkedin')">✨ Generate AI Caption</button>
+        </div>
+        <div class="share-card">
+          <div class="share-card-icon">📘</div>
+          <h4>Share on Facebook</h4>
+          <p>Friendly, conversational post for study communities</p>
+          <button class="share-btn" onclick="generateAICaption('facebook')">✨ Generate AI Caption</button>
+        </div>
+        <div class="share-card">
+          <div class="share-card-icon">💬</div>
+          <h4>Share on WhatsApp</h4>
+          <p>Compact message perfect for study groups and classmates</p>
+          <button class="share-btn" onclick="generateAICaption('whatsapp')">✨ Generate AI Caption</button>
+        </div>
+      </div>
+      <div class="ai-caption-box" id="ai-caption-box" style="display:none;">
+        <div class="ai-caption-head" id="caption-platform-label">AI CAPTION — TWITTER</div>
+        <div class="ai-caption-text" id="ai-caption-text">Generating…</div>
+        <div class="ai-caption-actions">
+          <button class="cap-btn" id="copy-caption-btn" onclick="copyCaption()">📋 Copy</button>
+          <button class="cap-btn" onclick="regenerateCaption()">🔄 Regenerate</button>
+          <button class="cap-btn" id="open-platform-btn" onclick="openPlatform()">↗ Open Platform</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comments-section" id="comments-section">
+    <div class="wrap">
+      <div class="badge">💬 Community</div>
+      <h2 class="section-title">Discussion</h2>
+      <p class="section-desc">Share your questions, insights, or code experiments. All skill levels are welcome here.</p>
+
+      <div class="comment-form">
+        <h3>✍️ Leave a Comment</h3>
+        <div class="form-row">
+          <div class="form-field"><label>Your Name</label><input type="text" id="c-name" placeholder="e.g. Maria Santos"></div>
+          <div class="form-field"><label>Email (not shown)</label><input type="email" id="c-email" placeholder="your@email.com"></div>
+        </div>
+        <div class="form-row" style="grid-template-columns:1fr;">
+          <div class="form-field">
+            <label>Topic</label>
+            <select id="c-topic">
+              <option>General Discussion</option>
+              <option>Question about Code</option>
+              <option>Bug Report</option>
+              <option>Suggestion</option>
+              <option>I tried it!</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field" style="margin-top:4px;">
+          <label>Comment</label>
+          <textarea id="c-text" placeholder="What are your thoughts? Did you run the code? Any questions about the OOP concepts?"></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitComment()">💬 Post Comment</button>
+      </div>
+
+      <div class="comments-count-bar">
+        <h3 id="comments-count">3 Comments</h3>
+        <select class="sort-select" onchange="sortComments(this.value)">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="top">Top Liked</option>
+        </select>
+      </div>
+      <div id="comments-list"></div>
+    </div>
+  </div>
+
+  <div class="sub-section" id="subscribe">
+    <div class="wrap">
+      <div class="badge" style="margin:0 auto 16px;">📬 Newsletter</div>
+      <h2>Learn Python,<br><span>One Tutorial At a Time</span></h2>
+      <p>Join 2,400+ developers in the Philippines and beyond. New tutorials, code breakdowns, and project ideas — every week, free.</p>
+      <div class="sub-form">
+        <input type="email" id="sub-email" placeholder="your@email.com">
+        <button onclick="subscribe()">Subscribe →</button>
+      </div>
+      <div class="sub-perks">
+        <span class="sub-perk">✓ No spam, ever</span>
+        <span class="sub-perk">✓ Unsubscribe anytime</span>
+        <span class="sub-perk">✓ Free Python resources</span>
+        <span class="sub-perk">✓ Weekly tutorials</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Poetic <span>Bytes</span></div>
+        <p class="footer-brand-desc">A dev learning blog from the Philippines 🇵🇭 — making programming education accessible, practical, and genuinely enjoyable for every developer, from beginner to professional.</p>
+        <div class="footer-socials">
+          <button class="social-btn" onclick="showToast('⭐ Opening GitHub…')">⭐ GitHub</button>
+          <button class="social-btn" onclick="showToast('▶ Opening YouTube…')">▶ YouTube</button>
+          <button class="social-btn" onclick="showToast('🐦 Opening Twitter…')">🐦 Twitter</button>
+          <button class="social-btn" onclick="showToast('📘 Opening Facebook…')">📘 Facebook</button>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Content</h4>
+        <div class="footer-links">
+          <button class="footer-link-btn" onclick="document.getElementById('full-source').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">💻</span>Full Source Code</button>
+          <button class="footer-link-btn" onclick="document.getElementById('explanation').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">📖</span>Step-by-Step Explanation</button>
+          <button class="footer-link-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">🧠</span>Knowledge Quiz</button>
+          <button class="footer-link-btn" onclick="document.getElementById('mistakes-section').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">⚠️</span>Common Mistakes</button>
+          <button class="footer-link-btn" onclick="document.getElementById('cheatsheet-section').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">📋</span>OOP Cheatsheet</button>
+          <button class="footer-link-btn" onclick="document.getElementById('share-section').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">🤖</span>AI Social Sharing</button>
+          <button class="footer-link-btn" onclick="document.getElementById('comments-section').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">💬</span>Comments</button>
+          <button class="footer-link-btn" onclick="document.getElementById('subscribe').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">📬</span>Subscribe</button>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <div class="footer-links">
+          <button class="footer-link-btn" onclick="downloadCode()"><span class="flb-icon">⬇️</span>Download .py File</button>
+          <button class="footer-link-btn" onclick="copyCode()"><span class="flb-icon">📋</span>Copy Source Code</button>
+          <button class="footer-link-btn" onclick="showToast('🐍 Opening Python docs…')"><span class="flb-icon">🐍</span>Python Docs</button>
+          <button class="footer-link-btn" onclick="showToast('🏗️ Opening OOP guide…')"><span class="flb-icon">🏗️</span>OOP Guide</button>
+          <button class="footer-link-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})"><span class="flb-icon">🧪</span>Test Your Knowledge</button>
+          <button class="footer-link-btn" onclick="showToast('🚀 Loading more tutorials…')"><span class="flb-icon">🚀</span>More Tutorials</button>
+        </div>
+      </div>
+
+      <div class="follow-col">
+        <h4>Follow Me</h4>
+        <div class="follow-links">
+          <a class="follow-btn fb"
+             href="https://www.facebook.com/@Glenn-Junsay-Pansensoy"
+             target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="#1877f2">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+            <span class="follow-btn-text">Facebook</span>
+            <span class="follow-btn-arrow">›</span>
+          </a>
+          <a class="follow-btn li"
+             href="https://www.linkedin.com/in/glenn-pansensoy-6288453a2"
+             target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0a66c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+            <span class="follow-btn-text">LinkedIn</span>
+            <span class="follow-btn-arrow">›</span>
+          </a>
+          <a class="follow-btn tw"
+             href="https://www.x.com/@GlennPansensoy"
+             target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="#e7e7e7">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span class="follow-btn-text">X / Twitter</span>
+            <span class="follow-btn-arrow">›</span>
+          </a>
+          <a class="follow-btn yt"
+             href="https://www.youtube.com/c/@GlennPansensoy"
+             target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="#ff0000">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#fff"/>
+            </svg>
+            <span class="follow-btn-text">YouTube</span>
+            <span class="follow-btn-arrow">›</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        <p>© 2024 Poetic Bytes</p>
+        <p>Created by Glenn Junsay Pansensoy</p>
+        <p>All content for educational use.</p>
+      </div>
+      <div class="footer-legal">
+        <a class="fb-btn accent" href="encapsulation.html">← Back to Encapsulation Hub</a>
+        <button class="fb-btn" onclick="showToast('🔒 Opening Privacy Policy…')">🔒 Privacy Policy</button>
+        <button class="fb-btn" onclick="showToast('📄 Opening Terms…')">📄 Terms of Use</button>
+        <button class="fb-btn" onclick="showToast('🍪 Opening Cookie Settings…')">🍪 Cookie Settings</button>
+        <button class="fb-btn" onclick="showToast('✉️ Opening Contact…')">✉️ Contact Us</button>
+        <button class="fb-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+
+const rawSource = `class FlowerShop:
+    def __init__(self):
+        self.flowers = {
+            "Rose":      50.00,
+            "Tulip":     40.00,
+            "Orchid":    60.00,
+            "Sunflower": 30.00,
+            "Lily":      55.00
+        }
+
+    def display_available_flowers(self):
+        """Display the list of available flowers with their prices."""
+        print("Available Flowers in the Shop:")
+        for flower, price in self.flowers.items():
+            print(f"{flower}: PHP {price:.2f} per stem")
+
+    def get_chosen_flower(self):
+        """Prompt the user to choose a flower from the available list."""
+        while True:
+            chosen_flower = input("Enter the flower name: ").strip().title()
+            if chosen_flower in self.flowers:
+                return chosen_flower
+            else:
+                print("Invalid flower. Please choose from the list.")
+
+    def get_quantity(self):
+        """Prompt the user to enter the quantity of flowers."""
+        while True:
+            try:
+                quantity = int(input("Enter the quantity: "))
+                if quantity > 0:
+                    return quantity
+                else:
+                    print("Quantity must be a positive integer.")
+            except ValueError:
+                print("Invalid input. Please enter a positive integer.")
+
+    def calculate_total_cost(self, flower, quantity):
+        """Calculate and return total cost based on flower and quantity."""
+        price_per_stem = self.flowers[flower]
+        total_cost = price_per_stem * quantity
+        return total_cost
+
+    def run(self):
+        """Main method to run the flower shop program."""
+        self.display_available_flowers()
+        chosen_flower = self.get_chosen_flower()
+        quantity = self.get_quantity()
+        total_cost = self.calculate_total_cost(chosen_flower, quantity)
+        print(f"\\nChosen Flower: {chosen_flower}")
+        print(f"Quantity: {quantity}")
+        print(f"Total Cost: PHP {total_cost:.2f}")
+
+if __name__ == "__main__":
+    shop = FlowerShop()
+    shop.run()`;
+
+const hamburger = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('drawerOverlay');
+const drawerClose = document.getElementById('drawerClose');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('open');
+  document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+});
+
+function closeDrawer() {
+  hamburger.classList.remove('open');
+  drawer.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+drawerClose.addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(rawSource)
+    .then(() => showToast('✅ Code copied to clipboard!'))
+    .catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = rawSource;
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('✅ Code copied!');
+    });
+}
+
+function downloadCode() {
+  const blob = new Blob([rawSource], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'flower_shop.py';
+  a.click();
+  showToast('⬇️ Downloading flower_shop.py…');
+}
+
+window.addEventListener('scroll', () => {
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = (window.scrollY / total) * 100;
+  document.getElementById('read-progress').style.width = Math.min(pct, 100) + '%';
+
+  const btt = document.getElementById('btt');
+  btt.classList.toggle('visible', window.scrollY > 400);
+});
+
+document.getElementById('btt').addEventListener('click', () =>
+  window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+
+let currentPlatform = 'twitter';
+const captions = {
+  twitter: [
+    "💻 Just studied this FlowerShop Python OOP program and it's packed with real patterns:\n\n• __init__ sets up the inventory dict\n• while True for bulletproof input validation\n• .strip().title() normalises user input\n• try/except catches ValueError gracefully\n• :.2f for PHP currency formatting\n\nAll 56 lines. Zero crashes. 🌸\n\n#Python #OOP #LearnToCode #100DaysOfCode #PhilippineTech",
+    "The while True + try/except pattern in Python:\n\n🔁 Loop forever\n✅ try: convert input to int\n❌ except ValueError: print error, loop again\n✔️ if valid → return and exit\n\nThis is the gold standard for CLI input validation. Used in real tools, not just tutorials.\n\n#Python #CleanCode #PythonTips #Backend",
+  ],
+  linkedin: [
+    "I've been teaching Python OOP using this FlowerShop program, and the results have been outstanding.\n\nIn just 56 lines, it demonstrates:\n→ Class design and constructors (__init__)\n→ Dictionary-based inventory management\n→ Multi-layer input validation (try/except + logic checks)\n→ The Single Responsibility Principle\n→ Python's __name__ == '__main__' guard\n→ Currency formatting with :.2f f-strings\n\nThe best programs aren't complex — they're clear. Each method does exactly one thing, making the code easy to read, test, and extend confidently.\n\n#Python #SoftwareEngineering #LearningToCode #PhilippineTech",
+    "Why do experienced Python developers still reference beginner programs like FlowerShop?\n\nBecause the patterns are identical to production code:\n• while True + return = polling loops in server apps\n• try/except ValueError = API input sanitisation\n• dictionary lookup = cache retrieval patterns\n• Single Responsibility = microservice design\n\nLearn the fundamentals deeply. They never stop being relevant — at any scale.\n\n#Python #Programming #CodingTips #BackendDevelopment",
+  ],
+  facebook: [
+    "🌸 Just broke down this Python FlowerShop OOP program line by line — and there is SO much packed into 56 lines!\n\nHighlights:\n✅ Clean class with 5 well-named methods\n✅ Dictionary for instant O(1) price lookups\n✅ Input that NEVER crashes (try/except + while True)\n✅ f-strings with PHP currency formatting ₱\n✅ Single Responsibility — each method does one job\n\nPerfect for anyone learning Python OOP for the first time! 🇵🇭",
+    "Python tip 🐍\n\nNever do this:\nquantity = int(input('Enter quantity: '))\n\nDo THIS instead:\nwhile True:\n    try:\n        quantity = int(input('Enter quantity: '))\n        if quantity > 0: return quantity\n    except ValueError:\n        print('Numbers only!')\n\nThe difference? One crashes on bad input. The other never does. 💪\n\nFull explanation in our FlowerShop tutorial! 🌸",
+  ],
+  whatsapp: [
+    "Hey! 🌸 Check out this Python FlowerShop OOP breakdown — perfect for learning classes, __init__, while True loops, try/except, and PHP formatting. Only 56 lines but packed with real production patterns. Great for any level! 🐍✅",
+    "Python study tip 💡: The while True + try/except pattern in FlowerShop is THE standard for CLI input validation in production Python tools. Full breakdown at Poetic Bytes 🌿🇵🇭",
+  ],
+};
+
+function generateAICaption(platform) {
+  currentPlatform = platform;
+  const box = document.getElementById('ai-caption-box');
+  const label = document.getElementById('caption-platform-label');
+  const textEl = document.getElementById('ai-caption-text');
+  const names = { twitter: 'X / TWITTER', linkedin: 'LINKEDIN', facebook: 'FACEBOOK', whatsapp: 'WHATSAPP' };
+
+  box.style.display = 'block';
+  label.textContent = `AI CAPTION — ${names[platform]}`;
+  textEl.textContent = '⏳ Generating caption…';
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  setTimeout(() => {
+    const pool = captions[platform];
+    textEl.textContent = pool[Math.floor(Math.random() * pool.length)];
+    showToast('✨ AI caption ready!');
+  }, 900);
+}
+
+function regenerateCaption() { generateAICaption(currentPlatform); }
+
+function copyCaption() {
+  const text = document.getElementById('ai-caption-text').textContent;
+  navigator.clipboard.writeText(text)
+    .then(() => showToast('📋 Caption copied!'))
+    .catch(() => showToast('📋 Caption copied!'));
+  const btn = document.getElementById('copy-caption-btn');
+  btn.classList.add('active');
+  setTimeout(() => btn.classList.remove('active'), 1500);
+}
+
+function openPlatform() {
+  const urls = { twitter:'https://twitter.com', linkedin:'https://linkedin.com', facebook:'https://facebook.com', whatsapp:'https://web.whatsapp.com' };
+  window.open(urls[currentPlatform] || '#', '_blank');
+  showToast(`↗ Opening ${currentPlatform}…`);
+}
+
+let comments = [
+  { id: 1, name: 'James Reyes', initials: 'JR', gradient: 'linear-gradient(135deg,#4d9eff,#7c9eff)', badge: 'Author', badgeStyle: 'background:rgba(77,158,255,0.1);color:#4d9eff', topic: 'General Discussion', time: Date.now() - 172800000, likes: 12, liked: false, text: 'This FlowerShop example is brilliant for teaching OOP! The while True loop pattern for input validation is something I use in every CLI tool I build. The .strip().title() chain is such an elegant solution to the case-sensitivity problem. Try modifying the dictionary to add "Carnation" — see how little code you need to change!' },
+  { id: 2, name: 'Ana Cruz', initials: 'AC', gradient: 'linear-gradient(135deg,#ff6b6b,#ffd166)', badge: '', badgeStyle: '', topic: 'Question about Code', time: Date.now() - 86400000, likes: 8, liked: false, text: 'Quick question! Why does `calculate_total_cost()` use return instead of just printing the result directly inside the method? I initially wrote it with print() and it seemed to work fine too — what am I missing?' },
+  { id: 3, name: 'Miguel Garcia', initials: 'MG', gradient: 'linear-gradient(135deg,#7c9eff,#4d9eff)', badge: 'Top Contributor', badgeStyle: 'background:rgba(255,209,102,0.1);color:#ffd166', topic: 'I tried it!', time: Date.now() - 3600000, likes: 15, liked: true, text: '@Ana — Great question! Using return is better because it separates calculation from display. If you print inside calculate_total_cost(), you can never reuse it silently in a receipt system, database save, or unit test. With return, run() decides what to do with the number — the caller has full control. This is the Single Responsibility Principle in action! 🎯' },
+];
+
+function timeAgo(ts) {
+  const s = Math.floor((Date.now() - ts) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return `${Math.floor(s/60)}m ago`;
+  if (s < 86400) return `${Math.floor(s/3600)}h ago`;
+  if (s < 604800) return `${Math.floor(s/86400)}d ago`;
+  return `${Math.floor(s/604800)}w ago`;
+}
+
+function renderComments() {
+  const list = document.getElementById('comments-list');
+  document.getElementById('comments-count').textContent = `${comments.length} Comment${comments.length !== 1 ? 's' : ''}`;
+  list.innerHTML = comments.map(c => `
+    <div class="comment-item">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:${c.gradient};color:#0d0e12;">${c.initials}</div>
+        <div class="comment-meta">
+          <strong>${c.name}${c.badge ? ` <span class="comment-badge" style="${c.badgeStyle}">${c.badge}</span>` : ''}</strong>
+          <span>${timeAgo(c.time)} · ${c.topic}</span>
+        </div>
+      </div>
+      <div class="comment-body">${c.text.replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*([^*]+)\*/g,'<em>$1</em>')}</div>
+      <div class="comment-actions">
+        <button class="comment-act-btn${c.liked?' liked':''}" onclick="likeComment(${c.id})">❤️ ${c.likes}</button>
+        <button class="comment-act-btn" onclick="replyTo('${c.name}')">↩ Reply</button>
+        <button class="comment-act-btn" onclick="showToast('🚩 Comment reported')">🚩 Report</button>
+      </div>
+    </div>`).join('');
+}
+
+function likeComment(id) {
+  const c = comments.find(x => x.id === id);
+  if (!c) return;
+  c.liked = !c.liked;
+  c.likes += c.liked ? 1 : -1;
+  renderComments();
+}
+
+function replyTo(name) {
+  const ta = document.getElementById('c-text');
+  ta.value = `@${name} `;
+  ta.focus();
+  document.getElementById('comments-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function sortComments(order) {
+  if (order === 'newest') comments.sort((a,b) => b.time - a.time);
+  else if (order === 'oldest') comments.sort((a,b) => a.time - b.time);
+  else if (order === 'top') comments.sort((a,b) => b.likes - a.likes);
+  renderComments();
+}
+
+const avatarColors = [
+  'linear-gradient(135deg,#4d9eff,#82aaff)',
+  'linear-gradient(135deg,#ff6b6b,#ffd166)',
+  'linear-gradient(135deg,#7c9eff,#4d9eff)',
+  'linear-gradient(135deg,#ffd166,#ff6b6b)',
+  'linear-gradient(135deg,#4ade80,#22d3ee)',
+];
+
+function submitComment() {
+  const name = document.getElementById('c-name').value.trim();
+  const text = document.getElementById('c-text').value.trim();
+  const topic = document.getElementById('c-topic').value;
+  if (!name) { showToast('⚠️ Please enter your name'); return; }
+  if (text.length < 10) { showToast('⚠️ Comment must be at least 10 characters'); return; }
+  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+  const gradient = avatarColors[Math.floor(Math.random() * avatarColors.length)];
+  comments.unshift({ id: Date.now(), name, initials, gradient, badge:'', badgeStyle:'', topic, time: Date.now(), likes: 0, liked: false, text });
+  document.getElementById('c-name').value = '';
+  document.getElementById('c-email').value = '';
+  document.getElementById('c-text').value = '';
+  renderComments();
+  showToast('💬 Comment posted!');
+  document.getElementById('comments-list').scrollIntoView({ behavior: 'smooth' });
+}
+
+function subscribe() {
+  const email = document.getElementById('sub-email').value.trim();
+  if (!email || !email.includes('@')) { showToast('⚠️ Please enter a valid email address'); return; }
+  showToast(`✅ Subscribed! Welcome to Poetic Bytes 🌿`);
+  document.getElementById('sub-email').value = '';
+}
+
+renderComments();
+</script>
+</body>
+</html>
