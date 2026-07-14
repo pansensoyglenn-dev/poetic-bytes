@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Context Managers – with, __enter__, __exit__, contextlib | Poetic Bytes</title>
+    <meta name="description" content="Master Python context managers: the with statement, __enter__/__exit__ protocol, contextlib, file I/O, and resource management. Practical examples for beginners to advanced." />
+    <meta name="keywords" content="python context managers, with statement, __enter__, __exit__, contextlib, python resource management, python with, python context manager tutorial" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/python-context-managers.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/python-context-managers.html" />
+    <meta property="og:title" content="Python Context Managers – with, __enter__, __exit__, contextlib | Poetic Bytes" />
+    <meta property="og:description" content="Deep dive into Python context managers: the with statement, protocol, contextlib, and real‑world patterns. Includes file I/O, locking, and custom context managers." />
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Python Context Managers – with, __enter__, __exit__, contextlib | Poetic Bytes" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Context Managers – with, __enter__, __exit__, contextlib" />
+    <meta name="twitter:description" content="Master Python context managers: the with statement, __enter__/__exit__ protocol, contextlib, file I/O, and resource management. Practical examples." />
+    <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta name="twitter:image:alt" content="Python Context Managers – with, __enter__, __exit__, contextlib | Poetic Bytes" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "Python Context Managers – with, __enter__, __exit__, contextlib",
+            "description": "Deep dive into Python context managers: the with statement, protocol, contextlib, and real‑world patterns.",
+            "author": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "url": "https://www.linkedin.com/in/glenn-pansensoy"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Poetic Bytes",
+                "url": "https://poetic-bytes.vercel.app"
+            },
+            "image": "https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png",
+            "datePublished": "2026-07-14",
+            "dateModified": "2026-07-14",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://poetic-bytes.vercel.app/python-context-managers.html"
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #A8C0D8;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            min-height: 140px;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .card-arrow {
+            margin-top: auto;
+            font-size: .65rem;
+            color: var(--blue);
+            opacity: 0;
+            transition: opacity .2s, transform .2s;
+        }
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-top: .2rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-oop {
+            background: rgba(75, 139, 190, .15);
+            color: var(--blue-lt);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+            background: transparent;
+            border: none;
+            width: 100%;
+            font-family: inherit;
+            text-align: left;
+            color: var(--text);
+            font-weight: 600;
+            font-size: .8rem;
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+            margin: 0;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            transition: transform .25s;
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(45deg);
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 300px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-container .code-snippet {
+            border-radius: 0;
+            border-left: none;
+            margin-bottom: 0;
+            padding: 1rem;
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        .subject-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: rgba(75, 139, 190, 0.06);
+            border-left: 3px solid var(--blue);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .subject-desc strong {
+            color: var(--text);
+        }
+        .explain-block {
+            background: rgba(255, 217, 102, 0.05);
+            border: 1px solid rgba(255, 217, 102, 0.18);
+            border-radius: var(--card-r);
+            padding: 1rem 1.1rem;
+            margin-top: 0.8rem;
+        }
+        .explain-block h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .explain-block ol {
+            padding-left: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .45rem;
+        }
+        .explain-block li {
+            font-size: .76rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+        .explain-block li strong,
+        .explain-block li code {
+            color: var(--blue-lt);
+        }
+        .why-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .why-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            gap: .8rem;
+        }
+        .why-card .why-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .why-card h4 {
+            font-size: .82rem;
+            color: var(--text);
+            margin-bottom: .3rem;
+        }
+        .why-card p {
+            font-size: .76rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#protocol">Protocol</a></li>
+                <li><a href="#contextlib">contextlib</a></li>
+                <li><a href="#patterns">Patterns</a></li>
+                <li><a href="#why">Why It Matters</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main id="main-content" style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python Context Managers" style="padding:5rem 0 3rem;background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75,139,190,.18) 0%, transparent 70%);">
+            <div class="page-col">
+                <div class="hero-tag" style="display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:40px;padding:.3rem .9rem;font-size:.68rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.2rem;background:var(--card);">
+                    <span class="live-dot" style="width:7px;height:7px;background:var(--blue-lt);border-radius:50%;animation:pulse 2s infinite;"></span> Python 3.12+ · Advanced
+                </div>
+                <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);margin-bottom:.8rem;">🔐 Python Context Managers<br><span style="color:var(--blue-lt);">with, __enter__, __exit__, contextlib</span></h1>
+                <p class="lead" style="font-size:.88rem;color:var(--muted);max-width:560px;margin-bottom:1.6rem;line-height:1.75;">Master the <code>with</code> statement, the protocol behind it, and the <code>contextlib</code> module. Write clean, resource-safe code that handles files, locks, and transactions gracefully.</p>
+                <div class="hero-btns" style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem;">
+                    <a href="#protocol" class="btn btn-primary"><i class="fas fa-book-open"></i> Understand the Protocol</a>
+                    <a href="#contextlib" class="btn btn-outline"><i class="fas fa-code"></i> contextlib Examples</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="intro-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="intro-heading">📖 What Are Context Managers?</h2>
+                    <p>Context managers let you allocate and release resources precisely — files, network connections, database transactions, and locks — with guaranteed cleanup.</p>
+                </div>
+
+                <div class="subject-desc">
+                    <strong>In plain language:</strong> a context manager is an object that knows how to "set up" something before you use it, and how to "tear it down" afterward — automatically, no matter what happens in between, even a crash. The <code>with</code> statement is the syntax that hands control to that object. Think of it as Python's version of a responsible adult: it opens the door for you, and no matter how the visit goes — smooth or chaotic — it makes sure the door gets closed on the way out.
+                </div>
+                <div class="subject-desc">
+                    Every non-trivial Python program eventually touches a resource that lives outside the Python interpreter's own memory: a file on disk, a socket to a server, a lock shared between threads, a transaction on a database, a temporary change to global state. All of these share the same shape — <strong>acquire, use, release</strong> — and all of them are dangerous to manage by hand, because a single unexpected exception between "acquire" and "release" can leak the resource forever. Context managers exist to make that shape a first-class, reusable pattern instead of something every programmer re-invents (and gets wrong) on their own.
+                </div>
+
+                <div class="oop-block">
+                    <h3>🧠 The Problem They Solve</h3>
+                    <p>Without context managers, you must manually ensure every resource is released, even when exceptions occur. This leads to duplicated cleanup code, resource leaks, and subtle bugs.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Without context manager — error‑prone</span>
+f = open(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>)
+<span class="kw">try</span>:
+    f.write(<span class="st">"Manual cleanup is risky.\n"</span>)
+<span class="kw">finally</span>:
+    f.close()
+
+<span class="cmt"># With context manager — clean and safe</span>
+<span class="kw">with</span> open(<span class="st">"notes.txt"</span>, <span class="st">"a"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"The with statement guarantees cleanup.\n"</span>)
+
+<span class="kw">with</span> open(<span class="st">"notes.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    <span class="fn">print</span>(f.read())</pre></div>
+                    <div class="explain-block">
+                        <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                        <ol>
+                            <li><strong>Line 2:</strong> <code>open("notes.txt", "w")</code> creates (or overwrites) <code>notes.txt</code> and returns a file object <code>f</code>. Nothing closes it yet — that responsibility now sits entirely on the programmer.</li>
+                            <li><strong>Lines 3–4:</strong> the <code>try/finally</code> is the manual safety net. Whatever happens inside <code>try</code>, the <code>finally</code> block still runs and calls <code>f.close()</code>. This is correct, but it's boilerplate you must remember every single time.</li>
+                            <li><strong>Line 8:</strong> <code>with open("notes.txt", "a") as f:</code> opens the file in append mode and binds it to <code>f</code>. The <code>with</code> statement calls the file's hidden <code>__enter__</code> method behind the scenes.</li>
+                            <li><strong>Line 9:</strong> a line is appended to the file. As soon as this indented block ends — normally or via an exception — Python automatically calls the file's <code>__exit__</code> method, which closes the file. There is no explicit <code>close()</code> anywhere.</li>
+                            <li><strong>Lines 11–12:</strong> a second, independent <code>with</code> block reopens the same file for reading, prints its contents, and closes it again automatically once the block ends.</li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 The <code>with</code> statement guarantees that <code>f.close()</code> is called even if an exception occurs inside the block — you get the safety of <code>try/finally</code> without writing it yourself.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🌍 Why Every Programmer Should Learn This</h3>
+                    <p>Context managers aren't a niche, "advanced-only" curiosity — they're one of the most-used pieces of syntax in real Python codebases, and understanding them changes how you think about resource safety in every language you touch afterward.</p>
+                    <div class="why-grid">
+                        <div class="why-card"><div class="why-num">01</div><div><h4>You already use them daily</h4><p>Every time you write <code>with open(...)</code>, you're using a context manager. Understanding the mechanism behind that one line unlocks dozens of other built-in and third-party tools that follow the same shape: database connections, HTTP sessions, locks, temporary directories, mock patches.</p></div></div>
+                        <div class="why-card"><div class="why-num">02</div><div><h4>They eliminate an entire class of bugs</h4><p>Forgotten <code>.close()</code> calls, leaked file handles, threads that deadlock because a lock was never released — these are some of the most common production bugs. The <code>with</code> statement makes that category of bug structurally impossible to forget.</p></div></div>
+                        <div class="why-card"><div class="why-num">03</div><div><h4>They teach you Python's object protocols</h4><p>Learning <code>__enter__</code>/<code>__exit__</code> is a gateway to understanding Python's "dunder method" system in general — the same mental model powers iterators (<code>__iter__</code>/<code>__next__</code>), operator overloading, and more.</p></div></div>
+                        <div class="why-card"><div class="why-num">04</div><div><h4>They make code reviews and audits faster</h4><p>A reviewer who sees <code>with lock:</code> instantly knows the lock will be released, no matter how the block exits. That predictability is valuable in every codebase, especially ones with multiple contributors.</p></div></div>
+                        <div class="why-card"><div class="why-num">05</div><div><h4>They're a hiring-interview staple</h4><p>Explaining what happens when an exception is raised inside a <code>with</code> block is one of the most common intermediate-to-advanced Python interview questions, precisely because it reveals whether a candidate understands resource management, not just syntax.</p></div></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🏛️ Significance in the Programming World</h3>
+                    <p>The idea behind context managers is bigger than Python. Nearly every modern language has converged on some version of "deterministic cleanup tied to scope," because production software keeps failing in the same way otherwise:</p>
+                    <p><strong>C++</strong> pioneered this as RAII (Resource Acquisition Is Initialization), where a destructor cleans up when an object goes out of scope. <strong>Java</strong> added try-with-resources for <code>AutoCloseable</code> objects. <strong>C#</strong> has <code>using</code> blocks for <code>IDisposable</code>. <strong>Go</strong> uses <code>defer</code>. <strong>Rust</strong>'s entire ownership model is built around deterministic drop semantics. Python's <code>with</code> statement is the Pythonic member of that same family — proof that "acquire, use, guaranteed release" is one of the most important patterns in all of software engineering, not a Python-specific quirk.</p>
+                    <p>Because Python is so widely used in data pipelines, web backends, DevOps tooling, and automation scripts — exactly the domains where files, network sockets, database connections, and locks are opened constantly — context managers quietly prevent an enormous number of leaked resources and race conditions across the industry every single day. Learning them well is one of the highest-leverage investments a Python developer can make.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="protocol" aria-labelledby="protocol-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="protocol-heading">🔧 The Context Manager Protocol</h2>
+                    <p>Any object that implements <code>__enter__</code> and <code>__exit__</code> can be used with <code>with</code>.</p>
+                </div>
+                <div class="oop-block">
+                    <h3>__enter__ and __exit__</h3>
+                    <p><code>__enter__</code> runs when entering the <code>with</code> block. <code>__exit__</code> runs on exit — even if an exception is raised. The return value of <code>__enter__</code> is bound to the variable after <code>as</code>.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">ManagedFile</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, path, mode):
+        <span class="kw">self</span>.path = path
+        <span class="kw">self</span>.mode = mode
+
+    <span class="kw">def</span> <span class="fn">__enter__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>._file = open(<span class="kw">self</span>.path, <span class="kw">self</span>.mode)
+        <span class="fn">print</span>(<span class="st">f"[enter] opened {self.path} in '{self.mode}' mode"</span>)
+        <span class="kw">return</span> <span class="kw">self</span>._file
+
+    <span class="kw">def</span> <span class="fn">__exit__</span>(<span class="kw">self</span>, exc_type, exc_val, exc_tb):
+        <span class="kw">self</span>._file.close()
+        <span class="fn">print</span>(<span class="st">f"[exit] closed {self.path}"</span>)
+        <span class="kw">if</span> exc_type <span class="kw">is not None</span>:
+            <span class="fn">print</span>(<span class="st">f"An exception occurred: {exc_val}"</span>)
+        <span class="kw">return</span> <span class="kw">False</span>  <span class="cmt"># propagate exceptions</span>
+
+<span class="kw">with</span> <span class="cl">ManagedFile</span>(<span class="st">"hello.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"Hello, context manager!"</span>)
+
+<span class="kw">with</span> <span class="cl">ManagedFile</span>(<span class="st">"hello.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    <span class="fn">print</span>(<span class="st">"Contents:"</span>, f.read())</pre></div>
+                    <div class="explain-block">
+                        <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                        <ol>
+                            <li><strong>Lines 1–4:</strong> <code>ManagedFile</code> is a plain class. <code>__init__</code> just stores the path and mode — no file is opened yet. Nothing here is special to context managers.</li>
+                            <li><strong>Lines 6–9 (<code>__enter__</code>):</strong> this method runs the instant the <code>with</code> block starts. It opens the real file, prints a trace message so we can see the timing, and <code>return self._file</code> — whatever this method returns becomes the value bound to the variable after <code>as</code>.</li>
+                            <li><strong>Lines 11–16 (<code>__exit__</code>):</strong> Python calls this automatically when the block ends, whether it ended normally or because of an exception. It always receives three arguments: <code>exc_type</code>, <code>exc_val</code>, and <code>exc_tb</code> — all <code>None</code> if nothing went wrong.</li>
+                            <li><strong>Line 12:</strong> the file is closed here, guaranteed, before anything else happens.</li>
+                            <li><strong>Lines 14–15:</strong> if an exception did occur, <code>exc_type</code> won't be <code>None</code>, so this branch prints what went wrong. This is where you'd typically log an error.</li>
+                            <li><strong>Line 16:</strong> returning <code>False</code> tells Python "don't swallow the exception — let it keep propagating up the call stack" after cleanup has run. This is almost always what you want.</li>
+                            <li><strong>Lines 18–19:</strong> the first <code>with</code> block creates <code>ManagedFile</code>, which triggers <code>__enter__</code> (opening the file for writing), writes one line, then triggers <code>__exit__</code> (closing the file) as the block exits.</li>
+                            <li><strong>Lines 21–22:</strong> a second block reopens the same file in read mode to prove the write actually landed on disk and the file handle was properly closed and reusable.</li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Returning <code>True</code> from <code>__exit__</code> suppresses the exception. Use this sparingly — usually you want to propagate or log.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contextlib" aria-labelledby="contextlib-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="contextlib-heading">⚡ contextlib — Simplify Context Managers</h2>
+                    <p>The <code>contextlib</code> module provides utilities for writing context managers with less boilerplate.</p>
+                </div>
+                <div class="oop-block">
+                    <h3>@contextmanager — Generator‑Based Context Managers</h3>
+                    <p>Decorate a generator function with <code>@contextmanager</code>. The code before <code>yield</code> runs on entry, the code after runs on exit.</p>
+                    <div class="code-snippet"><pre><span class="kw">from</span> contextlib <span class="kw">import</span> contextmanager
+
+@contextmanager
+<span class="kw">def</span> <span class="fn">managed_file</span>(path, mode):
+    <span class="fn">print</span>(<span class="st">f"[setup] opening {path}"</span>)
+    f = open(path, mode)
+    <span class="kw">try</span>:
+        <span class="kw">yield</span> f
+    <span class="kw">finally</span>:
+        f.close()
+        <span class="fn">print</span>(<span class="st">f"[teardown] closed {path}"</span>)
+
+<span class="cmt"># First, create the file so there's something to read</span>
+<span class="kw">with</span> managed_file(<span class="st">"data.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> f:
+    f.write(<span class="st">"Generator-based context managers are concise."</span>)
+
+<span class="cmt"># Now read it back using the same helper</span>
+<span class="kw">with</span> managed_file(<span class="st">"data.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    content = f.read()
+    <span class="fn">print</span>(<span class="st">"Read back:"</span>, content)</pre></div>
+                    <div class="explain-block">
+                        <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                        <ol>
+                            <li><strong>Line 1:</strong> imports the <code>contextmanager</code> decorator from the standard library.</li>
+                            <li><strong>Line 3:</strong> <code>@contextmanager</code> turns the ordinary-looking generator function below into something usable with <code>with</code>.</li>
+                            <li><strong>Lines 4–10:</strong> <code>managed_file</code> is written as a generator (it contains <code>yield</code>). Everything before <code>yield</code> is the "setup" phase; everything after — inside <code>finally</code> — is the "teardown" phase.</li>
+                            <li><strong>Line 7 (<code>yield f</code>):</strong> execution pauses here and hands <code>f</code> to the <code>with</code> block as the value bound to <code>as f</code>. The function "waits" at this point while the block's body runs.</li>
+                            <li><strong>Lines 8–10:</strong> once the <code>with</code> block finishes (or raises), execution resumes right after <code>yield</code>, inside the <code>finally</code>, guaranteeing the file gets closed no matter what.</li>
+                            <li><strong>Lines 13–14:</strong> the first <code>with</code> block writes a sentence into <code>data.txt</code>, creating the file since it's opened in <code>"w"</code> mode.</li>
+                            <li><strong>Lines 17–19:</strong> the second <code>with</code> block reopens the same file for reading and prints its contents, proving the earlier write and close both succeeded.</li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 The <code>try/finally</code> inside the generator guarantees cleanup even if an exception occurs after <code>yield</code>.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>contextlib.closing — For Objects Without __exit__</h3>
+                    <p>Use <code>closing</code> to call <code>.close()</code> on an object at the end of the block — perfect for objects that support <code>.close()</code> but don't implement the full context manager protocol themselves.</p>
+                    <div class="code-snippet"><pre><span class="kw">from</span> contextlib <span class="kw">import</span> closing
+
+<span class="kw">class</span> <span class="cl">NetworkConnection</span>:
+    <span class="cmt">"""A stand-in for a resource that only offers .close(),</span>
+<span class="cmt">    like some legacy sockets or third-party clients."""</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, host):
+        <span class="kw">self</span>.host = host
+        <span class="kw">self</span>.open = <span class="kw">True</span>
+        <span class="fn">print</span>(<span class="st">f"Connected to {host}"</span>)
+
+    <span class="kw">def</span> <span class="fn">fetch</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">f"data from {self.host}"</span>
+
+    <span class="kw">def</span> <span class="fn">close</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.open = <span class="kw">False</span>
+        <span class="fn">print</span>(<span class="st">f"Connection to {self.host} closed"</span>)
+
+<span class="kw">with</span> closing(<span class="cl">NetworkConnection</span>(<span class="st">"api.example.com"</span>)) <span class="kw">as</span> conn:
+    <span class="fn">print</span>(conn.fetch())</pre></div>
+                    <div class="explain-block">
+                        <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                        <ol>
+                            <li><strong>Line 1:</strong> imports <code>closing</code> from <code>contextlib</code>.</li>
+                            <li><strong>Lines 3–15:</strong> <code>NetworkConnection</code> is a deliberately simple class that only has a <code>close()</code> method — it does <em>not</em> implement <code>__enter__</code>/<code>__exit__</code>, which means it cannot be used directly with <code>with</code>.</li>
+                            <li><strong>Lines 6–9 (<code>__init__</code>):</strong> simulates "connecting" by storing the host and printing a message — no real network call is made.</li>
+                            <li><strong>Lines 11–12 (<code>fetch</code>):</strong> a normal method representing "doing work" with the open connection.</li>
+                            <li><strong>Lines 14–16 (<code>close</code>):</strong> the one method <code>closing</code> depends on — it will be called automatically when the block ends.</li>
+                            <li><strong>Line 18:</strong> <code>closing(NetworkConnection(...))</code> wraps the object; the <code>with</code> statement then calls <code>.close()</code> on it automatically when the block finishes, exactly as if the class had implemented <code>__exit__</code> itself.</li>
+                            <li><strong>Line 19:</strong> inside the block, <code>conn</code> is the original <code>NetworkConnection</code> object (not a wrapper), so all of its normal methods like <code>fetch()</code> are available.</li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 <code>closing()</code> is the tool of choice for legacy or third-party classes that expose <code>.close()</code> but weren't written with <code>with</code> in mind.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>contextlib.suppress — Ignore Specific Exceptions</h3>
+                    <p>Silently ignore exceptions instead of writing empty <code>try/except</code> blocks.</p>
+                    <div class="code-snippet"><pre><span class="kw">import</span> os
+<span class="kw">from</span> contextlib <span class="kw">import</span> suppress
+
+<span class="cmt"># "ghost.txt" does not exist — suppress() absorbs the error quietly</span>
+<span class="kw">with</span> suppress(FileNotFoundError):
+    os.remove(<span class="st">"ghost.txt"</span>)
+    <span class="fn">print</span>(<span class="st">"This line never runs"</span>)
+
+<span class="fn">print</span>(<span class="st">"Program kept going — no crash."</span>)
+
+<span class="cmt"># Equivalent to writing:</span>
+<span class="kw">try</span>:
+    os.remove(<span class="st">"ghost.txt"</span>)
+<span class="kw">except</span> <span class="cl">FileNotFoundError</span>:
+    <span class="kw">pass</span></pre></div>
+                    <div class="explain-block">
+                        <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                        <ol>
+                            <li><strong>Line 1:</strong> <code>os</code> must be imported to use <code>os.remove</code>.</li>
+                            <li><strong>Line 2:</strong> imports <code>suppress</code> from <code>contextlib</code>.</li>
+                            <li><strong>Lines 5–7:</strong> <code>suppress(FileNotFoundError)</code> tells Python "if a <code>FileNotFoundError</code> happens anywhere in this block, swallow it and move on." Since <code>ghost.txt</code> doesn't exist, <code>os.remove</code> raises exactly that error, so line 7 never executes — the exception cuts the block short, but the program doesn't crash.</li>
+                            <li><strong>Line 9:</strong> execution resumes right after the <code>with</code> block as if nothing happened, proving the exception was fully absorbed.</li>
+                            <li><strong>Lines 12–15:</strong> shown for comparison — this is the manual, more verbose equivalent of what <code>suppress</code> does in one line.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="oop-block">
+                    <h3>contextlib.ExitStack — Dynamic Context Managers</h3>
+                    <p>When you need to manage an unknown number of context managers dynamically, <code>ExitStack</code> is the tool.</p>
+                    <div class="code-snippet"><pre><span class="kw">from</span> contextlib <span class="kw">import</span> ExitStack
+
+<span class="cmt"># Create three sample files first so the example is self-contained</span>
+filenames = [<span class="st">"file1.txt"</span>, <span class="st">"file2.txt"</span>, <span class="st">"file3.txt"</span>]
+<span class="kw">for</span> i, name <span class="kw">in</span> <span class="fn">enumerate</span>(filenames, start=<span class="num">1</span>):
+    <span class="kw">with</span> open(name, <span class="st">"w"</span>) <span class="kw">as</span> f:
+        f.write(<span class="st">f"line from file {i}\n"</span>)
+
+<span class="kw">with</span> ExitStack() <span class="kw">as</span> stack:
+    handles = [stack.enter_context(open(name, <span class="st">"r"</span>)) <span class="kw">for</span> name <span class="kw">in</span> filenames]
+    <span class="kw">for</span> h <span class="kw">in</span> handles:
+        <span class="fn">print</span>(h.readline().strip())
+<span class="cmt"># All three files are automatically closed here, in reverse order</span></pre></div>
+                    <div class="explain-block">
+                        <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                        <ol>
+                            <li><strong>Line 1:</strong> imports <code>ExitStack</code> from <code>contextlib</code>.</li>
+                            <li><strong>Lines 4–7:</strong> before demonstrating <code>ExitStack</code>, the example writes three small files to disk so there's real content to open later — this keeps the demo self-contained instead of assuming files already exist.</li>
+                            <li><strong>Line 9:</strong> <code>ExitStack()</code> creates an empty "stack" of context managers to be entered and, later, all exited together.</li>
+                            <li><strong>Line 10:</strong> a list comprehension calls <code>stack.enter_context(open(name, "r"))</code> for each filename. <code>enter_context</code> both opens the file <em>and</em> registers it with the stack so it will be closed automatically — this is how you handle a variable, not-known-in-advance number of resources, which a fixed <code>with a, b, c:</code> statement can't do.</li>
+                            <li><strong>Lines 11–12:</strong> each open file handle is used normally — here, printing its first line.</li>
+                            <li><strong>Line 13:</strong> once the <code>with ExitStack()</code> block ends, every file registered via <code>enter_context</code> is closed automatically, in the reverse order they were opened — exactly like nested <code>with</code> statements would behave.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="patterns" aria-labelledby="patterns-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="patterns-heading">🧩 Real‑World Patterns</h2>
+                    <p>Context managers are used everywhere in Python — here are the most common patterns.</p>
+                </div>
+                <div class="card-grid" style="display:flex;flex-direction:column;gap:var(--gap);">
+                    <div class="card"><div class="card-icon">📂</div><h4>File I/O</h4><p>The most common use case — <code>with open(...) as f:</code> automatically closes the file.</p><div class="code-snippet" style="margin-top:.6rem;"><pre><span class="kw">with</span> open(<span class="st">"log.txt"</span>, <span class="st">"a"</span>) <span class="kw">as</span> log:
+    log.write(<span class="st">"Operation completed\n"</span>)
+<span class="fn">print</span>(<span class="st">"Log entry written and file closed."</span>)</pre></div>
+                        <div class="explain-block">
+                            <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                            <ol>
+                                <li><strong>Line 1:</strong> opens <code>log.txt</code> in append (<code>"a"</code>) mode, creating it if it doesn't exist yet, and binds the file object to <code>log</code>.</li>
+                                <li><strong>Line 2:</strong> appends one line of text to the file.</li>
+                                <li><strong>Line 3:</strong> runs after the <code>with</code> block has already closed the file — proving the write is safely flushed and the handle released before this line executes.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card"><div class="card-icon">🔒</div><h4>Thread Locks</h4><p><code>threading.Lock</code> can be used as a context manager — the lock is automatically released on exit.</p><div class="code-snippet" style="margin-top:.6rem;"><pre><span class="kw">import</span> threading
+
+lock = threading.Lock()
+shared_resource = <span class="num">0</span>
+
+<span class="kw">with</span> lock:
+    <span class="cmt"># critical section — only one thread can be here at a time</span>
+    shared_resource += <span class="num">1</span>
+    <span class="fn">print</span>(<span class="st">"shared_resource is now"</span>, shared_resource)
+
+<span class="fn">print</span>(<span class="st">"Lock released:"</span>, <span class="kw">not</span> lock.locked())</pre></div>
+                        <div class="explain-block">
+                            <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                            <ol>
+                                <li><strong>Line 1:</strong> imports the <code>threading</code> module.</li>
+                                <li><strong>Line 3:</strong> creates a <code>Lock</code> object — a low-level primitive that only one thread can "hold" at a time.</li>
+                                <li><strong>Line 4:</strong> <code>shared_resource</code> is defined up front (it's the value multiple threads would normally race to update).</li>
+                                <li><strong>Line 6 (<code>with lock:</code>):</strong> calling <code>lock.__enter__()</code> acquires the lock — if another thread already held it, this line would block until it's released. Because <code>Lock</code> implements the context manager protocol, this is equivalent to calling <code>lock.acquire()</code> manually.</li>
+                                <li><strong>Line 8:</strong> the "critical section" — code that must never run concurrently on the same data from two threads at once.</li>
+                                <li><strong>Line 10:</strong> once the block ends, <code>lock.__exit__()</code> releases the lock automatically, even if an exception had been raised inside — so a crash never leaves the whole program permanently deadlocked.</li>
+                                <li><strong>Line 12:</strong> confirms the lock is free again by checking <code>lock.locked()</code>.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card"><div class="card-icon">🗄️</div><h4>Database Transactions</h4><p>Many database libraries (sqlite3, SQLAlchemy) use context managers for transaction boundaries.</p><div class="code-snippet" style="margin-top:.6rem;"><pre><span class="kw">import</span> micropip
+<span class="kw">await</span> micropip.install(<span class="st">"sqlite3"</span>)
+<span class="kw">import</span> sqlite3
+
+conn = sqlite3.connect(<span class="st">":memory:"</span>)
+conn.execute(<span class="st">"CREATE TABLE users (name TEXT)"</span>)
+
+<span class="kw">with</span> conn:
+    <span class="cmt"># everything inside this block is one transaction</span>
+    conn.execute(<span class="st">"INSERT INTO users VALUES (?)"</span>, (<span class="st">"alice"</span>,))
+    conn.execute(<span class="st">"INSERT INTO users VALUES (?)"</span>, (<span class="st">"bob"</span>,))
+<span class="cmt"># commits automatically here if no exception was raised</span>
+
+<span class="kw">for</span> row <span class="kw">in</span> conn.execute(<span class="st">"SELECT * FROM users"</span>):
+    <span class="fn">print</span>(row)</pre></div>
+                        <div class="explain-block">
+                            <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                            <ol>
+                                <li><strong>Lines 1–3:</strong> this tutorial runs inside a browser via Pyodide, where <code>sqlite3</code> isn't preloaded, so it's installed on demand with <code>micropip</code> before importing it. In a normal desktop Python install, <code>sqlite3</code> ships in the standard library and these two lines aren't needed.</li>
+                                <li><strong>Line 5:</strong> opens an in-memory database (<code>:memory:</code> means "don't write to disk" — perfect for a self-contained demo).</li>
+                                <li><strong>Line 6:</strong> creates a table with a single <code>name</code> column.</li>
+                                <li><strong>Line 8 (<code>with conn:</code>):</strong> a <code>sqlite3.Connection</code> used as a context manager treats everything inside the block as one transaction.</li>
+                                <li><strong>Lines 10–11:</strong> two rows are inserted.</li>
+                                <li><strong>Line 12 (comment):</strong> when the block exits without an exception, the transaction is committed automatically. If an exception had been raised instead, it would roll back automatically — no partial, half-written data.</li>
+                                <li><strong>Lines 14–15:</strong> queries the table and prints every row, confirming the transaction was committed successfully.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card"><div class="card-icon">⏱️</div><h4>Timing / Profiling</h4><p>Create a context manager that measures how long a block takes to execute.</p><div class="code-snippet" style="margin-top:.6rem;"><pre><span class="kw">import</span> time
+<span class="kw">from</span> contextlib <span class="kw">import</span> contextmanager
+
+@contextmanager
+<span class="kw">def</span> <span class="fn">timer</span>(name):
+    start = time.perf_counter()
+    <span class="kw">yield</span>
+    elapsed = time.perf_counter() - start
+    <span class="fn">print</span>(<span class="st">f"{name}: {elapsed:.6f}s"</span>)
+
+data = <span class="fn">list</span>(<span class="fn">range</span>(<span class="num">10000</span>, <span class="num">0</span>, -<span class="num">1</span>))
+<span class="kw">with</span> timer(<span class="st">"sort"</span>):
+    data.sort()
+<span class="fn">print</span>(<span class="st">"first three:"</span>, data[:<span class="num">3</span>])</pre></div>
+                        <div class="explain-block">
+                            <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                            <ol>
+                                <li><strong>Lines 1–2:</strong> imports the <code>time</code> module for timing, and <code>contextmanager</code> to build a custom context manager quickly.</li>
+                                <li><strong>Lines 4–8 (<code>timer</code>):</strong> this generator-based context manager records the start time, then <code>yield</code>s control (with no value, since the caller doesn't need one), and once the block finishes, computes and prints the elapsed time.</li>
+                                <li><strong>Line 10:</strong> builds a list of 10,000 numbers in descending order — something worth timing.</li>
+                                <li><strong>Lines 11–12:</strong> <code>with timer("sort"):</code> starts the stopwatch, sorts the list, then automatically stops the stopwatch and prints how long the sort took as soon as the block ends.</li>
+                                <li><strong>Line 13:</strong> confirms the list really is sorted by printing its first three elements.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card"><div class="card-icon">🧪</div><h4>Testing — Mocking</h4><p>Pytest's <code>monkeypatch</code> and unittest's <code>patch</code> are context managers that clean up after themselves.</p><div class="code-snippet" style="margin-top:.6rem;"><pre><span class="kw">from</span> unittest.mock <span class="kw">import</span> patch
+
+<span class="kw">def</span> <span class="fn">get_user_age</span>():
+    <span class="kw">return</span> <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter your age: "</span>))
+
+<span class="kw">with</span> patch(<span class="st">"builtins.input"</span>, return_value=<span class="st">"42"</span>):
+    result = <span class="fn">get_user_age</span>()
+    <span class="kw">assert</span> result == <span class="num">42</span>
+    <span class="fn">print</span>(<span class="st">"Mocked input worked, result ="</span>, result)
+
+<span class="fn">print</span>(<span class="st">"Outside the block, input() is back to normal."</span>)</pre></div>
+                        <div class="explain-block">
+                            <h5><i class="fas fa-list-ol"></i> Line-by-line explanation</h5>
+                            <ol>
+                                <li><strong>Line 1:</strong> imports <code>patch</code> from <code>unittest.mock</code>.</li>
+                                <li><strong>Lines 3–4:</strong> <code>get_user_age</code> is the function under test — normally it would pause and wait for real keyboard input, which is exactly what makes it awkward to test.</li>
+                                <li><strong>Line 6 (<code>with patch(...)</code>):</strong> temporarily replaces the built-in <code>input</code> function so that any call to it returns <code>"42"</code> instead of waiting for the user — no real keyboard interaction needed during the test.</li>
+                                <li><strong>Line 7:</strong> calls the function; it "asks" for input but instantly gets back the mocked string <code>"42"</code>, which is converted to the integer <code>42</code>.</li>
+                                <li><strong>Line 8:</strong> verifies the result is exactly what was expected.</li>
+                                <li><strong>Line 9:</strong> confirms the mock worked before the block ends.</li>
+                                <li><strong>Line 11:</strong> once the <code>with</code> block exits, <code>patch</code>'s <code>__exit__</code> automatically restores the real <code>input</code> function — the mock never leaks into the rest of the program, which is the entire point of using it as a context manager instead of manually reassigning and restoring <code>builtins.input</code>.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" aria-labelledby="faq-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="faq-heading">❓ Frequently Asked Questions</h2>
+                    <p>Common questions about context managers in Python</p>
+                </div>
+                <div class="faq-list" style="margin-top:1.2rem;">
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><h3>When should I use a context manager vs. try/finally?</h3><span class="faq-toggle">+</span></button><div class="faq-a"><p>Use context managers whenever you have a resource that needs cleanup — files, locks, database connections, network sockets. They encapsulate the pattern once and make the intent clear. <code>try/finally</code> is lower-level and more verbose.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><h3>Can I use multiple context managers in one with statement?</h3><span class="faq-toggle">+</span></button><div class="faq-a"><p>Yes — <code>with A() as a, B() as b:</code> works. Each context manager is entered in order and exited in reverse order. If one fails, the previous ones are still cleaned up.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><h3>What's the difference between contextlib.closing and closing manually?</h3><span class="faq-toggle">+</span></button><div class="faq-a"><p><code>closing</code> wraps any object with a <code>.close()</code> method and calls it on exit. It's especially useful for objects that don't implement the context manager protocol themselves, like some network resources or legacy libraries.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><h3>How do I suppress exceptions in a context manager?</h3><span class="faq-toggle">+</span></button><div class="faq-a"><p>Return <code>True</code> from <code>__exit__</code> to suppress the exception. With <code>@contextmanager</code>, wrap the <code>yield</code> in a <code>try/except</code> block and catch the exception if you want to suppress it.</p></div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><h3>Can I use async with for async context managers?</h3><span class="faq-toggle">+</span></button><div class="faq-a"><p>Yes — Python 3.7+ supports <code>async with</code> for async context managers that implement <code>__aenter__</code> and <code>__aexit__</code>. This is common in asyncio libraries (e.g., <code>aiohttp.ClientSession</code>).</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Conclusion">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2>🎯 Bringing It All Together</h2>
+                    <p>Context managers turn a fragile, easy-to-forget cleanup routine into a guarantee baked into the language itself.</p>
+                </div>
+                <div class="oop-block">
+                    <p>Start simple: every time you write <code>with open(...) as f:</code>, you're already relying on the exact protocol described on this page. From there, the same mental model scales up to custom classes with <code>__enter__</code>/<code>__exit__</code>, to concise generator-based managers with <code>@contextmanager</code>, and to the specialized helpers in <code>contextlib</code> — <code>closing</code>, <code>suppress</code>, and <code>ExitStack</code> — each solving a slightly different shape of the same underlying problem: <strong>something is opened, something must eventually be closed, and a human should never be trusted to remember that by hand.</strong></p>
+                    <p>That single idea — deterministic, guaranteed cleanup — is why context managers show up in file handling, threading, databases, testing, networking, and performance profiling alike. Once you can recognize the "acquire → use → release" shape in a problem, you'll start reaching for a <code>with</code> block (or writing your own <code>@contextmanager</code>) as instinctively as you reach for a <code>for</code> loop. That instinct is what separates code that merely works from code that keeps working reliably under real-world failure conditions — which, ultimately, is the whole job of a professional programmer.</p>
+                </div>
+                <div class="info-box" style="margin-top:1rem;">
+                    <h4><i class="fas fa-arrow-right"></i> Continue Learning</h4>
+                    <p>Context managers are part of Python's advanced toolbox. Next, explore <a href="python-decorators.html" style="color:var(--blue-lt);">decorators</a>, <a href="python-iterators.html" style="color:var(--blue-lt);">iterators &amp; generators</a>, or <a href="python-async.html" style="color:var(--blue-lt);">async/await</a> to deepen your Python expertise.</p>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem;">
+                    <a href="python-decorators.html" class="btn btn-outline"><i class="fas fa-paint-brush"></i> Decorators</a>
+                    <a href="python-iterators.html" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Iterators</a>
+                    <a href="python-async.html" class="btn btn-outline"><i class="fas fa-bolt"></i> Async</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram"><i class="fab fa-telegram-plane"></i><span class="tooltip">Telegram</span></a>
+    </div>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col"><h5>Guided Tracks</h5><ul><li><a href="beginners.html">First-time dev</a></li><li><a href="data-science.html">Data &amp; statistics</a></li><li><a href="backend.html">Backend / Django</a></li></ul></div>
+                <div class="footer-col"><h5>New Modules</h5><ul><li><a href="python-sets.html">Python Sets</a></li><li><a href="python-modules.html">Modules &amp; Packages</a></li><li><a href="python-exceptions.html">Exception Handling</a></li></ul></div>
+                <div class="footer-col"><h5>Toolkit</h5><ul><li><a href="cheat-sheet.html">Cheatsheets</a></li><li><a href="snippet-library.html">Snippet library</a></li><li><a href="code-runner.html">Code runner</a></li></ul></div>
+                <div class="footer-col"><h5>Connect</h5><ul><li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li><li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li></ul></div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="mailto:pansensoyglenn150@gmail.com">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            function qs(sel, ctx) { return (ctx || document).querySelector(sel); }
+
+            function qsa(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            window.toggleFaq = function(btn) {
+                var item = btn.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var isOpen = answer.classList.contains('open');
+                qsa('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    var parentBtn = a.closest('.faq-item').querySelector('.faq-q');
+                    if (parentBtn) parentBtn.setAttribute('aria-expanded', 'false');
+                    var toggle = parentBtn ? parentBtn.querySelector('.faq-toggle') : null;
+                    if (toggle) toggle.textContent = '+';
+                });
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                    var toggle = btn.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '−';
+                } else {
+                    btn.setAttribute('aria-expanded', 'false');
+                    var toggle = btn.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '+';
+                }
+            };
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-context-managers.html');
+            var PAGE_TITLE = encodeURIComponent('Python Context Managers – with, __enter__, __exit__, contextlib');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+            qsa('#shareFb').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            qsa('#shareTw').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            qsa('#shareLi').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            qsa('#shareWa').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            qsa('#shareTg').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/python-context-managers.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() {
+                        fallbackCopy(url, btn);
+                    });
+                } else {
+                    fallbackCopy(url, btn);
+                }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+
+            function enhanceCodeBlocks() {
+                var blocks = qsa('.code-snippet:not(.code-container .code-snippet)');
+                blocks.forEach(function(block) {
+                    if (block.closest('.code-container')) return;
+                    var pre = block.querySelector('pre');
+                    if (!pre) return;
+                    var codeText = pre.textContent;
+                    var container = document.createElement('div');
+                    container.className = 'code-container';
+                    var header = document.createElement('div');
+                    header.className = 'code-header';
+                    header.innerHTML =
+                        '<span style="color:var(--muted);">python</span>' +
+                        '<div class="code-actions">' +
+                        '<button class="code-btn copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>' +
+                        '<button class="code-btn run-btn" type="button"><i class="fas fa-play"></i> Run</button>' +
+                        '</div>';
+                    var outputPanel = document.createElement('div');
+                    outputPanel.className = 'output-panel';
+                    block.parentNode.insertBefore(container, block);
+                    container.appendChild(header);
+                    container.appendChild(block);
+                    container.appendChild(outputPanel);
+                    var copyBtn = header.querySelector('.copy-btn');
+                    var runBtn = header.querySelector('.run-btn');
+                    copyBtn.addEventListener('click', function() {
+                        if (navigator.clipboard) {
+                            navigator.clipboard.writeText(codeText.trim()).then(function() {
+                                var orig = copyBtn.innerHTML;
+                                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                                setTimeout(function() { copyBtn.innerHTML = orig; }, 2000);
+                            });
+                        } else {
+                            var ta = document.createElement('textarea');
+                            ta.value = codeText.trim();
+                            ta.style.position = 'fixed';
+                            ta.style.opacity = '0';
+                            document.body.appendChild(ta);
+                            ta.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(ta);
+                            var orig = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                            setTimeout(function() { copyBtn.innerHTML = orig; }, 2000);
+                        }
+                    });
+                    runBtn.addEventListener('click', function() {
+                        runBtn.disabled = true;
+                        var originalText = runBtn.innerHTML;
+                        runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+                        outputPanel.style.display = 'block';
+                        outputPanel.className = 'output-panel loading';
+                        outputPanel.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js';
+                        script.onload = function() {
+                            loadPyodide().then(function(pyodide) {
+                                outputPanel.textContent = '';
+                                outputPanel.className = 'output-panel';
+                                var indentedCode = codeText.split('\n').map(function(line) {
+                                    return line ? '    ' + line : '';
+                                }).join('\n');
+                                var wrappedCode =
+                                    'import sys\nfrom io import StringIO\n_captured_output = StringIO()\n_old_stdout = sys.stdout\nsys.stdout = _captured_output\ntry:\n' +
+                                    indentedCode +
+                                    '\nfinally:\n    sys.stdout = _old_stdout\n_captured_output.getvalue()\n';
+                                pyodide.runPythonAsync(wrappedCode).then(function(result) {
+                                    outputPanel.textContent = result ||
+                                        '✓ Code executed successfully (no output).';
+                                    outputPanel.style.color = '#4ade80';
+                                    runBtn.disabled = false;
+                                    runBtn.innerHTML = originalText;
+                                }).catch(function(err) {
+                                    outputPanel.className = 'output-panel error';
+                                    outputPanel.textContent = 'Error:\n' + err.message;
+                                    outputPanel.style.color = '#f87171';
+                                    runBtn.disabled = false;
+                                    runBtn.innerHTML = originalText;
+                                });
+                            }).catch(function(err) {
+                                outputPanel.className = 'output-panel error';
+                                outputPanel.textContent = 'Error loading Pyodide:\n' + err.message;
+                                outputPanel.style.color = '#f87171';
+                                runBtn.disabled = false;
+                                runBtn.innerHTML = originalText;
+                            });
+                        };
+                        script.onerror = function() {
+                            outputPanel.className = 'output-panel error';
+                            outputPanel.textContent = 'Error: Failed to load Pyodide. Please check your internet connection.';
+                            outputPanel.style.color = '#f87171';
+                            runBtn.disabled = false;
+                            runBtn.innerHTML = originalText;
+                        };
+                        document.head.appendChild(script);
+                    });
+                });
+            }
+
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                enhanceCodeBlocks();
+            } else {
+                document.addEventListener('DOMContentLoaded', enhanceCodeBlocks);
+            }
+
+        })();
+    </script>
+</body>
+</html>
