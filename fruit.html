@@ -1,0 +1,2769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Fruit Retail — Step-by-Step Guide | Poetic Bytes</title>
+    <meta name="description" content="A comprehensive step-by-step breakdown of a Python Fruit Retail program. Learn dictionaries, loops, error handling, data structures, and more through a real-world Philippine market simulation." />
+    <meta name="keywords" content="Python tutorial, fruit retail Python, Python dictionary, while loop Python, try except Python, Python beginner, code explanation, Philippine fruit market, Python data structures" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/fruit.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Python Fruit Retail — Step-by-Step Guide" />
+    <meta property="og:description" content="Master Python fundamentals through a complete fruit retail simulation. Covers dictionaries, loops, error handling, tuples, and more with live code examples." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/fruit.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Python Fruit Retail Guide by Poetic Bytes" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Python Fruit Retail Guide | Poetic Bytes" />
+    <meta name="twitter:description" content="Step-by-step breakdown of a Python fruit retail program covering all core programming concepts." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python Fruit Retail — Step-by-Step Guide",
+            "description": "A comprehensive step-by-step breakdown of a Python Fruit Retail program covering dictionaries, loops, error handling, data structures, and discount systems.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy", "url": "https://www.linkedin.com/in/glenn-pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+            "datePublished": "2026-07-15",
+            "dateModified": "2026-07-15",
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/fruit.html" },
+            "keywords": "Python tutorial, fruit retail Python, Python dictionary, while loop, try except, Python beginner, code explanation",
+            "articleSection": "Python Programming",
+            "inLanguage": "en-US",
+            "learningResourceType": "Tutorial",
+            "educationalLevel": "Beginner"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { overflow-x: hidden; scroll-behavior: smooth; }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child { border-bottom: none; }
+
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links .hub-link {
+            background: rgba(75, 139, 190, .15);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: .3rem .8rem;
+            color: var(--blue-lt);
+        }
+        .nav-links .hub-link:hover {
+            background: rgba(75, 139, 190, .25);
+            color: var(--gold);
+        }
+        @media(max-width:680px) { .nav-links { display: none; } }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        @media(max-width:680px) { .menu-toggle { display: flex; } }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active { right: 0; }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li { list-style: none; margin-bottom: .5rem; }
+        .drawer-body a, .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active, .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i { color: var(--gold); width: 1.2rem; }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 { font-size: 1.6rem; }
+        h2 { font-size: 1.25rem; margin-bottom: .5rem; }
+        h3 { font-size: .95rem; }
+        h4 { font-size: .85rem; }
+        p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before, .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active { transform: scale(.97); }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, var(--green), #059669);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, .35);
+        }
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, .45);
+        }
+        @media(max-width:480px) { .btn { width: 100%; } }
+
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(.8); }
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-bottom: 2rem;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .num {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--blue-lt);
+            display: block;
+            line-height: 1.1;
+        }
+        .hero-stat .lbl { font-size: .65rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            min-height: 140px;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card:active { transform: scale(.98); }
+        .card-icon { font-size: 1.5rem; line-height: 1; }
+        .card h3, .card h4 { font-size: .82rem; color: var(--text); }
+        .card p { font-size: .74rem; margin: 0; }
+        .card-arrow {
+            margin-top: auto;
+            font-size: .65rem;
+            color: var(--blue);
+            opacity: 0;
+            transition: opacity .2s, transform .2s;
+        }
+        .card:hover .card-arrow { opacity: 1; transform: translateX(3px); }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+
+        .code-preview {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .code-chrome {
+            background: #0a1a24;
+            padding: .6rem .9rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .dots {
+            display: flex;
+            gap: .35rem;
+        }
+        .dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-r { background: #ff5f56; }
+        .dot-y { background: #ffbd2e; }
+        .dot-g { background: #27c93f; }
+        .win-title {
+            font-size: .68rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: .4rem;
+        }
+        .code-body {
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            line-height: 1.7;
+        }
+        .code-body pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw { color: #ff7b72; font-weight: 600; }
+        .code-snippet .fn { color: #d2a8ff; }
+        .code-snippet .st { color: #a5d6ff; }
+        .code-snippet .cl { color: #FFD966; font-weight: 600; }
+        .code-snippet .cmt { color: #546e7a; font-style: italic; }
+        .code-snippet .num { color: #f78c6c; }
+        .code-snippet .op { color: #89ddff; }
+        .code-snippet .dec { color: #c792ea; font-weight: 500; }
+
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover { background: rgba(75, 139, 190, 0.25); }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error { color: #f87171; }
+        .output-panel.loading { color: var(--blue-lt); }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-container .code-snippet {
+            border-radius: 0;
+            border-left: none;
+            margin-bottom: 0;
+            padding: 1rem;
+        }
+        .code-container .code-body { padding: 1rem; border-radius: 0; }
+        @media(max-width:480px) {
+            .code-header { flex-direction: column; align-items: stretch; gap: 0.4rem; }
+            .code-actions { justify-content: flex-start; }
+            .code-btn { font-size: 0.65rem; padding: 0.25rem 0.6rem; }
+            .output-panel { font-size: 0.7rem; padding: 0.7rem; }
+        }
+
+        .callout {
+            border-left: 3px solid var(--blue);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(75, 139, 190, .06);
+            border-radius: 4px;
+        }
+        .callout p { margin: 0; font-size: .78rem; }
+        .callout strong { color: var(--blue-lt); }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 212, 59, .06);
+            border-radius: 4px;
+        }
+        .callout-yellow p { margin: 0; font-size: .78rem; }
+        .callout-yellow strong { color: var(--gold); }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(16, 185, 129, .06);
+            border-radius: 4px;
+        }
+        .callout-green p { margin: 0; font-size: .78rem; }
+        .callout-green strong { color: var(--green); }
+
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .insight ol { padding-left: 1.2rem; }
+        .insight li { font-size: .78rem; color: var(--muted); line-height: 1.7; }
+
+        .table-wrap { overflow-x: auto; margin-top: 1rem; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child { color: var(--gold); }
+        th:nth-child(2) { color: var(--blue); }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        td:nth-child(2) { color: var(--green); font-weight: 600; }
+        tbody tr:nth-child(even) { background: rgba(75, 139, 190, .03); }
+
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p { font-size: .78rem; margin-bottom: .8rem; }
+
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg { background: rgba(16, 185, 129, .15); color: #10b981; }
+        .badge-int { background: rgba(245, 158, 11, .15); color: #f59e0b; }
+        .badge-adv { background: rgba(239, 68, 68, .15); color: #ef4444; }
+
+        .quiz-wrap { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+        .quiz-q {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            transition: border-color .3s;
+        }
+        .quiz-q.correct { border-color: var(--green) !important; }
+        .quiz-q.wrong { border-color: var(--red) !important; }
+        .quiz-prompt {
+            font-size: .82rem;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: .8rem;
+            line-height: 1.6;
+        }
+        .quiz-opts { display: flex; flex-direction: column; gap: .4rem; }
+        .quiz-opt {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .5rem .8rem;
+            border-radius: 7px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: .76rem;
+            color: var(--muted);
+            transition: all .2s;
+            user-select: none;
+        }
+        .quiz-opt:hover:not(.disabled) {
+            background: rgba(75, 139, 190, .08);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+        .quiz-opt.correct-ans {
+            background: rgba(141, 200, 150, .12);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .quiz-opt.wrong-ans {
+            background: rgba(212, 88, 136, .1);
+            border-color: var(--red);
+            color: var(--red);
+        }
+        .quiz-opt.disabled { cursor: default; }
+        .quiz-feedback {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .65rem;
+            margin-top: .7rem;
+            min-height: .9rem;
+            line-height: 1.6;
+        }
+        .quiz-feedback.ok { color: var(--green); }
+        .quiz-feedback.bad { color: var(--red); }
+        .quiz-score {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            margin-top: 1rem;
+            display: none;
+        }
+        .quiz-score .score-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            color: var(--blue-lt);
+            display: block;
+            line-height: 1.1;
+        }
+        .quiz-score p { font-size: .78rem; color: var(--muted); margin: .5rem 0 0; }
+        .quiz-reset {
+            margin-top: .8rem;
+            padding: .55rem 1.5rem;
+            border-radius: 100px;
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, .28);
+            cursor: pointer;
+            font-size: .74rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            transition: all .2s;
+        }
+        .quiz-reset:hover { background: rgba(75, 139, 190, .25); }
+
+        .share-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2.8rem 2.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .share-wrap::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(75, 139, 190, .07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .share-wrap h2 { font-size: 1.2rem; margin-bottom: .3rem; }
+        .share-sub {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 420px;
+            margin: .4rem auto 1.6rem;
+            line-height: 1.7;
+        }
+        .share-btns {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: .65rem;
+            margin-top: .4rem;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .sbtn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .65rem 1.3rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .sbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+        }
+        .sbtn svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .sbtn.s-fb:hover { background: rgba(24, 119, 242, .14); border-color: rgba(24, 119, 242, .38); color: #5597ee; }
+        .sbtn.s-li:hover { background: rgba(10, 102, 194, .14); border-color: rgba(10, 102, 194, .38); color: #5b9bd5; }
+        .sbtn.s-x:hover { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .2); }
+        .sbtn.s-wa:hover { background: rgba(37, 211, 102, .12); border-color: rgba(37, 211, 102, .35); color: #25d366; }
+        .sbtn.s-yt:hover { background: rgba(255, 0, 0, .1); border-color: rgba(255, 0, 0, .32); color: #ff5555; }
+        .share-toast {
+            margin-top: .9rem;
+            font-size: .7rem;
+            color: var(--blue-lt);
+            min-height: 1.1rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: opacity .4s;
+            opacity: 0;
+        }
+
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip { opacity: 1; }
+        .floating-share .fs-btn.fs-toc { border-color: rgba(75, 139, 190, .3); }
+        .floating-share .fs-btn.fs-toc:hover { border-color: var(--gold); color: var(--gold); }
+        .floating-share .fs-btn.fs-copy:hover { border-color: var(--gold); color: var(--gold); }
+
+        .floating-toc {
+            position: fixed;
+            right: 80px;
+            bottom: 80px;
+            width: 280px;
+            max-height: 60vh;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .7);
+            z-index: 950;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            transition: opacity .25s ease, transform .25s ease;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        .floating-toc.open {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating-toc .toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .7rem 1rem;
+            background: rgba(75, 139, 190, .08);
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            font-size: .8rem;
+            color: var(--text);
+        }
+        .floating-toc .toc-header button {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: .2rem .4rem;
+        }
+        .floating-toc .toc-header button:hover { color: var(--text); }
+        .floating-toc .toc-body {
+            overflow-y: auto;
+            padding: .5rem 0;
+            flex: 1;
+        }
+        .floating-toc .toc-body a {
+            display: block;
+            padding: .4rem 1rem;
+            font-size: .7rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            transition: background .15s, border-color .15s, color .15s;
+        }
+        .floating-toc .toc-body a:hover {
+            background: rgba(75, 139, 190, .08);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible { opacity: 1; visibility: visible; }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+
+        .sub-wrap {
+            background: linear-gradient(135deg, var(--card) 0%, var(--panel) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 3.2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .sub-wrap::before {
+            content: '🐍';
+            position: absolute;
+            font-size: 7rem;
+            opacity: .03;
+            top: 50%;
+            left: 2%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .sub-wrap::after {
+            content: '{ }';
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 5rem;
+            opacity: .03;
+            top: 50%;
+            right: 2%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--blue);
+        }
+        .sub-wrap h2 { font-size: 1.2rem; margin-bottom: .35rem; }
+        .sub-desc {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 440px;
+            margin: .3rem auto 0;
+        }
+        .perks {
+            display: flex;
+            justify-content: center;
+            gap: 1.3rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 1.4rem;
+        }
+        .perk {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .perk::before {
+            content: '✓';
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .sub-form {
+            display: flex;
+            gap: .55rem;
+            max-width: 460px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .sub-form .cinput { flex: 1; min-width: min(180px, 100%); }
+        .sub-plans {
+            display: flex;
+            gap: .65rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.3rem;
+        }
+        .plan-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .45rem 1.1rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            font-size: .72rem;
+            color: var(--muted);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 500;
+            transition: all .22s;
+        }
+        .plan-chip:hover, .plan-chip.active {
+            border-color: rgba(75, 139, 190, .4);
+            background: rgba(75, 139, 190, .1);
+            color: var(--blue-lt);
+        }
+        .plan-chip.premium.active {
+            border-color: rgba(255, 212, 59, .4);
+            background: rgba(255, 212, 59, .08);
+            color: var(--gold);
+        }
+        .sub-note { font-size: .62rem; color: var(--muted); margin-top: .7rem; }
+        .sub-msg {
+            font-size: .7rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 1rem;
+            transition: opacity .4s;
+            margin-top: .5rem;
+        }
+        .cinput {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: .6rem .85rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: .82rem;
+            width: 100%;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .cinput:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(75, 139, 190, .11);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            padding: .65rem 1.75rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .76rem;
+            cursor: pointer;
+            transition: all .25s;
+        }
+        .btn-submit:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .3);
+        }
+        .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+        .follow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.6rem;
+        }
+        .follow-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.6rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: .65rem;
+            transition: all .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .follow-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--card-r);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        .follow-card.fc-fb::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(24, 119, 242, .15), transparent 65%);
+        }
+        .follow-card.fc-li::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(10, 102, 194, .15), transparent 65%);
+        }
+        .follow-card.fc-x::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, .06), transparent 65%);
+        }
+        .follow-card.fc-yt::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 0, 0, .12), transparent 65%);
+        }
+        .follow-card.fc-gh::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(110, 110, 110, .15), transparent 65%);
+        }
+        .follow-card:hover { transform: translateY(-5px); }
+        .follow-card:hover::before { opacity: 1; }
+        .follow-card.fc-fb:hover {
+            border-color: rgba(24, 119, 242, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-li:hover {
+            border-color: rgba(10, 102, 194, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-x:hover {
+            border-color: rgba(255, 255, 255, .2);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-yt:hover {
+            border-color: rgba(255, 0, 0, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-gh:hover {
+            border-color: rgba(150, 150, 150, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            transition: transform .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-card:hover .follow-icon { transform: scale(1.12) rotate(-5deg); }
+        .fc-fb .follow-icon {
+            background: rgba(24, 119, 242, .15);
+            border: 1px solid rgba(24, 119, 242, .25);
+        }
+        .fc-li .follow-icon {
+            background: rgba(10, 102, 194, .15);
+            border: 1px solid rgba(10, 102, 194, .25);
+        }
+        .fc-x .follow-icon {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-icon {
+            background: rgba(255, 0, 0, .12);
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .fc-gh .follow-icon {
+            background: rgba(150, 150, 150, .12);
+            border: 1px solid rgba(150, 150, 150, .25);
+        }
+        .follow-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .62rem;
+            color: var(--muted);
+            margin-top: -.3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .follow-stat {
+            font-size: .7rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .45rem 1.2rem;
+            border-radius: 100px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            cursor: pointer;
+            border: none;
+            transition: all .25s;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            margin-top: .2rem;
+        }
+        .follow-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+        }
+        .follow-btn.following {
+            background: var(--panel) !important;
+            color: var(--muted) !important;
+            border: 1px solid var(--border) !important;
+        }
+        .fc-fb .follow-btn {
+            background: rgba(24, 119, 242, .2);
+            color: #5597ee;
+            border: 1px solid rgba(24, 119, 242, .3);
+        }
+        .fc-li .follow-btn {
+            background: rgba(10, 102, 194, .2);
+            color: #5b9bd5;
+            border: 1px solid rgba(10, 102, 194, .3);
+        }
+        .fc-x .follow-btn {
+            background: rgba(255, 255, 255, .08);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-btn {
+            background: rgba(255, 0, 0, .15);
+            color: #ff5555;
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .fc-gh .follow-btn {
+            background: rgba(150, 150, 150, .15);
+            color: var(--muted);
+            border: 1px solid rgba(150, 150, 150, .25);
+        }
+
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: .4rem; }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover { color: #fff; }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a { color: rgba(255, 255, 255, .5); text-decoration: none; }
+
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--border); }
+        ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+        @media(max-width:480px) {
+            .page-col { padding: 0 .8rem; }
+            section { padding: 2rem 0; }
+            .hero { padding: 3.5rem 0 2rem; }
+            .hero h1 { font-size: 1.3rem; }
+            .floating-share { right: 10px; bottom: 70px; gap: 8px; }
+            .floating-share .fs-btn { width: 40px; height: 40px; font-size: .9rem; }
+            .floating-share .fs-btn .tooltip { display: none; }
+            .back-top { width: 36px; height: 36px; right: 10px; bottom: 10px; font-size: .9rem; }
+            .share-btns { max-width: 100%; }
+            .floating-toc { right: 10px; bottom: 130px; width: 220px; max-height: 50vh; }
+            .hero-stats { gap: 1rem; justify-content: space-between; }
+            .hero-stat .num { font-size: 1.2rem; }
+        }
+        @media(max-width:768px) {
+            .floating-share { right: 14px; bottom: 76px; gap: 8px; }
+            .floating-share .fs-btn { width: 42px; height: 42px; font-size: 1rem; }
+            .floating-share .fs-btn .tooltip { display: none; }
+        }
+
+        .curriculum-desc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .curriculum-desc::before {
+            content: "📜";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 4rem;
+            opacity: 0.06;
+            transform: rotate(8deg);
+        }
+        .curriculum-desc h2 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc .highlight { color: var(--blue-lt); font-weight: 600; }
+        .curriculum-desc .gold { color: var(--gold); font-weight: 600; }
+        .curriculum-desc .desc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .curriculum-desc .desc-meta span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .curriculum-desc .desc-meta i { color: var(--gold); font-size: 0.7rem; }
+
+        .intro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .intro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .intro-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .outro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .outro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .outro-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+        .intro-em { color: var(--blue-lt); font-weight: 600; }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .75rem;
+            margin-top: 1.4rem;
+        }
+        @media(max-width:600px) { .comparison-grid { grid-template-columns: 1fr; } }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: .9rem;
+            margin-top: 1.5rem;
+        }
+        .pillar-card {
+            border-bottom: 1px solid var(--border);
+            padding: .9rem 0;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: all .25s;
+            position: relative;
+        }
+        .pillar-card:hover { opacity: .85; }
+        .pillar-card[data-p="enc"]:hover { border-color: rgba(75, 139, 190, .5); }
+        .pillar-card[data-p="abs"]:hover { border-color: rgba(106, 174, 214, .5); }
+        .pillar-card[data-p="inh"]:hover { border-color: rgba(255, 212, 59, .5); }
+        .pillar-card[data-p="pol"]:hover { border-color: rgba(181, 158, 232, .5); }
+        .pico { font-size: 1.6rem; margin-bottom: .5rem; }
+        .ptitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+            color: var(--text);
+        }
+        .pdesc {
+            font-size: .72rem;
+            color: var(--muted);
+            margin: 0 0 1.2rem;
+            line-height: 1.65;
+        }
+        .pbtn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .68rem;
+            padding: .42rem .9rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .pillar-card[data-p="enc"] .pbtn {
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+        }
+        .pillar-card[data-p="abs"] .pbtn {
+            background: rgba(106, 174, 214, .12);
+            color: #6aaed6;
+        }
+        .pillar-card[data-p="inh"] .pbtn {
+            background: rgba(255, 212, 59, .12);
+            color: var(--gold);
+        }
+        .pillar-card[data-p="pol"] .pbtn {
+            background: rgba(181, 158, 232, .12);
+            color: #b59ee8;
+        }
+        .pbtn:hover {
+            filter: brightness(1.25);
+            transform: translateX(3px);
+        }
+        .pbtn::after { content: '→'; }
+        .current-pill {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            background: rgba(106, 174, 214, .2);
+            border: 1px solid rgba(106, 174, 214, .4);
+            color: #6aaed6;
+            font-size: .55rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .subject-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: rgba(75, 139, 190, 0.06);
+            border-left: 3px solid var(--blue);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .subject-desc strong { color: var(--text); }
+        .interactive-note {
+            border-left: 3px solid var(--amber);
+            padding: .6rem 1rem;
+            margin: 0 0 1rem;
+            background: rgba(245, 158, 11, .07);
+            border-radius: 4px;
+        }
+        .interactive-note p { margin: 0; font-size: .78rem; color: var(--text); }
+        .interactive-note strong { color: var(--amber); }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#source">Source</a></li>
+                <li><a href="#steps">Steps</a></li>
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#tips">Tips</a></li>
+                <li><a href="#mistakes">Mistakes</a></li>
+                <li><a href="#deepdive">Deep Dive</a></li>
+                <li><a href="#share">Share</a></li>
+                <li><a href="abstraction.html" class="hub-link">← Abstraction</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+                <li><button data-href="#source"><i class="fas fa-code"></i>Full Source</button></li>
+                <li><button data-href="#steps"><i class="fas fa-list-ol"></i>Step-by-Step</button></li>
+                <li><button data-href="#concepts"><i class="fas fa-cubes"></i>Core Concepts</button></li>
+                <li><button data-href="#tips"><i class="fas fa-lightbulb"></i>Pro Tips</button></li>
+                <li><button data-href="#mistakes"><i class="fas fa-exclamation-triangle"></i>Common Mistakes</button></li>
+                <li><button data-href="#deepdive"><i class="fas fa-search"></i>Deep Dive</button></li>
+                <li><button data-href="#share"><i class="fas fa-share-alt"></i>Share</button></li>
+                <li><button data-href="#subscribe"><i class="fas fa-envelope"></i>Subscribe</button></li>
+                <li><a href="abstraction.html"><i class="fas fa-arrow-left"></i>Back to Abstraction</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header"><span>📚 Jump to</span><button id="tocCloseBtn"><i class="fas fa-times"></i></button></div>
+        <div class="toc-body" id="tocBody">
+            <a href="#intro">📖 Introduction</a>
+            <a href="#source">💻 Full Source</a>
+            <a href="#steps">🔍 Step-by-Step</a>
+            <a href="#concepts">🧠 Core Concepts</a>
+            <a href="#tips">💡 Pro Tips</a>
+            <a href="#mistakes">⚠️ Common Mistakes</a>
+            <a href="#deepdive">🔬 Deep Dive</a>
+            <a href="#share">📣 Share</a>
+            <a href="#subscribe">📬 Subscribe</a>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents"><i class="fas fa-list-ul"></i><span class="tooltip">Table of Contents</span></button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i><span class="tooltip">Telegram</span></a>
+    </div>
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python Fruit Retail Guide">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Beginner · Real-World Python</div>
+                <h1 style="font-size:clamp(1.8rem,4.5vw,3.2rem);">
+                    <span style="color:var(--blue);">Fruit Retail</span> —<br>
+                    Python Code Explained<br>
+                    <span style="color:var(--gold);">Step by Step.</span>
+                </h1>
+                <p class="lead">
+                    A complete, annotated walkthrough of a real Python program simulating a Philippine fruit retail market.
+                    Every design decision — from dictionary lookups to exception handling — is explained in plain language.
+                </p>
+                <p class="lead" style="margin-top:-0.6rem;">
+                    This guide assumes you have seen Python syntax before but want a deeper understanding of <em>why</em>
+                    professional developers make the choices they do. Each of the 8 steps dissects one key concept —
+                    its purpose, its implementation, how it operates, and why it matters in the real world.
+                </p>
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;">
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📅 July 15, 2026</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 25 min read</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🎓 Beginner</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🐍 Python 3</span>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><span class="num">8</span><span class="lbl">Steps Explained</span></div>
+                    <div class="hero-stat"><span class="num">12</span><span class="lbl">Concepts Covered</span></div>
+                    <div class="hero-stat"><span class="num">🇵🇭</span><span class="lbl">Philippine Market</span></div>
+                    <div class="hero-stat"><span class="num">📖</span><span class="lbl">Beginner Friendly</span></div>
+                </div>
+                <div style="margin-top:1.5rem;">
+                    <a href="abstraction.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Abstraction Guide</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="h-intro">
+            <div class="page-col">
+                <div class="section-label">01 — The Foundation</div>
+                <h2 id="h-intro">Understanding the Fruit Retail Program</h2>
+
+                <div class="curriculum-desc">
+                    <h2>📘 A Real-World Python Learning Experience</h2>
+                    <p>
+                        Programming becomes meaningful when it solves real problems. The <span class="gold">Philippine Fruit Retail Business</span>
+                        simulation is a perfect beginner-to-intermediate Python project because it touches nearly every core concept
+                        you'll use in production code.
+                    </p>
+                    <p>
+                        This program uses <span class="highlight">dictionaries</span> for storing inventory,
+                        <span class="highlight">functions</span> for organizing logic, <span class="highlight">loops</span> for
+                        user interaction, <span class="highlight">exception handling</span> for crash prevention, and
+                        <span class="highlight">arithmetic</span> for business calculations.
+                    </p>
+                    <p>
+                        Every code example in this guide is <span class="highlight">fully interactive</span> — you can
+                        <strong>copy</strong> and <strong>run</strong> each snippet right in your browser using the
+                        <strong>Pyodide</strong> Python runtime. No setup required.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 8 steps explained</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 12 core concepts</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Live code runner</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Beginner friendly</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Real-world example</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:0.5rem;">
+                    <div class="oop-block">
+                        <h3>🎯 What You'll Learn</h3>
+                        <ul class="intro-list">
+                            <li><strong>Python dictionaries</strong> — O(1) key-value lookups for inventory</li>
+                            <li><strong>while True + break</strong> — user-driven indefinite loops</li>
+                            <li><strong>try/except</strong> — graceful error handling that prevents crashes</li>
+                            <li><strong>List of tuples</strong> — immutable records inside a mutable container</li>
+                            <li><strong>f-strings</strong> — clean string formatting with :.2f for currency</li>
+                            <li><strong>Functions</strong> — reusability and separation of concerns</li>
+                            <li><strong>__name__ guard</strong> — mandatory best practice for modular code</li>
+                        </ul>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>🛒 The Program in Brief</h3>
+                        <p>A command-line fruit market simulation. Users browse Philippine fruit prices, add items to a cart, apply discount codes, and receive a formatted receipt — all built with core Python, no external libraries.</p>
+                        <div class="callout" style="margin-top:.8rem;">
+                            <p><strong>📌 Prerequisites:</strong> Basic Python syntax familiarity — variables, print statements, and if/else conditions. No prior knowledge of data structures, error handling, or functions is required.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="source" aria-labelledby="h-source">
+            <div class="page-col">
+                <div class="section-label">02 — Full Source Code</div>
+                <h2 id="h-source">Complete Implementation</h2>
+                <p style="margin-bottom:1rem;">Copy and save as <code>fruit_retail.py</code> — or <strong>Run</strong> it directly in your browser.</p>
+
+                <div class="interactive-note">
+                    <p><strong>⚠️ Interactive program:</strong> this code calls <code>input()</code> several times. When you press Run, your browser will pop up prompt dialogs asking for the fruit, quantity, and discount code. Answer each prompt and the receipt will print once the program finishes.</p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span style="color:var(--muted);">python · fruit_retail.py</span>
+                        <div class="code-actions">
+                            <button class="code-btn copy-btn" id="fullCopyBtn"><i class="fas fa-copy"></i> Copy</button>
+                            <button class="code-btn run-btn" id="fullRunBtn"><i class="fas fa-play"></i> Run</button>
+                        </div>
+                    </div>
+                    <div class="code-body" style="background:var(--code-bg);border:1px solid var(--border);border-top:none;border-radius:0;padding:1rem;">
+                        <pre id="fullSourcePre"><span class="cm"># Philippine Fruit Retail Business Simulation</span>
+<span class="cm"># Core Python — no external libraries required</span>
+
+fruits = {
+    <span class="st">"mangoes"</span>:    <span class="num">180.00</span>,
+    <span class="st">"papayas"</span>:    <span class="num">75.00</span>,
+    <span class="st">"rambutan"</span>:   <span class="num">180.00</span>,
+    <span class="st">"coconuts"</span>:   <span class="num">50.00</span>,
+    <span class="st">"lanzones"</span>:   <span class="num">120.00</span>,
+    <span class="st">"mangosteen"</span>: <span class="num">135.00</span>,
+    <span class="st">"bananas"</span>:    <span class="num">60.00</span>,
+    <span class="st">"pineapples"</span>: <span class="num">75.00</span>,
+    <span class="st">"guavas"</span>:     <span class="num">50.00</span>,
+    <span class="st">"guyavanos"</span>:  <span class="num">130.00</span>,
+    <span class="st">"avocados"</span>:   <span class="num">120.00</span>
+}
+
+<span class="kw">def</span> <span class="fn">display_fruits</span>():
+    <span class="bi">print</span>(<span class="st">"Available Fruits and Prices (per kg in PHP):"</span>)
+    <span class="kw">for</span> fruit, price <span class="kw">in</span> fruits.<span class="fn">items</span>():
+        <span class="bi">print</span>(<span class="st">f"{fruit.<span class="fn">capitalize</span>()}: {price:<span class="op">.2f</span>}"</span>)
+
+<span class="kw">def</span> <span class="fn">get_discount</span>():
+    codes = {<span class="st">"SALE10"</span>: <span class="num">10</span>, <span class="st">"FRESH15"</span>: <span class="num">15</span>, <span class="st">"FRUIT20"</span>: <span class="num">20</span>}
+    <span class="kw">while</span> <span class="bi">True</span>:
+        ans = <span class="bi">input</span>(<span class="st">"Do you have a discount code? (yes/no): "</span>).<span class="fn">lower</span>()
+        <span class="kw">if</span> ans == <span class="st">'yes'</span>:
+            code = <span class="bi">input</span>(<span class="st">"Enter your discount code: "</span>).<span class="fn">upper</span>()
+            <span class="kw">if</span> code <span class="kw">in</span> codes:
+                discount = codes[code]
+                <span class="bi">print</span>(<span class="st">f"Discount code accepted! {discount}% off applied."</span>)
+                <span class="kw">return</span> discount
+            <span class="kw">else</span>:
+                <span class="bi">print</span>(<span class="st">"Invalid discount code. No discount applied."</span>)
+                <span class="kw">return</span> <span class="num">0.0</span>
+        <span class="kw">elif</span> ans == <span class="st">'no'</span>:
+            <span class="kw">return</span> <span class="num">0.0</span>
+        <span class="kw">else</span>:
+            <span class="bi">print</span>(<span class="st">"Please enter 'yes' or 'no'."</span>)
+
+<span class="kw">def</span> <span class="fn">calculate_total</span>():
+    total_cost = <span class="num">0.0</span>
+    shopping_cart = []
+
+    <span class="kw">while</span> <span class="bi">True</span>:
+        <span class="fn">display_fruits</span>()
+        choice = <span class="bi">input</span>(<span class="st">"\nEnter the fruit you want to buy (or 'done' to finish): "</span>).<span class="fn">lower</span>()
+
+        <span class="kw">if</span> choice == <span class="st">'done'</span>:
+            <span class="kw">break</span>
+
+        <span class="kw">if</span> choice <span class="kw">not in</span> fruits:
+            <span class="bi">print</span>(<span class="st">"Invalid fruit selection."</span>)
+            <span class="kw">continue</span>
+
+        <span class="kw">try</span>:
+            quantity = <span class="bi">float</span>(<span class="bi">input</span>(<span class="st">f"Enter quantity in kg for {choice}: "</span>))
+            <span class="kw">if</span> quantity <= <span class="num">0</span>:
+                <span class="kw">raise</span> <span class="bi">ValueError</span>
+        <span class="kw">except</span> <span class="bi">ValueError</span>:
+            <span class="bi">print</span>(<span class="st">"Invalid quantity. Please enter a positive number."</span>)
+            <span class="kw">continue</span>
+
+        cost = fruits[choice] * quantity
+        shopping_cart.<span class="fn">append</span>((choice, quantity, cost))
+        total_cost += cost
+        <span class="bi">print</span>(<span class="st">f"Added {quantity} kg of {choice} for {cost:<span class="op">.2f</span>} PHP."</span>)
+
+    <span class="kw">if</span> shopping_cart:
+        <span class="bi">print</span>(<span class="st">"\nShopping Cart Summary:"</span>)
+        <span class="kw">for</span> item <span class="kw">in</span> shopping_cart:
+            <span class="bi">print</span>(<span class="st">f"{item[<span class="num">0</span>].<span class="fn">capitalize</span>()}: {item[<span class="num">1</span>]} kg = {item[<span class="num">2</span>]:<span class="op">.2f</span>} PHP"</span>)
+        discount_percent = <span class="fn">get_discount</span>()
+        discount_amount = total_cost * (discount_percent / <span class="num">100</span>)
+        final_total = total_cost - discount_amount
+        <span class="bi">print</span>(<span class="st">f"\nSubtotal: {total_cost:<span class="op">.2f</span>} PHP"</span>)
+        <span class="kw">if</span> discount_percent > <span class="num">0</span>:
+            <span class="bi">print</span>(<span class="st">f"Discount ({discount_percent}%): -{discount_amount:<span class="op">.2f</span>} PHP"</span>)
+        <span class="bi">print</span>(<span class="st">f"Total Cost: {final_total:<span class="op">.2f</span>} PHP"</span>)
+    <span class="kw">else</span>:
+        <span class="bi">print</span>(<span class="st">f"\nTotal Cost: {total_cost:<span class="op">.2f</span>} PHP"</span>)
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    <span class="bi">print</span>(<span class="st">"Welcome to the Philippine Fruit Retail Business!"</span>)
+    <span class="fn">calculate_total</span>()
+    <span class="bi">print</span>(<span class="st">"Thank you for shopping with us!"</span>)</pre>
+                    </div>
+                    <div class="output-panel" id="fullOutput"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="steps" aria-labelledby="h-steps">
+            <div class="page-col">
+                <div class="section-label">03 — Step-by-Step Explanation</div>
+                <h2 id="h-steps">8 Concepts, Fully Explained</h2>
+                <p style="margin-bottom:1rem;">Each section covers: <strong style="color:var(--text);">Why</strong> · <strong style="color:var(--text);">Snippet</strong> · <strong style="color:var(--text);">How it operates</strong> · <strong style="color:var(--text);">Significance</strong></p>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 01 — Dictionary: Storing Fruits &amp; Prices</h3>
+                    <div class="code-snippet"><pre>fruits = {
+    <span class="st">"mangoes"</span>:    <span class="num">180.00</span>,
+    <span class="st">"papayas"</span>:    <span class="num">75.00</span>,
+    <span class="st">"rambutan"</span>:   <span class="num">180.00</span>,
+    <span class="st">"coconuts"</span>:   <span class="num">50.00</span>,
+    <span class="st">"lanzones"</span>:   <span class="num">120.00</span>,
+    <span class="st">"mangosteen"</span>: <span class="num">135.00</span>,
+    <span class="st">"bananas"</span>:    <span class="num">60.00</span>,
+    <span class="st">"pineapples"</span>: <span class="num">75.00</span>,
+    <span class="st">"guavas"</span>:     <span class="num">50.00</span>,
+    <span class="st">"guyavanos"</span>:  <span class="num">130.00</span>,
+    <span class="st">"avocados"</span>:   <span class="num">120.00</span>
+}</pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why a dictionary?</strong> A dictionary binds each fruit name to its price as a single key-value pair. Lookup is O(1) constant time — instant regardless of how many fruits exist.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">How it operates:</strong> Python stores this as a hash table internally. <code>fruits["mangoes"]</code> retrieves <code>180.00</code> in O(1) time — no looping required.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> Speed and simplicity. If we used a list instead, we'd have to loop through every item to find a match — an O(n) operation.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 02 — display_fruits(): Iteration &amp; Formatting</h3>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">display_fruits</span>():
+    <span class="bi">print</span>(<span class="st">"Available Fruits and Prices (per kg in PHP):"</span>)
+    <span class="kw">for</span> fruit, price <span class="kw">in</span> fruits.<span class="fn">items</span>():
+        <span class="bi">print</span>(<span class="st">f"{fruit.<span class="fn">capitalize</span>()}: {price:<span class="op">.2f</span>}"</span>)</pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why isolate display logic?</strong> The display function can be called at the start of every shopping loop without duplicating code.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">How it operates:</strong> <code>fruits.items()</code> returns each key-value pair as a tuple. The <code>for fruit, price in ...</code> line unpacks that tuple into two named variables. <code>{price:.2f}</code> formats the float to exactly 2 decimal places.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> Reusability and separation of concerns. If the display format ever changes, you change it in one place only.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 03 — while True: Continuous Shopping Loop</h3>
+                    <div class="code-snippet"><pre><span class="kw">while</span> <span class="bi">True</span>:
+    <span class="fn">display_fruits</span>()
+    choice = <span class="bi">input</span>(<span class="st">"\nEnter fruit or 'done' to finish: "</span>).<span class="fn">lower</span>()
+
+    <span class="kw">if</span> choice == <span class="st">'done'</span>:
+        <span class="kw">break</span>
+
+    <span class="kw">if</span> choice <span class="kw">not in</span> fruits:
+        <span class="bi">print</span>(<span class="st">"Invalid selection."</span>)
+        <span class="kw">continue</span></pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why <code>while True</code>?</strong> The number of items a customer wants is unknown in advance. The program should keep asking until the user explicitly decides to stop.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">How it operates:</strong> <code>while True</code> creates an infinite loop. The only exit is <code>break</code> when the user types "done". <code>continue</code> skips the rest of the loop and returns to the top.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> User-driven flow control. The <code>while True</code> + <code>break</code> pattern hands control to the user — the program ends only when they say so.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 04 — try/except: Input Validation</h3>
+                    <div class="code-snippet"><pre><span class="kw">try</span>:
+    quantity = <span class="bi">float</span>(<span class="bi">input</span>(<span class="st">f"Enter quantity in kg for {choice}: "</span>))
+    <span class="kw">if</span> quantity <= <span class="num">0</span>:
+        <span class="kw">raise</span> <span class="bi">ValueError</span>
+<span class="kw">except</span> <span class="bi">ValueError</span>:
+    <span class="bi">print</span>(<span class="st">"Invalid quantity. Please enter a positive number."</span>)
+    <span class="kw">continue</span></pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why <code>try/except</code>?</strong> <code>input()</code> always returns a string. Converting with <code>float()</code> crashes the program if the user types anything non-numeric.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">How it operates:</strong> Python attempts <code>float(...)</code>. If that fails, Python raises <code>ValueError</code> automatically. If <code>float()</code> succeeds but the result is ≤ 0, we manually <code>raise ValueError</code>. Either way, the <code>except</code> block catches it, prints an error, and <code>continue</code> restarts the loop.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> Crash prevention. Without this block, a single bad keystroke would terminate the entire program — losing all cart data.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 05 — Shopping Cart: List of Tuples</h3>
+                    <div class="code-snippet"><pre>cost = fruits[choice] * quantity
+shopping_cart.<span class="fn">append</span>((choice, quantity, cost))
+total_cost += cost
+
+<span class="kw">for</span> item <span class="kw">in</span> shopping_cart:
+    <span class="bi">print</span>(<span class="st">f"{item[<span class="num">0</span>].<span class="fn">capitalize</span>()}: {item[<span class="num">1</span>]} kg = {item[<span class="num">2</span>]:<span class="op">.2f</span>} PHP"</span>)</pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why a tuple?</strong> Each purchase is a fixed 3-part record. Tuples are immutable — once created, that record cannot be accidentally changed.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why a list?</strong> Lists are ordered and dynamic, allowing unlimited items to be appended. <code>.append()</code> adds the tuple as a new element at the end.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> Data integrity and clarity. Immutable tuples inside a mutable list give the best of both worlds — you can grow the cart freely, but individual purchase records stay protected.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 06 — Discount System: Dictionary Lookup</h3>
+                    <div class="code-snippet"><pre>codes = {<span class="st">"SALE10"</span>: <span class="num">10</span>, <span class="st">"FRESH15"</span>: <span class="num">15</span>, <span class="st">"FRUIT20"</span>: <span class="num">20</span>}
+code = <span class="bi">input</span>(<span class="st">"Enter your discount code: "</span>).<span class="fn">upper</span>()
+
+<span class="kw">if</span> code <span class="kw">in</span> codes:
+    discount = codes[code]
+    <span class="bi">print</span>(<span class="st">f"Discount code accepted! {discount}% off applied."</span>)
+    <span class="kw">return</span> discount
+<span class="kw">else</span>:
+    <span class="bi">print</span>(<span class="st">"Invalid discount code. No discount applied."</span>)
+    <span class="kw">return</span> <span class="num">0.0</span></pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why a dictionary for discounts?</strong> Code validation requires fast, exact key lookups. Using a dictionary instead of a chain of <code>if/elif</code> statements means the logic stays the same whether there are 3 codes or 300.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">How it operates:</strong> <code>if code in codes</code> is a safe O(1) check that will never raise a <code>KeyError</code>. <code>.upper()</code> makes codes case-insensitive from the user's perspective.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> Scalability and maintainability. Adding a new discount code only requires one new line in the dictionary — no logic changes needed.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 07 — Discount Calculation: Arithmetic</h3>
+                    <div class="code-snippet"><pre>discount_percent = <span class="fn">get_discount</span>()
+discount_amount  = total_cost * (discount_percent / <span class="num">100</span>)
+final_total      = total_cost - discount_amount
+
+<span class="bi">print</span>(<span class="st">f"Subtotal:           {total_cost:<span class="op">.2f</span>} PHP"</span>)
+<span class="kw">if</span> discount_percent > <span class="num">0</span>:
+    <span class="bi">print</span>(<span class="st">f"Discount ({discount_percent}%): -{discount_amount:<span class="op">.2f</span>} PHP"</span>)
+<span class="bi">print</span>(<span class="st">f"Total Cost:         {final_total:<span class="op">.2f</span>} PHP"</span>)</pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why split the calculation?</strong> Breaking it into named variables makes the math readable and easy to debug. A customer can see exactly how much was deducted and why.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">How it operates:</strong> <code>discount_percent / 100</code> converts e.g. <code>15</code> → <code>0.15</code>. Multiplying by <code>total_cost</code> gives the peso amount to deduct. Subtracting yields the final price.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> Transparency and auditability. This mirrors how real POS (point-of-sale) receipt systems work — showing subtotal, discount, and grand total as separate line items.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔹 STEP 08 — if __name__ == "__main__": Entry Guard</h3>
+                    <div class="code-snippet"><pre><span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    <span class="bi">print</span>(<span class="st">"Welcome to the Philippine Fruit Retail Business!"</span>)
+    <span class="fn">calculate_total</span>()
+    <span class="bi">print</span>(<span class="st">"Thank you for shopping with us!"</span>)</pre></div>
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 Why This Matters</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Why the guard?</strong> Without it, the moment another Python file does <code>import fruit_retail</code>, the program would immediately launch the interactive session — an unintended side effect.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">How it operates:</strong> Python sets <code>__name__</code> to <code>"__main__"</code> when a file is run directly. When imported, it's set to the module name. The guard means the program only runs in the first case.
+                            </li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                <strong style="color:var(--text)">Significance:</strong> Reusability and testability. This single pattern transforms the script into a proper module. It is considered mandatory in professional Python development.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="concepts" aria-labelledby="h-concepts">
+            <div class="page-col">
+                <div class="section-label">04 — Core Concepts Reference</div>
+                <h2 id="h-concepts">Quick Cheatsheet</h2>
+                <p style="margin-bottom:1rem;">Every Python concept featured in this program — mapped directly to the step where it appears.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Concept</th><th>Step</th><th>Key Takeaway</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>dict</code></td><td>1</td><td>O(1) key-value lookup; more scalable than parallel lists</td></tr>
+                            <tr><td><code>.items()</code></td><td>2</td><td>Iterates key-value pairs simultaneously via tuple unpacking</td></tr>
+                            <tr><td>f-strings</td><td>2</td><td>Embed expressions directly in strings with :.2f for currency</td></tr>
+                            <tr><td><code>while True + break</code></td><td>3</td><td>User-driven loop that exits on explicit sentinel input</td></tr>
+                            <tr><td><code>continue</code></td><td>3</td><td>Skips remainder of loop body and restarts from the top</td></tr>
+                            <tr><td><code>try / except</code></td><td>4</td><td>Catches runtime errors and recovers gracefully</td></tr>
+                            <tr><td><code>raise ValueError</code></td><td>4</td><td>Manually triggers an exception for logically invalid values</td></tr>
+                            <tr><td>list of tuples</td><td>5</td><td>Mutable container holding immutable fixed-width records</td></tr>
+                            <tr><td><code>.append()</code></td><td>5</td><td>Adds items to the end of a list in O(1) amortized time</td></tr>
+                            <tr><td><code>in</code> operator</td><td>6</td><td>Safe O(1) key membership check that prevents KeyError</td></tr>
+                            <tr><td>Arithmetic</td><td>7</td><td>Named intermediate variables improve readability and debuggability</td></tr>
+                            <tr><td><code>__name__</code> guard</td><td>8</td><td>Enables import without triggering execution; mandatory best practice</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="tips" aria-labelledby="h-tips">
+            <div class="page-col">
+                <div class="section-label">05 — Pro Tips &amp; Extensions</div>
+                <h2 id="h-tips">Go Further With These Ideas</h2>
+                <div style="margin-top:1rem;">
+                    <div class="card-grid">
+                        <div class="card"><div class="card-icon">🗄️</div><h3>Persist Your Data</h3><p>Save the shopping cart to a JSON file with <code>json.dump()</code> so records survive program restarts.</p></div>
+                        <div class="card"><div class="card-icon">🧪</div><h3>Write Unit Tests</h3><p>Use <code>pytest</code> to test functions in isolation. The <code>__name__</code> guard makes this possible.</p></div>
+                        <div class="card"><div class="card-icon">🖥️</div><h3>Build a Web Version</h3><p>Port the logic to Flask or FastAPI — the functions translate almost 1:1 to REST API endpoints.</p></div>
+                        <div class="card"><div class="card-icon">📊</div><h3>Add Sales Analytics</h3><p>Track which fruits sell most with <code>collections.Counter</code> to optimize inventory decisions.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mistakes" aria-labelledby="h-mistakes">
+            <div class="page-col">
+                <div class="section-label">06 — Common Mistakes</div>
+                <h2 id="h-mistakes">Avoid These Pitfalls</h2>
+                <div style="margin-top:1rem;">
+                    <div class="oop-block">
+                        <h3>❌ Mistake 1 — Using a list instead of a dictionary</h3>
+                        <p>Storing fruit names and prices in parallel lists and using <code>list.index()</code> to find a price is O(n) and breaks the moment the lists fall out of sync. A dictionary is always the right choice.</p>
+                    </div>
+                    <div class="oop-block">
+                        <h3>❌ Mistake 2 — Catching bare <code>except:</code></h3>
+                        <p>Writing <code>except:</code> without specifying an exception type will silently swallow every error — including <code>KeyboardInterrupt</code> and memory errors. Always catch the most specific exception type possible.</p>
+                    </div>
+                    <div class="oop-block">
+                        <h3>❌ Mistake 3 — Forgetting <code>if __name__ == "__main__"</code></h3>
+                        <p>Omitting the entry guard means any test file or other module that imports your functions will immediately trigger the full interactive program. Even for small scripts, always wrap top-level execution code in this guard.</p>
+                    </div>
+                    <div class="oop-block">
+                        <h3>❌ Mistake 4 — Using <code>input()</code> without stripping whitespace</h3>
+                        <p>A user who types a space before their fruit name — <code>" mangoes"</code> instead of <code>"mangoes"</code> — will get an invalid selection error. Always sanitize user input with <code>.strip().lower()</code>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deepdive" aria-labelledby="h-deepdive">
+            <div class="page-col">
+                <div class="section-label">07 — Deep Dive</div>
+                <h2 id="h-deepdive">Python Concepts, Deeper</h2>
+                <p style="margin-bottom:1rem;">Explore these concepts beyond the basics — a structured learning roadmap.</p>
+                <div class="card-grid">
+                    <div class="card"><div class="card-icon">🗄️</div><h3>Dictionary Internals</h3><p>Python's <code>dict</code> is a hash table. Understanding hash collisions, load factors, and why insertion order is preserved since Python 3.7 will make you a more confident user of this structure.</p></div>
+                    <div class="card"><div class="card-icon">🛡️</div><h3>Exception Hierarchy</h3><p><code>ValueError</code> is just one node in Python's exception tree. Learning when to raise <code>TypeError</code> vs a custom exception is essential for writing maintainable code.</p></div>
+                    <div class="card"><div class="card-icon">🔤</div><h3>Format Specification Mini-Language</h3><p>The <code>:.2f</code> in f-strings is part of a powerful format specification mini-language. Mastering it eliminates most manual string manipulation in display code.</p></div>
+                    <div class="card"><div class="card-icon">📦</div><h3>Named Tuples</h3><p>Python's <code>collections.namedtuple</code> or <code>typing.NamedTuple</code> lets you access fields by name — <code>item.fruit</code> instead of <code>item[0]</code> — dramatically improving readability in larger codebases.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="share" aria-labelledby="h-share" style="padding-top:0;">
+            <div class="page-col">
+                <div class="section-label">08 — Spread the Knowledge</div>
+                <h2 id="h-share">Share This Guide</h2>
+                <div class="share-wrap" style="margin-top:1rem;">
+                    <h2>Found this useful? Share it.</h2>
+                    <p class="share-sub">Help other developers discover Python fundamentals through real-world examples.</p>
+                    <div class="share-btns">
+                        <button class="sbtn s-fb" onclick="shareTo('facebook')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</button>
+                        <button class="sbtn s-li" onclick="shareTo('linkedin')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>LinkedIn</button>
+                        <button class="sbtn s-x" onclick="shareTo('x')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</button>
+                        <button class="sbtn s-wa" onclick="shareTo('whatsapp')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37C7.35 7.6 6.6 8.3 6.6 9.77s1.07 3.06 1.22 3.27c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34zm-5.47 7.45h-.01A9.93 9.93 0 017.17 20L3 21.15l1.17-4.13A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>WhatsApp</button>
+                        <button class="sbtn s-yt" onclick="shareTo('youtube')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>YouTube</button>
+                        <button class="sbtn s-tg" onclick="shareTo('telegram')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.94 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.94 0zm5.63 7.44l-1.87 8.82c-.14.63-.52.79-1.05.49l-2.9-2.14-1.4 1.35a.65.65 0 01-.52.24.66.66 0 01-.52-.24l.2-2.88 5.25-4.75c.23-.2-.05-.32-.36-.12l-6.5 4.1-2.8-.88c-.6-.19-.61-.6.12-.88l10.94-4.21c.5-.18.94.12.76.88z"/></svg>Telegram</button>
+                        <button class="sbtn s-fb" onclick="copyLink()" style="border-color:var(--border);background:var(--panel);color:var(--muted);"><i class="fas fa-link"></i> Copy Link</button>
+                    </div>
+                    <div id="shareToast" class="share-toast" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscribe" aria-labelledby="h-sub" style="padding-top:0">
+            <div class="page-col">
+                <div class="section-label">09 — Stay in the Loop</div>
+                <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
+                <div style="margin-top:1rem;">
+                    <div class="sub-wrap">
+                        <h2>Level up your Python knowledge.</h2>
+                        <p class="sub-desc">In-depth Python tutorials, code breakdowns, and programming insights — delivered straight to your inbox. No spam, ever.</p>
+                        <div class="perks">
+                            <span class="perk">Weekly Python tutorials</span>
+                            <span class="perk">Code breakdowns</span>
+                            <span class="perk">OOP series updates</span>
+                            <span class="perk">Free, cancel anytime</span>
+                        </div>
+                        <div class="sub-plans">
+                            <button class="plan-chip active" id="planFree" onclick="selectPlan('free')">🆓 Free Weekly</button>
+                            <button class="plan-chip premium" id="planPro" onclick="selectPlan('pro')">⭐ Pro Monthly — Deep Dives</button>
+                        </div>
+                        <div class="sub-form" style="margin-top:1.2rem">
+                            <input class="cinput" type="email" id="subEmail" placeholder="your@email.com" autocomplete="email">
+                            <button class="btn-submit" onclick="handleSubscribe()">Subscribe Free →</button>
+                        </div>
+                        <p class="sub-note">🔒 Join 8,400+ developers. Your email is never shared or sold.</p>
+                        <div class="sub-msg" id="subMsg" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="follow" aria-labelledby="h-follow" style="padding-top:0">
+            <div class="page-col">
+                <div class="section-label">10 — Connect With Us</div>
+                <h2 id="h-follow">Follow Poetic Bytes</h2>
+                <div style="margin-top:1rem;">
+                    <p>Stay connected across every platform. Get daily Python tips, OOP insights, and the latest programming developments — wherever you spend your time online.</p>
+                    <div class="follow-grid">
+                        <div class="follow-card fc-fb"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg></div><div class="follow-name">Facebook</div><div class="follow-handle">@Glenn-Pansensoy</div><div class="follow-stat">2.4k followers</div><a href="https://www.facebook.com/Glenn-Pansensoy" target="_blank" rel="noopener" class="follow-btn" id="fbBtn" onclick="toggleFollow(this,'fb')">+ Follow</a></div>
+                        <div class="follow-card fc-li"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg></div><div class="follow-name">LinkedIn</div><div class="follow-handle">@glenn-pansensoy</div><div class="follow-stat">5.1k connections</div><a href="https://www.linkedin.com/in/glenn-pansensoy" target="_blank" rel="noopener" class="follow-btn" id="liBtn" onclick="toggleFollow(this,'li')">+ Follow</a></div>
+                        <div class="follow-card fc-x"><div class="follow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div><div class="follow-name">X / Twitter</div><div class="follow-handle">@PoeticGlenn</div><div class="follow-stat">8.7k followers</div><a href="https://twitter.com/PoeticGlenn" target="_blank" rel="noopener" class="follow-btn" id="xBtn" onclick="toggleFollow(this,'x')">+ Follow</a></div>
+                        <div class="follow-card fc-yt"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></div><div class="follow-name">YouTube</div><div class="follow-handle">Poetic Bytes</div><div class="follow-stat">3.2k subscribers</div><a href="#" class="follow-btn" id="ytBtn" onclick="toggleFollow(this,'yt')">Subscribe</a></div>
+                        <div class="follow-card fc-gh"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div><div class="follow-name">GitHub</div><div class="follow-handle">Poetic Bytes</div><div class="follow-stat">1.8k stars</div><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" target="_blank" rel="noopener" class="follow-btn" id="ghBtn" onclick="toggleFollow(this,'gh')">Star ★</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="outro" aria-labelledby="h-outro">
+            <div class="page-col">
+                <div class="section-label">11 — The Road Ahead</div>
+                <h2 id="h-outro">Wrapping Up: Your Python Journey</h2>
+                <div style="margin-top:1rem;">
+                    <div class="curriculum-desc" style="border-color:var(--gold);">
+                        <h2>🏁 What You've Accomplished</h2>
+                        <p>
+                            You've just completed a deep-dive into a <span class="gold">real-world Python program</span>
+                            that simulates a <span class="highlight">Philippine fruit retail business</span>.
+                        </p>
+                        <p>
+                            You now understand how to use <span class="highlight">dictionaries</span> for O(1) lookups,
+                            <span class="highlight">while True + break</span> for user-driven loops,
+                            <span class="highlight">try/except</span> for crash prevention,
+                            <span class="highlight">lists of tuples</span> for immutable records,
+                            and the <span class="highlight">__name__ guard</span> for modular, testable code.
+                        </p>
+                        <p>
+                            Every code example was <span class="highlight">interactive</span> — you ran Python in your browser,
+                            experimented with the code, and saw the results instantly.
+                        </p>
+                        <div class="desc-meta">
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 8 steps mastered</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 12 core concepts</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Live code runner</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Real-world example</span>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Key Takeaways</h3>
+                        <ul class="outro-list">
+                            <li><strong>Dictionaries = Speed</strong> — O(1) hash table lookups make price retrieval instant</li>
+                            <li><strong>while True + break</strong> — the standard Python idiom for user-driven indefinite loops</li>
+                            <li><strong>try/except = Resilience</strong> — graceful error handling is the difference between a demo and real software</li>
+                            <li><strong>List of Tuples</strong> — mutable containers of immutable records for data integrity</li>
+                            <li><strong>__name__ Guard</strong> — mandatory best practice that enables imports, testing, and reuse</li>
+                        </ul>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Your Next Steps</h3>
+                        <p>Now that you've mastered these fundamentals, you're ready to build on this foundation:</p>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:0.8rem;margin-top:1rem;">
+                            <a href="abstraction.html" style="background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-decoration:none;color:var(--text);transition:border-color .2s;text-align:center;" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--border)'">
+                                <div style="font-size:1.8rem;">🎭</div>
+                                <div style="font-weight:700;font-size:.82rem;margin-top:.3rem;">Abstraction</div>
+                                <div style="font-size:.68rem;color:var(--muted);">The second OOP pillar</div>
+                            </a>
+                            <a href="encapsulation.html" style="background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-decoration:none;color:var(--text);transition:border-color .2s;text-align:center;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+                                <div style="font-size:1.8rem;">🔒</div>
+                                <div style="font-weight:700;font-size:.82rem;margin-top:.3rem;">Encapsulation</div>
+                                <div style="font-size:.68rem;color:var(--muted);">The first OOP pillar</div>
+                            </a>
+                            <a href="inheritance.html" style="background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-decoration:none;color:var(--text);transition:border-color .2s;text-align:center;" onmouseover="this.style.borderColor='#b59ee8'" onmouseout="this.style.borderColor='var(--border)'">
+                                <div style="font-size:1.8rem;">🧬</div>
+                                <div style="font-weight:700;font-size:.82rem;margin-top:.3rem;">Inheritance</div>
+                                <div style="font-size:.68rem;color:var(--muted);">The third OOP pillar</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="callout" style="border-color:var(--gold);background:rgba(255,212,59,.04);margin-top:1.5rem;">
+                        <p style="font-size:.85rem;color:var(--text);">
+                            <strong>✨ "The best way to solidify these concepts is to write code that breaks them and then figure out why.</strong>
+                            Every bug you fix teaches you something a tutorial never could. Keep coding, keep learning, and remember:
+                            <span style="color:var(--gold);">great programmers are made, not born.</span>"
+                        </p>
+                        <p style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">— Glenn Junsay Pansensoy, Poetic Bytes</p>
+                    </div>
+
+                    <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;">
+                        <a href="abstraction.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Abstraction</a>
+                        <a href="#intro" class="btn btn-outline"><i class="fas fa-arrow-up"></i> Back to Top</a>
+                        <button class="btn btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Print Guide</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    tocPanel.classList.toggle('open');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        var target = e.target;
+                        if (!tocPanel.contains(target) && target !== tocToggle && !tocToggle.contains(target)) {
+                            tocPanel.classList.remove('open');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                    }
+                });
+            }
+            if (tocClose) {
+                tocClose.addEventListener('click', function() {
+                    if (tocPanel) tocPanel.classList.remove('open');
+                });
+            }
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/fruit.html');
+            var PAGE_TITLE = encodeURIComponent('Python Fruit Retail — Step-by-Step Guide');
+
+            window.shareTo = function(platform) {
+                var urls = {
+                    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL,
+                    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL,
+                    x: 'https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE + '&via=PoeticGlenn',
+                    whatsapp: 'https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL,
+                    youtube: 'https://www.youtube.com/results?search_query=python+fruit+retail+tutorial',
+                    telegram: 'https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE,
+                };
+                if (urls[platform]) window.open(urls[platform], '_blank', 'width=600,height=500,noopener,noreferrer');
+            };
+
+            window.copyLink = function() {
+                var url = 'https://poetic-bytes.vercel.app/fruit.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var toast = document.getElementById('shareToast');
+                        toast.textContent = '✅ Link copied to clipboard!';
+                        toast.style.opacity = '1';
+                        setTimeout(function() { toast.style.opacity = '0'; }, 3000);
+                    }).catch(function() { fallbackCopy(url); });
+                } else {
+                    fallbackCopy(url);
+                }
+            };
+
+            function fallbackCopy(text) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var toast = document.getElementById('shareToast');
+                toast.textContent = '✅ Link copied to clipboard!';
+                toast.style.opacity = '1';
+                setTimeout(function() { toast.style.opacity = '0'; }, 3000);
+            }
+
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', window.copyLink);
+
+            var F_KEY = 'vb_follows_fruit';
+            var follows = {};
+            try { follows = JSON.parse(localStorage.getItem(F_KEY) || '{}'); } catch (_) {}
+
+            var FOLLOW_CONFIG = {
+                fb: { btn: 'fbBtn', follow: '✓ Following', default: '+ Follow' },
+                li: { btn: 'liBtn', follow: '✓ Following', default: '+ Follow' },
+                x: { btn: 'xBtn', follow: '✓ Following', default: '+ Follow' },
+                yt: { btn: 'ytBtn', follow: '✓ Subscribed', default: 'Subscribe' },
+                gh: { btn: 'ghBtn', follow: '★ Starred', default: 'Star ★' },
+            };
+
+            window.toggleFollow = function(btn, platform) {
+                event.preventDefault();
+                var cfg = FOLLOW_CONFIG[platform];
+                if (follows[platform]) {
+                    delete follows[platform];
+                    btn.textContent = cfg.default;
+                    btn.classList.remove('following');
+                } else {
+                    follows[platform] = true;
+                    btn.textContent = cfg.follow;
+                    btn.classList.add('following');
+                }
+                localStorage.setItem(F_KEY, JSON.stringify(follows));
+            };
+
+            function restoreFollows() {
+                for (var platform in FOLLOW_CONFIG) {
+                    var cfg = FOLLOW_CONFIG[platform];
+                    var btn = document.getElementById(cfg.btn);
+                    if (!btn) continue;
+                    if (follows[platform]) {
+                        btn.textContent = cfg.follow;
+                        btn.classList.add('following');
+                    } else {
+                        btn.textContent = cfg.default;
+                        btn.classList.remove('following');
+                    }
+                }
+            }
+            restoreFollows();
+
+            window.selectPlan = function(plan) {
+                document.getElementById('planFree').classList.toggle('active', plan === 'free');
+                document.getElementById('planPro').classList.toggle('active', plan === 'pro');
+            };
+
+            window.handleSubscribe = function() {
+                var el = document.getElementById('subEmail');
+                var msg = document.getElementById('subMsg');
+                var email = el.value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    msg.textContent = '✗ Please enter a valid email address.';
+                    msg.style.opacity = '1';
+                    setTimeout(function() { msg.style.opacity = '0'; }, 4000);
+                    return;
+                }
+                var list = JSON.parse(localStorage.getItem('vb_subs_fruit') || '[]');
+                if (list.find(function(s) { return s.email === email; })) {
+                    msg.textContent = '✓ You are already subscribed!';
+                    msg.style.opacity = '1';
+                    setTimeout(function() { msg.style.opacity = '0'; }, 4000);
+                    return;
+                }
+                list.push({ email: email, plan: document.getElementById('planFree').classList.contains('active') ? 'free' :
+                        'pro',
+                    date: new Date().toISOString() });
+                localStorage.setItem('vb_subs_fruit', JSON.stringify(list));
+                el.value = '';
+                msg.textContent = '✓ Welcome aboard! Subscribed successfully.';
+                msg.style.opacity = '1';
+                setTimeout(function() { msg.style.opacity = '0'; }, 6000);
+            };
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            /*
+             * FIX: The original code called pyodide.runPythonAsync() directly against code
+             * that uses input() several times (fruit choice, quantity, discount code, etc.).
+             * Pyodide's default stdin has nothing attached to it, so calling input() raised
+             * "OSError: [Errno 29] I/O error" and crashed the whole program instead of
+             * pausing for user input.
+             *
+             * The fix overrides the Python builtin `input` (via pyodide.globals, which Python
+             * checks before falling back to builtins) with a JS function that uses
+             * window.prompt() to collect a real answer from the user. Since window.prompt()
+             * blocks synchronously, it works fine even though the overall run is invoked with
+             * runPythonAsync().
+             */
+            function installInputBridge(pyodide) {
+                pyodide.globals.set('input', function(promptText) {
+                    var text = (promptText === undefined || promptText === null) ? '' : String(promptText);
+                    var val = window.prompt(text);
+                    if (val === null) {
+                        // User hit Cancel — treat this as the loop's exit sentinel so the
+                        // program terminates gracefully instead of crashing.
+                        val = 'done';
+                    }
+                    return val;
+                });
+            }
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide();
+                    installInputBridge(pyodideInstance);
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function hasFileOperations(code) {
+                var patterns = [
+                    /open\s*\(/,
+                    /Path\s*\(/,
+                    /with\s+open\s*\(/,
+                    /\.read\s*\(/,
+                    /\.write\s*\(/,
+                    /os\.path/,
+                    /shutil\./,
+                    /glob\s*\(/,
+                    /__file__/
+                ];
+                return patterns.some(function(p) { return p.test(code); });
+            }
+
+            function hasInputCalls(code) {
+                return /\binput\s*\(/.test(code);
+            }
+
+            function indentCode(code, spaces) {
+                var pad = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return pad + line; }).join('\n');
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var usesInput = hasInputCalls(code);
+                    if (usesInput) {
+                        outputEl.textContent += '💬 This program is interactive — answer the prompt dialogs as they appear. Output will display below once the program finishes.\n\n';
+                    }
+
+                    if (hasFileOperations(code)) {
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent +=
+                            '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+
+                    var wrapperLines = [
+                        'import sys',
+                        'from io import StringIO',
+                        '_captured_output = StringIO()',
+                        '_old_stdout = sys.stdout',
+                        'sys.stdout = _captured_output',
+                        'try:',
+                        indentCode(code, 4),
+                        'finally:',
+                        '    sys.stdout = _old_stdout',
+                        '_captured_output.getvalue()'
+                    ];
+                    var wrappedCode = wrapperLines.join('\n');
+
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+
+                    if (outputEl.textContent.includes('⚠️') || outputEl.textContent.includes('💬')) {
+                        outputEl.textContent += result || '✓ Code executed successfully (no output).';
+                    } else {
+                        outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                        outputEl.style.color = '#4ade80';
+                    }
+                } catch (err) {
+                    if (outputEl.textContent.includes('⚠️') || outputEl.textContent.includes('💬')) {
+                        outputEl.textContent += '\n\nError:\n' + err.message;
+                    } else {
+                        outputEl.className = 'output-panel error';
+                        outputEl.textContent = 'Error:\n' + err.message;
+                        outputEl.style.color = '#f87171';
+                    }
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var original = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = original; }, 2000);
+                    }).catch(function() {
+                        fallbackCopyCode(btn, code);
+                    });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = original; }, 2000);
+            }
+
+            var fullPre = document.getElementById('fullSourcePre');
+            var fullOutput = document.getElementById('fullOutput');
+            var fullCopyBtn = document.getElementById('fullCopyBtn');
+            var fullRunBtn = document.getElementById('fullRunBtn');
+
+            if (fullCopyBtn && fullPre) {
+                fullCopyBtn.addEventListener('click', function() {
+                    copyCode(fullCopyBtn, fullPre.textContent);
+                });
+            }
+
+            if (fullRunBtn && fullPre && fullOutput) {
+                fullRunBtn.addEventListener('click', function() {
+                    runCode(fullPre.textContent, fullOutput, fullRunBtn);
+                });
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
