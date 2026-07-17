@@ -1,0 +1,2966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>VINO PH – Interactive Python Wine Shop | Poetic Bytes</title>
+    <meta name="description" content="VINO PH is a Python-based wine shop program for the Philippines. Run it live in your browser! Explore nested dictionaries, f-strings, while loops, try/except, and more." />
+    <meta name="keywords" content="Python wine shop program, VINO PH, Python tutorial Philippines, nested dictionary Python, f-strings Python, while True loop, try except Python, Python beginner tutorial, interactive Python" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/wine.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="VINO PH – Interactive Python Wine Shop Program" />
+    <meta property="og:description" content="Run a live Python wine shop program in your browser. Learn nested dicts, f-strings, while loops & exception handling with an interactive terminal." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/wine.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VINO PH – Interactive Python Wine Shop" />
+    <meta name="twitter:description" content="Run a live Python wine shop program in your browser. Learn nested dicts, f-strings, loops & exception handling." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "VINO PH — Interactive Python Wine Shop Program",
+            "description": "A complete interactive Python wine shop ordering system with live execution in the browser. Learn nested dictionaries, f-strings, while True loops, try/except exception handling, and arithmetic computation.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
+            "datePublished": "2026-07-16",
+            "programmingLanguage": "Python",
+            "proficiencyLevel": "Beginner",
+            "url": "https://poetic-bytes.vercel.app/wine.html",
+            "inLanguage": "en"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <!-- Pyodide for Python in the browser -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+    <style>
+        /* ===== BASE ===== */
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, var(--green), #059669);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, .35);
+        }
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, .45);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+            }
+        }
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+        }
+        .code-preview {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .code-chrome {
+            background: #0a1a24;
+            padding: .6rem .9rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .dots {
+            display: flex;
+            gap: .35rem;
+        }
+        .dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-r {
+            background: #ff5f56;
+        }
+        .dot-y {
+            background: #ffbd2e;
+        }
+        .dot-g {
+            background: #27c93f;
+        }
+        .win-title {
+            font-size: .68rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: .4rem;
+        }
+        .code-body {
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            line-height: 1.7;
+        }
+        .code-body pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .callout {
+            border-left: 3px solid var(--blue);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(75, 139, 190, .06);
+            border-radius: 4px;
+        }
+        .callout p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout strong {
+            color: var(--blue-lt);
+        }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 212, 59, .06);
+            border-radius: 4px;
+        }
+        .callout-yellow p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-yellow strong {
+            color: var(--gold);
+        }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(16, 185, 129, .06);
+            border-radius: 4px;
+        }
+        .callout-green p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-green strong {
+            color: var(--green);
+        }
+        .curriculum-desc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .curriculum-desc::before {
+            content: "📜";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 4rem;
+            opacity: 0.06;
+            transform: rotate(8deg);
+        }
+        .curriculum-desc h2 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc .highlight {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .curriculum-desc .gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .curriculum-desc .desc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .curriculum-desc .desc-meta span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .curriculum-desc .desc-meta i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        /* ===== INTERACTIVE TERMINAL ===== */
+        .terminal-wrapper {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .terminal-header {
+            background: #0a1a24;
+            padding: .6rem .9rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .terminal-header .win-title {
+            font-size: .68rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .terminal-header .btn-group {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+        .terminal-header .btn-group .btn {
+            height: 32px;
+            padding: 0 1rem;
+            font-size: .65rem;
+        }
+        #terminal-output {
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            line-height: 1.7;
+            min-height: 300px;
+            max-height: 450px;
+            overflow-y: auto;
+            background: #0A1A24;
+            color: #a5d6ff;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        #terminal-output .prompt {
+            color: #FFD966;
+        }
+        #terminal-output .output {
+            color: #a5d6ff;
+        }
+        #terminal-output .error {
+            color: #EF4444;
+        }
+        #terminal-output .success {
+            color: #10B981;
+        }
+        #terminal-output .info {
+            color: #78B9E6;
+        }
+        #terminal-output .muted {
+            color: #546e7a;
+        }
+        .terminal-input-area {
+            display: none;
+            padding: 0.5rem 1rem 1rem;
+            background: #0A1A24;
+            border-top: 1px solid var(--border);
+        }
+        .terminal-input-area .input-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .terminal-input-area .input-prompt {
+            color: #FFD966;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            flex-shrink: 0;
+        }
+        .terminal-input-area .input-field {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #a5d6ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            outline: none;
+            padding: 0;
+            width: 100%;
+        }
+        .terminal-input-area .input-field:focus {
+            outline: none;
+        }
+        .step-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .step-card:hover {
+            border-color: var(--blue);
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.2rem;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(75, 139, 190, 0.04);
+            border-bottom: 1px solid transparent;
+            transition: background 0.2s;
+        }
+        .step-header:hover {
+            background: rgba(75, 139, 190, 0.08);
+        }
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(75, 139, 190, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--blue-lt);
+            flex-shrink: 0;
+        }
+        .step-header h3 {
+            font-size: 0.85rem;
+            color: var(--text);
+            flex: 1;
+        }
+        .step-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            background: rgba(75, 139, 190, 0.1);
+            border: 1px solid rgba(75, 139, 190, 0.2);
+            color: var(--blue-lt);
+            white-space: nowrap;
+        }
+        .step-chevron {
+            color: var(--muted);
+            font-size: 0.8rem;
+            transition: transform 0.25s;
+        }
+        .step-card.open .step-chevron {
+            transform: rotate(180deg);
+        }
+        .step-body {
+            display: none;
+            padding: 1.2rem;
+            background: var(--panel);
+        }
+        .step-card.open .step-body {
+            display: block;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .code-snippet .dec {
+            color: #c792ea;
+            font-weight: 500;
+        }
+        .explain-q {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.2rem;
+        }
+        .explain-a {
+            color: var(--muted);
+            font-size: 0.78rem;
+            line-height: 1.7;
+        }
+        .explain-a strong {
+            color: var(--text);
+        }
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+        }
+        .pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            border: 1px solid;
+        }
+        .pill-blue {
+            color: var(--blue-lt);
+            border-color: rgba(75, 139, 190, 0.3);
+            background: rgba(75, 139, 190, 0.08);
+        }
+        .pill-purp {
+            color: var(--purple);
+            border-color: rgba(192, 132, 252, 0.3);
+            background: rgba(192, 132, 252, 0.08);
+        }
+        .pill-green {
+            color: var(--green);
+            border-color: rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.08);
+        }
+        .pill-gold {
+            color: var(--gold);
+            border-color: rgba(255, 212, 59, 0.3);
+            background: rgba(255, 212, 59, 0.08);
+        }
+        .pill-pink {
+            color: #f472b6;
+            border-color: rgba(244, 114, 182, 0.3);
+            background: rgba(244, 114, 182, 0.08);
+        }
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            margin-top: 1.2rem;
+        }
+        .summary-table th {
+            background: var(--card);
+            color: var(--text);
+            font-weight: 600;
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .summary-table td {
+            padding: 0.5rem 0.8rem;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .summary-table tr:hover td {
+            background: rgba(75, 139, 190, 0.03);
+        }
+        .summary-table td:first-child {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--blue-lt);
+        }
+        .summary-table td:nth-child(2) {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        .share-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2.8rem 2.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .share-wrap h2 {
+            font-size: 1.2rem;
+            margin-bottom: .3rem;
+        }
+        .share-sub {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 420px;
+            margin: .4rem auto 1.6rem;
+            line-height: 1.7;
+        }
+        .share-ai-msg {
+            background: rgba(75, 139, 190, .07);
+            border: 1px solid rgba(75, 139, 190, .18);
+            border-radius: var(--card-r);
+            padding: .85rem 1.2rem;
+            margin: 0 auto 1.6rem;
+            max-width: 560px;
+            font-size: .76rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.65;
+            min-height: 3.5rem;
+            text-align: justify;
+            transition: opacity .4s;
+        }
+        .share-btns {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: .65rem;
+            margin-top: .4rem;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .sbtn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .65rem 1.3rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .sbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+        }
+        .sbtn svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+        .sbtn.s-fb:hover {
+            background: rgba(24, 119, 242, .14);
+            border-color: rgba(24, 119, 242, .38);
+            color: #5597ee;
+        }
+        .sbtn.s-li:hover {
+            background: rgba(10, 102, 194, .14);
+            border-color: rgba(10, 102, 194, .38);
+            color: #5b9bd5;
+        }
+        .sbtn.s-x:hover {
+            background: rgba(255, 255, 255, .07);
+            border-color: rgba(255, 255, 255, .2);
+        }
+        .sbtn.s-wa:hover {
+            background: rgba(37, 211, 102, .12);
+            border-color: rgba(37, 211, 102, .35);
+            color: #25d366;
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .sub-wrap {
+            background: linear-gradient(135deg, var(--card) 0%, var(--panel) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 3.2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .sub-wrap::before {
+            content: '🐍';
+            position: absolute;
+            font-size: 7rem;
+            opacity: .03;
+            top: 50%;
+            left: 2%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .sub-wrap h2 {
+            font-size: 1.2rem;
+            margin-bottom: .35rem;
+        }
+        .sub-desc {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 440px;
+            margin: .3rem auto 0;
+        }
+        .perks {
+            display: flex;
+            justify-content: center;
+            gap: 1.3rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 1.4rem;
+        }
+        .perk {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .perk::before {
+            content: '✓';
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .sub-form {
+            display: flex;
+            gap: .55rem;
+            max-width: 460px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .sub-form .cinput {
+            flex: 1;
+            min-width: min(180px, 100%);
+        }
+        .cinput {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: .6rem .85rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: .82rem;
+            width: 100%;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .cinput:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(75, 139, 190, .11);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            padding: .65rem 1.75rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .76rem;
+            cursor: pointer;
+            transition: all .25s;
+        }
+        .btn-submit:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .3);
+        }
+        .sub-note {
+            font-size: .62rem;
+            color: var(--muted);
+            margin-top: .7rem;
+        }
+        .sub-msg {
+            font-size: .7rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 1rem;
+            transition: opacity .4s;
+            margin-top: .5rem;
+        }
+        .follow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.6rem;
+        }
+        .follow-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.6rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: .65rem;
+            transition: all .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .follow-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--card-r);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        .follow-card.fc-fb::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(24, 119, 242, .15), transparent 65%);
+        }
+        .follow-card.fc-li::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(10, 102, 194, .15), transparent 65%);
+        }
+        .follow-card.fc-x::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, .06), transparent 65%);
+        }
+        .follow-card.fc-yt::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 0, 0, .12), transparent 65%);
+        }
+        .follow-card:hover {
+            transform: translateY(-5px);
+        }
+        .follow-card:hover::before {
+            opacity: 1;
+        }
+        .follow-card.fc-fb:hover {
+            border-color: rgba(24, 119, 242, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-li:hover {
+            border-color: rgba(10, 102, 194, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-x:hover {
+            border-color: rgba(255, 255, 255, .2);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-yt:hover {
+            border-color: rgba(255, 0, 0, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            transition: transform .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-card:hover .follow-icon {
+            transform: scale(1.12) rotate(-5deg);
+        }
+        .fc-fb .follow-icon {
+            background: rgba(24, 119, 242, .15);
+            border: 1px solid rgba(24, 119, 242, .25);
+        }
+        .fc-li .follow-icon {
+            background: rgba(10, 102, 194, .15);
+            border: 1px solid rgba(10, 102, 194, .25);
+        }
+        .fc-x .follow-icon {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-icon {
+            background: rgba(255, 0, 0, .12);
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .follow-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .62rem;
+            color: var(--muted);
+            margin-top: -.3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .follow-stat {
+            font-size: .7rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .45rem 1.2rem;
+            border-radius: 100px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            cursor: pointer;
+            border: none;
+            transition: all .25s;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            margin-top: .2rem;
+        }
+        .follow-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+        }
+        .follow-btn.following {
+            background: var(--panel) !important;
+            color: var(--muted) !important;
+            border: 1px solid var(--border) !important;
+        }
+        .fc-fb .follow-btn {
+            background: rgba(24, 119, 242, .2);
+            color: #5597ee;
+            border: 1px solid rgba(24, 119, 242, .3);
+        }
+        .fc-li .follow-btn {
+            background: rgba(10, 102, 194, .2);
+            color: #5b9bd5;
+            border: 1px solid rgba(10, 102, 194, .3);
+        }
+        .fc-x .follow-btn {
+            background: rgba(255, 255, 255, .08);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-btn {
+            background: rgba(255, 0, 0, .15);
+            color: #ff5555;
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3.5rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .share-btns {
+                max-width: 100%;
+            }
+            .step-header {
+                flex-wrap: wrap;
+                gap: 0.4rem;
+            }
+            .step-tag {
+                font-size: 0.55rem;
+            }
+            .curriculum-desc {
+                padding: 1.2rem 1rem;
+            }
+            .curriculum-desc h2 {
+                font-size: 1rem;
+            }
+            .curriculum-desc p {
+                font-size: 0.78rem;
+            }
+            .curriculum-desc .desc-meta {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+            .terminal-header {
+                flex-wrap: wrap;
+            }
+            .terminal-header .btn-group {
+                margin-left: 0;
+                width: 100%;
+            }
+            .terminal-header .btn-group .btn {
+                flex: 1;
+            }
+        }
+        @media(max-width:768px) {
+            .floating-share {
+                right: 14px;
+                bottom: 76px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+        }
+        .return-hub {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(75, 139, 190, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--muted);
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+        }
+        .return-hub:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            background: rgba(75, 139, 190, 0.15);
+        }
+        .badge-row {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 0.5rem 0 1rem;
+        }
+        .badge-tag {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.62rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .badge-tag .highlight {
+            color: var(--gold);
+        }
+        .loading-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--border);
+            border-top-color: var(--blue-lt);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== PROGRESS BAR ===== -->
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#interactive">Run</a></li>
+                <li><a href="#source">Source</a></li>
+                <li><a href="#walkthrough">Walkthrough</a></li>
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#why">Why It Matters</a></li>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#share">Share</a></li>
+                <li><a href="#follow">Follow</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- ===== DRAWER ===== -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+                <li><button data-href="#interactive"><i class="fas fa-play"></i>Live Runner</button></li>
+                <li><button data-href="#source"><i class="fas fa-code"></i>Source Code</button></li>
+                <li><button data-href="#walkthrough"><i class="fas fa-list-ul"></i>Walkthrough</button></li>
+                <li><button data-href="#concepts"><i class="fas fa-lightbulb"></i>Concepts</button></li>
+                <li><button data-href="#why"><i class="fas fa-brain"></i>Why It Matters</button></li>
+                <li><button data-href="#summary"><i class="fas fa-table"></i>Summary</button></li>
+                <li><button data-href="#share"><i class="fas fa-share-alt"></i>Share</button></li>
+                <li><button data-href="#follow"><i class="fas fa-users"></i>Follow</button></li>
+                <li><button data-href="#subscribe"><i class="fas fa-envelope"></i>Subscribe</button></li>
+                <li><a href="abstraction.html"><i class="fas fa-arrow-left"></i>Abstraction Hub</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING SHARE ===== -->
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+    </div>
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main style="padding-top:56px;">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" aria-label="VINO PH Python Wine Shop Program">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python · Beginner · VINO PH · Interactive</div>
+                <h1>
+                    <span style="color:var(--blue);">VINO PH</span> —<br>
+                    Interactive Python Wine Shop<br>
+                    <span style="color:var(--gold);">Run Live in Your Browser</span>
+                </h1>
+                <p class="lead">
+                    A complete Python wine ordering system that runs <strong>live in your browser</strong>.
+                    No installation needed. Click "Run Program" below to start the interactive experience.
+                </p>
+                <p class="lead" style="margin-top:-0.6rem;">
+                    Every line is explained step by step — from nested dictionaries to defensive input validation.
+                    Learn by doing.
+                </p>
+                <div class="badge-row">
+                    <span class="badge-tag">📅 July 16, 2026</span>
+                    <span class="badge-tag">⏱ 20 min read</span>
+                    <span class="badge-tag">🎓 Beginner</span>
+                    <span class="badge-tag">🐍 Python 3.12</span>
+                    <span class="badge-tag">⚡ <span class="highlight">Live</span></span>
+                </div>
+                <div style="margin-top:1.5rem;display:flex;gap:.8rem;flex-wrap:wrap;">
+                    <a href="#interactive" class="btn btn-success"><i class="fas fa-play"></i> Run Program Now</a>
+                    <a href="#source" class="btn btn-primary"><i class="fas fa-code"></i> View Source</a>
+                    <a href="abstraction.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Abstraction Hub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== INTRODUCTION ===== -->
+        <section id="intro" aria-labelledby="h-intro">
+            <div class="page-col">
+                <div class="section-label">01 — The Program</div>
+                <h2 id="h-intro">VINO PH: A Python Learning Journey</h2>
+
+                <div class="curriculum-desc">
+                    <h2>🍷 Welcome to VINO PH</h2>
+                    <p>
+                        This page presents a complete, production-quality Python program for a Philippine wine shop
+                        ordering system called <span class="gold">VINO PH</span>. It demonstrates core Python concepts:
+                        <span class="highlight">nested dictionaries</span> as a mini-database, <span class="highlight">f-strings</span>
+                        with format specifiers for clean output, <span class="highlight">while True loops</span> with
+                        <span class="highlight">try/except</span> for robust input validation, arithmetic computation,
+                        and a <span class="gold">senior citizen discount</span> feature.
+                    </p>
+                    <p>
+                        Every concept is introduced in the context of a real, working program — so you see <em>why</em>
+                        each design decision was made. By the end, you'll understand not just the code, but the
+                        <span class="gold">thinking behind the code</span>.
+                    </p>
+                    <p>
+                        VINO PH is intentionally small enough to read in one sitting, yet it packs in almost every
+                        pattern a beginner will meet again and again in bigger, real-world systems: a data layer
+                        (the <code>wines</code> dictionary), a presentation layer (the formatted menu and receipt),
+                        a validation layer (the two <code>while True</code> loops), and a business-rules layer (the
+                        senior discount calculation). Professional applications — a point-of-sale system, an e-commerce
+                        checkout, a booking engine — are built from the exact same four layers, just at a much larger
+                        scale. Learning to recognize this shape in a 70-line script is what makes it possible to
+                        recognize it later inside a 70,000-line codebase.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 15 wines in menu</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 7 core concepts</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 7 step-by-step explanations</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 🇵🇭 PHP pricing</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> ⚡ Live interactive</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:0.5rem;">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:0.8rem;margin-bottom:1.2rem;">
+                        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-align:center;">
+                            <div style="font-size:1.8rem;">🐍</div>
+                            <div style="font-size:0.7rem;color:var(--muted);margin-top:0.2rem;">Language</div>
+                            <div style="font-size:0.85rem;font-weight:600;color:var(--text);">Python 3</div>
+                        </div>
+                        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-align:center;">
+                            <div style="font-size:1.8rem;">📦</div>
+                            <div style="font-size:0.7rem;color:var(--muted);margin-top:0.2rem;">Concepts</div>
+                            <div style="font-size:0.85rem;font-weight:600;color:var(--text);">7 Core Topics</div>
+                        </div>
+                        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-align:center;">
+                            <div style="font-size:1.8rem;">🍾</div>
+                            <div style="font-size:0.7rem;color:var(--muted);margin-top:0.2rem;">Wines</div>
+                            <div style="font-size:0.85rem;font-weight:600;color:var(--text);">15 Selections</div>
+                        </div>
+                        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;text-align:center;">
+                            <div style="font-size:1.8rem;">⚡</div>
+                            <div style="font-size:0.7rem;color:var(--muted);margin-top:0.2rem;">Mode</div>
+                            <div style="font-size:0.85rem;font-weight:600;color:var(--text);">Interactive</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== INTERACTIVE RUNNER ===== -->
+        <section id="interactive" aria-labelledby="h-interactive">
+            <div class="page-col">
+                <div class="section-label">⚡ Live Runner</div>
+                <h2 id="h-interactive">Run VINO PH in Your Browser</h2>
+                <p style="margin-bottom:1rem;">
+                    Click <strong>"Run Program"</strong> to start the VINO PH wine shop. The program runs entirely in your browser using
+                    <strong>Pyodide</strong> — Python compiled to WebAssembly. Type your responses directly in the terminal.
+                    <span style="color:var(--gold);">Senior citizens get a 10% discount!</span>
+                </p>
+
+                <div class="terminal-wrapper">
+                    <div class="terminal-header">
+                        <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+                        <span class="win-title">VINO PH — Live Python Terminal</span>
+                        <div class="btn-group">
+                            <button class="btn btn-success" onclick="runVinoPh()" id="runBtn">
+                                <i class="fas fa-play"></i> Run Program
+                            </button>
+                            <button class="btn btn-outline" onclick="clearTerminal()">
+                                <i class="fas fa-eraser"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div id="terminal-output">
+                        <span class="muted">// Python interpreter loading... Click "Run Program" to start VINO PH</span>
+                    </div>
+                    <div class="terminal-input-area" id="terminal-input-area">
+                        <div class="input-row">
+                            <span class="input-prompt">>>> </span>
+                            <input type="text" class="input-field" id="terminal-input" placeholder="Type your response..." autofocus autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="send" />
+                            <button type="button" class="btn btn-success" id="terminal-send-btn" style="height:32px;padding:0 .9rem;font-size:.65rem;flex-shrink:0;">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top:.6rem;font-size:.68rem;color:var(--muted);">
+                    On a phone keyboard, tap <strong>Send</strong> (or the paper-plane button) if the Return/Go key doesn't submit your answer.
+                </p>
+
+                <div style="margin-top:1rem;display:flex;gap:0.8rem;flex-wrap:wrap;">
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">⚡ Runs entirely in browser</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🐍 Python 3.12 (Pyodide)</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">📦 No installation needed</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--gold);">👴 10% Senior Discount</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SOURCE CODE ===== -->
+        <section id="source" aria-labelledby="h-source">
+            <div class="page-col">
+                <div class="section-label">02 — Full Source</div>
+                <h2 id="h-source">Complete Python Script</h2>
+                <div style="margin-top:1rem;">
+                    <div class="code-preview">
+                        <div class="code-chrome">
+                            <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+                            <span class="win-title">wine_shop.py</span>
+                            <button class="btn btn-outline" style="height:32px;padding:0 1rem;font-size:.65rem;margin-left:auto;" onclick="copyFullCode()">📋 Copy Code</button>
+                        </div>
+                        <div class="code-body" id="fullCode">
+                            <pre><span class="cmt"># ── VINO PH — Wine Shop (Philippines) ──</span>
+<span class="cmt"># Python 3 · Interactive · Poetic Bytes</span>
+
+<span class="cl">wines</span> <span class="op">=</span> <span class="br">{</span>
+    <span class="num">1</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Yellow Tail Cabernet Sauvignon (Australia)"</span>,          <span class="st">"price"</span><span class="op">:</span> <span class="num">799</span><span class="br">}</span>,
+    <span class="num">2</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Jacob's Creek Shiraz (Australia)"</span>,                   <span class="st">"price"</span><span class="op">:</span> <span class="num">899</span><span class="br">}</span>,
+    <span class="num">3</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Concha y Toro Frontera Cabernet Sauvignon (Chile)"</span>,   <span class="st">"price"</span><span class="op">:</span> <span class="num">599</span><span class="br">}</span>,
+    <span class="num">4</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Beringer Founders' Estate Merlot (USA)"</span>,             <span class="st">"price"</span><span class="op">:</span> <span class="num">1299</span><span class="br">}</span>,
+    <span class="num">5</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Robert Mondavi Private Selection Chardonnay (USA)"</span>,  <span class="st">"price"</span><span class="op">:</span> <span class="num">1499</span><span class="br">}</span>,
+    <span class="num">6</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Gallo Family Vineyards Merlot (USA)"</span>,               <span class="st">"price"</span><span class="op">:</span> <span class="num">649</span><span class="br">}</span>,
+    <span class="num">7</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Sutter Home Cabernet Sauvignon (USA)"</span>,              <span class="st">"price"</span><span class="op">:</span> <span class="num">699</span><span class="br">}</span>,
+    <span class="num">8</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Lindemans Bin 65 Chardonnay (Australia)"</span>,           <span class="st">"price"</span><span class="op">:</span> <span class="num">899</span><span class="br">}</span>,
+    <span class="num">9</span><span class="op">:</span>  <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Penfolds Koonunga Hill Shiraz Cabernet (Australia)"</span>, <span class="st">"price"</span><span class="op">:</span> <span class="num">1199</span><span class="br">}</span>,
+    <span class="num">10</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Wolf Blass Yellow Label Cabernet Sauvignon"</span>,        <span class="st">"price"</span><span class="op">:</span> <span class="num">1099</span><span class="br">}</span>,
+    <span class="num">11</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Hardys Stamp Shiraz Cabernet (Australia)"</span>,          <span class="st">"price"</span><span class="op">:</span> <span class="num">799</span><span class="br">}</span>,
+    <span class="num">12</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Oxford Landing Cabernet Sauvignon (Australia)"</span>,     <span class="st">"price"</span><span class="op">:</span> <span class="num">749</span><span class="br">}</span>,
+    <span class="num">13</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Woodbridge by Robert Mondavi Cabernet (USA)"</span>,      <span class="st">"price"</span><span class="op">:</span> <span class="num">999</span><span class="br">}</span>,
+    <span class="num">14</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Kim Crawford Sauvignon Blanc (New Zealand)"</span>,       <span class="st">"price"</span><span class="op">:</span> <span class="num">1699</span><span class="br">}</span>,
+    <span class="num">15</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Oyster Bay Sauvignon Blanc (New Zealand)"</span>,         <span class="st">"price"</span><span class="op">:</span> <span class="num">1499</span><span class="br">}</span>,
+<span class="br">}</span>
+
+<span class="cmt"># ── Welcome banner ──</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"=================================================="</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"     WELCOME TO VINO PH - Wine Shop (Philippines)"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"     Available Wines (Prices in PHP per bottle)"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"=================================================="</span><span class="br">)</span>
+
+<span class="cmt"># ── Display the menu via for loop ──</span>
+<span class="kw">for</span> <span class="cl">num</span>, <span class="cl">wine</span> <span class="kw">in</span> <span class="cl">wines</span>.<span class="fn">items</span><span class="br">()</span><span class="op">:</span>
+    <span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"{num:2d}. {wine['name']:50} ₱{wine['price']:,.0f}"</span><span class="br">)</span>
+
+<span class="cmt"># ── First input loop: wine selection ──</span>
+<span class="kw">while</span> <span class="cl">True</span><span class="op">:</span>
+    <span class="kw">try</span><span class="op">:</span>
+        <span class="cl">choice</span> <span class="op">=</span> <span class="fn">int</span><span class="br">(</span><span class="fn">input</span><span class="br">(</span><span class="st">"\nEnter the number of the wine you want to buy (1-15): "</span><span class="br">))</span>
+        <span class="kw">if</span> <span class="cl">choice</span> <span class="kw">in</span> <span class="cl">wines</span><span class="op">:</span>
+            <span class="cl">selected_wine</span> <span class="op">=</span> <span class="cl">wines</span><span class="br">[</span><span class="cl">choice</span><span class="br">]</span>
+            <span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"\nYou selected: {selected_wine['name']}"</span><span class="br">)</span>
+            <span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Price per bottle: ₱{selected_wine['price']:,}"</span><span class="br">)</span>
+            <span class="kw">break</span>
+        <span class="kw">else</span><span class="op">:</span>
+            <span class="fn">print</span><span class="br">(</span><span class="st">"Invalid number! Please choose between 1 and 15."</span><span class="br">)</span>
+    <span class="kw">except</span> <span class="cl">ValueError</span><span class="op">:</span>
+        <span class="fn">print</span><span class="br">(</span><span class="st">"Please enter a valid number!"</span><span class="br">)</span>
+
+<span class="cmt"># ── Second input loop: quantity ──</span>
+<span class="kw">while</span> <span class="cl">True</span><span class="op">:</span>
+    <span class="kw">try</span><span class="op">:</span>
+        <span class="cl">quantity</span> <span class="op">=</span> <span class="fn">int</span><span class="br">(</span><span class="fn">input</span><span class="br">(</span><span class="st">"\nEnter quantity (bottles): "</span><span class="br">))</span>
+        <span class="kw">if</span> <span class="cl">quantity</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>
+            <span class="kw">break</span>
+        <span class="kw">else</span><span class="op">:</span>
+            <span class="fn">print</span><span class="br">(</span><span class="st">"Quantity must be at least 1!"</span><span class="br">)</span>
+    <span class="kw">except</span> <span class="cl">ValueError</span><span class="op">:</span>
+        <span class="fn">print</span><span class="br">(</span><span class="st">"Please enter a valid number!"</span><span class="br">)</span>
+
+<span class="cmt"># ── Senior Citizen Discount ──</span>
+<span class="cl">is_senior</span> <span class="op">=</span> <span class="fn">input</span><span class="br">(</span><span class="st">"\nAre you a senior citizen? (yes/no): "</span><span class="br">).</span><span class="fn">strip</span><span class="br">()</span>.<span class="fn">lower</span><span class="br">()</span>
+<span class="cl">discount_rate</span> <span class="op">=</span> <span class="num">0.10</span> <span class="kw">if</span> <span class="cl">is_senior</span> <span class="op">==</span> <span class="st">"yes"</span> <span class="kw">else</span> <span class="num">0.00</span>
+
+<span class="cmt"># ── Computation ──</span>
+<span class="cl">total_cost</span> <span class="op">=</span> <span class="cl">selected_wine</span><span class="br">[</span><span class="st">'price'</span><span class="br">]</span> <span class="op">*</span> <span class="cl">quantity</span>
+<span class="cl">discount_amount</span> <span class="op">=</span> <span class="cl">total_cost</span> <span class="op">*</span> <span class="cl">discount_rate</span>
+<span class="cl">final_cost</span> <span class="op">=</span> <span class="cl">total_cost</span> <span class="op">-</span> <span class="cl">discount_amount</span>
+
+<span class="cmt"># ── Print receipt ──</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"\n"</span> <span class="op">+</span> <span class="st">"="</span> <span class="op">*</span> <span class="num">50</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"           VINO PH - RECEIPT"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"="</span> <span class="op">*</span> <span class="num">50</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Wine          : {selected_wine['name']}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Price per bottle: ₱{selected_wine['price']:,.0f}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Quantity      : {quantity}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Subtotal      : ₱{total_cost:,.0f}"</span><span class="br">)</span>
+<span class="kw">if</span> <span class="cl">discount_amount</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>
+    <span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Senior Discount (10%): -₱{discount_amount:,.0f}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Total Cost    : ₱{final_cost:,.0f}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"="</span> <span class="op">*</span> <span class="num">50</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"Thank you for shopping at VINO PH! 🍷"</span><span class="br">)</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WALKTHROUGH ===== -->
+        <section id="walkthrough" aria-labelledby="h-walk">
+            <div class="page-col">
+                <div class="section-label">03 — Logical Breakdown</div>
+                <h2 id="h-walk">Step-by-Step Explanation</h2>
+                <div style="margin-top:1rem;">
+
+                    <!-- Step 1 -->
+                    <div class="step-card open">
+                        <div class="step-header" onclick="toggleStep(this)">
+                            <div class="step-num">01</div>
+                            <h3>The Wine Inventory — Dictionary Data Structure</h3>
+                            <span class="step-tag">Data Structure</span>
+                            <span class="step-chevron">▾</span>
+                        </div>
+                        <div class="step-body">
+                            <div class="code-snippet"><pre><span class="cl">wines</span> <span class="op">=</span> <span class="br">{</span>
+    <span class="num">1</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Yellow Tail Cabernet Sauvignon"</span>, <span class="st">"price"</span><span class="op">:</span> <span class="num">799</span><span class="br">}</span>,
+    <span class="num">2</span><span class="op">:</span> <span class="br">{</span><span class="st">"name"</span><span class="op">:</span> <span class="st">"Jacob's Creek Shiraz"</span>, <span class="st">"price"</span><span class="op">:</span> <span class="num">899</span><span class="br">}</span>,
+    <span class="cmt">... (15 items total)</span>
+<span class="br">}</span></pre></div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why was this code used?</div>
+                                <div class="explain-a">A <strong>dictionary</strong> (<code>dict</code>) is the ideal Python data structure when you need to <strong>look up values by a key</strong>. Here, each wine number (1–15) is a key, and each value is another dictionary containing the wine's <code>name</code> and <code>price</code>. This creates a <strong>nested dictionary</strong> — a dictionary inside a dictionary.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">What is its significance?</div>
+                                <div class="explain-a">It acts as the program's <strong>database</strong> — the single source of truth for all product information. Instead of scattering 15 wine names and prices across dozens of variables, everything is organized in one place.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How does it operate?</div>
+                                <div class="explain-a">When the user types a number (e.g. <code>5</code>), the program uses it as a key: <code>wines[5]</code> instantly returns <code>{"name": "Robert Mondavi...", "price": 1499}</code>. No looping required — dictionary lookup is <strong>O(1) — instant access</strong>.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How does this affect the program's output?</div>
+                                <div class="explain-a">Every later line of output — the menu, the confirmation line, the receipt — reads directly from this dictionary. Change a price here and it ripples correctly through the whole program automatically, because nothing else hard-codes the numbers.</div>
+                            </div>
+                            <div class="pill-row">
+                                <span class="pill pill-blue">dict { }</span>
+                                <span class="pill pill-blue">nested dict</span>
+                                <span class="pill pill-purp">key-value pairs</span>
+                                <span class="pill pill-green">O(1) lookup</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-header" onclick="toggleStep(this)">
+                            <div class="step-num">02</div>
+                            <h3>Welcome Banner — print() Statements</h3>
+                            <span class="step-tag">Output / UI</span>
+                            <span class="step-chevron">▾</span>
+                        </div>
+                        <div class="step-body">
+                            <div class="code-snippet"><pre><span class="fn">print</span><span class="br">(</span><span class="st">"=================================================="</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"     WELCOME TO VINO PH - Wine Shop (Philippines)"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"     Available Wines (Prices in PHP per bottle)"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"=================================================="</span><span class="br">)</span></pre></div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why was this code used?</div>
+                                <div class="explain-a"><code>print()</code> is Python's built-in function for displaying text output to the terminal. Multiple calls construct a <strong>visual banner</strong> that greets the user and sets context.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">What is its significance?</div>
+                                <div class="explain-a">This is the program's <strong>user interface header</strong>. The rows of <code>=</code> signs create a visual border — a classic terminal UI technique.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How does this affect the program's output?</div>
+                                <div class="explain-a">It is the very first thing the user sees. A clear banner signals "this program is organized and trustworthy" before a single wine is even listed — first impressions matter as much in a terminal as they do in a GUI.</div>
+                            </div>
+                            <div class="pill-row">
+                                <span class="pill pill-purp">print()</span>
+                                <span class="pill pill-blue">string literals</span>
+                                <span class="pill pill-green">sequential execution</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-header" onclick="toggleStep(this)">
+                            <div class="step-num">03</div>
+                            <h3>Displaying the Menu — for Loop with f-strings</h3>
+                            <span class="step-tag">Iteration / Formatting</span>
+                            <span class="step-chevron">▾</span>
+                        </div>
+                        <div class="step-body">
+                            <div class="code-snippet"><pre><span class="kw">for</span> <span class="cl">num</span>, <span class="cl">wine</span> <span class="kw">in</span> <span class="cl">wines</span>.<span class="fn">items</span><span class="br">()</span><span class="op">:</span>
+    <span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"{num:2d}. {wine['name']:50} ₱{wine['price']:,.0f}"</span><span class="br">)</span></pre></div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why was this code used?</div>
+                                <div class="explain-a">A <code>for</code> loop with <code>.items()</code> efficiently iterates over every wine in the dictionary <strong>without repeating code</strong>.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">What is the significance of f-strings and format specs?</div>
+                                <div class="explain-a">
+                                    <strong>f-strings</strong> allow Python variables to be embedded directly inside a string using <code>{}</code> braces. Format specifiers control column widths and number display:<br><br>
+                                    • <code>{num:2d}</code> — integer, at least 2 characters wide<br>
+                                    • <code>{wine['name']:50}</code> — string padded to 50 characters<br>
+                                    • <code>{wine['price']:,.0f}</code> — float with commas, 0 decimal places
+                                </div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How does this affect the program's output?</div>
+                                <div class="explain-a">Without the format specifiers, every row of the menu would have a different length and the prices would drift out of alignment. With them, every row lines up into neat, readable columns — the same principle used in receipts, invoices, and spreadsheets.</div>
+                            </div>
+                            <div class="pill-row">
+                                <span class="pill pill-green">for loop</span>
+                                <span class="pill pill-blue">.items()</span>
+                                <span class="pill pill-purp">f-string</span>
+                                <span class="pill pill-gold">format specifier :2d :50 :,.0f</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card">
+                        <div class="step-header" onclick="toggleStep(this)">
+                            <div class="step-num">04</div>
+                            <h3>Wine Selection Loop — while True + try/except</h3>
+                            <span class="step-tag">Input Validation</span>
+                            <span class="step-chevron">▾</span>
+                        </div>
+                        <div class="step-body">
+                            <div class="code-snippet"><pre><span class="kw">while</span> <span class="cl">True</span><span class="op">:</span>
+    <span class="kw">try</span><span class="op">:</span>
+        <span class="cl">choice</span> <span class="op">=</span> <span class="fn">int</span><span class="br">(</span><span class="fn">input</span><span class="br">(</span><span class="st">"\nEnter the number of the wine (1-15): "</span><span class="br">))</span>
+        <span class="kw">if</span> <span class="cl">choice</span> <span class="kw">in</span> <span class="cl">wines</span><span class="op">:</span>
+            <span class="cl">selected_wine</span> <span class="op">=</span> <span class="cl">wines</span><span class="br">[</span><span class="cl">choice</span><span class="br">]</span>
+            <span class="kw">break</span>
+        <span class="kw">else</span><span class="op">:</span>
+            <span class="fn">print</span><span class="br">(</span><span class="st">"Invalid number! Please choose between 1 and 15."</span><span class="br">)</span>
+    <span class="kw">except</span> <span class="cl">ValueError</span><span class="op">:</span>
+        <span class="fn">print</span><span class="br">(</span><span class="st">"Please enter a valid number!"</span><span class="br">)</span></pre></div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why while True?</div>
+                                <div class="explain-a"><code>while True</code> creates an <strong>infinite loop</strong> that runs until explicitly stopped with <code>break</code>. This pattern guarantees the program never proceeds with invalid input.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why try / except ValueError?</div>
+                                <div class="explain-a"><code>input()</code> always returns a <strong>string</strong>. Wrapping it in <code>int()</code> converts it to an integer — but if the user types <code>"abc"</code>, <code>int()</code> raises a <strong>ValueError</strong>. The <code>try/except</code> block catches that crash and prints a friendly message instead.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How does this affect the program's output?</div>
+                                <div class="explain-a">This is the difference between a program that survives a typo and one that crashes and loses the customer's order. Every downstream line — the receipt, the total — depends on <code>selected_wine</code> being valid, so this loop is the gatekeeper for everything that follows.</div>
+                            </div>
+                            <div class="pill-row">
+                                <span class="pill pill-gold">while True</span>
+                                <span class="pill pill-pink">try / except</span>
+                                <span class="pill pill-blue">ValueError</span>
+                                <span class="pill pill-purp">int(input())</span>
+                                <span class="pill pill-green">in operator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-card">
+                        <div class="step-header" onclick="toggleStep(this)">
+                            <div class="step-num">05</div>
+                            <h3>Quantity Input Loop — Positive Integer Validation</h3>
+                            <span class="step-tag">Input Validation</span>
+                            <span class="step-chevron">▾</span>
+                        </div>
+                        <div class="step-body">
+                            <div class="code-snippet"><pre><span class="kw">while</span> <span class="cl">True</span><span class="op">:</span>
+    <span class="kw">try</span><span class="op">:</span>
+        <span class="cl">quantity</span> <span class="op">=</span> <span class="fn">int</span><span class="br">(</span><span class="fn">input</span><span class="br">(</span><span class="st">"\nEnter quantity (bottles): "</span><span class="br">))</span>
+        <span class="kw">if</span> <span class="cl">quantity</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>
+            <span class="kw">break</span>
+        <span class="kw">else</span><span class="op">:</span>
+            <span class="fn">print</span><span class="br">(</span><span class="st">"Quantity must be at least 1!"</span><span class="br">)</span>
+    <span class="kw">except</span> <span class="cl">ValueError</span><span class="op">:</span>
+        <span class="fn">print</span><span class="br">(</span><span class="st">"Please enter a valid number!"</span><span class="br">)</span></pre></div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why is this loop separate?</div>
+                                <div class="explain-a">Each loop has a <strong>single responsibility</strong> — a core principle of clean code. The first loop handles <em>which wine</em>, this loop handles <em>how many</em>.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why is the condition quantity > 0?</div>
+                                <div class="explain-a">The <code>></code> form reads more naturally as <span class="hl-purple">"Must be a positive number."</span> It explicitly rejects zero, negative numbers, and text.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How does this affect the program's output?</div>
+                                <div class="explain-a">A quantity of zero or a negative number would corrupt the math later — <code>total_cost = price * quantity</code> would print a nonsensical or negative subtotal. Rejecting bad quantities here keeps every number in the receipt trustworthy.</div>
+                            </div>
+                            <div class="pill-row">
+                                <span class="pill pill-pink">while True</span>
+                                <span class="pill pill-blue">quantity &gt; 0</span>
+                                <span class="pill pill-purp">break</span>
+                                <span class="pill pill-green">single responsibility</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="step-card">
+                        <div class="step-header" onclick="toggleStep(this)">
+                            <div class="step-num">06</div>
+                            <h3>Senior Citizen Discount &amp; Total Cost Computation</h3>
+                            <span class="step-tag">Calculation</span>
+                            <span class="step-chevron">▾</span>
+                        </div>
+                        <div class="step-body">
+                            <div class="code-snippet"><pre><span class="cl">is_senior</span> <span class="op">=</span> <span class="fn">input</span><span class="br">(</span><span class="st">"\nAre you a senior citizen? (yes/no): "</span><span class="br">).</span><span class="fn">strip</span><span class="br">()</span>.<span class="fn">lower</span><span class="br">()</span>
+<span class="cl">discount_rate</span> <span class="op">=</span> <span class="num">0.10</span> <span class="kw">if</span> <span class="cl">is_senior</span> <span class="op">==</span> <span class="st">"yes"</span> <span class="kw">else</span> <span class="num">0.00</span>
+<span class="cl">total_cost</span> <span class="op">=</span> <span class="cl">selected_wine</span><span class="br">[</span><span class="st">'price'</span><span class="br">]</span> <span class="op">*</span> <span class="cl">quantity</span>
+<span class="cl">discount_amount</span> <span class="op">=</span> <span class="cl">total_cost</span> <span class="op">*</span> <span class="cl">discount_rate</span>
+<span class="cl">final_cost</span> <span class="op">=</span> <span class="cl">total_cost</span> <span class="op">-</span> <span class="cl">discount_amount</span></pre></div>
+                            <div class="explain-block">
+                                <div class="explain-q">What's the significance of the conditional expression?</div>
+                                <div class="explain-a">The <strong>conditional expression</strong> <code>0.10 if is_senior == "yes" else 0.00</code> sets the discount rate to 10% for seniors and 0% otherwise in one clear line.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How is the final cost computed?</div>
+                                <div class="explain-a">Three steps: First, <code>total_cost</code> is the product of price and quantity. Second, <code>discount_amount</code> is the total multiplied by the rate. Third, <code>final_cost</code> subtracts the discount from the total.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why .strip().lower() on the input?</div>
+                                <div class="explain-a"><code>.strip()</code> removes accidental leading/trailing spaces and <code>.lower()</code> normalizes the answer, so <code>"Yes"</code>, <code>" YES "</code>, and <code>"yes"</code> are all treated identically. Without it, a stray space or capital letter would silently deny a senior their discount.</div>
+                            </div>
+                            <div class="pill-row">
+                                <span class="pill pill-purp">conditional expression</span>
+                                <span class="pill pill-blue">arithmetic * and -</span>
+                                <span class="pill pill-gold">business logic</span>
+                                <span class="pill pill-green">string .strip() .lower()</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 7 -->
+                    <div class="step-card">
+                        <div class="step-header" onclick="toggleStep(this)">
+                            <div class="step-num">07</div>
+                            <h3>Receipt Output — f-strings with Number Formatting</h3>
+                            <span class="step-tag">Final Output</span>
+                            <span class="step-chevron">▾</span>
+                        </div>
+                        <div class="step-body">
+                            <div class="code-snippet"><pre><span class="fn">print</span><span class="br">(</span><span class="st">"\n"</span> <span class="op">+</span> <span class="st">"="</span> <span class="op">*</span> <span class="num">50</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"           VINO PH - RECEIPT"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"="</span> <span class="op">*</span> <span class="num">50</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Wine          : {selected_wine['name']}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Price per bottle: ₱{selected_wine['price']:,.0f}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Quantity      : {quantity}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Subtotal      : ₱{total_cost:,.0f}"</span><span class="br">)</span>
+<span class="kw">if</span> <span class="cl">discount_amount</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>
+    <span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Senior Discount (10%): -₱{discount_amount:,.0f}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="fn">f</span><span class="st">"Total Cost    : ₱{final_cost:,.0f}"</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"="</span> <span class="op">*</span> <span class="num">50</span><span class="br">)</span>
+<span class="fn">print</span><span class="br">(</span><span class="st">"Thank you for shopping at VINO PH! 🍷"</span><span class="br">)</span></pre></div>
+                            <div class="explain-block">
+                                <div class="explain-q">Why use f-strings again here?</div>
+                                <div class="explain-a">The receipt must display <strong>dynamic values</strong> — the actual wine chosen, the real price, the user's quantity, and the computed total. The <code>:,</code> format spec adds <strong>thousands separators</strong> (e.g. <code>1699</code> → <code>1,699</code>) for currency readability.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">What is the significance of the conditional discount line?</div>
+                                <div class="explain-a">The <code>if discount_amount > 0:</code> check ensures the discount line <strong>only appears</strong> when a discount was actually applied.</div>
+                            </div>
+                            <div class="explain-block">
+                                <div class="explain-q">How does this affect the program's output?</div>
+                                <div class="explain-a">This is the payoff moment: every earlier line of code — the dictionary, the loops, the discount math — exists purely to produce these final, correctly formatted lines. A bug anywhere upstream shows up here as a wrong price, a missing discount, or a crash, which is why testing usually starts by reading the receipt backwards.</div>
+                            </div>
+                            <div class="pill-row">
+                                <span class="pill pill-blue">f-string</span>
+                                <span class="pill pill-purp">:, comma separator</span>
+                                <span class="pill pill-gold">₱ Unicode symbol</span>
+                                <span class="pill pill-green">conditional output</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONCEPTS ===== -->
+        <section id="concepts" aria-labelledby="h-concepts">
+            <div class="page-col">
+                <div class="section-label">04 — Deep Dive</div>
+                <h2 id="h-concepts">Key Python Concepts Explained</h2>
+                <div style="margin-top:1rem;">
+                    <div class="callout-green">
+                        <p><strong>Nested Dictionaries as Mini-Databases.</strong> In professional software, data is usually stored in a database. In a small Python program, a nested dictionary serves exactly the same purpose. The outer dictionary's keys (integers 1–15) act like row IDs. The inner dictionaries act like rows in a table, each containing a <code>name</code> column and a <code>price</code> column. This is the same mental model used in SQL, MongoDB, and most modern data systems.</p>
+                    </div>
+                    <div class="callout">
+                        <p><strong>The Defensive Input Pattern.</strong> The combination of <code>while True</code> + <code>try/except</code> + <code>break</code> is one of the most important patterns in Python programming. It is called <em>defensive programming</em> — you assume the user will make mistakes and design your code to handle them gracefully without crashing.</p>
+                    </div>
+                    <div class="callout-yellow">
+                        <p><strong>f-strings vs Older String Formatting.</strong> f-strings (introduced in Python 3.6) are now the preferred method because they are readable, concise, and support format specifiers directly inside the curly braces. VINO PH uses advanced format specs like <code>:2d</code>, <code>:50</code>, and <code>:,.0f</code>.</p>
+                    </div>
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;margin-top:1rem;">
+                        <p style="font-size:.78rem;color:var(--blue-lt);margin:0;">
+                            <strong>💡 Pro Tip:</strong> Try extending this program: add a discount system (<code>if quantity >= 5: discount = 0.10</code>), a cart system that allows multiple purchases, or export the receipt to a .txt file using <code>open("receipt.txt", "w")</code>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHY IT MATTERS ===== -->
+        <section id="why" aria-labelledby="h-why">
+            <div class="page-col">
+                <div class="section-label">05 — The Bigger Picture</div>
+                <h2 id="h-why">Why Every Programmer Should Learn This</h2>
+
+                <div class="curriculum-desc">
+                    <h2>🎯 It's Not About Wine — It's About Reliable Software</h2>
+                    <p>
+                        VINO PH looks like a small toy program, but the seven patterns inside it are the same seven
+                        patterns that show up in payroll systems, hospital scheduling software, banking apps, and
+                        e-commerce checkouts. A <span class="highlight">nested dictionary</span> today, a full SQL
+                        table tomorrow. A <span class="highlight">while True + try/except</span> loop today, a
+                        production form-validation layer tomorrow. Programmers who skip learning these fundamentals
+                        "because the real work uses frameworks" often struggle later, because <span class="gold">every
+                        framework is ultimately built on top of these exact primitives</span>.
+                    </p>
+                    <p>
+                        There is also a quieter, more important lesson here: <span class="gold">defensive programming
+                        is a form of respect for the user.</span> The two <code>while True</code> loops in VINO PH exist
+                        so that a customer who fat-fingers a "6" as an "e" never sees a crash, a stack trace, or a lost
+                        order. Learning to anticipate human error — rather than assuming perfect input — is what
+                        separates code that works in a demo from code that survives contact with real people.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Same shape as production systems</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Transfers to any language</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Builds debugging intuition</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Foundation for frameworks</span>
+                    </div>
+                </div>
+
+                <div class="curriculum-desc" style="border-color:var(--blue);">
+                    <h2>🤖 VINO PH in the Era of AI</h2>
+                    <p>
+                        It is tempting to think that in the age of AI coding assistants, understanding a program like
+                        VINO PH line-by-line is optional — that you can simply ask an AI to "write me a wine shop
+                        program" and move on. The opposite is true. AI tools like Claude are extremely good at
+                        <span class="highlight">generating</span> code such as this, but they cannot substitute for a
+                        human who can <span class="gold">read, verify, and reason about</span> the code that gets generated.
+                        When an AI-written program produces a wrong total, silently swallows an exception, or applies a
+                        discount to the wrong customer, someone still has to trace the bug back through the dictionary
+                        lookups, the loops, and the arithmetic — exactly the skill this walkthrough builds.
+                    </p>
+                    <p>
+                        In practice, the programmers who benefit most from AI assistance are the ones who already
+                        understand fundamentals like these. They can spot when generated code has an off-by-one error
+                        in <code>{num:2d}</code>, notice when a <code>try/except</code> block is silently hiding a real
+                        bug, or recognize when a "senior discount" conditional expression has its logic backwards.
+                        <span class="gold">Fluency in fundamentals is what turns an AI from an autocomplete tool into a
+                        genuine collaborator</span> — you direct it, review it, and correct it, rather than trusting it blindly.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--blue-lt);"></i> AI writes faster, humans verify</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--blue-lt);"></i> Fundamentals catch AI mistakes</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--blue-lt);"></i> Literacy &gt; blind trust</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SUMMARY ===== -->
+        <section id="summary" aria-labelledby="h-summary">
+            <div class="page-col">
+                <div class="section-label">06 — Quick Reference</div>
+                <h2 id="h-summary">Concepts Used at a Glance</h2>
+                <div style="margin-top:1rem;">
+                    <table class="summary-table">
+                        <thead>
+                            <tr>
+                                <th>Concept</th>
+                                <th>Python Syntax</th>
+                                <th>Purpose in This Program</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Nested Dictionary</td><td>wines = {1: {"name":..., "price":...}}</td><td>Stores all 15 wines and their prices as a structured database</td></tr>
+                            <tr><td>print()</td><td>print("text")</td><td>Displays banner, menu, confirmations, and receipt to the user</td></tr>
+                            <tr><td>for loop + .items()</td><td>for num, wine in wines.items():</td><td>Iterates and prints all 15 wines without repeating code</td></tr>
+                            <tr><td>f-string formatting</td><td>f"{num:2d}. {name:50} ₱{price:,.0f}"</td><td>Formats menu and receipt output with aligned columns and commas</td></tr>
+                            <tr><td>Infinite loop</td><td>while True:</td><td>Keeps asking for input until the user enters a valid response</td></tr>
+                            <tr><td>Exception handling</td><td>try: ... except ValueError:</td><td>Prevents crashes when user types non-numeric input</td></tr>
+                            <tr><td>Type conversion</td><td>int(input(...))</td><td>Converts the string returned by input() into a usable integer</td></tr>
+                            <tr><td>Membership test</td><td>if choice in wines:</td><td>Validates that the user's number matches an actual wine key (1–15)</td></tr>
+                            <tr><td>break statement</td><td>break</td><td>Exits the while loop once valid input is confirmed</td></tr>
+                            <tr><td>Conditional expression</td><td>0.10 if is_senior == "yes" else 0.00</td><td>Sets discount rate based on senior citizen status</td></tr>
+                            <tr><td>Arithmetic</td><td>total_cost = price * quantity</td><td>Computes the final purchase total after all inputs are gathered</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SHARE ===== -->
+        <section id="share" aria-labelledby="h-share">
+            <div class="page-col">
+                <div class="section-label">07 — Share</div>
+                <h2 id="h-share">Share This Guide</h2>
+                <div class="share-wrap" style="margin-top:1rem;">
+                    <h2>Found this useful? Share it.</h2>
+                    <p class="share-sub">Help fellow developers discover this interactive Python walkthrough.</p>
+                    <div class="share-ai-msg" id="shareAiMsg" aria-live="polite">
+                        <span id="shareAiText">Click a platform below to preview your AI-generated share message…</span>
+                    </div>
+                    <div class="share-btns">
+                        <button class="sbtn s-fb" onclick="previewShare('facebook')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</button>
+                        <button class="sbtn s-li" onclick="previewShare('linkedin')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>LinkedIn</button>
+                        <button class="sbtn s-x" onclick="previewShare('twitter')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</button>
+                        <button class="sbtn s-wa" onclick="previewShare('whatsapp')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37C7.35 7.6 6.6 8.3 6.6 9.77s1.07 3.06 1.22 3.27c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34zm-5.47 7.45h-.01A9.93 9.93 0 017.17 20L3 21.15l1.17-4.13A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>WhatsApp</button>
+                    </div>
+                    <div id="shareToast" class="share-toast" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FOLLOW ===== -->
+        <section id="follow" aria-labelledby="h-follow">
+            <div class="page-col">
+                <div class="section-label">08 — Connect</div>
+                <h2 id="h-follow">Follow Poetic Bytes</h2>
+                <div style="margin-top:1rem;">
+                    <p>Stay connected for more Python tutorials, code walkthroughs, and tech content.</p>
+                    <div class="follow-grid">
+                        <div class="follow-card fc-fb"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg></div><div class="follow-name">Facebook</div><div class="follow-handle">@Glenn Pansensoy</div><div class="follow-stat">2.4k followers</div><a href="#" class="follow-btn" id="fbBtn" onclick="toggleFollow(this,'fb')">+ Follow</a></div>
+                        <div class="follow-card fc-li"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg></div><div class="follow-name">LinkedIn</div><div class="follow-handle">Poetic Bytes</div><div class="follow-stat">5.1k connections</div><a href="#" class="follow-btn" id="liBtn" onclick="toggleFollow(this,'li')">+ Follow</a></div>
+                        <div class="follow-card fc-x"><div class="follow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div><div class="follow-name">X</div><div class="follow-handle">@PoeticGlenn</div><div class="follow-stat">8.7k followers</div><a href="#" class="follow-btn" id="xBtn" onclick="toggleFollow(this,'x')">+ Follow</a></div>
+                        <div class="follow-card fc-yt"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></div><div class="follow-name">YouTube</div><div class="follow-handle">Poetic Bytes</div><div class="follow-stat">3.2k subscribers</div><a href="#" class="follow-btn" id="ytBtn" onclick="toggleFollow(this,'yt')">Subscribe</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SUBSCRIBE ===== -->
+        <section id="subscribe" aria-labelledby="h-sub">
+            <div class="page-col">
+                <div class="section-label">09 — Stay Updated</div>
+                <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
+                <div style="margin-top:1rem;">
+                    <div class="sub-wrap">
+                        <h2>Level up your Python knowledge.</h2>
+                        <p class="sub-desc">In-depth Python tutorials, AI insights, and software engineering guides — delivered straight to your inbox. No spam, ever.</p>
+                        <div class="perks">
+                            <span class="perk">Weekly Python tutorials</span>
+                            <span class="perk">AI &amp; ML deep-dives</span>
+                            <span class="perk">OOP series updates</span>
+                            <span class="perk">Free, cancel anytime</span>
+                        </div>
+                        <div class="sub-form">
+                            <input class="cinput" type="email" id="subEmail" placeholder="your@email.com" autocomplete="email">
+                            <button class="btn-submit" onclick="handleSubscribe()">Subscribe Free →</button>
+                        </div>
+                        <p class="sub-note">🔒 Join 8,400+ developers. Your email is never shared or sold.</p>
+                        <div class="sub-msg" id="subMsg" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== OUTRO ===== -->
+        <section id="outro" aria-labelledby="h-outro">
+            <div class="page-col">
+                <div class="section-label">10 — The Road Ahead</div>
+                <h2 id="h-outro">You've Mastered VINO PH</h2>
+                <div style="margin-top:1rem;">
+                    <div class="curriculum-desc" style="border-color:var(--gold);">
+                        <h2>🏁 What You've Accomplished</h2>
+                        <p>
+                            Congratulations! You've now seen not just a working Python program, but the <span class="gold">thinking process</span> behind every design choice —
+                            from the nested dictionary as a mini-database, to the defensive input pattern, to the receipt formatting.
+                            You even ran it live in your browser!
+                        </p>
+                        <p>
+                            This is what separates a programmer who copies code from a developer who understands it.
+                            Every concept in VINO PH — dictionaries, loops, exception handling, f-strings, arithmetic —
+                            appears in real-world Python projects every single day.
+                        </p>
+                        <div class="desc-meta">
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 7 core concepts mastered</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 15 wines modeled</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Full defensive input pattern</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Senior citizen discount logic</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--gold);"></i> ⚡ Ran live in browser</span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;">
+                        <a href="#interactive" class="btn btn-success"><i class="fas fa-play"></i> Run It Again</a>
+                        <a href="#source" class="btn btn-outline"><i class="fas fa-code"></i> View Source</a>
+                        <a href="abstraction.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Abstraction Hub</a>
+                        <button class="btn btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Print Guide</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">X</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // --- Progress bar ---
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            // --- Drawer ---
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            // --- Back to top ---
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Share ---
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/wine.html');
+            var PAGE_TITLE = encodeURIComponent('VINO PH – Interactive Python Wine Shop');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+            document.querySelectorAll('#shareFb').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTw').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            document.querySelectorAll('#shareLi').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareWa').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/wine.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() {
+                        fallbackCopy(url, btn);
+                    });
+                } else {
+                    fallbackCopy(url, btn);
+                }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+
+            // --- Step toggles ---
+            window.toggleStep = function(header) {
+                var card = header.closest('.step-card');
+                if (card) card.classList.toggle('open');
+            };
+
+            // --- Copy full code ---
+            window.copyFullCode = function() {
+                var code = document.getElementById('fullCode').innerText;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code).then(function() {
+                        var btn = document.querySelector('#source .btn');
+                        if (btn) { var orig = btn.innerHTML;
+                            btn.innerHTML = '✅ Copied!';
+                            setTimeout(function() { btn.innerHTML = orig; }, 2000); }
+                    });
+                }
+            };
+
+            // --- Follow toggles ---
+            var F_KEY = 'vb_follows_wine';
+            var follows = {};
+            try { follows = JSON.parse(localStorage.getItem(F_KEY) || '{}'); } catch (_) {}
+
+            var FOLLOW_CONFIG = {
+                fb: { btn: 'fbBtn', follow: '✓ Following', default: '+ Follow' },
+                li: { btn: 'liBtn', follow: '✓ Following', default: '+ Follow' },
+                x: { btn: 'xBtn', follow: '✓ Following', default: '+ Follow' },
+                yt: { btn: 'ytBtn', follow: '✓ Subscribed', default: 'Subscribe' },
+            };
+
+            window.toggleFollow = function(btn, platform) {
+                event.preventDefault();
+                var cfg = FOLLOW_CONFIG[platform];
+                if (follows[platform]) {
+                    delete follows[platform];
+                    btn.textContent = cfg.default;
+                    btn.classList.remove('following');
+                } else {
+                    follows[platform] = true;
+                    btn.textContent = cfg.follow;
+                    btn.classList.add('following');
+                }
+                localStorage.setItem(F_KEY, JSON.stringify(follows));
+            };
+
+            function restoreFollows() {
+                for (var platform in FOLLOW_CONFIG) {
+                    var cfg = FOLLOW_CONFIG[platform];
+                    var btn = document.getElementById(cfg.btn);
+                    if (!btn) continue;
+                    if (follows[platform]) {
+                        btn.textContent = cfg.follow;
+                        btn.classList.add('following');
+                    } else {
+                        btn.textContent = cfg.default;
+                        btn.classList.remove('following');
+                    }
+                }
+            }
+            restoreFollows();
+
+            // --- AI Share preview ---
+            var fallbackMessages = {
+                facebook: "📚 Just ran an incredible interactive Python walkthrough on VINO PH — a wine shop program for the Philippines!\n\nKey takeaways:\n✅ Nested dictionaries as a mini-database\n✅ f-strings with format specifiers\n✅ while True + try/except for input validation\n✅ Senior citizen discount logic\n✅ Live in-browser execution\n\nhttps://poetic-bytes.vercel.app/wine.html",
+                linkedin: "🐍 Just published a complete interactive Python walkthrough for VINO PH — a Philippine wine shop ordering system with senior citizen discount.\n\nWhat's inside:\n→ Nested dictionaries (O(1) lookup)\n→ f-strings with alignment and comma formatting\n→ Defensive input with while True + try/except\n→ Senior citizen discount logic (10%)\n→ Live in-browser Python execution with Pyodide\n\nPerfect for beginners who want to learn by doing.\nhttps://poetic-bytes.vercel.app/wine.html\n\n#Python #Programming #Philippines",
+                twitter: "Just published an interactive Python walkthrough for VINO PH 🍷\nLearn nested dicts, f-strings, while loops, and senior discounts — run live in your browser!\nhttps://poetic-bytes.vercel.app/wine.html\n#Python #100DaysOfCode #Philippines",
+                whatsapp: "Hey! 👋 Found this really solid interactive Python walkthrough for a wine shop program with senior citizen discount — runs live in your browser! Check it out: https://poetic-bytes.vercel.app/wine.html",
+            };
+
+            window.previewShare = function(platform) {
+                var msgEl = document.getElementById('shareAiMsg');
+                var textEl = document.getElementById('shareAiText');
+                var toastEl = document.getElementById('shareToast');
+                var text = fallbackMessages[platform] || '';
+                if (!text) return;
+
+                textEl.textContent = '';
+                var cursor = Object.assign(document.createElement('span'), { className: 'live-dot', style: 'display:inline-block;margin-left:4px;' });
+                textEl.appendChild(cursor);
+                var i = 0;
+
+                function type() {
+                    if (i < text.length) {
+                        textEl.insertBefore(document.createTextNode(text[i++]), cursor);
+                        setTimeout(type, 11);
+                    } else {
+                        cursor.remove();
+                        doShare(platform, text);
+                    }
+                }
+                type();
+            };
+
+            function doShare(platform, text) {
+                var toastEl = document.getElementById('shareToast');
+                var eu = encodeURIComponent('https://poetic-bytes.vercel.app/wine.html');
+                var et = encodeURIComponent(text);
+                var urls = {
+                    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + eu,
+                    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + eu,
+                    twitter: 'https://twitter.com/intent/tweet?text=' + et,
+                    whatsapp: 'https://api.whatsapp.com/send?text=' + et,
+                };
+                if (urls[platform]) {
+                    window.open(urls[platform], '_blank', 'width=640,height=540,noopener,noreferrer');
+                    toast(toastEl, '✓ Opening ' + platform + ' share dialog…');
+                } else {
+                    toast(toastEl, '⚠ Please manually copy the message above.');
+                }
+            }
+
+            function toast(el, msg, ms) {
+                el.textContent = msg;
+                el.style.opacity = '1';
+                setTimeout(function() { el.style.opacity = '0'; }, ms || 5000);
+            }
+
+            // --- Subscribe ---
+            window.handleSubscribe = function() {
+                var el = document.getElementById('subEmail');
+                var msg = document.getElementById('subMsg');
+                var email = el.value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    msg.textContent = '✗ Please enter a valid email address.';
+                    msg.style.opacity = '1';
+                    setTimeout(function() { msg.style.opacity = '0'; }, 4000);
+                    return;
+                }
+                var list = JSON.parse(localStorage.getItem('vb_subs_wine') || '[]');
+                if (list.find(function(s) { return s.email === email; })) {
+                    msg.textContent = '✓ You are already subscribed!';
+                    msg.style.opacity = '1';
+                    setTimeout(function() { msg.style.opacity = '0'; }, 4000);
+                    return;
+                }
+                list.push({ email: email, date: new Date().toISOString() });
+                localStorage.setItem('vb_subs_wine', JSON.stringify(list));
+                el.value = '';
+                msg.textContent = '✓ Welcome aboard! Subscribed successfully.';
+                msg.style.opacity = '1';
+                setTimeout(function() { msg.style.opacity = '0'; }, 6000);
+            };
+
+            // ============================================================
+            // ===== INTERACTIVE PYTHON RUNNER (Pyodide) =====
+            // ============================================================
+
+            let pyodide = null;
+            let isPyodideReady = false;
+            let terminalOutput = document.getElementById('terminal-output');
+            let terminalInput = document.getElementById('terminal-input');
+            let inputArea = document.getElementById('terminal-input-area');
+            let inputResolver = null;
+            let isRunning = false;
+
+            // --- Append to terminal ---
+            function appendTerminal(text, className = 'output') {
+                const span = document.createElement('span');
+                span.textContent = text;
+                span.className = className;
+                terminalOutput.appendChild(span);
+                terminalOutput.appendChild(document.createElement('br'));
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            }
+
+            // --- Live output streaming ---
+            // Python's stdout is piped to this a character/chunk at a time as
+            // the program runs (see JSStream in runVinoPh), instead of being
+            // buffered and dumped all at once after the script finishes. That
+            // buffering was the real reason the program felt "not interactive":
+            // the menu and prompts never appeared until everything was over.
+            let pendingLine = '';
+
+            function classifyLine(line) {
+                if (line.includes('Enter the number') || line.includes('Enter quantity') || line.includes('Are you a senior')) return 'info';
+                if (line.includes('Error') || line.includes('Traceback')) return 'error';
+                if (line.includes('Thank you') || line.includes('RECEIPT')) return 'success';
+                return 'output';
+            }
+
+            function streamOutput(text) {
+                pendingLine += text;
+                const parts = pendingLine.split('\n');
+                for (let i = 0; i < parts.length - 1; i++) {
+                    appendTerminal(parts[i], classifyLine(parts[i]));
+                }
+                pendingLine = parts[parts.length - 1];
+            }
+
+            function flushPending() {
+                if (pendingLine) {
+                    appendTerminal(pendingLine, classifyLine(pendingLine));
+                    pendingLine = '';
+                }
+            }
+
+            // --- Load Pyodide ---
+            async function loadPyodideInterpreter() {
+                if (isPyodideReady) return true;
+                appendTerminal('🔄 Loading Python interpreter...', 'info');
+                try {
+                    pyodide = await globalThis.loadPyodide({
+                        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/'
+                    });
+                    isPyodideReady = true;
+                    appendTerminal('✅ Python interpreter ready!', 'success');
+                    appendTerminal('📝 Click "Run Program" to start VINO PH', 'muted');
+                    return true;
+                } catch (err) {
+                    appendTerminal('❌ Failed to load Python: ' + err.message, 'error');
+                    return false;
+                }
+            }
+
+            // --- Clear terminal ---
+            window.clearTerminal = function() {
+                terminalOutput.innerHTML = '';
+                appendTerminal('🧹 Terminal cleared', 'muted');
+                appendTerminal('📝 Click "Run Program" to start VINO PH', 'muted');
+                inputArea.style.display = 'none';
+            };
+
+            // --- Show input field and wait for response ---
+            function showInput() {
+                inputArea.style.display = 'flex';
+                terminalInput.value = '';
+                terminalInput.disabled = false;
+                terminalInput.focus();
+                return new Promise((resolve) => {
+                    inputResolver = resolve;
+                });
+            }
+
+            // Shared submit path used by the Enter/Return/Go key AND the
+            // explicit Send button. Some mobile webviews don't reliably fire
+            // a 'keydown' event with key === 'Enter' for the on-screen
+            // keyboard's Return/Go key, which made the form look "stuck"
+            // with no way to submit -- the Send button guarantees a way in.
+            function submitTerminalInput() {
+                if (!inputResolver) return; // nothing waiting on input right now
+                const value = terminalInput.value;
+                inputArea.style.display = 'none';
+                terminalInput.disabled = true;
+                appendTerminal('>>> ' + value, 'prompt');
+                const resolve = inputResolver;
+                inputResolver = null;
+                resolve(value);
+            }
+
+            terminalInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    e.preventDefault();
+                    submitTerminalInput();
+                }
+            });
+            // Fallback in case keydown's Enter doesn't fire in this webview
+            terminalInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    submitTerminalInput();
+                }
+            });
+            var terminalSendBtn = document.getElementById('terminal-send-btn');
+            if (terminalSendBtn) {
+                terminalSendBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    submitTerminalInput();
+                });
+            }
+
+            // --- Run VINO PH ---
+            window.runVinoPh = async function() {
+                if (isRunning) {
+                    appendTerminal('⏳ Program is already running...', 'info');
+                    return;
+                }
+
+                // Load Pyodide if not ready
+                if (!isPyodideReady) {
+                    const loaded = await loadPyodideInterpreter();
+                    if (!loaded) return;
+                }
+
+                isRunning = true;
+                const runBtn = document.getElementById('runBtn');
+                runBtn.innerHTML = '<span class="loading-indicator"></span> Running...';
+                runBtn.disabled = true;
+
+                // Hide input area initially
+                inputArea.style.display = 'none';
+
+                // Define the Python program itself.
+                //
+                // IMPORTANT: this is passed straight to pyodide.runPythonAsync()
+                // as top-level source -- never spliced as text into another
+                // wrapping template. Two bugs were fixed by structuring it
+                // this way:
+                //
+                // 1. IndentationError -- previously this code was inserted as
+                //    text inside a Python "with:" block built from another
+                //    template literal, and the two blocks' indentation didn't
+                //    line up. Running it directly, unwrapped, removes the
+                //    seam where that could go wrong.
+                //
+                // 2. "int() argument must be ... not 'PyodideFuture'" --
+                //    __js_input__ is an *async* JS function, so calling it
+                //    the normal synchronous way (return __js_input__()) does
+                //    not give you the typed string; it gives you the pending
+                //    Promise/Future object itself, and int(that) blows up.
+                //    The fix is to make the whole interactive section of the
+                //    program an `async def main(): ...` and `await` every
+                //    call that reads user input, then `await main()` at the
+                //    top level. pyodide.runPythonAsync() natively supports
+                //    top-level await, so no special compile flags are needed.
+                const pythonCode = `
+import sys
+
+class JSStream:
+    def write(self, s):
+        if s:
+            __js_output__(s)
+        return len(s)
+    def flush(self):
+        pass
+
+sys.stdout = JSStream()
+
+async def ask(prompt=''):
+    if prompt:
+        print(prompt, end='')
+    return await __js_input__()
+
+# --- VINO PH Program ---
+wines = {
+    1:  {"name": "Yellow Tail Cabernet Sauvignon (Australia)",          "price": 799},
+    2:  {"name": "Jacob's Creek Shiraz (Australia)",                   "price": 899},
+    3:  {"name": "Concha y Toro Frontera Cabernet Sauvignon (Chile)",   "price": 599},
+    4:  {"name": "Beringer Founders' Estate Merlot (USA)",             "price": 1299},
+    5:  {"name": "Robert Mondavi Private Selection Chardonnay (USA)",  "price": 1499},
+    6:  {"name": "Gallo Family Vineyards Merlot (USA)",               "price": 649},
+    7:  {"name": "Sutter Home Cabernet Sauvignon (USA)",              "price": 699},
+    8:  {"name": "Lindemans Bin 65 Chardonnay (Australia)",           "price": 899},
+    9:  {"name": "Penfolds Koonunga Hill Shiraz Cabernet (Australia)", "price": 1199},
+    10: {"name": "Wolf Blass Yellow Label Cabernet Sauvignon",        "price": 1099},
+    11: {"name": "Hardys Stamp Shiraz Cabernet (Australia)",          "price": 799},
+    12: {"name": "Oxford Landing Cabernet Sauvignon (Australia)",     "price": 749},
+    13: {"name": "Woodbridge by Robert Mondavi Cabernet (USA)",      "price": 999},
+    14: {"name": "Kim Crawford Sauvignon Blanc (New Zealand)",       "price": 1699},
+    15: {"name": "Oyster Bay Sauvignon Blanc (New Zealand)",         "price": 1499},
+}
+
+print("==================================================")
+print("     WELCOME TO VINO PH - Wine Shop (Philippines)")
+print("     Available Wines (Prices in PHP per bottle)")
+print("==================================================")
+
+for num, wine in wines.items():
+    print(f"{num:2d}. {wine['name']:50} ₱{wine['price']:,.0f}")
+
+async def main():
+    while True:
+        try:
+            choice = int(await ask("\\nEnter the number of the wine you want to buy (1-15): "))
+            if choice in wines:
+                selected_wine = wines[choice]
+                print(f"\\nYou selected: {selected_wine['name']}")
+                print(f"Price per bottle: ₱{selected_wine['price']:,}")
+                break
+            else:
+                print("Invalid number! Please choose between 1 and 15.")
+        except ValueError:
+            print("Please enter a valid number!")
+
+    while True:
+        try:
+            quantity = int(await ask("\\nEnter quantity (bottles): "))
+            if quantity > 0:
+                break
+            else:
+                print("Quantity must be at least 1!")
+        except ValueError:
+            print("Please enter a valid number!")
+
+    is_senior = (await ask("\\nAre you a senior citizen? (yes/no): ")).strip().lower()
+    discount_rate = 0.10 if is_senior == "yes" else 0.00
+
+    total_cost = selected_wine['price'] * quantity
+    discount_amount = total_cost * discount_rate
+    final_cost = total_cost - discount_amount
+
+    print("\\n" + "=" * 50)
+    print("           VINO PH - RECEIPT")
+    print("=" * 50)
+    print(f"Wine          : {selected_wine['name']}")
+    print(f"Price per bottle: ₱{selected_wine['price']:,.0f}")
+    print(f"Quantity      : {quantity}")
+    print(f"Subtotal      : ₱{total_cost:,.0f}")
+    if discount_amount > 0:
+        print(f"Senior Discount (10%): -₱{discount_amount:,.0f}")
+    print(f"Total Cost    : ₱{final_cost:,.0f}")
+    print("=" * 50)
+    print("Thank you for shopping at VINO PH! 🍷")
+
+try:
+    await main()
+except Exception as e:
+    print(f"Error: {e}")
+    import traceback
+    traceback.print_exc()
+finally:
+    sys.stdout = sys.__stdout__
+`;
+
+                // Every chunk Python writes to stdout arrives here immediately
+                // (see the JSStream class inside pythonCode) and is pushed
+                // straight into the terminal, instead of being collected and
+                // shown only after the whole script has finished.
+                pyodide.globals.set('__js_output__', function(text) {
+                    streamOutput(text);
+                });
+
+                // Called from Python as `await __js_input__()`. First flush
+                // whatever prompt text is still pending (it was printed with
+                // end='' so it has no trailing newline yet), THEN show the
+                // input box and wait for the person to type a reply. This
+                // MUST be awaited on the Python side (see `ask()` above) --
+                // calling an async JS function without awaiting it returns
+                // the pending Future itself, not the typed string.
+                pyodide.globals.set('__js_input__', async function() {
+                    flushPending();
+                    const result = await showInput();
+                    return result;
+                });
+
+                // Clear terminal and show starting message
+                terminalOutput.innerHTML = '';
+                pendingLine = '';
+                appendTerminal('🚀 Running VINO PH program...', 'info');
+
+                // Run the Python code directly -- runPythonAsync() supports
+                // top-level `await` natively, which is what makes the
+                // async ask()/await __js_input__() pattern above work.
+                try {
+                    await pyodide.runPythonAsync(pythonCode);
+                    flushPending();
+                } catch (err) {
+                    flushPending();
+                    appendTerminal('❌ Error: ' + err.message, 'error');
+                }
+
+                // Hide input area after completion
+                inputArea.style.display = 'none';
+                isRunning = false;
+                runBtn.innerHTML = '<i class="fas fa-play"></i> Run Program';
+                runBtn.disabled = false;
+                appendTerminal('', 'muted');
+                appendTerminal('✅ Program finished. Click "Run Program" to run again.', 'success');
+            };
+
+            // --- Load Pyodide on page load ---
+            document.addEventListener('DOMContentLoaded', function() {
+                // Load Pyodide in the background
+                loadPyodideInterpreter();
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
