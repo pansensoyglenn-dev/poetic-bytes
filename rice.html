@@ -1,0 +1,3371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python OOP Rice Retail System — Full Tutorial | Poetic Bytes</title>
+    <meta name="description" content="Complete Python OOP tutorial: build a Philippine Rice Retail System using classes, abstraction, dictionaries, loops, and f-strings. Includes live demo, cheat sheet, glossary, and quiz." />
+    <meta name="keywords" content="Python OOP, rice retail system, object-oriented programming, Python tutorial, abstraction, classes, dictionaries, Filipino developer, Philippines, Poetic Bytes" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/rice.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Python OOP Rice Retail System — Full Tutorial" />
+    <meta property="og:description" content="Learn Python OOP through a complete Philippine Rice Retail System. Classes, abstraction, dictionaries, loops, and f-strings explained step by step." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/rice.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Python OOP Rice Retail System | Poetic Bytes" />
+    <meta name="twitter:description" content="Learn Python OOP through a Philippine Rice Retail System. Classes, abstraction, dictionaries, loops, and f-strings." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python OOP Rice Retail System — Full Tutorial",
+            "description": "Complete Python OOP tutorial: build a Philippine Rice Retail System using classes, abstraction, dictionaries, loops, and f-strings.",
+            "author": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
+            "datePublished": "2026-07-18",
+            "dateModified": "2026-07-18",
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/rice.html" },
+            "keywords": "Python OOP, rice retail system, abstraction, classes, dictionaries, Filipino developer",
+            "articleSection": "Python Programming",
+            "inLanguage": "en-US",
+            "learningResourceType": "Tutorial",
+            "educationalLevel": "Intermediate"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        .nav-links a.active {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+            font-family: 'Syne', sans-serif;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+            }
+        }
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--blue-lt);
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-bottom: 2rem;
+        }
+        .code-preview {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .code-chrome {
+            background: #0a1a24;
+            padding: .6rem .9rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .dots {
+            display: flex;
+            gap: .35rem;
+        }
+        .dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-r {
+            background: #ff5f56;
+        }
+        .dot-y {
+            background: #ffbd2e;
+        }
+        .dot-g {
+            background: #27c93f;
+        }
+        .win-title {
+            font-size: .68rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: .4rem;
+        }
+        .code-body {
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            line-height: 1.7;
+        }
+        .code-body pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .terminal {
+            background: #0a1a24;
+            border-top: 1px solid var(--border);
+            padding: .7rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .76rem;
+            color: #4ade80;
+        }
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            min-height: 140px;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card:active {
+            transform: scale(.98);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .card-arrow {
+            margin-top: auto;
+            font-size: .65rem;
+            color: var(--blue);
+            opacity: 0;
+            transition: opacity .2s, transform .2s;
+        }
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child {
+            color: var(--gold);
+        }
+        th:nth-child(2) {
+            color: var(--blue);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        td:nth-child(2) {
+            color: var(--green);
+            font-weight: 600;
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(75, 139, 190, .03);
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 300px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .code-snippet .dec {
+            color: #c792ea;
+            font-weight: 500;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+        }
+        .callout {
+            border-left: 3px solid var(--blue);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(75, 139, 190, .06);
+            border-radius: 4px;
+        }
+        .callout p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout strong {
+            color: var(--blue-lt);
+        }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 212, 59, .06);
+            border-radius: 4px;
+        }
+        .callout-yellow p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-yellow strong {
+            color: var(--gold);
+        }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(16, 185, 129, .06);
+            border-radius: 4px;
+        }
+        .callout-green p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-green strong {
+            color: var(--green);
+        }
+        .curriculum-desc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .curriculum-desc::before {
+            content: "🌾";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 4rem;
+            opacity: 0.06;
+            transform: rotate(8deg);
+        }
+        .curriculum-desc h2 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc .highlight {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .curriculum-desc .gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .curriculum-desc .desc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .curriculum-desc .desc-meta span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .curriculum-desc .desc-meta i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        @media(max-width:480px) {
+            .curriculum-desc {
+                padding: 1.2rem 1rem;
+            }
+            .curriculum-desc h2 {
+                font-size: 1rem;
+            }
+            .curriculum-desc p {
+                font-size: 0.78rem;
+            }
+            .curriculum-desc .desc-meta {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+        }
+        .intro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .intro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .intro-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .outro-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0;
+        }
+        .outro-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .outro-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+        .intro-em {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-container .code-snippet {
+            border-radius: 0;
+            border-left: none;
+            margin-bottom: 0;
+            padding: 1rem;
+        }
+        .code-container .code-body {
+            padding: 1rem;
+            border-radius: 0;
+        }
+        .code-preview .code-container {
+            margin: 0;
+        }
+        .code-preview .code-header {
+            border-radius: 0;
+        }
+        .code-preview .output-panel {
+            border-radius: 0;
+        }
+        @media(max-width:480px) {
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+        }
+        .subject-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: rgba(75, 139, 190, 0.06);
+            border-left: 3px solid var(--blue);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .subject-desc strong {
+            color: var(--text);
+        }
+        .run-local-label {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--amber);
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-left: 0.4rem;
+        }
+        .local-warning-box {
+            background: rgba(245, 158, 11, 0.06);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-radius: 6px;
+            padding: 0.6rem 0.9rem;
+            font-size: 0.74rem;
+            color: var(--amber);
+            margin: 0.6rem 0 0.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .local-warning-box i {
+            font-size: 1rem;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+        .order-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+        .op-hdr {
+            background: var(--panel);
+            padding: .78rem 1.4rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+        }
+        .op-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+        .op-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .57rem;
+            color: var(--blue-lt);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        .op-body {
+            padding: 1.4rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .ff {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .ff label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .52rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .ff select,
+        .ff input {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            padding: .58rem .9rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: .82rem;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            appearance: none;
+        }
+        .ff select:focus,
+        .ff input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(75, 139, 190, .15);
+        }
+        .ff select option {
+            background: var(--panel);
+            color: var(--text);
+        }
+        .ff input::placeholder {
+            color: var(--muted);
+        }
+        .tot-prev {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            padding: .88rem 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .tp-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .56rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .tp-sum {
+            font-size: .74rem;
+            color: var(--muted);
+            margin-top: .18rem;
+        }
+        .tp-amt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .conf-btn {
+            width: 100%;
+            padding: .72rem 1rem;
+            border: none;
+            border-radius: var(--btn-r);
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .63rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .2s;
+            box-shadow: 0 4px 20px rgba(75, 139, 190, .3);
+        }
+        .conf-btn:hover {
+            box-shadow: 0 6px 28px rgba(75, 139, 190, .45);
+            transform: translateY(-1px);
+        }
+        .receipt-panel {
+            display: none;
+        }
+        .receipt-panel.show {
+            display: block;
+            animation: fadeUp .4s ease both;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .receipt-inner {
+            background: var(--card);
+            border: 1px solid var(--green);
+            border-top: 3px solid var(--green);
+            border-radius: var(--card-r);
+            padding: 1.4rem;
+            margin: 1.5rem 0;
+        }
+        .receipt-inner h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        .rrow {
+            display: flex;
+            justify-content: space-between;
+            padding: .5rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: .78rem;
+        }
+        .rrow:last-of-type {
+            border-bottom: none;
+        }
+        .rk {
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .58rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .rv {
+            color: var(--text);
+        }
+        .rtot {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        .rt-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .58rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--blue-lt);
+        }
+        .rt-amt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: .62rem;
+            margin-top: .8rem;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .56rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .reset-btn:hover {
+            border-color: var(--blue-lt);
+            color: var(--blue-lt);
+            background: rgba(75, 139, 190, .08);
+        }
+        .err-msg {
+            display: none;
+            color: var(--red);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .58rem;
+            text-align: center;
+            margin-bottom: .8rem;
+        }
+        .cheat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.4rem;
+        }
+        .cheat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            transition: border-color .2s;
+        }
+        .cheat-card:hover {
+            border-color: var(--blue);
+        }
+        .cheat-card h3 {
+            font-size: .88rem;
+            margin-bottom: .75rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            color: var(--text);
+        }
+        .cheat-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .72rem;
+        }
+        .cheat-table th {
+            background: var(--panel);
+            color: var(--muted);
+            padding: .4rem .65rem;
+            text-align: left;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: .05em;
+            border-bottom: 1px solid var(--border);
+        }
+        .cheat-table td {
+            padding: .4rem .65rem;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(75, 139, 190, .06);
+            vertical-align: top;
+        }
+        .cheat-table td:first-child {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--blue-lt);
+            white-space: nowrap;
+        }
+        .cheat-table tr:last-child td {
+            border-bottom: none;
+        }
+        .cheat-table tr:hover td {
+            background: rgba(75, 139, 190, .03);
+        }
+        .glossary {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin: 1.5rem 0;
+        }
+        .gi {
+            display: flex;
+            gap: 1.2rem;
+            padding: .85rem 1rem;
+            border-radius: var(--btn-r);
+            border: 1px solid var(--border);
+            background: var(--card);
+            transition: border-color .2s;
+        }
+        .gi:hover {
+            border-color: var(--blue);
+        }
+        .gt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .68rem;
+            color: var(--blue-lt);
+            font-weight: 500;
+            min-width: 180px;
+            flex-shrink: 0;
+        }
+        .gd {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.72;
+        }
+        .quiz-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .quiz-q {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            transition: border-color .3s;
+        }
+        .quiz-q.correct {
+            border-color: var(--green) !important;
+        }
+        .quiz-q.wrong {
+            border-color: var(--red) !important;
+        }
+        .quiz-prompt {
+            font-size: .82rem;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: .8rem;
+            line-height: 1.6;
+        }
+        .quiz-opts {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .quiz-opt {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .5rem .8rem;
+            border-radius: 7px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: .76rem;
+            color: var(--muted);
+            transition: all .2s;
+            user-select: none;
+        }
+        .quiz-opt:hover:not(.disabled) {
+            background: rgba(75, 139, 190, .08);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+        .quiz-opt.correct-ans {
+            background: rgba(141, 200, 150, .12);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .quiz-opt.wrong-ans {
+            background: rgba(212, 88, 136, .1);
+            border-color: var(--red);
+            color: var(--red);
+        }
+        .quiz-opt.disabled {
+            cursor: default;
+        }
+        .quiz-feedback {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .65rem;
+            margin-top: .7rem;
+            min-height: .9rem;
+            line-height: 1.6;
+        }
+        .quiz-feedback.ok {
+            color: var(--green);
+        }
+        .quiz-feedback.bad {
+            color: var(--red);
+        }
+        .quiz-score {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            margin-top: 1rem;
+            display: none;
+        }
+        .quiz-score .score-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            color: var(--blue-lt);
+            display: block;
+            line-height: 1.1;
+        }
+        .quiz-score p {
+            font-size: .78rem;
+            color: var(--muted);
+            margin: .5rem 0 0;
+        }
+        .quiz-reset {
+            margin-top: .8rem;
+            padding: .55rem 1.5rem;
+            border-radius: 100px;
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, .28);
+            cursor: pointer;
+            font-size: .74rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            transition: all .2s;
+        }
+        .quiz-reset:hover {
+            background: rgba(75, 139, 190, .25);
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            margin: 1.5rem 0;
+        }
+        .tl-item {
+            display: flex;
+            gap: 1.2rem;
+            padding-bottom: 1.4rem;
+            position: relative;
+        }
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 28px;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+        .tl-item:last-child::before {
+            display: none;
+        }
+        .tl-dot {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+            border: 2px solid var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .57rem;
+            color: #fff;
+            font-weight: 700;
+        }
+        .tl-body h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: .25rem;
+        }
+        .tl-body p {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.72;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: .9rem;
+            margin-top: 1.5rem;
+        }
+        .pillar-card {
+            border-bottom: 1px solid var(--border);
+            padding: .9rem 0;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: all .25s;
+            position: relative;
+        }
+        .pillar-card:hover {
+            opacity: .85;
+        }
+        .pillar-card[data-p="enc"]:hover {
+            border-color: rgba(75, 139, 190, .5);
+        }
+        .pillar-card[data-p="abs"]:hover {
+            border-color: rgba(106, 174, 214, .5);
+        }
+        .pillar-card[data-p="inh"]:hover {
+            border-color: rgba(255, 212, 59, .5);
+        }
+        .pillar-card[data-p="pol"]:hover {
+            border-color: rgba(181, 158, 232, .5);
+        }
+        .pico {
+            font-size: 1.6rem;
+            margin-bottom: .5rem;
+        }
+        .ptitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+            color: var(--text);
+        }
+        .pdesc {
+            font-size: .72rem;
+            color: var(--muted);
+            margin: 0 0 1.2rem;
+            line-height: 1.65;
+        }
+        .pbtn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .68rem;
+            padding: .42rem .9rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .pillar-card[data-p="enc"] .pbtn {
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+        }
+        .pillar-card[data-p="abs"] .pbtn {
+            background: rgba(106, 174, 214, .12);
+            color: #6aaed6;
+        }
+        .pillar-card[data-p="inh"] .pbtn {
+            background: rgba(255, 212, 59, .12);
+            color: var(--gold);
+        }
+        .pillar-card[data-p="pol"] .pbtn {
+            background: rgba(181, 158, 232, .12);
+            color: #b59ee8;
+        }
+        .pbtn:hover {
+            filter: brightness(1.25);
+            transform: translateX(3px);
+        }
+        .pbtn::after {
+            content: '→';
+        }
+        .current-pill {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            background: rgba(106, 174, 214, .2);
+            border: 1px solid rgba(106, 174, 214, .4);
+            color: #6aaed6;
+            font-size: .55rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .share-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2.8rem 2.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .share-wrap::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(75, 139, 190, .07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .share-wrap h2 {
+            font-size: 1.2rem;
+            margin-bottom: .3rem;
+        }
+        .share-sub {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 420px;
+            margin: .4rem auto 1.6rem;
+            line-height: 1.7;
+        }
+        .share-btns {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: .65rem;
+            margin-top: .4rem;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .sbtn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .65rem 1.3rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .sbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+        }
+        .sbtn svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+        .sbtn.s-fb:hover {
+            background: rgba(24, 119, 242, .14);
+            border-color: rgba(24, 119, 242, .38);
+            color: #5597ee;
+        }
+        .sbtn.s-li:hover {
+            background: rgba(10, 102, 194, .14);
+            border-color: rgba(10, 102, 194, .38);
+            color: #5b9bd5;
+        }
+        .sbtn.s-x:hover {
+            background: rgba(255, 255, 255, .07);
+            border-color: rgba(255, 255, 255, .2);
+        }
+        .sbtn.s-wa:hover {
+            background: rgba(37, 211, 102, .12);
+            border-color: rgba(37, 211, 102, .35);
+            color: #25d366;
+        }
+        .sub-wrap {
+            background: linear-gradient(135deg, var(--card) 0%, var(--panel) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 3.2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .sub-wrap::before {
+            content: '🌾';
+            position: absolute;
+            font-size: 7rem;
+            opacity: .03;
+            top: 50%;
+            left: 2%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .sub-wrap::after {
+            content: '{ }';
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 5rem;
+            opacity: .03;
+            top: 50%;
+            right: 2%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--blue);
+        }
+        .sub-wrap h2 {
+            font-size: 1.2rem;
+            margin-bottom: .35rem;
+        }
+        .sub-desc {
+            color: var(--muted);
+            font-size: .8rem;
+            max-width: 440px;
+            margin: .3rem auto 0;
+        }
+        .perks {
+            display: flex;
+            justify-content: center;
+            gap: 1.3rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 1.4rem;
+        }
+        .perk {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .perk::before {
+            content: '✓';
+            color: var(--blue-lt);
+            font-weight: 700;
+        }
+        .sub-form {
+            display: flex;
+            gap: .55rem;
+            max-width: 460px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .sub-form .cinput {
+            flex: 1;
+            min-width: min(180px, 100%);
+        }
+        .cinput {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: .6rem .85rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: .82rem;
+            width: 100%;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .cinput:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(75, 139, 190, .11);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            padding: .65rem 1.75rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .76rem;
+            cursor: pointer;
+            transition: all .25s;
+        }
+        .btn-submit:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .3);
+        }
+        .btn-submit:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .sub-note {
+            font-size: .62rem;
+            color: var(--muted);
+            margin-top: .7rem;
+        }
+        .sub-msg {
+            font-size: .7rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 1rem;
+            transition: opacity .4s;
+            margin-top: .5rem;
+        }
+        .follow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.6rem;
+        }
+        .follow-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.6rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: .65rem;
+            transition: all .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .follow-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--card-r);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        .follow-card.fc-fb::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(24, 119, 242, .15), transparent 65%);
+        }
+        .follow-card.fc-li::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(10, 102, 194, .15), transparent 65%);
+        }
+        .follow-card.fc-x::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, .06), transparent 65%);
+        }
+        .follow-card.fc-yt::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 0, 0, .12), transparent 65%);
+        }
+        .follow-card.fc-gh::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(110, 110, 110, .15), transparent 65%);
+        }
+        .follow-card:hover {
+            transform: translateY(-5px);
+        }
+        .follow-card:hover::before {
+            opacity: 1;
+        }
+        .follow-card.fc-fb:hover {
+            border-color: rgba(24, 119, 242, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-li:hover {
+            border-color: rgba(10, 102, 194, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-x:hover {
+            border-color: rgba(255, 255, 255, .2);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-yt:hover {
+            border-color: rgba(255, 0, 0, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-card.fc-gh:hover {
+            border-color: rgba(150, 150, 150, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+        }
+        .follow-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            transition: transform .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-card:hover .follow-icon {
+            transform: scale(1.12) rotate(-5deg);
+        }
+        .fc-fb .follow-icon {
+            background: rgba(24, 119, 242, .15);
+            border: 1px solid rgba(24, 119, 242, .25);
+        }
+        .fc-li .follow-icon {
+            background: rgba(10, 102, 194, .15);
+            border: 1px solid rgba(10, 102, 194, .25);
+        }
+        .fc-x .follow-icon {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-icon {
+            background: rgba(255, 0, 0, .12);
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .fc-gh .follow-icon {
+            background: rgba(150, 150, 150, .12);
+            border: 1px solid rgba(150, 150, 150, .25);
+        }
+        .follow-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .62rem;
+            color: var(--muted);
+            margin-top: -.3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .follow-stat {
+            font-size: .7rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+        }
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .45rem 1.2rem;
+            border-radius: 100px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            cursor: pointer;
+            border: none;
+            transition: all .25s;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            margin-top: .2rem;
+        }
+        .follow-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+        }
+        .follow-btn.following {
+            background: var(--panel) !important;
+            color: var(--muted) !important;
+            border: 1px solid var(--border) !important;
+        }
+        .fc-fb .follow-btn {
+            background: rgba(24, 119, 242, .2);
+            color: #5597ee;
+            border: 1px solid rgba(24, 119, 242, .3);
+        }
+        .fc-li .follow-btn {
+            background: rgba(10, 102, 194, .2);
+            color: #5b9bd5;
+            border: 1px solid rgba(10, 102, 194, .3);
+        }
+        .fc-x .follow-btn {
+            background: rgba(255, 255, 255, .08);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        .fc-yt .follow-btn {
+            background: rgba(255, 0, 0, .15);
+            color: #ff5555;
+            border: 1px solid rgba(255, 0, 0, .25);
+        }
+        .fc-gh .follow-btn {
+            background: rgba(150, 150, 150, .15);
+            color: var(--muted);
+            border: 1px solid rgba(150, 150, 150, .25);
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.8rem;
+        }
+        .app-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .6rem;
+            padding: .75rem .5rem;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+        .app-btn:hover {
+            opacity: .8;
+        }
+        .app-btn:active {
+            opacity: .65;
+        }
+        .app-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            transition: transform .3s cubic-bezier(.23, 1, .32, 1);
+            position: relative;
+            z-index: 1;
+        }
+        .app-btn:hover .app-logo {
+            transform: scale(1.1) rotate(-4deg);
+        }
+        .app-rice .app-logo {
+            background: rgba(255, 212, 59, .12);
+            border: 1px solid rgba(255, 212, 59, .3);
+        }
+        .app-info {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .app-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--text);
+            margin-bottom: .2rem;
+        }
+        .app-desc {
+            font-size: .68rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+        .app-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .56rem;
+            padding: .18rem .55rem;
+            border-radius: 100px;
+            margin-top: .5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .app-rice .app-tag {
+            background: rgba(255, 212, 59, .1);
+            color: var(--gold);
+            border: 1px solid rgba(255, 212, 59, .25);
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3.5rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .gi {
+                flex-direction: column;
+                gap: .4rem;
+            }
+            .gt {
+                min-width: auto;
+            }
+            .share-wrap {
+                padding: 1.8rem 1.2rem;
+            }
+            .share-btns {
+                max-width: 100%;
+            }
+            .sub-wrap {
+                padding: 2rem 1.2rem;
+            }
+        }
+        @media(max-width:768px) {
+            .cheat-grid {
+                grid-template-columns: 1fr;
+            }
+            .apps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .follow-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:480px) {
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+            .follow-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home">
+                <div class="brand-icon">🌾</div>POETIC BYTES
+            </a>
+            <ul class="nav-links">
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#source-code">Source</a></li>
+                <li><a href="#explanation">Explanation</a></li>
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#order-form">Live Demo</a></li>
+                <li><a href="#cheat-sheet">Cheat Sheet</a></li>
+                <li><a href="#glossary">Glossary</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#apps">Projects</a></li>
+                <li><a href="#series">OOP Series</a></li>
+                <li><a href="abstraction.html">← Abstraction Hub</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+                <li><button data-href="#source-code"><i class="fas fa-code"></i>Source Code</button></li>
+                <li><button data-href="#explanation"><i class="fas fa-search"></i>Explanation</button></li>
+                <li><button data-href="#concepts"><i class="fas fa-lightbulb"></i>Concepts</button></li>
+                <li><button data-href="#order-form"><i class="fas fa-shopping-cart"></i>Live Demo</button></li>
+                <li><button data-href="#cheat-sheet"><i class="fas fa-list-ul"></i>Cheat Sheet</button></li>
+                <li><button data-href="#glossary"><i class="fas fa-book"></i>Glossary</button></li>
+                <li><button data-href="#quiz"><i class="fas fa-brain"></i>Quiz</button></li>
+                <li><button data-href="#roadmap"><i class="fas fa-map"></i>Roadmap</button></li>
+                <li><button data-href="#apps"><i class="fas fa-project-diagram"></i>Projects</button></li>
+                <li><button data-href="#series"><i class="fas fa-layer-group"></i>OOP Series</button></li>
+                <li><button data-href="#share"><i class="fas fa-share-alt"></i>Share</button></li>
+                <li><button data-href="#subscribe"><i class="fas fa-envelope"></i>Subscribe</button></li>
+                <li><a href="abstraction.html"><i class="fas fa-arrow-left"></i>Abstraction Hub</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python OOP Rice Retail System">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python OOP · Philippine Rice Retail</div>
+                <h1 style="font-size:clamp(1.8rem,4.5vw,3.2rem);">
+                    Learning Python Through<br>
+                    <span style="color:var(--blue);">Rice Retail</span> —<br>
+                    A <span style="color:var(--gold);">Complete</span> Walkthrough
+                </h1>
+                <p class="lead">
+                    A step-by-step journey through Python OOP grounded in a real Philippine rice shop. Learn abstraction, classes, dictionaries, loops, f-strings, and error handling all in one cohesive program.
+                </p>
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;">
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📅 July 18, 2026</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 20 min read</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🎓 Intermediate</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🐍 Python 3.11+</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🇵🇭 Philippines</span>
+                </div>
+                <div style="margin-top:1.5rem;">
+                    <a href="abstraction.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Abstraction Hub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="h-intro">
+            <div class="page-col">
+                <div class="section-label">01 — The Context</div>
+                <h2 id="h-intro">Why Rice, Why Python?</h2>
+
+                <div class="curriculum-desc">
+                    <h2>🌾 Building a Philippine Rice Retail System in Python</h2>
+                    <p>
+                        Rice is not just food in the Philippines — it is identity, culture, and daily life. Sold in
+                        every barangay sari-sari store, every wet market <span class="gold">palengke</span>, and every
+                        SM Hypermarket aisle, rice is the single most purchased commodity in Filipino households.
+                    </p>
+                    <p>
+                        This tutorial is built around a single, complete Python program: a Philippine Rice Retail System.
+                        But the real subject is <span class="highlight">abstraction</span> — arguably the most important
+                        concept in all of programming — and understanding it deeply is what separates developers who
+                        write code from developers who <span class="gold">architect systems</span>.
+                    </p>
+                    <p>
+                        Every code example in this guide is <span class="highlight">fully interactive</span> — you can
+                        <strong>copy</strong> and <strong>run</strong> each snippet right in your browser using the
+                        <strong>Pyodide</strong> Python runtime. No setup required.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Complete source code</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Step-by-step explanation</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Live order form demo</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Cheat sheet &amp; glossary</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Knowledge quiz</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:0.5rem;">
+                    <div class="oop-block">
+                        <h3>What is Abstraction, Really?</h3>
+                        <p>Imagine you are turning on a light switch. You do not need to understand electrical circuits, voltage transformers, or the power grid. The switch is the <strong>interface</strong> — it hides all of that complexity and gives you one simple action: flip. This is exactly what abstraction does in software.</p>
+                        <p>The <code>print_receipt()</code> method is the light switch. The loops, lookups, and formatting logic inside it is the electrical grid — hidden away, managed internally, invisible to the caller. This is the architectural principle that makes large-scale software systems possible.</p>
+                        <div class="callout"><p><strong>Definition:</strong> Abstraction is the practice of hiding implementation complexity behind clean, predictable interfaces. You define <em>what</em> an object can do, not <em>how</em> it does it.</p></div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Two-Class Architecture</h3>
+                        <p>The rice retail system uses exactly two classes — a minimalist design that demonstrates the Single Responsibility Principle in action.</p>
+                        <ul class="intro-list">
+                            <li><strong><code>RiceProduct</code></strong> — models a single rice variety with its name, price per kilo, variety type, and origin. This class is pure data representation.</li>
+                            <li><strong><code>RiceRetailSystem</code></strong> — manages the entire retail process: catalog, shopping cart, customer interaction, and receipt printing.</li>
+                        </ul>
+                        <div class="callout-green"><p><strong>Why two classes?</strong> Separating data (RiceProduct) from behavior (RiceRetailSystem) follows the Single Responsibility Principle — each class has one clear purpose and can evolve independently.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="source-code" aria-labelledby="h-source">
+            <div class="page-col">
+                <div class="section-label">02 — Full Source Code</div>
+                <h2 id="h-source">The Complete <code>rice_retail.py</code></h2>
+                <p style="margin-bottom:1rem;">This is the complete Python program. Copy it, run it, modify it — every part is explained below.</p>
+
+                <div class="code-preview">
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn" id="copyFullCode"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn" id="runFullCode"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-body" id="fullCodeBlock">
+<pre><span class="kw">from</span> abc <span class="kw">import</span> <span class="cl">ABC</span>, <span class="fn">abstractmethod</span>
+
+<span class="kw">class</span> <span class="cl">RiceProduct</span>:
+    <span class="cmt">"""Represents a single rice product with name and price."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, price_per_kilo, variety, origin):
+        <span class="kw">self</span>.name           = name
+        <span class="kw">self</span>.price_per_kilo = price_per_kilo
+        <span class="kw">self</span>.variety        = variety
+        <span class="kw">self</span>.origin         = origin
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>, code):
+        <span class="fn">print</span>(<span class="st">f"  [{code}] {self.name:&lt;28} ₱{self.price_per_kilo:&gt;6.2f}/kg  ({self.variety}, {self.origin})"</span>)
+
+
+<span class="kw">class</span> <span class="cl">RiceRetailSystem</span>:
+    <span class="cmt">"""Manages the complete rice retail shop experience."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.catalog = {
+            <span class="st">"R1"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Sinandomeng Premium"</span>,  <span class="num">58.00</span>, <span class="st">"Indica"</span>,     <span class="st">"Nueva Ecija"</span>),
+            <span class="st">"R2"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Milagrosa Special"</span>,     <span class="num">62.00</span>, <span class="st">"Aromatic"</span>,   <span class="st">"Batangas"</span>),
+            <span class="st">"R3"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Dinorado Heirloom"</span>,     <span class="num">75.00</span>, <span class="st">"Heirloom"</span>,   <span class="st">"Mountain Province"</span>),
+            <span class="st">"R4"</span>: <span class="cl">RiceProduct</span>(<span class="st">"NFA Standard Rice"</span>,      <span class="num">40.00</span>, <span class="st">"Indica"</span>,     <span class="st">"NFA Warehouse"</span>),
+            <span class="st">"R5"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Jasmine Thai Import"</span>,    <span class="num">85.00</span>, <span class="st">"Long Grain"</span>, <span class="st">"Imported"</span>),
+            <span class="st">"R6"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Brown Rice Organic"</span>,     <span class="num">95.00</span>, <span class="st">"Whole Grain"</span>,<span class="st">"Benguet"</span>),
+            <span class="st">"R7"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Glutinous Malagkit"</span>,    <span class="num">68.00</span>, <span class="st">"Glutinous"</span>,  <span class="st">"Pampanga"</span>),
+            <span class="st">"R8"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Super Angelica Premium"</span>, <span class="num">70.00</span>, <span class="st">"Indica"</span>,     <span class="st">"Isabela"</span>),
+        }
+        <span class="kw">self</span>.cart          = []
+        <span class="kw">self</span>.customer_name = <span class="st">""</span>
+
+    <span class="kw">def</span> <span class="fn">show_banner</span>(<span class="kw">self</span>):
+        <span class="fn">print</span>(<span class="st">"\n" + "═" * 60</span>)
+        <span class="fn">print</span>(<span class="st">"       🌾  VALLEYS &amp; BYTES RICE TRADING  🌾"</span>)
+        <span class="fn">print</span>(<span class="st">"          Premium Rice Retailer — Philippines"</span>)
+        <span class="fn">print</span>(<span class="st">"═" * 60</span>)
+
+    <span class="kw">def</span> <span class="fn">show_catalog</span>(<span class="kw">self</span>):
+        <span class="fn">print</span>(<span class="st">"\n  📦  AVAILABLE RICE PRODUCTS (Price per Kilo):"</span>)
+        <span class="fn">print</span>(<span class="st">"  " + "─" * 56</span>)
+        <span class="kw">for</span> code, product <span class="kw">in</span> <span class="kw">self</span>.catalog.<span class="fn">items</span>():
+            product.<span class="fn">display</span>(code)
+        <span class="fn">print</span>(<span class="st">"  " + "─" * 56</span>)
+
+    <span class="kw">def</span> <span class="fn">get_customer_name</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.customer_name = <span class="fn">input</span>(<span class="st">"\n  Enter your name: "</span>).<span class="fn">strip</span>().<span class="fn">title</span>()
+        <span class="fn">print</span>(<span class="st">f"\n  Welcome, {self.customer_name}! Let's build your order."</span>)
+
+    <span class="kw">def</span> <span class="fn">add_to_cart</span>(<span class="kw">self</span>):
+        <span class="kw">while</span> <span class="kw">True</span>:
+            <span class="fn">print</span>(<span class="st">"\n  Enter product code (or 'DONE' to checkout, 'VIEW' to see cart):"</span>)
+            code = <span class="fn">input</span>(<span class="st">"  > "</span>).<span class="fn">strip</span>().<span class="fn">upper</span>()
+            <span class="kw">if</span> code == <span class="st">"DONE"</span>: <span class="kw">break</span>
+            <span class="kw">elif</span> code == <span class="st">"VIEW"</span>: <span class="kw">self</span>.<span class="fn">show_cart</span>(); <span class="kw">continue</span>
+            <span class="kw">elif</span> code <span class="kw">not in</span> <span class="kw">self</span>.catalog:
+                <span class="fn">print</span>(<span class="st">"  ❌ Invalid code. Please choose from the menu."</span>); <span class="kw">continue</span>
+            <span class="kw">try</span>:
+                kilos = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"  How many kilos of {self.catalog[code].name}? "</span>))
+                <span class="kw">if</span> kilos <= <span class="num">0</span>:
+                    <span class="fn">print</span>(<span class="st">"  ⚠️  Enter a quantity greater than zero."</span>); <span class="kw">continue</span>
+                <span class="kw">self</span>.cart.<span class="fn">append</span>((code, kilos))
+                <span class="fn">print</span>(<span class="st">f"  ✅ Added {kilos}kg — ₱{self.catalog[code].price_per_kilo * kilos:.2f}"</span>)
+            <span class="kw">except</span> <span class="cl">ValueError</span>:
+                <span class="fn">print</span>(<span class="st">"  ❌ Please enter a valid numeric quantity."</span>)
+
+    <span class="kw">def</span> <span class="fn">show_cart</span>(<span class="kw">self</span>):
+        <span class="kw">if not</span> <span class="kw">self</span>.cart: <span class="fn">print</span>(<span class="st">"  🛒 Your cart is empty."</span>); <span class="kw">return</span>
+        <span class="fn">print</span>(<span class="st">"\n  Current cart:"</span>)
+        <span class="kw">for</span> i, (code, kilos) <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="kw">self</span>.cart, <span class="num">1</span>):
+            p = <span class="kw">self</span>.catalog[code]
+            <span class="fn">print</span>(<span class="st">f"  {i}. {p.name} × {kilos}kg = ₱{p.price_per_kilo * kilos:.2f}"</span>)
+
+    <span class="kw">def</span> <span class="fn">calculate_total</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="fn">sum</span>(<span class="kw">self</span>.catalog[c].price_per_kilo * k <span class="kw">for</span> c, k <span class="kw">in</span> <span class="kw">self</span>.cart)
+
+    <span class="kw">def</span> <span class="fn">print_receipt</span>(<span class="kw">self</span>):
+        <span class="kw">if not</span> <span class="kw">self</span>.cart: <span class="fn">print</span>(<span class="st">"\n  🛒 No items in cart."</span>); <span class="kw">return</span>
+        <span class="fn">print</span>(<span class="st">"\n"</span> + <span class="st">"═"</span> * <span class="num">60</span>)
+        <span class="fn">print</span>(<span class="st">"          🧾  OFFICIAL RECEIPT  🧾"</span>)
+        <span class="fn">print</span>(<span class="st">"          Valleys &amp; Bytes Rice Trading"</span>)
+        <span class="fn">print</span>(<span class="st">"═"</span> * <span class="num">60</span>)
+        <span class="fn">print</span>(<span class="st">f"  Customer : {self.customer_name}"</span>)
+        <span class="fn">print</span>(<span class="st">"  "</span> + <span class="st">"─"</span> * <span class="num">56</span>)
+        <span class="fn">print</span>(<span class="st">f"  {'PRODUCT':&lt;30} {'KG':&gt;5}  {'SUBTOTAL':&gt;10}"</span>)
+        <span class="fn">print</span>(<span class="st">"  "</span> + <span class="st">"─"</span> * <span class="num">56</span>)
+        <span class="kw">for</span> code, kilos <span class="kw">in</span> <span class="kw">self</span>.cart:
+            p = <span class="kw">self</span>.catalog[code]; subtotal = p.price_per_kilo * kilos
+            <span class="fn">print</span>(<span class="st">f"  {p.name:&lt;30} {kilos:&gt;5.1f}  ₱{subtotal:&gt;9.2f}"</span>)
+        <span class="fn">print</span>(<span class="st">"  "</span> + <span class="st">"─"</span> * <span class="num">56</span>)
+        <span class="fn">print</span>(<span class="st">f"  {'GRAND TOTAL':&lt;36} ₱{self.calculate_total():&gt;9.2f}"</span>)
+        <span class="fn">print</span>(<span class="st">"═"</span> * <span class="num">60</span>)
+        <span class="fn">print</span>(<span class="st">"  Salamat! Thank you for shopping at Valleys &amp; Bytes! 🇵🇭"</span>)
+        <span class="fn">print</span>(<span class="st">"═"</span> * <span class="num">60</span> + <span class="st">"\n"</span>)
+
+    <span class="kw">def</span> <span class="fn">run</span>(<span class="kw">self</span>):
+        <span class="cmt">"""Main entry point."""</span>
+        <span class="kw">self</span>.<span class="fn">show_banner</span>(); <span class="kw">self</span>.<span class="fn">show_catalog</span>()
+        <span class="kw">self</span>.<span class="fn">get_customer_name</span>(); <span class="kw">self</span>.<span class="fn">add_to_cart</span>()
+        <span class="kw">self</span>.<span class="fn">print_receipt</span>()
+
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    shop = <span class="cl">RiceRetailSystem</span>()
+    shop.<span class="fn">run</span>()</pre>
+                        </div>
+                        <div class="output-panel" id="fullCodeOutput"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="explanation" aria-labelledby="h-explain">
+            <div class="page-col">
+                <div class="section-label">03 — Step by Step</div>
+                <h2 id="h-explain">Code <em>Explanation</em></h2>
+
+                <div style="margin-top:1rem;">
+                    <div class="oop-block">
+                        <h3>Step 1: The <code>RiceProduct</code> Class</h3>
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">RiceProduct</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, price_per_kilo, variety, origin):
+        <span class="kw">self</span>.name           = name
+        <span class="kw">self</span>.price_per_kilo = price_per_kilo
+        <span class="kw">self</span>.variety        = variety
+        <span class="kw">self</span>.origin         = origin</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Why a class for a single product?</strong> A class is a blueprint. Instead of four separate variables per product, one <code>RiceProduct</code> object bundles all related data — clean, organized, and reusable.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Significance of <code>__init__</code>:</strong> The constructor runs automatically when <code>RiceProduct("Sinandomeng", 58.0, ...)</code> is called. <code>self</code> binds each argument to the new instance.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Adding a new field:</strong> Adding <code>stock_qty</code> requires changing only this class. All other code continues working unchanged — true encapsulation.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Step 2: The Catalog Dictionary</h3>
+                        <div class="code-snippet"><pre><span class="kw">self</span>.catalog = {
+    <span class="st">"R1"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Sinandomeng Premium"</span>, <span class="num">58.00</span>, <span class="st">"Indica"</span>, <span class="st">"Nueva Ecija"</span>),
+    <span class="st">"R2"</span>: <span class="cl">RiceProduct</span>(<span class="st">"Milagrosa Special"</span>,   <span class="num">62.00</span>, <span class="st">"Aromatic"</span>,   <span class="st">"Batangas"</span>),
+}</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Why a dictionary?</strong> Dictionaries provide O(1) lookup. <code>self.catalog["R3"]</code> finds Dinorado instantly — no looping. The product code is the natural key for a retail system.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Scaling up:</strong> If the catalog grows from 8 to 800 products, lookup speed stays constant. A list would require scanning every item — O(n) — which degrades with scale.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Iteration:</strong> <code>self.catalog.items()</code> lets us iterate both keys and values together, making display and processing simple.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Step 3: While Loop &amp; Shopping Cart</h3>
+                        <div class="code-snippet"><pre><span class="kw">while</span> <span class="kw">True</span>:
+    code = <span class="fn">input</span>(<span class="st">"  > "</span>).<span class="fn">strip</span>().<span class="fn">upper</span>()
+    <span class="kw">if</span> code == <span class="st">"DONE"</span>: <span class="kw">break</span>
+    <span class="kw">elif</span> code <span class="kw">not in</span> <span class="kw">self</span>.catalog: <span class="kw">continue</span>
+    <span class="kw">self</span>.cart.<span class="fn">append</span>((code, kilos))</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Why <code>while True</code>?</strong> It's the correct construct for "keep accepting input until a stop condition." We don't know how many items the customer will order in advance.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Input normalization:</strong> <code>.strip().upper()</code> ensures "r1", " R1 ", "R1" all resolve correctly.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Cart structure:</strong> <code>self.cart.append((code, kilos))</code> adds a tuple to the cart list. Tuples are used because each cart entry is an immutable (code, quantity) pair.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Step 4: Try/Except &amp; Calculate Total</h3>
+                        <div class="code-snippet"><pre><span class="kw">try</span>:
+    kilos = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"How many kilos? "</span>))
+<span class="kw">except</span> <span class="cl">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"❌ Please enter a valid number."</span>)
+
+<span class="kw">def</span> <span class="fn">calculate_total</span>(<span class="kw">self</span>):
+    <span class="kw">return</span> <span class="fn">sum</span>(<span class="kw">self</span>.catalog[c].price_per_kilo * k <span class="kw">for</span> c, k <span class="kw">in</span> <span class="kw">self</span>.cart)</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Why try/except?</strong> <code>float("banana")</code> raises <code>ValueError</code>. Without try/except the program crashes. With it, bad input is handled gracefully — critical for robustness.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">Generator expression:</strong> The generator in <code>calculate_total()</code> is memory-efficient — it computes values on-the-fly without building an intermediate list.
+                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
+                                    <strong style="color:var(--text)">How it operates:</strong> For each (code, kilos) pair in the cart, it looks up the price and multiplies. Results stream directly into <code>sum()</code> — concise, Pythonic, and fast.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="callout-yellow"><p><strong>💡 f-string formatting:</strong> <code>f"{self.name:&lt;28}"</code> left-aligns in a 28-character field. <code>f"₱{price:&gt;6.2f}"</code> right-aligns with 2 decimal places. This produces perfectly columnar console output — the same technique used in professional CLI tools.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="concepts" aria-labelledby="h-concepts">
+            <div class="page-col">
+                <div class="section-label">04 — Key Concepts</div>
+                <h2 id="h-concepts">Python OOP Concepts Reference</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Concept</th><th>What It Is</th><th>How It's Used Here</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>class</code></td><td>Blueprint for creating objects</td><td>Defines <code>RiceProduct</code> and <code>RiceRetailSystem</code></td></tr>
+                            <tr><td><code>__init__(self)</code></td><td>Constructor — runs on object creation</td><td>Initializes product attributes and empty cart</td></tr>
+                            <tr><td><code>self</code></td><td>Reference to current instance</td><td>Allows methods to access the object's own data</td></tr>
+                            <tr><td><code>dict {}</code></td><td>Key-value store with O(1) lookup</td><td>Product catalog: code → RiceProduct</td></tr>
+                            <tr><td><code>list []</code></td><td>Ordered, mutable sequence</td><td>Shopping cart: list of (code, kilos) tuples</td></tr>
+                            <tr><td><code>for…in</code></td><td>Iteration over a collection</td><td>Display catalog, generate receipt lines</td></tr>
+                            <tr><td><code>while True</code></td><td>Infinite loop with break/continue</td><td>Shopping session alive until "DONE"</td></tr>
+                            <tr><td><code>try/except</code></td><td>Catches runtime errors gracefully</td><td>Handles non-numeric kilo inputs</td></tr>
+                            <tr><td><code>f-string</code></td><td>Inline variable embedding + formatting</td><td>Aligned product listings and receipt output</td></tr>
+                            <tr><td><code>sum() + generator</code></td><td>Reduces iterable to single value</td><td>Grand total from all cart items</td></tr>
+                            <tr><td><code>.strip().upper()</code></td><td>String normalization methods</td><td>"r1", " R1 ", "R1 " all become "R1"</td></tr>
+                            <tr><td><code>enumerate()</code></td><td>Adds index counter to iteration</td><td>Numbers cart items in cart display</td></tr>
+                            <tr><td><code>if __name__=="__main__"</code></td><td>Module guard — direct execution only</td><td>Safe entry point; importable elsewhere</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="order-form" aria-labelledby="h-order">
+            <div class="page-col">
+                <div class="section-label">05 — Live Demo</div>
+                <h2 id="h-order">Interactive Order Form</h2>
+                <p>Interactive implementation of the Python program — select a variety, enter quantity, and receive an instant receipt.</p>
+
+                <div id="orderSec">
+                    <div class="order-panel">
+                        <div class="op-hdr"><span class="op-dot"></span><span class="op-lbl">Valleys &amp; Bytes Rice Trading — Encode Your Order</span></div>
+                        <div class="op-body">
+                            <div class="form-row">
+                                <div class="ff">
+                                    <label>Rice Variety</label>
+                                    <select id="psel" onchange="upPrev()">
+                                        <option value="" disabled selected>— Select a rice variety —</option>
+                                        <option value="R1">R1 — Sinandomeng Premium (₱58.00/kg)</option>
+                                        <option value="R2">R2 — Milagrosa Special (₱62.00/kg)</option>
+                                        <option value="R3">R3 — Dinorado Heirloom (₱75.00/kg)</option>
+                                        <option value="R4">R4 — NFA Standard Rice (₱40.00/kg)</option>
+                                        <option value="R5">R5 — Jasmine Thai Import (₱85.00/kg)</option>
+                                        <option value="R6">R6 — Brown Rice Organic (₱95.00/kg)</option>
+                                        <option value="R7">R7 — Glutinous Malagkit (₱68.00/kg)</option>
+                                        <option value="R8">R8 — Super Angelica Premium (₱70.00/kg)</option>
+                                    </select>
+                                </div>
+                                <div class="ff">
+                                    <label>Quantity (kilos)</label>
+                                    <input type="number" id="qin" min="0.1" step="0.1" placeholder="e.g. 2.5" oninput="upPrev()">
+                                </div>
+                            </div>
+                            <div class="tot-prev">
+                                <div>
+                                    <div class="tp-lbl">Total Cost</div>
+                                    <div class="tp-sum" id="prevSum">—</div>
+                                </div>
+                                <div class="tp-amt" id="prevTot">₱0.00</div>
+                            </div>
+                            <p class="err-msg" id="errMsg">⚠ Please select a variety and enter a valid quantity.</p>
+                            <button class="conf-btn" onclick="placeOrder()">Confirm Order — Compute Total →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="receipt-panel" id="rcptSec">
+                    <div class="receipt-inner">
+                        <h3>✅ Official Receipt — Valleys &amp; Bytes Rice Trading</h3>
+                        <div class="rrow"><span class="rk">Product</span><span class="rv" id="rItem">—</span></div>
+                        <div class="rrow"><span class="rk">Variety / Origin</span><span class="rv" id="rVar">—</span></div>
+                        <div class="rrow"><span class="rk">Unit Price</span><span class="rv" id="rPx">—</span></div>
+                        <div class="rrow"><span class="rk">Quantity</span><span class="rv" id="rQty">—</span></div>
+                        <div class="rtot"><span class="rt-lbl">Total Cost</span><span class="rt-amt" id="rTot">—</span></div>
+                    </div>
+                    <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:.85rem;">Salamat! Thank you for shopping — Valleys &amp; Bytes Rice Trading 🇵🇭</p>
+                    <button class="reset-btn" onclick="resetOrder()">← Place another order</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="cheat-sheet" aria-labelledby="h-cheat">
+            <div class="page-col">
+                <div class="section-label">06 — Quick Reference</div>
+                <h2 id="h-cheat">OOP Cheat Sheet</h2>
+                <p>Everything you need in one place — bookmark this and refer back whenever you need a reminder.</p>
+
+                <div class="cheat-grid">
+                    <div class="cheat-card">
+                        <h3>🧩 Class Syntax</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Syntax</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>class Foo:</code></td><td>Define a class</td></tr>
+                                <tr><td><code>class Bar(Foo):</code></td><td>Inherit from Foo</td></tr>
+                                <tr><td><code>def __init__(self)</code></td><td>Constructor</td></tr>
+                                <tr><td><code>self.attr = val</code></td><td>Instance attribute</td></tr>
+                                <tr><td><code>def __str__(self)</code></td><td>String representation</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cheat-card">
+                        <h3>📦 Rice Prices</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Variety</th><th>Price/kg</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sinandomeng</td><td>₱58.00</td></tr>
+                                <tr><td>Milagrosa</td><td>₱62.00</td></tr>
+                                <tr><td>Dinorado</td><td>₱75.00</td></tr>
+                                <tr><td>NFA Standard</td><td>₱40.00</td></tr>
+                                <tr><td>Brown Organic</td><td>₱95.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cheat-card">
+                        <h3>🔑 Dictionary Patterns</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Pattern</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>d = {k: v}</code></td><td>Create dict</td></tr>
+                                <tr><td><code>d[key]</code></td><td>O(1) lookup</td></tr>
+                                <tr><td><code>d.items()</code></td><td>Iterate key+value</td></tr>
+                                <tr><td><code>key in d</code></td><td>Membership test</td></tr>
+                                <tr><td><code>d.get(k, default)</code></td><td>Safe lookup</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cheat-card">
+                        <h3>⚡ Common Patterns</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Pattern</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>if __name__=="__main__"</code></td><td>Entry point</td></tr>
+                                <tr><td><code>try / except ValueError</code></td><td>Catch bad input</td></tr>
+                                <tr><td><code>sum(x for x in lst)</code></td><td>Generator total</td></tr>
+                                <tr><td><code>.strip().upper()</code></td><td>Normalize input</td></tr>
+                                <tr><td><code>list.append(tuple)</code></td><td>Add to cart</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="glossary" aria-labelledby="h-glossary">
+            <div class="page-col">
+                <div class="section-label">07 — Glossary</div>
+                <h2 id="h-glossary">Key Terms</h2>
+
+                <div class="glossary">
+                    <div class="gi"><span class="gt">class</span><span class="gd">A blueprint that defines attributes and methods. <code>RiceProduct</code> is the blueprint; <code>RiceProduct("Sinandomeng", 58.0, ...)</code> is an instance created from that blueprint.</span></div>
+                    <div class="gi"><span class="gt">__init__</span><span class="gd">Constructor — called automatically when creating an object. Sets the initial state by assigning values to instance attributes via <code>self</code>.</span></div>
+                    <div class="gi"><span class="gt">self</span><span class="gd">Reference to the current instance. Every method receives <code>self</code> as its first argument to access and modify that specific object's data independently.</span></div>
+                    <div class="gi"><span class="gt">abstraction</span><span class="gd">Hiding internal complexity behind a clean interface. Calling <code>print_receipt()</code> hides all the loop and formatting logic inside the method body.</span></div>
+                    <div class="gi"><span class="gt">dictionary</span><span class="gd">A hash-table data structure that maps keys to values. <code>catalog["R1"]</code> returns the Sinandomeng product in O(1) time regardless of catalog size.</span></div>
+                    <div class="gi"><span class="gt">f-string</span><span class="gd">Formatted string literal. <code>f"₱{price:.2f}"</code> embeds variables directly with format specifiers — always exactly 2 decimal places here.</span></div>
+                    <div class="gi"><span class="gt">try/except</span><span class="gd">Error-handling block. Code in <code>try</code> runs normally; if a specific error occurs, <code>except</code> catches it instead of crashing the program.</span></div>
+                    <div class="gi"><span class="gt">generator expression</span><span class="gd">A lazy iterator that computes values on demand: <code>sum(p * k for c, k in cart)</code>. More memory-efficient than a list comprehension for large datasets.</span></div>
+                    <div class="gi"><span class="gt">encapsulation</span><span class="gd">Bundling data and the methods that operate on it inside a class. External code accesses product data through the object's interface, not directly.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" aria-labelledby="h-quiz">
+            <div class="page-col">
+                <div class="section-label">08 — Test Yourself</div>
+                <h2 id="h-quiz">Knowledge Quiz</h2>
+                <p>Reinforce what you've learned. Each question targets a core concept from this guide.</p>
+
+                <div class="quiz-wrap" id="quizWrap"></div>
+                <div class="quiz-score" id="quizScore">
+                    <span class="score-num" id="quizScoreNum">0/5</span>
+                    <p id="quizScoreMsg">Great effort — review any missed questions above.</p>
+                    <button class="quiz-reset" onclick="resetQuiz()">↺ Retry Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" aria-labelledby="h-roadmap">
+            <div class="page-col">
+                <div class="section-label">09 — Learning Roadmap</div>
+                <h2 id="h-roadmap">Python OOP Learning Roadmap</h2>
+
+                <div class="timeline">
+                    <div class="tl-item"><div class="tl-dot">1</div><div class="tl-body"><h4>Classes &amp; Instances (You Are Here)</h4><p>Master <code>__init__</code>, <code>self</code>, instance vs class attributes. Build 5–10 simple classes — products, students, animals — from scratch without inheritance.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">2</div><div class="tl-body"><h4>Encapsulation — Properties &amp; Validation</h4><p>Learn <code>@property</code>, <code>@x.setter</code>, protected (<code>_attr</code>) vs private (<code>__attr</code>) attributes. Add validated price setters that reject negative values.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">3</div><div class="tl-body"><h4>Inheritance — Subclasses &amp; super()</h4><p>Create subclasses like <code>PremiumRice(RiceProduct)</code> that add discount logic. Understand method resolution order (MRO) and when to call <code>super().__init__()</code>.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">4</div><div class="tl-body"><h4>Magic Methods — Dunder Protocol</h4><p>Go beyond <code>__init__</code>. Learn <code>__repr__</code>, <code>__eq__</code>, <code>__lt__</code>, <code>__add__</code> to make your classes behave like built-in Python types.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">5</div><div class="tl-body"><h4>Abstract Classes &amp; Interfaces</h4><p>Use <code>abc.ABC</code> and <code>@abstractmethod</code> to enforce method implementation in subclasses. Design plugin systems and extensible APIs.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">6</div><div class="tl-body"><h4>Frameworks — Django, FastAPI, SQLAlchemy</h4><p>Apply OOP knowledge to production frameworks. Django models use the same class-based design. Pydantic models in FastAPI use <code>@validator</code> — your property pattern, hardened for scale.</p></div></div>
+                </div>
+
+                <div class="callout-green"><p><strong>🎯 Next step:</strong> Extend this rice system — add a <code>Discount</code> class using composition, a <code>PremiumRice</code> subclass with loyalty pricing, and a <code>report_summary()</code> method. Each addition deepens your OOP instincts significantly.</p></div>
+            </div>
+        </section>
+
+        <section id="apps" aria-labelledby="h-apps">
+            <div class="page-col">
+                <div class="section-label">10 — Live Projects</div>
+                <h2 id="h-apps">Explore More OOP Projects</h2>
+                <p>Every app below is built with Python OOP at its core. Click to explore a live implementation.</p>
+
+                <div class="apps-grid">
+                    <a href="e-commerce.html" class="app-btn app-ecom"><div class="app-logo">🛒</div><div class="app-info"><div class="app-name">E-Commerce Hub</div><p class="app-desc">A full-stack abstract commerce engine. Product catalogue, cart, and checkout behind a unified ABC interface.</p><span class="app-tag">🏪 Commerce OOP</span></div></a>
+                    <a href="fruit.html" class="app-btn app-fruit"><div class="app-logo">🍎</div><div class="app-info"><div class="app-name">Fruit Hub</div><p class="app-desc">An inventory system where each fruit type is a concrete class extending an abstract Produce base.</p><span class="app-tag">🌿 Inventory OOP</span></div></a>
+                    <a href="wine.html" class="app-btn app-wine"><div class="app-logo">🍷</div><div class="app-info"><div class="app-name">Wine Shop</div><p class="app-desc">Wine selection and pricing abstracted behind a Beverage ABC — swap vintages without changing business logic.</p><span class="app-tag">🍾 Catalogue OOP</span></div></a>
+                    <a href="rice.html" class="app-btn app-rice"><div class="app-logo">🌾</div><div class="app-info"><div class="app-name">Rice Retail Store</div><p class="app-desc">Grain variety management with abstract stock controls and validated pricing through property decorators.</p><span class="app-tag">📦 Retail OOP</span></div></a>
+                    <a href="copra.html" class="app-btn app-copra"><div class="app-logo">🥥</div><div class="app-info"><div class="app-name">Copra &amp; Rubber</div><p class="app-desc">Commodity trading simulation with abstract market pricing and encapsulated transaction records.</p><span class="app-tag">⚙️ Commodity OOP</span></div></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="series" aria-labelledby="h-series">
+            <div class="page-col">
+                <div class="section-label">11 — Continue Learning</div>
+                <h2 id="h-series">Explore the Full OOP Series</h2>
+                <p>Abstraction is the second of four interconnected pillars. Each one builds on the last. Explore the complete journey.</p>
+
+                <div class="pillars-grid">
+                    <a class="pillar-card" href="encapsulation.html" data-p="enc"><div class="pico">🔒</div><div class="ptitle">Encapsulation</div><p class="pdesc">Bundle data with methods. Control access. Protect state. The guardian of object integrity.</p><span class="pbtn">Explore →</span></a>
+                    <a class="pillar-card" href="abstraction.html" data-p="abs"><div class="pico">🎭</div><div class="ptitle">Abstraction</div><p class="pdesc">Hide implementation complexity. Expose only what is necessary. Think in concepts, not mechanics.</p><span class="pbtn">Explore →</span></a>
+                    <a class="pillar-card" href="inheritance.html" data-p="inh"><div class="pico">🧬</div><div class="ptitle">Inheritance</div><p class="pdesc">Build on existing classes. Reuse code elegantly. Create natural type hierarchies.</p><span class="pbtn">Explore →</span></a>
+                    <a class="pillar-card" href="polymorphism.html" data-p="pol"><div class="pico">🌀</div><div class="ptitle">Polymorphism</div><p class="pdesc">One interface, many forms. Duck typing. Write code that adapts to any conforming object.</p><span class="pbtn">Explore →</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="share" aria-labelledby="h-share">
+            <div class="page-col">
+                <div class="section-label">12 — Share</div>
+                <h2 id="h-share">Spread the Knowledge</h2>
+
+                <div class="share-wrap" style="margin-top:1rem;">
+                    <h2>Found this useful? Share it.</h2>
+                    <p class="share-sub">Help fellow developers discover the power of Python OOP through this Filipino rice retail tutorial.</p>
+                    <div class="share-btns">
+                        <button class="sbtn s-fb" onclick="shareTo('facebook')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</button>
+                        <button class="sbtn s-li" onclick="shareTo('linkedin')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>LinkedIn</button>
+                        <button class="sbtn s-x" onclick="shareTo('twitter')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</button>
+                        <button class="sbtn s-wa" onclick="shareTo('whatsapp')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37C7.35 7.6 6.6 8.3 6.6 9.77s1.07 3.06 1.22 3.27c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34zm-5.47 7.45h-.01A9.93 9.93 0 017.17 20L3 21.15l1.17-4.13A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscribe" aria-labelledby="h-sub">
+            <div class="page-col">
+                <div class="section-label">13 — Stay Updated</div>
+                <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
+
+                <div class="sub-wrap">
+                    <h2>Get New Python Tutorials Delivered</h2>
+                    <p class="sub-desc">Join 8,400+ developers getting weekly Python OOP walkthroughs, code breakdowns, and real-world project tutorials — straight to your inbox. No spam, ever.</p>
+                    <div class="perks">
+                        <span class="perk">Weekly Python tutorials</span>
+                        <span class="perk">OOP project walkthroughs</span>
+                        <span class="perk">Free cheat sheets</span>
+                        <span class="perk">No spam, ever</span>
+                    </div>
+                    <div class="sub-form">
+                        <input class="cinput" type="email" id="subEmail" placeholder="your@email.com" autocomplete="email">
+                        <button class="btn-submit" onclick="handleSubscribe()">Subscribe →</button>
+                    </div>
+                    <p class="sub-note">🔒 Join 8,400+ developers. Your email is never shared or sold.</p>
+                    <div class="sub-msg" id="subMsg" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="follow" aria-labelledby="h-follow">
+            <div class="page-col">
+                <div class="section-label">14 — Connect</div>
+                <h2 id="h-follow">Follow Me</h2>
+                <p>Stay connected for more Python tutorials, coding tips, and Filipino developer content.</p>
+
+                <div class="follow-grid">
+                    <div class="follow-card fc-fb"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg></div><div class="follow-name">Facebook</div><div class="follow-handle">@Glenn Junsay Pansensoy</div><div class="follow-stat">2.4k followers</div><a href="#" class="follow-btn" id="fbBtn" onclick="toggleFollow(this,'fb')">+ Follow</a></div>
+                    <div class="follow-card fc-li"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg></div><div class="follow-name">LinkedIn</div><div class="follow-handle">Glenn Pansensoy</div><div class="follow-stat">5.1k connections</div><a href="#" class="follow-btn" id="liBtn" onclick="toggleFollow(this,'li')">+ Follow</a></div>
+                    <div class="follow-card fc-x"><div class="follow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div><div class="follow-name">X / Twitter</div><div class="follow-handle">@GlennPansensoy</div><div class="follow-stat">8.7k followers</div><a href="#" class="follow-btn" id="xBtn" onclick="toggleFollow(this,'x')">+ Follow</a></div>
+                    <div class="follow-card fc-yt"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></div><div class="follow-name">YouTube</div><div class="follow-handle">@GlennPansensoy</div><div class="follow-stat">3.2k subscribers</div><a href="#" class="follow-btn" id="ytBtn" onclick="toggleFollow(this,'yt')">Subscribe</a></div>
+                    <div class="follow-card fc-gh"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div><div class="follow-name">GitHub</div><div class="follow-handle">@PoeticBytes</div><div class="follow-stat">1.8k stars</div><a href="#" class="follow-btn" id="ghBtn" onclick="toggleFollow(this,'gh')">Star ★</a></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            var CAT = {
+                R1: { name: 'Sinandomeng Premium', price: 58, variety: 'Indica', origin: 'Nueva Ecija' },
+                R2: { name: 'Milagrosa Special', price: 62, variety: 'Aromatic', origin: 'Batangas' },
+                R3: { name: 'Dinorado Heirloom', price: 75, variety: 'Heirloom', origin: 'Mountain Province' },
+                R4: { name: 'NFA Standard Rice', price: 40, variety: 'Indica', origin: 'NFA Warehouse' },
+                R5: { name: 'Jasmine Thai Import', price: 85, variety: 'Long Grain', origin: 'Imported' },
+                R6: { name: 'Brown Rice Organic', price: 95, variety: 'Whole Grain', origin: 'Benguet' },
+                R7: { name: 'Glutinous Malagkit', price: 68, variety: 'Glutinous', origin: 'Pampanga' },
+                R8: { name: 'Super Angelica Premium', price: 70, variety: 'Indica', origin: 'Isabela' },
+            };
+
+            window.upPrev = function() {
+                var k = document.getElementById('psel').value;
+                var q = parseFloat(document.getElementById('qin').value);
+                if (k && q > 0) {
+                    document.getElementById('prevSum').textContent = q + 'kg × ' + CAT[k].name;
+                    document.getElementById('prevTot').textContent = '₱' + (CAT[k].price * q).toFixed(2);
+                } else {
+                    document.getElementById('prevSum').textContent = '—';
+                    document.getElementById('prevTot').textContent = '₱0.00';
+                }
+            };
+
+            window.placeOrder = function() {
+                var k = document.getElementById('psel').value;
+                var q = parseFloat(document.getElementById('qin').value);
+                var err = document.getElementById('errMsg');
+                if (!k || !(q > 0)) {
+                    err.style.display = 'block';
+                    setTimeout(function() { err.style.display = 'none'; }, 3000);
+                    return;
+                }
+                var p = CAT[k];
+                document.getElementById('rItem').textContent = p.name;
+                document.getElementById('rVar').textContent = p.variety + ' · ' + p.origin;
+                document.getElementById('rPx').textContent = '₱' + p.price.toFixed(2) + '/kg';
+                document.getElementById('rQty').textContent = q + ' kilo(s)';
+                document.getElementById('rTot').textContent = '₱' + (p.price * q).toFixed(2);
+                document.getElementById('orderSec').style.display = 'none';
+                document.getElementById('rcptSec').classList.add('show');
+            };
+
+            window.resetOrder = function() {
+                document.getElementById('psel').value = '';
+                document.getElementById('qin').value = '';
+                document.getElementById('prevSum').textContent = '—';
+                document.getElementById('prevTot').textContent = '₱0.00';
+                document.getElementById('orderSec').style.display = 'block';
+                document.getElementById('rcptSec').classList.remove('show');
+            };
+
+            var QUIZ = [
+                { q: "What is the time complexity of looking up a product by code in self.catalog['R3']?",
+                    opts: ["O(n) — it scans every item", "O(1) — Python dictionaries use hash tables",
+                        "O(log n) — binary search"
+                    ], ans: 1,
+                    fb: "Correct! Python dictionaries use hash tables, so key lookup is O(1) regardless of dictionary size." },
+                { q: "Why does add_to_cart() use while True instead of a for loop?",
+                    opts: ["for loops are slower than while loops", "while loops use less memory",
+                        "We don't know in advance how many items the customer will add"
+                    ], ans: 2,
+                    fb: "Correct! while True is the right construct for 'keep running until a stop condition is met' — ideal when iteration count is unknown." },
+                { q: "What does f'₱{price:>6.2f}' mean in the display method?",
+                    opts: ["Print price with 6 decimal places",
+                        "Right-align price in a 6-character field with exactly 2 decimal places",
+                        "Round price to 6 significant figures"
+                    ], ans: 1,
+                    fb: "Correct! :>6.2f means: right-align (>), field width of 6 characters, float with 2 decimal places (.2f)." },
+                { q: "What Python error does except ValueError catch in this program?",
+                    opts: ["When float() fails to convert a non-numeric string like 'banana'",
+                        "When a list index is out of range", "When a dictionary key doesn't exist"
+                    ], ans: 0,
+                    fb: "Correct! float('banana') raises ValueError. The try/except block catches it and shows a friendly error." },
+                { q: "Why is if __name__ == '__main__': used at the bottom of the file?",
+                    opts: ["It makes the code run faster", "It prevents syntax errors",
+                        "It ensures the code only runs when executed directly, not when imported as a module"
+                    ], ans: 2,
+                    fb: "Correct! This guard means import rice_retail won't auto-start the shop. The file can be used both as a runnable script and an importable module." },
+            ];
+
+            var answered = 0,
+                correct = 0;
+
+            function buildQuiz() {
+                var wrap = document.getElementById('quizWrap');
+                if (!wrap) return;
+                var html = '';
+                QUIZ.forEach(function(item, i) {
+                    html += '<div class="quiz-q" id="qq-' + i + '">';
+                    html += '<div class="quiz-prompt">Q' + (i + 1) + '. ' + item.q + '</div>';
+                    html += '<div class="quiz-opts">';
+                    item.opts.forEach(function(opt, j) {
+                        html += '<div class="quiz-opt" id="qo-' + i + '-' + j + '" onclick="answerQ(' + i +
+                            ',' + j + ')">';
+                        html += '<span style="font-family:JetBrains Mono,monospace;font-size:.65rem;opacity:.5;flex-shrink:0">' +
+                            'ABCD' [j] + '.</span> ';
+                        html += opt;
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                    html += '<div class="quiz-feedback" id="qf-' + i + '"></div>';
+                    html += '</div>';
+                });
+                wrap.innerHTML = html;
+            }
+
+            window.answerQ = function(qi, oi) {
+                var item = QUIZ[qi];
+                var qEl = document.getElementById('qq-' + qi);
+                if (qEl.classList.contains('correct') || qEl.classList.contains('wrong')) return;
+                var opts = qEl.querySelectorAll('.quiz-opt');
+                opts.forEach(function(o) { o.classList.add('disabled'); });
+                var chosen = document.getElementById('qo-' + qi + '-' + oi);
+                var fb = document.getElementById('qf-' + qi);
+                if (oi === item.ans) {
+                    chosen.classList.add('correct-ans');
+                    qEl.classList.add('correct');
+                    fb.textContent = '✓ ' + item.fb;
+                    fb.className = 'quiz-feedback ok';
+                    correct++;
+                } else {
+                    chosen.classList.add('wrong-ans');
+                    document.getElementById('qo-' + qi + '-' + item.ans).classList.add('correct-ans');
+                    qEl.classList.add('wrong');
+                    fb.textContent = '✗ The correct answer is ' + 'ABCD' [item.ans] + '. ' + item.fb;
+                    fb.className = 'quiz-feedback bad';
+                }
+                answered++;
+                if (answered === QUIZ.length) showScore();
+            };
+
+            function showScore() {
+                var scoreEl = document.getElementById('quizScore');
+                var numEl = document.getElementById('quizScoreNum');
+                var msgEl = document.getElementById('quizScoreMsg');
+                if (!scoreEl) return;
+                numEl.textContent = correct + '/' + QUIZ.length;
+                var msgs = ['Keep studying — revisit the sections above.', 'Good start — review the questions you missed.',
+                    'Solid understanding! A few gaps to close.', 'Great work — almost perfect!',
+                    'Perfect score! You have mastered Python OOP. 🎉'
+                ];
+                msgEl.textContent = msgs[Math.min(correct, msgs.length - 1)];
+                scoreEl.style.display = 'block';
+                scoreEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            window.resetQuiz = function() {
+                answered = 0;
+                correct = 0;
+                document.getElementById('quizScore').style.display = 'none';
+                buildQuiz();
+            };
+            buildQuiz();
+
+            var F_KEY = 'vb_follows_rice';
+            var follows = {};
+            try { follows = JSON.parse(localStorage.getItem(F_KEY) || '{}'); } catch (_) {}
+
+            var FOLLOW_CONFIG = {
+                fb: { btn: 'fbBtn', follow: '✓ Following', default: '+ Follow' },
+                li: { btn: 'liBtn', follow: '✓ Following', default: '+ Follow' },
+                x: { btn: 'xBtn', follow: '✓ Following', default: '+ Follow' },
+                yt: { btn: 'ytBtn', follow: '✓ Subscribed', default: 'Subscribe' },
+                gh: { btn: 'ghBtn', follow: '★ Starred', default: 'Star ★' },
+            };
+
+            window.toggleFollow = function(btn, platform) {
+                event.preventDefault();
+                var cfg = FOLLOW_CONFIG[platform];
+                if (follows[platform]) {
+                    delete follows[platform];
+                    btn.textContent = cfg.default;
+                    btn.classList.remove('following');
+                } else {
+                    follows[platform] = true;
+                    btn.textContent = cfg.follow;
+                    btn.classList.add('following');
+                }
+                localStorage.setItem(F_KEY, JSON.stringify(follows));
+            };
+
+            function restoreFollows() {
+                for (var platform in FOLLOW_CONFIG) {
+                    var cfg = FOLLOW_CONFIG[platform];
+                    var btn = document.getElementById(cfg.btn);
+                    if (!btn) continue;
+                    if (follows[platform]) {
+                        btn.textContent = cfg.follow;
+                        btn.classList.add('following');
+                    } else {
+                        btn.textContent = cfg.default;
+                        btn.classList.remove('following');
+                    }
+                }
+            }
+            restoreFollows();
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/rice.html');
+            var PAGE_TITLE = encodeURIComponent('Python OOP Rice Retail System — Full Tutorial');
+
+            window.shareTo = function(platform) {
+                var urls = {
+                    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL,
+                    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL,
+                    twitter: 'https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE,
+                    whatsapp: 'https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL,
+                };
+                if (urls[platform]) {
+                    window.open(urls[platform], '_blank', 'width=640,height=540,noopener,noreferrer');
+                }
+            };
+
+            window.handleSubscribe = function() {
+                var el = document.getElementById('subEmail');
+                var msg = document.getElementById('subMsg');
+                var email = el.value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    msg.textContent = '✗ Please enter a valid email address.';
+                    msg.style.color = 'var(--red)';
+                    setTimeout(function() { msg.textContent = ''; }, 4000);
+                    return;
+                }
+                var list = JSON.parse(localStorage.getItem('vb_subs_rice') || '[]');
+                if (list.find(function(s) { return s.email === email; })) {
+                    msg.textContent = '✓ You are already subscribed!';
+                    msg.style.color = 'var(--blue-lt)';
+                    setTimeout(function() { msg.textContent = ''; }, 4000);
+                    return;
+                }
+                list.push({ email: email, date: new Date().toISOString() });
+                localStorage.setItem('vb_subs_rice', JSON.stringify(list));
+                el.value = '';
+                msg.textContent = '✓ Welcome aboard! Subscribed successfully.';
+                msg.style.color = 'var(--green)';
+                setTimeout(function() { msg.textContent = ''; }, 6000);
+            };
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide();
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function hasFileOperations(code) {
+                var patterns = [
+                    /open\s*\(/,
+                    /Path\s*\(/,
+                    /with\s+open\s*\(/,
+                    /\.read\s*\(/,
+                    /\.write\s*\(/,
+                    /os\.path/,
+                    /shutil\./,
+                    /glob\s*\(/,
+                    /__file__/
+                ];
+                return patterns.some(function(p) { return p.test(code); });
+            }
+
+            function hasInputOperations(code) {
+                return /\binput\s*\(/.test(code);
+            }
+
+            function setupInteractiveStdin(pyodide) {
+                pyodide.setStdin({
+                    stdin: function() {
+                        var raw = window.__ricePromptCtx || '';
+
+                        var lines = raw.split('\n')
+                            .map(function(l) { return l.trim(); })
+                            .filter(function(l) { return l.length > 0; });
+                        var promptText = lines.slice(-2).join('\n');
+                        if (!promptText) {
+                            promptText = 'Python program is asking for input:';
+                        }
+
+                        var result = window.prompt('🌾 ' + promptText);
+                        if (result === null) {
+                            return null;
+                        }
+                        return result;
+                    },
+                    autoEOF: true
+                });
+            }
+
+            function indentCode(code, spaces) {
+                var pad = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return pad + line; }).join('\n');
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var usesInput = hasInputOperations(code);
+                    if (usesInput) {
+                        setupInteractiveStdin(pyodide);
+                    }
+
+                    if (hasFileOperations(code)) {
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent =
+                            '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+
+                    if (usesInput) {
+                        outputEl.className = outputEl.className.includes('file-warning') ? outputEl.className : 'output-panel file-warning';
+                        outputEl.textContent +=
+                            '💬 This code uses input(). A popup box will ask you for each value — answer it to continue running the program.\n\n';
+                    }
+
+                    window.__ricePromptCtx = '';
+
+                    var wrapperLines = [
+                        'import sys',
+                        'import js',
+                        'from io import StringIO',
+                        'class _CapturingStdout(StringIO):',
+                        '    def write(self, s):',
+                        '        super().write(s)',
+                        '        js.window.__ricePromptCtx = self.getvalue()[-300:]',
+                        '        return len(s)',
+                        '_captured_output = _CapturingStdout()',
+                        '_old_stdout = sys.stdout',
+                        'sys.stdout = _captured_output',
+                        'try:',
+                        indentCode(code, 4),
+                        'except EOFError:',
+                        '    print("\\n⚠️  Input was cancelled, so the program stopped early. Click Run again to restart.")',
+                        'finally:',
+                        '    sys.stdout = _old_stdout',
+                        '_captured_output.getvalue()'
+                    ];
+                    var wrappedCode = wrapperLines.join('\n');
+
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+
+                    if (outputEl.textContent.includes('⚠️') || outputEl.textContent.includes('💬')) {
+                        outputEl.textContent += result || '✓ Code executed successfully (no output).';
+                    } else {
+                        outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                        outputEl.style.color = '#4ade80';
+                    }
+                } catch (err) {
+                    if (outputEl.textContent.includes('⚠️') || outputEl.textContent.includes('💬')) {
+                        outputEl.textContent += '\n\nError:\n' + err.message;
+                    } else {
+                        outputEl.className = 'output-panel error';
+                        outputEl.textContent = 'Error:\n' + err.message;
+                        outputEl.style.color = '#f87171';
+                    }
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var original = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = original; }, 2000);
+                    }).catch(function() {
+                        fallbackCopyCode(btn, code);
+                    });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = original; }, 2000);
+            }
+
+            var fullCodeEl = document.getElementById('fullCodeBlock');
+            var fullCodeText = fullCodeEl ? fullCodeEl.textContent : '';
+
+            var copyFullBtn = document.getElementById('copyFullCode');
+            if (copyFullBtn) {
+                copyFullBtn.addEventListener('click', function() { copyCode(copyFullBtn, fullCodeText); });
+            }
+
+            var runFullBtn = document.getElementById('runFullCode');
+            var fullOutput = document.getElementById('fullCodeOutput');
+            if (runFullBtn) {
+                runFullBtn.addEventListener('click', function() { runCode(fullCodeText, fullOutput, runFullBtn); });
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
