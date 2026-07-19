@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python OOP Copra &amp; Rubber Trading System — Full Tutorial | Poetic Bytes</title>
+    <meta name="description" content="Complete Python OOP tutorial: build a Philippine Copra &amp; Rubber Trading System using abstract base classes, dual buy/sell pricing, dictionaries, loops, and f-strings. Includes live demo, cheat sheet, glossary, and quiz." />
+    <meta name="keywords" content="Python OOP, copra trading system, rubber trading, object-oriented programming, Python tutorial, abstraction, abstract base class, classes, Filipino developer, Philippines, Poetic Bytes" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/copra.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Python OOP Copra &amp; Rubber Trading System — Full Tutorial" />
+    <meta property="og:description" content="Learn Python OOP through a complete Philippine Copra &amp; Rubber Trading System. Abstract base classes, dual pricing, dictionaries, loops, and f-strings explained step by step." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/copra.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Python OOP Copra &amp; Rubber Trading System | Poetic Bytes" />
+    <meta name="twitter:description" content="Learn Python OOP through a Philippine Copra &amp; Rubber Trading System. Abstraction, classes, dictionaries, loops, and f-strings." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python OOP Copra & Rubber Trading System — Full Tutorial",
+            "description": "Complete Python OOP tutorial: build a Philippine Copra & Rubber Trading System using abstract base classes, dual buy/sell pricing, dictionaries, loops, and f-strings.",
+            "author": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
+            "datePublished": "2026-07-18",
+            "dateModified": "2026-07-18",
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/copra.html" },
+            "keywords": "Python OOP, copra trading, rubber trading, abstraction, abstract base class, Filipino developer",
+            "articleSection": "Python Programming",
+            "inLanguage": "en-US",
+            "learningResourceType": "Tutorial",
+            "educationalLevel": "Intermediate"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{overflow-x:hidden;scroll-behavior:smooth}
+        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden}
+        .page-col{width:100%;max-width:860px;margin:0 auto;padding:0 1.25rem}
+        section{padding:3rem 0;border-bottom:1px solid var(--border)}
+        section:last-child{border-bottom:none}
+        .progress-bar-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(31,64,96,.3);z-index:2000}
+        .progress-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-lt));width:0%;transition:width .2s}
+        .nav-bar{position:fixed;top:3px;left:0;right:0;background:rgba(11,18,28,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:1000}
+        .nav-inner{max-width:860px;margin:0 auto;padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.08em}
+        .brand-icon{width:2rem;height:2rem;border-radius:6px;background:linear-gradient(145deg,var(--blue),var(--blue-deep));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+        .nav-links{display:flex;gap:1.2rem;list-style:none}
+        .nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:color .2s;letter-spacing:.04em}
+        .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+        @media(max-width:680px){.nav-links{display:none}}
+        .menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;background:rgba(75,139,190,.1);border:1px solid var(--border);border-radius:6px;width:40px;height:40px;cursor:pointer;gap:4px}
+        .menu-toggle span{width:18px;height:2px;background:#fff;border-radius:2px;transition:.25s}
+        .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .menu-toggle.active span:nth-child(2){opacity:0}
+        .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        @media(max-width:680px){.menu-toggle{display:flex}}
+        .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1050;opacity:0;visibility:hidden;transition:.2s;backdrop-filter:blur(4px)}
+        .drawer-overlay.active{opacity:1;visibility:visible}
+        .mobile-drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--panel);border-left:1px solid var(--border);z-index:1100;display:flex;flex-direction:column;transition:right .3s;box-shadow:-5px 0 30px rgba(0,0,0,.5)}
+        .mobile-drawer.active{right:0}
+        .drawer-hd{padding:.8rem;border-bottom:1px solid var(--border);display:flex;justify-content:flex-end}
+        .drawer-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
+        .drawer-body{flex:1;overflow-y:auto;padding:.8rem}
+        .drawer-body li{list-style:none;margin-bottom:.5rem}
+        .drawer-body a,.drawer-body button{display:flex;align-items:center;gap:.6rem;width:100%;padding:.7rem .9rem;background:rgba(75,139,190,.12);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;font-family:'Syne',sans-serif}
+        .drawer-body a:active,.drawer-body button:active{background:rgba(75,139,190,.3)}
+        .drawer-body i{color:var(--gold);width:1.2rem}
+        h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.25;font-weight:700}
+        h1{font-size:1.6rem}h2{font-size:1.25rem;margin-bottom:.5rem}h3{font-size:.95rem}h4{font-size:.85rem}
+        p{font-size:.82rem;color:var(--muted);line-height:1.7}
+        code{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#a5d6ff}
+        .section-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+        .section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:var(--btn-h);padding:0 1.4rem;border-radius:var(--btn-r);font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .2s;border:none;text-decoration:none;white-space:nowrap}
+        .btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;box-shadow:0 4px 14px rgba(75,139,190,.35)}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(75,139,190,.45)}
+        .btn-primary:active{transform:scale(.97)}
+        @media(max-width:480px){.btn{width:100%}}
+        .hero{padding:5rem 0 3rem;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(75,139,190,.18) 0%,transparent 70%)}
+        .hero-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:40px;padding:.3rem .9rem;font-size:.68rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.2rem;background:var(--card)}
+        .live-dot{width:7px;height:7px;background:var(--blue-lt);border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+        .hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);margin-bottom:.8rem}
+        .hero p.lead{font-size:.88rem;color:var(--muted);max-width:560px;margin-bottom:1.6rem;line-height:1.75}
+        .card-grid{display:flex;flex-direction:column;gap:var(--gap)}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.25rem;display:flex;flex-direction:column;gap:.55rem;transition:border-color .2s,transform .2s,box-shadow .2s}
+        .card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(75,139,190,.16)}
+        .card h3,.card h4{font-size:.82rem;color:var(--text)}
+        .card p{font-size:.74rem;margin:0}
+        .table-wrap{overflow-x:auto;margin-top:1rem}
+        table{width:100%;border-collapse:collapse;font-size:.76rem;min-width:480px}
+        thead tr{background:var(--card);border-bottom:2px solid var(--blue)}
+        th{padding:.75rem .8rem;text-align:left}
+        th:first-child{color:var(--gold)}
+        th:nth-child(2){color:var(--blue)}
+        td{padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted)}
+        tbody tr:nth-child(even){background:rgba(75,139,190,.03)}
+        .code-snippet{background:var(--code-bg);border-radius:6px;border-left:3px solid var(--blue);padding:.9rem 1rem;overflow-x:auto;margin-bottom:.7rem;position:relative}
+        .code-snippet pre{font-family:'JetBrains Mono',monospace;font-size:.73rem;line-height:1.65;color:var(--text);margin:0;white-space:pre-wrap;word-break:break-word}
+        .code-snippet .kw{color:#ff7b72;font-weight:600}
+        .code-snippet .fn{color:#d2a8ff}
+        .code-snippet .st{color:#a5d6ff}
+        .code-snippet .cl{color:#FFD966;font-weight:600}
+        .code-snippet .cmt{color:#546e7a;font-style:italic}
+        .code-snippet .num{color:#f78c6c}
+        .insight{background:rgba(75,139,190,.08);border:1px solid rgba(75,139,190,.25);border-radius:6px;padding:.6rem .9rem;font-size:.75rem;color:var(--blue-lt)}
+        .callout{border-left:3px solid var(--blue);padding:.6rem 1rem;margin:1rem 0;background:rgba(75,139,190,.06);border-radius:4px}
+        .callout p{margin:0;font-size:.78rem}
+        .callout strong{color:var(--blue-lt)}
+        .callout-yellow{border-left:3px solid var(--gold);padding:.6rem 1rem;margin:1rem 0;background:rgba(255,212,59,.06);border-radius:4px}
+        .callout-yellow p{margin:0;font-size:.78rem}
+        .callout-yellow strong{color:var(--gold)}
+        .callout-green{border-left:3px solid var(--green);padding:.6rem 1rem;margin:1rem 0;background:rgba(16,185,129,.06);border-radius:4px}
+        .callout-green p{margin:0;font-size:.78rem}
+        .callout-green strong{color:var(--green)}
+        .curriculum-desc{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.8rem 2rem;margin:1.5rem 0 2rem;position:relative;overflow:hidden}
+        .curriculum-desc::before{content:"🥥";position:absolute;top:-10px;right:10px;font-size:4rem;opacity:.06;transform:rotate(8deg)}
+        .curriculum-desc h2{color:var(--gold);font-size:1.2rem;margin-bottom:.6rem}
+        .curriculum-desc p{font-size:.85rem;color:var(--text);line-height:1.85;margin-bottom:.6rem}
+        .curriculum-desc .highlight{color:var(--blue-lt);font-weight:600}
+        .curriculum-desc .gold{color:var(--gold);font-weight:600}
+        .curriculum-desc .desc-meta{display:flex;flex-wrap:wrap;gap:.8rem 1.5rem;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border)}
+        .curriculum-desc .desc-meta span{font-size:.7rem;color:var(--muted);display:inline-flex;align-items:center;gap:.4rem}
+        .curriculum-desc .desc-meta i{color:var(--gold);font-size:.7rem}
+        @media(max-width:480px){.curriculum-desc{padding:1.2rem 1rem}.curriculum-desc h2{font-size:1rem}.curriculum-desc p{font-size:.78rem}.curriculum-desc .desc-meta{flex-direction:column;gap:.4rem}}
+        .intro-list{list-style:none;padding:0;margin:.6rem 0}
+        .intro-list li{padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.8rem;color:var(--muted);line-height:1.6}
+        .intro-list li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
+        .code-container{position:relative;margin:1rem 0}
+        .code-header{background:#0a1a24;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);border-radius:var(--card-r) var(--card-r) 0 0;font-size:.72rem;flex-wrap:wrap;gap:.5rem}
+        .code-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+        .code-btn{padding:.35rem .8rem;font-size:.7rem;font-weight:600;border-radius:6px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem;font-family:'Syne',sans-serif;border:none}
+        .copy-btn{background:rgba(75,139,190,.15);color:var(--blue-lt);border:1px solid rgba(75,139,190,.3)}
+        .copy-btn:hover{background:rgba(75,139,190,.25)}
+        .run-btn{background:var(--green);color:#000;border:none;font-weight:700}
+        .run-btn:hover{background:#34d399;transform:translateY(-1px)}
+        .run-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+        .output-panel{background:#0a1a24;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--card-r) var(--card-r);padding:1rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#4ade80;max-height:300px;overflow-y:auto;display:none;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+        .output-panel.error{color:#f87171}
+        .output-panel.loading{color:var(--blue-lt)}
+        .output-panel.file-warning{color:var(--amber);border-left:3px solid var(--amber);padding-left:1rem}
+        .code-container .code-body{padding:1rem;border-radius:0}
+        pre.code-body-pre{font-family:'JetBrains Mono',monospace;font-size:.7rem;line-height:1.85;white-space:pre-wrap;word-break:break-word;color:#8eb8d8;margin:0}
+        @media(max-width:480px){.code-header{flex-direction:column;align-items:stretch;gap:.4rem}.code-actions{justify-content:flex-start}.code-btn{font-size:.65rem;padding:.25rem .6rem}.output-panel{font-size:.7rem;padding:.7rem}}
+        .order-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);overflow:hidden;margin:1.5rem 0}
+        .op-hdr{background:var(--panel);padding:.78rem 1.4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.65rem}
+        .op-dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+        .op-dot.green{background:var(--green)}
+        .op-dot.blue{background:var(--blue-lt)}
+        .op-lbl{font-family:'JetBrains Mono',monospace;font-size:.57rem;color:var(--blue-lt);letter-spacing:.1em;text-transform:uppercase}
+        .op-lbl.green{color:var(--green)}
+        .op-body{padding:1.4rem}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+        .ff{display:flex;flex-direction:column;gap:.4rem}
+        .ff label{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+        .ff select,.ff input{background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);padding:.58rem .9rem;color:var(--text);font-family:'Syne',sans-serif;font-size:.82rem;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
+        .ff select:focus,.ff input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(75,139,190,.15)}
+        .ff select option{background:var(--panel);color:var(--text)}
+        .ff input::placeholder{color:var(--muted)}
+        .tot-prev{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);padding:.88rem 1.1rem;margin-bottom:1rem}
+        .tp-lbl{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+        .tp-sum{font-size:.74rem;color:var(--muted);margin-top:.18rem}
+        .tp-amt{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--gold)}
+        .conf-btn{width:100%;padding:.72rem 1rem;border:none;border-radius:var(--btn-r);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+        .conf-btn.buy{background:linear-gradient(135deg,#0f6b45,var(--green));box-shadow:0 4px 20px rgba(16,185,129,.3)}
+        .conf-btn.buy:hover{box-shadow:0 6px 28px rgba(16,185,129,.45);transform:translateY(-1px)}
+        .conf-btn.sell{background:linear-gradient(135deg,var(--blue-deep),var(--blue));box-shadow:0 4px 20px rgba(75,139,190,.3)}
+        .conf-btn.sell:hover{box-shadow:0 6px 28px rgba(75,139,190,.45);transform:translateY(-1px)}
+        .receipt-panel{display:none}
+        .receipt-panel.show{display:block;animation:fadeUp .4s ease both}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        .receipt-inner{background:var(--card);border-radius:var(--card-r);padding:1.4rem;margin:1.5rem 0}
+        .receipt-inner.buy-rcpt{border:1px solid var(--green);border-top:3px solid var(--green)}
+        .receipt-inner.sell-rcpt{border:1px solid var(--blue);border-top:3px solid var(--blue)}
+        .receipt-inner h3{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:1rem}
+        .rrow{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.78rem}
+        .rrow:last-of-type{border-bottom:none}
+        .rk{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase}
+        .rv{color:var(--text)}
+        .rtot{display:flex;justify-content:space-between;align-items:baseline;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+        .rt-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase}
+        .rt-lbl.green{color:var(--green)}
+        .rt-lbl.blue{color:var(--blue-lt)}
+        .rt-amt{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}
+        .rt-amt.green{color:var(--green)}
+        .rt-amt.blue{color:var(--blue-lt)}
+        .reset-btn{display:block;width:100%;padding:.62rem;margin-top:.8rem;background:none;border:1px solid var(--border);border-radius:var(--btn-r);font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s}
+        .reset-btn:hover{border-color:var(--blue-lt);color:var(--blue-lt);background:rgba(75,139,190,.08)}
+        .err-msg{display:none;color:var(--red);font-family:'JetBrains Mono',monospace;font-size:.58rem;text-align:center;margin-bottom:.8rem}
+        .trade-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+        .trade-tab{flex:1;min-width:180px;padding:.62rem 1rem;border-radius:var(--btn-r);border:1px solid var(--border);background:var(--card);font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s;font-weight:600}
+        .trade-tab.active-buy{background:rgba(16,185,129,.1);border-color:var(--green);color:var(--green)}
+        .trade-tab.active-sell{background:rgba(75,139,190,.1);border-color:var(--blue-lt);color:var(--blue-lt)}
+        .trade-pane{display:none}
+        .trade-pane.active{display:block;animation:fadeUp .3s ease both}
+        .price-board{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.5rem 0}
+        @media(min-width:640px){.price-board{grid-template-columns:1fr 1fr}}
+        .pb-card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;transition:border-color .2s}
+        .pb-card:hover{border-color:var(--blue)}
+        .pb-cat{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .pb-cat.copra{color:var(--gold)}
+        .pb-cat.rubber{color:var(--green)}
+        .pb-row{display:flex;justify-content:space-between;align-items:center;padding:.32rem 0;border-bottom:1px solid rgba(75,139,190,.06)}
+        .pb-row:last-child{border-bottom:none}
+        .pb-name{font-size:.76rem;color:var(--muted)}
+        .pb-prices{display:flex;gap:1.1rem;align-items:center}
+        .pb-buy{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--green);font-weight:600}
+        .pb-sell{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blue-lt);font-weight:600}
+        .cheat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1rem;margin-top:1.4rem}
+        .cheat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;transition:border-color .2s}
+        .cheat-card:hover{border-color:var(--blue)}
+        .cheat-card h3{font-size:.88rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;color:var(--text)}
+        .cheat-table{width:100%;border-collapse:collapse;font-size:.72rem}
+        .cheat-table th{background:var(--panel);color:var(--muted);padding:.4rem .65rem;text-align:left;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.05em;border-bottom:1px solid var(--border)}
+        .cheat-table td{padding:.4rem .65rem;color:var(--muted);border-bottom:1px solid rgba(75,139,190,.06);vertical-align:top}
+        .cheat-table td:first-child{font-family:'JetBrains Mono',monospace;color:var(--blue-lt);white-space:nowrap}
+        .cheat-table tr:last-child td{border-bottom:none}
+        .glossary{display:flex;flex-direction:column;gap:.6rem;margin:1.5rem 0}
+        .gi{display:flex;gap:1.2rem;padding:.85rem 1rem;border-radius:var(--btn-r);border:1px solid var(--border);background:var(--card);transition:border-color .2s}
+        .gi:hover{border-color:var(--blue)}
+        .gt{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blue-lt);font-weight:500;min-width:190px;flex-shrink:0}
+        .gd{font-size:.78rem;color:var(--muted);line-height:1.72}
+        .quiz-wrap{display:flex;flex-direction:column;gap:1.2rem;margin-top:1rem}
+        .quiz-q{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;transition:border-color .3s}
+        .quiz-q.correct{border-color:var(--green)!important}
+        .quiz-q.wrong{border-color:var(--red)!important}
+        .quiz-prompt{font-size:.82rem;color:var(--text);font-weight:600;margin-bottom:.8rem;line-height:1.6}
+        .quiz-opts{display:flex;flex-direction:column;gap:.4rem}
+        .quiz-opt{display:flex;align-items:center;gap:.6rem;padding:.5rem .8rem;border-radius:7px;background:var(--panel);border:1px solid var(--border);cursor:pointer;font-size:.76rem;color:var(--muted);transition:all .2s;user-select:none}
+        .quiz-opt:hover:not(.disabled){background:rgba(75,139,190,.08);border-color:var(--blue);color:var(--text)}
+        .quiz-opt.correct-ans{background:rgba(16,185,129,.12);border-color:var(--green);color:var(--green)}
+        .quiz-opt.wrong-ans{background:rgba(239,68,68,.1);border-color:var(--red);color:var(--red)}
+        .quiz-opt.disabled{cursor:default}
+        .quiz-feedback{font-family:'JetBrains Mono',monospace;font-size:.65rem;margin-top:.7rem;min-height:.9rem;line-height:1.6}
+        .quiz-feedback.ok{color:var(--green)}
+        .quiz-feedback.bad{color:var(--red)}
+        .quiz-score{text-align:center;padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);margin-top:1rem;display:none}
+        .quiz-score .score-num{font-family:'Syne',sans-serif;font-size:2.2rem;color:var(--blue-lt);display:block;line-height:1.1}
+        .quiz-score p{font-size:.78rem;color:var(--muted);margin:.5rem 0 0}
+        .quiz-reset{margin-top:.8rem;padding:.55rem 1.5rem;border-radius:100px;background:rgba(75,139,190,.14);color:var(--blue-lt);border:1px solid rgba(75,139,190,.28);cursor:pointer;font-size:.74rem;font-family:'Syne',sans-serif;font-weight:600;transition:all .2s}
+        .quiz-reset:hover{background:rgba(75,139,190,.25)}
+        .timeline{display:flex;flex-direction:column;margin:1.5rem 0}
+        .tl-item{display:flex;gap:1.2rem;padding-bottom:1.4rem;position:relative}
+        .tl-item::before{content:'';position:absolute;left:13px;top:28px;bottom:0;width:1px;background:var(--border)}
+        .tl-item:last-child::before{display:none}
+        .tl-dot{width:27px;height:27px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue-deep),var(--blue));border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.57rem;color:#fff;font-weight:700}
+        .tl-body h4{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+        .tl-body p{font-size:.78rem;color:var(--muted);line-height:1.72}
+        .pillars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:.9rem;margin-top:1.5rem}
+        .pillar-card{border-bottom:1px solid var(--border);padding:.9rem 0;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:all .25s;position:relative}
+        .pillar-card:hover{opacity:.85}
+        .pico{font-size:1.6rem;margin-bottom:.5rem}
+        .ptitle{font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--text)}
+        .pdesc{font-size:.72rem;color:var(--muted);margin:0 0 1.2rem;line-height:1.65}
+        .pbtn{margin-top:auto;display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.68rem;padding:.42rem .9rem;border-radius:100px;border:none;cursor:pointer;transition:all .25s;text-decoration:none;background:rgba(75,139,190,.14);color:var(--blue-lt)}
+        .pbtn:hover{filter:brightness(1.25);transform:translateX(3px)}
+        .pbtn::after{content:'→'}
+        .share-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:2.8rem 2.2rem;text-align:center;position:relative;overflow:hidden}
+        .share-wrap h2{font-size:1.2rem;margin-bottom:.3rem}
+        .share-sub{color:var(--muted);font-size:.8rem;max-width:420px;margin:.4rem auto 1.6rem;line-height:1.7}
+        .share-btns{display:flex;flex-direction:column;align-items:stretch;gap:.65rem;margin-top:.4rem;max-width:320px;margin-left:auto;margin-right:auto}
+        .sbtn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem 1.3rem;border-radius:100px;border:1px solid var(--border);background:var(--panel);color:var(--text);cursor:pointer;font-weight:600;font-size:.72rem;transition:all .25s;text-decoration:none}
+        .sbtn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+        .sbtn svg{width:15px;height:15px;flex-shrink:0}
+        .sbtn.s-fb:hover{background:rgba(24,119,242,.14);border-color:rgba(24,119,242,.38);color:#5597ee}
+        .sbtn.s-li:hover{background:rgba(10,102,194,.14);border-color:rgba(10,102,194,.38);color:#5b9bd5}
+        .sbtn.s-x:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+        .sbtn.s-wa:hover{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.35);color:#25d366}
+        .sub-wrap{background:linear-gradient(135deg,var(--card) 0%,var(--panel) 100%);border:1px solid var(--border);border-radius:var(--card-r);padding:3.2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+        .sub-wrap h2{font-size:1.2rem;margin-bottom:.35rem}
+        .sub-desc{color:var(--muted);font-size:.8rem;max-width:440px;margin:.3rem auto 0}
+        .perks{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin:1rem 0 1.4rem}
+        .perk{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--muted)}
+        .perk::before{content:'✓';color:var(--blue-lt);font-weight:700}
+        .sub-form{display:flex;gap:.55rem;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+        .sub-form .cinput{flex:1;min-width:min(180px,100%)}
+        .cinput{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.6rem .85rem;color:var(--text);font-family:'Syne',sans-serif;font-size:.82rem;width:100%;outline:none;transition:border-color .2s,box-shadow .2s}
+        .cinput:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(75,139,190,.11)}
+        .btn-submit{background:linear-gradient(135deg,var(--blue-deep),var(--blue));color:#fff;border:none;border-radius:100px;padding:.65rem 1.75rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.76rem;cursor:pointer;transition:all .25s}
+        .btn-submit:hover{filter:brightness(1.12);transform:translateY(-1px);box-shadow:0 8px 24px rgba(75,139,190,.3)}
+        .sub-note{font-size:.62rem;color:var(--muted);margin-top:.7rem}
+        .sub-msg{font-size:.7rem;color:var(--blue-lt);font-family:'JetBrains Mono',monospace;min-height:1rem;transition:opacity .4s;margin-top:.5rem}
+        .follow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:1rem;margin-top:1.6rem}
+        .follow-card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.6rem 1.2rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.65rem;transition:all .3s cubic-bezier(.23,1,.32,1);position:relative;overflow:hidden}
+        .follow-card:hover{transform:translateY(-5px)}
+        .follow-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;transition:transform .3s cubic-bezier(.23,1,.32,1);position:relative;z-index:1}
+        .follow-card:hover .follow-icon{transform:scale(1.12) rotate(-5deg)}
+        .fc-fb .follow-icon{background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.25)}
+        .fc-li .follow-icon{background:rgba(10,102,194,.15);border:1px solid rgba(10,102,194,.25)}
+        .fc-x .follow-icon{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15)}
+        .fc-yt .follow-icon{background:rgba(255,0,0,.12);border:1px solid rgba(255,0,0,.25)}
+        .fc-gh .follow-icon{background:rgba(150,150,150,.12);border:1px solid rgba(150,150,150,.25)}
+        .follow-name{font-weight:700;font-size:.88rem;color:var(--text);position:relative;z-index:1}
+        .follow-handle{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);margin-top:-.3rem;position:relative;z-index:1}
+        .follow-stat{font-size:.7rem;color:var(--muted);position:relative;z-index:1}
+        .follow-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1.2rem;border-radius:100px;font-weight:600;font-size:.72rem;cursor:pointer;border:none;transition:all .25s;position:relative;z-index:1;text-decoration:none;margin-top:.2rem}
+        .follow-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+        .follow-btn.following{background:var(--panel)!important;color:var(--muted)!important;border:1px solid var(--border)!important}
+        .fc-fb .follow-btn{background:rgba(24,119,242,.2);color:#5597ee;border:1px solid rgba(24,119,242,.3)}
+        .fc-li .follow-btn{background:rgba(10,102,194,.2);color:#5b9bd5;border:1px solid rgba(10,102,194,.3)}
+        .fc-x .follow-btn{background:rgba(255,255,255,.08);color:var(--text);border:1px solid rgba(255,255,255,.15)}
+        .fc-yt .follow-btn{background:rgba(255,0,0,.15);color:#ff5555;border:1px solid rgba(255,0,0,.25)}
+        .fc-gh .follow-btn{background:rgba(150,150,150,.15);color:var(--muted);border:1px solid rgba(150,150,150,.25)}
+        .apps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:1rem;margin-top:1.8rem}
+        .app-btn{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.75rem .5rem;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:opacity .2s;cursor:pointer}
+        .app-btn:hover{opacity:.8}
+        .app-logo{width:60px;height:60px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;transition:transform .3s cubic-bezier(.23,1,.32,1);position:relative;z-index:1}
+        .app-btn:hover .app-logo{transform:scale(1.1) rotate(-4deg)}
+        .app-copra .app-logo{background:rgba(255,212,59,.12);border:1px solid rgba(255,212,59,.3)}
+        .app-info{text-align:center;position:relative;z-index:1}
+        .app-name{font-weight:700;font-size:.88rem;color:var(--text);margin-bottom:.2rem}
+        .app-desc{font-size:.68rem;color:var(--muted);line-height:1.5;margin:0}
+        .app-tag{display:inline-flex;align-items:center;gap:.3rem;font-family:'JetBrains Mono',monospace;font-size:.56rem;padding:.18rem .55rem;border-radius:100px;margin-top:.5rem;position:relative;z-index:1;background:rgba(255,212,59,.1);color:var(--gold);border:1px solid rgba(255,212,59,.25)}
+        .page-footer{padding:3rem 0 1.5rem;background:#1a2535;border-top:1px solid var(--border)}
+        .footer-grid{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:1.5rem}
+        .footer-col h5{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem}
+        .footer-col ul{list-style:none}
+        .footer-col li{margin-bottom:.4rem}
+        .footer-col a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.74rem;transition:color .2s}
+        .footer-col a:hover{color:#fff}
+        .copyright{border-top:1px solid var(--border);padding-top:1.2rem;text-align:center;font-size:.72rem;color:var(--muted)}
+        .copyright a{color:rgba(255,255,255,.5);text-decoration:none}
+        ::-webkit-scrollbar{width:5px;height:5px}
+        ::-webkit-scrollbar-track{background:var(--border)}
+        ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+        @media(max-width:480px){.page-col{padding:0 .8rem}section{padding:2rem 0}.hero{padding:3.5rem 0 2rem}.hero h1{font-size:1.3rem}.form-row{grid-template-columns:1fr}.gi{flex-direction:column;gap:.4rem}.gt{min-width:auto}.share-wrap{padding:1.8rem 1.2rem}.share-btns{max-width:100%}.sub-wrap{padding:2rem 1.2rem}}
+        @media(max-width:768px){.cheat-grid{grid-template-columns:1fr}.apps-grid{grid-template-columns:1fr 1fr}.follow-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:480px){.apps-grid{grid-template-columns:1fr}.follow-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home">
+                <div class="brand-icon">🥥</div>POETIC BYTES
+            </a>
+            <ul class="nav-links">
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#source-code">Source</a></li>
+                <li><a href="#explanation">Explanation</a></li>
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#prices">Prices</a></li>
+                <li><a href="#trade-demo">Live Demo</a></li>
+                <li><a href="#cheat-sheet">Cheat Sheet</a></li>
+                <li><a href="#glossary">Glossary</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#apps">Projects</a></li>
+                <li><a href="#series">OOP Series</a></li>
+                <li><a href="abstraction.html">← Abstraction Hub</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+                <li><button data-href="#source-code"><i class="fas fa-code"></i>Source Code</button></li>
+                <li><button data-href="#explanation"><i class="fas fa-search"></i>Explanation</button></li>
+                <li><button data-href="#concepts"><i class="fas fa-lightbulb"></i>Concepts</button></li>
+                <li><button data-href="#prices"><i class="fas fa-chart-bar"></i>Price Board</button></li>
+                <li><button data-href="#trade-demo"><i class="fas fa-exchange-alt"></i>Live Demo</button></li>
+                <li><button data-href="#cheat-sheet"><i class="fas fa-list-ul"></i>Cheat Sheet</button></li>
+                <li><button data-href="#glossary"><i class="fas fa-book"></i>Glossary</button></li>
+                <li><button data-href="#quiz"><i class="fas fa-brain"></i>Quiz</button></li>
+                <li><button data-href="#roadmap"><i class="fas fa-map"></i>Roadmap</button></li>
+                <li><button data-href="#apps"><i class="fas fa-project-diagram"></i>Projects</button></li>
+                <li><button data-href="#series"><i class="fas fa-layer-group"></i>OOP Series</button></li>
+                <li><button data-href="#share"><i class="fas fa-share-alt"></i>Share</button></li>
+                <li><button data-href="#subscribe"><i class="fas fa-envelope"></i>Subscribe</button></li>
+                <li><a href="abstraction.html"><i class="fas fa-arrow-left"></i>Abstraction Hub</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python OOP Copra and Rubber Trading System">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python OOP · Philippine Copra &amp; Rubber Trading</div>
+                <h1 style="font-size:clamp(1.8rem,4.5vw,3.2rem);">
+                    Learning Python Through<br>
+                    <span style="color:var(--blue);">Copra &amp; Rubber</span> —<br>
+                    A <span style="color:var(--gold);">Complete</span> Walkthrough
+                </h1>
+                <p class="lead">
+                    A step-by-step journey through Python OOP grounded in a real Philippine copra and rubber trading post. Learn true abstraction with <code>abc.ABC</code>, dual buy/sell pricing, inheritance, dictionaries, and f-strings all in one cohesive program.
+                </p>
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;">
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📅 July 19, 2026</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 22 min read</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🎓 Intermediate</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🐍 Python 3.11+</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🇵🇭 Philippines</span>
+                </div>
+                <div style="margin-top:1.5rem;">
+                    <a href="abstraction.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Abstraction Hub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="h-intro">
+            <div class="page-col">
+                <div class="section-label">01 — The Context</div>
+                <h2 id="h-intro">Why Copra &amp; Rubber, Why Python?</h2>
+
+                <div class="curriculum-desc">
+                    <h2>🥥 Building a Philippine Copra &amp; Rubber Trading Post in Python</h2>
+                    <p>
+                        Copra and rubber are generational livelihoods across Quezon, Davao, Cotabato, and Basilan. A trading post — locally a <span class="gold">bagsakan</span> — buys raw copra and rubber from farmers, then sells it onward to processors and exporters at a higher price. That buy-sell spread is the business.
+                    </p>
+                    <p>
+                        This tutorial is built around one complete Python program, but the real subject is <span class="highlight">formal abstraction</span> — using Python's built-in <code>abc</code> module to define an interface that the language itself enforces, not just a convention developers agree to follow.
+                    </p>
+                    <p>
+                        Every code example here is <span class="highlight">fully interactive</span> — copy or <strong>run</strong> each snippet right in your browser using the <strong>Pyodide</strong> Python runtime. No setup required.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Complete source code</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Step-by-step explanation</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Live buy/sell demo</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Cheat sheet &amp; glossary</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Knowledge quiz</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:0.5rem;">
+                    <div class="oop-block">
+                        <h3>From Informal to Formal Abstraction</h3>
+                        <p>The rice.html tutorial hid complexity inside a method — informal abstraction. Here, we go further: <code>TradableProduct(ABC)</code> defines a contract with <code>@abstractmethod</code> that every subclass <em>must</em> fulfill. Forget to implement <code>buy_price</code> and Python refuses to create the object — a <code>TypeError</code>, not a silent bug found later.</p>
+                        <div class="callout"><p><strong>Definition:</strong> Formal abstraction means defining an interface that the language enforces at runtime — not just naming a function and hoping callers respect the intent behind it.</p></div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Three-Class Architecture</h3>
+                        <p>The trading post uses an abstract base plus two concrete product types — a minimal hierarchy that shows inheritance and formal contracts working together.</p>
+                        <ul class="intro-list">
+                            <li><strong><code>TradableProduct</code></strong> — the abstract base. Cannot be instantiated. Requires <code>buy_price</code> and <code>sell_price</code>.</li>
+                            <li><strong><code>CopraProduct</code></strong> / <strong><code>RubberProduct</code></strong> — concrete subclasses with commodity-specific data.</li>
+                            <li><strong><code>CopraRubberTradingPost</code></strong> — orchestrates the buy/sell workflow and receipts.</li>
+                        </ul>
+                        <div class="callout-green"><p><strong>Why an abstract base?</strong> It guarantees every product — present or future — exposes both prices, letting the receipt engine trust the interface without knowing the concrete type.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="source-code" aria-labelledby="h-source">
+            <div class="page-col">
+                <div class="section-label">02 — Full Source Code</div>
+                <h2 id="h-source">The Complete <code>copra_rubber_trading.py</code></h2>
+                <p style="margin-bottom:1rem;">This is the complete Python program. Copy it, run it, modify it — every part is explained below.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span style="color:var(--muted);">python</span>
+                        <div class="code-actions">
+                            <button class="code-btn copy-btn" id="copyFullCode"><i class="fas fa-copy"></i> Copy</button>
+                            <button class="code-btn run-btn" id="runFullCode"><i class="fas fa-play"></i> Run</button>
+                        </div>
+                    </div>
+                    <div class="code-body" id="fullCodeBlock">
+<pre class="code-body-pre"><span class="kw">from</span> abc <span class="kw">import</span> <span class="cl">ABC</span>, abstractmethod
+<span class="kw">from</span> datetime <span class="kw">import</span> <span class="fn">datetime</span>
+
+
+<span class="kw">class</span> <span class="cl">TradableProduct</span>(<span class="cl">ABC</span>):
+    <span class="cmt">"""Abstract base -- enforces buy_price, sell_price, and display()."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, code, name, unit, origin, grade):
+        <span class="kw">self</span>.code   = code
+        <span class="kw">self</span>.name   = name
+        <span class="kw">self</span>.unit   = unit
+        <span class="kw">self</span>.origin = origin
+        <span class="kw">self</span>.grade  = grade
+
+    <span class="kw">@property</span>
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">buy_price</span>(<span class="kw">self</span>): ...
+
+    <span class="kw">@property</span>
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">sell_price</span>(<span class="kw">self</span>): ...
+
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>): ...
+
+    <span class="kw">def</span> <span class="fn">margin</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="kw">self</span>.sell_price - <span class="kw">self</span>.buy_price
+
+
+<span class="kw">class</span> <span class="cl">CopraProduct</span>(<span class="cl">TradableProduct</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, code, name, origin, grade, buy, sell):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(code, name, <span class="st">"kg"</span>, origin, grade)
+        <span class="kw">self</span>._buy, <span class="kw">self</span>._sell = buy, sell
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">buy_price</span>(<span class="kw">self</span>):  <span class="kw">return</span> <span class="kw">self</span>._buy
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">sell_price</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._sell
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>):
+        <span class="fn">print</span>(<span class="st">f"  [{self.code}] {self.name:&lt;28} | Grade: {self.grade:&lt;8} | "</span>
+              <span class="st">f"Buy: ₱{self._buy:&gt;7.2f}/kg  Sell: ₱{self._sell:&gt;7.2f}/kg"</span>)
+
+
+<span class="kw">class</span> <span class="cl">RubberProduct</span>(<span class="cl">TradableProduct</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, code, name, origin, grade, buy, sell, rubber_type):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(code, name, <span class="st">"kg"</span>, origin, grade)
+        <span class="kw">self</span>._buy, <span class="kw">self</span>._sell = buy, sell
+        <span class="kw">self</span>.rubber_type = rubber_type
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">buy_price</span>(<span class="kw">self</span>):  <span class="kw">return</span> <span class="kw">self</span>._buy
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">sell_price</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._sell
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>):
+        <span class="fn">print</span>(<span class="st">f"  [{self.code}] {self.name:&lt;28} | Type: {self.rubber_type:&lt;10} | "</span>
+              <span class="st">f"Buy: ₱{self._buy:&gt;7.2f}/kg  Sell: ₱{self._sell:&gt;7.2f}/kg"</span>)
+
+
+<span class="kw">class</span> <span class="cl">CopraRubberTradingPost</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.catalog = {
+            <span class="st">"C1"</span>: <span class="cl">CopraProduct</span>(<span class="st">"C1"</span>, <span class="st">"Sun-Dried Copra"</span>,  <span class="st">"Quezon"</span>,    <span class="st">"Grade A"</span>, <span class="num">28.00</span>, <span class="num">32.00</span>),
+            <span class="st">"C2"</span>: <span class="cl">CopraProduct</span>(<span class="st">"C2"</span>, <span class="st">"Kiln-Dried Copra"</span>, <span class="st">"Davao"</span>,     <span class="st">"Grade A"</span>, <span class="num">30.00</span>, <span class="num">35.00</span>),
+            <span class="st">"C3"</span>: <span class="cl">CopraProduct</span>(<span class="st">"C3"</span>, <span class="st">"Ball Copra"</span>,       <span class="st">"Laguna"</span>,    <span class="st">"Grade B"</span>, <span class="num">24.00</span>, <span class="num">28.00</span>),
+            <span class="st">"R1"</span>: <span class="cl">RubberProduct</span>(<span class="st">"R1"</span>, <span class="st">"Cup Lump Standard"</span>, <span class="st">"Cotabato"</span>, <span class="st">"Grade 1"</span>, <span class="num">52.00</span>, <span class="num">58.00</span>, <span class="st">"Cup Lump"</span>),
+            <span class="st">"R2"</span>: <span class="cl">RubberProduct</span>(<span class="st">"R2"</span>, <span class="st">"RSS-1 Smoked Sheet"</span>, <span class="st">"Zamboanga"</span>, <span class="st">"RSS-1"</span>, <span class="num">68.00</span>, <span class="num">75.00</span>, <span class="st">"RSS"</span>),
+        }
+        <span class="kw">self</span>.transaction_log = []
+
+    <span class="kw">def</span> <span class="fn">show_catalog</span>(<span class="kw">self</span>):
+        <span class="fn">print</span>(<span class="st">"\n  📦  CURRENT PRICE LIST:"</span>)
+        <span class="kw">for</span> code, p <span class="kw">in</span> <span class="kw">self</span>.catalog.<span class="fn">items</span>():
+            p.<span class="fn">display</span>()
+
+    <span class="kw">def</span> <span class="fn">_encode_items</span>(<span class="kw">self</span>, mode):
+        <span class="cmt"># mode = 'buy' (we pay a seller) or 'sell' (we charge a customer)</span>
+        items = []
+        <span class="kw">while</span> <span class="kw">True</span>:
+            code = <span class="fn">input</span>(<span class="st">"Enter code (DONE to finish): "</span>).<span class="fn">strip</span>().<span class="fn">upper</span>()
+            <span class="kw">if</span> code == <span class="st">"DONE"</span>: <span class="kw">break</span>
+            <span class="kw">if</span> code <span class="kw">not in</span> <span class="kw">self</span>.catalog:
+                <span class="fn">print</span>(<span class="st">"❌ Invalid code."</span>); <span class="kw">continue</span>
+            <span class="kw">try</span>:
+                qty = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Quantity in kg for {self.catalog[code].name}? "</span>))
+                price = <span class="kw">self</span>.catalog[code].buy_price <span class="kw">if</span> mode == <span class="st">"buy"</span> <span class="kw">else</span> <span class="kw">self</span>.catalog[code].sell_price
+                items.<span class="fn">append</span>((code, qty, price, price * qty))
+                <span class="fn">print</span>(<span class="st">f"✅ {qty}kg × ₱{price:.2f} = ₱{price*qty:.2f}"</span>)
+            <span class="kw">except</span> <span class="cl">ValueError</span>:
+                <span class="fn">print</span>(<span class="st">"❌ Invalid quantity."</span>)
+        <span class="kw">return</span> items
+
+    <span class="kw">def</span> <span class="fn">print_transaction</span>(<span class="kw">self</span>, party, mode, items):
+        <span class="kw">if not</span> items: <span class="fn">print</span>(<span class="st">"🛒 No items encoded."</span>); <span class="kw">return</span>
+        total = <span class="fn">sum</span>(s <span class="kw">for</span> _, _, _, s <span class="kw">in</span> items)
+        label = <span class="st">"BUYING RECEIPT"</span> <span class="kw">if</span> mode == <span class="st">"buy"</span> <span class="kw">else</span> <span class="st">"SELLING RECEIPT"</span>
+        <span class="fn">print</span>(<span class="st">f"\n{label} — {party} — {datetime.now():%b %d, %Y}"</span>)
+        <span class="kw">for</span> code, qty, price, sub <span class="kw">in</span> items:
+            p = <span class="kw">self</span>.catalog[code]
+            <span class="fn">print</span>(<span class="st">f"  {p.name:&lt;28} {qty:&gt;6.1f}kg  ₱{sub:&gt;9.2f}"</span>)
+        <span class="fn">print</span>(<span class="st">f"  {'TOTAL':&lt;28} {'':&gt;6}    ₱{total:&gt;9.2f}"</span>)
+        <span class="kw">self</span>.transaction_log.<span class="fn">append</span>({<span class="st">"party"</span>: party, <span class="st">"mode"</span>: mode, <span class="st">"total"</span>: total})
+
+    <span class="kw">def</span> <span class="fn">run</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.<span class="fn">show_catalog</span>()
+        choice = <span class="fn">input</span>(<span class="st">"\n[1] BUY from seller  [2] SELL to customer: "</span>).<span class="fn">strip</span>()
+        mode   = <span class="st">"buy"</span> <span class="kw">if</span> choice == <span class="st">"1"</span> <span class="kw">else</span> <span class="st">"sell"</span>
+        party  = <span class="fn">input</span>(<span class="st">"Name: "</span>).<span class="fn">strip</span>().<span class="fn">title</span>()
+        items  = <span class="kw">self</span>.<span class="fn">_encode_items</span>(mode)
+        <span class="kw">self</span>.<span class="fn">print_transaction</span>(party, mode, items)
+
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    post = <span class="cl">CopraRubberTradingPost</span>()
+    post.<span class="fn">run</span>()</pre>
+                    </div>
+                    <div class="output-panel" id="fullCodeOutput"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="explanation" aria-labelledby="h-explain">
+            <div class="page-col">
+                <div class="section-label">03 — Step by Step</div>
+                <h2 id="h-explain">Code <em>Explanation</em></h2>
+
+                <div style="margin-top:1rem;">
+                    <div class="oop-block">
+                        <h3>Step 1: Abstract Base Class</h3>
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">TradableProduct</span>(<span class="cl">ABC</span>):
+    <span class="kw">@property</span>
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">buy_price</span>(<span class="kw">self</span>): ...
+
+    <span class="kw">@property</span>
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">sell_price</span>(<span class="kw">self</span>): ...</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why <code>ABC</code>?</strong> Inheriting from <code>ABC</code> makes <code>TradableProduct</code> uninstantiable on its own. <code>TradableProduct()</code> raises <code>TypeError</code> — it only exists to be subclassed.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why <code>@abstractmethod</code>?</strong> Any subclass that forgets to implement <code>buy_price</code> or <code>sell_price</code> can't be instantiated either — the contract is enforced by the interpreter, not documentation.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why stack it with <code>@property</code>?</strong> It forces subclasses to expose the value as an attribute — <code>product.buy_price</code>, not <code>product.buy_price()</code> — a uniform interface across every product type.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Step 2: Subclasses &amp; <code>super().__init__()</code></h3>
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">CopraProduct</span>(<span class="cl">TradableProduct</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, code, name, origin, grade, buy, sell):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(code, name, <span class="st">"kg"</span>, origin, grade)
+        <span class="kw">self</span>._buy, <span class="kw">self</span>._sell = buy, sell</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why <code>super().__init__()</code>?</strong> It delegates the five shared fields to the parent constructor. The child only sets its own data — no duplicated initialization logic between <code>CopraProduct</code> and <code>RubberProduct</code>.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why the underscore in <code>_buy</code>?</strong> A leading underscore signals "internal use" by convention. External code reads <code>product.buy_price</code> through the property, not the raw attribute.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Adding a new commodity:</strong> A future <code>CharcoalProduct(TradableProduct)</code> only needs its own <code>__init__</code> and the two required properties — the rest of the system supports it automatically.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Step 3: One Method, Two Modes</h3>
+                        <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">_encode_items</span>(<span class="kw">self</span>, mode):
+    price = <span class="kw">self</span>.catalog[code].buy_price <span class="kw">if</span> mode == <span class="st">"buy"</span> <span class="kw">else</span> <span class="kw">self</span>.catalog[code].sell_price
+    items.<span class="fn">append</span>((code, qty, price, price * qty))</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why one method for both modes?</strong> Buying and selling only differ in which price applies. A single <code>mode</code> parameter avoids duplicating the entire input loop — DRY (Don't Repeat Yourself).</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">The ternary expression:</strong> <code>a if cond else b</code> is Python's inline conditional — a compact, readable way to pick between two values.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Tuple storage:</strong> Each encoded item is a <code>(code, qty, price, subtotal)</code> tuple — an immutable snapshot of a completed calculation, ready for the receipt.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Step 4: Generator Total &amp; Transaction Log</h3>
+                        <div class="code-snippet"><pre>total = <span class="fn">sum</span>(s <span class="kw">for</span> _, _, _, s <span class="kw">in</span> items)
+<span class="kw">self</span>.transaction_log.<span class="fn">append</span>({<span class="st">"party"</span>: party, <span class="st">"mode"</span>: mode, <span class="st">"total"</span>: total})</pre></div>
+                        <div class="insight" style="margin-top:.6rem;">
+                            <strong>📝 Why This Code Was Used &amp; How It Works</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Generator expression:</strong> <code>sum(s for _,_,_,s in items)</code> unpacks each tuple and streams the subtotal straight into <code>sum()</code> — memory-efficient and Pythonic.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why log transactions?</strong> Appending a summary dict after every receipt builds a running record of the day's business — the seed of a real reporting feature.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="callout-yellow"><p><strong>💡 margin() on the base class:</strong> <code>TradableProduct.margin()</code> returns <code>sell_price - buy_price</code> as a concrete method. Because both abstract properties are guaranteed on every subclass, this calculation is safe to write once — shared logic belongs on the parent, specific data belongs on the child.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="concepts" aria-labelledby="h-concepts">
+            <div class="page-col">
+                <div class="section-label">04 — Key Concepts</div>
+                <h2 id="h-concepts">Python OOP Concepts Reference</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Concept</th><th>What It Is</th><th>How It's Used Here</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>abc.ABC</code></td><td>Base class that blocks direct instantiation</td><td>Parent of <code>TradableProduct</code></td></tr>
+                            <tr><td><code>@abstractmethod</code></td><td>Forces subclasses to implement a method</td><td><code>buy_price</code>, <code>sell_price</code>, <code>display</code></td></tr>
+                            <tr><td><code>@property</code></td><td>Method accessed like an attribute</td><td><code>product.buy_price</code> not <code>product.buy_price()</code></td></tr>
+                            <tr><td><code>super().__init__()</code></td><td>Calls the parent constructor</td><td>Shares field setup between subclasses</td></tr>
+                            <tr><td><code>class X(Parent):</code></td><td>Inheritance — child extends parent</td><td><code>CopraProduct(TradableProduct)</code></td></tr>
+                            <tr><td><code>isinstance()</code></td><td>Checks object class membership</td><td>Groups copra vs rubber for display</td></tr>
+                            <tr><td>ternary expr</td><td>Inline conditional: <code>a if cond else b</code></td><td>Selects buy or sell price by mode</td></tr>
+                            <tr><td><code>dict {}</code></td><td>Key-value store with O(1) lookup</td><td>Product catalog: code → product object</td></tr>
+                            <tr><td>tuple <code>(a,b,c)</code></td><td>Immutable ordered collection</td><td>Transaction items: (code, qty, price, subtotal)</td></tr>
+                            <tr><td><code>sum() + generator</code></td><td>Reduces an iterable to one value</td><td>Grand total from all transaction items</td></tr>
+                            <tr><td><code>try/except</code></td><td>Catches runtime errors gracefully</td><td>Handles non-numeric quantity input</td></tr>
+                            <tr><td><code>datetime.now()</code></td><td>Current timestamp</td><td>Stamps every receipt</td></tr>
+                            <tr><td><code>if __name__=="__main__"</code></td><td>Module guard — direct execution only</td><td>Safe entry point; importable elsewhere</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="prices" aria-labelledby="h-prices">
+            <div class="page-col">
+                <div class="section-label">05 — Price Board</div>
+                <h2 id="h-prices">Current Buy &amp; Sell Prices</h2>
+                <p>Green is what the trading post pays a seller. Blue is what it charges a buyer. The gap between them is the margin.</p>
+                <div class="price-board">
+                    <div class="pb-card">
+                        <div class="pb-cat copra">🥥 Copra — per kilogram</div>
+                        <div class="pb-row"><span class="pb-name">C1 — Sun-Dried Copra (Grade A)</span><div class="pb-prices"><span class="pb-buy">₱28.00</span><span class="pb-sell">₱32.00</span></div></div>
+                        <div class="pb-row"><span class="pb-name">C2 — Kiln-Dried Copra (Grade A)</span><div class="pb-prices"><span class="pb-buy">₱30.00</span><span class="pb-sell">₱35.00</span></div></div>
+                        <div class="pb-row"><span class="pb-name">C3 — Ball Copra (Grade B)</span><div class="pb-prices"><span class="pb-buy">₱24.00</span><span class="pb-sell">₱28.00</span></div></div>
+                        <div class="pb-row"><span class="pb-name">C4 — Split Copra (Grade B)</span><div class="pb-prices"><span class="pb-buy">₱22.50</span><span class="pb-sell">₱26.50</span></div></div>
+                        <div class="pb-row"><span class="pb-name">C5 — Whole Copra Premium</span><div class="pb-prices"><span class="pb-buy">₱33.00</span><span class="pb-sell">₱38.00</span></div></div>
+                    </div>
+                    <div class="pb-card">
+                        <div class="pb-cat rubber">🌿 Rubber — per kilogram</div>
+                        <div class="pb-row"><span class="pb-name">R1 — Cup Lump Standard</span><div class="pb-prices"><span class="pb-buy">₱52.00</span><span class="pb-sell">₱58.00</span></div></div>
+                        <div class="pb-row"><span class="pb-name">R2 — Cup Lump Premium</span><div class="pb-prices"><span class="pb-buy">₱55.00</span><span class="pb-sell">₱62.00</span></div></div>
+                        <div class="pb-row"><span class="pb-name">R3 — RSS-1 Smoked Sheet</span><div class="pb-prices"><span class="pb-buy">₱68.00</span><span class="pb-sell">₱75.00</span></div></div>
+                        <div class="pb-row"><span class="pb-name">R4 — RSS-3 Smoked Sheet</span><div class="pb-prices"><span class="pb-buy">₱60.00</span><span class="pb-sell">₱67.00</span></div></div>
+                        <div class="pb-row"><span class="pb-name">R5 — TSR-20 Spec Rubber</span><div class="pb-prices"><span class="pb-buy">₱72.00</span><span class="pb-sell">₱80.00</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trade-demo" aria-labelledby="h-trade">
+            <div class="page-col">
+                <div class="section-label">06 — Live Demo</div>
+                <h2 id="h-trade">Interactive Buy / Sell Form</h2>
+                <p>Interactive implementation of the Python program — choose a mode, select a product, enter a quantity, and receive an instant receipt with the correct price applied.</p>
+
+                <div class="trade-tabs">
+                    <button class="trade-tab active-buy" id="tabBuy" onclick="switchTab('buy')">🟢 BUY — Accept From Seller</button>
+                    <button class="trade-tab" id="tabSell" onclick="switchTab('sell')">🔵 SELL — Sell To Customer</button>
+                </div>
+
+                <div class="trade-pane active" id="paneBuy">
+                    <div id="buyOrderSec">
+                        <div class="order-panel">
+                            <div class="op-hdr"><span class="op-dot green"></span><span class="op-lbl green">Buying Mode — Encode Seller's Delivery</span></div>
+                            <div class="op-body">
+                                <div class="form-row">
+                                    <div class="ff">
+                                        <label>Product</label>
+                                        <select id="bProd" onchange="upBuy()">
+                                            <option value="" disabled selected>— Select product —</option>
+                                            <option value="C1">C1 — Sun-Dried Copra (₱28.00/kg)</option>
+                                            <option value="C2">C2 — Kiln-Dried Copra (₱30.00/kg)</option>
+                                            <option value="C3">C3 — Ball Copra (₱24.00/kg)</option>
+                                            <option value="R1">R1 — Cup Lump Standard (₱52.00/kg)</option>
+                                            <option value="R2">R2 — Cup Lump Premium (₱55.00/kg)</option>
+                                            <option value="R3">R3 — RSS-1 Smoked Sheet (₱68.00/kg)</option>
+                                        </select>
+                                    </div>
+                                    <div class="ff">
+                                        <label>Quantity (kilos)</label>
+                                        <input type="number" id="bQty" min="0.1" step="0.1" placeholder="e.g. 500" oninput="upBuy()">
+                                    </div>
+                                </div>
+                                <div class="tot-prev">
+                                    <div><div class="tp-lbl">Total to Pay Seller</div><div class="tp-sum" id="bSum">—</div></div>
+                                    <div class="tp-amt" style="color:var(--green)" id="bTot">₱0.00</div>
+                                </div>
+                                <p class="err-msg" id="bErr">⚠ Please select a product and enter a valid quantity.</p>
+                                <button class="conf-btn buy" onclick="placeBuy()">Confirm Purchase — Compute Total →</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="receipt-panel" id="buyRcptSec">
+                        <div class="receipt-inner buy-rcpt">
+                            <h3>🟢 Buying Receipt — Valleys &amp; Bytes Trading Post</h3>
+                            <div class="rrow"><span class="rk">Product</span><span class="rv" id="bRItem">—</span></div>
+                            <div class="rrow"><span class="rk">Grade / Origin</span><span class="rv" id="bRGrade">—</span></div>
+                            <div class="rrow"><span class="rk">Buy Price</span><span class="rv" id="bRPx">—</span></div>
+                            <div class="rrow"><span class="rk">Quantity</span><span class="rv" id="bRQty">—</span></div>
+                            <div class="rtot"><span class="rt-lbl green">Amount to Pay Seller</span><span class="rt-amt green" id="bRTot">—</span></div>
+                        </div>
+                        <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:.85rem;">Salamat! Transaction recorded — Valleys &amp; Bytes Trading Post 🇵🇭</p>
+                        <button class="reset-btn" onclick="resetBuy()">← New buying transaction</button>
+                    </div>
+                </div>
+
+                <div class="trade-pane" id="paneSell">
+                    <div id="sellOrderSec">
+                        <div class="order-panel">
+                            <div class="op-hdr"><span class="op-dot blue"></span><span class="op-lbl">Selling Mode — Encode Customer Order</span></div>
+                            <div class="op-body">
+                                <div class="form-row">
+                                    <div class="ff">
+                                        <label>Product</label>
+                                        <select id="sProd" onchange="upSell()">
+                                            <option value="" disabled selected>— Select product —</option>
+                                            <option value="C1">C1 — Sun-Dried Copra (₱32.00/kg)</option>
+                                            <option value="C2">C2 — Kiln-Dried Copra (₱35.00/kg)</option>
+                                            <option value="C3">C3 — Ball Copra (₱28.00/kg)</option>
+                                            <option value="R1">R1 — Cup Lump Standard (₱58.00/kg)</option>
+                                            <option value="R2">R2 — Cup Lump Premium (₱62.00/kg)</option>
+                                            <option value="R3">R3 — RSS-1 Smoked Sheet (₱75.00/kg)</option>
+                                        </select>
+                                    </div>
+                                    <div class="ff">
+                                        <label>Quantity (kilos)</label>
+                                        <input type="number" id="sQty" min="0.1" step="0.1" placeholder="e.g. 1000" oninput="upSell()">
+                                    </div>
+                                </div>
+                                <div class="tot-prev">
+                                    <div><div class="tp-lbl">Total to Collect</div><div class="tp-sum" id="sSum">—</div></div>
+                                    <div class="tp-amt" id="sTot">₱0.00</div>
+                                </div>
+                                <p class="err-msg" id="sErr">⚠ Please select a product and enter a valid quantity.</p>
+                                <button class="conf-btn sell" onclick="placeSell()">Confirm Sale — Compute Total →</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="receipt-panel" id="sellRcptSec">
+                        <div class="receipt-inner sell-rcpt">
+                            <h3>🔵 Selling Receipt — Valleys &amp; Bytes Trading Post</h3>
+                            <div class="rrow"><span class="rk">Product</span><span class="rv" id="sRItem">—</span></div>
+                            <div class="rrow"><span class="rk">Grade / Origin</span><span class="rv" id="sRGrade">—</span></div>
+                            <div class="rrow"><span class="rk">Sell Price</span><span class="rv" id="sRPx">—</span></div>
+                            <div class="rrow"><span class="rk">Quantity</span><span class="rv" id="sRQty">—</span></div>
+                            <div class="rtot"><span class="rt-lbl blue">Amount to Collect</span><span class="rt-amt blue" id="sRTot">—</span></div>
+                        </div>
+                        <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:.85rem;">Maraming salamat! — Valleys &amp; Bytes Trading Post 🇵🇭</p>
+                        <button class="reset-btn" onclick="resetSell()">← New selling transaction</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cheat-sheet" aria-labelledby="h-cheat">
+            <div class="page-col">
+                <div class="section-label">07 — Quick Reference</div>
+                <h2 id="h-cheat">OOP &amp; Abstraction Cheat Sheet</h2>
+                <p>Everything you need in one place — bookmark this and refer back whenever you need a reminder.</p>
+
+                <div class="cheat-grid">
+                    <div class="cheat-card">
+                        <h3>🧩 Abstract Class Syntax</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Syntax</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>class X(ABC):</code></td><td>Define abstract class</td></tr>
+                                <tr><td><code>@abstractmethod</code></td><td>Must be implemented</td></tr>
+                                <tr><td><code>@property + @abstractmethod</code></td><td>Abstract property</td></tr>
+                                <tr><td><code>super().__init__()</code></td><td>Call parent init</td></tr>
+                                <tr><td><code>isinstance(obj, Cls)</code></td><td>Type check</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cheat-card">
+                        <h3>📦 Buy Prices</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Product</th><th>Buy/kg</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sun-Dried Copra</td><td>₱28.00</td></tr>
+                                <tr><td>Kiln-Dried Copra</td><td>₱30.00</td></tr>
+                                <tr><td>Cup Lump Standard</td><td>₱52.00</td></tr>
+                                <tr><td>RSS-1 Sheet</td><td>₱68.00</td></tr>
+                                <tr><td>TSR-20 Rubber</td><td>₱72.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cheat-card">
+                        <h3>💰 Sell Prices</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Product</th><th>Sell/kg</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sun-Dried Copra</td><td>₱32.00</td></tr>
+                                <tr><td>Kiln-Dried Copra</td><td>₱35.00</td></tr>
+                                <tr><td>Cup Lump Standard</td><td>₱58.00</td></tr>
+                                <tr><td>RSS-1 Sheet</td><td>₱75.00</td></tr>
+                                <tr><td>TSR-20 Rubber</td><td>₱80.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cheat-card">
+                        <h3>⚡ Common Patterns</h3>
+                        <table class="cheat-table">
+                            <thead><tr><th>Pattern</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>if __name__=="__main__"</code></td><td>Entry point</td></tr>
+                                <tr><td><code>try / except ValueError</code></td><td>Catch bad input</td></tr>
+                                <tr><td><code>sum(x for x in lst)</code></td><td>Generator total</td></tr>
+                                <tr><td><code>a if cond else b</code></td><td>Ternary</td></tr>
+                                <tr><td><code>self._attr</code></td><td>Private by convention</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="glossary" aria-labelledby="h-glossary">
+            <div class="page-col">
+                <div class="section-label">08 — Glossary</div>
+                <h2 id="h-glossary">Key Terms</h2>
+
+                <div class="glossary">
+                    <div class="gi"><span class="gt">abc.ABC</span><span class="gd">Abstract Base Class. Inheriting from it blocks direct instantiation — <code>TradableProduct()</code> raises <code>TypeError</code>. It exists only to be subclassed.</span></div>
+                    <div class="gi"><span class="gt">@abstractmethod</span><span class="gd">Marks a method as required in any concrete subclass. Omitting it prevents that subclass from being instantiated at all.</span></div>
+                    <div class="gi"><span class="gt">@property</span><span class="gd">Converts a method into a read-only attribute. <code>product.buy_price</code> looks like plain data access but runs a method behind the scenes.</span></div>
+                    <div class="gi"><span class="gt">super().__init__()</span><span class="gd">Calls the parent class's constructor so shared attributes are set before the subclass adds its own.</span></div>
+                    <div class="gi"><span class="gt">isinstance()</span><span class="gd">Returns <code>True</code> if an object belongs to a class or its subclasses. Used to separate copra from rubber when both live in one dictionary.</span></div>
+                    <div class="gi"><span class="gt">margin()</span><span class="gd">A concrete method on the abstract base: <code>sell_price - buy_price</code>. Safe to define once because both properties are guaranteed on every subclass.</span></div>
+                    <div class="gi"><span class="gt">f-string</span><span class="gd">Formatted string literal. <code>f"₱{price:.2f}"</code> embeds variables with format specifiers directly in the string.</span></div>
+                    <div class="gi"><span class="gt">generator expression</span><span class="gd">A lazy iterator that computes values on demand: <code>sum(s for _,_,_,s in items)</code>. More memory-efficient than building a full list first.</span></div>
+                    <div class="gi"><span class="gt">Copra</span><span class="gd">Dried coconut meat, the primary raw material for coconut oil. Graded by drying method — sun-dried, kiln-dried, ball, or split.</span></div>
+                    <div class="gi"><span class="gt">Cup Lump / RSS</span><span class="gd">Two natural rubber grades. Cup Lump forms by coagulation in collection cups; Ribbed Smoked Sheet (RSS) is rolled and smoked for higher quality.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" aria-labelledby="h-quiz">
+            <div class="page-col">
+                <div class="section-label">09 — Test Yourself</div>
+                <h2 id="h-quiz">Knowledge Quiz</h2>
+                <p>Reinforce what you've learned. Each question targets a core concept from this guide.</p>
+
+                <div class="quiz-wrap" id="quizWrap"></div>
+                <div class="quiz-score" id="quizScore">
+                    <span class="score-num" id="quizScoreNum">0/5</span>
+                    <p id="quizScoreMsg">Great effort — review any missed questions above.</p>
+                    <button class="quiz-reset" onclick="resetQuiz()">↺ Retry Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" aria-labelledby="h-roadmap">
+            <div class="page-col">
+                <div class="section-label">10 — Learning Roadmap</div>
+                <h2 id="h-roadmap">Python OOP Learning Roadmap</h2>
+
+                <div class="timeline">
+                    <div class="tl-item"><div class="tl-dot">1</div><div class="tl-body"><h4>Classes &amp; Instances (Rice Tutorial)</h4><p>Master <code>__init__</code>, <code>self</code>, and simple product classes without inheritance. Start here if abstract base classes feel unfamiliar.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">2</div><div class="tl-body"><h4>Abstract Classes &amp; Interfaces (You Are Here)</h4><p>Use <code>abc.ABC</code> and <code>@abstractmethod</code> to enforce contracts. Learn <code>@property</code>, <code>super().__init__()</code>, and <code>isinstance()</code> filtering across a small inheritance tree.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">3</div><div class="tl-body"><h4>Encapsulation — Setters &amp; Validation</h4><p>Add <code>@price.setter</code> methods that reject negative prices or invalid grades — real data protection, not just naming convention.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">4</div><div class="tl-body"><h4>Magic Methods — Dunder Protocol</h4><p>Add <code>__repr__</code>, <code>__eq__</code>, <code>__lt__</code> so products sort by margin and print cleanly in debuggers.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">5</div><div class="tl-body"><h4>Data Classes &amp; Type Hints</h4><p>Refactor with <code>@dataclass</code> and full type hints. Swap <code>float</code> for <code>Decimal</code> where financial precision matters.</p></div></div>
+                    <div class="tl-item"><div class="tl-dot">6</div><div class="tl-body"><h4>Frameworks — Django, FastAPI, SQLAlchemy</h4><p><code>TradableProduct</code> maps directly onto a Django abstract model. The abstract-base pattern is the backbone of every serious Python framework.</p></div></div>
+                </div>
+
+                <div class="callout-green"><p><strong>🎯 Next step:</strong> Add a <code>PremiumCopra(CopraProduct)</code> subclass with loyalty pricing, a <code>TradingSession</code> class that totals daily profit, and a CSV export for the transaction log. Each extension adds behavior without touching existing classes.</p></div>
+            </div>
+        </section>
+
+        <section id="apps" aria-labelledby="h-apps">
+            <div class="page-col">
+                <div class="section-label">11 — Live Projects</div>
+                <h2 id="h-apps">Explore More OOP Projects</h2>
+                <p>Every app below is built with Python OOP at its core. Click to explore a live implementation.</p>
+
+                <div class="apps-grid">
+                    <a href="e-commerce.html" class="app-btn app-ecom"><div class="app-logo">🛒</div><div class="app-info"><div class="app-name">E-Commerce Hub</div><p class="app-desc">A full-stack abstract commerce engine. Product catalogue, cart, and checkout behind a unified ABC interface.</p><span class="app-tag">🏪 Commerce OOP</span></div></a>
+                    <a href="fruit.html" class="app-btn app-fruit"><div class="app-logo">🍎</div><div class="app-info"><div class="app-name">Fruit Hub</div><p class="app-desc">An inventory system where each fruit type is a concrete class extending an abstract Produce base.</p><span class="app-tag">🌿 Inventory OOP</span></div></a>
+                    <a href="wine.html" class="app-btn app-wine"><div class="app-logo">🍷</div><div class="app-info"><div class="app-name">Wine Shop</div><p class="app-desc">Wine selection and pricing abstracted behind a Beverage ABC — swap vintages without changing business logic.</p><span class="app-tag">🍾 Catalogue OOP</span></div></a>
+                    <a href="rice.html" class="app-btn app-rice"><div class="app-logo">🌾</div><div class="app-info"><div class="app-name">Rice Retail Store</div><p class="app-desc">Grain variety management with abstract stock controls and validated pricing through property decorators.</p><span class="app-tag">📦 Retail OOP</span></div></a>
+                    <a href="copra.html" class="app-btn app-copra"><div class="app-logo">🥥</div><div class="app-info"><div class="app-name">Copra &amp; Rubber</div><p class="app-desc">Commodity trading simulation with abstract market pricing and encapsulated transaction records.</p><span class="app-tag">⚙️ Commodity OOP</span></div></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="series" aria-labelledby="h-series">
+            <div class="page-col">
+                <div class="section-label">12 — Continue Learning</div>
+                <h2 id="h-series">Explore the Full OOP Series</h2>
+                <p>Abstraction is the second of four interconnected pillars. Each one builds on the last. Explore the complete journey.</p>
+
+                <div class="pillars-grid">
+                    <a class="pillar-card" href="encapsulation.html" data-p="enc"><div class="pico">🔒</div><div class="ptitle">Encapsulation</div><p class="pdesc">Bundle data with methods. Control access. Protect state. The guardian of object integrity.</p><span class="pbtn">Explore →</span></a>
+                    <a class="pillar-card" href="abstraction.html" data-p="abs"><div class="pico">🎭</div><div class="ptitle">Abstraction</div><p class="pdesc">Hide implementation complexity. Expose only what is necessary. Think in concepts, not mechanics.</p><span class="pbtn">Explore →</span></a>
+                    <a class="pillar-card" href="inheritance.html" data-p="inh"><div class="pico">🧬</div><div class="ptitle">Inheritance</div><p class="pdesc">Build on existing classes. Reuse code elegantly. Create natural type hierarchies.</p><span class="pbtn">Explore →</span></a>
+                    <a class="pillar-card" href="polymorphism.html" data-p="pol"><div class="pico">🌀</div><div class="ptitle">Polymorphism</div><p class="pdesc">One interface, many forms. Duck typing. Write code that adapts to any conforming object.</p><span class="pbtn">Explore →</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="share" aria-labelledby="h-share">
+            <div class="page-col">
+                <div class="section-label">13 — Share</div>
+                <h2 id="h-share">Spread the Knowledge</h2>
+
+                <div class="share-wrap" style="margin-top:1rem;">
+                    <h2>Found this useful? Share it.</h2>
+                    <p class="share-sub">Help fellow developers discover formal abstraction in Python through this Filipino copra and rubber trading tutorial.</p>
+                    <div class="share-btns">
+                        <button class="sbtn s-fb" onclick="shareTo('facebook')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</button>
+                        <button class="sbtn s-li" onclick="shareTo('linkedin')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>LinkedIn</button>
+                        <button class="sbtn s-x" onclick="shareTo('twitter')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</button>
+                        <button class="sbtn s-wa" onclick="shareTo('whatsapp')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37C7.35 7.6 6.6 8.3 6.6 9.77s1.07 3.06 1.22 3.27c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34zm-5.47 7.45h-.01A9.93 9.93 0 017.17 20L3 21.15l1.17-4.13A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscribe" aria-labelledby="h-sub">
+            <div class="page-col">
+                <div class="section-label">14 — Stay Updated</div>
+                <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
+
+                <div class="sub-wrap">
+                    <h2>Get New Python Tutorials Delivered</h2>
+                    <p class="sub-desc">Join 8,400+ developers getting weekly Python OOP walkthroughs, code breakdowns, and real-world project tutorials — straight to your inbox. No spam, ever.</p>
+                    <div class="perks">
+                        <span class="perk">Weekly Python tutorials</span>
+                        <span class="perk">OOP project walkthroughs</span>
+                        <span class="perk">Free cheat sheets</span>
+                        <span class="perk">No spam, ever</span>
+                    </div>
+                    <div class="sub-form">
+                        <input class="cinput" type="email" id="subEmail" placeholder="your@email.com" autocomplete="email">
+                        <button class="btn-submit" onclick="handleSubscribe()">Subscribe →</button>
+                    </div>
+                    <p class="sub-note">🔒 Join 8,400+ developers. Your email is never shared or sold.</p>
+                    <div class="sub-msg" id="subMsg" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="follow" aria-labelledby="h-follow">
+            <div class="page-col">
+                <div class="section-label">15 — Connect</div>
+                <h2 id="h-follow">Follow Me</h2>
+                <p>Stay connected for more Python tutorials, coding tips, and Filipino developer content.</p>
+
+                <div class="follow-grid">
+                    <div class="follow-card fc-fb"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg></div><div class="follow-name">Facebook</div><div class="follow-handle">@Glenn Junsay Pansensoy</div><div class="follow-stat">2.4k followers</div><a href="#" class="follow-btn" id="fbBtn" onclick="toggleFollow(this,'fb')">+ Follow</a></div>
+                    <div class="follow-card fc-li"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg></div><div class="follow-name">LinkedIn</div><div class="follow-handle">Glenn Pansensoy</div><div class="follow-stat">5.1k connections</div><a href="#" class="follow-btn" id="liBtn" onclick="toggleFollow(this,'li')">+ Follow</a></div>
+                    <div class="follow-card fc-x"><div class="follow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div><div class="follow-name">X / Twitter</div><div class="follow-handle">@GlennPansensoy</div><div class="follow-stat">8.7k followers</div><a href="#" class="follow-btn" id="xBtn" onclick="toggleFollow(this,'x')">+ Follow</a></div>
+                    <div class="follow-card fc-yt"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></div><div class="follow-name">YouTube</div><div class="follow-handle">@GlennPansensoy</div><div class="follow-stat">3.2k subscribers</div><a href="#" class="follow-btn" id="ytBtn" onclick="toggleFollow(this,'yt')">Subscribe</a></div>
+                    <div class="follow-card fc-gh"><div class="follow-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div><div class="follow-name">GitHub</div><div class="follow-handle">@PoeticBytes</div><div class="follow-stat">1.8k stars</div><a href="#" class="follow-btn" id="ghBtn" onclick="toggleFollow(this,'gh')">Star ★</a></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' }); closeDrawer(); }
+                });
+            });
+
+            window.switchTab = function(mode) {
+                document.getElementById('tabBuy').className = 'trade-tab' + (mode === 'buy' ? ' active-buy' : '');
+                document.getElementById('tabSell').className = 'trade-tab' + (mode === 'sell' ? ' active-sell' : '');
+                document.getElementById('paneBuy').className = 'trade-pane' + (mode === 'buy' ? ' active' : '');
+                document.getElementById('paneSell').className = 'trade-pane' + (mode === 'sell' ? ' active' : '');
+            };
+
+            var CAT = {
+                C1: { name: 'Sun-Dried Copra', grade: 'Grade A · Quezon', buy: 28, sell: 32 },
+                C2: { name: 'Kiln-Dried Copra', grade: 'Grade A · Davao', buy: 30, sell: 35 },
+                C3: { name: 'Ball Copra', grade: 'Grade B · Laguna', buy: 24, sell: 28 },
+                R1: { name: 'Cup Lump Standard', grade: 'Grade 1 · Cotabato', buy: 52, sell: 58 },
+                R2: { name: 'Cup Lump Premium', grade: 'Grade 1 · Basilan', buy: 55, sell: 62 },
+                R3: { name: 'RSS-1 Smoked Sheet', grade: 'RSS-1 · Zamboanga', buy: 68, sell: 75 },
+            };
+
+            window.upBuy = function() {
+                var k = document.getElementById('bProd').value;
+                var q = parseFloat(document.getElementById('bQty').value);
+                if (k && q > 0) {
+                    document.getElementById('bSum').textContent = q + 'kg × ' + CAT[k].name;
+                    document.getElementById('bTot').textContent = '₱' + (CAT[k].buy * q).toFixed(2);
+                } else {
+                    document.getElementById('bSum').textContent = '—';
+                    document.getElementById('bTot').textContent = '₱0.00';
+                }
+            };
+            window.placeBuy = function() {
+                var k = document.getElementById('bProd').value;
+                var q = parseFloat(document.getElementById('bQty').value);
+                var err = document.getElementById('bErr');
+                if (!k || !(q > 0)) { err.style.display = 'block'; setTimeout(function() { err.style.display = 'none'; }, 3000); return; }
+                var p = CAT[k];
+                document.getElementById('bRItem').textContent = p.name;
+                document.getElementById('bRGrade').textContent = p.grade;
+                document.getElementById('bRPx').textContent = '₱' + p.buy.toFixed(2) + '/kg';
+                document.getElementById('bRQty').textContent = q + ' kilo(s)';
+                document.getElementById('bRTot').textContent = '₱' + (p.buy * q).toFixed(2);
+                document.getElementById('buyOrderSec').style.display = 'none';
+                document.getElementById('buyRcptSec').classList.add('show');
+            };
+            window.resetBuy = function() {
+                document.getElementById('bProd').value = '';
+                document.getElementById('bQty').value = '';
+                document.getElementById('bSum').textContent = '—';
+                document.getElementById('bTot').textContent = '₱0.00';
+                document.getElementById('buyOrderSec').style.display = 'block';
+                document.getElementById('buyRcptSec').classList.remove('show');
+            };
+
+            window.upSell = function() {
+                var k = document.getElementById('sProd').value;
+                var q = parseFloat(document.getElementById('sQty').value);
+                if (k && q > 0) {
+                    document.getElementById('sSum').textContent = q + 'kg × ' + CAT[k].name;
+                    document.getElementById('sTot').textContent = '₱' + (CAT[k].sell * q).toFixed(2);
+                } else {
+                    document.getElementById('sSum').textContent = '—';
+                    document.getElementById('sTot').textContent = '₱0.00';
+                }
+            };
+            window.placeSell = function() {
+                var k = document.getElementById('sProd').value;
+                var q = parseFloat(document.getElementById('sQty').value);
+                var err = document.getElementById('sErr');
+                if (!k || !(q > 0)) { err.style.display = 'block'; setTimeout(function() { err.style.display = 'none'; }, 3000); return; }
+                var p = CAT[k];
+                document.getElementById('sRItem').textContent = p.name;
+                document.getElementById('sRGrade').textContent = p.grade;
+                document.getElementById('sRPx').textContent = '₱' + p.sell.toFixed(2) + '/kg';
+                document.getElementById('sRQty').textContent = q + ' kilo(s)';
+                document.getElementById('sRTot').textContent = '₱' + (p.sell * q).toFixed(2);
+                document.getElementById('sellOrderSec').style.display = 'none';
+                document.getElementById('sellRcptSec').classList.add('show');
+            };
+            window.resetSell = function() {
+                document.getElementById('sProd').value = '';
+                document.getElementById('sQty').value = '';
+                document.getElementById('sSum').textContent = '—';
+                document.getElementById('sTot').textContent = '₱0.00';
+                document.getElementById('sellOrderSec').style.display = 'block';
+                document.getElementById('sellRcptSec').classList.remove('show');
+            };
+
+            var QUIZ = [
+                { q: "What happens if you try to instantiate TradableProduct() directly?",
+                    opts: ["It creates an empty object", "Python raises a TypeError because it's an abstract class", "It works like a regular class"], ans: 1,
+                    fb: "Correct! TradableProduct inherits from ABC and has @abstractmethod members, so direct instantiation raises TypeError." },
+                { q: "Why is super().__init__() called inside CopraProduct.__init__?",
+                    opts: ["To make the program run faster", "It's required syntax for every class", "To initialize the shared fields defined in the parent class"], ans: 2,
+                    fb: "Correct! Without it, the five shared attributes from TradableProduct.__init__ would never be set." },
+                { q: "What is the purpose of combining @property and @abstractmethod?",
+                    opts: ["Forces subclasses to implement the method as a property, accessed without parentheses", "Caches the return value for speed", "Prevents subclasses from overriding it"], ans: 0,
+                    fb: "Correct! It requires buy_price and sell_price to be properties, so callers always write product.buy_price, never product.buy_price()." },
+                { q: "Why does _encode_items(mode) use a single method instead of separate buy and sell methods?",
+                    opts: ["Separate methods would run slower", "One method with a mode parameter avoids duplicating the entire input loop (DRY)", "Python doesn't allow two similar methods"], ans: 1,
+                    fb: "Correct! The ternary price selector lets one method serve both buying and selling without duplicated code." },
+                { q: "Why is margin() defined on TradableProduct instead of on each subclass?",
+                    opts: ["Subclasses can't define their own methods", "Because both abstract properties are guaranteed on every subclass, the calculation is safe to write once in the parent", "It only works for copra, not rubber"], ans: 1,
+                    fb: "Correct! Shared logic that only depends on the enforced interface belongs on the base class, not duplicated in every subclass." },
+            ];
+
+            var answered = 0, correct = 0;
+
+            function buildQuiz() {
+                var wrap = document.getElementById('quizWrap');
+                if (!wrap) return;
+                var html = '';
+                QUIZ.forEach(function(item, i) {
+                    html += '<div class="quiz-q" id="qq-' + i + '">';
+                    html += '<div class="quiz-prompt">Q' + (i + 1) + '. ' + item.q + '</div>';
+                    html += '<div class="quiz-opts">';
+                    item.opts.forEach(function(opt, j) {
+                        html += '<div class="quiz-opt" id="qo-' + i + '-' + j + '" onclick="answerQ(' + i + ',' + j + ')">';
+                        html += '<span style="font-family:JetBrains Mono,monospace;font-size:.65rem;opacity:.5;flex-shrink:0">' + 'ABCD'[j] + '.</span> ';
+                        html += opt;
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                    html += '<div class="quiz-feedback" id="qf-' + i + '"></div>';
+                    html += '</div>';
+                });
+                wrap.innerHTML = html;
+            }
+
+            window.answerQ = function(qi, oi) {
+                var item = QUIZ[qi];
+                var qEl = document.getElementById('qq-' + qi);
+                if (qEl.classList.contains('correct') || qEl.classList.contains('wrong')) return;
+                var opts = qEl.querySelectorAll('.quiz-opt');
+                opts.forEach(function(o) { o.classList.add('disabled'); });
+                var chosen = document.getElementById('qo-' + qi + '-' + oi);
+                var fb = document.getElementById('qf-' + qi);
+                if (oi === item.ans) {
+                    chosen.classList.add('correct-ans');
+                    qEl.classList.add('correct');
+                    fb.textContent = '✓ ' + item.fb;
+                    fb.className = 'quiz-feedback ok';
+                    correct++;
+                } else {
+                    chosen.classList.add('wrong-ans');
+                    document.getElementById('qo-' + qi + '-' + item.ans).classList.add('correct-ans');
+                    qEl.classList.add('wrong');
+                    fb.textContent = '✗ The correct answer is ' + 'ABCD'[item.ans] + '. ' + item.fb;
+                    fb.className = 'quiz-feedback bad';
+                }
+                answered++;
+                if (answered === QUIZ.length) showScore();
+            };
+
+            function showScore() {
+                var scoreEl = document.getElementById('quizScore');
+                var numEl = document.getElementById('quizScoreNum');
+                var msgEl = document.getElementById('quizScoreMsg');
+                if (!scoreEl) return;
+                numEl.textContent = correct + '/' + QUIZ.length;
+                var msgs = ['Keep studying — revisit the sections above.', 'Good start — review the questions you missed.',
+                    'Solid understanding! A few gaps to close.', 'Great work — almost perfect!',
+                    'Perfect score! You have mastered formal abstraction. 🎉'];
+                msgEl.textContent = msgs[Math.min(correct, msgs.length - 1)];
+                scoreEl.style.display = 'block';
+                scoreEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            window.resetQuiz = function() {
+                answered = 0; correct = 0;
+                document.getElementById('quizScore').style.display = 'none';
+                buildQuiz();
+            };
+            buildQuiz();
+
+            var F_KEY = 'vb_follows_copra';
+            var follows = {};
+            try { follows = JSON.parse(localStorage.getItem(F_KEY) || '{}'); } catch (_) {}
+
+            var FOLLOW_CONFIG = {
+                fb: { btn: 'fbBtn', follow: '✓ Following', default: '+ Follow' },
+                li: { btn: 'liBtn', follow: '✓ Following', default: '+ Follow' },
+                x: { btn: 'xBtn', follow: '✓ Following', default: '+ Follow' },
+                yt: { btn: 'ytBtn', follow: '✓ Subscribed', default: 'Subscribe' },
+                gh: { btn: 'ghBtn', follow: '★ Starred', default: 'Star ★' },
+            };
+
+            window.toggleFollow = function(btn, platform) {
+                event.preventDefault();
+                var cfg = FOLLOW_CONFIG[platform];
+                if (follows[platform]) {
+                    delete follows[platform];
+                    btn.textContent = cfg.default;
+                    btn.classList.remove('following');
+                } else {
+                    follows[platform] = true;
+                    btn.textContent = cfg.follow;
+                    btn.classList.add('following');
+                }
+                localStorage.setItem(F_KEY, JSON.stringify(follows));
+            };
+
+            function restoreFollows() {
+                for (var platform in FOLLOW_CONFIG) {
+                    var cfg = FOLLOW_CONFIG[platform];
+                    var btn = document.getElementById(cfg.btn);
+                    if (!btn) continue;
+                    if (follows[platform]) {
+                        btn.textContent = cfg.follow;
+                        btn.classList.add('following');
+                    } else {
+                        btn.textContent = cfg.default;
+                        btn.classList.remove('following');
+                    }
+                }
+            }
+            restoreFollows();
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/copra.html');
+            var PAGE_TITLE = encodeURIComponent('Python OOP Copra & Rubber Trading System — Full Tutorial');
+
+            window.shareTo = function(platform) {
+                var urls = {
+                    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL,
+                    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL,
+                    twitter: 'https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE,
+                    whatsapp: 'https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL,
+                };
+                if (urls[platform]) window.open(urls[platform], '_blank', 'width=640,height=540,noopener,noreferrer');
+            };
+
+            window.handleSubscribe = function() {
+                var el = document.getElementById('subEmail');
+                var msg = document.getElementById('subMsg');
+                var email = el.value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    msg.textContent = '✗ Please enter a valid email address.';
+                    msg.style.color = 'var(--red)';
+                    setTimeout(function() { msg.textContent = ''; }, 4000);
+                    return;
+                }
+                var list = JSON.parse(localStorage.getItem('vb_subs_copra') || '[]');
+                if (list.find(function(s) { return s.email === email; })) {
+                    msg.textContent = '✓ You are already subscribed!';
+                    msg.style.color = 'var(--blue-lt)';
+                    setTimeout(function() { msg.textContent = ''; }, 4000);
+                    return;
+                }
+                list.push({ email: email, date: new Date().toISOString() });
+                localStorage.setItem('vb_subs_copra', JSON.stringify(list));
+                el.value = '';
+                msg.textContent = '✓ Welcome aboard! Subscribed successfully.';
+                msg.style.color = 'var(--green)';
+                setTimeout(function() { msg.textContent = ''; }, 6000);
+            };
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide();
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function hasFileOperations(code) {
+                var patterns = [/open\s*\(/, /Path\s*\(/, /with\s+open\s*\(/, /\.read\s*\(/, /\.write\s*\(/, /os\.path/, /shutil\./, /glob\s*\(/, /__file__/];
+                return patterns.some(function(p) { return p.test(code); });
+            }
+            function hasInputOperations(code) { return /\binput\s*\(/.test(code); }
+
+            function setupInteractiveStdin(pyodide) {
+                pyodide.setStdin({
+                    stdin: function() {
+                        var raw = window.__copraPromptCtx || '';
+                        var lines = raw.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l.length > 0; });
+                        var promptText = lines.slice(-2).join('\n');
+                        if (!promptText) promptText = 'Python program is asking for input:';
+                        var result = window.prompt('🥥 ' + promptText);
+                        if (result === null) return null;
+                        return result;
+                    },
+                    autoEOF: true
+                });
+            }
+
+            function indentCode(code, spaces) {
+                var pad = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return pad + line; }).join('\n');
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var usesInput = hasInputOperations(code);
+                    if (usesInput) setupInteractiveStdin(pyodide);
+
+                    if (hasFileOperations(code)) {
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent = '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+                    if (usesInput) {
+                        outputEl.className = outputEl.className.includes('file-warning') ? outputEl.className : 'output-panel file-warning';
+                        outputEl.textContent += '💬 This code uses input(). A popup box will ask you for each value — answer it to continue running the program.\n\n';
+                    }
+
+                    window.__copraPromptCtx = '';
+
+                    var wrapperLines = [
+                        'import sys', 'import js', 'from io import StringIO',
+                        'class _CapturingStdout(StringIO):',
+                        '    def write(self, s):',
+                        '        super().write(s)',
+                        '        js.window.__copraPromptCtx = self.getvalue()[-300:]',
+                        '        return len(s)',
+                        '_captured_output = _CapturingStdout()',
+                        '_old_stdout = sys.stdout',
+                        'sys.stdout = _captured_output',
+                        'try:',
+                        indentCode(code, 4),
+                        'except EOFError:',
+                        '    print("\\n⚠️  Input was cancelled, so the program stopped early. Click Run again to restart.")',
+                        'finally:',
+                        '    sys.stdout = _old_stdout',
+                        '_captured_output.getvalue()'
+                    ];
+                    var wrappedCode = wrapperLines.join('\n');
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+
+                    if (outputEl.textContent.includes('⚠️') || outputEl.textContent.includes('💬')) {
+                        outputEl.textContent += result || '✓ Code executed successfully (no output).';
+                    } else {
+                        outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                        outputEl.style.color = '#4ade80';
+                    }
+                } catch (err) {
+                    if (outputEl.textContent.includes('⚠️') || outputEl.textContent.includes('💬')) {
+                        outputEl.textContent += '\n\nError:\n' + err.message;
+                    } else {
+                        outputEl.className = 'output-panel error';
+                        outputEl.textContent = 'Error:\n' + err.message;
+                        outputEl.style.color = '#f87171';
+                    }
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var original = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = original; }, 2000);
+                    }).catch(function() { fallbackCopyCode(btn, code); });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = original; }, 2000);
+            }
+
+            var fullCodeEl = document.getElementById('fullCodeBlock');
+            var fullCodeText = fullCodeEl ? fullCodeEl.textContent : '';
+
+            var copyFullBtn = document.getElementById('copyFullCode');
+            if (copyFullBtn) copyFullBtn.addEventListener('click', function() { copyCode(copyFullBtn, fullCodeText); });
+
+            var runFullBtn = document.getElementById('runFullCode');
+            var fullOutput = document.getElementById('fullCodeOutput');
+            if (runFullBtn) runFullBtn.addEventListener('click', function() { runCode(fullCodeText, fullOutput, runFullBtn); });
+
+        })();
+    </script>
+
+</body>
+</html>
