@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Vehicle Garage – Inheritance in Action | Poetic Bytes</title>
+    <meta name="description" content="Master Python inheritance through a comprehensive Vehicle Garage tutorial. Learn super(), method overriding, polymorphism, and class hierarchies with 20+ live examples." />
+    <meta name="keywords" content="Python inheritance, Vehicle class, OOP project, super() example, method overriding, Python tutorial, inheritance project, polymorphism, class hierarchy, Poetic Bytes" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/garage.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Vehicle Garage – Complete Inheritance Tutorial" />
+    <meta property="og:description" content="A comprehensive Python inheritance tutorial using a live Vehicle Garage app. 20+ examples covering super(), method overriding, polymorphism, and class hierarchy design." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/garage.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Vehicle Garage – Complete Inheritance Tutorial by Poetic Bytes" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vehicle Garage | Poetic Bytes" />
+    <meta name="twitter:description" content="Comprehensive Python inheritance tutorial with live Vehicle Garage app. 20+ examples covering super(), method overriding, polymorphism, and class hierarchies." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Vehicle Garage — Complete Inheritance Tutorial",
+            "description": "A comprehensive Python inheritance tutorial using a live Vehicle Garage app. Covers super(), method overriding, polymorphism, class hierarchies, and design patterns.",
+            "author": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
+            "datePublished": "2026-07-24",
+            "dateModified": "2026-07-24",
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/garage.html" },
+            "keywords": "Inheritance, Vehicle class, Python OOP, super(), Method Overriding, Polymorphism, Class Hierarchy",
+            "articleSection": "Python Programming",
+            "inLanguage": "en-US",
+            "learningResourceType": "Tutorial",
+            "educationalLevel": "Beginner to Intermediate",
+            "timeRequired": "PT35M"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; overflow-x: hidden; }
+        .page-col { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+        section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+        section:last-child { border-bottom: none; }
+        .progress-bar-wrap { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: rgba(31,64,96,.3); z-index: 2000; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--blue-lt)); width: 0%; transition: width .2s; }
+        .nav-bar { position: fixed; top: 3px; left: 0; right: 0; background: rgba(11,18,28,.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .nav-inner { max-width: 860px; margin: 0 auto; padding: .6rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .brand { display: flex; align-items: center; gap: .5rem; text-decoration: none; color: #fff; font-weight: 800; font-size: .85rem; letter-spacing: .08em; }
+        .brand-icon { width: 2rem; height: 2rem; border-radius: 6px; background: linear-gradient(145deg, var(--blue), var(--blue-deep)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; letter-spacing: .04em; }
+        .nav-links a:hover { color: var(--gold); }
+        @media(max-width:680px) { .nav-links { display: none; } }
+        .menu-toggle { display: none; flex-direction: column; justify-content: center; align-items: center; background: rgba(75,139,190,.1); border: 1px solid var(--border); border-radius: 6px; width: 40px; height: 40px; cursor: pointer; gap: 4px; }
+        .menu-toggle span { width: 18px; height: 2px; background: #fff; border-radius: 2px; transition: .25s; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        @media(max-width:680px) { .menu-toggle { display: flex; } }
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 1050; opacity: 0; visibility: hidden; transition: .2s; backdrop-filter: blur(4px); }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100vh; background: var(--panel); border-left: 1px solid var(--border); z-index: 1100; display: flex; flex-direction: column; transition: right .3s; box-shadow: -5px 0 30px rgba(0,0,0,.5); }
+        .mobile-drawer.active { right: 0; }
+        .drawer-hd { padding: .8rem; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; }
+        .drawer-close { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .drawer-body { flex: 1; overflow-y: auto; padding: .8rem; }
+        .drawer-body li { list-style: none; margin-bottom: .5rem; }
+        .drawer-body a, .drawer-body button { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .7rem .9rem; background: rgba(75,139,190,.12); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: .78rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background .2s; }
+        .drawer-body a:active, .drawer-body button:active { background: rgba(75,139,190,.3); }
+        .drawer-body i { color: var(--gold); width: 1.2rem; }
+        h1, h2, h3, h4, h5 { font-family: 'Syne', sans-serif; line-height: 1.25; font-weight: 700; }
+        h1 { font-size: 1.6rem; }
+        h2 { font-size: 1.25rem; margin-bottom: .5rem; }
+        h3 { font-size: .95rem; }
+        h4 { font-size: .85rem; }
+        p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+        code { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: #a5d6ff; }
+        .section-label { font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: .6rem; margin-bottom: 1.2rem; }
+        .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: var(--btn-h); padding: 0 1.4rem; border-radius: var(--btn-r); font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem; cursor: pointer; transition: all .2s; border: none; text-decoration: none; white-space: nowrap; }
+        .btn-primary { background: linear-gradient(135deg, var(--blue), var(--blue-deep)); color: #fff; box-shadow: 0 4px 14px rgba(75,139,190,.35); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(75,139,190,.45); }
+        .btn-primary:active { transform: scale(.97); }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-outline:hover { border-color: var(--blue); background: rgba(75,139,190,.08); }
+        @media(max-width:480px) { .btn { width: 100%; } }
+        .hero { padding: 5rem 0 3rem; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,217,102,.14) 0%, transparent 70%); }
+        .hero-tag { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); border-radius: 40px; padding: .3rem .9rem; font-size: .68rem; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.2rem; background: var(--card); }
+        .live-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+        .hero h1 { font-size: clamp(1.6rem,4vw,2.4rem); color: var(--gold); margin-bottom: .8rem; }
+        .hero p.lead { font-size: .88rem; color: var(--muted); max-width: 560px; margin-bottom: 1.6rem; line-height: 1.75; }
+        .hero p.lead strong { color: var(--text); font-weight: 700; }
+        .hero-btns { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 2rem; }
+
+        .oop-block { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.3rem; margin-bottom: 1.2rem; }
+        .oop-block h3 { font-size: .88rem; color: var(--gold); margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem; }
+        .oop-block p { font-size: .78rem; margin-bottom: .8rem; }
+        .callout { border-left: 3px solid var(--blue); padding: .6rem 1rem; margin: 1rem 0; background: rgba(75,139,190,.06); border-radius: 4px; }
+        .callout p { margin: 0; font-size: .78rem; }
+        .callout strong { color: var(--blue-lt); }
+        .callout-yellow { border-left: 3px solid var(--gold); padding: .6rem 1rem; margin: 1rem 0; background: rgba(255,212,59,.06); border-radius: 4px; }
+        .callout-yellow p { margin: 0; font-size: .78rem; }
+        .callout-yellow strong { color: var(--gold); }
+        .callout-green { border-left: 3px solid var(--green); padding: .6rem 1rem; margin: 1rem 0; background: rgba(16,185,129,.06); border-radius: 4px; }
+        .callout-green p { margin: 0; font-size: .78rem; }
+        .callout-green strong { color: var(--green); }
+        .insight { background: rgba(75,139,190,.08); border: 1px solid rgba(75,139,190,.25); border-radius: 6px; padding: .6rem .9rem; font-size: .75rem; color: var(--blue-lt); }
+
+        .code-snippet { background: var(--code-bg); border-radius: 6px; border-left: 3px solid var(--blue); padding: .9rem 1rem; overflow-x: auto; margin-bottom: .7rem; position: relative; }
+        .code-snippet pre { font-family: 'JetBrains Mono', monospace; font-size: .73rem; line-height: 1.65; color: var(--text); margin: 0; white-space: pre-wrap; word-break: break-word; }
+        .code-snippet .kw { color: #ff7b72; font-weight: 600; }
+        .code-snippet .fn { color: #d2a8ff; }
+        .code-snippet .st { color: #a5d6ff; }
+        .code-snippet .cl { color: #FFD966; font-weight: 600; }
+        .code-snippet .cmt { color: #546e7a; font-style: italic; }
+        .code-snippet .num { color: #f78c6c; }
+        .code-snippet .op { color: #89ddff; }
+        .code-snippet .dec { color: #c792ea; font-weight: 500; }
+
+        .code-container { position: relative; margin: 1rem 0; }
+        .code-header { background: #0a1a24; padding: .5rem 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); border-radius: var(--card-r) var(--card-r) 0 0; font-size: .72rem; flex-wrap: wrap; gap: .5rem; }
+        .code-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+        .code-btn { padding: .35rem .8rem; font-size: .7rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: .4rem; font-family: 'Syne', sans-serif; border: none; }
+        .copy-btn { background: rgba(75,139,190,.15); color: var(--blue-lt); border: 1px solid rgba(75,139,190,.3); }
+        .copy-btn:hover { background: rgba(75,139,190,.25); }
+        .run-btn { background: var(--green); color: #000; border: none; font-weight: 700; }
+        .run-btn:hover { background: #34d399; transform: translateY(-1px); }
+        .run-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+        .output-panel { background: #0a1a24; border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--card-r) var(--card-r); padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: .76rem; color: #4ade80; max-height: 300px; overflow-y: auto; display: none; white-space: pre-wrap; word-break: break-word; line-height: 1.6; }
+        .output-panel.error { color: #f87171; }
+        .output-panel.loading { color: var(--blue-lt); }
+        .code-container .code-snippet { border-radius: 0; border-left: none; margin-bottom: 0; padding: 1rem; }
+
+        .garage-app { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.4rem; }
+        .garage-form { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.4rem; }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px,100%),1fr)); gap: .6rem; }
+        .cinput, .cselect { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: .6rem .85rem; color: var(--text); font-family: 'Syne', sans-serif; font-size: .8rem; width: 100%; outline: none; transition: border-color .2s, box-shadow .2s; }
+        .cinput:focus, .cselect:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(75,139,190,.11); }
+        .cselect option { background: var(--panel); }
+        .add-btn { background: linear-gradient(135deg, var(--blue-deep), var(--blue)); color: #fff; border: none; border-radius: 100px; padding: .65rem 1.5rem; font-family: 'Syne', sans-serif; font-weight: 700; font-size: .76rem; cursor: pointer; transition: all .25s; align-self: flex-start; }
+        .add-btn:hover { filter: brightness(1.12); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(75,139,190,.3); }
+        .cargo-field { display: none; }
+        .cargo-field.show { display: block; }
+        .fleet-empty { text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: .78rem; border: 1px dashed var(--border); border-radius: var(--card-r); }
+        .fleet-grid { display: flex; flex-direction: column; gap: .9rem; }
+
+        .vcard { background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.1rem; position: relative; overflow: hidden; }
+        .vcard::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+        .vcard.type-car::before { background: var(--blue); }
+        .vcard.type-motorcycle::before { background: var(--gold); }
+        .vcard.type-truck::before { background: var(--teal); }
+        .vcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .8rem; margin-bottom: .5rem; }
+        .vcard-title { display: flex; align-items: center; gap: .6rem; }
+        .vcard-icon { font-size: 1.5rem; }
+        .vcard-name { font-weight: 700; font-size: .88rem; color: var(--text); }
+        .vcard-plate { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); }
+        .vcard-remove { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: .8rem; padding: .3rem; }
+        .vcard-remove:hover { color: var(--red); }
+        .vcard-stats { display: flex; gap: 1.2rem; margin: .6rem 0; flex-wrap: wrap; }
+        .vstat { font-size: .68rem; color: var(--muted); }
+        .vstat b { color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: .78rem; display: block; }
+        .service-flag { display: inline-flex; align-items: center; gap: .3rem; font-size: .6rem; font-weight: 700; padding: .15rem .55rem; border-radius: 20px; margin-bottom: .6rem; }
+        .service-flag.ok { background: rgba(16,185,129,.15); color: var(--green); }
+        .service-flag.due { background: rgba(245,158,11,.15); color: var(--amber); }
+        .vcard-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; }
+        .vbtn { padding: .45rem 1rem; border-radius: 100px; border: 1px solid var(--border); background: rgba(75,139,190,.08); color: var(--text); font-family: 'Syne', sans-serif; font-weight: 600; font-size: .68rem; cursor: pointer; transition: all .2s; }
+        .vbtn:hover { border-color: var(--blue); background: rgba(75,139,190,.16); }
+        .vbtn.vbtn-primary.type-car { border-color: rgba(75,139,190,.4); color: var(--blue-lt); background: rgba(75,139,190,.1); }
+        .vbtn.vbtn-primary.type-motorcycle { border-color: rgba(255,212,59,.4); color: var(--gold); background: rgba(255,212,59,.08); }
+        .vbtn.vbtn-primary.type-truck { border-color: rgba(45,212,191,.4); color: var(--teal); background: rgba(45,212,191,.08); }
+        .vcard-log { margin-top: .7rem; font-family: 'JetBrains Mono', monospace; font-size: .64rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: .6rem; display: flex; flex-direction: column; gap: .25rem; max-height: 90px; overflow-y: auto; }
+        .action-feedback { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--blue-lt); margin-top: .5rem; min-height: 1rem; }
+        .garage-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; flex-wrap: wrap; gap: .5rem; }
+        .garage-toolbar h3 { margin: 0; }
+        .reset-fleet-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 100px; padding: .35rem 1rem; font-size: .65rem; font-weight: 600; cursor: pointer; font-family: 'Syne', sans-serif; }
+        .reset-fleet-btn:hover { border-color: var(--red); color: var(--red); }
+
+        .quiz-wrap { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+        .quiz-q { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.2rem; transition: border-color .3s; }
+        .quiz-q.correct { border-color: var(--green) !important; }
+        .quiz-q.wrong { border-color: var(--red) !important; }
+        .quiz-prompt { font-size: .82rem; color: var(--text); font-weight: 600; margin-bottom: .8rem; line-height: 1.6; }
+        .quiz-opts { display: flex; flex-direction: column; gap: .4rem; }
+        .quiz-opt { display: flex; align-items: center; gap: .6rem; padding: .5rem .8rem; border-radius: 7px; background: var(--panel); border: 1px solid var(--border); cursor: pointer; font-size: .76rem; color: var(--muted); transition: all .2s; user-select: none; }
+        .quiz-opt:hover:not(.disabled) { background: rgba(75,139,190,.08); border-color: var(--blue); color: var(--text); }
+        .quiz-opt.correct-ans { background: rgba(141,200,150,.12); border-color: var(--green); color: var(--green); }
+        .quiz-opt.wrong-ans { background: rgba(212,88,136,.1); border-color: var(--red); color: var(--red); }
+        .quiz-opt.disabled { cursor: default; }
+        .quiz-feedback { font-family: 'JetBrains Mono', monospace; font-size: .65rem; margin-top: .7rem; min-height: .9rem; line-height: 1.6; }
+        .quiz-feedback.ok { color: var(--green); }
+        .quiz-feedback.bad { color: var(--red); }
+        .quiz-score { text-align: center; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); margin-top: 1rem; display: none; }
+        .quiz-score .score-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; color: var(--blue-lt); display: block; line-height: 1.1; }
+        .quiz-score p { font-size: .78rem; color: var(--muted); margin: .5rem 0 0; }
+        .quiz-reset { margin-top: .8rem; padding: .55rem 1.5rem; border-radius: 100px; background: rgba(75,139,190,.14); color: var(--blue-lt); border: 1px solid rgba(75,139,190,.28); cursor: pointer; font-size: .74rem; font-family: 'Syne', sans-serif; font-weight: 600; transition: all .2s; }
+        .quiz-reset:hover { background: rgba(75,139,190,.25); }
+
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--border); }
+        ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+        .back-top { position: fixed; right: 20px; bottom: 20px; width: 44px; height: 44px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 900; transition: .2s; opacity: 0; visibility: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+        .back-top.visible { opacity: 1; visibility: visible; }
+        .back-top:hover { border-color: var(--blue); color: var(--blue-lt); transform: translateY(-2px); }
+
+        .curriculum-desc { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.8rem 2rem; margin: 1.5rem 0 2rem; position: relative; overflow: hidden; }
+        .curriculum-desc::before { content: "📜"; position: absolute; top: -10px; right: 10px; font-size: 4rem; opacity: 0.06; transform: rotate(8deg); }
+        .curriculum-desc h2 { color: var(--gold); font-size: 1.2rem; margin-bottom: 0.6rem; }
+        .curriculum-desc p { font-size: 0.85rem; color: var(--text); line-height: 1.85; margin-bottom: 0.6rem; }
+        .curriculum-desc .highlight { color: var(--blue-lt); font-weight: 600; }
+        .curriculum-desc .gold { color: var(--gold); font-weight: 600; }
+        .desc-meta { display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border); }
+        .desc-meta span { font-size: 0.7rem; color: var(--muted); display: inline-flex; align-items: center; gap: 0.4rem; }
+        .desc-meta i { color: var(--gold); font-size: 0.7rem; }
+
+        .outro-list { list-style: none; padding: 0; margin: 0.6rem 0; }
+        .outro-list li { padding: 0.3rem 0 0.3rem 1.8rem; position: relative; font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+        .outro-list li::before { content: "✅"; position: absolute; left: 0; }
+
+        .pillars-mini { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px,100%),1fr)); gap: .7rem; margin-top: 1rem; }
+        .pillars-mini a { background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-r); padding: .9rem; text-decoration: none; color: var(--text); text-align: center; transition: border-color .2s; }
+        .pillars-mini a:hover { border-color: var(--blue); }
+        .pillars-mini .pico { font-size: 1.4rem; }
+        .pillars-mini .ptitle { font-weight: 700; font-size: .78rem; margin-top: .3rem; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; font-size: .76rem; margin: 1rem 0; }
+        .comparison-table th { background: var(--panel); color: var(--gold); padding: .7rem .8rem; text-align: left; border-bottom: 2px solid var(--border); }
+        .comparison-table td { padding: .6rem .8rem; border-bottom: 1px solid var(--border); color: var(--muted); }
+        .comparison-table tr:hover td { background: rgba(75,139,190,.03); }
+        .comparison-table .highlight-cell { color: var(--blue-lt); font-weight: 600; }
+
+        .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px,100%),1fr)); gap: 1rem; margin: 1rem 0; }
+        .concept-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1rem; }
+        .concept-card h4 { color: var(--gold); font-size: .82rem; margin-bottom: .3rem; }
+        .concept-card p { font-size: .72rem; margin: 0; }
+        .concept-card .emoji-big { font-size: 1.6rem; display: block; margin-bottom: .4rem; }
+
+        .share-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 2.8rem 2.2rem; text-align: center; position: relative; overflow: hidden; }
+        .share-wrap::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(75,139,190,.07) 0%, transparent 70%); pointer-events: none; }
+        .share-wrap h2 { font-size: 1.2rem; margin-bottom: .3rem; }
+        .share-sub { color: var(--muted); font-size: .8rem; max-width: 420px; margin: .4rem auto 1.6rem; line-height: 1.7; }
+        .share-ai-msg { background: rgba(75,139,190,.07); border: 1px solid rgba(75,139,190,.18); border-radius: var(--card-r); padding: .85rem 1.2rem; margin: 0 auto 1.6rem; max-width: 560px; font-size: .76rem; color: var(--blue-lt); font-family: 'JetBrains Mono', monospace; line-height: 1.65; min-height: 3.5rem; text-align: justify; position: relative; transition: opacity .4s; }
+        .share-btns { display: flex; flex-direction: column; align-items: stretch; gap: .65rem; margin-top: .4rem; max-width: 320px; margin-left: auto; margin-right: auto; }
+        .sbtn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .65rem 1.3rem; border-radius: 100px; border: 1px solid var(--border); background: var(--panel); color: var(--text); cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 600; font-size: .72rem; transition: all .25s; text-decoration: none; }
+        .sbtn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+        .sbtn svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .sbtn.s-fb:hover { background: rgba(24,119,242,.14); border-color: rgba(24,119,242,.38); color: #5597ee; }
+        .sbtn.s-li:hover { background: rgba(10,102,194,.14); border-color: rgba(10,102,194,.38); color: #5b9bd5; }
+        .sbtn.s-x:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); }
+        .sbtn.s-wa:hover { background: rgba(37,211,102,.12); border-color: rgba(37,211,102,.35); color: #25d366; }
+        .sbtn.s-yt:hover { background: rgba(255,0,0,.1); border-color: rgba(255,0,0,.32); color: #ff5555; }
+        .share-toast { margin-top: .9rem; font-size: .7rem; color: var(--blue-lt); min-height: 1.1rem; font-family: 'JetBrains Mono', monospace; transition: opacity .4s; opacity: 0; }
+
+        .sub-wrap { background: linear-gradient(135deg, var(--card) 0%, var(--panel) 100%); border: 1px solid var(--border); border-radius: var(--card-r); padding: 3.2rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+        .sub-wrap::before { content: '🐍'; position: absolute; font-size: 7rem; opacity: .03; top: 50%; left: 2%; transform: translateY(-50%); pointer-events: none; }
+        .sub-wrap::after { content: '{ }'; position: absolute; font-family: 'JetBrains Mono', monospace; font-size: 5rem; opacity: .03; top: 50%; right: 2%; transform: translateY(-50%); pointer-events: none; color: var(--blue); }
+        .sub-wrap h2 { font-size: 1.2rem; margin-bottom: .35rem; }
+        .sub-desc { color: var(--muted); font-size: .8rem; max-width: 440px; margin: .3rem auto 0; }
+        .perks { display: flex; justify-content: center; gap: 1.3rem; flex-wrap: wrap; margin: 1rem 0 1.4rem; }
+        .perk { display: inline-flex; align-items: center; gap: .35rem; font-size: .72rem; color: var(--muted); }
+        .perk::before { content: '✓'; color: var(--blue-lt); font-weight: 700; }
+        .sub-form { display: flex; gap: .55rem; max-width: 460px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+        .sub-form .cinput { flex: 1; min-width: min(180px,100%); }
+        .sub-plans { display: flex; gap: .65rem; justify-content: center; flex-wrap: wrap; margin-top: 1.3rem; }
+        .plan-chip { display: inline-flex; align-items: center; gap: .45rem; padding: .45rem 1.1rem; border-radius: 100px; border: 1px solid var(--border); background: var(--panel); font-size: .72rem; color: var(--muted); cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 500; transition: all .22s; }
+        .plan-chip:hover, .plan-chip.active { border-color: rgba(75,139,190,.4); background: rgba(75,139,190,.1); color: var(--blue-lt); }
+        .plan-chip.premium.active { border-color: rgba(255,212,59,.4); background: rgba(255,212,59,.08); color: var(--gold); }
+        .sub-note { font-size: .62rem; color: var(--muted); margin-top: .7rem; }
+        .sub-msg { font-size: .7rem; color: var(--blue-lt); font-family: 'JetBrains Mono', monospace; min-height: 1rem; transition: opacity .4s; margin-top: .5rem; }
+        .btn-submit { background: linear-gradient(135deg, var(--blue-deep), var(--blue)); color: #fff; border: none; border-radius: 100px; padding: .65rem 1.75rem; font-family: 'Syne', sans-serif; font-weight: 700; font-size: .76rem; cursor: pointer; transition: all .25s; }
+        .btn-submit:hover { filter: brightness(1.12); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(75,139,190,.3); }
+        .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+        .page-footer { padding: 3rem 0 1.5rem; background: #1a2535; border-top: 1px solid var(--border); }
+        .footer-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+        .footer-col h5 { font-size: .72rem; font-weight: 800; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .7rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: .4rem; }
+        .footer-col a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .74rem; transition: color .2s; }
+        .footer-col a:hover { color: #fff; }
+        .copyright { border-top: 1px solid var(--border); padding-top: 1.2rem; text-align: center; font-size: .72rem; color: var(--muted); }
+        .copyright a { color: rgba(255,255,255,.5); text-decoration: none; }
+
+        .floating-share { position: fixed; right: 20px; bottom: 80px; display: flex; flex-direction: column; gap: 10px; z-index: 900; }
+        .floating-share .fs-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: 1.1rem; transition: .2s; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.5); position: relative; }
+        .floating-share .fs-btn:hover { border-color: var(--blue); color: var(--blue-lt); transform: scale(1.08); }
+        .floating-share .fs-btn .tooltip { position: absolute; right: 56px; background: var(--panel); color: var(--text); padding: 4px 12px; border-radius: 6px; font-size: .65rem; font-weight: 600; border: 1px solid var(--border); opacity: 0; pointer-events: none; transition: .2s; white-space: nowrap; }
+        .floating-share .fs-btn:hover .tooltip { opacity: 1; }
+        .floating-share .fs-btn.fs-copy:hover { border-color: var(--gold); color: var(--gold); }
+
+        .floating-toc { position: fixed; right: 80px; bottom: 80px; width: 280px; max-height: 60vh; background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-r); box-shadow: 0 8px 32px rgba(0,0,0,.7); z-index: 950; overflow: hidden; display: none; flex-direction: column; transition: opacity .25s ease, transform .25s ease; opacity: 0; transform: translateY(12px); }
+        .floating-toc.open { display: flex; opacity: 1; transform: translateY(0); }
+        .floating-toc .toc-header { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1rem; background: rgba(75,139,190,.08); border-bottom: 1px solid var(--border); font-weight: 700; font-size: .8rem; color: var(--text); }
+        .floating-toc .toc-header button { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; padding: .2rem .4rem; }
+        .floating-toc .toc-header button:hover { color: var(--text); }
+        .floating-toc .toc-body { overflow-y: auto; padding: .5rem 0; flex: 1; }
+        .floating-toc .toc-body a { display: block; padding: .4rem 1rem; font-size: .7rem; color: var(--muted); text-decoration: none; border-left: 2px solid transparent; transition: background .15s, border-color .15s, color .15s; }
+        .floating-toc .toc-body a:hover { background: rgba(75,139,190,.08); border-color: var(--blue); color: var(--text); }
+        .floating-toc .toc-body a:active { background: rgba(75,139,190,.15); }
+
+        .faq-list { display: flex; flex-direction: column; gap: .6rem; margin: 1rem 0; }
+        .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); overflow: hidden; }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.1rem; cursor: pointer; gap: .8rem; min-height: var(--btn-h); }
+        .faq-q h3 { font-size: .8rem; font-weight: 600; color: var(--text); flex: 1; }
+        .faq-toggle { font-size: .9rem; color: var(--blue); width: 20px; text-align: center; flex-shrink: 0; }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height .28s ease, padding .28s; }
+        .faq-a.open { max-height: 300px; padding: 0 1.1rem 1rem; }
+        .faq-a p { font-size: .78rem; }
+
+        .exercise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%),1fr)); gap: 1rem; margin: 1rem 0; }
+        .exercise-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.2rem; }
+        .exercise-card h4 { color: var(--gold); font-size: .85rem; margin-bottom: .3rem; }
+        .exercise-card p { font-size: .74rem; margin-bottom: .5rem; }
+        .exercise-card .hint { font-size: .68rem; color: var(--blue-lt); font-family: 'JetBrains Mono', monospace; background: rgba(75,139,190,.06); padding: .4rem .6rem; border-radius: 4px; display: inline-block; }
+
+        @media(max-width:480px) {
+            .page-col { padding: 0 .8rem; }
+            section { padding: 2rem 0; }
+            .hero { padding: 3.5rem 0 2rem; }
+            .hero h1 { font-size: 1.3rem; }
+            .back-top { width: 36px; height: 36px; right: 10px; bottom: 10px; font-size: .9rem; }
+            .curriculum-desc { padding: 1.2rem 1rem; }
+            .curriculum-desc h2 { font-size: 1rem; }
+            .curriculum-desc p { font-size: 0.78rem; }
+            .floating-share { right: 10px; bottom: 70px; gap: 8px; }
+            .floating-share .fs-btn { width: 40px; height: 40px; font-size: .9rem; }
+            .floating-share .fs-btn .tooltip { display: none; }
+            .floating-toc { right: 10px; bottom: 130px; width: 220px; max-height: 50vh; }
+            .faq-q h3 { font-size: .75rem; }
+            .exercise-grid { grid-template-columns: 1fr; }
+        }
+        @media(max-width:768px) {
+            .floating-share { right: 14px; bottom: 76px; gap: 8px; }
+            .floating-share .fs-btn { width: 42px; height: 42px; font-size: 1rem; }
+            .floating-share .fs-btn .tooltip { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#essentials">Essentials</a></li>
+                <li><a href="#tutorial">Tutorial</a></li>
+                <li><a href="#app">Live Garage</a></li>
+                <li><a href="#super">super()</a></li>
+                <li><a href="#polymorphism">Polymorphism</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#exercises">Exercises</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="inheritance.html">← Inheritance</a></li>
+                <li><a href="index.html">← Hub</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+                <li><button data-href="#essentials"><i class="fas fa-gem"></i>Essentials</button></li>
+                <li><button data-href="#tutorial"><i class="fas fa-graduation-cap"></i>Tutorial</button></li>
+                <li><button data-href="#app"><i class="fas fa-car"></i>Live Garage</button></li>
+                <li><button data-href="#super"><i class="fas fa-arrow-up"></i>super()</button></li>
+                <li><button data-href="#polymorphism"><i class="fas fa-shapes"></i>Polymorphism</button></li>
+                <li><button data-href="#design"><i class="fas fa-sitemap"></i>Design</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#exercises"><i class="fas fa-dumbbell"></i>Exercises</button></li>
+                <li><button data-href="#quiz"><i class="fas fa-brain"></i>Quiz</button></li>
+                <li><a href="inheritance.html"><i class="fas fa-arrow-left"></i>Inheritance Guide</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i>Back to Hub</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents"><i class="fas fa-list-ul"></i><span class="tooltip">Table of Contents</span></button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i><span class="tooltip">Telegram</span></a>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header"><span>📚 Jump to</span><button id="tocCloseBtn"><i class="fas fa-times"></i></button></div>
+        <div class="toc-body" id="tocBody">
+            <a href="#intro">📖 Introduction</a>
+            <a href="#essentials">💎 Essentials</a>
+            <a href="#tutorial">📚 Tutorial</a>
+            <a href="#app">🔧 Live Garage</a>
+            <a href="#super">⬆️ super()</a>
+            <a href="#polymorphism">🌀 Polymorphism</a>
+            <a href="#design">🏗️ Design</a>
+            <a href="#faq">❓ FAQ</a>
+            <a href="#exercises">💪 Exercises</a>
+            <a href="#quiz">🎯 Quiz</a>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Vehicle Garage Tutorial">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Live Project · Complete Inheritance Tutorial</div>
+                <h1>
+                    <span style="color:var(--gold);">Vehicle Garage</span> —<br>
+                    Master Inheritance<br>
+                    <span style="color:var(--blue);">Through a Real Project.</span>
+                </h1>
+                <p class="lead">
+                    <strong>Inheritance is the second pillar of OOP.</strong> This comprehensive tutorial walks you through
+                    a complete vehicle hierarchy — <code>Vehicle</code> as the parent, with <code>Car</code>, <code>Motorcycle</code>,
+                    and <code>Truck</code> as subclasses. You'll master <strong>super()</strong>, <strong>method overriding</strong>,
+                    <strong>polymorphism</strong>, and <strong>class hierarchy design</strong> through 20+ live code examples
+                    and an interactive garage manager.
+                </p>
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;">
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📅 July 24, 2026</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 45 min read</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🎓 Beginner–Intermediate</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🐍 Python 3.11+</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📚 20+ examples</span>
+                </div>
+                <div style="margin-top:1.5rem;display:flex;gap:.6rem;flex-wrap:wrap;">
+                    <a href="#app" class="btn btn-primary"><i class="fas fa-car"></i> Try the Garage</a>
+                    <a href="#tutorial" class="btn btn-outline"><i class="fas fa-graduation-cap"></i> Start Tutorial</a>
+                    <a href="index.html" class="btn btn-outline"><i class="fas fa-home"></i> Back to Hub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="h-intro">
+            <div class="page-col">
+                <div class="section-label">01 — The Concept</div>
+                <h2 id="h-intro">What You'll Learn From This Project</h2>
+
+                <div class="curriculum-desc">
+                    <h2>📘 A Complete Inheritance Tutorial</h2>
+                    <p>
+                        This tutorial uses a <span class="highlight">Vehicle Garage</span> to teach you inheritance
+                        through hands-on practice. You'll see how a single <span class="gold">parent class</span> —
+                        <code>Vehicle</code> — defines shared behavior, while <span class="highlight">subclasses</span>
+                        like <code>Car</code>, <code>Motorcycle</code>, and <code>Truck</code> extend and specialize it.
+                    </p>
+                    <p>
+                        By the end of this tutorial, you'll understand:
+                        <span class="highlight">How to use <code>super()</code> to call parent constructors</span>,
+                        <span class="gold">how to override methods</span>,
+                        <span class="highlight">how inheritance enables polymorphism</span>,
+                        <span class="gold">how to design class hierarchies</span>, and
+                        <span class="highlight">when to use inheritance vs composition</span>.
+                    </p>
+                    <p>
+                        Every code example is <span class="highlight">fully interactive</span> — you can
+                        <strong>copy</strong> and <strong>run</strong> each snippet right in your browser using
+                        <strong>Pyodide</strong>. The live garage app below is powered by the exact same class hierarchy.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 20+ live code examples</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Interactive garage app</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> super() deep dive</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Polymorphism explained</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Design patterns</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 quiz questions</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 exercises</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Why Inheritance Matters</h3>
+                    <p>Inheritance is one of the most powerful tools in object-oriented programming. It enables:</p>
+                    <ul style="list-style:none;padding:0;margin:.5rem 0 0;">
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--gold);">✓</span>
+                            <strong style="color:var(--text);">Code Reuse:</strong> Write shared logic once in a parent class, and all subclasses inherit it automatically.
+                        </li>
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--gold);">✓</span>
+                            <strong style="color:var(--text);">Extensibility:</strong> Add new subclasses without modifying existing, tested code — following the Open/Closed Principle.
+                        </li>
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--gold);">✓</span>
+                            <strong style="color:var(--text);">Polymorphism:</strong> Write code that works with any object that conforms to a shared interface.
+                        </li>
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--gold);">✓</span>
+                            <strong style="color:var(--text);">Natural Modeling:</strong> Class hierarchies mirror real-world relationships — a Dog <em>is an</em> Animal, a Truck <em>is a</em> Vehicle.
+                        </li>
+                    </ul>
+                    <div class="callout" style="margin-top:.8rem;">
+                        <p><strong>In the real world:</strong> Frameworks like Django, PyTorch, and Flask rely heavily on inheritance. When you write <code>class MyModel(nn.Module)</code> in PyTorch, you're using inheritance to plug your custom neural network into the training pipeline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="essentials" aria-labelledby="h-essentials">
+            <div class="page-col">
+                <div class="section-label">02 — The Essentials</div>
+                <h2 id="h-essentials">Why Inheritance is Essential for Every Programmer</h2>
+
+                <div class="oop-block">
+                    <h3>Why Every Programmer Should Learn Inheritance</h3>
+                    <p>
+                        Inheritance is not an optional feature — it is a <strong>fundamental paradigm</strong> that shapes how 
+                        software is designed, maintained, and scaled. Here's why you cannot afford to ignore it.
+                    </p>
+
+                    <div class="callout-green">
+                        <p><strong>1. It's Everywhere in Professional Codebases:</strong> Open any major Python framework — Django, PyTorch, Flask, FastAPI — and you'll find inheritance everywhere. <code>class MyView(View)</code>, <code>class MyModel(nn.Module)</code>, <code>class MyForm(Form)</code>. Without understanding inheritance, you're reading these frameworks as magic rather than understanding their architecture.</p>
+                    </div>
+
+                    <div class="callout-green">
+                        <p><strong>2. It's the Foundation of Design Patterns:</strong> The most widely used design patterns — Template Method, Factory Method, Strategy, Observer — rely on inheritance or polymorphic interfaces. Mastering inheritance opens the door to understanding these patterns.</p>
+                    </div>
+
+                    <div class="callout-green">
+                        <p><strong>3. It Prevents Catastrophic Duplication:</strong> In large teams, code duplication is the root of bugs. When business logic changes, duplicated code creates a maintenance nightmare. Inheritance centralizes shared logic, reducing the surface area for errors.</p>
+                    </div>
+
+                    <div class="callout-green">
+                        <p><strong>4. It Enables Polymorphism:</strong> Polymorphism — one interface, many implementations — is the key to writing flexible, decoupled code. Inheritance is the classic way to achieve polymorphism in OOP.</p>
+                    </div>
+
+                    <div class="callout-green">
+                        <p><strong>5. It's a Career Differentiator:</strong> Understanding inheritance separates "coders who type syntax" from "engineers who design systems." Interviewers at top companies consistently probe OOP fundamentals, and inheritance is almost always on the list.</p>
+                    </div>
+
+                    <div class="callout-yellow">
+                        <p><strong>🎯 The Bottom Line:</strong> Inheritance is to OOP what the foundation is to a building. You can't build skyscrapers without understanding the foundation — and you can't build robust, maintainable software systems without mastering inheritance.</p>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Significance in the Programming Community</h3>
+                    <p>
+                        The programming community has built entire ecosystems around inheritance. Here's how it shapes the industry:
+                    </p>
+
+                    <ul style="list-style:none;padding:0;margin:.5rem 0 0;">
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--blue-lt);">🏗️</span>
+                            <strong style="color:var(--text);">Framework Architecture:</strong> Every major Python framework uses inheritance to provide "hooks" where developers can plug in custom behavior. Django's class-based views, PyTorch's neural network modules, Flask's request handlers — all built on inheritance.
+                        </li>
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--blue-lt);">🧩</span>
+                            <strong style="color:var(--text);">Mixins and Multiple Inheritance:</strong> Python's unique support for multiple inheritance has spawned the "mixin" pattern — small, composable classes that add specific behaviors. This pattern is used extensively in Django, SQLAlchemy, and other libraries.
+                        </li>
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--blue-lt);">📚</span>
+                            <strong style="color:var(--text);">Educational Standard:</strong> Inheritance is taught in every introductory programming course, CS curriculum, and bootcamp. It's part of the shared vocabulary that every developer needs to communicate effectively.
+                        </li>
+                        <li style="padding:.3rem 0 .3rem 1.8rem;position:relative;font-size:.78rem;color:var(--muted);">
+                            <span style="position:absolute;left:0;color:var(--blue-lt);">🤖</span>
+                            <strong style="color:var(--text);">AI/ML Ecosystem:</strong> The AI community uses inheritance extensively. <code>nn.Module</code> in PyTorch and <code>keras.Model</code> in TensorFlow are both parent classes that you inherit from to build custom architectures.
+                        </li>
+                    </ul>
+
+                    <div class="callout" style="margin-top:.8rem;">
+                        <p><strong>💡 Quick Fact:</strong> According to the 2023 Stack Overflow Developer Survey, Python is the third most popular language. The majority of Python's popularity comes from its rich ecosystem of frameworks — all of which rely heavily on inheritance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutorial" aria-labelledby="h-tutorial">
+            <div class="page-col">
+                <div class="section-label">03 — Step-by-Step Tutorial</div>
+                <h2 id="h-tutorial">Building the Vehicle Hierarchy</h2>
+
+                <div class="oop-block">
+                    <h3>Step 1: The Parent Class — <code>Vehicle</code></h3>
+                    <p>Every vehicle needs a brand, a license plate, a mileage tracker, and a service log. These are universal — they belong to the parent. This is the foundation of our hierarchy.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Vehicle</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, brand: <span class="cl">str</span>, plate: <span class="cl">str</span>):
+        <span class="kw">self</span>.brand = brand
+        <span class="kw">self</span>.plate = plate
+        <span class="kw">self</span>.mileage = <span class="num">0</span>
+        <span class="kw">self</span>.log = []
+
+    <span class="kw">def</span> <span class="fn">drive</span>(<span class="kw">self</span>, miles: <span class="cl">int</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">self</span>.mileage += miles
+        <span class="kw">self</span>.log.append(<span class="st">f"Driven {miles} miles"</span>)
+
+    <span class="kw">def</span> <span class="fn">service</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        entry = <span class="st">f"Serviced at {self.mileage} miles"</span>
+        <span class="kw">self</span>.log.append(entry)
+        <span class="kw">return</span> entry
+
+    <span class="kw">def</span> <span class="fn">action</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.brand} is just sitting in the garage."</span>
+
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.brand} ({self.plate}) — {self.mileage} mi, {len(self.log)} services"</span></pre></div>
+
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-top:.8rem;">
+                        <h4 style="color:var(--gold);font-size:.8rem;margin-bottom:.5rem;">📖 Line-by-Line Explanation</h4>
+                        <ul style="list-style:none;padding:0;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:.4rem;">
+                            <li><strong style="color:var(--text);">class Vehicle:</strong> Defines a new class named <code>Vehicle</code>. This will be our parent class.</li>
+                            <li><strong style="color:var(--text);">def __init__(self, brand, plate):</strong> The constructor method. Called when a new <code>Vehicle</code> object is created.</li>
+                            <li><strong style="color:var(--text);">self.brand = brand:</strong> Stores the brand (e.g., "Toyota") as an attribute on the object.</li>
+                            <li><strong style="color:var(--text);">self.plate = plate:</strong> Stores the license plate (e.g., "ABC-1234").</li>
+                            <li><strong style="color:var(--text);">self.mileage = 0:</strong> Initializes mileage to 0. Every vehicle starts with zero miles.</li>
+                            <li><strong style="color:var(--text);">self.log = []:</strong> Creates an empty list to store service history entries.</li>
+                            <li><strong style="color:var(--text);">def drive(self, miles):</strong> A method that adds miles to the vehicle's mileage and logs the action.</li>
+                            <li><strong style="color:var(--text);">self.mileage += miles:</strong> Increments the total mileage by the specified number of miles.</li>
+                            <li><strong style="color:var(--text);">self.log.append(...):</strong> Adds a new entry to the service log.</li>
+                            <li><strong style="color:var(--text);">def service(self):</strong> Logs a service event and returns the entry as a string.</li>
+                            <li><strong style="color:var(--text);">def action(self):</strong> Returns a generic action string. This is meant to be overridden by subclasses.</li>
+                            <li><strong style="color:var(--text);">def info(self):</strong> Returns a formatted string with the vehicle's current state.</li>
+                        </ul>
+                    </div>
+
+                    <div class="callout"><p><strong>Key insight:</strong> <code>drive()</code>, <code>service()</code>, and <code>info()</code> are written <em>once</em>. Every subclass will inherit them automatically — no duplication, no inconsistency.</p></div>
+                    <div class="insight" style="margin-top:.6rem;">
+                        <strong>💡 Why this design?</strong> By putting shared logic in the parent, we follow the DRY (Don't Repeat Yourself) principle. If we later want to add a <code>fuel_efficiency</code> calculation, we add it once here and every vehicle type benefits immediately.
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Step 2: Simple Subclassing — <code>Car</code> and <code>Motorcycle</code></h3>
+                    <p>A <code>Car</code> is a <code>Vehicle</code> — it inherits everything. The only thing it changes is the <code>action()</code> method, overriding it with a honk. This is the most common form of inheritance: extending the parent with specialized behavior.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Car</span>(<span class="cl">Vehicle</span>):
+    <span class="kw">def</span> <span class="fn">action</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.brand} honks: Beep beep!"</span>
+
+<span class="kw">class</span> <span class="cl">Motorcycle</span>(<span class="cl">Vehicle</span>):
+    <span class="kw">def</span> <span class="fn">action</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.brand} pops a wheelie!"</span>
+
+my_car = <span class="cl">Car</span>(<span class="st">"Tesla"</span>, <span class="st">"EV-2024"</span>)
+my_car.<span class="fn">drive</span>(<span class="num">50</span>)
+<span class="fn">print</span>(my_car.<span class="fn">info</span>())
+<span class="fn">print</span>(my_car.<span class="fn">action</span>())</pre></div>
+
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-top:.8rem;">
+                        <h4 style="color:var(--gold);font-size:.8rem;margin-bottom:.5rem;">📖 Line-by-Line Explanation</h4>
+                        <ul style="list-style:none;padding:0;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:.4rem;">
+                            <li><strong style="color:var(--text);">class Car(Vehicle):</strong> Defines <code>Car</code> as a subclass of <code>Vehicle</code>. The parentheses after the class name indicate inheritance.</li>
+                            <li><strong style="color:var(--text);">def action(self):</strong> Overrides the parent's <code>action()</code> method. This is method overriding.</li>
+                            <li><strong style="color:var(--text);">return f"{self.brand} honks: Beep beep!":</strong> Returns a car-specific action string. Note that <code>self.brand</code> comes from the parent — we didn't need to redefine it.</li>
+                            <li><strong style="color:var(--text);">class Motorcycle(Vehicle):</strong> Another subclass of <code>Vehicle</code>.</li>
+                            <li><strong style="color:var(--text);">my_car = Car("Tesla", "EV-2024"):</strong> Creates an instance of <code>Car</code>. The constructor calls <code>Vehicle.__init__</code> automatically.</li>
+                            <li><strong style="color:var(--text);">my_car.drive(50):</strong> Calls the inherited <code>drive()</code> method from <code>Vehicle</code>.</li>
+                            <li><strong style="color:var(--text);">print(my_car.info()):</strong> Calls the inherited <code>info()</code> method. Output: <code>"Tesla (EV-2024) — 50 mi, 1 services"</code></li>
+                            <li><strong style="color:var(--text);">print(my_car.action()):</strong> Calls the overridden <code>action()</code> method in <code>Car</code>. Output: <code>"Tesla honks: Beep beep!"</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="callout-green"><p><strong>Try it:</strong> Create a <code>Car</code> and a <code>Motorcycle</code> in the live garage below. Drive each one, then click their specialized action button. Notice how <code>drive()</code> and <code>service()</code> work identically, but <code>action()</code> differs.</p></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Step 3: Extending <code>__init__</code> — <code>Truck</code></h3>
+                    <p>Trucks need an extra attribute: cargo capacity. This requires overriding <code>__init__</code> and using <code>super()</code> to call the parent constructor. This is one of the most important patterns in inheritance.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Truck</span>(<span class="cl">Vehicle</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, brand: <span class="cl">str</span>, plate: <span class="cl">str</span>, cargo_capacity: <span class="cl">int</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(brand, plate)
+        <span class="kw">self</span>.cargo_capacity = cargo_capacity
+
+    <span class="kw">def</span> <span class="fn">action</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.brand} hauls up to {self.cargo_capacity}kg of cargo."</span>
+
+truck = <span class="cl">Truck</span>(<span class="st">"Volvo"</span>, <span class="st">"TRK-777"</span>, <span class="num">1500</span>)
+<span class="fn">print</span>(truck.<span class="fn">info</span>())
+<span class="fn">print</span>(truck.<span class="fn">action</span>())</pre></div>
+
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-top:.8rem;">
+                        <h4 style="color:var(--gold);font-size:.8rem;margin-bottom:.5rem;">📖 Line-by-Line Explanation</h4>
+                        <ul style="list-style:none;padding:0;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:.4rem;">
+                            <li><strong style="color:var(--text);">class Truck(Vehicle):</strong> <code>Truck</code> inherits from <code>Vehicle</code>.</li>
+                            <li><strong style="color:var(--text);">def __init__(self, brand, plate, cargo_capacity):</strong> Overrides the parent's constructor to accept an additional <code>cargo_capacity</code> parameter.</li>
+                            <li><strong style="color:var(--text);">super().__init__(brand, plate):</strong> This is the critical line. <code>super()</code> returns a reference to the parent class. We call <code>Vehicle.__init__</code> to set up <code>brand</code>, <code>plate</code>, <code>mileage</code>, and <code>log</code>.</li>
+                            <li><strong style="color:var(--text);">self.cargo_capacity = cargo_capacity:</strong> After the parent's setup is complete, we add the truck-specific attribute.</li>
+                            <li><strong style="color:var(--text);">def action(self):</strong> Overrides <code>action()</code> to return a truck-specific message that includes the cargo capacity.</li>
+                            <li><strong style="color:var(--text);">truck = Truck("Volvo", "TRK-777", 1500):</strong> Creates a <code>Truck</code> with all three arguments.</li>
+                            <li><strong style="color:var(--text);">print(truck.info()):</strong> Calls the inherited <code>info()</code> method. Output: <code>"Volvo (TRK-777) — 0 mi, 0 services"</code></li>
+                            <li><strong style="color:var(--text);">print(truck.action()):</strong> Calls the overridden <code>action()</code>. Output: <code>"Volvo hauls up to 1500kg of cargo."</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="callout-yellow"><p><strong>Important:</strong> Without <code>super().__init__(brand, plate)</code>, the Truck would have no <code>brand</code>, <code>plate</code>, <code>mileage</code>, or <code>log</code>. <code>super()</code> ensures the parent's initialization runs before the child adds its own attributes.</p></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Step 4: Method Overriding in Depth</h3>
+                    <p>When a subclass defines a method with the same name as a parent method, it <em>overrides</em> the parent's version. But sometimes you want to extend — not replace — the parent's behavior.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">ElectricCar</span>(<span class="cl">Car</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, brand: <span class="cl">str</span>, plate: <span class="cl">str</span>, battery_capacity: <span class="cl">int</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(brand, plate)
+        <span class="kw">self</span>.battery_capacity = battery_capacity
+
+    <span class="kw">def</span> <span class="fn">action</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        base_action = <span class="kw">super</span>().<span class="fn">action</span>()
+        <span class="kw">return</span> <span class="st">f"{base_action} And it's electric with {self.battery_capacity}kWh battery!"</span>
+
+    <span class="kw">def</span> <span class="fn">charge</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.brand} is charging ⚡"</span>
+
+tesla = <span class="cl">ElectricCar</span>(<span class="st">"Tesla"</span>, <span class="st">"EV-2024"</span>, <span class="num">75</span>)
+<span class="fn">print</span>(tesla.<span class="fn">action</span>())
+<span class="fn">print</span>(tesla.<span class="fn">charge</span>())</pre></div>
+
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-top:.8rem;">
+                        <h4 style="color:var(--gold);font-size:.8rem;margin-bottom:.5rem;">📖 Line-by-Line Explanation</h4>
+                        <ul style="list-style:none;padding:0;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:.4rem;">
+                            <li><strong style="color:var(--text);">class ElectricCar(Car):</strong> <code>ElectricCar</code> inherits from <code>Car</code>, which itself inherits from <code>Vehicle</code>. This is multilevel inheritance.</li>
+                            <li><strong style="color:var(--text);">def __init__(self, brand, plate, battery_capacity):</strong> Overrides the constructor to add a battery capacity attribute.</li>
+                            <li><strong style="color:var(--text);">super().__init__(brand, plate):</strong> Calls <code>Car.__init__</code>, which calls <code>Vehicle.__init__</code>. The entire chain executes.</li>
+                            <li><strong style="color:var(--text);">def action(self):</strong> Overrides <code>action()</code> to extend, not replace, the parent's behavior.</li>
+                            <li><strong style="color:var(--text);">base_action = super().action():</strong> Calls the <code>action()</code> method from the parent (<code>Car</code>), which returns the honk message.</li>
+                            <li><strong style="color:var(--text);">return f"{base_action} And it's electric...":</strong> Takes the parent's result and adds electric-specific information.</li>
+                            <li><strong style="color:var(--text);">def charge(self):</strong> A new method that only exists on <code>ElectricCar</code>.</li>
+                            <li><strong style="color:var(--text);">tesla = ElectricCar("Tesla", "EV-2024", 75):</strong> Creates an electric car instance.</li>
+                            <li><strong style="color:var(--text);">print(tesla.action()):</strong> Output: <code>"Tesla honks: Beep beep! And it's electric with 75kWh battery!"</code> — notice it includes both the honk and the electric message.</li>
+                        </ul>
+                    </div>
+
+                    <div class="callout-green"><p><strong>Pattern:</strong> <code>super().method()</code> inside an override lets you <em>extend</em> the parent's logic instead of replacing it. This is how you build on existing behavior rather than duplicating it.</p></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Step 5: The Complete Hierarchy in Action</h3>
+                    <p>Here's the entire hierarchy working together. Run this to see how inheritance enables polymorphism — the loop treats every vehicle uniformly, yet each one behaves correctly.</p>
+                    <div class="code-snippet"><pre><span class="kw">fleet</span> = [
+    <span class="cl">Car</span>(<span class="st">"Toyota"</span>, <span class="st">"ABC-1234"</span>),
+    <span class="cl">Motorcycle</span>(<span class="st">"Ducati"</span>, <span class="st">"MC-5521"</span>),
+    <span class="cl">Truck</span>(<span class="st">"Ford"</span>, <span class="st">"TRK-9090"</span>, cargo_capacity=<span class="num">2000</span>),
+    <span class="cl">ElectricCar</span>(<span class="st">"Tesla"</span>, <span class="st">"EV-2024"</span>, battery_capacity=<span class="num">75</span>),
+]
+
+<span class="kw">for</span> v <span class="kw">in</span> fleet:
+    v.<span class="fn">drive</span>(<span class="num">100</span>)
+    <span class="fn">print</span>(v.<span class="fn">info</span>())
+    <span class="fn">print</span>(<span class="st">" → "</span>, v.<span class="fn">action</span>())
+    <span class="fn">print</span>(<span class="st">" → "</span>, v.<span class="fn">service</span>())
+    <span class="fn">print</span>(<span class="st">"---"</span>)</pre></div>
+
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-top:.8rem;">
+                        <h4 style="color:var(--gold);font-size:.8rem;margin-bottom:.5rem;">📖 Line-by-Line Explanation</h4>
+                        <ul style="list-style:none;padding:0;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:.4rem;">
+                            <li><strong style="color:var(--text);">fleet = [...] :</strong> Creates a list containing objects of different subclasses — <code>Car</code>, <code>Motorcycle</code>, <code>Truck</code>, and <code>ElectricCar</code>.</li>
+                            <li><strong style="color:var(--text);">for v in fleet:</strong> Iterates over each vehicle in the list. The loop doesn't know or care about the specific type of each vehicle.</li>
+                            <li><strong style="color:var(--text);">v.drive(100):</strong> Calls the inherited <code>drive()</code> method. It works the same way for every vehicle type.</li>
+                            <li><strong style="color:var(--text);">print(v.info()):</strong> Calls the inherited <code>info()</code> method. Works the same for all types.</li>
+                            <li><strong style="color:var(--text);">print(v.action()):</strong> This is polymorphism in action. Python resolves the correct <code>action()</code> method based on the actual type of <code>v</code> at runtime.</li>
+                            <li><strong style="color:var(--text);">print(v.service()):</strong> Calls the inherited <code>service()</code> method. Works the same for all.</li>
+                        </ul>
+                    </div>
+
+                    <div class="insight" style="margin-top:1rem;">
+                        <strong>📝 What this demonstrates:</strong>
+                        <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text);">Code Reuse:</strong> <code>drive()</code> and <code>service()</code> are written once in <code>Vehicle</code> but work for every subclass.</li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text);">Method Overriding:</strong> Each subclass supplies its own <code>action()</code>, replacing the parent's generic version.</li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text);">super() Chaining:</strong> <code>ElectricCar.action()</code> calls <code>Car.action()</code> via <code>super()</code>, which in Python resolves through the MRO.</li>
+                            <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text);">Polymorphism:</strong> The loop treats each item as a <code>Vehicle</code>, but Python resolves the correct method at runtime based on the actual object type.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="app" aria-labelledby="h-app">
+            <div class="page-col">
+                <div class="section-label">04 — Try It Yourself</div>
+                <h2 id="h-app">The Live Garage</h2>
+                <div style="margin-top:1rem;">
+                    <p>Add vehicles, drive them, and watch inheritance in action. The same <code>Vehicle</code> → <code>Car</code>/<code>Motorcycle</code>/<code>Truck</code> hierarchy powers this app. Your fleet is saved in local storage.</p>
+                    <div class="garage-app">
+                        <div class="garage-form">
+                            <div class="form-row">
+                                <select class="cselect" id="vType">
+                                    <option value="car">🚗 Car</option>
+                                    <option value="motorcycle">🏍️ Motorcycle</option>
+                                    <option value="truck">🚚 Truck</option>
+                                </select>
+                                <input class="cinput" id="vBrand" type="text" placeholder="Brand (e.g. Toyota)" maxlength="24">
+                                <input class="cinput" id="vPlate" type="text" placeholder="Plate (e.g. ABC-1234)" maxlength="12">
+                            </div>
+                            <div class="form-row cargo-field" id="cargoField">
+                                <input class="cinput" id="vCargo" type="number" placeholder="Cargo capacity (kg)" min="0" step="50">
+                            </div>
+                            <button class="add-btn" id="addVehicleBtn"><i class="fas fa-plus"></i> Add to Garage</button>
+                        </div>
+
+                        <div class="garage-toolbar">
+                            <h3>Your Fleet <span id="fleetCount" style="color:var(--muted);font-weight:500;"></span></h3>
+                            <button class="reset-fleet-btn" id="resetFleetBtn">↺ Reset Fleet</button>
+                        </div>
+                        <div id="fleetGrid" class="fleet-grid">
+                            <div class="fleet-empty" id="fleetEmpty">Your garage is empty. Add a Car, Motorcycle, or Truck above.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="super" aria-labelledby="h-super">
+            <div class="page-col">
+                <div class="section-label">05 — Deep Dive</div>
+                <h2 id="h-super">Understanding <code>super()</code></h2>
+                <div class="oop-block">
+                    <h3>Why <code>super()</code> Matters</h3>
+                    <p><code>super()</code> is Python's way of calling a method from the parent class. It's essential for extending parent behavior without duplicating code, and it's the foundation of cooperative multiple inheritance.</p>
+
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <span class="emoji-big">🔗</span>
+                            <h4>Parent Access</h4>
+                            <p>Call the parent's version of a method from inside the child's override.</p>
+                        </div>
+                        <div class="concept-card">
+                            <span class="emoji-big">🧩</span>
+                            <h4>Constructor Chaining</h4>
+                            <p>Ensure the parent's <code>__init__</code> runs before the child adds its own attributes.</p>
+                        </div>
+                        <div class="concept-card">
+                            <span class="emoji-big">🔄</span>
+                            <h4>MRO Resolution</h4>
+                            <p>In multiple inheritance, <code>super()</code> follows the Method Resolution Order, calling each parent exactly once.</p>
+                        </div>
+                        <div class="concept-card">
+                            <span class="emoji-big">⚡</span>
+                            <h4>Cooperative Design</h4>
+                            <p>Classes designed with <code>super()</code> can be mixed and matched safely — the foundation of mixins.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Child</span>(<span class="cl">Parent</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, parent_arg, child_arg):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(parent_arg)
+        <span class="kw">self</span>.child_arg = child_arg
+
+    <span class="kw">def</span> <span class="fn">method</span>(<span class="kw">self</span>):
+        result = <span class="kw">super</span>().<span class="fn">method</span>()
+        <span class="kw">return</span> result + <span class="st">" and child's addition"</span></pre></div>
+
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-top:.8rem;">
+                        <h4 style="color:var(--gold);font-size:.8rem;margin-bottom:.5rem;">📖 Line-by-Line Explanation</h4>
+                        <ul style="list-style:none;padding:0;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:.4rem;">
+                            <li><strong style="color:var(--text);">class Child(Parent):</strong> <code>Child</code> inherits from <code>Parent</code>.</li>
+                            <li><strong style="color:var(--text);">def __init__(self, parent_arg, child_arg):</strong> Overrides the constructor.</li>
+                            <li><strong style="color:var(--text);">super().__init__(parent_arg):</strong> Calls <code>Parent.__init__</code> with the appropriate arguments. This ensures the parent's state is properly initialized.</li>
+                            <li><strong style="color:var(--text);">self.child_arg = child_arg:</strong> After the parent's setup, adds the child-specific attribute.</li>
+                            <li><strong style="color:var(--text);">def method(self):</strong> Overrides <code>method()</code> from the parent.</li>
+                            <li><strong style="color:var(--text);">result = super().method():</strong> Calls the parent's version of <code>method()</code> and stores the result.</li>
+                            <li><strong style="color:var(--text);">return result + " and child's addition":</strong> Takes the parent's result and extends it with child-specific behavior.</li>
+                        </ul>
+                    </div>
+
+                    <div class="callout-yellow"><p><strong>Common pitfall:</strong> Forgetting to call <code>super().__init__()</code> means the parent's attributes (like <code>brand</code> and <code>plate</code> in our Vehicle) never get set. Always call it first unless you have a very specific reason not to.</p></div>
+
+                    <div class="insight" style="margin-top:.6rem;">
+                        <strong>📝 super() in multiple inheritance:</strong> Python uses C3 linearization to compute the MRO. <code>super()</code> doesn't just call the immediate parent — it calls the <em>next class in the MRO</em>. This means <code>super()</code> works correctly even with complex diamond hierarchies.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="polymorphism" aria-labelledby="h-poly">
+            <div class="page-col">
+                <div class="section-label">06 — The Power of Polymorphism</div>
+                <h2 id="h-poly">Polymorphism Through Inheritance</h2>
+                <div class="oop-block">
+                    <h3>One Interface, Many Behaviors</h3>
+                    <p>Polymorphism lets you write code that works with any object that conforms to a shared interface. In our vehicle hierarchy, that interface is defined by <code>Vehicle</code>.</p>
+
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">garage_report</span>(vehicles):
+    <span class="kw">for</span> v <span class="kw">in</span> vehicles:
+        <span class="fn">print</span>(v.<span class="fn">info</span>())
+        <span class="fn">print</span>(<span class="st">"  → "</span>, v.<span class="fn">action</span>())
+
+garage_report([
+    <span class="cl">Car</span>(<span class="st">"BMW"</span>, <span class="st">"BMW-123"</span>),
+    <span class="cl">Motorcycle</span>(<span class="st">"Harley"</span>, <span class="st">"MC-883"</span>),
+    <span class="cl">Truck</span>(<span class="st">"Scania"</span>, <span class="st">"SC-456"</span>, <span class="num">1800</span>),
+    <span class="cl">ElectricCar</span>(<span class="st">"Rivian"</span>, <span class="st">"EV-555"</span>, <span class="num">105</span>),
+])</pre></div>
+
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-top:.8rem;">
+                        <h4 style="color:var(--gold);font-size:.8rem;margin-bottom:.5rem;">📖 Line-by-Line Explanation</h4>
+                        <ul style="list-style:none;padding:0;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:.4rem;">
+                            <li><strong style="color:var(--text);">def garage_report(vehicles):</strong> Defines a function that takes a list of vehicles.</li>
+                            <li><strong style="color:var(--text);">for v in vehicles:</strong> Iterates over each vehicle in the list.</li>
+                            <li><strong style="color:var(--text);">print(v.info()):</strong> Calls <code>info()</code> on the vehicle. Works for any subclass.</li>
+                            <li><strong style="color:var(--text);">print(v.action()):</strong> Calls <code>action()</code> on the vehicle. Python resolves the correct method based on the actual type.</li>
+                            <li><strong style="color:var(--text);">garage_report([...]):</strong> Calls the function with a list containing four different vehicle types.</li>
+                        </ul>
+                    </div>
+
+                    <div class="callout-green"><p><strong>Why this matters:</strong> You can add new vehicle types — <code>Bicycle</code>, <code>Boat</code>, <code>Plane</code> — and <code>garage_report()</code> will handle them without any changes, as long as they implement <code>info()</code> and <code>action()</code>.</p></div>
+
+                    <div class="callout"><p><strong>Duck typing vs inheritance:</strong> Python's polymorphism works through both inheritance (the classic OOP approach) and duck typing (objects just need to have the right methods). Inheritance-based polymorphism is more explicit and provides better IDE support.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="design" aria-labelledby="h-design">
+            <div class="page-col">
+                <div class="section-label">07 — Design Patterns</div>
+                <h2 id="h-design">Inheritance Design Patterns</h2>
+
+                <div class="oop-block">
+                    <h3>Template Method Pattern</h3>
+                    <p>The Template Method pattern defines the skeleton of an algorithm in a parent method, letting subclasses override specific steps without changing the algorithm's structure.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Vehicle</span>:
+    <span class="kw">def</span> <span class="fn">maintenance_checklist</span>(<span class="kw">self</span>) -&gt; <span class="cl">list</span>:
+        checks = [<span class="st">"Check tires"</span>, <span class="st">"Check brakes"</span>]
+        checks.extend(<span class="kw">self</span>.<span class="fn">_specific_checks</span>())
+        <span class="kw">return</span> checks
+
+    <span class="kw">def</span> <span class="fn">_specific_checks</span>(<span class="kw">self</span>) -&gt; <span class="cl">list</span>:
+        <span class="kw">return</span> []
+
+<span class="kw">class</span> <span class="cl">Car</span>(<span class="cl">Vehicle</span>):
+    <span class="kw">def</span> <span class="fn">_specific_checks</span>(<span class="kw">self</span>) -&gt; <span class="cl">list</span>:
+        <span class="kw">return</span> [<span class="st">"Check engine oil"</span>, <span class="st">"Check transmission fluid"</span>]
+
+<span class="kw">class</span> <span class="cl">Truck</span>(<span class="cl">Vehicle</span>):
+    <span class="kw">def</span> <span class="fn">_specific_checks</span>(<span class="kw">self</span>) -&gt; <span class="cl">list</span>:
+        <span class="kw">return</span> [<span class="st">"Check air brakes"</span>, <span class="st">"Check load securing"</span>, <span class="st">"Check hydraulic systems"</span>]
+
+<span class="fn">print</span>(<span class="cl">Car</span>(<span class="st">"Toyota"</span>, <span class="st">"ABC-123"</span>).<span class="fn">maintenance_checklist</span>())
+<span class="fn">print</span>(<span class="cl">Truck</span>(<span class="st">"Ford"</span>, <span class="st">"TRK-777"</span>, <span class="num">2000</span>).<span class="fn">maintenance_checklist</span>())</pre></div>
+                    <div class="callout-green"><p><strong>Why it works:</strong> The parent defines <em>what</em> needs to be done (the algorithm), and subclasses define <em>how</em> specific steps are performed. This promotes code reuse while allowing flexibility.</p></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Inheritance vs Composition</h3>
+                    <p>Knowing when to inherit vs when to compose is one of the most important skills in OOP design.</p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr><th>Aspect</th><th>Inheritance</th><th>Composition</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Relationship</strong></td><td class="highlight-cell">"is-a" — Dog is an Animal</td><td>"has-a" — Car has an Engine</td></tr>
+                            <tr><td><strong>Code Reuse</strong></td><td>Automatic via inheritance</td><td>Manual via delegation</td></tr>
+                            <tr><td><strong>Flexibility</strong></td><td>Tight coupling to parent</td><td>Loose coupling, easier to change</td></tr>
+                            <tr><td><strong>When to use</strong></td><td>True hierarchies, shared core behavior</td><td>Behavior sharing across unrelated classes</td></tr>
+                            <tr><td><strong>Example</strong></td><td><code>Car(Vehicle)</code></td><td><code>Car(engine=Engine())</code></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="callout-yellow"><p><strong>Rule of thumb:</strong> Use inheritance when there's a clear "is-a" relationship. Use composition when you need to share behavior across unrelated classes (like logging, caching, or serialization).</p></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Mixin Pattern</h3>
+                    <p>Mixins are small, reusable classes that provide specific functionality to be inherited by other classes. They're designed to be used with multiple inheritance.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">JSONMixin</span>:
+    <span class="kw">def</span> <span class="fn">to_json</span>(<span class="kw">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">import</span> json
+        <span class="kw">return</span> json.dumps(<span class="kw">self</span>.<span class="fn">to_dict</span>())
+
+<span class="kw">class</span> <span class="cl">CSVMixin</span>:
+    <span class="kw">def</span> <span class="fn">to_csv</span>(<span class="kw">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">","</span>.<span class="fn">join</span>(<span class="kw">self</span>.<span class="fn">to_dict</span>().values())
+
+<span class="kw">class</span> <span class="cl">Vehicle</span>(<span class="cl">JSONMixin</span>, <span class="cl">CSVMixin</span>):
+    <span class="kw">def</span> <span class="fn">to_dict</span>(<span class="kw">self</span>) -> <span class="cl">dict</span>:
+        <span class="kw">return</span> {<span class="st">"brand"</span>: <span class="kw">self</span>.brand, <span class="st">"plate"</span>: <span class="kw">self</span>.plate, <span class="st">"mileage"</span>: <span class="kw">self</span>.mileage}
+
+v = <span class="cl">Vehicle</span>(<span class="st">"Toyota"</span>, <span class="st">"ABC-123"</span>)
+<span class="fn">print</span>(v.<span class="fn">to_json</span>())
+<span class="fn">print</span>(v.<span class="fn">to_csv</span>())</pre></div>
+                    <div class="callout"><p><strong>Key insight:</strong> Mixins are a powerful way to compose behavior across unrelated classes. They're used extensively in Django (mixins for views, forms, and permissions) and other Python frameworks.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" aria-labelledby="h-faq">
+            <div class="page-col">
+                <div class="section-label">08 — Frequently Asked Questions</div>
+                <h2 id="h-faq">Inheritance FAQ</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)">
+                            <h3>What is inheritance in Python?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-a"><p>Inheritance is a mechanism where a new class (subclass) derives attributes and methods from an existing class (parent). It represents an "is-a" relationship — a Car <em>is a</em> Vehicle. The subclass can use, extend, or override the parent's behavior.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)">
+                            <h3>What's the difference between inheritance and composition?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-a"><p>Inheritance creates an "is-a" relationship (Dog is an Animal). Composition creates a "has-a" relationship (Car has an Engine). Inheritance is for when the subclass is a specialized version of the parent. Composition is for when you want to reuse functionality across unrelated classes. Use inheritance for hierarchies, composition for behavior sharing.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)">
+                            <h3>What does super() do in Python?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-a"><p><code>super()</code> returns a proxy object that delegates method calls to the parent class. It's used to call the parent's version of a method from inside an override. The two most common use cases are: calling <code>super().__init__()</code> in the child's constructor to initialize parent attributes, and calling <code>super().method()</code> inside an override to extend the parent's behavior.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)">
+                            <h3>What is method overriding?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-a"><p>Method overriding is when a subclass defines a method with the same name as a method in its parent class. Python uses the subclass's version instead of the parent's. This lets subclasses customize behavior without changing the parent. You can also use <code>super()</code> to call the parent's version inside the override, effectively extending the parent's behavior.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)">
+                            <h3>What is multiple inheritance and how does MRO work?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-a"><p>Multiple inheritance is when a class inherits from more than one parent. Python uses the C3 linearization algorithm to compute the Method Resolution Order (MRO), which determines the order in which parent classes are searched for methods. You can view the MRO using <code>ClassName.__mro__</code>. Python's <code>super()</code> follows this order, calling the next class in the chain.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q" onclick="toggleFaq(this)">
+                            <h3>What's the difference between private, protected, and public in inheritance?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-a"><p>Python's conventions: Public attributes have no leading underscore (e.g., <code>brand</code>) — accessible everywhere. Protected attributes have one leading underscore (e.g., <code>_internal</code>) — a convention indicating "internal use only." Private attributes have two leading underscores (e.g., <code>__secret</code>) — Python name-mangles them to avoid accidental overriding. In practice, Python relies on developer discipline rather than enforced access controls.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" aria-labelledby="h-exercises">
+            <div class="page-col">
+                <div class="section-label">09 — Practice Exercises</div>
+                <h2 id="h-exercises">Sharpen Your Skills</h2>
+                <p>Apply what you've learned with these hands-on exercises. Each one builds on the inheritance concepts covered in this tutorial.</p>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <h4>🏁 Exercise 1: Add a Bicycle</h4>
+                        <p>Create a <code>Bicycle</code> class that inherits from <code>Vehicle</code>. Override <code>action()</code> to return something like <code>"{brand} pedals forward!"</code>. Add a <code>gear</code> attribute and a <code>shift_gear()</code> method.</p>
+                        <span class="hint">💡 Hint: Bicycle doesn't need a plate — you can set it to "—" or make it optional.</span>
+                    </div>
+                    <div class="exercise-card">
+                        <h4>🚗 Exercise 2: Extend Car with Hybrid</h4>
+                        <p>Create a <code>HybridCar</code> class that inherits from <code>Car</code>. Add an <code>electric_range</code> attribute. Override <code>action()</code> to include the electric range: <code>"{brand} honks! Range: {range} miles electric."</code></p>
+                        <span class="hint">💡 Hint: Use <code>super().action()</code> to get the honk, then add your range message.</span>
+                    </div>
+                    <div class="exercise-card">
+                        <h4>📊 Exercise 3: Fleet Summary</h4>
+                        <p>Write a function <code>fleet_summary(vehicles)</code> that returns a dictionary with keys: <code>total_vehicles</code>, <code>total_mileage</code>, and <code>total_services</code>. Iterate through the list and sum the values.</p>
+                        <span class="hint">💡 Hint: Use <code>len(vehicles)</code>, sum <code>v.mileage</code>, and sum <code>len(v.log)</code>.</span>
+                    </div>
+                    <div class="exercise-card">
+                        <h4>⏰ Exercise 4: Service Reminder</h4>
+                        <p>Add a <code>needs_service()</code> method to <code>Vehicle</code> that returns <code>True</code> if the vehicle has driven 100 miles since its last service. Override it in <code>Truck</code> to trigger service every 80 miles instead.</p>
+                        <span class="hint">💡 Hint: Store <code>last_service_mileage</code> in the constructor and update it when <code>service()</code> is called.</span>
+                    </div>
+                    <div class="exercise-card">
+                        <h4>🔗 Exercise 5: Mixin for Logging</h4>
+                        <p>Create a <code>LogMixin</code> class with a <code>to_log()</code> method that returns a JSON-like string of the vehicle's attributes. Mix it into <code>Vehicle</code> using multiple inheritance.</p>
+                        <span class="hint">💡 Hint: <code>to_log()</code> can return <code>f'{{"brand": "{self.brand}", "mileage": {self.mileage}}}'</code></span>
+                    </div>
+                </div>
+                <div class="callout" style="margin-top:1rem;">
+                    <p><strong>💡 Pro Tip:</strong> Try implementing these exercises in the live garage code above or in your local Python environment. The best way to learn inheritance is to write code, break it, and fix it.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" aria-labelledby="h-quiz">
+            <div class="page-col">
+                <div class="section-label">10 — Test Yourself</div>
+                <h2 id="h-quiz">Knowledge Check</h2>
+                <div style="margin-top:1rem;">
+                    <p>Reinforce what you've learned. Each question targets a core inheritance concept from this tutorial.</p>
+                    <div class="quiz-wrap" id="quizWrap"></div>
+                    <div class="quiz-score" id="quizScore">
+                        <span class="score-num" id="quizScoreNum">0/5</span>
+                        <p id="quizScoreMsg">Great effort — review any missed questions above.</p>
+                        <button class="quiz-reset" onclick="resetQuiz()">↺ Retry Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="share" aria-labelledby="h-share" style="padding-top:0;">
+            <div class="page-col">
+                <div class="section-label">11 — Share This Guide</div>
+                <h2 id="h-share">Share the Knowledge</h2>
+                <div class="share-wrap" style="margin-top:1rem;">
+                    <h2>Found this useful? Share it.</h2>
+                    <p class="share-sub">Help fellow developers master inheritance through this hands-on vehicle garage tutorial.</p>
+                    <div class="share-btns">
+                        <button class="sbtn s-fb" onclick="shareTo('facebook')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</button>
+                        <button class="sbtn s-li" onclick="shareTo('linkedin')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>LinkedIn</button>
+                        <button class="sbtn s-x" onclick="shareTo('twitter')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</button>
+                        <button class="sbtn s-wa" onclick="shareTo('whatsapp')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37C7.35 7.6 6.6 8.3 6.6 9.77s1.07 3.06 1.22 3.27c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34zm-5.47 7.45h-.01A9.93 9.93 0 017.17 20L3 21.15l1.17-4.13A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>WhatsApp</button>
+                        <button class="sbtn s-yt" onclick="shareTo('youtube')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>YouTube</button>
+                        <button class="sbtn s-tg" onclick="shareTo('telegram')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.94 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.94 0zm5.63 7.44l-1.87 8.82c-.14.63-.52.79-1.05.49l-2.9-2.14-1.4 1.35a.65.65 0 01-.52.24.66.66 0 01-.52-.24l.2-2.88 5.25-4.75c.23-.2-.05-.32-.36-.12l-6.5 4.1-2.8-.88c-.6-.19-.61-.6.12-.88l10.94-4.21c.5-.18.94.12.76.88z"/></svg>Telegram</button>
+                    </div>
+                    <div class="share-toast" id="shareToast" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscribe" aria-labelledby="h-sub" style="padding-top:0;">
+            <div class="page-col">
+                <div class="section-label">12 — Stay in the Loop</div>
+                <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
+                <div style="margin-top:1rem;">
+                    <div class="sub-wrap">
+                        <h2>Level up your Python knowledge.</h2>
+                        <p class="sub-desc">In-depth Python tutorials, AI insights, and software engineering guides — delivered straight to your inbox. No spam, ever.</p>
+                        <div class="perks">
+                            <span class="perk">Weekly Python tutorials</span>
+                            <span class="perk">AI &amp; ML deep-dives</span>
+                            <span class="perk">OOP series updates</span>
+                            <span class="perk">Free, cancel anytime</span>
+                        </div>
+                        <div class="sub-plans">
+                            <button class="plan-chip active" id="planFree" onclick="selectPlan('free')">🆓 Free Weekly</button>
+                            <button class="plan-chip premium" id="planPro" onclick="selectPlan('pro')">⭐ Pro Monthly — Deep Dives</button>
+                        </div>
+                        <div class="sub-form" style="margin-top:1.2rem">
+                            <input class="cinput" type="email" id="subEmail" placeholder="your@email.com" autocomplete="email">
+                            <button class="btn-submit" onclick="handleSubscribe()">Subscribe Free →</button>
+                        </div>
+                        <p class="sub-note">🔒 Join 8,400+ developers. Your email is never shared or sold.</p>
+                        <div class="sub-msg" id="subMsg" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" aria-labelledby="h-projects" style="padding-top:0;">
+            <div class="page-col">
+                <div class="section-label">13 — Continue Learning</div>
+                <h2 id="h-projects">More Inheritance Projects</h2>
+                <p>Apply what you've learned to these other inheritance-based projects:</p>
+                <div class="pillars-mini">
+                    <a href="zoo.html"><div class="pico">🦁</div><div class="ptitle">Zoo Manager</div></a>
+                    <a href="rpg.html"><div class="pico">⚔️</div><div class="ptitle">RPG Builder</div></a>
+                    <a href="office.html"><div class="pico">🏢</div><div class="ptitle">Org Chart</div></a>
+                    <a href="shapes.html"><div class="pico">📐</div><div class="ptitle">Shape Calculator</div></a>
+                    <a href="inheritance.html"><div class="pico">🧬</div><div class="ptitle">Back to Guide</div></a>
+                    <a href="index.html"><div class="pico">🏠</div><div class="ptitle">Main Hub</div></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="outro" aria-labelledby="h-outro">
+            <div class="page-col">
+                <div class="section-label">14 — The Road Ahead</div>
+                <h2 id="h-outro">Wrapping Up: Your Inheritance Journey</h2>
+
+                <div class="curriculum-desc" style="border-color:var(--gold);">
+                    <h2>🏁 Inheritance Mastery Checklist</h2>
+                    <ul class="outro-list">
+                        <li><strong>Created a parent class</strong> — <code>Vehicle</code> with shared attributes and methods that every subclass inherits.</li>
+                        <li><strong>Built subclasses</strong> — <code>Car</code>, <code>Motorcycle</code>, and <code>Truck</code> — each extending the parent with specialized behavior.</li>
+                        <li><strong>Used <code>super()</code></strong> to call the parent constructor and extend initialization without duplicating code.</li>
+                        <li><strong>Overridden methods</strong> — each subclass supplies its own <code>action()</code> while inheriting <code>drive()</code> and <code>service()</code>.</li>
+                        <li><strong>Leveraged polymorphism</strong> — wrote code that works with any <code>Vehicle</code>, regardless of subclass, through dynamic method dispatch.</li>
+                        <li><strong>Applied design patterns</strong> — Template Method, Mixin pattern, and understood when to use inheritance vs composition.</li>
+                        <li><strong>Built a live, interactive app</strong> powered by the exact same class hierarchy, with persistence via local storage.</li>
+                        <li><strong>Understood the essentials</strong> — why inheritance matters, its significance in the programming community, and how to think about class hierarchies.</li>
+                    </ul>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 20+ code examples</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 1 interactive garage app</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Complete class hierarchy</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Design patterns</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 quiz questions</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 exercises</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Final Words</h3>
+                    <p>
+                        Inheritance is not just a programming feature — it's a way of thinking about software design.
+                        It teaches you to see patterns, recognize shared behavior, and build systems that grow
+                        gracefully. Every major Python framework, every design pattern, every well-structured codebase
+                        relies on inheritance in some form.
+                    </p>
+                    <p>
+                        The vehicle hierarchy you built in this tutorial is a microcosm of how real systems work.
+                        Django models inherit from <code>models.Model</code>. PyTorch layers inherit from
+                        <code>nn.Module</code>. Flask views inherit from <code>View</code>. The pattern is everywhere
+                        — and now you understand it.
+                    </p>
+                    <div class="callout" style="border-color:var(--gold);background:rgba(255,212,59,.04);margin-top:1rem;">
+                        <p style="font-size:.85rem;color:var(--text);">
+                            <strong>✨ "Inheritance is how software grows without repeating itself.</strong>
+                            Master this, and you'll start seeing hierarchies everywhere — in code, in nature, in
+                            organizations. Keep building, keep extending, and remember:
+                            <span style="color:var(--gold);">the best subclass is the one that adds exactly what's needed, and nothing more.</span>"
+                        </p>
+                        <p style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">— Glenn Junsay Pansensoy, Poetic Bytes</p>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;">
+                    <a href="#app" class="btn btn-primary"><i class="fas fa-car"></i> Try the Garage</a>
+                    <a href="index.html" class="btn btn-outline"><i class="fas fa-home"></i> Back to Hub</a>
+                    <a href="inheritance.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Inheritance Guide</a>
+                    <button class="btn btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Print Guide</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>OOP Series</h5>
+                    <ul>
+                        <li><a href="encapsulation.html">Encapsulation</a></li>
+                        <li><a href="abstraction.html">Abstraction</a></li>
+                        <li><a href="inheritance.html">Inheritance</a></li>
+                        <li><a href="polymorphism.html">Polymorphism</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' }); closeDrawer(); }
+                });
+            });
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    tocPanel.classList.toggle('open');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        var target = e.target;
+                        if (!tocPanel.contains(target) && target !== tocToggle && !tocToggle.contains(target)) {
+                            tocPanel.classList.remove('open');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                    }
+                });
+            }
+            if (tocClose) {
+                tocClose.addEventListener('click', function() {
+                    if (tocPanel) tocPanel.classList.remove('open');
+                });
+            }
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/garage.html');
+            var PAGE_TITLE = encodeURIComponent('Vehicle Garage – Complete Inheritance Tutorial');
+
+            window.shareTo = function(platform) {
+                var urls = {
+                    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL,
+                    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL,
+                    twitter: 'https://twitter.com/intent/tweet?text=' + PAGE_TITLE + '%20' + PAGE_URL,
+                    whatsapp: 'https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL,
+                    youtube: 'https://www.youtube.com',
+                    telegram: 'https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE,
+                };
+                var toastEl = document.getElementById('shareToast');
+                if (urls[platform]) {
+                    window.open(urls[platform], '_blank', 'width=640,height=540,noopener,noreferrer');
+                    toastEl.textContent = '✓ Opening share dialog…';
+                    toastEl.style.opacity = '1';
+                    setTimeout(function() { toastEl.style.opacity = '0'; }, 3000);
+                } else {
+                    toastEl.textContent = '⚠ Please copy the URL manually.';
+                    toastEl.style.opacity = '1';
+                    setTimeout(function() { toastEl.style.opacity = '0'; }, 3000);
+                }
+            };
+
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    var url = 'https://poetic-bytes.vercel.app/garage.html';
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(url).then(function() {
+                            var orig = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                            setTimeout(function() { copyBtn.innerHTML = orig; }, 2000);
+                        }).catch(function() { fallbackCopy(url); });
+                    } else {
+                        fallbackCopy(url);
+                    }
+                });
+            }
+
+            function fallbackCopy(text) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(function() { copyBtn.innerHTML = orig; }, 2000);
+            }
+
+            window.toggleFaq = function(el) {
+                var answer = el.nextElementSibling;
+                var toggle = el.querySelector('.faq-toggle');
+                if (answer.classList.contains('open')) {
+                    answer.classList.remove('open');
+                    toggle.textContent = '+';
+                } else {
+                    answer.classList.add('open');
+                    toggle.textContent = '−';
+                }
+            };
+
+            var STORAGE_KEY = 'poetic_bytes_garage_v1';
+
+            function Vehicle(type, brand, plate) {
+                this.id = 'v' + Date.now() + Math.floor(Math.random() * 1000);
+                this.type = type;
+                this.brand = brand;
+                this.plate = plate || '—';
+                this.mileage = 0;
+                this.lastServiceMileage = 0;
+                this.log = [];
+            }
+            Vehicle.prototype.drive = function(miles) { this.mileage += miles; };
+            Vehicle.prototype.needsService = function() { return (this.mileage - this.lastServiceMileage) >= 100; };
+            Vehicle.prototype.service = function() {
+                var entry = 'Serviced at ' + this.mileage + ' mi';
+                this.log.unshift(entry);
+                this.lastServiceMileage = this.mileage;
+                return entry;
+            };
+            Vehicle.prototype.icon = function() { return '🚘'; };
+            Vehicle.prototype.actionLabel = function() { return 'Action'; };
+            Vehicle.prototype.action = function() { return this.brand + ' just sits quietly in the garage.'; };
+
+            function Car(brand, plate) { Vehicle.call(this, 'car', brand, plate); }
+            Car.prototype = Object.create(Vehicle.prototype);
+            Car.prototype.constructor = Car;
+            Car.prototype.icon = function() { return '🚗'; };
+            Car.prototype.actionLabel = function() { return 'Honk'; };
+            Car.prototype.action = function() { return this.brand + ' honks: Beep beep! 📯'; };
+
+            function Motorcycle(brand, plate) { Vehicle.call(this, 'motorcycle', brand, plate); }
+            Motorcycle.prototype = Object.create(Vehicle.prototype);
+            Motorcycle.prototype.constructor = Motorcycle;
+            Motorcycle.prototype.icon = function() { return '🏍️'; };
+            Motorcycle.prototype.actionLabel = function() { return 'Wheelie'; };
+            Motorcycle.prototype.action = function() { return this.brand + ' pops a wheelie! 🌀'; };
+
+            function Truck(brand, plate, cargoCapacity) {
+                Vehicle.call(this, 'truck', brand, plate);
+                this.cargoCapacity = cargoCapacity || 1000;
+            }
+            Truck.prototype = Object.create(Vehicle.prototype);
+            Truck.prototype.constructor = Truck;
+            Truck.prototype.icon = function() { return '🚚'; };
+            Truck.prototype.actionLabel = function() { return 'Haul Cargo'; };
+            Truck.prototype.action = function() { return this.brand + ' hauls up to ' + this.cargoCapacity + 'kg of cargo. 📦'; };
+
+            var VEHICLE_CLASSES = { car: Car, motorcycle: Motorcycle, truck: Truck };
+            var fleet = [];
+
+            function saveFleet() {
+                var plain = fleet.map(function(v) {
+                    return {
+                        id: v.id, type: v.type, brand: v.brand, plate: v.plate,
+                        mileage: v.mileage, lastServiceMileage: v.lastServiceMileage,
+                        log: v.log, cargoCapacity: v.cargoCapacity
+                    };
+                });
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(plain)); } catch (_) {}
+            }
+
+            function loadFleet() {
+                var raw;
+                try { raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch (_) { raw = []; }
+                fleet = raw.map(function(d) {
+                    var Cls = VEHICLE_CLASSES[d.type] || Car;
+                    var v = d.type === 'truck' ? new Truck(d.brand, d.plate, d.cargoCapacity) : new Cls(d.brand, d.plate);
+                    v.id = d.id;
+                    v.mileage = d.mileage || 0;
+                    v.lastServiceMileage = d.lastServiceMileage || 0;
+                    v.log = d.log || [];
+                    return v;
+                });
+            }
+
+            function escapeHtml(str) {
+                return String(str).replace(/[&<>"']/g, function(c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+
+            function renderFleet() {
+                var grid = document.getElementById('fleetGrid');
+                var empty = document.getElementById('fleetEmpty');
+                var countEl = document.getElementById('fleetCount');
+                countEl.textContent = fleet.length ? '(' + fleet.length + ')' : '';
+
+                if (!fleet.length) {
+                    grid.innerHTML = '';
+                    grid.appendChild(empty);
+                    return;
+                }
+
+                var html = fleet.map(function(v) {
+                    var due = v.needsService();
+                    var logHtml = v.log.length
+                        ? v.log.slice(0, 5).map(function(l) { return '<div>› ' + escapeHtml(l) + '</div>'; }).join('')
+                        : '<div style="opacity:.5">No service history yet.</div>';
+                    var cargoStat = v.type === 'truck'
+                        ? '<div class="vstat">Cargo cap.<b>' + v.cargoCapacity + ' kg</b></div>'
+                        : '';
+                    return '' +
+                        '<div class="vcard type-' + v.type + '" data-id="' + v.id + '">' +
+                            '<div class="vcard-top">' +
+                                '<div class="vcard-title">' +
+                                    '<span class="vcard-icon">' + v.icon() + '</span>' +
+                                    '<div><div class="vcard-name">' + escapeHtml(v.brand) + '</div>' +
+                                    '<div class="vcard-plate">' + escapeHtml(v.plate) + ' · ' + v.type + '</div></div>' +
+                                '</div>' +
+                                '<button class="vcard-remove" data-action="remove" title="Remove"><i class="fas fa-trash"></i></button>' +
+                            '</div>' +
+                            '<span class="service-flag ' + (due ? 'due' : 'ok') + '">' + (due ? '⚠ Service Due' : '✓ Up to Date') + '</span>' +
+                            '<div class="vcard-stats">' +
+                                '<div class="vstat">Mileage<b>' + v.mileage + ' mi</b></div>' +
+                                '<div class="vstat">Services<b>' + v.log.length + '</b></div>' +
+                                cargoStat +
+                            '</div>' +
+                            '<div class="vcard-actions">' +
+                                '<button class="vbtn" data-action="drive">+10 mi</button>' +
+                                '<button class="vbtn" data-action="service">🔧 Service</button>' +
+                                '<button class="vbtn vbtn-primary type-' + v.type + '" data-action="special">' + v.actionLabel() + '</button>' +
+                            '</div>' +
+                            '<div class="action-feedback" data-role="feedback"></div>' +
+                            '<div class="vcard-log">' + logHtml + '</div>' +
+                        '</div>';
+                }).join('');
+                grid.innerHTML = html;
+            }
+
+            function findVehicle(id) {
+                for (var i = 0; i < fleet.length; i++) if (fleet[i].id === id) return fleet[i];
+                return null;
+            }
+
+            document.getElementById('vType').addEventListener('change', function() {
+                var cargoField = document.getElementById('cargoField');
+                cargoField.classList.toggle('show', this.value === 'truck');
+            });
+
+            document.getElementById('addVehicleBtn').addEventListener('click', function() {
+                var type = document.getElementById('vType').value;
+                var brandEl = document.getElementById('vBrand');
+                var plateEl = document.getElementById('vPlate');
+                var cargoEl = document.getElementById('vCargo');
+                var brand = brandEl.value.trim() || (type === 'car' ? 'Unnamed Car' : type === 'motorcycle' ? 'Unnamed Motorcycle' : 'Unnamed Truck');
+                var plate = plateEl.value.trim() || ('PB-' + Math.floor(1000 + Math.random() * 9000));
+
+                var v;
+                if (type === 'truck') {
+                    var cargo = parseInt(cargoEl.value, 10);
+                    v = new Truck(brand, plate, isNaN(cargo) ? 1000 : cargo);
+                } else if (type === 'motorcycle') {
+                    v = new Motorcycle(brand, plate);
+                } else {
+                    v = new Car(brand, plate);
+                }
+                fleet.unshift(v);
+                saveFleet();
+                renderFleet();
+                brandEl.value = '';
+                plateEl.value = '';
+                cargoEl.value = '';
+            });
+
+            document.getElementById('resetFleetBtn').addEventListener('click', function() {
+                if (fleet.length && !confirm('Clear your entire fleet? This cannot be undone.')) return;
+                fleet = [];
+                saveFleet();
+                renderFleet();
+            });
+
+            document.getElementById('fleetGrid').addEventListener('click', function(e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                var cardEl = e.target.closest('.vcard');
+                if (!cardEl) return;
+                var v = findVehicle(cardEl.dataset.id);
+                if (!v) return;
+                var feedbackEl = cardEl.querySelector('[data-role="feedback"]');
+
+                switch (btn.dataset.action) {
+                    case 'drive':
+                        v.drive(10);
+                        feedbackEl.textContent = '🛣️ Drove 10 miles.';
+                        break;
+                    case 'service':
+                        var entry = v.service();
+                        feedbackEl.textContent = '🔧 ' + entry + '.';
+                        break;
+                    case 'special':
+                        feedbackEl.textContent = '→ ' + v.action();
+                        break;
+                    case 'remove':
+                        fleet = fleet.filter(function(item) { return item.id !== v.id; });
+                        saveFleet();
+                        renderFleet();
+                        return;
+                }
+                saveFleet();
+                renderFleet();
+            });
+
+            loadFleet();
+            renderFleet();
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var original = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = original; }, 2000);
+                    }).catch(function() { fallbackCopyCode(btn, code); });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = original; }, 2000);
+            }
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide();
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+            function indentCode(code, spaces) {
+                var pad = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return pad + line; }).join('\n');
+            }
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+                    var wrapperLines = [
+                        'import sys',
+                        'from io import StringIO',
+                        '_captured_output = StringIO()',
+                        '_old_stdout = sys.stdout',
+                        'sys.stdout = _captured_output',
+                        'try:',
+                        indentCode(code, 4),
+                        'finally:',
+                        '    sys.stdout = _old_stdout',
+                        '_captured_output.getvalue()'
+                    ];
+                    var result = await pyodide.runPythonAsync(wrapperLines.join('\n'));
+                    outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                    outputEl.style.color = '#4ade80';
+                } catch (err) {
+                    outputEl.className = 'output-panel error';
+                    outputEl.textContent = 'Error:\n' + err.message;
+                    outputEl.style.color = '#f87171';
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function enhanceCodeBlocks() {
+                var blocks = document.querySelectorAll('.code-snippet');
+                blocks.forEach(function(block) {
+                    if (block.closest('.code-container')) return;
+                    var pre = block.querySelector('pre');
+                    if (!pre) return;
+                    var codeText = pre.textContent;
+
+                    var container = document.createElement('div');
+                    container.className = 'code-container';
+                    var header = document.createElement('div');
+                    header.className = 'code-header';
+                    header.innerHTML =
+                        '<span style="color:var(--muted);">python</span>' +
+                        '<div class="code-actions">' +
+                            '<button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>' +
+                            '<button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>' +
+                        '</div>';
+
+                    var outputPanel = document.createElement('div');
+                    outputPanel.className = 'output-panel';
+
+                    block.parentNode.insertBefore(container, block);
+                    container.appendChild(header);
+                    container.appendChild(block);
+                    container.appendChild(outputPanel);
+
+                    var copyBtn = header.querySelector('.copy-btn');
+                    var runBtn = header.querySelector('.run-btn');
+
+                    copyBtn.addEventListener('click', function() { copyCode(copyBtn, codeText); });
+                    runBtn.addEventListener('click', function() { runCode(codeText, outputPanel, runBtn); });
+                });
+            }
+
+            var QUIZ = [
+                { q: "What does class Truck(Vehicle): mean in Python?",
+                    opts: [
+                        "Truck has-a Vehicle (composition)",
+                        "Truck inherits from Vehicle — it gets all of Vehicle's attributes and methods",
+                        "Truck is a private subclass of Vehicle",
+                        "This is a syntax error in Python"
+                    ], ans: 1,
+                    fb: "Correct! Truck(Vehicle) means Truck is a subclass of Vehicle. It inherits everything from Vehicle." },
+                { q: "What is the purpose of super().__init__(brand, plate) inside Truck's constructor?",
+                    opts: [
+                        "It creates a completely new Truck object",
+                        "It calls the parent's __init__ to set up shared attributes, so Truck doesn't have to duplicate that logic",
+                        "It deletes the parent's attributes",
+                        "It converts the Truck into a Vehicle"
+                    ], ans: 1,
+                    fb: "Exactly right. super().__init__() lets the parent handle its own setup, which keeps the code DRY." },
+                { q: "If ElectricCar inherits from Car, which inherits from Vehicle, what type of inheritance is this?",
+                    opts: [
+                        "Multiple inheritance",
+                        "Hierarchical inheritance",
+                        "Multilevel inheritance",
+                        "Hybrid inheritance"
+                    ], ans: 2,
+                    fb: "Right! A chain of inheritance (Vehicle → Car → ElectricCar) is multilevel inheritance." },
+                { q: "What is polymorphism in the context of inheritance?",
+                    opts: [
+                        "Writing the same method in every subclass",
+                        "The ability to write code that works with any object that conforms to a shared interface",
+                        "Using multiple parent classes",
+                        "Converting one type to another"
+                    ], ans: 1,
+                    fb: "Correct! Polymorphism lets you treat objects of different subclasses uniformly through a shared interface." },
+                { q: "When should you use inheritance instead of composition?",
+                    opts: [
+                        "When you want to share a single helper method",
+                        "When there's a clear 'is-a' relationship — e.g., a Truck is a Vehicle",
+                        "When you need to share behavior across unrelated classes",
+                        "Never — composition is always better"
+                    ], ans: 1,
+                    fb: "Exactly. Use inheritance when 'Subclass is a Parent' makes conceptual sense. Use composition when you just want to reuse behavior." },
+            ];
+
+            var answered = 0;
+            var correct = 0;
+
+            function buildQuiz() {
+                var wrap = document.getElementById('quizWrap');
+                if (!wrap) return;
+                var html = '';
+                QUIZ.forEach(function(item, i) {
+                    html += '<div class="quiz-q" id="qq-' + i + '">';
+                    html += '<div class="quiz-prompt">Q' + (i + 1) + '. ' + item.q + '</div>';
+                    html += '<div class="quiz-opts">';
+                    item.opts.forEach(function(opt, j) {
+                        html += '<div class="quiz-opt" id="qo-' + i + '-' + j + '" onclick="answerQ(' + i +
+                            ',' + j + ')">';
+                        html += '<span style="font-family:JetBrains Mono,monospace;font-size:.65rem;opacity:.5;flex-shrink:0">' +
+                            'ABCD'[j] + '.</span> ';
+                        html += opt;
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                    html += '<div class="quiz-feedback" id="qf-' + i + '"></div>';
+                    html += '</div>';
+                });
+                wrap.innerHTML = html;
+            }
+
+            window.answerQ = function(qi, oi) {
+                var item = QUIZ[qi];
+                var qEl = document.getElementById('qq-' + qi);
+                if (qEl.classList.contains('correct') || qEl.classList.contains('wrong')) return;
+                var opts = qEl.querySelectorAll('.quiz-opt');
+                opts.forEach(function(o) { o.classList.add('disabled'); });
+                var chosen = document.getElementById('qo-' + qi + '-' + oi);
+                var fb = document.getElementById('qf-' + qi);
+                if (oi === item.ans) {
+                    chosen.classList.add('correct-ans');
+                    qEl.classList.add('correct');
+                    fb.textContent = '✓ ' + item.fb;
+                    fb.className = 'quiz-feedback ok';
+                    correct++;
+                } else {
+                    chosen.classList.add('wrong-ans');
+                    document.getElementById('qo-' + qi + '-' + item.ans).classList.add('correct-ans');
+                    qEl.classList.add('wrong');
+                    fb.textContent = '✗ The correct answer is ' + 'ABCD'[item.ans] + '. ' + item.fb;
+                    fb.className = 'quiz-feedback bad';
+                }
+                answered++;
+                if (answered === QUIZ.length) showScore();
+            };
+
+            function showScore() {
+                var scoreEl = document.getElementById('quizScore');
+                var numEl = document.getElementById('quizScoreNum');
+                var msgEl = document.getElementById('quizScoreMsg');
+                if (!scoreEl) return;
+                numEl.textContent = correct + '/' + QUIZ.length;
+                var msgs = [
+                    'Keep studying — revisit the sections above.',
+                    'Good start — review the questions you missed.',
+                    'Solid understanding! A few gaps to close.',
+                    'Great work — almost perfect!',
+                    'Perfect score! You have mastered inheritance in the Vehicle Garage. 🎉'
+                ];
+                msgEl.textContent = msgs[Math.min(correct, msgs.length - 1)];
+                scoreEl.style.display = 'block';
+                scoreEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            window.resetQuiz = function() {
+                answered = 0;
+                correct = 0;
+                document.getElementById('quizScore').style.display = 'none';
+                buildQuiz();
+            };
+
+            window.selectPlan = function(plan) {
+                document.getElementById('planFree').classList.toggle('active', plan === 'free');
+                document.getElementById('planPro').classList.toggle('active', plan === 'pro');
+            };
+
+            window.handleSubscribe = function() {
+                var el = document.getElementById('subEmail');
+                var msg = document.getElementById('subMsg');
+                var email = el.value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    msg.textContent = '✗ Please enter a valid email address.';
+                    msg.style.opacity = '1';
+                    setTimeout(function() { msg.style.opacity = '0'; }, 4000);
+                    return;
+                }
+                var list = JSON.parse(localStorage.getItem('vb_subs_garage') || '[]');
+                if (list.find(function(s) { return s.email === email; })) {
+                    msg.textContent = '✓ You are already subscribed!';
+                    msg.style.opacity = '1';
+                    setTimeout(function() { msg.style.opacity = '0'; }, 4000);
+                    return;
+                }
+                list.push({ email: email, date: new Date().toISOString() });
+                localStorage.setItem('vb_subs_garage', JSON.stringify(list));
+                el.value = '';
+                msg.textContent = '✓ Welcome aboard! Subscribed successfully.';
+                msg.style.opacity = '1';
+                setTimeout(function() { msg.style.opacity = '0'; }, 5000);
+            };
+
+            window.addEventListener('load', function() {
+                enhanceCodeBlocks();
+                buildQuiz();
+            });
+
+        })();
+    </script>
+</body>
+</html>
