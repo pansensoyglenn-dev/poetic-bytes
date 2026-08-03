@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Payment Methods · Python Inheritance Project | Poetic Bytes</title>
+    <meta name="description" content="Deep-dive Python OOP project: Payment Method hierarchy with CreditCard, BankTransfer, Wallet. Learn inheritance, super(), polymorphism, and design trade-offs." />
+    <meta name="keywords" content="Python OOP, inheritance project, payment methods, CreditCard, BankTransfer, Wallet, polymorphism, super(), abstract base class, OOP design" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/payments.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Payment Methods — Python Inheritance Project" />
+    <meta property="og:description" content="Full-featured OOP tutorial: build a PaymentMethod hierarchy step by step. Includes live code, exercises, and design insights." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/payments.html" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Payment Methods · Python Inheritance Project" />
+    <meta name="twitter:description" content="Learn inheritance with a real PaymentMethod hierarchy. Live code, exercises, and design trade-offs." />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Payment Methods — Python Inheritance Project",
+            "description": "Comprehensive tutorial on Python inheritance using a PaymentMethod hierarchy. Covers ABC, super(), polymorphism, and design trade-offs.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
+            "datePublished": "2026-03-14",
+            "dateModified": "2026-03-14",
+            "learningResourceType": "Tutorial",
+            "educationalLevel": "Intermediate"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+            padding-top: 56px;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 2.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        h1,
+        h2,
+        h3 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        h3 {
+            font-size: 0.95rem;
+            color: var(--gold);
+            margin: 1.2rem 0 0.4rem;
+        }
+        h4 {
+            font-size: 0.85rem;
+            color: var(--blue-lt);
+            margin: 1rem 0 0.3rem;
+        }
+        p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, 0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, 0.45);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, 0.08);
+        }
+        .hero {
+            padding: 2.5rem 0 1.5rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255, 217, 102, 0.12) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.68rem;
+            font-weight: 600;
+            background: var(--card);
+            color: var(--muted);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+            margin-bottom: 1rem;
+        }
+        .card:hover {
+            border-color: var(--blue);
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: 0.9rem 1rem;
+            overflow-x: auto;
+            margin: 0.7rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem;
+            line-height: 1.65;
+            color: var(--text);
+        }
+        .code-snippet pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: inherit;
+        }
+        .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .fn {
+            color: #d2a8ff;
+        }
+        .st {
+            color: #a5d6ff;
+        }
+        .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .num {
+            color: #f78c6c;
+        }
+        .dec {
+            color: #c792ea;
+            font-weight: 500;
+        }
+        .callout {
+            border-left: 3px solid var(--blue);
+            padding: 0.6rem 1rem;
+            margin: 0.8rem 0;
+            background: rgba(75, 139, 190, 0.06);
+            border-radius: 4px;
+        }
+        .callout p {
+            margin: 0;
+            font-size: 0.78rem;
+        }
+        .callout strong {
+            color: var(--blue-lt);
+        }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.06);
+        }
+        .callout-green strong {
+            color: var(--green);
+        }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            background: rgba(255, 212, 59, 0.06);
+        }
+        .callout-yellow strong {
+            color: var(--gold);
+        }
+        .callout-red {
+            border-left: 3px solid var(--red);
+            background: rgba(239, 68, 68, 0.06);
+        }
+        .callout-red strong {
+            color: var(--red);
+        }
+        .insight {
+            background: rgba(75, 139, 190, 0.08);
+            border: 1px solid rgba(75, 139, 190, 0.25);
+            border-radius: 6px;
+            padding: 0.6rem 0.9rem;
+            font-size: 0.75rem;
+            color: var(--blue-lt);
+            margin-top: 0.8rem;
+        }
+        .insight strong {
+            color: var(--gold);
+        }
+        .insight ol,
+        .insight ul {
+            margin-top: 0.6rem;
+            padding-left: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .insight li {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        .insight li strong {
+            color: var(--text);
+        }
+        .intro-em {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .code-container {
+            margin: 1.2rem 0;
+            position: relative;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: 'Syne', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-snippet.code-body {
+            border-radius: 0;
+            border-left: none;
+            margin: 0;
+            padding: 1rem;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+            gap: 0.9rem;
+            margin-top: 1.5rem;
+        }
+        .pillar-card {
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 0;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s;
+        }
+        .pillar-card:hover {
+            opacity: 0.85;
+        }
+        .pillar-card .pico {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .pillar-card .ptitle {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+        }
+        .pillar-card .pdesc {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin: 0 0 1rem;
+        }
+        .pbtn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-weight: 600;
+            font-size: 0.68rem;
+            padding: 0.42rem 0.9rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            background: rgba(16, 185, 129, 0.14);
+            color: var(--green);
+            transition: all 0.25s;
+            text-decoration: none;
+        }
+        .pbtn:hover {
+            filter: brightness(1.25);
+            transform: translateX(3px);
+        }
+        .pbtn::after {
+            content: '→';
+        }
+        .current-pill {
+            background: rgba(255, 212, 59, 0.2);
+            border: 1px solid rgba(255, 212, 59, 0.4);
+            color: var(--gold);
+            font-size: 0.55rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .subject-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: rgba(75, 139, 190, 0.06);
+            border-left: 3px solid var(--blue);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .subject-desc strong {
+            color: var(--text);
+        }
+        .share-bar {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin: 1.2rem 0 0.5rem;
+        }
+        .share-bar a {
+            color: var(--muted);
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        .share-bar a:hover {
+            color: var(--gold);
+        }
+        .obj-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.2rem;
+            margin: 0.6rem 0 0.8rem;
+            padding-left: 0;
+            list-style: none;
+        }
+        .obj-list li {
+            font-size: 0.78rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .obj-list li::before {
+            content: '🎯';
+            font-size: 0.9rem;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.76rem;
+            margin: 1rem 0;
+        }
+        .comparison-table th {
+            background: var(--panel);
+            color: var(--gold);
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border-bottom: 2px solid var(--blue);
+        }
+        .comparison-table td {
+            padding: 0.5rem 0.8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        .comparison-table tr:hover td {
+            background: rgba(75, 139, 190, 0.03);
+        }
+        .comparison-table .highlight-cell {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .diagram-box {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text);
+            line-height: 2;
+            overflow-x: auto;
+            text-align: center;
+        }
+        .diagram-box .arrow {
+            color: var(--gold);
+        }
+        .diagram-box .base {
+            color: var(--blue-lt);
+        }
+        .diagram-box .sub {
+            color: var(--green);
+        }
+        .diagram-box .abstract {
+            color: var(--amber);
+        }
+        .exercise-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem 1.4rem;
+            margin: 1rem 0;
+        }
+        .exercise-box h4 {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+        .exercise-box .hint {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin: 0.3rem 0 0.6rem;
+        }
+        .toggle-solution {
+            background: rgba(75, 139, 190, 0.12);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 1rem;
+            color: var(--blue-lt);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .toggle-solution:hover {
+            background: rgba(75, 139, 190, 0.2);
+        }
+        .solution-content {
+            display: none;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .solution-content.open {
+            display: block;
+        }
+        .takeaway-box {
+            background: linear-gradient(135deg, var(--panel), var(--card));
+            border: 1px solid var(--gold);
+            border-radius: var(--card-r);
+            padding: 1.5rem 1.8rem;
+            margin: 1.5rem 0;
+        }
+        .takeaway-box h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+        .takeaway-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .takeaway-box li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .takeaway-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+        }
+        .glossary-item {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.6rem 0.9rem;
+        }
+        .glossary-item .term {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .glossary-item .def {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        .copyright a:hover {
+            color: #fff;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: 0.2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+        }
+        .toc-sticky {
+            position: sticky;
+            top: 60px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            z-index: 10;
+            display: none;
+        }
+        .toc-sticky a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.7rem;
+            margin-right: 1rem;
+            transition: color 0.2s;
+        }
+        .toc-sticky a:hover {
+            color: var(--text);
+        }
+        .intro-section {
+            background: var(--card);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        .intro-section h2 {
+            color: var(--gold);
+            font-size: 1.4rem;
+        }
+        .intro-section .highlight-box {
+            background: var(--panel);
+            border-left: 4px solid var(--blue);
+            padding: 0.8rem 1.2rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        .intro-section .highlight-box p {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+        .intro-section .highlight-box strong {
+            color: var(--gold);
+        }
+        .step-explain {
+            background: var(--panel);
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0 0.8rem;
+            border-left: 3px solid var(--blue-lt);
+        }
+        .step-explain p {
+            font-size: 0.78rem;
+            margin: 0.2rem 0;
+        }
+        .step-explain .label {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+        }
+        .impact-item {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+        }
+        .impact-item .icon {
+            font-size: 1.2rem;
+            margin-right: 0.4rem;
+        }
+        .impact-item .title {
+            font-weight: 700;
+            font-size: 0.78rem;
+            color: var(--text);
+        }
+        .impact-item .desc {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+        @media(min-width:768px) {
+            .toc-sticky {
+                display: block;
+            }
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 0.8rem;
+            }
+            h1 {
+                font-size: 1.3rem;
+            }
+            .hero {
+                padding: 1.5rem 0 1rem;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: 0.9rem;
+            }
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+            .diagram-box {
+                font-size: 0.6rem;
+                padding: 0.8rem;
+            }
+            .comparison-table {
+                font-size: 0.68rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.4rem 0.5rem;
+            }
+            .footer-grid {
+                gap: 1.5rem;
+            }
+            .toc-sticky {
+                display: none;
+            }
+            .intro-section {
+                padding: 1rem;
+            }
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media(min-width:600px) {
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 2rem;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="page-col">
+            <div class="hero-tag"><span class="live-dot"></span> Inheritance Project · Payment Methods</div>
+            <h1>💳 Payment Method Hierarchy</h1>
+            <p style="font-size:0.95rem;color:var(--text);margin-top:0.5rem;">
+                A deep-dive into Python inheritance using a real-world payment processing domain.
+            </p>
+            <ul class="obj-list">
+                <li>Build a base class with <code>ABC</code> and <code>@abstractmethod</code></li>
+                <li>Create three concrete subclasses: CreditCard, BankTransfer, Wallet</li>
+                <li>Master <code>super()</code>, method overriding, and polymorphism</li>
+                <li>Explore design trade-offs, edge cases, and extensions</li>
+                <li>Write tests, handle errors, and refactor to use dataclasses</li>
+            </ul>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem;">
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🐍 Python 3.11+</span>
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🧬 Inheritance &amp; super()</span>
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🏦 Polymorphism</span>
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">📐 Design Patterns</span>
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🧪 Testing</span>
+            </div>
+            <div style="margin-top:1.2rem;">
+                <a href="inheritance.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Inheritance Guide</a>
+                <a href="index.html" class="btn btn-outline" style="margin-left:0.5rem;"><i class="fas fa-home"></i> Hub</a>
+            </div>
+            <div class="share-bar">
+                <span style="font-size:0.7rem;color:var(--muted);align-self:center;">Share:</span>
+                <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20Python%20Payment%20Methods%20inheritance%20project!%20%40PoeticGlenn%20https%3A%2F%2Fpoetic-bytes.vercel.app%2Fpayments.html" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://poetic-bytes.vercel.app/payments.html" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://poetic-bytes.vercel.app/payments.html" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="toc-sticky" id="tocSticky">
+        <a href="#introduction">Introduction</a>
+        <a href="#motivation">Motivation</a>
+        <a href="#diagram">Diagram</a>
+        <a href="#step1">Base</a>
+        <a href="#step2">CreditCard</a>
+        <a href="#step3">Full</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#pitfalls">Pitfalls</a>
+        <a href="#testing">Testing</a>
+        <a href="#composition">Composition</a>
+        <a href="#dataclass">Dataclass</a>
+        <a href="#exercises">Exercises</a>
+        <a href="#extensions">Extensions</a>
+        <a href="#takeaways">Takeaways</a>
+        <a href="#glossary">Glossary</a>
+    </div>
+
+    <section id="introduction">
+        <div class="page-col">
+            <div class="section-label">Introduction</div>
+            <div class="intro-section">
+                <h2>🧬 Why Inheritance Matters — A Comprehensive Introduction</h2>
+
+                <div class="highlight-box">
+                    <p><strong>Every programmer should learn inheritance</strong> because it is the foundation upon which scalable, maintainable, and extensible software is built. It is not merely a language feature — it is a <em>way of thinking</em> about code that mirrors how we naturally categorize the world.</p>
+                </div>
+
+                <h3>The Significance of Inheritance in Programming</h3>
+                <p>
+                    Inheritance is one of the four pillars of Object-Oriented Programming (OOP), alongside encapsulation,
+                    abstraction, and polymorphism. It allows a class to <strong>inherit</strong> attributes and methods
+                    from another class, creating a parent-child relationship. This is not just about code reuse — it is
+                    about <strong>modeling real-world relationships</strong> in your codebase.
+                </p>
+                <p>
+                    In the programming world, inheritance is what enables:
+                </p>
+                <ul style="padding-left:1.2rem;font-size:0.82rem;color:var(--muted);line-height:1.8;">
+                    <li><strong>Code Reuse:</strong> Write once, use everywhere. Shared logic lives in the parent class, eliminating duplication.</li>
+                    <li><strong>Extensibility:</strong> New features can be added by creating new subclasses without modifying existing, tested code.</li>
+                    <li><strong>Polymorphism:</strong> Treat different objects uniformly through a common interface, enabling flexible and decoupled systems.</li>
+                    <li><strong>Maintainability:</strong> Changes to shared behavior are made in one place, automatically propagating to all subclasses.</li>
+                    <li><strong>Natural Modeling:</strong> Reflects how we think about categories — a Dog <em>is an</em> Animal, a CreditCard <em>is a</em> PaymentMethod.</li>
+                </ul>
+
+                <h3>Why Every Programmer Must Master Inheritance</h3>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <span class="icon">🏗️</span>
+                        <div class="title">Architectural Foundation</div>
+                        <div class="desc">Inheritance is the backbone of frameworks like Django, PyTorch, and Flask. Understanding it unlocks the ability to extend these frameworks effectively.</div>
+                    </div>
+                    <div class="impact-item">
+                        <span class="icon">🧩</span>
+                        <div class="title">Design Patterns</div>
+                        <div class="desc">Many classic design patterns (Template Method, Factory, Strategy) rely on inheritance. It's essential for professional software design.</div>
+                    </div>
+                    <div class="impact-item">
+                        <span class="icon">🚀</span>
+                        <div class="title">Scalability</div>
+                        <div class="desc">As codebases grow, inheritance provides a structured way to manage complexity and avoid the "copy-paste" trap that plagues procedural code.</div>
+                    </div>
+                    <div class="impact-item">
+                        <span class="icon">🤖</span>
+                        <div class="title">AI &amp; ML Systems</div>
+                        <div class="desc">Modern AI frameworks like PyTorch use inheritance extensively — every custom neural network layer subclasses <code>nn.Module</code>.</div>
+                    </div>
+                </div>
+
+                <h3>This Project: Learning Inheritance Through Payment Methods</h3>
+                <p>
+                    This project is specifically designed to teach inheritance through a <strong>real-world domain</strong>
+                    that every developer can relate to: <strong>payment processing</strong>. Payment methods share common
+                    behavior (amount, currency, processing) but differ dramatically in implementation. This makes them a
+                    perfect candidate for inheritance.
+                </p>
+                <p>
+                    By building a <code>PaymentMethod</code> hierarchy with <code>CreditCard</code>, <code>BankTransfer</code>,
+                    and <code>Wallet</code> subclasses, you will learn:
+                </p>
+                <ul style="padding-left:1.2rem;font-size:0.82rem;color:var(--muted);line-height:1.8;">
+                    <li>How to define an <strong>abstract base class</strong> with <code>ABC</code> and <code>@abstractmethod</code></li>
+                    <li>How to use <strong><code>super()</code></strong> to call parent constructors and methods</li>
+                    <li>How to <strong>override methods</strong> to provide specialized behavior</li>
+                    <li>How <strong>polymorphism</strong> enables treating different objects uniformly</li>
+                    <li>How to <strong>test</strong> an inheritance hierarchy with parametrized tests</li>
+                    <li>When to choose <strong>composition</strong> (Strategy pattern) over inheritance</li>
+                    <li>How to <strong>refactor</strong> to use dataclasses for better type safety</li>
+                </ul>
+
+                <div class="callout callout-yellow">
+                    <p><strong>🎯 The Big Picture:</strong> By the end of this project, you will not only understand inheritance syntactically but also <em>when</em> and <em>why</em> to use it in real software — and when to choose alternatives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="motivation">
+        <div class="page-col">
+            <div class="section-label">Why This Matters</div>
+            <h2>🏦 Real‑World Payment Hierarchies</h2>
+            <p>
+                Payment processing is one of the most common domains where inheritance shines. In production systems like
+                <strong>Stripe</strong>, <strong>Braintree</strong>, and <strong>Adyen</strong>, you'll find classes like
+                <code>PaymentIntent</code>, <code>Charge</code>, or <code>Transaction</code> that use inheritance to handle
+                different payment methods while sharing common logic for idempotency, logging, and webhook delivery.
+            </p>
+            <div class="card">
+                <h3>Before: The if/elif Mess</h3>
+                <div class="code-snippet" style="border-left-color:var(--red);">
+                    <pre><span class="kw">def</span> <span class="fn">process_payment</span>(method, amount, **kwargs):
+    <span class="kw">if</span> method == <span class="st">'credit_card'</span>:
+        <span class="cmt"># 20 lines of card logic</span>
+        <span class="kw">return</span> {<span class="st">'status'</span>: <span class="st">'approved'</span>}
+    <span class="kw">elif</span> method == <span class="st">'bank_transfer'</span>:
+        <span class="cmt"># 15 lines of ACH logic</span>
+        <span class="kw">return</span> {<span class="st">'status'</span>: <span class="st">'pending'</span>}
+    <span class="kw">elif</span> method == <span class="st">'wallet'</span>:
+        <span class="cmt"># 12 lines of wallet logic</span>
+        <span class="kw">return</span> {<span class="st">'status'</span>: <span class="st">'completed'</span>}
+    <span class="kw">else</span>:
+        <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">"Unknown method"</span>)</pre>
+                </div>
+                <p style="margin-top:0.5rem;">
+                    This works — until you add a fourth method, or a fifth. Each new method adds another branch, and shared logic
+                    (logging, validation, idempotency) gets copy‑pasted or tangled. The inheritance version centralizes the
+                    shared parts and isolates the differences.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Business Requirements That Drive the Design</h3>
+                <ul style="padding-left:1.2rem;font-size:0.82rem;color:var(--muted);line-height:1.8;">
+                    <li><strong>Credit cards:</strong> need authorization (near‑real‑time), card‑network communication, CVV checks, and settlement later.</li>
+                    <li><strong>Bank transfers:</strong> are slower (hours to days), require routing numbers, and generate a reference for reconciliation.</li>
+                    <li><strong>Wallets:</strong> are instant, in‑app, and update a local balance without external calls.</li>
+                </ul>
+                <p style="margin-top:0.5rem;">
+                    These different <em>latencies</em>, <em>risk profiles</em>, and <em>compliance needs</em> make payment methods a perfect fit
+                    for inheritance: the shared contract (<code>process()</code>) stays the same, but each implementation handles
+                    its own domain specifics.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="diagram">
+        <div class="page-col">
+            <div class="section-label">Class Diagram</div>
+            <h2>📐 Inheritance Structure</h2>
+            <div class="diagram-box">
+                <div><span class="base">PaymentMethod</span> <span class="abstract">(ABC)</span></div>
+                <div class="arrow">│  ▲</div>
+                <div class="arrow">│  └── <span style="color:var(--gold);">@abstractmethod</span> process()</div>
+                <div class="arrow">│</div>
+                <div>├── <span class="sub">CreditCard</span>  ── implements <span style="color:var(--blue-lt);">process()</span> → auth_code</div>
+                <div>├── <span class="sub">BankTransfer</span> ── implements <span style="color:var(--blue-lt);">process()</span> → reference</div>
+                <div>└── <span class="sub">Wallet</span>       ── implements <span style="color:var(--blue-lt);">process()</span> → balance_after</div>
+                <div style="margin-top:0.8rem;font-size:0.68rem;color:var(--muted);">
+                    <span style="color:var(--gold);">▲</span> Single inheritance · <span style="color:var(--blue-lt);">method override</span> · polymorphic loop
+                </div>
+            </div>
+            <div class="callout">
+                <p><strong>Key insight:</strong> The base class defines the <em>contract</em> — every subclass must implement <code>process()</code>. The shared state (<code>amount</code>, <code>currency</code>, <code>timestamp</code>) lives in the base, so subclasses only add what's unique.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="step1">
+        <div class="page-col">
+            <div class="section-label">Step 1 · Base Class</div>
+            <h2>🧱 The <code>PaymentMethod</code> Abstract Base</h2>
+            <div class="subject-desc">
+                <strong>Why an abstract base class?</strong> It defines a <em>template</em> — a shared interface that all payment methods must follow.
+                Using <code>ABC</code> and <code>@abstractmethod</code> ensures that no subclass can be instantiated without implementing <code>process()</code>.
+            </div>
+
+            <div class="step-explain">
+                <div class="label">📖 Why This Code Was Used</div>
+                <p>This code establishes the <strong>foundation</strong> of the entire hierarchy. The <code>PaymentMethod</code> class is designed to be a <em>blueprint</em> — it defines what every payment method must have and do, without implementing the specific details. This is the essence of abstraction: define the <em>what</em>, leave the <em>how</em> to subclasses.</p>
+                <p style="margin-top:0.3rem;">The <code>currency</code> parameter defaults to <strong>'PHP'</strong> (Philippine Peso) to reflect a real-world use case in the Philippines.</p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span style="color:var(--muted);">python · base class</span>
+                    <div class="code-actions">
+                        <button class="code-btn copy-btn" data-code="from abc import ABC, abstractmethod
+from datetime import datetime
+
+class PaymentMethod(ABC):
+    def __init__(self, amount: float, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.timestamp = datetime.now().isoformat()
+
+    @abstractmethod
+    def process(self) -> dict:
+        '''Process the payment and return a result dict.'''
+        pass
+
+    def summary(self) -> str:
+        return f'{self.__class__.__name__}: {self.currency} {self.amount:.2f} at {self.timestamp}'"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn run-btn" data-code="from abc import ABC, abstractmethod
+from datetime import datetime
+
+class PaymentMethod(ABC):
+    def __init__(self, amount: float, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.timestamp = datetime.now().isoformat()
+
+    @abstractmethod
+    def process(self) -> dict:
+        pass
+
+    def summary(self) -> str:
+        return f'{self.__class__.__name__}: {self.currency} {self.amount:.2f} at {self.timestamp}'
+
+try:
+    pm = PaymentMethod(100)
+except TypeError as e:
+    print('Error:', e)
+
+print('\n✓ Abstract base works — cannot instantiate without implementing process()')"><i class="fas fa-play"></i> Run</button>
+                    </div>
+                </div>
+                <div class="code-snippet code-body">
+                    <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+<span class="kw">class</span> <span class="cl">PaymentMethod</span>(<span class="cl">ABC</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount: <span class="cl">float</span>, currency: <span class="cl">str</span> = <span class="st">'PHP'</span>):
+        <span class="kw">self</span>.amount = amount
+        <span class="kw">self</span>.currency = currency
+        <span class="kw">self</span>.timestamp = datetime.now().isoformat()
+
+    <span class="dec">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>) -&gt; <span class="cl">dict</span>:
+        <span class="cmt">'''Process the payment and return a result dict.'''</span>
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">summary</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.__class__.__name__}: {self.currency} {self.amount:.2f} at {self.timestamp}"</span></pre>
+                </div>
+                <div class="output-panel" data-output></div>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">⚙️ How It Operates in the Program</div>
+                <p>When Python encounters <code>class PaymentMethod(ABC)</code>, it creates an abstract base class. The <code>@abstractmethod</code> decorator marks <code>process()</code> as a method that <em>must</em> be overridden by any concrete subclass. The <code>__init__</code> method sets up shared state, and <code>summary()</code> provides a reusable string representation that all subclasses inherit.</p>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">🎯 Impact on Output</div>
+                <p>If you try to instantiate <code>PaymentMethod</code> directly, Python raises a <code>TypeError</code> because <code>process()</code> is abstract. This <strong>protects</strong> the developer from creating an incomplete object. The <code>summary()</code> method, when called on a subclass, will dynamically reflect the subclass name — demonstrating polymorphism in action.</p>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">🏛️ Role in the Program</div>
+                <p>The <code>PaymentMethod</code> class serves as the <strong>contract</strong> that all payment methods must adhere to. It enforces a consistent interface (<code>process()</code>) and provides shared infrastructure (state, timestamp, summary). This is the <em>architectural anchor</em> of the entire hierarchy.</p>
+            </div>
+
+            <div class="insight">
+                <strong>🔍 Design decisions:</strong>
+                <ul>
+                    <li><strong>Shared state lives in the base</strong> — <code>amount</code>, <code>currency</code>, and <code>timestamp</code> are defined once. The default currency is now <strong>PHP (Philippine Peso)</strong>.</li>
+                    <li><strong><code>summary()</code> uses <code>self.__class__.__name__</code></strong> — this means it always shows the actual subclass name, even when called on a <code>CreditCard</code> or <code>Wallet</code> instance.</li>
+                    <li><strong>Return type is a <code>dict</code></strong> — flexible but implicit. Later we'll refactor to a <code>PaymentResult</code> dataclass for better type safety.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="step2">
+        <div class="page-col">
+            <div class="section-label">Step 2 · First Subclass</div>
+            <h2>💳 Adding <code>CreditCard</code></h2>
+            <div class="subject-desc">
+                <strong>Now we implement our first concrete payment method.</strong>
+                <code>CreditCard</code> adds <code>card_number</code> and <code>cvv</code>, calls <code>super().__init__()</code> to reuse the base setup, and overrides <code>process()</code> with credit-card-specific logic.
+            </div>
+
+            <div class="step-explain">
+                <div class="label">📖 Why This Code Was Used</div>
+                <p>This demonstrates the <strong>core inheritance pattern</strong>: extending a base class by adding new attributes and overriding behavior. The <code>CreditCard</code> class shows how to <em>specialize</em> a general concept (payment) into a concrete implementation.</p>
+                <p>The <code>super().__init__()</code> call is <strong>critical</strong> — it ensures the base class's initialization runs, so <code>amount</code>, <code>currency</code>, and <code>timestamp</code> are set up correctly. Without this, the subclass would be broken.</p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span style="color:var(--muted);">python · CreditCard subclass</span>
+                    <div class="code-actions">
+                        <button class="code-btn copy-btn" data-code="from abc import ABC, abstractmethod
+from datetime import datetime
+import random
+
+class PaymentMethod(ABC):
+    def __init__(self, amount: float, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.timestamp = datetime.now().isoformat()
+
+    @abstractmethod
+    def process(self) -> dict:
+        pass
+
+    def summary(self) -> str:
+        return f'{self.__class__.__name__}: {self.currency} {self.amount:.2f} at {self.timestamp}'
+
+class CreditCard(PaymentMethod):
+    def __init__(self, amount: float, card_number: str, cvv: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.card_number = card_number
+        self.cvv = cvv
+
+    def process(self) -> dict:
+        auth_code = random.randint(100000, 999999)
+        return {
+            'status': 'approved',
+            'method': 'credit_card',
+            'auth_code': auth_code,
+            'message': f'Card ending {self.card_number[-4:]} authorized.'
+        }
+
+cc = CreditCard(150.00, '4111-1111-1111-1111', '123')
+print(cc.summary())
+print('Result:', cc.process())"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn run-btn" data-code="from abc import ABC, abstractmethod
+from datetime import datetime
+import random
+
+class PaymentMethod(ABC):
+    def __init__(self, amount: float, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.timestamp = datetime.now().isoformat()
+
+    @abstractmethod
+    def process(self) -> dict:
+        pass
+
+    def summary(self) -> str:
+        return f'{self.__class__.__name__}: {self.currency} {self.amount:.2f} at {self.timestamp}'
+
+class CreditCard(PaymentMethod):
+    def __init__(self, amount: float, card_number: str, cvv: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.card_number = card_number
+        self.cvv = cvv
+
+    def process(self) -> dict:
+        auth_code = random.randint(100000, 999999)
+        return {
+            'status': 'approved',
+            'method': 'credit_card',
+            'auth_code': auth_code,
+            'message': f'Card ending {self.card_number[-4:]} authorized.'
+        }
+
+cc = CreditCard(150.00, '4111-1111-1111-1111', '123')
+print(cc.summary())
+print('Result:', cc.process())"><i class="fas fa-play"></i> Run</button>
+                    </div>
+                </div>
+                <div class="code-snippet code-body">
+                    <pre><span class="kw">class</span> <span class="cl">CreditCard</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount: <span class="cl">float</span>, card_number: <span class="cl">str</span>, cvv: <span class="cl">str</span>, currency: <span class="cl">str</span> = <span class="st">'PHP'</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(amount, currency)
+        <span class="kw">self</span>.card_number = card_number
+        <span class="kw">self</span>.cvv = cvv
+
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>) -&gt; <span class="cl">dict</span>:
+        auth_code = random.randint(<span class="num">100000</span>, <span class="num">999999</span>)
+        <span class="kw">return</span> {
+            <span class="st">'status'</span>: <span class="st">'approved'</span>,
+            <span class="st">'method'</span>: <span class="st">'credit_card'</span>,
+            <span class="st">'auth_code'</span>: auth_code,
+            <span class="st">'message'</span>: <span class="st">f'Card ending {self.card_number[-4:]} authorized.'</span>
+        }</pre>
+                </div>
+                <div class="output-panel" data-output></div>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">⚙️ How It Operates in the Program</div>
+                <p>When <code>CreditCard</code> is instantiated, it calls <code>super().__init__()</code> first, which runs <code>PaymentMethod.__init__()</code>. This sets up <code>amount</code>, <code>currency</code>, and <code>timestamp</code>. Then it adds its own attributes: <code>card_number</code> and <code>cvv</code>.</p>
+                <p>The <code>process()</code> method generates a random authorization code and returns a structured <code>dict</code> with a status of <code>'approved'</code>. This simulates a successful credit card authorization.</p>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">🎯 Impact on Output</div>
+                <p>The output shows the <code>summary()</code> method — inherited from the base class — printing <code>"CreditCard: PHP 150.00 at [timestamp]"</code>. Then <code>process()</code> returns a dict with the authorization details. The output demonstrates that the subclass has correctly inherited and extended the base class.</p>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">🏛️ Role in the Program</div>
+                <p><code>CreditCard</code> is the first <strong>concrete implementation</strong> of the <code>PaymentMethod</code> contract. It shows how to add domain-specific attributes and override the abstract method. It also establishes the pattern that all other subclasses will follow.</p>
+            </div>
+
+            <div class="callout callout-green">
+                <p><strong>✅ <code>super().__init__()</code> is the key:</strong> It calls <code>PaymentMethod.__init__()</code> to set up <code>amount</code>, <code>currency</code>, and <code>timestamp</code>. Without this, the subclass would have to duplicate that logic — a maintenance trap.</p>
+            </div>
+            <div class="insight">
+                <strong>⚡ What if you forget <code>super().__init__()</code>?</strong>
+                <p style="margin-top:0.4rem;">Then <code>self.amount</code>, <code>self.currency</code>, and <code>self.timestamp</code> would not exist. Any call to <code>summary()</code> or <code>process()</code> that uses them would raise an <code>AttributeError</code>. Always call <code>super()</code> first when you add new attributes in <code>__init__</code>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="step3">
+        <div class="page-col">
+            <div class="section-label">Step 3 · Full Hierarchy</div>
+            <h2>🏦 BankTransfer and Wallet</h2>
+            <div class="subject-desc">
+                Now we add the remaining subclasses. Each one calls <code>super().__init__()</code> and implements <code>process()</code> with its own logic.
+                Notice how the <em>interface</em> stays consistent while the <em>implementation</em> varies.
+            </div>
+
+            <div class="step-explain">
+                <div class="label">📖 Why This Code Was Used</div>
+                <p>This completes the hierarchy, showing <strong>polymorphism in action</strong>. Each subclass (<code>BankTransfer</code>, <code>Wallet</code>) shares the same interface (<code>process()</code>) but implements it differently. This demonstrates the power of inheritance: you can treat all payment methods uniformly while they behave differently.</p>
+                <p>The <code>BankTransfer</code> class simulates a slower, batch-oriented process with a <code>'pending'</code> status and a reference number. The <code>Wallet</code> class simulates an instant, in-app transaction with a <code>'completed'</code> status and an updated balance.</p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span style="color:var(--muted);">python · all three subclasses</span>
+                    <div class="code-actions">
+                        <button class="code-btn copy-btn" data-code="from abc import ABC, abstractmethod
+from datetime import datetime
+import random
+
+class PaymentMethod(ABC):
+    def __init__(self, amount: float, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.timestamp = datetime.now().isoformat()
+
+    @abstractmethod
+    def process(self) -> dict:
+        pass
+
+    def summary(self) -> str:
+        return f'{self.__class__.__name__}: {self.currency} {self.amount:.2f} at {self.timestamp}'
+
+class CreditCard(PaymentMethod):
+    def __init__(self, amount: float, card_number: str, cvv: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.card_number = card_number
+        self.cvv = cvv
+
+    def process(self) -> dict:
+        return {'status': 'approved', 'method': 'credit_card', 'auth_code': random.randint(100000, 999999)}
+
+class BankTransfer(PaymentMethod):
+    def __init__(self, amount: float, account_number: str, routing: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.account_number = account_number
+        self.routing = routing
+
+    def process(self) -> dict:
+        ref = 'TX' + str(random.randint(1000000, 9999999))
+        return {'status': 'pending', 'method': 'bank_transfer', 'reference': ref}
+
+class Wallet(PaymentMethod):
+    def __init__(self, amount: float, wallet_id: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.wallet_id = wallet_id
+
+    def process(self) -> dict:
+        return {'status': 'completed', 'method': 'wallet', 'balance_after': round(random.uniform(10, 500), 2)}
+
+payments = [
+    CreditCard(150.00, '4111-1111-1111-1111', '123'),
+    BankTransfer(2500.00, '987654321', '021000021'),
+    Wallet(45.50, 'wallet_abc'),
+]
+
+for pm in payments:
+    print('---')
+    print(pm.summary())
+    print('Result:', pm.process())"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn run-btn" data-code="from abc import ABC, abstractmethod
+from datetime import datetime
+import random
+
+class PaymentMethod(ABC):
+    def __init__(self, amount: float, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.timestamp = datetime.now().isoformat()
+
+    @abstractmethod
+    def process(self) -> dict:
+        pass
+
+    def summary(self) -> str:
+        return f'{self.__class__.__name__}: {self.currency} {self.amount:.2f} at {self.timestamp}'
+
+class CreditCard(PaymentMethod):
+    def __init__(self, amount: float, card_number: str, cvv: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.card_number = card_number
+        self.cvv = cvv
+
+    def process(self) -> dict:
+        return {'status': 'approved', 'method': 'credit_card', 'auth_code': random.randint(100000, 999999)}
+
+class BankTransfer(PaymentMethod):
+    def __init__(self, amount: float, account_number: str, routing: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.account_number = account_number
+        self.routing = routing
+
+    def process(self) -> dict:
+        ref = 'TX' + str(random.randint(1000000, 9999999))
+        return {'status': 'pending', 'method': 'bank_transfer', 'reference': ref}
+
+class Wallet(PaymentMethod):
+    def __init__(self, amount: float, wallet_id: str, currency: str = 'PHP'):
+        super().__init__(amount, currency)
+        self.wallet_id = wallet_id
+
+    def process(self) -> dict:
+        return {'status': 'completed', 'method': 'wallet', 'balance_after': round(random.uniform(10, 500), 2)}
+
+payments = [
+    CreditCard(150.00, '4111-1111-1111-1111', '123'),
+    BankTransfer(2500.00, '987654321', '021000021'),
+    Wallet(45.50, 'wallet_abc'),
+]
+
+for pm in payments:
+    print('---')
+    print(pm.summary())
+    print('Result:', pm.process())"><i class="fas fa-play"></i> Run</button>
+                    </div>
+                </div>
+                <div class="code-snippet code-body">
+                    <pre><span class="kw">class</span> <span class="cl">BankTransfer</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount: <span class="cl">float</span>, account_number: <span class="cl">str</span>, routing: <span class="cl">str</span>, currency: <span class="cl">str</span> = <span class="st">'PHP'</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(amount, currency)
+        <span class="kw">self</span>.account_number = account_number
+        <span class="kw">self</span>.routing = routing
+
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>) -&gt; <span class="cl">dict</span>:
+        ref = <span class="st">'TX'</span> + str(random.randint(<span class="num">1000000</span>, <span class="num">9999999</span>))
+        <span class="kw">return</span> {<span class="st">'status'</span>: <span class="st">'pending'</span>, <span class="st">'method'</span>: <span class="st">'bank_transfer'</span>, <span class="st">'reference'</span>: ref}
+
+<span class="kw">class</span> <span class="cl">Wallet</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount: <span class="cl">float</span>, wallet_id: <span class="cl">str</span>, currency: <span class="cl">str</span> = <span class="st">'PHP'</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(amount, currency)
+        <span class="kw">self</span>.wallet_id = wallet_id
+
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>) -&gt; <span class="cl">dict</span>:
+        <span class="kw">return</span> {<span class="st">'status'</span>: <span class="st">'completed'</span>, <span class="st">'method'</span>: <span class="st">'wallet'</span>, <span class="st">'balance_after'</span>: round(random.uniform(<span class="num">10</span>, <span class="num">500</span>), <span class="num">2</span>)}</pre>
+                </div>
+                <div class="output-panel" data-output></div>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">⚙️ How It Operates in the Program</div>
+                <p>The program creates a list of three payment objects — one of each subclass. The <code>for pm in payments</code> loop then iterates over them, calling <code>pm.summary()</code> and <code>pm.process()</code> on each.</p>
+                <p>Because of <strong>polymorphism</strong>, Python dynamically dispatches the correct <code>process()</code> implementation based on the actual type of each object. The loop doesn't need to know whether it's a credit card, bank transfer, or wallet — it just calls the method and gets a result.</p>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">🎯 Impact on Output</div>
+                <p>The output shows three distinct payment results, each with a different status and method-specific data. The <code>summary()</code> method (inherited from the base) correctly reflects the subclass name each time. This demonstrates that the hierarchy works as intended — each subclass behaves correctly when treated uniformly.</p>
+            </div>
+
+            <div class="step-explain">
+                <div class="label">🏛️ Role in the Program</div>
+                <p>This is the <strong>culmination</strong> of the inheritance design. The full hierarchy shows how a single, clean interface (<code>process()</code>) can support multiple implementations. The polymorphic loop is the <em>payoff</em> — it's the reason we invested in building the hierarchy in the first place.</p>
+            </div>
+
+            <div class="callout callout-yellow">
+                <p><strong>🌀 The polymorphic loop:</strong> The <code>for pm in payments</code> loop calls <code>pm.process()</code> without knowing whether <code>pm</code> is a CreditCard, BankTransfer, or Wallet. Python dynamically dispatches to the correct implementation — that's <em>polymorphism</em>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison">
+        <div class="page-col">
+            <div class="section-label">Comparison</div>
+            <h2>📊 Subclass Feature Comparison</h2>
+            <p>Each payment method has the same interface but different behavior. Here's how they differ:</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr><th>Feature</th><th>CreditCard</th><th>BankTransfer</th><th>Wallet</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Status</strong></td><td class="highlight-cell">approved</td><td>pending</td><td class="highlight-cell">completed</td></tr>
+                    <tr><td><strong>Key extra data</strong></td><td><code>auth_code</code></td><td><code>reference</code></td><td><code>balance_after</code></td></tr>
+                    <tr><td><strong>Typical latency</strong></td><td>near-real-time</td><td>hours–days</td><td>instant</td></tr>
+                    <tr><td><strong>Requires external auth</strong></td><td>Yes (card network)</td><td>Yes (bank)</td><td>No (in-app)</td></tr>
+                    <tr><td><strong>Idempotency key</strong></td><td>auth_code</td><td>reference</td><td>wallet_id + timestamp</td></tr>
+                    <tr><td><strong>Risk level</strong></td><td>high (fraud)</td><td>medium</td><td>low</td></tr>
+                </tbody>
+            </table>
+            <div class="callout">
+                <p><strong>Design note:</strong> Returning a <code>dict</code> is flexible but implicit. In production, you'd likely use a <code>PaymentResult</code> dataclass for type safety and discoverability. We'll refactor to that later.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pitfalls">
+        <div class="page-col">
+            <div class="section-label">Common Pitfalls</div>
+            <h2>⚠️ What Can Go Wrong?</h2>
+            <div class="card" style="border-color:var(--red);">
+                <h3 style="color:var(--red);">1. Forgetting <code>super().__init__()</code></h3>
+                <div class="code-snippet" style="border-left-color:var(--red);">
+                    <pre><span class="kw">class</span> <span class="cl">BrokenCard</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount, card_number):
+        <span class="kw">self</span>.card_number = card_number
+
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> {<span class="st">'status'</span>: <span class="st">'ok'</span>}</pre>
+                </div>
+                <p><strong>Fix:</strong> Always call <code>super().__init__(amount, currency)</code> first in your subclass <code>__init__</code>.</p>
+            </div>
+            <div class="card" style="border-color:var(--red);">
+                <h3 style="color:var(--red);">2. Implementing <code>process()</code> with a different signature</h3>
+                <div class="code-snippet" style="border-left-color:var(--red);">
+                    <pre><span class="kw">class</span> <span class="cl">BadWallet</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>, extra_param: <span class="cl">str</span>) -&gt; <span class="cl">dict</span>:
+        <span class="kw">return</span> {<span class="st">'status'</span>: <span class="st">'ok'</span>}</pre>
+                </div>
+                <p><strong>Fix:</strong> Keep the method signature consistent. If you need extra data, pass it via the constructor or store it as an attribute.</p>
+            </div>
+            <div class="card" style="border-color:var(--amber);">
+                <h3 style="color:var(--amber);">3. Over-using inheritance (composition vs inheritance)</h3>
+                <p>If your payment method shares <em>no</em> behavior and only needs the <code>process()</code> contract, consider using an interface (ABC) without shared state. Composition — holding a <code>PaymentProcessor</code> instance — is often more flexible for cross-cutting concerns like logging or retries.</p>
+            </div>
+            <div class="card" style="border-color:var(--amber);">
+                <h3 style="color:var(--amber);">4. Liskov Substitution Principle (LSP) Violations</h3>
+                <p>If a subclass overrides <code>process()</code> to return a different type, or raises unexpected exceptions, the polymorphic loop breaks. Always ensure that a subclass <em>substitutes</em> for its parent without changing the expected behavior contract.</p>
+                <div class="code-snippet" style="border-left-color:var(--amber);">
+                    <pre><span class="kw">class</span> <span class="cl">BadWallet</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">"Completed"</span></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testing">
+        <div class="page-col">
+            <div class="section-label">Testing</div>
+            <h2>🧪 Unit Testing the Hierarchy</h2>
+            <p>
+                One of the biggest advantages of a well-designed inheritance hierarchy is that you can write
+                <em>one test</em> that works for every subclass. This demonstrates the power of the shared interface.
+            </p>
+            <div class="code-container">
+                <div class="code-header">
+                    <span style="color:var(--muted);">python · pytest tests</span>
+                    <div class="code-actions">
+                        <button class="code-btn copy-btn" data-code="import pytest
+from payments import CreditCard, BankTransfer, Wallet
+
+def test_credit_card_returns_approved():
+    cc = CreditCard(100.00, '4111-1111-1111-1111', '123')
+    result = cc.process()
+    assert result['status'] == 'approved'
+    assert 'auth_code' in result
+
+def test_bank_transfer_returns_pending():
+    bt = BankTransfer(500.00, '987654321', '021000021')
+    result = bt.process()
+    assert result['status'] == 'pending'
+    assert 'reference' in result
+
+def test_wallet_returns_completed():
+    w = Wallet(25.50, 'wallet_xyz')
+    result = w.process()
+    assert result['status'] == 'completed'
+    assert 'balance_after' in result
+
+@pytest.mark.parametrize('payment_class,args', [
+    (CreditCard, (100.00, '4111-1111-1111-1111', '123')),
+    (BankTransfer, (500.00, '987654321', '021000021')),
+    (Wallet, (25.50, 'wallet_xyz')),
+])
+def test_all_subclasses_have_summary_and_process(payment_class, args):
+    pm = payment_class(*args)
+    assert hasattr(pm, 'summary')
+    assert hasattr(pm, 'process')
+    result = pm.process()
+    assert isinstance(result, dict)
+    assert 'status' in result
+    assert 'method' in result"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn run-btn" data-code="import pytest
+from payments import CreditCard, BankTransfer, Wallet
+
+def test_credit_card_returns_approved():
+    cc = CreditCard(100.00, '4111-1111-1111-1111', '123')
+    result = cc.process()
+    assert result['status'] == 'approved'
+    assert 'auth_code' in result
+
+def test_bank_transfer_returns_pending():
+    bt = BankTransfer(500.00, '987654321', '021000021')
+    result = bt.process()
+    assert result['status'] == 'pending'
+    assert 'reference' in result
+
+def test_wallet_returns_completed():
+    w = Wallet(25.50, 'wallet_xyz')
+    result = w.process()
+    assert result['status'] == 'completed'
+    assert 'balance_after' in result
+
+print('✓ All tests passed (conceptually — pytest would run these)')"><i class="fas fa-play"></i> Run</button>
+                    </div>
+                </div>
+                <div class="code-snippet code-body">
+                    <pre><span class="kw">import</span> pytest
+<span class="kw">from</span> payments <span class="kw">import</span> CreditCard, BankTransfer, Wallet
+
+<span class="kw">def</span> <span class="fn">test_credit_card_returns_approved</span>():
+    cc = <span class="cl">CreditCard</span>(<span class="num">100.00</span>, <span class="st">'4111-1111-1111-1111'</span>, <span class="st">'123'</span>)
+    result = cc.<span class="fn">process</span>()
+    <span class="kw">assert</span> result[<span class="st">'status'</span>] == <span class="st">'approved'</span>
+    <span class="kw">assert</span> <span class="st">'auth_code'</span> <span class="kw">in</span> result
+
+<span class="kw">def</span> <span class="fn">test_bank_transfer_returns_pending</span>():
+    bt = <span class="cl">BankTransfer</span>(<span class="num">500.00</span>, <span class="st">'987654321'</span>, <span class="st">'021000021'</span>)
+    result = bt.<span class="fn">process</span>()
+    <span class="kw">assert</span> result[<span class="st">'status'</span>] == <span class="st">'pending'</span>
+    <span class="kw">assert</span> <span class="st">'reference'</span> <span class="kw">in</span> result
+
+<span class="dec">@pytest.mark.parametrize</span>(<span class="st">'payment_class,args'</span>, [
+    (<span class="cl">CreditCard</span>, (<span class="num">100.00</span>, <span class="st">'4111-1111-1111-1111'</span>, <span class="st">'123'</span>)),
+    (<span class="cl">BankTransfer</span>, (<span class="num">500.00</span>, <span class="st">'987654321'</span>, <span class="st">'021000021'</span>)),
+    (<span class="cl">Wallet</span>, (<span class="num">25.50</span>, <span class="st">'wallet_xyz'</span>)),
+])
+<span class="kw">def</span> <span class="fn">test_all_subclasses_have_summary_and_process</span>(payment_class, args):
+    pm = payment_class(*args)
+    <span class="kw">assert</span> <span class="fn">hasattr</span>(pm, <span class="st">'summary'</span>)
+    <span class="kw">assert</span> <span class="fn">hasattr</span>(pm, <span class="st">'process'</span>)
+    result = pm.<span class="fn">process</span>()
+    <span class="kw">assert</span> <span class="fn">isinstance</span>(result, <span class="cl">dict</span>)
+    <span class="kw">assert</span> <span class="st">'status'</span> <span class="kw">in</span> result</pre>
+                </div>
+                <div class="output-panel" data-output></div>
+            </div>
+            <div class="callout callout-green">
+                <p><strong>✅ Parametrized tests are a superpower:</strong> One test function runs against every subclass. If you add a <code>CryptoPayment</code> later, the same test automatically verifies it — no extra code needed.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="composition">
+        <div class="page-col">
+            <div class="section-label">Composition Alternative</div>
+            <h2>🔀 Inheritance vs. Strategy Pattern</h2>
+            <p>
+                Inheritance isn't the only way. The <strong>Strategy pattern</strong> uses composition — you inject a processor
+                into a context class. This is more flexible when behaviors don't share state or when you need to swap them at runtime.
+            </p>
+            <div class="code-container">
+                <div class="code-header">
+                    <span style="color:var(--muted);">python · Strategy pattern</span>
+                    <div class="code-actions">
+                        <button class="code-btn copy-btn" data-code="from abc import ABC, abstractmethod
+import random
+
+class PaymentProcessor(ABC):
+    @abstractmethod
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        pass
+
+class CreditCardProcessor(PaymentProcessor):
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        return {'status': 'approved', 'method': 'credit_card', 'auth_code': random.randint(100000, 999999)}
+
+class BankTransferProcessor(PaymentProcessor):
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        return {'status': 'pending', 'method': 'bank_transfer', 'reference': 'TX' + str(random.randint(1000000, 9999999))}
+
+class WalletProcessor(PaymentProcessor):
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        return {'status': 'completed', 'method': 'wallet', 'balance_after': round(random.uniform(10, 500), 2)}
+
+class PaymentContext:
+    def __init__(self, processor: PaymentProcessor):
+        self.processor = processor
+
+    def execute(self, amount: float, currency: str = 'PHP') -> dict:
+        return self.processor.process(amount, currency)
+
+ctx = PaymentContext(CreditCardProcessor())
+print(ctx.execute(150.00))"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn run-btn" data-code="from abc import ABC, abstractmethod
+import random
+
+class PaymentProcessor(ABC):
+    @abstractmethod
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        pass
+
+class CreditCardProcessor(PaymentProcessor):
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        return {'status': 'approved', 'method': 'credit_card', 'auth_code': random.randint(100000, 999999)}
+
+class BankTransferProcessor(PaymentProcessor):
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        return {'status': 'pending', 'method': 'bank_transfer', 'reference': 'TX' + str(random.randint(1000000, 9999999))}
+
+class WalletProcessor(PaymentProcessor):
+    def process(self, amount: float, currency: str = 'PHP') -> dict:
+        return {'status': 'completed', 'method': 'wallet', 'balance_after': round(random.uniform(10, 500), 2)}
+
+class PaymentContext:
+    def __init__(self, processor: PaymentProcessor):
+        self.processor = processor
+
+    def execute(self, amount: float, currency: str = 'PHP') -> dict:
+        return self.processor.process(amount, currency)
+
+ctx = PaymentContext(CreditCardProcessor())
+print('CreditCard result:', ctx.execute(150.00))
+ctx = PaymentContext(WalletProcessor())
+print('Wallet result:', ctx.execute(45.50))"><i class="fas fa-play"></i> Run</button>
+                    </div>
+                </div>
+                <div class="code-snippet code-body">
+                    <pre><span class="kw">class</span> <span class="cl">PaymentContext</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, processor: <span class="cl">PaymentProcessor</span>):
+        <span class="kw">self</span>.processor = processor
+
+    <span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>, amount: <span class="cl">float</span>, currency: <span class="cl">str</span> = <span class="st">'PHP'</span>) -&gt; <span class="cl">dict</span>:
+        <span class="kw">return</span> <span class="kw">self</span>.processor.<span class="fn">process</span>(amount, currency)</pre>
+                </div>
+                <div class="output-panel" data-output></div>
+            </div>
+            <div class="card">
+                <h3>Pros / Cons Comparison</h3>
+                <table class="comparison-table">
+                    <thead><tr><th>Aspect</th><th>Inheritance</th><th>Strategy (Composition)</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Shared state</strong></td><td>Easy — put it in the base</td><td>Harder — context holds it, or pass to process()</td></tr>
+                        <tr><td><strong>Runtime swap</strong></td><td>Impossible after creation</td><td>Trivial — change the processor</td></tr>
+                        <tr><td><strong>Code reuse</strong></td><td>High via base methods</td><td>Lower — shared logic must be delegated</td></tr>
+                        <tr><td><strong>Flexibility</strong></td><td>Lower — hierarchy is fixed</td><td>Higher — compose any processor</td></tr>
+                        <tr><td><strong>Testing</strong></td><td>Parametrized tests work well</td><td>Mock the processor easily</td></tr>
+                    </tbody>
+                </table>
+                <div class="callout callout-yellow">
+                    <p><strong>When to choose which:</strong> Use inheritance when payment methods share significant state and behavior. Use Strategy when you need to swap processors at runtime or when the "is-a" relationship feels forced.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dataclass">
+        <div class="page-col">
+            <div class="section-label">Refactor</div>
+            <h2>📦 Using a <code>PaymentResult</code> Dataclass</h2>
+            <p>
+                Returning a plain <code>dict</code> is flexible, but it's hard to document, discoverable, and type‑safe.
+                A <code>@dataclass</code> gives you named fields, default values, and better IDE support.
+            </p>
+            <div class="code-container">
+                <div class="code-header">
+                    <span style="color:var(--muted);">python · PaymentResult dataclass</span>
+                    <div class="code-actions">
+                        <button class="code-btn copy-btn" data-code="from dataclasses import dataclass
+from abc import ABC, abstractmethod
+import random
+
+@dataclass
+class PaymentResult:
+    status: str
+    method: str
+    extra: dict
+    message: str = ''
+
+class PaymentMethod(ABC):
+    @abstractmethod
+    def process(self) -> PaymentResult:
+        pass
+
+class CreditCard(PaymentMethod):
+    def __init__(self, amount: float, card_number: str, cvv: str, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.card_number = card_number
+        self.cvv = cvv
+
+    def process(self) -> PaymentResult:
+        return PaymentResult(
+            status='approved',
+            method='credit_card',
+            extra={'auth_code': random.randint(100000, 999999)},
+            message=f'Card ending {self.card_number[-4:]} authorized.'
+        )
+
+cc = CreditCard(150.00, '4111-1111-1111-1111', '123')
+result = cc.process()
+print(result)
+print(f'Status: {result.status}, Method: {result.method}')"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn run-btn" data-code="from dataclasses import dataclass
+from abc import ABC, abstractmethod
+import random
+
+@dataclass
+class PaymentResult:
+    status: str
+    method: str
+    extra: dict
+    message: str = ''
+
+class PaymentMethod(ABC):
+    @abstractmethod
+    def process(self) -> PaymentResult:
+        pass
+
+class CreditCard(PaymentMethod):
+    def __init__(self, amount: float, card_number: str, cvv: str, currency: str = 'PHP'):
+        self.amount = amount
+        self.currency = currency
+        self.card_number = card_number
+        self.cvv = cvv
+
+    def process(self) -> PaymentResult:
+        return PaymentResult(
+            status='approved',
+            method='credit_card',
+            extra={'auth_code': random.randint(100000, 999999)},
+            message=f'Card ending {self.card_number[-4:]} authorized.'
+        )
+
+cc = CreditCard(150.00, '4111-1111-1111-1111', '123')
+result = cc.process()
+print(result)
+print(f'Status: {result.status}, Method: {result.method}')"><i class="fas fa-play"></i> Run</button>
+                    </div>
+                </div>
+                <div class="code-snippet code-body">
+                    <pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+<span class="dec">@dataclass</span>
+<span class="kw">class</span> <span class="cl">PaymentResult</span>:
+    status: <span class="cl">str</span>
+    method: <span class="cl">str</span>
+    extra: <span class="cl">dict</span>
+    message: <span class="cl">str</span> = <span class="st">''</span>
+
+<span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>) -&gt; <span class="cl">PaymentResult</span>:
+    <span class="kw">return</span> <span class="cl">PaymentResult</span>(
+        status=<span class="st">'approved'</span>,
+        method=<span class="st">'credit_card'</span>,
+        extra={<span class="st">'auth_code'</span>: random.randint(<span class="num">100000</span>, <span class="num">999999</span>)},
+        message=<span class="st">f'Card ending {self.card_number[-4:]} authorized.'</span>
+    )</pre>
+                </div>
+                <div class="output-panel" data-output></div>
+            </div>
+            <div class="callout callout-green">
+                <p><strong>✅ Benefits:</strong> Type checking, autocomplete, explicit fields, and you can add methods to <code>PaymentResult</code> (e.g., <code>to_json()</code>). The polymorphic loop still works seamlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="exercises">
+        <div class="page-col">
+            <div class="section-label">Exercises</div>
+            <h2>🧪 Practice Challenges</h2>
+            <p>Try these exercises to deepen your understanding. Click <strong>Show solution</strong> for hints or full implementations.</p>
+
+            <div class="exercise-box">
+                <h4>1. Add a <code>CryptoPayment</code> subclass</h4>
+                <p>Create a new subclass that accepts a <code>wallet_address</code> and a <code>network</code> (e.g., "Ethereum", "Solana"). Override <code>process()</code> to return a transaction hash (simulated) and a status of "pending".</p>
+                <div class="hint">💡 Use <code>hashlib</code> to generate a fake transaction hash.</div>
+                <button class="toggle-solution" onclick="toggleSolution(this)">Show solution</button>
+                <div class="solution-content">
+                    <div class="code-snippet">
+                        <pre><span class="kw">import</span> hashlib, time
+
+<span class="kw">class</span> <span class="cl">CryptoPayment</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount, wallet_address, network, currency=<span class="st">'PHP'</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(amount, currency)
+        <span class="kw">self</span>.wallet_address = wallet_address
+        <span class="kw">self</span>.network = network
+
+    <span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>):
+        tx_hash = hashlib.sha256(<span class="st">f"{self.wallet_address}{time.time()}"</span>.encode()).hexdigest()
+        <span class="kw">return</span> {
+            <span class="st">'status'</span>: <span class="st">'pending'</span>,
+            <span class="st">'method'</span>: <span class="st">'crypto'</span>,
+            <span class="st">'network'</span>: <span class="kw">self</span>.network,
+            <span class="st">'tx_hash'</span>: tx_hash
+        }</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <h4>2. Add a custom exception hierarchy</h4>
+                <p>Define <code>PaymentError</code>, <code>InsufficientFunds</code>, and <code>InvalidCard</code>. Raise them in the appropriate subclasses and update the demo loop to handle them.</p>
+                <div class="hint">💡 Raise <code>InvalidCard</code> if the card number is too short.</div>
+                <button class="toggle-solution" onclick="toggleSolution(this)">Show solution</button>
+                <div class="solution-content">
+                    <div class="code-snippet">
+                        <pre><span class="kw">class</span> <span class="cl">PaymentError</span>(<span class="cl">Exception</span>):
+    <span class="kw">pass</span>
+
+<span class="kw">class</span> <span class="cl">InsufficientFunds</span>(<span class="cl">PaymentError</span>):
+    <span class="kw">pass</span>
+
+<span class="kw">class</span> <span class="cl">InvalidCard</span>(<span class="cl">PaymentError</span>):
+    <span class="kw">pass</span>
+
+<span class="kw">class</span> <span class="cl">CreditCard</span>(<span class="cl">PaymentMethod</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, amount, card_number, cvv, currency=<span class="st">'PHP'</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(amount, currency)
+        <span class="kw">if</span> <span class="fn">len</span>(card_number) < <span class="num">16</span>:
+            <span class="kw">raise</span> <span class="cl">InvalidCard</span>(<span class="st">"Card number must be at least 16 digits"</span>)
+        <span class="kw">self</span>.card_number = card_number
+        <span class="kw">self</span>.cvv = cvv</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <h4>3. Implement a <code>refund()</code> method</h4>
+                <p>Add an abstract <code>refund()</code> method to the base class. Implement it in each subclass with appropriate logic (e.g., credit cards refund to the card, wallets credit the balance).</p>
+                <div class="hint">💡 <code>refund()</code> should accept an amount and return a result dict.</div>
+                <button class="toggle-solution" onclick="toggleSolution(this)">Show solution</button>
+                <div class="solution-content">
+                    <div class="code-snippet">
+                        <pre><span class="kw">class</span> <span class="cl">PaymentMethod</span>(<span class="cl">ABC</span>):
+    <span class="kw">def</span> <span class="fn">refund</span>(<span class="kw">self</span>, amount: <span class="cl">float</span>) -&gt; <span class="cl">dict</span>:
+        <span class="kw">return</span> {
+            <span class="st">'status'</span>: <span class="st">'refunded'</span>,
+            <span class="st">'amount'</span>: amount,
+            <span class="st">'method'</span>: <span class="kw">self</span>.__class__.__name__
+        }</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <h4>4. Refactor to <code>PaymentResult</code> dataclass</h4>
+                <p>Take the full hierarchy from Step 3 and update it to return <code>PaymentResult</code> instead of <code>dict</code>. Update the polymorphic loop accordingly.</p>
+                <div class="hint">💡 Define <code>PaymentResult</code> with <code>status</code>, <code>method</code>, <code>extra</code>, and <code>message</code>.</div>
+                <button class="toggle-solution" onclick="toggleSolution(this)">Show solution</button>
+                <div class="solution-content">
+                    <div class="code-snippet">
+                        <pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+<span class="dec">@dataclass</span>
+<span class="kw">class</span> <span class="cl">PaymentResult</span>:
+    status: <span class="cl">str</span>
+    method: <span class="cl">str</span>
+    extra: <span class="cl">dict</span>
+    message: <span class="cl">str</span> = <span class="st">''</span>
+
+<span class="kw">def</span> <span class="fn">process</span>(<span class="kw">self</span>) -&gt; <span class="cl">PaymentResult</span>:
+    <span class="kw">return</span> <span class="cl">PaymentResult</span>(
+        status=<span class="st">'approved'</span>,
+        method=<span class="st">'credit_card'</span>,
+        extra={<span class="st">'auth_code'</span>: random.randint(<span class="num">100000</span>, <span class="num">999999</span>)},
+        message=<span class="st">f'Card ending {self.card_number[-4:]} authorized.'</span>
+    )</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="extensions">
+        <div class="page-col">
+            <div class="section-label">Extensions</div>
+            <h2>🚀 Taking It Further</h2>
+            <div class="card">
+                <h3>🔌 Real-world payment libraries</h3>
+                <p>Stripe, Braintree, and Adyen all expose similar interfaces — a <code>PaymentMethod</code> object with a <code>charge()</code> or <code>process()</code> method. The inheritance pattern you've just built mirrors how these SDKs structure their <code>PaymentIntent</code> or <code>Transaction</code> classes.</p>
+            </div>
+            <div class="card">
+                <h3>🧩 Strategy Pattern alternative</h3>
+                <p>Instead of inheritance, you could use the <strong>Strategy pattern</strong>: pass a <code>PaymentProcessor</code> strategy object to a context class. This is more flexible when payment methods don't share state, and it's easier to swap behaviors at runtime.</p>
+                <div class="callout callout-yellow">
+                    <p><strong>When to choose composition over inheritance:</strong> When the "is-a" relationship feels forced, or when you need to change behavior dynamically. For payment methods, both approaches are valid — inheritance works well because the relationship is natural and the state is shared.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>📈 Adding logging and audit trails</h3>
+                <p>You could add a <code>_log()</code> method to the base class that subclasses can call inside <code>process()</code>. This keeps logging consistent across all payment methods without duplicating code.</p>
+                <div class="code-snippet">
+                    <pre><span class="kw">def</span> <span class="fn">_log</span>(<span class="kw">self</span>, message: <span class="cl">str</span>) -&gt; <span class="cl">None</span>:
+    <span class="fn">print</span>(<span class="st">f"[{self.timestamp}] {message}"</span>)</pre>
+                </div>
+            </div>
+            <div class="card">
+                <h3>🏷️ Factory / Registry pattern</h3>
+                <p>Production systems often use a registry that maps a string (e.g., <code>"credit_card"</code>) to a class. This lets you instantiate the right subclass dynamically from an API request.</p>
+                <div class="code-snippet">
+                    <pre><span class="kw">class</span> <span class="cl">PaymentRegistry</span>:
+    _registry = {}
+
+    <span class="dec">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">register</span>(<span class="kw">cls</span>, name: <span class="cl">str</span>, payment_class):
+        cls._registry[name] = payment_class
+
+    <span class="dec">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">get</span>(<span class="kw">cls</span>, name: <span class="cl">str</span>):
+        <span class="kw">return</span> cls._registry[name]
+
+<span class="cl">PaymentRegistry</span>.<span class="fn">register</span>(<span class="st">'credit_card'</span>, <span class="cl">CreditCard</span>)</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="takeaways">
+        <div class="page-col">
+            <div class="takeaway-box">
+                <h3>📌 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Inheritance models "is-a" relationships:</strong> A CreditCard <em>is a</em> PaymentMethod — the hierarchy reflects the real world.</li>
+                    <li><strong><code>super()</code> enables clean extension:</strong> Subclasses reuse parent logic and add only what's new.</li>
+                    <li><strong>Abstract base classes enforce contracts:</strong> <code>@abstractmethod</code> guarantees that every subclass implements <code>process()</code>.</li>
+                    <li><strong>Polymorphism is automatic:</strong> The loop works with any subclass without modification.</li>
+                    <li><strong>Design trade-offs matter:</strong> Inheritance is powerful, but composition (Strategy pattern) is often more flexible for cross-cutting concerns.</li>
+                    <li><strong>Testing is easier with a shared interface:</strong> Parametrized tests can verify every subclass with one function.</li>
+                    <li><strong>Refactor to dataclasses for type safety:</strong> <code>PaymentResult</code> gives you named fields, autocomplete, and better documentation.</li>
+                    <li><strong>Real-world SDKs use these patterns:</strong> Stripe, PyTorch, and Django all rely on inheritance for extensibility.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="glossary">
+        <div class="page-col">
+            <div class="section-label">Glossary</div>
+            <h2>📖 Key Terms</h2>
+            <div class="glossary-grid">
+                <div class="glossary-item">
+                    <div class="term">ABC</div>
+                    <div class="def">Abstract Base Class — a class that cannot be instantiated and is meant to be subclassed.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term">abstractmethod</div>
+                    <div class="def">A decorator that marks a method as required to be implemented by subclasses.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term">super()</div>
+                    <div class="def">A function that returns a proxy object for calling parent class methods.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term">Polymorphism</div>
+                    <div class="def">The ability to treat objects of different subclasses through a common interface.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term">LSP</div>
+                    <div class="def">Liskov Substitution Principle — subclasses must be substitutable for their parent class.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term">Strategy Pattern</div>
+                    <div class="def">A behavioral pattern that uses composition to swap algorithms at runtime.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term">MRO</div>
+                    <div class="def">Method Resolution Order — the order Python searches for methods in a class hierarchy.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term">Dataclass</div>
+                    <div class="def">A decorator that automatically adds <code>__init__</code>, <code>__repr__</code>, and other methods to a class.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 400);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            window.toggleSolution = function(btn) {
+                var content = btn.nextElementSibling;
+                if (content && content.classList.contains('solution-content')) {
+                    content.classList.toggle('open');
+                    btn.textContent = content.classList.contains('open') ? 'Hide solution' : 'Show solution';
+                }
+            };
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide();
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function indentCode(code, spaces) {
+                var pad = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return pad + line; }).join('\n');
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var wrapperLines = [
+                        'import sys',
+                        'from io import StringIO',
+                        '_captured_output = StringIO()',
+                        '_old_stdout = sys.stdout',
+                        'sys.stdout = _captured_output',
+                        'try:',
+                        indentCode(code, 4),
+                        'finally:',
+                        '    sys.stdout = _old_stdout',
+                        '_captured_output.getvalue()'
+                    ];
+                    var wrappedCode = wrapperLines.join('\n');
+
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+                    outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                    outputEl.style.color = '#4ade80';
+                } catch (err) {
+                    outputEl.className = 'output-panel error';
+                    outputEl.textContent = 'Error:\n' + err.message;
+                    outputEl.style.color = '#f87171';
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var original = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = original; }, 2000);
+                    }).catch(function() {
+                        fallbackCopyCode(btn, code);
+                    });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = original; }, 2000);
+            }
+
+            document.querySelectorAll('.code-container').forEach(function(container) {
+                var copyBtn = container.querySelector('.copy-btn');
+                var runBtn = container.querySelector('.run-btn');
+                var outputEl = container.querySelector('.output-panel');
+                var codeBlock = container.querySelector('.code-body pre');
+                if (!codeBlock) return;
+                var codeText = codeBlock.textContent;
+
+                if (copyBtn) {
+                    var copyCodeText = copyBtn.getAttribute('data-code') || codeText;
+                    copyBtn.addEventListener('click', function() { copyCode(copyBtn, copyCodeText); });
+                }
+
+                if (runBtn && outputEl) {
+                    var runCodeText = runBtn.getAttribute('data-code') || codeText;
+                    runBtn.addEventListener('click', function() { runCode(runCodeText, outputEl, runBtn); });
+                }
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
