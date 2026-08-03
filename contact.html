@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Contact · Poetic Bytes</title>
+    <meta name="description" content="Get in touch with Poetic Bytes. Reach out for questions, feedback, collaborations, or support regarding Python programming, OOP, and AI content." />
+    <meta name="keywords" content="contact Poetic Bytes, Python support, OOP questions, feedback, Glenn Junsay Pansensoy" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Contact · Poetic Bytes" />
+    <meta property="og:description" content="Reach out to Poetic Bytes for questions, feedback, collaborations, or support." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/contact.html" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contact · Poetic Bytes" />
+    <meta name="twitter:description" content="Get in touch with Poetic Bytes. We'd love to hear from you!" />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact Poetic Bytes",
+            "description": "Contact page for Poetic Bytes — Python programming, OOP, and AI content.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+            padding-top: 56px;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 2.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        h1,
+        h2,
+        h3 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        h3 {
+            font-size: 0.95rem;
+            color: var(--gold);
+            margin: 1.2rem 0 0.4rem;
+        }
+        p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, 0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, 0.45);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, 0.08);
+        }
+        .hero {
+            padding: 2.5rem 0 1.5rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255, 217, 102, 0.12) 0%, transparent 70%);
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.68rem;
+            font-weight: 600;
+            background: var(--card);
+            color: var(--muted);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+            margin-bottom: 1rem;
+        }
+        .card:hover {
+            border-color: var(--blue);
+        }
+        .callout {
+            border-left: 3px solid var(--blue);
+            padding: 0.6rem 1rem;
+            margin: 0.8rem 0;
+            background: rgba(75, 139, 190, 0.06);
+            border-radius: 4px;
+        }
+        .callout p {
+            margin: 0;
+            font-size: 0.78rem;
+        }
+        .callout strong {
+            color: var(--blue-lt);
+        }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            background: rgba(16, 185, 129, 0.06);
+        }
+        .callout-green strong {
+            color: var(--green);
+        }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            background: rgba(255, 212, 59, 0.06);
+        }
+        .callout-yellow strong {
+            color: var(--gold);
+        }
+        .share-bar {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin: 1.2rem 0 0.5rem;
+        }
+        .share-bar a {
+            color: var(--muted);
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        .share-bar a:hover {
+            color: var(--gold);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+        .contact-method {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem 1.4rem;
+            transition: border-color 0.2s, transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.4rem;
+        }
+        .contact-method:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+        .contact-method .icon {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+        .contact-method .label {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+        .contact-method .detail {
+            font-size: 0.72rem;
+            color: var(--muted);
+            word-break: break-word;
+        }
+        .contact-method .detail a {
+            color: var(--blue-lt);
+            text-decoration: none;
+        }
+        .contact-method .detail a:hover {
+            text-decoration: underline;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+        .form-group .required {
+            color: var(--red);
+            margin-left: 0.2rem;
+        }
+        .form-control {
+            width: 100%;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.65rem 0.85rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.82rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(75, 139, 190, 0.11);
+        }
+        .form-control::placeholder {
+            color: var(--muted);
+            opacity: 0.6;
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238BA3BF' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.8rem center;
+            padding-right: 2.2rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-submit {
+            margin-top: 0.5rem;
+        }
+        .form-submit .btn {
+            width: 100%;
+        }
+        .form-message {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            display: none;
+        }
+        .form-message.success {
+            display: block;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid var(--green);
+            color: var(--green);
+        }
+        .form-message.error {
+            display: block;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid var(--red);
+            color: var(--red);
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        .copyright a:hover {
+            color: #fff;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: 0.2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 0.8rem;
+            }
+            h1 {
+                font-size: 1.3rem;
+            }
+            .hero {
+                padding: 1.5rem 0 1rem;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: 0.9rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                gap: 1.5rem;
+            }
+        }
+        @media(min-width:600px) {
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 2rem;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="page-col">
+            <div class="hero-tag"><span class="live-dot"></span> Get in Touch</div>
+            <h1>📬 Contact Poetic Bytes</h1>
+            <p style="font-size:0.95rem;color:var(--text);margin-top:0.5rem;">
+                Have a question, suggestion, or collaboration idea? We'd love to hear from you.
+            </p>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem;">
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">💬 Fast response</span>
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🐍 Python &amp; OOP</span>
+                <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🤖 AI &amp; ML</span>
+            </div>
+            <div style="margin-top:1.2rem;">
+                <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Return to Hub</a>
+               
+            <div class="share-bar">
+                <span style="font-size:0.7rem;color:var(--muted);align-self:center;">Share:</span>
+                <a href="https://twitter.com/intent/tweet?text=Check%20out%20Poetic%20Bytes%20—%20Python%20OOP%20and%20AI%20content!%20%40PoeticGlenn%20https%3A%2F%2Fpoetic-bytes.vercel.app" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://poetic-bytes.vercel.app" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://poetic-bytes.vercel.app" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="introduction">
+        <div class="page-col">
+            <div class="section-label">Introduction</div>
+            <div class="card">
+                <h2>🙋 Let's Connect</h2>
+                <p>
+                    Poetic Bytes is a resource dedicated to making Python programming, Object-Oriented Design,
+                    and AI concepts accessible and practical. Whether you're a beginner looking for guidance,
+                    an experienced developer with a tricky OOP question, or someone interested in collaborating,
+                    we want to hear from you.
+                </p>
+                <p style="margin-top:0.5rem;">
+                    We believe in building a community of curious, pragmatic developers. Your questions and
+                    feedback help shape the content we create — so don't hesitate to reach out.
+                </p>
+                <div class="callout callout-yellow">
+                    <p><strong>💡 Quick response time:</strong> We aim to reply to all messages within 24–48 hours (business days). For urgent technical questions, include <strong>[URGENT]</strong> in the subject line.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-methods">
+        <div class="page-col">
+            <div class="section-label">Reach Out</div>
+            <h2>📱 Ways to Connect</h2>
+            <p>Choose the method that works best for you. We're active across all major platforms.</p>
+            <div class="contact-grid">
+                <a href="mailto:pansensoyglenn150@gmail.com" class="contact-method">
+                    <span class="icon"><i class="fas fa-envelope"></i></span>
+                    <span class="label">Email</span>
+                    <span class="detail">pansensoyglenn150@gmail.com</span>
+                    <span class="detail" style="font-size:0.65rem;color:var(--muted);">Best for detailed questions</span>
+                </a>
+                <a href="https://twitter.com/PoeticGlenn" target="_blank" rel="noopener" class="contact-method">
+                    <span class="icon"><i class="fab fa-twitter"></i></span>
+                    <span class="label">Twitter / X</span>
+                    <span class="detail">@PoeticGlenn</span>
+                    <span class="detail" style="font-size:0.65rem;color:var(--muted);">Quick updates &amp; DMs</span>
+                </a>
+                <a href="https://www.linkedin.com/in/glenn-pansensoy" target="_blank" rel="noopener" class="contact-method">
+                    <span class="icon"><i class="fab fa-linkedin-in"></i></span>
+                    <span class="label">LinkedIn</span>
+                    <span class="detail">Glenn Junsay Pansensoy</span>
+                    <span class="detail" style="font-size:0.65rem;color:var(--muted);">Professional connections</span>
+                </a>
+                <a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener" class="contact-method">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span class="label">GitHub</span>
+                    <span class="detail">Poetic Bytes Repository</span>
+                    <span class="detail" style="font-size:0.65rem;color:var(--muted);">Open source &amp; code</span>
+                </a>
+                <a href="https://www.facebook.com/Glenn-Pansensoy" target="_blank" rel="noopener" class="contact-method">
+                    <span class="icon"><i class="fab fa-facebook-f"></i></span>
+                    <span class="label">Facebook</span>
+                    <span class="detail">Glenn Pansensoy</span>
+                    <span class="detail" style="font-size:0.65rem;color:var(--muted);">Community &amp; updates</span>
+                </a>
+                <a href="https://www.youtube.com/@PoeticBytes" target="_blank" rel="noopener" class="contact-method">
+                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                    <span class="label">YouTube</span>
+                    <span class="detail">Poetic Bytes</span>
+                    <span class="detail" style="font-size:0.65rem;color:var(--muted);">Video content &amp; tutorials</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-form">
+        <div class="page-col">
+            <div class="section-label">Send a Message</div>
+            <h2>✉️ Contact Form</h2>
+            <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+
+            <div class="card" style="margin-top:1rem;">
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" class="form-control" placeholder="e.g., Juan dela Cruz" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" class="form-control" placeholder="you@example.com" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <select id="subject" class="form-control" required>
+                            <option value="">Select a topic...</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="feedback">Feedback / Suggestion</option>
+                            <option value="technical">Technical Question (Python/OOP)</option>
+                            <option value="collaboration">Collaboration / Partnership</option>
+                            <option value="bug">Bug Report / Issue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" class="form-control" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </div>
+                    <div id="formMessage" class="form-message"></div>
+                    <p style="font-size:0.65rem;color:var(--muted);margin-top:0.5rem;">
+                        <i class="fas fa-lock" style="margin-right:0.3rem;"></i>
+                        Your information is safe with us. We never share or sell your data.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="page-col">
+            <div class="section-label">FAQ</div>
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="card">
+                <h3>How quickly can I expect a reply?</h3>
+                <p>We typically respond within 24–48 hours during business days. If you have an urgent technical issue, include <strong>[URGENT]</strong> in the subject line of your message.</p>
+            </div>
+            <div class="card">
+                <h3>Can I suggest a topic for a future article?</h3>
+                <p>Absolutely! We welcome topic suggestions. Use the contact form with the subject <strong>"Feedback / Suggestion"</strong> and tell us what you'd like to learn about.</p>
+            </div>
+            <div class="card">
+                <h3>Do you offer one-on-one mentoring or consulting?</h3>
+                <p>Yes! We offer limited mentoring sessions and consulting for Python development, OOP design, and AI projects. Reach out via email with <strong>"Consulting"</strong> in the subject line to discuss availability and rates.</p>
+            </div>
+            <div class="card">
+                <h3>Can I contribute to the open-source code?</h3>
+                <p>Definitely! All content is open-source and available on <a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener" style="color:var(--blue-lt);">GitHub</a>. Feel free to open issues, suggest improvements, or submit pull requests.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+        (function() {
+            'use strict';
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 400);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            window.handleSubmit = function(e) {
+                e.preventDefault();
+                var form = document.getElementById('contactForm');
+                var messageEl = document.getElementById('formMessage');
+
+                var name = document.getElementById('name').value.trim();
+                var email = document.getElementById('email').value.trim();
+                var subject = document.getElementById('subject').value;
+                var message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !subject || !message) {
+                    messageEl.className = 'form-message error';
+                    messageEl.textContent = '⚠️ Please fill in all required fields.';
+                    return;
+                }
+
+                if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                    messageEl.className = 'form-message error';
+                    messageEl.textContent = '⚠️ Please enter a valid email address.';
+                    return;
+                }
+
+                messageEl.className = 'form-message success';
+                messageEl.textContent = '✅ Thank you for your message! We\'ll get back to you soon.';
+                form.reset();
+            };
+
+        })();
+    </script>
+
+</body>
+</html>
