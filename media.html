@@ -1,0 +1,2632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Media Library – Advanced Inheritance | Poetic Bytes</title>
+    <meta name="description" content="Master Python inheritance with a media library: abstract base classes, composition, Liskov Substitution, and real-world patterns. Live code + output." />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/media.html" />
+    <meta property="og:title" content="Media Library – Advanced Inheritance" />
+    <meta property="og:description" content="Learn inheritance deeply with a media library: ABC, composition, LSP, and polymorphism. Live code examples with Pyodide." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/media.html" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Media Library – Advanced Inheritance" />
+    <meta name="twitter:description" content="Deep dive into inheritance with a media library: ABC, composition, LSP, and polymorphism." />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Media Library – Advanced Inheritance",
+            "description": "Comprehensive guide to Python inheritance using a media library: abstract base classes, composition, Liskov Substitution Principle, and real-world patterns.",
+            "author": { "@type": "Organization", "name": "Poetic Bytes" },
+            "datePublished": "2026-08-08"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        /* ===== BASE ===== */
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --pink: #ec4899;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+            padding-top: 56px;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--pink), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(236, 72, 153, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(236, 72, 153, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(236, 72, 153, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.8rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+            margin-top: 1.2rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, .45);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--pink);
+            background: rgba(236, 72, 153, .08);
+        }
+        .btn-sm {
+            height: 32px;
+            padding: 0 1rem;
+            font-size: .7rem;
+        }
+        .hero {
+            padding: 3rem 0 1rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(236, 72, 153, .12) 0%, transparent 70%);
+            border-bottom: 1px solid var(--border);
+        }
+        .hero h1 {
+            color: var(--gold);
+            margin-bottom: .4rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            max-width: 680px;
+            margin-bottom: .6rem;
+        }
+        .code-container {
+            margin: 1.2rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(236, 72, 153, 0.15);
+            color: var(--pink);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(236, 72, 153, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .reset-btn {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--amber);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .reset-btn:hover {
+            background: rgba(245, 158, 11, 0.25);
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .output-panel.file-warning {
+            color: var(--amber);
+            border-left: 3px solid var(--amber);
+            padding-left: 1rem;
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 0;
+            border-left: none;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 0;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .code-snippet .dec {
+            color: #c792ea;
+            font-weight: 500;
+        }
+        .callout {
+            border-left: 3px solid var(--pink);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(236, 72, 153, .06);
+            border-radius: 4px;
+        }
+        .callout p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout strong {
+            color: var(--pink);
+        }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 212, 59, .06);
+            border-radius: 4px;
+        }
+        .callout-yellow p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-yellow strong {
+            color: var(--gold);
+        }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(16, 185, 129, .06);
+            border-radius: 4px;
+        }
+        .callout-green p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-green strong {
+            color: var(--green);
+        }
+        .callout-red {
+            border-left: 3px solid var(--red);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(239, 68, 68, .06);
+            border-radius: 4px;
+        }
+        .callout-red p {
+            margin: 0;
+            font-size: .78rem;
+        }
+        .callout-red strong {
+            color: var(--red);
+        }
+        .insight {
+            background: rgba(236, 72, 153, .08);
+            border: 1px solid rgba(236, 72, 153, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--pink);
+            margin: 1rem 0;
+        }
+        .insight strong {
+            color: var(--text);
+        }
+        .insight ul {
+            padding-left: 1.2rem;
+            margin-top: .4rem;
+            list-style: none;
+        }
+        .insight ul li {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: .3rem;
+            padding-left: 0.5rem;
+        }
+        .insight ul li::before {
+            content: "▹ ";
+            color: var(--gold);
+        }
+        .insight ul li strong {
+            color: var(--text);
+        }
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 1rem 0 1.5rem;
+        }
+        .project-meta span {
+            font-size: .72rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .project-meta i {
+            color: var(--gold);
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--pink);
+            color: var(--pink);
+            transform: translateY(-2px);
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--pink);
+            color: var(--pink);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        @media(max-width:480px) {
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            .project-meta {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .app-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: border-color .2s, transform .2s;
+        }
+        .app-card:hover {
+            border-color: var(--pink);
+            transform: translateY(-2px);
+        }
+        .app-card .app-icon {
+            font-size: 2rem;
+            margin-bottom: .4rem;
+        }
+        .app-card .app-name {
+            font-weight: 700;
+            font-size: .85rem;
+        }
+        .app-card .app-desc {
+            font-size: .7rem;
+            color: var(--muted);
+            margin-top: .2rem;
+        }
+        .mistake-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.8rem;
+            font-size: .76rem;
+            background: var(--panel);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .mistake-table th {
+            background: var(--card);
+            color: var(--gold);
+            padding: .7rem .8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .mistake-table td {
+            padding: .6rem .8rem;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(236, 72, 153, .06);
+            vertical-align: top;
+        }
+        .mistake-table td:first-child {
+            color: var(--red);
+            font-weight: 600;
+        }
+        .mistake-table td:last-child {
+            color: var(--pink);
+        }
+        .mistake-table tr:last-child td {
+            border-bottom: none;
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--pink);
+            border-radius: 3px;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            margin-top: 1.5rem;
+        }
+        .quiz-question {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .quiz-question h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        .quiz-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--muted);
+            cursor: pointer;
+        }
+        .quiz-options input[type="radio"] {
+            accent-color: var(--pink);
+        }
+        .quiz-feedback {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.8rem;
+        }
+        .quiz-feedback.correct {
+            display: block;
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid var(--green);
+            color: var(--green);
+        }
+        .quiz-feedback.incorrect {
+            display: block;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid var(--red);
+            color: var(--red);
+        }
+
+        /* Exercise Styles */
+        .exercise-container {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+        }
+        .exercise-container h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .exercise-container .solution-toggle {
+            background: rgba(236, 72, 153, 0.15);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            transition: background 0.2s;
+            margin-top: 0.5rem;
+        }
+        .exercise-container .solution-toggle:hover {
+            background: rgba(236, 72, 153, 0.25);
+        }
+        .exercise-container .solution-content {
+            display: none;
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--green);
+        }
+        .exercise-container .solution-content.show {
+            display: block;
+        }
+
+        /* Hierarchy Diagram */
+        .hierarchy-diagram {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.5rem;
+            margin: 1.2rem 0;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+        }
+        .hierarchy-diagram .node {
+            display: inline-block;
+            background: var(--card);
+            border: 2px solid var(--pink);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            min-width: 120px;
+        }
+        .hierarchy-diagram .node.base {
+            border-color: var(--gold);
+            background: rgba(255, 212, 59, 0.1);
+        }
+        .hierarchy-diagram .node.abstract {
+            border-style: dashed;
+            border-color: var(--blue-lt);
+        }
+        .hierarchy-diagram .arrow {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--muted);
+            margin: 0.2rem 0;
+        }
+        .hierarchy-diagram .label {
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin: 0.2rem 0;
+            font-family: 'Syne', sans-serif;
+        }
+        .hierarchy-diagram .method {
+            font-size: 0.6rem;
+            color: var(--blue-lt);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Progress Checklist */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+        .checklist-item input[type="checkbox"] {
+            accent-color: var(--pink);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .checklist-item.checked {
+            color: var(--text);
+        }
+        .checklist-item.checked label {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* Learning Objectives */
+        .learning-objectives {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+        }
+        .learning-objectives h3 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .learning-objectives ul {
+            padding-left: 1.2rem;
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.8;
+        }
+        .learning-objectives ul li::marker {
+            color: var(--pink);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.8rem;
+            font-size: .76rem;
+            background: var(--panel);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .comparison-table th {
+            background: var(--card);
+            color: var(--gold);
+            padding: .7rem .8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .comparison-table td {
+            padding: .6rem .8rem;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(236, 72, 153, .06);
+            vertical-align: top;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table .highlight {
+            color: var(--pink);
+        }
+
+        /* Step-by-step sections */
+        .step {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-left: 4px solid var(--pink);
+        }
+        .step .step-number {
+            display: inline-block;
+            background: var(--pink);
+            color: #fff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+        .step h4 {
+            display: inline;
+            color: var(--text);
+        }
+        .step .step-code {
+            margin-top: 0.8rem;
+            background: var(--code-bg);
+            border-radius: 6px;
+            padding: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem;
+            color: var(--text);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* Key takeaways */
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+        .takeaway-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem;
+            text-align: center;
+        }
+        .takeaway-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+        .takeaway-card h5 {
+            color: var(--text);
+            font-size: 0.82rem;
+        }
+        .takeaway-card p {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+
+        .editable-code {
+            min-height: 100px;
+            background: var(--code-bg);
+            border-radius: 6px;
+            padding: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem;
+            color: var(--text);
+            border: 1px solid var(--border);
+            width: 100%;
+            resize: vertical;
+            tab-size: 4;
+        }
+        .editable-code:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        /* Checkpoint */
+        .checkpoint {
+            background: rgba(192, 132, 252, 0.08);
+            border: 1px solid var(--purple);
+            border-radius: var(--card-r);
+            padding: 1rem;
+            margin: 1.2rem 0;
+        }
+        .checkpoint h4 {
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+        .checkpoint p {
+            font-size: 0.78rem;
+        }
+        .checkpoint .answer {
+            color: var(--text);
+            font-weight: 600;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        .checkpoint .answer.show {
+            display: block;
+        }
+        .checkpoint .reveal-btn {
+            background: rgba(192, 132, 252, 0.15);
+            border: 1px solid var(--purple);
+            color: var(--purple);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+        }
+        .checkpoint .reveal-btn:hover {
+            background: rgba(192, 132, 252, 0.25);
+        }
+
+        /* Anti-pattern highlight */
+        .anti-pattern {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid var(--red);
+            border-radius: var(--card-r);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .anti-pattern h4 {
+            color: var(--red);
+            margin-bottom: 0.3rem;
+        }
+        .anti-pattern code {
+            color: var(--red);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== PROGRESS BAR ===== -->
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#objectives">Objectives</a></li>
+                <li><a href="#abc">ABC</a></li>
+                <li><a href="#hierarchy">Hierarchy</a></li>
+                <li><a href="#composition">Composition</a></li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#output">Output</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#exercises">Exercises</a></li>
+                <li><a href="#apps">More</a></li>
+                <li><a href="inheritance.html">← Hub</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- ===== DRAWER ===== -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#objectives"><i class="fas fa-bullseye"></i>Objectives</button></li>
+                <li><button data-href="#abc"><i class="fas fa-shield-alt"></i>ABC</button></li>
+                <li><button data-href="#hierarchy"><i class="fas fa-sitemap"></i>Hierarchy</button></li>
+                <li><button data-href="#composition"><i class="fas fa-cubes"></i>Composition</button></li>
+                <li><button data-href="#code"><i class="fas fa-code"></i>Code</button></li>
+                <li><button data-href="#output"><i class="fas fa-terminal"></i>Output</button></li>
+                <li><button data-href="#insights"><i class="fas fa-lightbulb"></i>Insights</button></li>
+                <li><button data-href="#exercises"><i class="fas fa-pencil-alt"></i>Exercises</button></li>
+                <li><button data-href="#apps"><i class="fas fa-th-list"></i>More Projects</button></li>
+                <li><a href="inheritance.html"><i class="fas fa-arrow-left"></i>Back to Inheritance</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING SHARE ===== -->
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+    </div>
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" aria-label="Media Library Inheritance Project">
+            <div class="page-col">
+                <div class="section-label" style="margin-bottom:0.4rem;">🎬 Advanced Inheritance</div>
+                <h1>🎵 Media Library Deep Dive</h1>
+                <p class="lead">Move beyond syntax to master <strong>when</strong> and <strong>why</strong> to use inheritance. This project builds a production-minded media library with abstract base classes, composition, and real-world patterns.</p>
+                <div class="project-meta">
+                    <span><i class="fas fa-code"></i> Python 3.11+</span>
+                    <span><i class="fas fa-sitemap"></i> ABC + Inheritance</span>
+                    <span><i class="fas fa-cubes"></i> Composition</span>
+                    <span><i class="fas fa-arrow-up"></i> Liskov Substitution</span>
+                    <span><i class="fas fa-clock"></i> ~45 min</span>
+                </div>
+                <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem;">
+                    <a href="inheritance.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Inheritance Guide</a>
+                    <a href="#code" class="btn btn-outline"><i class="fas fa-play-circle"></i> Run the Code</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LEARNING OBJECTIVES ===== -->
+        <section id="objectives">
+            <div class="page-col">
+                <div class="section-label">00 — Learning Objectives</div>
+                <div class="learning-objectives">
+                    <h3>🎯 By the end of this tutorial, you will be able to:</h3>
+                    <ul>
+                        <li><strong>Design</strong> abstract base classes using <code>abc.ABC</code> and <code>@abstractmethod</code></li>
+                        <li><strong>Apply</strong> the Liskov Substitution Principle (LSP) in practice</li>
+                        <li><strong>Distinguish</strong> between inheritance ("is-a") and composition ("has-a")</li>
+                        <li><strong>Build</strong> multi-level hierarchies with intermediate abstract classes</li>
+                        <li><strong>Use</strong> <code>super()</code> correctly in diamond and multi-level inheritance</li>
+                        <li><strong>Write</strong> polymorphic code that works with any <code>Media</code> subclass</li>
+                        <li><strong>Identify</strong> anti-patterns and common inheritance pitfalls</li>
+                        <li><strong>Understand</strong> Method Resolution Order (MRO) and when it matters</li>
+                    </ul>
+                </div>
+
+                <!-- Progress Checklist -->
+                <div style="margin-top: 1.5rem;">
+                    <h3>📋 Your Learning Progress</h3>
+                    <div class="checklist" id="progressChecklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check1">
+                            <label for="check1">Understand why we use abstract base classes</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check2">
+                            <label for="check2">Can explain the Liskov Substitution Principle</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check3">
+                            <label for="check3">Know when to use inheritance vs. composition</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check4">
+                            <label for="check4">Can write an abstract base class with @abstractmethod</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check5">
+                            <label for="check5">Can create multi-level class hierarchies</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check6">
+                            <label for="check6">Understand Method Resolution Order (MRO)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check7">
+                            <label for="check7">Can use composition with a Library/Playlist class</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check8">
+                            <label for="check8">Can identify common inheritance anti-patterns</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABSTRACT BASE CLASSES ===== -->
+        <section id="abc">
+            <div class="page-col">
+                <div class="section-label">01 — Abstract Base Classes</div>
+                <h2>Formalizing the Contract with <code>abc.ABC</code></h2>
+                <p>The <code>NotImplementedError</code> approach works, but Python provides a more formal way: the <code>abc</code> module. Using <code>ABC</code> and <code>@abstractmethod</code> makes the contract explicit and prevents instantiation of incomplete classes.</p>
+
+                <div class="step">
+                    <div><span class="step-number">1</span> <h4>Formal Abstract Base Class</h4></div>
+                    <div class="step-code">
+<span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cl">Media</span>(ABC):           <span class="cmt"># Inherits from ABC</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title: <span class="cl">str</span>, artist: <span class="cl">str</span>, duration: <span class="cl">int</span>):
+        <span class="kw">self</span>.title = title
+        <span class="kw">self</span>.artist = artist
+        <span class="kw">self</span>._duration = duration      <span class="cmt"># Protected attribute</span>
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">duration</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:      <span class="cmt"># Getter</span>
+        <span class="kw">return</span> <span class="kw">self</span>._duration
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">duration_str</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:  <span class="cmt"># Human-readable</span>
+        minutes, seconds = <span class="kw">divmod</span>(<span class="kw">self</span>._duration, <span class="num">60</span>)
+        hours, minutes = <span class="kw">divmod</span>(minutes, <span class="num">60</span>)
+        <span class="kw">if</span> hours:
+            <span class="kw">return</span> <span class="st">f"{hours}h {minutes}m {seconds}s"</span>
+        <span class="kw">elif</span> minutes:
+            <span class="kw">return</span> <span class="st">f"{minutes}m {seconds}s"</span>
+        <span class="kw">return</span> <span class="st">f"{seconds}s"</span>
+
+    <span class="kw">def</span> <span class="fn">is_long</span>(<span class="kw">self</span>, threshold: <span class="cl">int</span> = <span class="num">600</span>) -&gt; <span class="cl">bool</span>:  <span class="cmt"># Shared behavior</span>
+        <span class="kw">return</span> <span class="kw">self</span>._duration > threshold
+
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>: <span class="kw">pass</span>     <span class="cmt"># Must be overridden</span>
+
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>: <span class="kw">pass</span>     <span class="cmt"># Must be overridden</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:      <span class="cmt"># Nice string representation</span>
+        <span class="kw">return</span> <span class="kw">self</span>.<span class="fn">info</span>()
+                    </div>
+                    <div class="callout-yellow">
+                        <p><strong>🔑 Key Benefits of <code>ABC</code>:</strong></p>
+                        <ul style="padding-left:1.2rem;margin:.3rem 0;color:var(--muted);font-size:.78rem;line-height:1.7;">
+                            <li><strong>Explicit contract</strong> — subclasses <em>must</em> implement all abstract methods</li>
+                            <li><strong>Cannot instantiate</strong> the base class directly — prevents "empty" objects</li>
+                            <li><strong>Better tooling</strong> — IDEs and linters can validate that all abstract methods are implemented</li>
+                            <li><strong>Self-documenting</strong> — the <code>@abstractmethod</code> decorator makes the intention clear</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="callout-green">
+                    <p><strong>✅ When to use <code>ABC</code> vs <code>NotImplementedError</code>:</strong></p>
+                    <ul style="padding-left:1.2rem;margin:.3rem 0;color:var(--text);font-size:.78rem;line-height:1.7;">
+                        <li>Use <strong><code>ABC</code></strong> for formal contracts in library/framework code</li>
+                        <li>Use <strong><code>NotImplementedError</code></strong> for lightweight "please override" hints in smaller projects</li>
+                        <li><code>ABC</code> provides <strong>compile-time protection</strong> (well, runtime in Python, but earlier error)</li>
+                    </ul>
+                </div>
+
+                <!-- Checkpoint -->
+                <div class="checkpoint">
+                    <h4>🧐 Checkpoint: Abstract Methods</h4>
+                    <p>What happens if you try to instantiate <code>Media()</code> directly after using <code>@abstractmethod</code>?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('abc-answer')">Show Answer</button>
+                    <div class="answer" id="abc-answer">You get a <code>TypeError: Can't instantiate abstract class Media with abstract methods play, info</code>. This prevents creating incomplete objects and forces subclasses to implement all required methods.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BUILDING THE HIERARCHY ===== -->
+        <section id="hierarchy">
+            <div class="page-col">
+                <div class="section-label">02 — Multi-Level Hierarchy</div>
+                <h2>Intermediate Abstract Classes for Better Organization</h2>
+                <p>Real-world hierarchies often have intermediate levels. Here we add <code>AudioMedia</code> and <code>VideoMedia</code> to group related media types.</p>
+
+                <!-- Enhanced Hierarchy Diagram -->
+                <div class="hierarchy-diagram">
+                    <div style="margin-bottom: 0.5rem;">
+                        <span class="node base abstract">🎬 Media (ABC)</span>
+                        <div class="label">title, artist, duration</div>
+                        <div class="method">@abstractmethod play()</div>
+                        <div class="method">@abstractmethod info()</div>
+                        <div class="method">is_long(), duration_str</div>
+                    </div>
+                    <div class="arrow">⬇️ inherits</div>
+                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                        <div>
+                            <span class="node abstract">🎵 AudioMedia</span>
+                            <div class="label">audio_format, bitrate</div>
+                            <div class="method">+ format_info()</div>
+                        </div>
+                        <div>
+                            <span class="node abstract">🎬 VideoMedia</span>
+                            <div class="label">resolution, framerate</div>
+                            <div class="method">+ video_info()</div>
+                        </div>
+                    </div>
+                    <div class="arrow">⬇️ inherits</div>
+                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                        <div>
+                            <span class="node">🎵 Song</span>
+                            <div class="label">album</div>
+                            <div class="method">play(), info()</div>
+                        </div>
+                        <div>
+                            <span class="node">🎙️ Podcast</span>
+                            <div class="label">episode</div>
+                            <div class="method">play(), info()</div>
+                        </div>
+                        <div>
+                            <span class="node">📖 Audiobook</span>
+                            <div class="label">narrator, chapters</div>
+                            <div class="method">play(), info()</div>
+                        </div>
+                        <div>
+                            <span class="node">🎬 Movie</span>
+                            <div class="label">director</div>
+                            <div class="method">play(), info()</div>
+                        </div>
+                        <div>
+                            <span class="node">📺 TVEpisode</span>
+                            <div class="label">season, episode_num</div>
+                            <div class="method">play(), info()</div>
+                        </div>
+                    </div>
+                    <div class="label" style="margin-top:0.5rem;color:var(--text);">📌 Abstract classes shown with dashed borders</div>
+                </div>
+
+                <div class="step">
+                    <div><span class="step-number">2</span> <h4>Intermediate Abstract Classes</h4></div>
+                    <div class="step-code">
+<span class="kw">class</span> <span class="cl">AudioMedia</span>(<span class="cl">Media</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title, artist, duration, audio_format=<span class="st">"mp3"</span>, bitrate=<span class="num">128</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration)
+        <span class="kw">self</span>.audio_format = audio_format
+        <span class="kw">self</span>.bitrate = bitrate
+
+    <span class="kw">def</span> <span class="fn">format_info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.audio_format.upper()} @ {self.bitrate} kbps"</span>
+
+<span class="kw">class</span> <span class="cl">VideoMedia</span>(<span class="cl">Media</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title, artist, duration, resolution=<span class="st">"1080p"</span>, framerate=<span class="num">30</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration)
+        <span class="kw">self</span>.resolution = resolution
+        <span class="kw">self</span>.framerate = framerate
+
+    <span class="kw">def</span> <span class="fn">video_info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.resolution} @ {self.framerate}fps"</span>
+                    </div>
+                    <div class="callout">
+                        <p><strong>💡 Why use intermediate classes?</strong> They group related behavior (e.g., all audio media share format/bitrate) and provide a place for shared methods without duplicating code in each subclass.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div><span class="step-number">3</span> <h4>Concrete Subclasses</h4></div>
+                    <div class="step-code">
+<span class="kw">class</span> <span class="cl">Song</span>(<span class="cl">AudioMedia</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title, artist, duration, album=<span class="st">"Unknown"</span>, **kwargs):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration, **kwargs)
+        <span class="kw">self</span>.album = album
+
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎵 ♪ Now playing: {self.title} by {self.artist} ({self.duration_str})"</span>
+
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎵 Song: {self.title} | Artist: {self.artist} | Album: {self.album} | {self.duration_str} | {self.format_info()}"</span>
+
+<span class="kw">class</span> <span class="cl">Movie</span>(<span class="cl">VideoMedia</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title, artist, duration, director, **kwargs):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration, **kwargs)
+        <span class="kw">self</span>.director = director
+
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎬 Now playing: {self.title} ({self.duration_str}) — Directed by {self.director}"</span>
+
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎬 Movie: {self.title} | Director: {self.director} | {self.duration_str} | {self.video_info()}"</span>
+                    </div>
+                </div>
+
+                <!-- Checkpoint -->
+                <div class="checkpoint">
+                    <h4>🧐 Checkpoint: Method Resolution Order</h4>
+                    <p>If you call <code>Song.__mro__</code>, what's the order of class lookup?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('mro-answer')">Show Answer</button>
+                    <div class="answer" id="mro-answer"><code>(&lt;class 'Song'&gt;, &lt;class 'AudioMedia'&gt;, &lt;class 'Media'&gt;, &lt;class 'object'&gt;)</code>. Python looks in the class itself, then the parent (AudioMedia), then the grandparent (Media), then object.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COMPOSITION ===== -->
+        <section id="composition">
+            <div class="page-col">
+                <div class="section-label">03 — Composition vs Inheritance</div>
+                <h2>"Has-a" vs "Is-a" — The Library Example</h2>
+                <p>A <code>Library</code> is not a <code>Media</code> — it <strong>has</strong> media items. This is composition, and it's often a better choice than inheritance.</p>
+
+                <div class="step">
+                    <div><span class="step-number">4</span> <h4>Composition: Library Has Media</h4></div>
+                    <div class="step-code">
+<span class="kw">class</span> <span class="cl">Library</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>._items: <span class="cl">list</span>[<span class="cl">Media</span>] = []   <span class="cmt"># Composition: Library HAS Media</span>
+
+    <span class="kw">def</span> <span class="fn">add</span>(<span class="kw">self</span>, item: <span class="cl">Media</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">self</span>._items.append(item)
+
+    <span class="kw">def</span> <span class="fn">play_all</span>(<span class="kw">self</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">for</span> item <span class="kw">in</span> <span class="kw">self</span>._items:
+            <span class="fn">print</span>(item.<span class="fn">play</span>())
+
+    <span class="kw">def</span> <span class="fn">search_by_artist</span>(<span class="kw">self</span>, artist: <span class="cl">str</span>) -&gt; <span class="cl">list</span>[<span class="cl">Media</span>]:
+        <span class="kw">return</span> [item <span class="kw">for</span> item <span class="kw">in</span> <span class="kw">self</span>._items <span class="kw">if</span> item.artist.<span class="fn">lower</span>() == artist.<span class="fn">lower</span>()]
+
+    <span class="kw">def</span> <span class="fn">get_long_media</span>(<span class="kw">self</span>, threshold: <span class="cl">int</span> = <span class="num">600</span>) -&gt; <span class="cl">list</span>[<span class="cl">Media</span>]:
+        <span class="kw">return</span> [item <span class="kw">for</span> item <span class="kw">in</span> <span class="kw">self</span>._items <span class="kw">if</span> item.<span class="fn">is_long</span>(threshold)]
+
+    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> <span class="kw">len</span>(<span class="kw">self</span>._items)
+                    </div>
+                    <div class="callout-yellow">
+                        <p><strong>🔑 Inheritance vs Composition — When to Use Each:</strong></p>
+                        <table class="comparison-table" style="margin-top:0.5rem;">
+                            <thead><tr><th>Inheritance ("is-a")</th><th>Composition ("has-a")</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="highlight">"A Song is a Media"</span></td><td><span class="highlight">"A Library has a list of Media"</span></td></tr>
+                                <tr><td>Use for <strong>specialization</strong> (subtype relationships)</td><td>Use for <strong>aggregation</strong> (containment relationships)</td></tr>
+                                <tr><td>Changes to parent affect children</td><td>Changes to component are isolated</td></tr>
+                                <tr><td>Can lead to deep, brittle hierarchies</td><td>More flexible and easier to test</td></tr>
+                                <tr><td><strong>Prefer when:</strong> The subclass truly is a specialized version</td><td><strong>Prefer when:</strong> The relationship is containment or delegation</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Checkpoint -->
+                <div class="checkpoint">
+                    <h4>🧐 Checkpoint: Composition vs Inheritance</h4>
+                    <p>Why is <code>Library</code> using composition instead of inheriting from <code>Media</code>?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('comp-answer')">Show Answer</button>
+                    <div class="answer" id="comp-answer">A Library is not a type of Media — it <strong>has</strong> media items. Using inheritance would be semantically wrong ("Library is a Media" doesn't make sense) and would force the Library to implement abstract methods it doesn't need. Composition is the correct choice here.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CODE ===== -->
+        <section id="code">
+            <div class="page-col">
+                <div class="section-label">04 — Complete Code</div>
+                <h2>The Full Media Library Implementation</h2>
+                <p>This production-minded version includes abstract base classes, intermediate classes, type hints, and composition. Click <strong>Run</strong> to execute it in your browser.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span style="color:var(--muted);">media_library.py</span>
+                        <div class="code-actions">
+                            <button class="code-btn copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy</button>
+                            <button class="code-btn run-btn" id="runBtn"><i class="fas fa-play"></i> Run</button>
+                            <button class="code-btn reset-btn" id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+                        </div>
+                    </div>
+                    <div class="code-snippet" id="codeBlock">
+                        <pre><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<span class="kw">from</span> typing <span class="kw">import</span> List, Optional
+
+<span class="kw">class</span> <span class="cl">Media</span>(ABC):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title: <span class="cl">str</span>, artist: <span class="cl">str</span>, duration: <span class="cl">int</span>):
+        <span class="kw">self</span>.title = title
+        <span class="kw">self</span>.artist = artist
+        <span class="kw">self</span>._duration = duration
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">duration</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> <span class="kw">self</span>._duration
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">duration_str</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        minutes, seconds = <span class="kw">divmod</span>(<span class="kw">self</span>._duration, <span class="num">60</span>)
+        hours, minutes = <span class="kw">divmod</span>(minutes, <span class="num">60</span>)
+        <span class="kw">if</span> hours:
+            <span class="kw">return</span> <span class="st">f"{hours}h {minutes}m {seconds}s"</span>
+        <span class="kw">elif</span> minutes:
+            <span class="kw">return</span> <span class="st">f"{minutes}m {seconds}s"</span>
+        <span class="kw">return</span> <span class="st">f"{seconds}s"</span>
+
+    <span class="kw">def</span> <span class="fn">is_long</span>(<span class="kw">self</span>, threshold: <span class="cl">int</span> = <span class="num">600</span>) -&gt; <span class="cl">bool</span>:
+        <span class="kw">return</span> <span class="kw">self</span>._duration > threshold
+
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">pass</span>
+
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="kw">self</span>.<span class="fn">info</span>()
+
+<span class="kw">class</span> <span class="cl">AudioMedia</span>(<span class="cl">Media</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title: <span class="cl">str</span>, artist: <span class="cl">str</span>, duration: <span class="cl">int</span>,
+                 audio_format: <span class="cl">str</span> = <span class="st">"mp3"</span>, bitrate: <span class="cl">int</span> = <span class="num">128</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration)
+        <span class="kw">self</span>.audio_format = audio_format
+        <span class="kw">self</span>.bitrate = bitrate
+
+    <span class="kw">def</span> <span class="fn">format_info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.audio_format.upper()} @ {self.bitrate} kbps"</span>
+
+<span class="kw">class</span> <span class="cl">VideoMedia</span>(<span class="cl">Media</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title: <span class="cl">str</span>, artist: <span class="cl">str</span>, duration: <span class="cl">int</span>,
+                 resolution: <span class="cl">str</span> = <span class="st">"1080p"</span>, framerate: <span class="cl">int</span> = <span class="num">30</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration)
+        <span class="kw">self</span>.resolution = resolution
+        <span class="kw">self</span>.framerate = framerate
+
+    <span class="kw">def</span> <span class="fn">video_info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"{self.resolution} @ {self.framerate}fps"</span>
+
+<span class="kw">class</span> <span class="cl">Song</span>(<span class="cl">AudioMedia</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title: <span class="cl">str</span>, artist: <span class="cl">str</span>, duration: <span class="cl">int</span>,
+                 album: <span class="cl">str</span> = <span class="st">"Unknown"</span>, **kwargs):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration, **kwargs)
+        <span class="kw">self</span>.album = album
+
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎵 ♪ Now playing: {self.title} by {self.artist} ({self.duration_str})"</span>
+
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎵 Song: {self.title} | Artist: {self.artist} | Album: {self.album} | {self.duration_str} | {self.format_info()}"</span>
+
+<span class="kw">class</span> <span class="cl">Podcast</span>(<span class="cl">AudioMedia</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title: <span class="cl">str</span>, artist: <span class="cl">str</span>, duration: <span class="cl">int</span>,
+                 episode: <span class="cl">int</span> = <span class="num">1</span>, **kwargs):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration, **kwargs)
+        <span class="kw">self</span>.episode = episode
+
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎙️ Now playing: {self.title} — Episode {self.episode} ({self.duration_str})"</span>
+
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎙️ Podcast: {self.title} | Host: {self.artist} | Episode {self.episode} | {self.duration_str} | {self.format_info()}"</span>
+
+<span class="kw">class</span> <span class="cl">Movie</span>(<span class="cl">VideoMedia</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, title: <span class="cl">str</span>, artist: <span class="cl">str</span>, duration: <span class="cl">int</span>,
+                 director: <span class="cl">str</span>, **kwargs):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(title, artist, duration, **kwargs)
+        <span class="kw">self</span>.director = director
+
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎬 Now playing: {self.title} ({self.duration_str}) — Directed by {self.director}"</span>
+
+    <span class="kw">def</span> <span class="fn">info</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"🎬 Movie: {self.title} | Director: {self.director} | {self.duration_str} | {self.video_info()}"</span>
+
+<span class="kw">class</span> <span class="cl">Library</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>._items: <span class="cl">List</span>[<span class="cl">Media</span>] = []
+
+    <span class="kw">def</span> <span class="fn">add</span>(<span class="kw">self</span>, item: <span class="cl">Media</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">self</span>._items.append(item)
+
+    <span class="kw">def</span> <span class="fn">play_all</span>(<span class="kw">self</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">for</span> item <span class="kw">in</span> <span class="kw">self</span>._items:
+            <span class="fn">print</span>(item.<span class="fn">play</span>())
+
+    <span class="kw">def</span> <span class="fn">search_by_artist</span>(<span class="kw">self</span>, artist: <span class="cl">str</span>) -&gt; <span class="cl">List</span>[<span class="cl">Media</span>]:
+        <span class="kw">return</span> [item <span class="kw">for</span> item <span class="kw">in</span> <span class="kw">self</span>._items <span class="kw">if</span> item.artist.<span class="fn">lower</span>() == artist.<span class="fn">lower</span>()]
+
+    <span class="kw">def</span> <span class="fn">get_long_media</span>(<span class="kw">self</span>, threshold: <span class="cl">int</span> = <span class="num">600</span>) -&gt; <span class="cl">List</span>[<span class="cl">Media</span>]:
+        <span class="kw">return</span> [item <span class="kw">for</span> item <span class="kw">in</span> <span class="kw">self</span>._items <span class="kw">if</span> item.<span class="fn">is_long</span>(threshold)]
+
+    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> <span class="kw">len</span>(<span class="kw">self</span>._items)
+
+    <span class="kw">def</span> <span class="fn">display_report</span>(<span class="kw">self</span>) -&gt; <span class="cl">None</span>:
+        <span class="fn">print</span>(<span class="st">f"\n📚 {self.name} Library Report"</span>)
+        <span class="fn">print</span>(<span class="st">f"Total items: {len(self)}"</span>)
+        <span class="kw">for</span> item <span class="kw">in</span> <span class="kw">self</span>._items:
+            <span class="fn">print</span>(<span class="st">f"  - {item.info()}"</span>)
+
+<span class="cmt"># --- Demonstration ---</span>
+<span class="kw">def</span> <span class="fn">demonstrate_polymorphism</span>(items: <span class="cl">List</span>[<span class="cl">Media</span>]) -&gt; <span class="cl">None</span>:
+    <span class="fn">print</span>(<span class="st">"\n🎯 Polymorphism in action:"</span>)
+    <span class="kw">for</span> item <span class="kw">in</span> items:
+        <span class="fn">print</span>(item.<span class="fn">play</span>())
+        <span class="fn">print</span>(item.<span class="fn">info</span>())
+        <span class="fn">print</span>(<span class="st">"-"</span> * <span class="num">40</span>)
+
+<span class="cmt"># Build the library</span>
+library = <span class="cl">Library</span>(<span class="st">"Poetic Bytes"</span>)
+
+<span class="cmt"># Add various media</span>
+library.<span class="fn">add</span>(<span class="cl">Song</span>(<span class="st">"Bohemian Rhapsody"</span>, <span class="st">"Queen"</span>, <span class="num">354</span>, <span class="st">"A Night at the Opera"</span>, bitrate=<span class="num">320</span>))
+library.<span class="fn">add</span>(<span class="cl">Song</span>(<span class="st">"Shape of You"</span>, <span class="st">"Ed Sheeran"</span>, <span class="num">233</span>))
+library.<span class="fn">add</span>(<span class="cl">Podcast</span>(<span class="st">"Tech Talk"</span>, <span class="st">"Sarah Johnson"</span>, <span class="num">2400</span>, episode=<span class="num">42</span>, audio_format=<span class="st">"aac"</span>))
+library.<span class="fn">add</span>(<span class="cl">Movie</span>(<span class="st">"Inception"</span>, <span class="st">"Christopher Nolan"</span>, <span class="num">8880</span>, <span class="st">"Christopher Nolan"</span>, resolution=<span class="st">"4K"</span>))
+library.<span class="fn">add</span>(<span class="cl">Movie</span>(<span class="st">"The Matrix"</span>, <span class="st">"Wachowski Sisters"</span>, <span class="num">8160</span>, <span class="st">"Lana &amp; Lilly Wachowski"</span>))
+
+<span class="cmt"># Display the library report</span>
+library.<span class="fn">display_report</span>()
+
+<span class="cmt"># Show polymorphism</span>
+<span class="fn">demonstrate_polymorphism</span>(library._items[:<span class="num">3</span>])
+
+<span class="cmt"># Demonstrate search and filtering</span>
+<span class="fn">print</span>(<span class="st">"\n🔍 Search results for 'Queen':"</span>)
+<span class="kw">for</span> item <span class="kw">in</span> library.<span class="fn">search_by_artist</span>(<span class="st">"Queen"</span>):
+    <span class="fn">print</span>(<span class="st">f"  - {item.info()}"</span>)
+
+<span class="fn">print</span>(<span class="st">"\n⏱️ Long media (> 10 minutes):"</span>)
+<span class="kw">for</span> item <span class="kw">in</span> library.<span class="fn">get_long_media</span>(<span class="num">600</span>):
+    <span class="fn">print</span>(<span class="st">f"  - {item.info()}"</span>)
+
+<span class="cmt"># Demonstrate MRO</span>
+<span class="fn">print</span>(<span class="st">"\n📐 Method Resolution Order for Song:"</span>)
+<span class="fn">print</span>([cls.<span class="fn">__name__</span> <span class="kw">for</span> cls <span class="kw">in</span> <span class="cl">Song</span>.<span class="fn">__mro__</span>])</pre>
+                    </div>
+                    <div class="output-panel" id="outputPanel"></div>
+                </div>
+
+                <div class="callout" style="margin-top:1rem;">
+                    <p><strong>💡 What makes this "production-minded"?</strong> Type hints, property getters, composition (Library), search/filter capabilities, MRO demonstration, and a clean separation of concerns. This is closer to how real media libraries are structured.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== OUTPUT ===== -->
+        <section id="output">
+            <div class="page-col">
+                <div class="section-label">05 — Expected Output</div>
+                <h2>What You'll See</h2>
+                <p>The program builds a library, displays a report, demonstrates polymorphism, and shows search/filter capabilities.</p>
+                <div style="background:var(--code-bg);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#4ade80;margin-top:1rem;white-space:pre-wrap;word-break:break-word;line-height:1.7;">
+📚 Poetic Bytes Library Report
+Total items: 5
+  - 🎵 Song: Bohemian Rhapsody | Artist: Queen | Album: A Night at the Opera | 5m 54s | MP3 @ 320 kbps
+  - 🎵 Song: Shape of You | Artist: Ed Sheeran | Album: Unknown | 3m 53s | MP3 @ 128 kbps
+  - 🎙️ Podcast: Tech Talk | Host: Sarah Johnson | Episode 42 | 40m 0s | AAC @ 128 kbps
+  - 🎬 Movie: Inception | Director: Christopher Nolan | 2h 28m 0s | 4K @ 30fps
+  - 🎬 Movie: The Matrix | Director: Lana &amp; Lilly Wachowski | 2h 16m 0s | 1080p @ 30fps
+
+🎯 Polymorphism in action:
+🎵 ♪ Now playing: Bohemian Rhapsody by Queen (5m 54s)
+🎵 Song: Bohemian Rhapsody | Artist: Queen | Album: A Night at the Opera | 5m 54s | MP3 @ 320 kbps
+----------------------------------------
+🎵 ♪ Now playing: Shape of You by Ed Sheeran (3m 53s)
+🎵 Song: Shape of You | Artist: Ed Sheeran | Album: Unknown | 3m 53s | MP3 @ 128 kbps
+----------------------------------------
+🎙️ Now playing: Tech Talk — Episode 42 (40m 0s)
+🎙️ Podcast: Tech Talk | Host: Sarah Johnson | Episode 42 | 40m 0s | AAC @ 128 kbps
+----------------------------------------
+
+🔍 Search results for 'Queen':
+  - 🎵 Song: Bohemian Rhapsody | Artist: Queen | Album: A Night at the Opera | 5m 54s | MP3 @ 320 kbps
+
+⏱️ Long media (> 10 minutes):
+  - 🎙️ Podcast: Tech Talk | Host: Sarah Johnson | Episode 42 | 40m 0s | AAC @ 128 kbps
+  - 🎬 Movie: Inception | Director: Christopher Nolan | 2h 28m 0s | 4K @ 30fps
+  - 🎬 Movie: The Matrix | Director: Lana &amp; Lilly Wachowski | 2h 16m 0s | 1080p @ 30fps
+
+📐 Method Resolution Order for Song:
+['Song', 'AudioMedia', 'Media', 'ABC', 'object']
+                </div>
+                <div class="callout-yellow" style="margin-top:1rem;">
+                    <p><strong>🔍 Key takeaways from the output:</strong></p>
+                    <ul style="padding-left:1.2rem;margin:.3rem 0;color:var(--muted);font-size:.78rem;line-height:1.7;">
+                        <li><strong>Human-readable durations</strong> — the <code>duration_str</code> property converts seconds to a readable format</li>
+                        <li><strong>Polymorphism</strong> — the same <code>play()</code> and <code>info()</code> calls work on all media types</li>
+                        <li><strong>Composition</strong> — <code>Library</code> manages a collection of <code>Media</code> objects</li>
+                        <li><strong>MRO</strong> — shows the full inheritance chain: Song → AudioMedia → Media → ABC → object</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== INSIGHTS ===== -->
+        <section id="insights">
+            <div class="page-col">
+                <div class="section-label">06 — Advanced Insights</div>
+                <h2>The Liskov Substitution Principle & Design Trade-offs</h2>
+
+                <div class="insight">
+                    <strong>1. Liskov Substitution Principle (LSP)</strong>
+                    <p style="font-size:.78rem;">"Subtypes must be substitutable for their base types." In practice: any subclass of <code>Media</code> should work anywhere a <code>Media</code> is expected.</p>
+                    <div class="callout-red" style="margin-top:0.5rem;">
+                        <p><strong>❌ Anti-pattern — Breaking LSP:</strong></p>
+                        <div class="step-code" style="margin-top:0.3rem;">
+<span class="kw">class</span> <span class="cl">BrokenMedia</span>(<span class="cl">Media</span>):
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">raise</span> <span class="cl">RuntimeError</span>(<span class="st">"This media cannot be played"</span>)  <span class="cmt"># ❌ Violates LSP</span>
+                        </div>
+                        <p style="font-size:.78rem;margin-top:0.3rem;">If a subclass throws an exception where the base class would work, it breaks LSP. Code that expects <code>Media</code> would fail unexpectedly.</p>
+                    </div>
+                    <div class="callout-green" style="margin-top:0.5rem;">
+                        <p><strong>✅ Following LSP:</strong></p>
+                        <div class="step-code" style="margin-top:0.3rem;">
+<span class="kw">class</span> <span class="cl">GoodMedia</span>(<span class="cl">Media</span>):
+    <span class="kw">def</span> <span class="fn">play</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"▶️ Playing {self.title}"</span>  <span class="cmt"># ✅ Works like any Media</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight">
+                    <strong>2. When Inheritance Becomes a Liability</strong>
+                    <p style="font-size:.78rem;">Deep inheritance trees (5+ levels) become hard to maintain. Consider these warning signs:</p>
+                    <ul style="padding-left:1.2rem;margin:.3rem 0;color:var(--muted);font-size:.78rem;line-height:1.7;">
+                        <li><strong>Fragile base class</strong> — changes to the base class break many subclasses</li>
+                        <li><strong>Deep hierarchies</strong> — hard to understand the full behavior chain</li>
+                        <li><strong>God objects</strong> — base class accumulates too much functionality</li>
+                        <li><strong>Subclass explosion</strong> — many subclasses needed for small variations</li>
+                    </ul>
+                    <p style="font-size:.78rem;margin-top:0.3rem;">In modern Python, many teams prefer <strong>composition + protocols</strong> over deep inheritance.</p>
+                </div>
+
+                <div class="insight">
+                    <strong>3. Real-World Patterns: How Spotify/Netflix Actually Work</strong>
+                    <p style="font-size:.78rem;">Large-scale systems often use <strong>composition over inheritance</strong>:</p>
+                    <ul style="padding-left:1.2rem;margin:.3rem 0;color:var(--muted);font-size:.78rem;line-height:1.7;">
+                        <li><strong>Content models</strong> are typically flat with type fields, not deep hierarchies</li>
+                        <li><strong>Interfaces/Protocols</strong> define contracts without inheritance</li>
+                        <li><strong>Mixins</strong> provide shared behavior without deep trees</li>
+                        <li><strong>Dependency injection</strong> for flexibility</li>
+                    </ul>
+                    <p style="font-size:.78rem;margin-top:0.3rem;">The hierarchy we built is a great learning tool, but real production code often uses <code>typing.Protocol</code> or <code>abc.ABC</code> with shallow hierarchies.</p>
+                </div>
+
+                <h3 style="margin-top:1.5rem;">Common Anti-Patterns & How to Fix Them</h3>
+                <table class="mistake-table">
+                    <thead><tr><th>Anti-Pattern</th><th>Why It's Bad</th><th>Better Approach</th></tr></thead>
+                    <tbody>
+                        <tr><td>Forgetting <code>super().__init__()</code></td><td>Parent attributes are never initialized</td><td>Always call <code>super().__init__()</code> first</td></tr>
+                        <tr><td>Deep inheritance (5+ levels)</td><td>Hard to maintain, fragile</td><td>Prefer shallow hierarchies + composition</td></tr>
+                        <tr><td>Base class knows about subclasses</td><td>Violates Open/Closed Principle</td><td>Keep base class generic</td></tr>
+                        <tr><td>Overriding to change a tiny detail</td><td>Adds unnecessary complexity</td><td>Use parameters or composition</td></tr>
+                        <tr><td>Mutable defaults in __init__</td><td>Shared state across instances</td><td>Use <code>None</code> and create fresh objects</td></tr>
+                        <tr><td>Subclass violates LSP</td><td>Breaks polymorphic code</td><td>Ensure subclasses fulfill the contract</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="callout" style="margin-top:1rem;">
+                    <p><strong>📐 Method Resolution Order (MRO) Deep Dive:</strong></p>
+                    <p style="font-size:.78rem;">Python resolves method calls using the C3 linearization algorithm. You can always check the order with <code>ClassName.__mro__</code>. In our hierarchy:</p>
+                    <div style="background:var(--code-bg);border-radius:4px;padding:0.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text);margin-top:0.3rem;">
+                        Song.__mro__ → (Song, AudioMedia, Media, ABC, object)
+                    </div>
+                    <p style="font-size:.78rem;margin-top:0.3rem;">This order matters when you have multiple inheritance or when parent classes define the same method. Understanding MRO helps you debug tricky inheritance issues.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXERCISES ===== -->
+        <section id="exercises">
+            <div class="page-col">
+                <div class="section-label">07 — Practice Exercises</div>
+                <h2>Reinforce Your Learning</h2>
+
+                <!-- Exercise 1: Add Audiobook with Chapters -->
+                <div class="exercise-container">
+                    <h4>🧪 Exercise 1: Add an Audiobook with Chapters</h4>
+                    <p>Create an <code>Audiobook</code> class that inherits from <code>AudioMedia</code>. It should have:</p>
+                    <ul style="padding-left:1.2rem;margin:0.3rem 0;color:var(--muted);font-size:.78rem;line-height:1.7;">
+                        <li>A <code>narrator</code> attribute</li>
+                        <li>A <code>chapters</code> list (list of chapter titles)</li>
+                        <li>A <code>play()</code> method that includes the narrator</li>
+                        <li>An <code>info()</code> method that shows chapter count</li>
+                        <li>A <code>get_chapter(chapter_num)</code> method that returns the chapter title</li>
+                    </ul>
+                    <div style="margin-top: 0.8rem;">
+                        <label style="font-size:0.8rem;color:var(--muted);">Write your Audiobook class below:</label>
+                        <textarea class="editable-code" id="audiobook-editor" rows="14">class Audiobook(AudioMedia):
+    def __init__(self, title, artist, duration, narrator, chapters=None, **kwargs):
+        super().__init__(title, artist, duration, **kwargs)
+        self.narrator = narrator
+        self.chapters = chapters or []
+
+    def play(self):
+        return f"📖 Now listening: {self.title} narrated by {self.narrator} ({self.duration_str})"
+
+    def info(self):
+        return f"📖 Audiobook: {self.title} | Author: {self.artist} | Narrator: {self.narrator} | {len(self.chapters)} chapters | {self.duration_str} | {self.format_info()}"
+
+    def get_chapter(self, chapter_num):
+        if 0 < chapter_num <= len(self.chapters):
+            return self.chapters[chapter_num - 1]
+        return "Chapter not found"</textarea>
+                    </div>
+                    <div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-wrap:wrap;">
+                        <button class="code-btn run-btn" id="audiobookRunBtn"><i class="fas fa-play"></i> Run My Solution</button>
+                        <button class="code-btn copy-btn" id="audiobookCopyBtn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn" style="background:rgba(236,72,153,0.15);color:var(--pink);border:1px solid rgba(236,72,153,0.3);" id="audiobookResetBtn"><i class="fas fa-undo"></i> Reset</button>
+                    </div>
+                    <div class="output-panel" id="audiobookOutput" style="border:1px solid var(--border);border-radius:var(--card-r);margin-top:0.5rem;display:none;"></div>
+                    <button class="solution-toggle" onclick="toggleSolution('audiobook-solution')">Show Hint</button>
+                    <div id="audiobook-solution" class="solution-content">
+                        <p style="color:var(--text);font-size:.82rem;">Your <code>Audiobook</code> should inherit from <code>AudioMedia</code>, call <code>super().__init__()</code>, add <code>narrator</code> and <code>chapters</code>, implement <code>play()</code>, <code>info()</code>, and <code>get_chapter()</code>. Test it with a book that has multiple chapters.</p>
+                    </div>
+                </div>
+
+                <!-- Exercise 2: Fix the Broken LSP Violation -->
+                <div class="exercise-container">
+                    <h4>🧪 Exercise 2: Fix the LSP Violation</h4>
+                    <p>This class violates the Liskov Substitution Principle. Find and fix the issue:</p>
+                    <div style="margin-top: 0.8rem;">
+                        <label style="font-size:0.8rem;color:var(--muted);">Fix the bug, then click "Run My Fix":</label>
+                        <textarea class="editable-code" id="broken-editor" rows="10">class BrokenMovie(Movie):
+    def __init__(self, title, artist, duration, director, rating):
+        super().__init__(title, artist, duration, director)
+        self.rating = rating
+
+    def play(self):
+        # ❌ BUG: Raises an exception instead of playing
+        if self.rating < 3:
+            raise ValueError("This movie has a low rating, cannot play!")
+        return super().play()
+
+    def info(self):
+        return f"🎬 {self.title} (Rating: {self.rating}/5)"</textarea>
+                    </div>
+                    <div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-wrap:wrap;">
+                        <button class="code-btn run-btn" id="brokenRunBtn"><i class="fas fa-play"></i> Run My Fix</button>
+                        <button class="code-btn copy-btn" id="brokenCopyBtn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="code-btn" style="background:rgba(236,72,153,0.15);color:var(--pink);border:1px solid rgba(236,72,153,0.3);" id="brokenResetBtn"><i class="fas fa-undo"></i> Reset</button>
+                    </div>
+                    <div class="output-panel" id="brokenOutput" style="border:1px solid var(--border);border-radius:var(--card-r);margin-top:0.5rem;display:none;"></div>
+                    <button class="solution-toggle" onclick="toggleSolution('broken-solution')">Show Solution</button>
+                    <div id="broken-solution" class="solution-content">
+                        <p style="color:var(--text);font-size:.82rem;">The <code>play()</code> method raises an exception based on <code>rating</code>. This violates LSP because a <code>BrokenMovie</code> cannot be used where a <code>Movie</code> is expected. Fix: remove the exception or make it a warning. Alternatively, add a <code>can_play()</code> method that checks the rating without throwing.</p>
+                    </div>
+                </div>
+
+                <!-- Exercise 3: Predict the Output -->
+                <div class="exercise-container">
+                    <h4>🧪 Exercise 3: Predict the Output</h4>
+                    <p>What will this code print? Think about MRO and method lookup.</p>
+                    <div style="background:var(--code-bg);border-radius:6px;padding:0.8rem;font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--text);margin-top:0.5rem;white-space:pre-wrap;">
+<span class="kw">class</span> <span class="cl">A</span>:
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"A"</span>
+<span class="kw">class</span> <span class="cl">B</span>(<span class="cl">A</span>):
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"B"</span> + <span class="kw">super</span>().<span class="fn">whoami</span>()
+<span class="kw">class</span> <span class="cl">C</span>(<span class="cl">A</span>):
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"C"</span> + <span class="kw">super</span>().<span class="fn">whoami</span>()
+<span class="kw">class</span> <span class="cl">D</span>(<span class="cl">B</span>, <span class="cl">C</span>):
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"D"</span> + <span class="kw">super</span>().<span class="fn">whoami</span>()
+
+<span class="fn">print</span>(<span class="cl">D</span>().<span class="fn">whoami</span>())
+<span class="fn">print</span>([cls.<span class="fn">__name__</span> <span class="kw">for</span> cls <span class="kw">in</span> <span class="cl">D</span>.<span class="fn">__mro__</span>])
+                    </div>
+                    <button class="solution-toggle" onclick="toggleSolution('predict-solution')">Show Result</button>
+                    <div id="predict-solution" class="solution-content">
+                        <pre style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:#4ade80;margin:0;white-space:pre-wrap;">
+DCBA
+['D', 'B', 'C', 'A', 'object']
+                        </pre>
+                        <p style="color:var(--text);font-size:.82rem;margin-top:0.3rem;">This demonstrates the <strong>diamond problem</strong> and how MRO resolves it. Python uses C3 linearization to determine the method resolution order: D → B → C → A → object.</p>
+                    </div>
+                </div>
+
+                <!-- Exercise 4: Add Pause/Resume -->
+                <div class="exercise-container">
+                    <h4>🧪 Exercise 4: Implement Pause/Resume Polymorphically</h4>
+                    <p>Add <code>pause()</code> and <code>resume()</code> methods to the <code>Media</code> class that work for all media types. Each media type should show its own pause/resume message.</p>
+                    <button class="solution-toggle" onclick="toggleSolution('pause-solution')">Show Hint</button>
+                    <div id="pause-solution" class="solution-content">
+                        <p style="color:var(--text);font-size:.82rem;">Add <code>@abstractmethod</code> for <code>pause()</code> and <code>resume()</code> in the base <code>Media</code> class. Each subclass implements them with its own emoji and message. This demonstrates that polymorphism works for any method, not just <code>play()</code>.</p>
+                    </div>
+                </div>
+
+                <!-- ===== QUIZ ===== -->
+                <div style="margin-top: 2rem;">
+                    <h3>📝 Test Your Understanding</h3>
+                    <div class="quiz-container">
+                        <div class="quiz-question">
+                            <h4>Question 1: What does @abstractmethod do?</h4>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q1" value="a"> A) Prevents the class from being instantiated</label>
+                                <label><input type="radio" name="q1" value="b"> B) Forces subclasses to implement the method</label>
+                                <label><input type="radio" name="q1" value="c"> C) Makes the method private</label>
+                                <label><input type="radio" name="q1" value="d"> D) Optimizes the method for speed</label>
+                            </div>
+                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q1', 'b', '@abstractmethod forces subclasses to implement the method.')">Check Answer</button>
+                            <div class="quiz-feedback" id="q1-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>Question 2: What is the Liskov Substitution Principle?</h4>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q2" value="a"> A) Subclasses should be more specific than their parents</label>
+                                <label><input type="radio" name="q2" value="b"> B) Subclasses must be substitutable for their base classes</label>
+                                <label><input type="radio" name="q2" value="c"> C) Parents should never have methods</label>
+                                <label><input type="radio" name="q2" value="d"> D) Inheritance is always better than composition</label>
+                            </div>
+                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q2', 'b', 'LSP states that subclasses must be usable wherever their base classes are expected.')">Check Answer</button>
+                            <div class="quiz-feedback" id="q2-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>Question 3: When should you prefer composition over inheritance?</h4>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q3" value="a"> A) When you need to reuse code</label>
+                                <label><input type="radio" name="q3" value="b"> B) When the relationship is "has-a" rather than "is-a"</label>
+                                <label><input type="radio" name="q3" value="c"> C) When you want to create a hierarchy</label>
+                                <label><input type="radio" name="q3" value="d"> D) Always prefer composition</label>
+                            </div>
+                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q3', 'b', 'Composition is preferred for "has-a" relationships (e.g., Library has Media).')">Check Answer</button>
+                            <div class="quiz-feedback" id="q3-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>Question 4: What is Method Resolution Order (MRO)?</h4>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q4" value="a"> A) The order in which classes are instantiated</label>
+                                <label><input type="radio" name="q4" value="b"> B) The order Python uses to look up methods in inheritance</label>
+                                <label><input type="radio" name="q4" value="c"> C) The order of method parameters</label>
+                                <label><input type="radio" name="q4" value="d"> D) The order of class attributes</label>
+                            </div>
+                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q4', 'b', 'MRO is the order Python uses to look up methods in an inheritance hierarchy.')">Check Answer</button>
+                            <div class="quiz-feedback" id="q4-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>Question 5: Which is an anti-pattern in inheritance?</h4>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q5" value="a"> A) Using super() in __init__</label>
+                                <label><input type="radio" name="q5" value="b"> B) Deep inheritance hierarchies (5+ levels)</label>
+                                <label><input type="radio" name="q5" value="c"> C) Using type hints</label>
+                                <label><input type="radio" name="q5" value="d"> D) Overriding methods</label>
+                            </div>
+                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q5', 'b', 'Deep inheritance hierarchies become fragile and hard to maintain.')">Check Answer</button>
+                            <div class="quiz-feedback" id="q5-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>Question 6: What's the benefit of using ABC vs NotImplementedError?</h4>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q6" value="a"> A) ABC is faster</label>
+                                <label><input type="radio" name="q6" value="b"> B) ABC prevents instantiation of incomplete classes</label>
+                                <label><input type="radio" name="q6" value="c"> C) ABC uses less memory</label>
+                                <label><input type="radio" name="q6" value="d"> D) There's no difference</label>
+                            </div>
+                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q6', 'b', 'ABC prevents instantiation of classes with abstract methods, catching errors earlier.')">Check Answer</button>
+                            <div class="quiz-feedback" id="q6-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEXT STEPS ===== -->
+        <section id="next-steps" style="border-bottom: none;">
+            <div class="page-col">
+                <div class="section-label">08 — Next Steps</div>
+                <h2>Where to Go From Here</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:1rem;margin-top:1rem;">
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <div style="font-size:1.5rem;text-align:center;">📐</div>
+                        <h5 style="text-align:center;">Try Other Inheritance Projects</h5>
+                        <p style="text-align:center;font-size:.72rem;color:var(--muted);">Zoo Manager, Vehicle Garage, RPG Characters — each applies inheritance in a different domain.</p>
+                    </div>
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <div style="font-size:1.5rem;text-align:center;">🔍</div>
+                        <h5 style="text-align:center;">Learn About Protocols</h5>
+                        <p style="text-align:center;font-size:.72rem;color:var(--muted);"><code>typing.Protocol</code> provides duck typing without inheritance — a powerful alternative.</p>
+                    </div>
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <div style="font-size:1.5rem;text-align:center;">🧩</div>
+                        <h5 style="text-align:center;">Explore Mixins</h5>
+                        <p style="text-align:center;font-size:.72rem;color:var(--muted);">Mixins let you compose behavior without deep inheritance. A natural next step after mastering single inheritance.</p>
+                    </div>
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <div style="font-size:1.5rem;text-align:center;">🧪</div>
+                        <h5 style="text-align:center;">Write Tests</h5>
+                        <p style="text-align:center;font-size:.72rem;color:var(--muted);">Practice writing unit tests for your media classes using pytest. Test both the interface and the polymorphic behavior.</p>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:1.5rem;">
+                    <a href="inheritance.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Inheritance Guide</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://github.com/pansensoyglenn-dev/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            // --- Progress bar ---
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            // --- Drawer ---
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            // --- Back to top ---
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Copy link ---
+            var copyLinkBtn = document.getElementById('copyLinkBtn');
+            if (copyLinkBtn) {
+                copyLinkBtn.addEventListener('click', function() {
+                    var url = 'https://poetic-bytes.vercel.app/media.html';
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(url).then(function() {
+                            var orig = copyLinkBtn.innerHTML;
+                            copyLinkBtn.innerHTML = '<i class="fas fa-check"></i>';
+                            setTimeout(function() { copyLinkBtn.innerHTML = orig; }, 2000);
+                        }).catch(function() { fallbackCopy(url); });
+                    } else {
+                        fallbackCopy(url);
+                    }
+                });
+            }
+
+            function fallbackCopy(text) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = copyLinkBtn.innerHTML;
+                copyLinkBtn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(function() { copyLinkBtn.innerHTML = orig; }, 2000);
+            }
+
+            // --- Share buttons ---
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/media.html');
+            var PAGE_TITLE = encodeURIComponent('Media Library – Advanced Inheritance | Poetic Bytes');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+            document.getElementById('shareFb').addEventListener('click', function(e) { e.preventDefault();
+                shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            document.getElementById('shareTw').addEventListener('click', function(e) { e.preventDefault();
+                shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            document.getElementById('shareLi').addEventListener('click', function(e) { e.preventDefault();
+                shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+
+            // --- Quiz Functions ---
+            window.checkQuiz = function(questionName, correctAnswer, feedbackText) {
+                var selected = document.querySelector('input[name="' + questionName + '"]:checked');
+                var feedback = document.getElementById(questionName + '-feedback');
+                if (!selected) {
+                    feedback.className = 'quiz-feedback incorrect';
+                    feedback.textContent = 'Please select an answer.';
+                    return;
+                }
+                if (selected.value === correctAnswer) {
+                    feedback.className = 'quiz-feedback correct';
+                    feedback.textContent = '✅ ' + feedbackText;
+                } else {
+                    feedback.className = 'quiz-feedback incorrect';
+                    feedback.textContent = '❌ That\'s not quite right. Try again!';
+                }
+            };
+
+            // --- Exercise Functions ---
+            window.toggleSolution = function(id) {
+                var content = document.getElementById(id);
+                content.classList.toggle('show');
+                var button = content.previousElementSibling;
+                if (content.classList.contains('show')) {
+                    button.textContent = 'Hide Solution';
+                } else {
+                    button.textContent = 'Show Solution';
+                }
+            };
+
+            // --- Checkpoint Functions ---
+            window.toggleAnswer = function(id) {
+                var answer = document.getElementById(id);
+                answer.classList.toggle('show');
+                var btn = answer.previousElementSibling;
+                if (answer.classList.contains('show')) {
+                    btn.textContent = 'Hide Answer';
+                } else {
+                    btn.textContent = 'Show Answer';
+                }
+            };
+
+            // --- Progress Checklist ---
+            document.querySelectorAll('#progressChecklist input[type="checkbox"]').forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    var item = this.parentElement;
+                    if (this.checked) {
+                        item.classList.add('checked');
+                    } else {
+                        item.classList.remove('checked');
+                    }
+                    var progress = {};
+                    document.querySelectorAll('#progressChecklist input[type="checkbox"]').forEach(function(cb) {
+                        progress[cb.id] = cb.checked;
+                    });
+                    localStorage.setItem('mediaLibraryProgress', JSON.stringify(progress));
+                });
+                var saved = localStorage.getItem('mediaLibraryProgress');
+                if (saved) {
+                    try {
+                        var progress = JSON.parse(saved);
+                        if (progress[checkbox.id]) {
+                            checkbox.checked = true;
+                            checkbox.parentElement.classList.add('checked');
+                        }
+                    } catch(e) {}
+                }
+            });
+
+            // --- Pyodide Code Runner ---
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide();
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function indentCode(code, spaces) {
+                var pad = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return pad + line; }).join('\n');
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var wrapperLines = [
+                        'import sys',
+                        'from io import StringIO',
+                        'from abc import ABC, abstractmethod',
+                        '_captured_output = StringIO()',
+                        '_old_stdout = sys.stdout',
+                        'sys.stdout = _captured_output',
+                        'try:',
+                        indentCode(code, 4),
+                        'finally:',
+                        '    sys.stdout = _old_stdout',
+                        '_captured_output.getvalue()'
+                    ];
+                    var wrappedCode = wrapperLines.join('\n');
+
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+                    outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                    outputEl.style.color = '#4ade80';
+                } catch (err) {
+                    outputEl.className = 'output-panel error';
+                    outputEl.textContent = 'Error:\n' + err.message;
+                    outputEl.style.color = '#f87171';
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var original = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = original; }, 2000);
+                    }).catch(function() {
+                        fallbackCopyCode(btn, code);
+                    });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = original; }, 2000);
+            }
+
+            // --- Main Code Runner ---
+            var codePre = document.querySelector('#codeBlock pre');
+            var fullCode = codePre ? codePre.textContent : '';
+
+            var runBtn = document.getElementById('runBtn');
+            var copyBtn = document.getElementById('copyBtn');
+            var resetBtn = document.getElementById('resetBtn');
+            var outputPanel = document.getElementById('outputPanel');
+
+            if (runBtn) {
+                runBtn.addEventListener('click', function() {
+                    runCode(fullCode, outputPanel, runBtn);
+                });
+            }
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    copyCode(copyBtn, fullCode);
+                });
+            }
+            if (resetBtn && codePre) {
+                resetBtn.addEventListener('click', function() {
+                    var original = document.querySelector('#codeBlock pre').textContent;
+                    document.querySelector('#codeBlock pre').textContent = original;
+                    fullCode = original;
+                    outputPanel.style.display = 'none';
+                    outputPanel.textContent = '';
+                });
+            }
+
+            // --- Audiobook Exercise Runner ---
+            var audiobookEditor = document.getElementById('audiobook-editor');
+            var audiobookRunBtn = document.getElementById('audiobookRunBtn');
+            var audiobookCopyBtn = document.getElementById('audiobookCopyBtn');
+            var audiobookResetBtn = document.getElementById('audiobookResetBtn');
+            var audiobookOutput = document.getElementById('audiobookOutput');
+
+            var audiobookDefaultCode = `class Audiobook(AudioMedia):
+    def __init__(self, title, artist, duration, narrator, chapters=None, **kwargs):
+        super().__init__(title, artist, duration, **kwargs)
+        self.narrator = narrator
+        self.chapters = chapters or []
+
+    def play(self):
+        return f"📖 Now listening: {self.title} narrated by {self.narrator} ({self.duration_str})"
+
+    def info(self):
+        return f"📖 Audiobook: {self.title} | Author: {self.artist} | Narrator: {self.narrator} | {len(self.chapters)} chapters | {self.duration_str} | {self.format_info()}"
+
+    def get_chapter(self, chapter_num):
+        if 0 < chapter_num <= len(self.chapters):
+            return self.chapters[chapter_num - 1]
+        return "Chapter not found"`;
+
+            if (audiobookResetBtn) {
+                audiobookResetBtn.addEventListener('click', function() {
+                    audiobookEditor.value = audiobookDefaultCode;
+                    audiobookOutput.style.display = 'none';
+                    audiobookOutput.textContent = '';
+                });
+            }
+
+            if (audiobookRunBtn) {
+                audiobookRunBtn.addEventListener('click', function() {
+                    var code = audiobookEditor.value;
+                    var testCode = `
+${code}
+
+try:
+    book = Audiobook("1984", "George Orwell", 7200, "John Smith", 
+                     chapters=["Chapter 1", "Chapter 2", "Chapter 3"])
+    print(book.info())
+    print(book.play())
+    print(f"Chapter 2: {book.get_chapter(2)}")
+except Exception as e:
+    print(f"❌ Error: {e}")
+                    `;
+                    runCode(testCode, audiobookOutput, audiobookRunBtn);
+                });
+            }
+
+            if (audiobookCopyBtn) {
+                audiobookCopyBtn.addEventListener('click', function() {
+                    copyCode(audiobookCopyBtn, audiobookEditor.value);
+                });
+            }
+
+            // --- Broken Exercise Runner ---
+            var brokenEditor = document.getElementById('broken-editor');
+            var brokenRunBtn = document.getElementById('brokenRunBtn');
+            var brokenCopyBtn = document.getElementById('brokenCopyBtn');
+            var brokenResetBtn = document.getElementById('brokenResetBtn');
+            var brokenOutput = document.getElementById('brokenOutput');
+
+            var brokenDefaultCode = `class BrokenMovie(Movie):
+    def __init__(self, title, artist, duration, director, rating):
+        super().__init__(title, artist, duration, director)
+        self.rating = rating
+
+    def play(self):
+        # ❌ BUG: Raises an exception instead of playing
+        if self.rating < 3:
+            raise ValueError("This movie has a low rating, cannot play!")
+        return super().play()
+
+    def info(self):
+        return f"🎬 {self.title} (Rating: {self.rating}/5)"`;
+
+            if (brokenResetBtn) {
+                brokenResetBtn.addEventListener('click', function() {
+                    brokenEditor.value = brokenDefaultCode;
+                    brokenOutput.style.display = 'none';
+                    brokenOutput.textContent = '';
+                });
+            }
+
+            if (brokenRunBtn) {
+                brokenRunBtn.addEventListener('click', function() {
+                    var code = brokenEditor.value;
+                    var testCode = `
+${code}
+
+try:
+    movie = BrokenMovie("Bad Movie", "Unknown", 1200, "John Doe", 2)
+    print(movie.info())
+    print(movie.play())
+except Exception as e:
+    print(f"❌ Error: {e}")
+    print("💡 Hint: Does this violate LSP? A Movie should work anywhere.")
+                    `;
+                    runCode(testCode, brokenOutput, brokenRunBtn);
+                });
+            }
+
+            if (brokenCopyBtn) {
+                brokenCopyBtn.addEventListener('click', function() {
+                    copyCode(brokenCopyBtn, brokenEditor.value);
+                });
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
