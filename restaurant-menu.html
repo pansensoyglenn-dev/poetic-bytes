@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Restaurant Menu – Python Inheritance Mastery | Poetic Bytes</title>
+  <meta name="description" content="Master Python inheritance with a live restaurant menu project. Learn super(), method overriding, LSP, polymorphism & composition through interactive coding challenges." />
+  <meta name="keywords" content="Python inheritance, restaurant menu Python, OOP tutorial, method overriding, super() Python, Liskov Substitution Principle, polymorphism Python, composition vs inheritance, interactive Python, Pyodide" />
+  <meta name="author" content="Glenn Junsay Pansensoy" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://poetic-bytes.vercel.app/restaurant-menu.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Poetic Bytes" />
+  <meta property="og:title" content="Restaurant Menu – Python Inheritance Mastery" />
+  <meta property="og:description" content="Build a restaurant menu system while mastering Python inheritance. Live code runner, exercises, and quizzes included." />
+  <meta property="og:url" content="https://poetic-bytes.vercel.app/restaurant-menu.html" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Python Inheritance Restaurant Menu Project" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@PoeticGlenn" />
+  <meta name="twitter:creator" content="@PoeticGlenn" />
+  <meta name="twitter:title" content="Restaurant Menu – Python Inheritance Mastery" />
+  <meta name="twitter:description" content="Master Python inheritance with a live restaurant menu project. Interactive code runner, exercises & quizzes." />
+  <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Restaurant Menu – Python Inheritance Mastery",
+    "description": "Master Python inheritance with a live restaurant menu project. Learn super(), method overriding, LSP, polymorphism & composition.",
+    "author": {
+      "@type": "Person",
+      "name": "Glenn Junsay Pansensoy",
+      "url": "https://twitter.com/PoeticGlenn",
+      "email": "pansensoyglenn150@gmail.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Poetic Bytes",
+      "url": "https://poetic-bytes.vercel.app"
+    },
+    "datePublished": "2026-03-14",
+    "dateModified": "2026-03-14",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://poetic-bytes.vercel.app/restaurant-menu.html"
+    },
+    "keywords": "Python inheritance, restaurant menu, OOP, method overriding, super(), LSP, polymorphism, composition",
+    "articleSection": "Python Programming",
+    "inLanguage": "en-US",
+    "learningResourceType": "Tutorial",
+    "educationalLevel": "Beginner to Intermediate",
+    "about": {
+      "@type": "Thing",
+      "name": "Python Inheritance"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://poetic-bytes.vercel.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Inheritance", "item": "https://poetic-bytes.vercel.app/inheritance.html" },
+      { "@type": "ListItem", "position": 3, "name": "Restaurant Menu", "item": "https://poetic-bytes.vercel.app/restaurant-menu.html" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --bg: #0B121C;
+      --panel: #0F1C2F;
+      --card: #111e30;
+      --border: #1F4060;
+      --blue: #4B8BBE;
+      --blue-lt: #78B9E6;
+      --gold: #FFD966;
+      --text: #E2E8F0;
+      --muted: #8BA3BF;
+      --code-bg: #0A1A24;
+      --green: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #c084fc;
+      --rose: #f43f5e;
+      --orange: #FB923C;
+      --teal: #2DD4BF;
+      --sidebar-width: 290px;
+      --header-height: 56px;
+      --radius: 12px;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 15px;
+    }
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-top: var(--header-height);
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #a5d6ff;
+      background: rgba(75, 139, 190, 0.1);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--border);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--rose);
+      border-radius: 3px;
+    }
+
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(11, 18, 28, .97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 1rem;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(244, 63, 94, .1);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .menu-toggle:hover {
+      border-color: var(--rose);
+    }
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.25s;
+    }
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+    .brand-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 6px;
+      background: linear-gradient(145deg, var(--rose), var(--orange));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      transition: color 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .progress-display {
+      font-size: 0.7rem;
+      color: var(--muted);
+      min-width: 40px;
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .7);
+      z-index: 1040;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    .sidebar-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      z-index: 1050;
+      padding: 1.5rem 1rem;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar-close {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+      float: right;
+      padding: 0.3rem;
+    }
+    .sidebar-close:hover {
+      color: var(--text);
+    }
+    .sidebar h5 {
+      color: var(--gold);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 1rem 0 0.5rem;
+    }
+    .sidebar h5:first-of-type {
+      margin-top: 0;
+    }
+    .path-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 0.7rem;
+      margin: 0.2rem 0;
+      border-radius: 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      transition: background 0.2s;
+    }
+    .path-item:hover {
+      background: rgba(75, 139, 190, 0.1);
+    }
+    .path-item.active {
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--text);
+      border-left: 3px solid var(--rose);
+    }
+    .path-item.completed {
+      color: var(--green);
+    }
+    .path-item .icon {
+      width: 24px;
+      text-align: center;
+    }
+    .path-item .status {
+      margin-left: auto;
+      font-size: 0.7rem;
+    }
+    .progress-section {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rose), var(--orange));
+      border-radius: 3px;
+      transition: width 0.5s;
+    }
+    .skill-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      margin: 0.15rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .skill-badge.locked {
+      background: rgba(139, 163, 191, 0.1);
+      color: var(--muted);
+      border-color: rgba(139, 163, 191, 0.1);
+    }
+    .sidebar .divider {
+      border-top: 1px solid var(--border);
+      margin: 1rem 0;
+      padding-top: 1rem;
+    }
+
+    .main-content {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 1.25rem 2rem;
+    }
+    @media (min-width: 1024px) {
+      .sidebar {
+        transform: translateX(0);
+      }
+      .sidebar-overlay {
+        display: none !important;
+      }
+      .sidebar-close {
+        display: none !important;
+      }
+      .main-content {
+        padding-left: calc(var(--sidebar-width) + 2.5rem);
+      }
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-close {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 70px;
+    }
+    section:last-child {
+      border-bottom: none;
+    }
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-label .badge {
+      background: var(--rose);
+      color: #fff;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      white-space: nowrap;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: var(--gold);
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 0.95rem;
+      margin: 1.2rem 0 0.5rem;
+      color: var(--text);
+    }
+    h4 {
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .lead {
+      font-size: 0.88rem;
+      max-width: 680px;
+      color: var(--muted);
+    }
+    ul,
+    ol {
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+    ul li::marker,
+    ol li::marker {
+      color: var(--rose);
+    }
+
+    .hero {
+      padding: 1.5rem 0 0.5rem;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(244, 63, 94, .10) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.8rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 1rem 0;
+    }
+    .project-meta span {
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .project-meta i {
+      color: var(--gold);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose), var(--orange));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(244, 63, 94, .35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(244, 63, 94, .45);
+    }
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      border-color: var(--rose);
+      background: rgba(244, 63, 94, .08);
+    }
+    .btn-sm {
+      padding: 0.3rem 1rem;
+      font-size: 0.7rem;
+      height: 32px;
+    }
+    .btn-success {
+      background: var(--green);
+      color: #000;
+    }
+    .btn-success:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+    .btn-group {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .callout {
+      border-left: 3px solid var(--rose);
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      background: rgba(244, 63, 94, .06);
+      border-radius: 4px;
+    }
+    .callout p {
+      margin: 0;
+    }
+    .callout strong {
+      color: var(--rose);
+    }
+    .callout-green {
+      border-left: 3px solid var(--green);
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      background: rgba(16, 185, 129, .06);
+      border-radius: 4px;
+    }
+    .callout-green p {
+      margin: 0;
+    }
+    .callout-green strong {
+      color: var(--green);
+    }
+    .callout-red {
+      border-left: 3px solid var(--red);
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      background: rgba(239, 68, 68, .06);
+      border-radius: 4px;
+    }
+    .callout-red p {
+      margin: 0;
+    }
+    .callout-red strong {
+      color: var(--red);
+    }
+    .callout-yellow {
+      border-left: 3px solid var(--gold);
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      background: rgba(255, 212, 59, .06);
+      border-radius: 4px;
+    }
+    .callout-yellow p {
+      margin: 0;
+    }
+    .callout-yellow strong {
+      color: var(--gold);
+    }
+    .callout-blue {
+      border-left: 3px solid var(--blue);
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      background: rgba(75, 139, 190, .06);
+      border-radius: 4px;
+    }
+    .callout-blue p {
+      margin: 0;
+    }
+    .callout-blue strong {
+      color: var(--blue-lt);
+    }
+
+    .code-container {
+      margin: 1.2rem 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .code-header {
+      background: #0a1a24;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.72rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .code-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .code-btn {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Syne', sans-serif;
+      border: none;
+    }
+    .code-btn.run-btn {
+      background: var(--green);
+      color: #000;
+    }
+    .code-btn.run-btn:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+    .code-btn.run-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .code-btn.copy-btn {
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--rose);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .code-btn.copy-btn:hover {
+      background: rgba(244, 63, 94, 0.25);
+    }
+    .code-btn.reset-btn {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .code-btn.reset-btn:hover {
+      background: rgba(245, 158, 11, 0.25);
+    }
+    .code-btn.test-btn {
+      background: rgba(192, 132, 252, 0.15);
+      color: var(--purple);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+    }
+    .code-btn.test-btn:hover {
+      background: rgba(192, 132, 252, 0.25);
+    }
+    .code-btn.hint-btn {
+      background: rgba(75, 139, 190, 0.15);
+      color: var(--blue-lt);
+      border: 1px solid rgba(75, 139, 190, 0.3);
+    }
+    .code-btn.hint-btn:hover {
+      background: rgba(75, 139, 190, 0.25);
+    }
+    .code-editor {
+      background: var(--code-bg);
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+      line-height: 1.65;
+      color: var(--text);
+      border: none;
+      width: 100%;
+      resize: vertical;
+      min-height: 200px;
+      tab-size: 4;
+      outline: none;
+    }
+    .code-editor:focus {
+      outline: 2px solid var(--rose);
+      outline-offset: -2px;
+    }
+    .output-panel {
+      background: #0a1a24;
+      border-top: 1px solid var(--border);
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      color: #4ade80;
+      max-height: 350px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+      display: none;
+    }
+    .output-panel.visible {
+      display: block;
+    }
+    .output-panel.error {
+      color: #f87171;
+    }
+    .output-panel.success {
+      color: #4ade80;
+    }
+    .output-panel .test-pass {
+      color: var(--green);
+    }
+    .output-panel .test-fail {
+      color: var(--red);
+    }
+
+    .hierarchy-diagram {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.2rem 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+    .hierarchy-diagram .node {
+      display: inline-block;
+      background: var(--card);
+      border: 2px solid var(--rose);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      min-width: 100px;
+    }
+    .hierarchy-diagram .node.base {
+      border-color: var(--gold);
+      background: rgba(255, 212, 59, 0.08);
+    }
+    .hierarchy-diagram .node.abstract {
+      border-style: dashed;
+      border-color: var(--blue-lt);
+    }
+    .hierarchy-diagram .arrow {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--muted);
+      margin: 0.2rem 0;
+    }
+    .hierarchy-diagram .label {
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin: 0.15rem 0;
+    }
+    .hierarchy-diagram .method {
+      font-size: 0.55rem;
+      color: var(--blue-lt);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .exercise-container {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+    }
+    .exercise-container h4 {
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .exercise-container .difficulty {
+      display: inline-block;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+    }
+    .exercise-container .difficulty.easy {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+    }
+    .exercise-container .difficulty.medium {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber);
+    }
+    .exercise-container .difficulty.hard {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--red);
+    }
+    .exercise-container .exercise-status {
+      display: inline-block;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+      background: rgba(139, 163, 191, 0.1);
+      color: var(--muted);
+    }
+    .exercise-container .exercise-status.completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+    }
+    .editable-code {
+      background: var(--code-bg);
+      border-radius: 6px;
+      padding: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+      color: var(--text);
+      border: 1px solid var(--border);
+      width: 100%;
+      resize: vertical;
+      tab-size: 4;
+      min-height: 120px;
+    }
+    .editable-code:focus {
+      outline: none;
+      border-color: var(--rose);
+    }
+    .hint-container .hint-level {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.8rem;
+      margin: 0.3rem 0;
+      display: none;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .hint-container .hint-level.visible {
+      display: block;
+    }
+    .exercise-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .quiz-container {
+      margin-top: 1.5rem;
+    }
+    .quiz-question {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .quiz-question h4 {
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    .quiz-options label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .quiz-options label:hover {
+      background: rgba(75, 139, 190, 0.05);
+    }
+    .quiz-options input[type="radio"] {
+      accent-color: var(--rose);
+    }
+    .quiz-feedback {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      display: none;
+      font-size: 0.8rem;
+    }
+    .quiz-feedback.correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid var(--green);
+      color: var(--green);
+    }
+    .quiz-feedback.incorrect {
+      display: block;
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid var(--red);
+      color: var(--red);
+    }
+    .quiz-feedback .explanation {
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-top: 0.3rem;
+    }
+
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .checklist-item:hover {
+      background: rgba(75, 139, 190, 0.05);
+    }
+    .checklist-item input[type="checkbox"] {
+      accent-color: var(--rose);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .checklist-item.checked {
+      color: var(--text);
+    }
+    .checklist-item.checked label {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .mistake-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.8rem;
+      font-size: 0.76rem;
+      background: var(--panel);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .mistake-table th {
+      background: var(--card);
+      color: var(--gold);
+      padding: 0.7rem 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .mistake-table td {
+      padding: 0.6rem 0.8rem;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(244, 63, 94, .06);
+      vertical-align: top;
+    }
+    .mistake-table tr:last-child td {
+      border-bottom: none;
+    }
+    .mistake-table .fix {
+      color: var(--green);
+    }
+
+    .learning-objectives {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+    }
+    .learning-objectives h3 {
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+
+    .step {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+      border-left: 4px solid var(--rose);
+    }
+    .step .step-number {
+      display: inline-block;
+      background: var(--rose);
+      color: #fff;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+    }
+    .step h4 {
+      display: inline;
+      color: var(--text);
+    }
+    .step .step-code {
+      margin-top: 0.8rem;
+      background: var(--code-bg);
+      border-radius: 6px;
+      padding: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+      color: var(--text);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .step .step-code .kw {
+      color: #ff7b72;
+      font-weight: 600;
+    }
+    .step .step-code .fn {
+      color: #d2a8ff;
+    }
+    .step .step-code .st {
+      color: #a5d6ff;
+    }
+    .step .step-code .cl {
+      color: #FFD966;
+      font-weight: 600;
+    }
+    .step .step-code .cmt {
+      color: #546e7a;
+      font-style: italic;
+    }
+    .step .step-code .num {
+      color: #f78c6c;
+    }
+
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .takeaway-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+    }
+    .takeaway-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.3rem;
+    }
+    .takeaway-card h5 {
+      color: var(--text);
+      font-size: 0.82rem;
+    }
+    .takeaway-card p {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .page-footer {
+      padding: 3rem 0 1.5rem;
+      background: #1a2535;
+      border-top: 1px solid var(--border);
+    }
+    .footer-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 1.25rem;
+    }
+    .footer-col h5 {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.4rem;
+    }
+    .footer-col a {
+      color: rgba(255, 255, 255, .65);
+      text-decoration: none;
+      font-size: 0.74rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: #fff;
+    }
+    .copyright {
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--muted);
+      max-width: 920px;
+      margin: 0 auto;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+    .copyright a {
+      color: rgba(255, 255, 255, .5);
+      text-decoration: none;
+    }
+    .copyright a:hover {
+      color: #fff;
+    }
+
+    @media (min-width: 640px) {
+      .footer-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .footer-col {
+        flex: 1 1 160px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.3rem;
+      }
+      .project-meta {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .code-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .code-actions {
+        justify-content: flex-start;
+      }
+      .code-btn {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+      }
+      .takeaway-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav-bar">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="/" class="brand">
+          <span class="brand-icon">🐍</span>
+          POETIC BYTES
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#objectives">Objectives</a></li>
+        <li><a href="#concepts">Concepts</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#exercises">Exercises</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="inheritance.html">← Hub</a></li>
+      </ul>
+      <div class="nav-right">
+        <span class="progress-display" id="progressDisplay">0%</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    <h5>Your Learning Path</h5>
+    <div class="progress-section">
+      <div class="progress-row">
+        <span>Progress</span>
+        <span id="sidebarProgress">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="sidebarProgressFill" style="width:0%;"></div>
+      </div>
+      <div style="margin-top:0.5rem;font-size:0.65rem;color:var(--muted);">
+        <span id="completedModules">0</span> / <span id="totalModules">8</span> modules
+      </div>
+    </div>
+    <div style="margin:0.5rem 0;">
+      <span class="skill-badge" id="skillBadge1">🔓 Method Overriding</span>
+      <span class="skill-badge locked" id="skillBadge2">🔒 Polymorphism</span>
+      <span class="skill-badge locked" id="skillBadge3">🔒 Open/Closed</span>
+      <span class="skill-badge locked" id="skillBadge4">🔒 LSP</span>
+    </div>
+    <div id="pathContainer"></div>
+    <div class="divider">
+      <h5>Resources</h5>
+      <a href="inheritance.html" class="path-item" style="color:var(--blue-lt);"><span class="icon">📖</span> Inheritance Guide</a>
+      <a href="#" class="path-item" style="color:var(--blue-lt);"><span class="icon">🎬</span> Video Walkthrough</a>
+      <a href="#" class="path-item" style="color:var(--blue-lt);"><span class="icon">💬</span> Community</a>
+    </div>
+    <div class="divider">
+      <h5>Connect</h5>
+      <a href="https://twitter.com/PoeticGlenn" class="path-item" style="color:var(--blue-lt);" target="_blank" rel="noopener"><span class="icon">🐦</span> @PoeticGlenn</a>
+      <a href="mailto:pansensoyglenn150@gmail.com" class="path-item" style="color:var(--blue-lt);"><span class="icon">✉️</span> Email</a>
+    </div>
+  </aside>
+
+  <main class="main-content" id="mainContent">
+
+    <section class="hero">
+      <div class="section-label" style="margin-bottom:0.4rem;">
+        🍽️ Inheritance Mastery
+        <span class="badge">Lesson 3 of 8</span>
+      </div>
+      <h1>🍕 Restaurant Menu System</h1>
+      <p class="lead">Master inheritance through a realistic restaurant menu. Learn to model real-world relationships, override methods, apply the Liskov Substitution Principle, and build polymorphic systems.</p>
+      <div class="project-meta">
+        <span><i class="fas fa-code"></i> Python 3.11+</span>
+        <span><i class="fas fa-sitemap"></i> Hierarchical Inheritance</span>
+        <span><i class="fas fa-dollar-sign"></i> Pricing Overrides</span>
+        <span><i class="fas fa-play"></i> Live Code Runner</span>
+        <span><i class="fas fa-clock"></i> ~60 min</span>
+        <span><span class="status-badge">In Progress</span></span>
+      </div>
+      <div class="btn-group">
+        <a href="#code" class="btn btn-primary"><i class="fas fa-play-circle"></i> Start Coding</a>
+        <a href="#exercises" class="btn btn-outline"><i class="fas fa-pencil-alt"></i> Practice</a>
+        <a href="inheritance.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+      </div>
+    </section>
+
+    <section id="objectives">
+      <div class="section-label">00 — Learning Objectives</div>
+      <div class="learning-objectives">
+        <h3>🎯 By the end of this module, you will be able to:</h3>
+        <ul>
+          <li><strong>Design</strong> a base <code>MenuItem</code> class with shared attributes and methods</li>
+          <li><strong>Create</strong> specialized subclasses: <code>Appetizer</code>, <code>MainCourse</code>, <code>Dessert</code>, <code>Beverage</code></li>
+          <li><strong>Override</strong> methods like <code>get_price()</code> and <code>prepare()</code> for unique behavior</li>
+          <li><strong>Use</strong> <code>super()</code> correctly to initialize parent classes</li>
+          <li><strong>Apply</strong> polymorphism to build flexible menu systems</li>
+          <li><strong>Understand</strong> the Liskov Substitution Principle (LSP)</li>
+          <li><strong>Identify</strong> when inheritance is (and isn't) the right tool</li>
+          <li><strong>Contrast</strong> inheritance with composition using real examples</li>
+        </ul>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <h3>📋 Learning Progress</h3>
+        <div class="checklist" id="progressChecklist">
+          <div class="checklist-item"><input type="checkbox" id="check1"><label for="check1">Understand the duplication problem without inheritance</label></div>
+          <div class="checklist-item"><input type="checkbox" id="check2"><label for="check2">Can design a base MenuItem class</label></div>
+          <div class="checklist-item"><input type="checkbox" id="check3"><label for="check3">Can create subclasses with super()</label></div>
+          <div class="checklist-item"><input type="checkbox" id="check4"><label for="check4">Can override methods for specialized behavior</label></div>
+          <div class="checklist-item"><input type="checkbox" id="check5"><label for="check5">Understand polymorphism and can use it</label></div>
+          <div class="checklist-item"><input type="checkbox" id="check6"><label for="check6">Can explain the Open/Closed Principle</label></div>
+          <div class="checklist-item"><input type="checkbox" id="check7"><label for="check7">Understand the Liskov Substitution Principle (LSP)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="check8"><label for="check8">Can identify when to use composition over inheritance</label></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="concepts">
+      <div class="section-label">01 — Core Concepts</div>
+
+      <h2>The Duplication Problem</h2>
+      <p>Without inheritance, you'd write nearly identical classes for each menu category:</p>
+
+      <div class="step">
+        <div><span class="step-number">❌</span> <h4>Without Inheritance — Duplicated Code</h4></div>
+        <div class="step-code">
+<span class="kw">class</span> <span class="cl">Appetizer</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, price, description, serving_size):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>.price = price
+        <span class="kw">self</span>.description = description
+        <span class="kw">self</span>.serving_size = serving_size
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>.price
+    <span class="kw">def</span> <span class="fn">prepare</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"Preparing appetizer..."</span>
+
+<span class="kw">class</span> <span class="cl">MainCourse</span>:  Same __init__, same get_price, same structure
+<span class="kw">class</span> <span class="cl">Dessert</span>:     Same __init__, same get_price, same structure
+        </div>
+        <div class="callout-red">
+          <p><strong>⚠️ The Problem:</strong> The <code>__init__</code> and <code>get_price()</code> logic is duplicated. If you need to add a new attribute (like <code>calories</code>), you must update it in three places. This violates the <strong>DRY</strong> (Don't Repeat Yourself) principle.</p>
+        </div>
+      </div>
+
+      <h2>The Solution: Inheritance</h2>
+      <div class="step" style="border-left-color:var(--green);">
+        <div><span class="step-number" style="background:var(--green);color:#000;">✓</span> <h4>With Inheritance — Clean, DRY Code</h4></div>
+        <div class="step-code">
+<span class="kw">class</span> <span class="cl">MenuItem</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, price, description):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>.price = price
+        <span class="kw">self</span>.description = description
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>.price
+    <span class="kw">def</span> <span class="fn">prepare</span>(<span class="kw">self</span>): <span class="kw">raise</span> <span class="cl">NotImplementedError</span>()
+
+<span class="kw">class</span> <span class="cl">Appetizer</span>(<span class="cl">MenuItem</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, price, description, serving_size):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(name, price, description)
+        <span class="kw">self</span>.serving_size = serving_size
+    <span class="kw">def</span> <span class="fn">prepare</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">f"Preparing {self.name}..."</span>
+        </div>
+        <div class="callout-green">
+          <p><strong>✅ Result:</strong> The duplication is gone. All menu items share the same base structure. If you add a new common attribute, you add it <em>once</em> in the base class.</p>
+        </div>
+      </div>
+
+      <div class="hierarchy-diagram">
+        <div style="margin-bottom:0.5rem;">
+          <span class="node base">🍽️ MenuItem</span>
+          <div class="label">• name, price, description</div>
+          <div class="method">get_price() → price</div>
+          <div class="method">prepare() [abstract]</div>
+          <div class="method">display() → formatted string</div>
+        </div>
+        <div class="arrow">⬇️ inherits</div>
+        <div style="display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap;margin-top:0.5rem;">
+          <div><span class="node">🍽️ Appetizer</span><div class="label">• serving_size</div><div class="method">prepare() → plating</div></div>
+          <div><span class="node">🍳 MainCourse</span><div class="label">• cooking_time</div><div class="method">prepare() → cooking</div><div class="method">get_price() → +$2.50</div></div>
+          <div><span class="node">🍰 Dessert</span><div class="label">• has_whipped_cream</div><div class="method">prepare() → plating</div></div>
+          <div><span class="node">☕ Beverage</span><div class="label">• size, is_hot</div><div class="method">prepare() → serving</div><div class="method">get_price() → size-based</div></div>
+        </div>
+      </div>
+
+      <div class="callout-yellow">
+        <p><strong>🔑 Key Concept: The Open/Closed Principle</strong></p>
+        <p style="font-size:.78rem;margin-top:0.3rem;">The MenuItem base class is <strong>open for extension</strong> (you can add new menu categories) but <strong>closed for modification</strong> (you don't need to change existing code). This is one of the SOLID principles of object-oriented design.</p>
+      </div>
+
+      <h2 style="margin-top:1.5rem;">The Liskov Substitution Principle (LSP)</h2>
+      <p>LSP states that objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.</p>
+
+      <div class="callout-red">
+        <p><strong>❌ Breaking LSP — Bad Example:</strong></p>
+        <div style="background:var(--code-bg);border-radius:6px;padding:0.8rem;margin-top:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--text);white-space:pre-wrap;">
+<span class="kw">class</span> <span class="cl">BrokenMainCourse</span>(<span class="cl">MainCourse</span>):
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="kw">self</span>) -&gt; <span class="cl">float</span>:
+        <span class="kw">if</span> <span class="kw">self</span>.cooking_time &gt; <span class="num">30</span>:
+            <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">"This dish takes too long!"</span>)
+        <span class="kw">return</span> <span class="kw">super</span>().<span class="fn">get_price</span>()
+        </div>
+        <p style="font-size:.78rem;margin-top:0.5rem;">If code expects <code>MainCourse</code> and calls <code>get_price()</code>, it will fail unexpectedly for this subclass. This violates LSP.</p>
+      </div>
+
+      <div class="callout-green">
+        <p><strong>✅ Following LSP — Good Example:</strong></p>
+        <div style="background:var(--code-bg);border-radius:6px;padding:0.8rem;margin-top:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--text);white-space:pre-wrap;">
+<span class="kw">class</span> <span class="cl">GoodMainCourse</span>(<span class="cl">MainCourse</span>):
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="kw">self</span>) -&gt; <span class="cl">float</span>:
+        <span class="kw">if</span> <span class="kw">self</span>.cooking_time &gt; <span class="num">30</span>:
+            <span class="kw">return</span> <span class="kw">super</span>().<span class="fn">get_price</span>() + <span class="num">5.00</span>
+        <span class="kw">return</span> <span class="kw">super</span>().<span class="fn">get_price</span>()
+        </div>
+        <p style="font-size:.78rem;margin-top:0.5rem;">This subclass extends behavior without breaking the contract. It still returns a float and works wherever <code>MainCourse</code> is expected.</p>
+      </div>
+
+      <h2 style="margin-top:1.5rem;">Inheritance vs Composition</h2>
+      <p>A <code>ComboMeal</code> is not a type of <code>MenuItem</code> — it <strong>has</strong> menu items. This is composition, and it's often the better choice.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;">
+          <h4 style="color:var(--gold);">Inheritance ("is-a")</h4>
+          <p style="font-size:.78rem;">"A MainCourse <strong>is a</strong> MenuItem"</p>
+          <ul style="font-size:.75rem;padding-left:1rem;">
+            <li>Use for specialization</li>
+            <li>Changes to parent affect children</li>
+            <li>Can lead to deep hierarchies</li>
+          </ul>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;">
+          <h4 style="color:var(--teal);">Composition ("has-a")</h4>
+          <p style="font-size:.78rem;">"A ComboMeal <strong>has</strong> MenuItem objects"</p>
+          <ul style="font-size:.75rem;padding-left:1rem;">
+            <li>Use for containment</li>
+            <li>Changes are isolated</li>
+            <li>More flexible and testable</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout-blue">
+        <p><strong>💡 When to use which:</strong> Use inheritance when you have a clear "is-a" relationship and you want to reuse behavior. Use composition when you have a "has-a" relationship or when you want to avoid tight coupling. In modern Python, many developers prefer <strong>composition + protocols</strong> over deep inheritance.</p>
+      </div>
+    </section>
+
+    <section id="code">
+      <div class="section-label">02 — Interactive Code</div>
+      <h2>Build the Restaurant Menu</h2>
+      <p>Edit the code below, then click <strong>Run</strong> to execute it. Click <strong>Test</strong> to run automated tests on your code.</p>
+
+      <div class="code-container">
+        <div class="code-header">
+          <span style="color:var(--muted);">restaurant_menu.py</span>
+          <div class="code-actions">
+            <button class="code-btn copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy</button>
+            <button class="code-btn run-btn" id="runBtn"><i class="fas fa-play"></i> Run</button>
+            <button class="code-btn test-btn" id="testBtn"><i class="fas fa-check-circle"></i> Test</button>
+            <button class="code-btn reset-btn" id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+          </div>
+        </div>
+        <textarea class="code-editor" id="codeEditor" spellcheck="false">class MenuItem:
+    def __init__(self, name: str, price: float, description: str):
+        self.name = name
+        self.price = price
+        self.description = description
+
+    def get_price(self) -> float:
+        return self.price
+
+    def prepare(self) -> str:
+        raise NotImplementedError("Subclasses must implement prepare()")
+
+    def display(self) -> str:
+        return f"{self.name}: ${self.price:.2f} - {self.description}"
+
+class Appetizer(MenuItem):
+    def __init__(self, name: str, price: float, description: str, serving_size: str = "small"):
+        super().__init__(name, price, description)
+        self.serving_size = serving_size
+
+    def prepare(self) -> str:
+        return f"🍽️ Preparing {self.name} - {self.serving_size} portion"
+
+    def display(self) -> str:
+        return f"🍽️ {self.name}: ${self.price:.2f} - {self.description} ({self.serving_size})"
+
+class MainCourse(MenuItem):
+    def __init__(self, name: str, price: float, description: str, cooking_time: int = 20):
+        super().__init__(name, price, description)
+        self.cooking_time = cooking_time
+
+    def prepare(self) -> str:
+        return f"🍳 Cooking {self.name} for {self.cooking_time} minutes"
+
+    def get_price(self) -> float:
+        return self.price + 2.50
+
+    def display(self) -> str:
+        return f"🍳 {self.name}: ${self.price:.2f} - {self.description} ({self.cooking_time}min)"
+
+class Dessert(MenuItem):
+    def __init__(self, name: str, price: float, description: str, has_whipped_cream: bool = False):
+        super().__init__(name, price, description)
+        self.has_whipped_cream = has_whipped_cream
+
+    def prepare(self) -> str:
+        cream = "with" if self.has_whipped_cream else "without"
+        return f"🍰 Plating {self.name} {cream} whipped cream"
+
+    def display(self) -> str:
+        cream = "✨ with cream" if self.has_whipped_cream else ""
+        return f"🍰 {self.name}: ${self.price:.2f} - {self.description} {cream}"
+
+def display_menu(items):
+    print("\n📋 Menu:")
+    for item in items:
+        print(f"  {item.display()}")
+    print("-" * 40)
+
+def prepare_order(items):
+    print("\n👨‍🍳 Preparing your order:")
+    for item in items:
+        print(f"  {item.prepare()}")
+    print("-" * 40)
+
+def calculate_total(items):
+    total = sum(item.get_price() for item in items)
+    print(f"\n💰 Total: ${total:.2f}")
+    return total
+
+menu = [
+    Appetizer("Bruschetta", 8.99, "Toasted bread with tomato and basil", "large"),
+    Appetizer("Spring Rolls", 6.99, "Crispy vegetable rolls"),
+    MainCourse("Grilled Salmon", 22.99, "Fresh salmon with lemon dill sauce", 15),
+    MainCourse("Steak Frites", 28.99, "Ribeye with garlic fries", 25),
+    Dessert("Tiramisu", 7.99, "Classic Italian dessert", True),
+    Dessert("Panna Cotta", 6.99, "Vanilla bean custard")
+]
+
+display_menu(menu)
+order = [menu[0], menu[2], menu[4]]
+prepare_order(order)
+calculate_total(order)
+
+print("\n🎯 Polymorphism in action:")
+for item in [menu[0], menu[2], menu[4]]:
+    print(f"  {item.name} = ${item.get_price():.2f}")</textarea>
+        <div class="output-panel" id="outputPanel"></div>
+      </div>
+
+      <div class="callout">
+        <p><strong>💡 Try it yourself:</strong> Add a <code>Beverage</code> class, change pricing rules, or add a new method. Click <strong>Test</strong> to run automated tests on your changes.</p>
+      </div>
+    </section>
+
+    <section id="exercises">
+      <div class="section-label">03 — Practice Exercises</div>
+      <h2>Level Up Your Skills</h2>
+      <p>Complete these exercises in order. Each one builds on the previous concepts.</p>
+
+      <div class="exercise-container" id="ex1">
+        <h4>
+          🧪 Exercise 1: Add a Beverage Category
+          <span class="difficulty easy">Easy</span>
+          <span class="exercise-status" id="ex1-status">Not Started</span>
+        </h4>
+        <p>Create a <code>Beverage</code> class that inherits from <code>MenuItem</code>.</p>
+        <ul style="padding-left:1.2rem;margin:0.3rem 0;color:var(--muted);font-size:.78rem;line-height:1.7;">
+          <li>A <code>size</code> attribute (small, medium, large, extra large)</li>
+          <li>An <code>is_hot</code> boolean attribute</li>
+          <li>A <code>prepare()</code> method that returns a preparation message</li>
+          <li>A <code>display()</code> method that shows the size and temperature</li>
+          <li>Override <code>get_price()</code> to add $0.50 for large and $1.00 for extra large</li>
+        </ul>
+        <div style="margin-top:0.8rem;">
+          <textarea class="editable-code" id="beverage-editor" rows="14">class Beverage(MenuItem):
+    def __init__(self, name, price, description, size="medium", is_hot=True):
+        super().__init__(name, price, description)
+        self.size = size
+        self.is_hot = is_hot
+
+    def prepare(self):
+        temp = "Hot" if self.is_hot else "Iced"
+        return f"☕ Preparing {temp} {self.name} ({self.size})"
+
+    def get_price(self):
+        if self.size == "large":
+            return self.price + 0.50
+        elif self.size == "extra large":
+            return self.price + 1.00
+        return self.price
+
+    def display(self):
+        temp = "☕" if self.is_hot else "🧊"
+        return f"{temp} {self.name}: ${self.price:.2f} - {self.description} ({self.size})"</textarea>
+        </div>
+        <div class="exercise-actions">
+          <button class="code-btn run-btn" id="beverageRunBtn"><i class="fas fa-play"></i> Run</button>
+          <button class="code-btn test-btn" id="beverageTestBtn"><i class="fas fa-check-circle"></i> Test</button>
+          <button class="code-btn copy-btn" id="beverageCopyBtn"><i class="fas fa-copy"></i> Copy</button>
+          <button class="code-btn reset-btn" id="beverageResetBtn"><i class="fas fa-undo"></i> Reset</button>
+          <button class="code-btn hint-btn" id="beverageHintBtn"><i class="fas fa-lightbulb"></i> Hint</button>
+        </div>
+        <div class="hint-container">
+          <div class="hint-level" id="beverageHint1">💡 <strong>Hint 1:</strong> Your class should inherit from <code>MenuItem</code>. Don't forget <code>super().__init__()</code>!</div>
+          <div class="hint-level" id="beverageHint2">💡 <strong>Hint 2:</strong> In <code>get_price()</code>, check <code>self.size</code> and add the appropriate amount.</div>
+          <div class="hint-level" id="beverageHint3">💡 <strong>Hint 3:</strong> Use <code>☕</code> for hot and <code>🧊</code> for iced in <code>display()</code>.</div>
+        </div>
+        <div class="output-panel" id="beverageOutput" style="border:1px solid var(--border);border-radius:var(--radius);margin-top:0.5rem;"></div>
+      </div>
+
+      <div class="exercise-container" id="ex2">
+        <h4>
+          🧪 Exercise 2: Debug the Menu
+          <span class="difficulty medium">Medium</span>
+          <span class="exercise-status" id="ex2-status">Not Started</span>
+        </h4>
+        <p>This code has a bug that causes an <code>AttributeError</code>. Find and fix it:</p>
+        <div style="margin-top:0.8rem;">
+          <textarea class="editable-code" id="debug-editor" rows="10">class BrokenDessert(MenuItem):
+    def __init__(self, name, price, description, is_vegan):
+        self.name = name
+        self.is_vegan = is_vegan
+
+    def prepare(self):
+        return f"🍰 Preparing {self.name} (Vegan: {self.is_vegan})"
+
+    def display(self):
+        return f"🍰 {self.name}: ${self.price:.2f} - Vegan: {self.is_vegan}"</textarea>
+        </div>
+        <div class="exercise-actions">
+          <button class="code-btn run-btn" id="debugRunBtn"><i class="fas fa-play"></i> Run</button>
+          <button class="code-btn test-btn" id="debugTestBtn"><i class="fas fa-check-circle"></i> Test</button>
+          <button class="code-btn copy-btn" id="debugCopyBtn"><i class="fas fa-copy"></i> Copy</button>
+          <button class="code-btn reset-btn" id="debugResetBtn"><i class="fas fa-undo"></i> Reset</button>
+          <button class="code-btn hint-btn" id="debugHintBtn"><i class="fas fa-lightbulb"></i> Hint</button>
+        </div>
+        <div class="hint-container">
+          <div class="hint-level" id="debugHint1">💡 <strong>Hint 1:</strong> The error is in <code>__init__</code>. What does <code>super()</code> do?</div>
+          <div class="hint-level" id="debugHint2">💡 <strong>Hint 2:</strong> The parent needs to initialize <code>name</code>, <code>price</code>, and <code>description</code>.</div>
+          <div class="hint-level" id="debugHint3">💡 <strong>Hint 3:</strong> Add <code>super().__init__(name, price, description)</code> as the first line of <code>__init__</code>.</div>
+        </div>
+        <div class="output-panel" id="debugOutput" style="border:1px solid var(--border);border-radius:var(--radius);margin-top:0.5rem;"></div>
+      </div>
+
+      <div class="exercise-container" id="ex3">
+        <h4>
+          🧪 Exercise 3: Combo Meal (Composition)
+          <span class="difficulty hard">Hard</span>
+          <span class="exercise-status" id="ex3-status">Not Started</span>
+        </h4>
+        <p>Create a <code>ComboMeal</code> class that contains multiple <code>MenuItem</code> objects and calculates a discounted total.</p>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:0.3rem;">This exercise demonstrates <strong>composition</strong> ("has-a" relationship) rather than inheritance.</p>
+        <div style="margin-top:0.8rem;">
+          <textarea class="editable-code" id="combo-editor" rows="14">class ComboMeal:
+    def __init__(self, name, items, discount=0.10):
+        self.name = name
+        self.items = items
+        self.discount = discount
+
+    def get_price(self):
+        total = sum(item.get_price() for item in self.items)
+        return total * (1 - self.discount)
+
+    def prepare(self):
+        return f"🍽️ Preparing Combo: {self.name}\n" + "\n".join(
+            f"  - {item.prepare()}" for item in self.items
+        )
+
+    def display(self):
+        items_str = ", ".join(item.name for item in self.items)
+        return f"🍱 {self.name}: ${self.get_price():.2f} - {items_str} ({self.discount*100:.0f}% off)"</textarea>
+        </div>
+        <div class="exercise-actions">
+          <button class="code-btn run-btn" id="comboRunBtn"><i class="fas fa-play"></i> Run</button>
+          <button class="code-btn test-btn" id="comboTestBtn"><i class="fas fa-check-circle"></i> Test</button>
+          <button class="code-btn copy-btn" id="comboCopyBtn"><i class="fas fa-copy"></i> Copy</button>
+          <button class="code-btn reset-btn" id="comboResetBtn"><i class="fas fa-undo"></i> Reset</button>
+          <button class="code-btn hint-btn" id="comboHintBtn"><i class="fas fa-lightbulb"></i> Hint</button>
+        </div>
+        <div class="hint-container">
+          <div class="hint-level" id="comboHint1">💡 <strong>Hint 1:</strong> ComboMeal <strong>contains</strong> MenuItem objects — this is composition.</div>
+          <div class="hint-level" id="comboHint2">💡 <strong>Hint 2:</strong> Use <code>sum()</code> with a generator to calculate the total.</div>
+          <div class="hint-level" id="comboHint3">💡 <strong>Hint 3:</strong> The <code>get_price()</code> method should apply the discount to the total.</div>
+        </div>
+        <div class="output-panel" id="comboOutput" style="border:1px solid var(--border);border-radius:var(--radius);margin-top:0.5rem;"></div>
+      </div>
+
+      <div class="exercise-container" id="ex4">
+        <h4>
+          🧪 Exercise 4: Fix the LSP Violation
+          <span class="difficulty hard">Hard</span>
+          <span class="exercise-status" id="ex4-status">Not Started</span>
+        </h4>
+        <p>This class violates the Liskov Substitution Principle. Fix it so it works correctly.</p>
+        <div style="margin-top:0.8rem;">
+          <textarea class="editable-code" id="lsp-editor" rows="10">class BadMainCourse(MainCourse):
+    def __init__(self, name, price, description, cooking_time, is_spicy):
+        super().__init__(name, price, description, cooking_time)
+        self.is_spicy = is_spicy
+
+    def get_price(self):
+        if self.is_spicy:
+            raise ValueError("Spicy dishes cannot be priced!")
+        return super().get_price()</textarea>
+        </div>
+        <div class="exercise-actions">
+          <button class="code-btn run-btn" id="lspRunBtn"><i class="fas fa-play"></i> Run</button>
+          <button class="code-btn test-btn" id="lspTestBtn"><i class="fas fa-check-circle"></i> Test</button>
+          <button class="code-btn copy-btn" id="lspCopyBtn"><i class="fas fa-copy"></i> Copy</button>
+          <button class="code-btn reset-btn" id="lspResetBtn"><i class="fas fa-undo"></i> Reset</button>
+          <button class="code-btn hint-btn" id="lspHintBtn"><i class="fas fa-lightbulb"></i> Hint</button>
+        </div>
+        <div class="hint-container">
+          <div class="hint-level" id="lspHint1">💡 <strong>Hint 1:</strong> LSP says subclasses should not throw exceptions that the parent doesn't.</div>
+          <div class="hint-level" id="lspHint2">💡 <strong>Hint 2:</strong> Instead of raising an error, add a surcharge for spicy dishes.</div>
+          <div class="hint-level" id="lspHint3">💡 <strong>Hint 3:</strong> Return <code>super().get_price() + 1.50</code> for spicy dishes.</div>
+        </div>
+        <div class="output-panel" id="lspOutput" style="border:1px solid var(--border);border-radius:var(--radius);margin-top:0.5rem;"></div>
+      </div>
+
+      <div class="exercise-container" id="ex5">
+        <h4>
+          🧪 Exercise 5: Method Resolution Order (MRO)
+          <span class="difficulty medium">Medium</span>
+          <span class="exercise-status" id="ex5-status">Not Started</span>
+        </h4>
+        <p>What will this code print? Try to work it out, then click "Run" to check.</p>
+        <div style="background:var(--code-bg);border-radius:6px;padding:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--text);margin-top:0.5rem;white-space:pre-wrap;">
+<span class="kw">class</span> <span class="cl">A</span>:
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"A"</span>
+
+<span class="kw">class</span> <span class="cl">B</span>(<span class="cl">A</span>):
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"B"</span> + <span class="kw">super</span>().<span class="fn">whoami</span>()
+
+<span class="kw">class</span> <span class="cl">C</span>(<span class="cl">A</span>):
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"C"</span> + <span class="kw">super</span>().<span class="fn">whoami</span>()
+
+<span class="kw">class</span> <span class="cl">D</span>(<span class="cl">B</span>, <span class="cl">C</span>):
+    <span class="kw">def</span> <span class="fn">whoami</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">"D"</span> + <span class="kw">super</span>().<span class="fn">whoami</span>()
+
+<span class="fn">print</span>(<span class="cl">D</span>().<span class="fn">whoami</span>())
+<span class="fn">print</span>([cls.<span class="fn">__name__</span> <span class="kw">for</span> cls <span class="kw">in</span> <span class="cl">D</span>.<span class="fn">__mro__</span>])
+        </div>
+        <div class="exercise-actions">
+          <button class="code-btn run-btn" id="mroRunBtn"><i class="fas fa-play"></i> Run</button>
+          <button class="code-btn test-btn" id="mroTestBtn"><i class="fas fa-check-circle"></i> Check Answer</button>
+        </div>
+        <div class="output-panel" id="mroOutput" style="border:1px solid var(--border);border-radius:var(--radius);margin-top:0.5rem;"></div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="section-label">04 — Knowledge Check</div>
+      <h2>Test Your Understanding</h2>
+
+      <div class="quiz-container">
+        <div class="quiz-question">
+          <h4>Question 1: What does <code>super().__init__()</code> do?</h4>
+          <div class="quiz-options">
+            <label><input type="radio" name="q1" value="a"> A) Creates a new instance of the subclass</label>
+            <label><input type="radio" name="q1" value="b"> B) Calls the parent class's __init__ method</label>
+            <label><input type="radio" name="q1" value="c"> C) Deletes the subclass's attributes</label>
+            <label><input type="radio" name="q1" value="d"> D) Raises an error</label>
+          </div>
+          <button class="code-btn quiz-check-btn" data-q="q1" data-correct="b" data-feedback="super().__init__() calls the parent class's __init__ method." style="margin-top:0.5rem;font-size:0.7rem;">Check Answer</button>
+          <div class="quiz-feedback" id="q1-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <h4>Question 2: Why does the base MenuItem raise NotImplementedError?</h4>
+          <div class="quiz-options">
+            <label><input type="radio" name="q2" value="a"> A) To prevent instantiation</label>
+            <label><input type="radio" name="q2" value="b"> B) To force subclasses to implement prepare()</label>
+            <label><input type="radio" name="q2" value="c"> C) To handle errors</label>
+            <label><input type="radio" name="q2" value="d"> D) To optimize performance</label>
+          </div>
+          <button class="code-btn quiz-check-btn" data-q="q2" data-correct="b" data-feedback="NotImplementedError forces subclasses to implement prepare()." style="margin-top:0.5rem;font-size:0.7rem;">Check Answer</button>
+          <div class="quiz-feedback" id="q2-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <h4>Question 3: What concept is demonstrated by calculate_total() working with any menu item?</h4>
+          <div class="quiz-options">
+            <label><input type="radio" name="q3" value="a"> A) Encapsulation</label>
+            <label><input type="radio" name="q3" value="b"> B) Polymorphism</label>
+            <label><input type="radio" name="q3" value="c"> C) Inheritance</label>
+            <label><input type="radio" name="q3" value="d"> D) Composition</label>
+          </div>
+          <button class="code-btn quiz-check-btn" data-q="q3" data-correct="b" data-feedback="The function works with any MenuItem — this is polymorphism." style="margin-top:0.5rem;font-size:0.7rem;">Check Answer</button>
+          <div class="quiz-feedback" id="q3-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <h4>Question 4: What is the Liskov Substitution Principle?</h4>
+          <div class="quiz-options">
+            <label><input type="radio" name="q4" value="a"> A) Subclasses should be more specific</label>
+            <label><input type="radio" name="q4" value="b"> B) Subclasses must be substitutable for their base classes</label>
+            <label><input type="radio" name="q4" value="c"> C) Parents should never have methods</label>
+            <label><input type="radio" name="q4" value="d"> D) Inheritance is always better</label>
+          </div>
+          <button class="code-btn quiz-check-btn" data-q="q4" data-correct="b" data-feedback="LSP states that subclasses must be usable wherever their base classes are expected." style="margin-top:0.5rem;font-size:0.7rem;">Check Answer</button>
+          <div class="quiz-feedback" id="q4-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <h4>Question 5: When should you prefer composition over inheritance?</h4>
+          <div class="quiz-options">
+            <label><input type="radio" name="q5" value="a"> A) When you need to reuse code</label>
+            <label><input type="radio" name="q5" value="b"> B) When the relationship is "has-a" rather than "is-a"</label>
+            <label><input type="radio" name="q5" value="c"> C) When you want a hierarchy</label>
+            <label><input type="radio" name="q5" value="d"> D) Always prefer composition</label>
+          </div>
+          <button class="code-btn quiz-check-btn" data-q="q5" data-correct="b" data-feedback="Composition is preferred for &quot;has-a&quot; relationships like ComboMeal has MenuItem objects." style="margin-top:0.5rem;font-size:0.7rem;">Check Answer</button>
+          <div class="quiz-feedback" id="q5-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <h4>Question 6: What does <code>ClassName.__mro__</code> show?</h4>
+          <div class="quiz-options">
+            <label><input type="radio" name="q6" value="a"> A) The methods of the class</label>
+            <label><input type="radio" name="q6" value="b"> B) The method resolution order for inheritance</label>
+            <label><input type="radio" name="q6" value="c"> C) The memory usage of the class</label>
+            <label><input type="radio" name="q6" value="d"> D) The attributes of the class</label>
+          </div>
+          <button class="code-btn quiz-check-btn" data-q="q6" data-correct="b" data-feedback="MRO shows the order Python uses to look up methods in inheritance." style="margin-top:0.5rem;font-size:0.7rem;">Check Answer</button>
+          <div class="quiz-feedback" id="q6-feedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mistakes">
+      <div class="section-label">05 — Common Mistakes & Anti-Patterns</div>
+      <h2>What to Avoid</h2>
+
+      <table class="mistake-table">
+        <thead>
+          <tr><th>Mistake</th><th>Why It's Bad</th><th>Better Approach</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Forgetting <code>super().__init__()</code></td>
+            <td>Parent attributes are never initialized</td>
+            <td class="fix">Always call <code>super().__init__()</code> first</td>
+          </tr>
+          <tr>
+            <td>Deep inheritance (5+ levels)</td>
+            <td>Hard to maintain, fragile</td>
+            <td class="fix">Prefer shallow hierarchies + composition</td>
+          </tr>
+          <tr>
+            <td>Raising exceptions in overridden methods</td>
+            <td>Breaks LSP, violates the contract</td>
+            <td class="fix">Extend behavior, don't restrict it</td>
+          </tr>
+          <tr>
+            <td>Base class knows about subclasses</td>
+            <td>Violates Open/Closed Principle</td>
+            <td class="fix">Keep base class generic</td>
+          </tr>
+          <tr>
+            <td>Overriding to change a tiny detail</td>
+            <td>Adds unnecessary complexity</td>
+            <td class="fix">Use parameters or composition</td>
+          </tr>
+          <tr>
+            <td>Mutable defaults in __init__</td>
+            <td>Shared state across instances</td>
+            <td class="fix">Use <code>None</code> and create fresh objects</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section style="border-bottom:none;padding-bottom:1rem;">
+      <div class="section-label">06 — Next Steps</div>
+      <h2>Continue Your Learning Journey</h2>
+      <div class="takeaway-grid">
+        <div class="takeaway-card">
+          <div class="icon">📐</div>
+          <h5>Try Other Projects</h5>
+          <p>Zoo Manager, Vehicle Garage, RPG Characters</p>
+          <div style="margin-top:0.5rem;"><a href="inheritance.html" class="btn btn-sm btn-outline">Explore</a></div>
+        </div>
+        <div class="takeaway-card">
+          <div class="icon">🔍</div>
+          <h5>Abstract Base Classes</h5>
+          <p>Formal contracts with ABC and @abstractmethod</p>
+          <div style="margin-top:0.5rem;"><a href="#" class="btn btn-sm btn-outline">Coming Soon</a></div>
+        </div>
+        <div class="takeaway-card">
+          <div class="icon">🧩</div>
+          <h5>Design Patterns</h5>
+          <p>Strategy, Factory, and more</p>
+          <div style="margin-top:0.5rem;"><a href="#" class="btn btn-sm btn-outline">Coming Soon</a></div>
+        </div>
+        <div class="takeaway-card">
+          <div class="icon">🏆</div>
+          <h5>Real-World Python</h5>
+          <p>How Django, FastAPI use inheritance</p>
+          <div style="margin-top:0.5rem;"><a href="#" class="btn btn-sm btn-outline">Coming Soon</a></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:1.5rem;">
+        <a href="inheritance.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Inheritance Hub</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Guided Tracks</h5>
+        <ul>
+          <li><a href="beginners.html">First-time dev</a></li>
+          <li><a href="data-science.html">Data &amp; statistics</a></li>
+          <li><a href="backend.html">Backend / Django</a></li>
+          <li><a href="aiml.html">ML fundamentals</a></li>
+          <li><a href="web-development.html">Web Development</a></li>
+          <li><a href="automation.html">Automation</a></li>
+          <li><a href="sample-programs.html">Sample Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>New Modules</h5>
+        <ul>
+          <li><a href="python-sets.html">Python Sets</a></li>
+          <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+          <li><a href="python-exceptions.html">Exception Handling</a></li>
+          <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+          <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+          <li><a href="python-decorators.html">Decorators In Depth</a></li>
+          <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Toolkit</h5>
+        <ul>
+          <li><a href="algorithm-history.html">History of Algorithm</a></li>
+          <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+          <li><a href="snippet-library.html">Snippet library</a></li>
+          <li><a href="code-runner.html">Code runner</a></li>
+          <li><a href="design-patterns.html">Design Patterns</a></li>
+          <li><a href="coding-concepts.html">Coding Concepts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://twitter.com/PoeticGlenn" target="_blank" rel="noopener">Twitter/X</a></li>
+          <li><a href="https://www.linkedin.com/in/glenn-pansensoy" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="mailto:pansensoyglenn150@gmail.com">Email</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Policies</h5>
+        <ul>
+          <li><a href="privacy.html">Data privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="cookie.html">Cookies</a></li>
+          <li><a href="disclaimer.html">Disclaimers</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+      <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggleBtn = document.getElementById('menuToggle');
+      var closeBtn = document.getElementById('sidebarClose');
+
+      function toggleSidebar(open) {
+        var isOpen = sidebar.classList.contains('open');
+        var shouldOpen = open !== undefined ? open : !isOpen;
+        sidebar.classList.toggle('open', shouldOpen);
+        if (overlay) overlay.classList.toggle('open', shouldOpen);
+        if (toggleBtn) toggleBtn.classList.toggle('active', shouldOpen);
+        document.body.style.overflow = shouldOpen ? 'hidden' : '';
+      }
+
+      if (toggleBtn) toggleBtn.addEventListener('click', function() { toggleSidebar(); });
+      if (closeBtn) closeBtn.addEventListener('click', function() { toggleSidebar(false); });
+      if (overlay) overlay.addEventListener('click', function() { toggleSidebar(false); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') toggleSidebar(false); });
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024) {
+          sidebar.classList.remove('open');
+          if (overlay) overlay.classList.remove('open');
+          if (toggleBtn) toggleBtn.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      var progress = {
+        completedModules: 0,
+        totalModules: 8,
+        quizScore: 0,
+        quizTotal: 0,
+        exercises: { beverage: 'not_started', debug: 'not_started', combo: 'not_started', lsp: 'not_started', mro: 'not_started' },
+        checklist: {}
+      };
+
+      try {
+        var saved = localStorage.getItem('restaurantMenuProgress_v5');
+        if (saved) Object.assign(progress, JSON.parse(saved));
+      } catch (e) {}
+
+      function saveProgress() {
+        try { localStorage.setItem('restaurantMenuProgress_v5', JSON.stringify(progress)); } catch (e) {}
+        updateUI();
+      }
+
+      function updateUI() {
+        var pct = Math.min(Math.round((progress.completedModules / progress.totalModules) * 100), 100);
+        document.getElementById('progressDisplay').textContent = pct + '%';
+        document.getElementById('sidebarProgress').textContent = pct + '%';
+        document.getElementById('sidebarProgressFill').style.width = pct + '%';
+        document.getElementById('completedModules').textContent = Math.min(progress.completedModules, progress.totalModules);
+        document.getElementById('totalModules').textContent = progress.totalModules;
+
+        var badges = [
+          { id: 'skillBadge1', label: 'Method Overriding', threshold: 2 },
+          { id: 'skillBadge2', label: 'Polymorphism', threshold: 4 },
+          { id: 'skillBadge3', label: 'Open/Closed', threshold: 5 },
+          { id: 'skillBadge4', label: 'LSP', threshold: 6 }
+        ];
+        badges.forEach(function(b) {
+          var el = document.getElementById(b.id);
+          if (el) {
+            if (progress.completedModules >= b.threshold) {
+              el.textContent = '✅ ' + b.label;
+              el.className = 'skill-badge';
+            }
+          }
+        });
+
+        var statusMap = {
+          beverage: 'ex1-status',
+          debug: 'ex2-status',
+          combo: 'ex3-status',
+          lsp: 'ex4-status',
+          mro: 'ex5-status'
+        };
+        for (var key in statusMap) {
+          var id = statusMap[key];
+          var el2 = document.getElementById(id);
+          if (el2) {
+            var s = progress.exercises[key] || 'not_started';
+            el2.textContent = s === 'completed' ? '✅ Completed' : s === 'in_progress' ? '🔄 In Progress' : 'Not Started';
+            el2.className = 'exercise-status' + (s === 'completed' ? ' completed' : '');
+          }
+        }
+
+        var pathItems = [
+          { icon: '🏗️', label: 'OOP Foundations', completed: true },
+          { icon: '🧬', label: 'Inheritance Basics', completed: true },
+          { icon: '🍽️', label: 'Restaurant Menu', active: true },
+          { icon: '🎭', label: 'Polymorphism', completed: progress.completedModules >= 4 },
+          { icon: '📐', label: 'Abstract Classes', completed: progress.completedModules >= 5 },
+          { icon: '🧩', label: 'Composition vs Inheritance', completed: progress.completedModules >= 6 },
+          { icon: '🔍', label: 'LSP & Design', completed: progress.completedModules >= 7 },
+          { icon: '🏆', label: 'Real-World Patterns', completed: progress.completedModules >= 8 }
+        ];
+        document.getElementById('pathContainer').innerHTML = pathItems.map(function(item) {
+          return '<div class="path-item ' + (item.active ? 'active' : '') + ' ' + (item.completed ? 'completed' : '') + '">' +
+            '<span class="icon">' + item.icon + '</span>' +
+            '<span>' + item.label + '</span>' +
+            '<span class="status">' + (item.completed ? '✅' : (item.active ? '📍' : '')) + '</span>' +
+            '</div>';
+        }).join('');
+      }
+
+      var checkboxes = document.querySelectorAll('#progressChecklist input[type="checkbox"]');
+      checkboxes.forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var item = this.parentElement;
+          if (this.checked) { item.classList.add('checked'); progress.checklist[this.id] = true; }
+          else { item.classList.remove('checked'); progress.checklist[this.id] = false; }
+          var total = document.querySelectorAll('#progressChecklist input[type="checkbox"]').length;
+          var done = document.querySelectorAll('#progressChecklist input[type="checkbox"]:checked').length;
+          if (done === total) progress.completedModules = Math.max(progress.completedModules, 2);
+          saveProgress();
+        });
+        if (progress.checklist[cb.id]) { cb.checked = true; cb.parentElement.classList.add('checked'); }
+      });
+
+      function checkQuiz(qName, correct, feedbackText) {
+        var selected = document.querySelector('input[name="' + qName + '"]:checked');
+        var fb = document.getElementById(qName + '-feedback');
+        if (!selected) { fb.className = 'quiz-feedback incorrect'; fb.textContent = 'Please select an answer.'; return; }
+        if (selected.value === correct) {
+          fb.className = 'quiz-feedback correct';
+          fb.innerHTML = '✅ ' + feedbackText;
+          progress.quizScore++;
+        } else {
+          fb.className = 'quiz-feedback incorrect';
+          fb.innerHTML = '❌ That is not quite right. <div class="explanation">' + feedbackText + '</div>';
+        }
+        progress.quizTotal++;
+        saveProgress();
+      }
+
+      document.querySelectorAll('.quiz-check-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          checkQuiz(this.dataset.q, this.dataset.correct, this.dataset.feedback);
+        });
+      });
+
+      function setupHints(btnId, hintIds) {
+        var btn = document.getElementById(btnId);
+        if (!btn) return;
+        var idx = 0;
+        var hints = hintIds.map(function(id) { return document.getElementById(id); }).filter(function(el) { return el; });
+        btn.addEventListener('click', function() {
+          if (idx < hints.length) {
+            hints[idx].classList.add('visible');
+            idx++;
+            if (idx >= hints.length) {
+              this.textContent = '💡 All hints shown';
+              this.disabled = true;
+            }
+          }
+        });
+      }
+      setupHints('beverageHintBtn', ['beverageHint1', 'beverageHint2', 'beverageHint3']);
+      setupHints('debugHintBtn', ['debugHint1', 'debugHint2', 'debugHint3']);
+      setupHints('comboHintBtn', ['comboHint1', 'comboHint2', 'comboHint3']);
+      setupHints('lspHintBtn', ['lspHint1', 'lspHint2', 'lspHint3']);
+
+      var pyodideReady = false;
+      var pyodideInstance = null;
+
+      function loadPyodideRuntime() {
+        if (!pyodideReady) {
+          return window.loadPyodide().then(function(instance) {
+            pyodideInstance = instance;
+            pyodideReady = true;
+            return pyodideInstance;
+          });
+        }
+        return Promise.resolve(pyodideInstance);
+      }
+
+      function runCode(code, outputEl, btn, onSuccess) {
+        if (btn) {
+          btn.disabled = true;
+          btn.dataset.originalHtml = btn.innerHTML;
+          btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+        }
+        outputEl.style.display = 'block';
+        outputEl.className = 'output-panel';
+        outputEl.textContent = 'Loading Python runtime...\n\n';
+
+        loadPyodideRuntime().then(function(pyodide) {
+          outputEl.textContent = '';
+          var lines = code.split('\n').map(function(l) { return '    ' + l; });
+          var wrapper = [
+            'import sys',
+            'from io import StringIO',
+            '_out = StringIO()',
+            '_old = sys.stdout',
+            'sys.stdout = _out',
+            'try:'
+          ].concat(lines).concat([
+            'finally:',
+            '    sys.stdout = _old',
+            '_out.getvalue()'
+          ]).join('\n');
+          return pyodide.runPythonAsync(wrapper);
+        }).then(function(result) {
+          outputEl.textContent = result || '✓ Done.';
+          outputEl.className = 'output-panel success';
+          if (typeof onSuccess === 'function') onSuccess(String(result || ''));
+        }).catch(function(e) {
+          outputEl.className = 'output-panel error';
+          outputEl.textContent = 'Error:\n' + (e && e.message ? e.message : String(e));
+        }).finally(function() {
+          if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = btn.dataset.originalHtml || btn.innerHTML;
+          }
+        });
+      }
+
+      function copyCode(btn, code) {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(code.trim()).then(function() {
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(function() { btn.innerHTML = orig; }, 2000);
+          }).catch(function() { fallbackCopy(btn, code); });
+        } else {
+          fallbackCopy(btn, code);
+        }
+      }
+
+      function fallbackCopy(btn, code) {
+        var ta = document.createElement('textarea');
+        ta.value = code.trim();
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        var orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+      }
+
+      var editor = document.getElementById('codeEditor');
+      var defaultCode = editor.value;
+
+      document.getElementById('resetBtn').addEventListener('click', function() {
+        editor.value = defaultCode;
+        document.getElementById('outputPanel').style.display = 'none';
+        document.getElementById('outputPanel').textContent = '';
+      });
+
+      document.getElementById('runBtn').addEventListener('click', function() {
+        runCode(editor.value, document.getElementById('outputPanel'), this);
+      });
+
+      document.getElementById('copyBtn').addEventListener('click', function() {
+        copyCode(this, editor.value);
+      });
+
+      document.getElementById('testBtn').addEventListener('click', function() {
+        var testCode = editor.value + '\n\n' +
+          'try:\n' +
+          '    a = Appetizer("Test", 5.99, "desc", "large")\n' +
+          '    assert a.name == "Test"\n' +
+          '    print("✅ Test 1: Appetizer works")\n' +
+          '\n' +
+          '    m = MainCourse("Test", 10.00, "desc", 30)\n' +
+          '    assert m.get_price() == 12.50\n' +
+          '    print("✅ Test 2: MainCourse pricing correct")\n' +
+          '\n' +
+          '    d = Dessert("Test", 4.99, "desc", True)\n' +
+          '    assert d.has_whipped_cream == True\n' +
+          '    print("✅ Test 3: Dessert works")\n' +
+          '\n' +
+          '    items = [Appetizer("A", 1, ""), MainCourse("B", 2, ""), Dessert("C", 3, "")]\n' +
+          '    for item in items:\n' +
+          '        assert hasattr(item, "get_price")\n' +
+          '        assert callable(item.get_price)\n' +
+          '    print("✅ Test 4: Polymorphism works")\n' +
+          '\n' +
+          '    for item in items:\n' +
+          '        assert hasattr(item, "display")\n' +
+          '        assert isinstance(item.display(), str)\n' +
+          '    print("✅ Test 5: display() works")\n' +
+          '\n' +
+          '    for item in items:\n' +
+          '        price = item.get_price()\n' +
+          '        assert isinstance(price, (int, float))\n' +
+          '    print("✅ Test 6: LSP - all get_price() return numbers")\n' +
+          '\n' +
+          '    print("\\n🎉 All tests passed!")\n' +
+          'except Exception as e:\n' +
+          '    print(f"❌ Test failed: {e}")';
+        runCode(testCode, document.getElementById('outputPanel'), this, function(output) {
+          if (output.indexOf('All tests passed') !== -1) {
+            progress.completedModules = Math.max(progress.completedModules, 3);
+            saveProgress();
+          }
+        });
+      });
+
+      var bevDefault = 'class Beverage(MenuItem):\n' +
+        '    def __init__(self, name, price, description, size="medium", is_hot=True):\n' +
+        '        super().__init__(name, price, description)\n' +
+        '        self.size = size\n' +
+        '        self.is_hot = is_hot\n' +
+        '\n' +
+        '    def prepare(self):\n' +
+        '        temp = "Hot" if self.is_hot else "Iced"\n' +
+        '        return f"☕ Preparing {temp} {self.name} ({self.size})"\n' +
+        '\n' +
+        '    def get_price(self):\n' +
+        '        if self.size == "large":\n' +
+        '            return self.price + 0.50\n' +
+        '        elif self.size == "extra large":\n' +
+        '            return self.price + 1.00\n' +
+        '        return self.price\n' +
+        '\n' +
+        '    def display(self):\n' +
+        '        temp = "☕" if self.is_hot else "🧊"\n' +
+        '        return f"{temp} {self.name}: ${self.price:.2f} - {self.description} ({self.size})"';
+
+      var bevEditor = document.getElementById('beverage-editor');
+      document.getElementById('beverageResetBtn').addEventListener('click', function() {
+        bevEditor.value = bevDefault;
+        document.getElementById('beverageOutput').style.display = 'none';
+        document.getElementById('beverageOutput').textContent = '';
+      });
+      document.getElementById('beverageRunBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + bevEditor.value + '\n\n' +
+          'try:\n' +
+          '    menu = [Beverage("Coffee", 3.99, "Fresh", "large", True), Beverage("Iced Tea", 2.99, "Lemon", "medium", False)]\n' +
+          '    for item in menu:\n' +
+          '        print(item.display())\n' +
+          '        print(item.prepare())\n' +
+          '        print(f"Price: ${item.get_price():.2f}")\n' +
+          '        print("-" * 30)\n' +
+          'except Exception as e:\n' +
+          '    print(f"Error: {e}")';
+        runCode(code, document.getElementById('beverageOutput'), this);
+      });
+      document.getElementById('beverageTestBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + bevEditor.value + '\n\n' +
+          'try:\n' +
+          '    b = Beverage("Test", 3.00, "", "medium", True)\n' +
+          '    assert b.name == "Test"\n' +
+          '    assert b.size == "medium"\n' +
+          '    assert b.is_hot == True\n' +
+          '    print("✅ Test 1: Basic creation")\n' +
+          '\n' +
+          '    b_small = Beverage("S", 3.00, "", "small")\n' +
+          '    assert b_small.get_price() == 3.00\n' +
+          '    b_large = Beverage("L", 3.00, "", "large")\n' +
+          '    assert b_large.get_price() == 3.50\n' +
+          '    b_xl = Beverage("XL", 3.00, "", "extra large")\n' +
+          '    assert b_xl.get_price() == 4.00\n' +
+          '    print("✅ Test 2: Pricing works")\n' +
+          '\n' +
+          '    b = Beverage("Coffee", 3.99, "", "large", True)\n' +
+          '    assert "☕" in b.display()\n' +
+          '    assert "Hot" in b.prepare()\n' +
+          '    print("✅ Test 3: Display & prepare")\n' +
+          '\n' +
+          '    assert isinstance(b, MenuItem)\n' +
+          '    print("✅ Test 4: Inheritance")\n' +
+          '\n' +
+          '    print("\\n🎉 All tests passed!")\n' +
+          'except Exception as e:\n' +
+          '    print(f"❌ Test failed: {e}")';
+        runCode(code, document.getElementById('beverageOutput'), this, function(output) {
+          if (output.indexOf('All tests passed') !== -1) {
+            progress.exercises.beverage = 'completed';
+            progress.completedModules = Math.max(progress.completedModules, 4);
+          } else {
+            progress.exercises.beverage = 'in_progress';
+          }
+          saveProgress();
+        });
+      });
+      document.getElementById('beverageCopyBtn').addEventListener('click', function() {
+        copyCode(this, bevEditor.value);
+      });
+
+      var debugDefault = 'class BrokenDessert(MenuItem):\n' +
+        '    def __init__(self, name, price, description, is_vegan):\n' +
+        '        self.name = name\n' +
+        '        self.is_vegan = is_vegan\n' +
+        '\n' +
+        '    def prepare(self):\n' +
+        '        return f"🍰 Preparing {self.name} (Vegan: {self.is_vegan})"\n' +
+        '\n' +
+        '    def display(self):\n' +
+        '        return f"🍰 {self.name}: ${self.price:.2f} - Vegan: {self.is_vegan}"';
+
+      var debugEditor = document.getElementById('debug-editor');
+      document.getElementById('debugResetBtn').addEventListener('click', function() {
+        debugEditor.value = debugDefault;
+        document.getElementById('debugOutput').style.display = 'none';
+        document.getElementById('debugOutput').textContent = '';
+      });
+      document.getElementById('debugRunBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + debugEditor.value + '\n\n' +
+          'try:\n' +
+          '    d = BrokenDessert("Vegan Cake", 5.99, "Plant-based", True)\n' +
+          '    print(d.display())\n' +
+          '    print(d.prepare())\n' +
+          'except Exception as e:\n' +
+          '    print(f"Error: {e}")\n' +
+          '    print("Hint: Check super().__init__()")';
+        runCode(code, document.getElementById('debugOutput'), this);
+      });
+      document.getElementById('debugTestBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + debugEditor.value + '\n\n' +
+          'try:\n' +
+          '    d = BrokenDessert("Test", 5.99, "desc", True)\n' +
+          '    assert d.name == "Test"\n' +
+          '    assert hasattr(d, "price"), "Missing price - did you call super()?"\n' +
+          '    assert hasattr(d, "description"), "Missing description - did you call super()?"\n' +
+          '    assert hasattr(d, "prepare")\n' +
+          '    assert hasattr(d, "display")\n' +
+          '    assert isinstance(d, MenuItem)\n' +
+          '    print("✅ All tests passed! Bug fixed.")\n' +
+          'except Exception as e:\n' +
+          '    print(f"❌ Test failed: {e}")\n' +
+          '    print("💡 Hint: Add super().__init__(name, price, description)")';
+        runCode(code, document.getElementById('debugOutput'), this, function(output) {
+          if (output.indexOf('All tests passed') !== -1) {
+            progress.exercises.debug = 'completed';
+            progress.completedModules = Math.max(progress.completedModules, 5);
+          } else {
+            progress.exercises.debug = 'in_progress';
+          }
+          saveProgress();
+        });
+      });
+      document.getElementById('debugCopyBtn').addEventListener('click', function() {
+        copyCode(this, debugEditor.value);
+      });
+
+      var comboDefault = 'class ComboMeal:\n' +
+        '    def __init__(self, name, items, discount=0.10):\n' +
+        '        self.name = name\n' +
+        '        self.items = items\n' +
+        '        self.discount = discount\n' +
+        '\n' +
+        '    def get_price(self):\n' +
+        '        total = sum(item.get_price() for item in self.items)\n' +
+        '        return total * (1 - self.discount)\n' +
+        '\n' +
+        '    def prepare(self):\n' +
+        '        return f"🍽️ Preparing Combo: {self.name}\\n" + "\\n".join(\n' +
+        '            f"  - {item.prepare()}" for item in self.items\n' +
+        '        )\n' +
+        '\n' +
+        '    def display(self):\n' +
+        '        items_str = ", ".join(item.name for item in self.items)\n' +
+        '        return f"🍱 {self.name}: ${self.get_price():.2f} - {items_str} ({self.discount*100:.0f}% off)"';
+
+      var comboEditor = document.getElementById('combo-editor');
+      document.getElementById('comboResetBtn').addEventListener('click', function() {
+        comboEditor.value = comboDefault;
+        document.getElementById('comboOutput').style.display = 'none';
+        document.getElementById('comboOutput').textContent = '';
+      });
+      document.getElementById('comboRunBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + comboEditor.value + '\n\n' +
+          'try:\n' +
+          '    items = [Appetizer("Spring Rolls", 6.99, ""), MainCourse("Salmon", 22.99, "", 15), Dessert("Tiramisu", 7.99, "", True)]\n' +
+          '    combo = ComboMeal("Dinner Special", items, 0.15)\n' +
+          '    print(combo.display())\n' +
+          '    print(combo.prepare())\n' +
+          '    print(f"Total: ${combo.get_price():.2f}")\n' +
+          'except Exception as e:\n' +
+          '    print(f"Error: {e}")';
+        runCode(code, document.getElementById('comboOutput'), this);
+      });
+      document.getElementById('comboTestBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + comboEditor.value + '\n\n' +
+          'try:\n' +
+          '    a = Appetizer("A", 10.00, "")\n' +
+          '    b = MainCourse("B", 20.00, "", 15)\n' +
+          '    c = ComboMeal("Test", [a, b], 0.10)\n' +
+          '    assert c.name == "Test"\n' +
+          '    assert len(c.items) == 2\n' +
+          '    expected = (10.00 + 22.50) * 0.90\n' +
+          '    assert abs(c.get_price() - expected) < 0.01\n' +
+          '    c2 = ComboMeal("Test", [a], 0.25)\n' +
+          '    assert c2.get_price() == 7.50\n' +
+          '    assert "🍱" in c.display()\n' +
+          '    assert "Preparing Combo" in c.prepare()\n' +
+          '    assert not isinstance(c, MenuItem)\n' +
+          '    assert hasattr(c, "items")\n' +
+          '    print("✅ All tests passed! ComboMeal works.")\n' +
+          'except Exception as e:\n' +
+          '    print(f"❌ Test failed: {e}")';
+        runCode(code, document.getElementById('comboOutput'), this, function(output) {
+          if (output.indexOf('All tests passed') !== -1) {
+            progress.exercises.combo = 'completed';
+            progress.completedModules = Math.max(progress.completedModules, 6);
+          } else {
+            progress.exercises.combo = 'in_progress';
+          }
+          saveProgress();
+        });
+      });
+      document.getElementById('comboCopyBtn').addEventListener('click', function() {
+        copyCode(this, comboEditor.value);
+      });
+
+      var lspDefault = 'class BadMainCourse(MainCourse):\n' +
+        '    def __init__(self, name, price, description, cooking_time, is_spicy):\n' +
+        '        super().__init__(name, price, description, cooking_time)\n' +
+        '        self.is_spicy = is_spicy\n' +
+        '\n' +
+        '    def get_price(self):\n' +
+        '        if self.is_spicy:\n' +
+        '            raise ValueError("Spicy dishes cannot be priced!")\n' +
+        '        return super().get_price()';
+
+      var lspEditor = document.getElementById('lsp-editor');
+      document.getElementById('lspResetBtn').addEventListener('click', function() {
+        lspEditor.value = lspDefault;
+        document.getElementById('lspOutput').style.display = 'none';
+        document.getElementById('lspOutput').textContent = '';
+      });
+      document.getElementById('lspRunBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + lspEditor.value + '\n\n' +
+          'try:\n' +
+          '    spicy = BadMainCourse("Spicy", 15.00, "", 20, True)\n' +
+          '    print(f"Price: ${spicy.get_price():.2f}")\n' +
+          'except Exception as e:\n' +
+          '    print(f"Error: {e}")';
+        runCode(code, document.getElementById('lspOutput'), this);
+      });
+      document.getElementById('lspTestBtn').addEventListener('click', function() {
+        var code = editor.value + '\n\n' + lspEditor.value + '\n\n' +
+          'try:\n' +
+          '    dish = BadMainCourse("Test", 10.00, "desc", 20, False)\n' +
+          '    assert dish.name == "Test"\n' +
+          '    print("✅ Test 1: Instance created")\n' +
+          '\n' +
+          '    assert dish.get_price() == 12.50\n' +
+          '    print("✅ Test 2: Non-spicy price works")\n' +
+          '\n' +
+          '    spicy = BadMainCourse("Spicy", 15.00, "desc", 20, True)\n' +
+          '    try:\n' +
+          '        price = spicy.get_price()\n' +
+          '        assert isinstance(price, (int, float))\n' +
+          '        print("✅ Test 3: LSP fixed - spicy returns a price")\n' +
+          '    except Exception as e:\n' +
+          '        print(f"❌ Test 3 failed: {e} - still raising exceptions")\n' +
+          '\n' +
+          '    items = [dish, spicy]\n' +
+          '    for item in items:\n' +
+          '        price = item.get_price()\n' +
+          '        assert isinstance(price, (int, float))\n' +
+          '    print("✅ Test 4: Polymorphism works")\n' +
+          '\n' +
+          '    print("\\n🎉 All tests passed! LSP fixed.")\n' +
+          'except Exception as e:\n' +
+          '    print(f"❌ Test failed: {e}")\n' +
+          '    print("💡 Hint: Don\'t raise exceptions - add a surcharge instead")';
+        runCode(code, document.getElementById('lspOutput'), this, function(output) {
+          if (output.indexOf('All tests passed') !== -1) {
+            progress.exercises.lsp = 'completed';
+            progress.completedModules = Math.max(progress.completedModules, 7);
+          } else {
+            progress.exercises.lsp = 'in_progress';
+          }
+          saveProgress();
+        });
+      });
+      document.getElementById('lspCopyBtn').addEventListener('click', function() {
+        copyCode(this, lspEditor.value);
+      });
+
+      document.getElementById('mroRunBtn').addEventListener('click', function() {
+        var code = 'class A:\n' +
+          '    def whoami(self): return "A"\n' +
+          'class B(A):\n' +
+          '    def whoami(self): return "B" + super().whoami()\n' +
+          'class C(A):\n' +
+          '    def whoami(self): return "C" + super().whoami()\n' +
+          'class D(B, C):\n' +
+          '    def whoami(self): return "D" + super().whoami()\n' +
+          '\n' +
+          'print(D().whoami())\n' +
+          'print([cls.__name__ for cls in D.__mro__])';
+        runCode(code, document.getElementById('mroOutput'), this);
+      });
+      document.getElementById('mroTestBtn').addEventListener('click', function() {
+        var code = 'class A:\n' +
+          '    def whoami(self): return "A"\n' +
+          'class B(A):\n' +
+          '    def whoami(self): return "B" + super().whoami()\n' +
+          'class C(A):\n' +
+          '    def whoami(self): return "C" + super().whoami()\n' +
+          'class D(B, C):\n' +
+          '    def whoami(self): return "D" + super().whoami()\n' +
+          '\n' +
+          'result = D().whoami()\n' +
+          'mro = [cls.__name__ for cls in D.__mro__]\n' +
+          '\n' +
+          'print(f"Result: {result}")\n' +
+          'print(f"MRO: {mro}")\n' +
+          'print()\n' +
+          'if result == "DCBA" and mro == [\'D\', \'B\', \'C\', \'A\', \'object\']:\n' +
+          '    print("✅ Correct! This demonstrates the diamond problem and MRO.")\n' +
+          'else:\n' +
+          '    print("❌ Not quite. The diamond problem shows D → B → C → A → object.")';
+        runCode(code, document.getElementById('mroOutput'), this, function(output) {
+          if (output.indexOf('Correct!') !== -1) {
+            progress.exercises.mro = 'completed';
+            progress.completedModules = Math.max(progress.completedModules, 8);
+            saveProgress();
+          }
+        });
+      });
+
+      updateUI();
+
+    })();
+  </script>
+
+</body>
+</html>
