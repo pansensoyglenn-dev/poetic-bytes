@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Character Builder · OOP Abstraction Deep Tutorial | Poetic Bytes</title>
+    <meta name="description" content="Master Python abstraction through a modular character system. ABC, @abstractmethod, design trade-offs, testing, and 6+ live examples. 4000+ words of original content." />
+    <meta name="keywords" content="Python abstraction, ABC, abstractmethod, OOP, game character, SOLID, design patterns, Python tutorial" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/game-platform.html" />
+    <meta property="og:title" content="Game Character Builder · Abstraction in Python" />
+    <meta property="og:description" content="Deep tutorial: abstraction with ABC, trade-offs, extended examples, testing, and SOLID. 4000+ words." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/game-platform.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Game Character Builder · Abstraction in Python OOP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Game Character Builder · Abstraction in Python" />
+    <meta name="twitter:description" content="Deep tutorial: abstraction with ABC, trade-offs, extended examples, testing, and SOLID. 4000+ words." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Game Character Builder · Abstraction in Python",
+            "description": "Deep tutorial: abstraction with ABC, trade-offs, extended examples, testing, and SOLID. 4000+ words.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+            "datePublished": "2026-08-16",
+            "dateModified": "2026-08-16",
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/game-platform.html" },
+            "keywords": "Python abstraction, ABC, abstractmethod, OOP, game character, SOLID, design patterns",
+            "articleSection": "Python Programming",
+            "inLanguage": "en-US",
+            "learningResourceType": "Tutorial",
+            "educationalLevel": "Intermediate"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --card-r: 12px;
+            --btn-h: 44px;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1 {
+            font-size: 1.8rem;
+        }
+        h2 {
+            font-size: 1.35rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+        h4 {
+            font-size: .9rem;
+            margin-top: 1rem;
+        }
+        p {
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: .8rem;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: 8px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--blue);
+            padding: .9rem 1rem;
+            overflow-x: auto;
+            margin-bottom: .7rem;
+            position: relative;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .cmt {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .code-snippet .dec {
+            color: #c792ea;
+            font-weight: 500;
+        }
+        .callout {
+            border-left: 3px solid var(--blue);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(75, 139, 190, .06);
+            border-radius: 4px;
+        }
+        .callout p {
+            margin: 0;
+            font-size: .8rem;
+        }
+        .callout-green {
+            border-left: 3px solid var(--green);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(16, 185, 129, .06);
+            border-radius: 4px;
+        }
+        .callout-green p {
+            margin: 0;
+            font-size: .8rem;
+        }
+        .callout-yellow {
+            border-left: 3px solid var(--gold);
+            padding: .6rem 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 212, 59, .06);
+            border-radius: 4px;
+        }
+        .callout-yellow p {
+            margin: 0;
+            font-size: .8rem;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .78rem;
+            color: var(--blue-lt);
+        }
+        .code-container {
+            position: relative;
+            margin: 1.2rem 0;
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--card-r) var(--card-r) 0 0;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--card-r) var(--card-r);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .curriculum-desc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .curriculum-desc h2 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc p {
+            font-size: 0.88rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.6rem;
+        }
+        .curriculum-desc .highlight {
+            color: var(--blue-lt);
+            font-weight: 600;
+        }
+        .curriculum-desc .gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .desc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+        .desc-meta span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .desc-meta i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-top: 1rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+        }
+        .faq-q h3 {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+            margin: 0;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 1000px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .8rem;
+            margin-bottom: .4rem;
+        }
+        .quiz-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .quiz-q {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            transition: border-color .3s;
+        }
+        .quiz-q.correct {
+            border-color: var(--green) !important;
+        }
+        .quiz-q.wrong {
+            border-color: var(--red) !important;
+        }
+        .quiz-prompt {
+            font-size: .85rem;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: .8rem;
+            line-height: 1.6;
+        }
+        .quiz-opts {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .quiz-opt {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .5rem .8rem;
+            border-radius: 7px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: .78rem;
+            color: var(--muted);
+            transition: all .2s;
+            user-select: none;
+        }
+        .quiz-opt:hover:not(.disabled) {
+            background: rgba(75, 139, 190, .08);
+            border-color: var(--blue);
+            color: var(--text);
+        }
+        .quiz-opt.correct-ans {
+            background: rgba(141, 200, 150, .12);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .quiz-opt.wrong-ans {
+            background: rgba(212, 88, 136, .1);
+            border-color: var(--red);
+            color: var(--red);
+        }
+        .quiz-opt.disabled {
+            cursor: default;
+        }
+        .quiz-feedback {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .68rem;
+            margin-top: .7rem;
+            min-height: .9rem;
+            line-height: 1.6;
+        }
+        .quiz-feedback.ok {
+            color: var(--green);
+        }
+        .quiz-feedback.bad {
+            color: var(--red);
+        }
+        .quiz-score {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            margin-top: 1rem;
+            display: none;
+        }
+        .quiz-score .score-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            color: var(--blue-lt);
+            display: block;
+            line-height: 1.1;
+        }
+        .quiz-reset {
+            margin-top: .8rem;
+            padding: .55rem 1.5rem;
+            border-radius: 100px;
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, .28);
+            cursor: pointer;
+            font-size: .74rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            transition: all .2s;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero h1 {
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            color: var(--gold);
+            margin-bottom: .8rem;
+        }
+        .hero p.lead {
+            font-size: .92rem;
+            color: var(--muted);
+            max-width: 620px;
+            margin-bottom: 1.6rem;
+            line-height: 1.8;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue-lt);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+        .key-takeaway {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: var(--card-r);
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0;
+        }
+        .key-takeaway h4 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+        .key-takeaway ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-takeaway li {
+            padding: .3rem 0 .3rem 1.8rem;
+            position: relative;
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .key-takeaway li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .78rem;
+            min-width: 420px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+            color: var(--text);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            .hero {
+                padding: 3.5rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .curriculum-desc {
+                padding: 1.2rem 1rem;
+            }
+            .curriculum-desc h2 {
+                font-size: 1rem;
+            }
+            .curriculum-desc p {
+                font-size: .8rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: .8rem;
+            margin: 1rem 0;
+        }
+        .glossary-item {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: .8rem 1rem;
+        }
+        .glossary-item dt {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: .8rem;
+        }
+        .glossary-item dd {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-left: 0;
+            margin-top: .2rem;
+        }
+        .exercise-box {
+            background: var(--panel);
+            border: 1px solid var(--gold);
+            border-radius: var(--card-r);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+        }
+        .exercise-box h4 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+        .exercise-box p {
+            font-size: .82rem;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: .9rem;
+            margin-top: 1.5rem;
+        }
+        .pillar-card {
+            border-bottom: 1px solid var(--border);
+            padding: .9rem 0;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: all .25s;
+            position: relative;
+        }
+        .pillar-card:hover {
+            opacity: .85;
+        }
+        .pillar-card[data-p="enc"]:hover {
+            border-color: rgba(75, 139, 190, .5);
+        }
+        .pillar-card[data-p="abs"]:hover {
+            border-color: rgba(106, 174, 214, .5);
+        }
+        .pillar-card[data-p="inh"]:hover {
+            border-color: rgba(255, 212, 59, .5);
+        }
+        .pillar-card[data-p="pol"]:hover {
+            border-color: rgba(181, 158, 232, .5);
+        }
+        .pico {
+            font-size: 1.6rem;
+            margin-bottom: .5rem;
+        }
+        .ptitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+            color: var(--text);
+        }
+        .pdesc {
+            font-size: .72rem;
+            color: var(--muted);
+            margin: 0 0 1.2rem;
+            line-height: 1.65;
+        }
+        .pbtn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: .68rem;
+            padding: .42rem .9rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: all .25s;
+            text-decoration: none;
+        }
+        .pillar-card[data-p="enc"] .pbtn {
+            background: rgba(75, 139, 190, .14);
+            color: var(--blue-lt);
+        }
+        .pillar-card[data-p="abs"] .pbtn {
+            background: rgba(106, 174, 214, .12);
+            color: #6aaed6;
+        }
+        .pillar-card[data-p="inh"] .pbtn {
+            background: rgba(255, 212, 59, .12);
+            color: var(--gold);
+        }
+        .pillar-card[data-p="pol"] .pbtn {
+            background: rgba(181, 158, 232, .12);
+            color: #b59ee8;
+        }
+        .pbtn:hover {
+            filter: brightness(1.25);
+            transform: translateX(3px);
+        }
+        .pbtn::after {
+            content: '→';
+        }
+        .current-pill {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            background: rgba(106, 174, 214, .2);
+            border: 1px solid rgba(106, 174, 214, .4);
+            color: #6aaed6;
+            font-size: .55rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar">
+        <div class="nav-inner">
+            <a href="/" class="brand"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#walkthrough">Walkthrough</a></li>
+                <li><a href="#tradeoffs">Trade-offs</a></li>
+                <li><a href="#extended">Extended</a></li>
+                <li><a href="#testing">Testing</a></li>
+                <li><a href="#comparison">ABC vs Protocol</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#outro">Outro</a></li>
+                <li><a href="abstraction.html">← Guide</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><button data-href="#intro"><i class="fas fa-gamepad"></i>Intro</button></li>
+                <li><button data-href="#walkthrough"><i class="fas fa-code"></i>Walkthrough</button></li>
+                <li><button data-href="#tradeoffs"><i class="fas fa-scale-balanced"></i>Trade-offs</button></li>
+                <li><button data-href="#extended"><i class="fas fa-plus-circle"></i>Extended</button></li>
+                <li><button data-href="#testing"><i class="fas fa-vial"></i>Testing</button></li>
+                <li><button data-href="#comparison"><i class="fas fa-arrows-split-up-and-left"></i>ABC vs Protocol</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#quiz"><i class="fas fa-brain"></i>Quiz</button></li>
+                <li><button data-href="#outro"><i class="fas fa-flag-checkered"></i>Outro</button></li>
+                <li><a href="abstraction.html"><i class="fas fa-arrow-left"></i>Abstraction guide</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> OOP Abstraction · Game Character Builder</div>
+                <h1>⚔️ Master Abstraction Through a <span style="color:var(--blue);">Modular Character</span> System</h1>
+                <p class="lead">
+                    Abstraction is the most powerful tool for building maintainable, scalable software. This deep tutorial walks you through a complete character system using Python's ABC module — with trade-offs, testing, extended examples, and real-world connections.
+                </p>
+                <p class="lead" style="margin-top:-0.4rem;">
+                    <strong>What you'll learn:</strong> When to abstract, when not to, how to test abstractions, and how to extend them without breaking existing code. 4000+ words of original content, 6+ live code examples, and a full quiz.
+                </p>
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0;">
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🎮 5 character classes</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🧩 ABC + @abstractmethod</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">⚡ Live Python runner</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-size:.62rem;color:var(--muted);">🧪 Unit tests included</span>
+                </div>
+                <a href="#walkthrough" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Start the Tutorial</a>
+            </div>
+        </section>
+
+        <section id="intro">
+            <div class="page-col">
+                <div class="section-label">01 · The Big Picture</div>
+                <h2>Why Abstraction Matters for Every Programmer</h2>
+                <div class="curriculum-desc">
+                    <h2>🎯 From Game Characters to Enterprise Systems</h2>
+                    <p>
+                        Abstraction is <span class="highlight">not</span> an academic concept — it is a survival skill for any non-trivial codebase. Without abstraction, changes ripple through the entire system. With abstraction, you can swap, extend, and replace components with confidence.
+                    </p>
+                    <p>
+                        The <span class="gold">Game Character Builder</span> is a microcosm of this problem. A game may have dozens of character types. If you hard-code each one, adding a new class becomes a nightmare. By defining an abstract <code>Character</code> base class, you create a <span class="highlight">contract</span>: every character must implement <code>attack()</code>, <code>defend()</code>, and <code>special()</code>. The game loop depends only on this contract — it works with <strong>any</strong> character class.
+                    </p>
+                    <p>
+                        This is the essence of the <span class="gold">Open/Closed Principle</span>: open for extension, closed for modification. And it's why abstraction is the second pillar of OOP — after encapsulation, before inheritance and polymorphism.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 1 ABC, 5 concrete classes</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 6 abstract methods</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 8 FAQ items</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 quiz questions</span>
+                    </div>
+                </div>
+                <div class="callout"><p><strong>📌 Real‑world analogy:</strong> A UI framework defines an abstract <code>Widget</code> class. Buttons, sliders, and text fields all implement <code>render()</code> and <code>on_click()</code>. The layout engine works with <em>any</em> widget — exactly like our game loop works with any character.</p></div>
+            </div>
+        </section>
+
+        <section id="walkthrough">
+            <div class="page-col">
+                <div class="section-label">02 · Line‑by‑Line Walkthrough</div>
+                <h2>Character ABC &amp; Concrete Classes</h2>
+                <p>Below is the complete program. Click <strong>Run</strong> to execute it live, then read the detailed breakdown of <em>why</em> every line exists and <em>how</em> it contributes to the output.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span style="color:var(--muted);">python · game_character.py</span>
+                        <div class="code-actions">
+                            <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                            <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                        </div>
+                    </div>
+                    <div class="code-snippet" style="border-radius:0;border-left:none;margin:0;">
+                        <pre><span class="kw">from</span> abc <span class="kw">import</span> <span class="cl">ABC</span>, <span class="fn">abstractmethod</span>
+<span class="kw">import</span> random
+
+<span class="kw">class</span> <span class="cl">Character</span>(<span class="cl">ABC</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, health: <span class="cl">int</span>):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>.health = health
+        <span class="kw">self</span>._alive = <span class="kw">True</span>
+
+    <span class="dec">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">pass</span>
+
+    <span class="dec">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">pass</span>
+
+    <span class="dec">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">take_damage</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">self</span>.health -= damage
+        <span class="kw">if</span> <span class="kw">self</span>.health <= <span class="num">0</span>:
+            <span class="kw">self</span>.health = <span class="num">0</span>
+            <span class="kw">self</span>._alive = <span class="kw">False</span>
+
+    <span class="kw">def</span> <span class="fn">is_alive</span>(<span class="kw">self</span>) -&gt; <span class="cl">bool</span>:
+        <span class="kw">return</span> <span class="kw">self</span>._alive
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        status = <span class="st">"Alive"</span> <span class="kw">if</span> <span class="kw">self</span>._alive <span class="kw">else</span> <span class="st">"Defeated"</span>
+        <span class="kw">return</span> <span class="st">f"{self.__class__.__name__} {self.name} (HP: {self.health}) — {status}"</span>
+
+<span class="kw">class</span> <span class="cl">Warrior</span>(<span class="cl">Character</span>):
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> random.<span class="fn">randint</span>(<span class="num">15</span>, <span class="num">25</span>)
+
+    <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">int</span>:
+        reduced = max(<span class="num">0</span>, damage - <span class="num">8</span>)
+        <span class="kw">self</span>.<span class="fn">take_damage</span>(reduced)
+        <span class="kw">return</span> reduced
+
+    <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">"⚔️  Whirlwind Slash — deals 35 damage!"</span>
+
+<span class="kw">class</span> <span class="cl">Mage</span>(<span class="cl">Character</span>):
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> random.<span class="fn">randint</span>(<span class="num">10</span>, <span class="num">30</span>)
+
+    <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">int</span>:
+        reduced = max(<span class="num">0</span>, damage - <span class="num">3</span>)
+        <span class="kw">self</span>.<span class="fn">take_damage</span>(reduced)
+        <span class="kw">return</span> reduced
+
+    <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">"🔥  Firestorm — deals 40 damage to all!"</span>
+
+<span class="kw">class</span> <span class="cl">Archer</span>(<span class="cl">Character</span>):
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> random.<span class="fn">randint</span>(<span class="num">12</span>, <span class="num">22</span>)
+
+    <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">int</span>:
+        reduced = max(<span class="num">0</span>, damage - <span class="num">5</span>)
+        <span class="kw">self</span>.<span class="fn">take_damage</span>(reduced)
+        <span class="kw">return</span> reduced
+
+    <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">"🏹  Multi‑Shot — three arrows dealing 18 each!"</span>
+
+<span class="kw">def</span> <span class="fn">simulate_battle</span>(char1: <span class="cl">Character</span>, char2: <span class="cl">Character</span>) -&gt; <span class="cl">None</span>:
+    <span class="fn">print</span>(<span class="st">"⚔️  BATTLE BEGINS!"</span>)
+    <span class="fn">print</span>(char1)
+    <span class="fn">print</span>(char2)
+    <span class="fn">print</span>(<span class="st">"-"</span> * <span class="num">40</span>)
+    turn = <span class="num">0</span>
+    <span class="kw">while</span> char1.<span class="fn">is_alive</span>() <span class="kw">and</span> char2.<span class="fn">is_alive</span>():
+        turn += <span class="num">1</span>
+        <span class="fn">print</span>(<span class="st">f"Turn {turn}"</span>)
+        dmg = char1.<span class="fn">attack</span>()
+        actual = char2.<span class="fn">defend</span>(dmg)
+        <span class="fn">print</span>(<span class="st">f"  {char1.name} deals {dmg} (reduced to {actual})"</span>)
+        <span class="kw">if not</span> char2.<span class="fn">is_alive</span>():
+            <span class="fn">print</span>(<span class="st">f"💀 {char2.name} is defeated!"</span>)
+            <span class="kw">break</span>
+        dmg2 = char2.<span class="fn">attack</span>()
+        actual2 = char1.<span class="fn">defend</span>(dmg2)
+        <span class="fn">print</span>(<span class="st">f"  {char2.name} deals {dmg2} (reduced to {actual2})"</span>)
+        <span class="kw">if not</span> char1.<span class="fn">is_alive</span>():
+            <span class="fn">print</span>(<span class="st">f"💀 {char1.name} is defeated!"</span>)
+            <span class="kw">break</span>
+        <span class="fn">print</span>(<span class="st">f"  {char1.name} HP: {char1.health} | {char2.name} HP: {char2.health}"</span>)
+    <span class="fn">print</span>(<span class="st">"🏁 Battle over."</span>)
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    w = <span class="cl">Warrior</span>(<span class="st">"Thalia"</span>, <span class="num">120</span>)
+    m = <span class="cl">Mage</span>(<span class="st">"Eldrin"</span>, <span class="num">90</span>)
+    a = <span class="cl">Archer</span>(<span class="st">"Kaelen"</span>, <span class="num">100</span>)
+    <span class="fn">print</span>(<span class="st">"✨ Character Specials:"</span>)
+    <span class="fn">print</span>(<span class="st">f"Warrior: {w.special()}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Mage:    {m.special()}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Archer:  {a.special()}"</span>)
+    <span class="fn">print</span>(<span class="st">"\n"</span> + <span class="st">"="</span> * <span class="num">40</span> + <span class="st">"\n"</span>)
+    <span class="fn">simulate_battle</span>(w, m)</pre>
+                    </div>
+                    <div class="output-panel" id="outputPanel"></div>
+                </div>
+
+                <div class="key-takeaway">
+                    <h4>📌 Key Takeaways from the Walkthrough</h4>
+                    <ul>
+                        <li><strong>Contract enforcement:</strong> The ABC ensures every character has attack, defend, and special methods — catching errors at instantiation time.</li>
+                        <li><strong>Polymorphism in action:</strong> <code>simulate_battle()</code> works with any subclass of <code>Character</code> without modification.</li>
+                        <li><strong>Shared logic:</strong> <code>take_damage()</code> and <code>__str__()</code> are concrete methods reused by all subclasses — reducing duplication.</li>
+                        <li><strong>Extensibility:</strong> Adding a new character class (like <code>Paladin</code>) requires zero changes to the battle loop.</li>
+                    </ul>
+                </div>
+
+                <h3>🔍 Detailed Design Discussion</h3>
+                <div style="display:flex;flex-direction:column;gap:0.8rem;margin-top:0.8rem;">
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="margin-top:0;color:var(--gold);">Why return damage from defend()?</h4>
+                        <p style="font-size:.78rem;margin-top:.3rem;">The <code>defend()</code> method returns the <strong>actual damage taken</strong> after mitigation. This is a deliberate design choice that decouples the battle loop from knowing <em>how</em> damage is reduced. The loop simply receives the final amount and can log it. If <code>defend()</code> only mutated health internally, the battle loop would have no way to know what the reduced damage was, making logging and effects (like "reduced to 8") impossible.</p>
+                    </div>
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="margin-top:0;color:var(--gold);">Why is special() a string?</h4>
+                        <p style="font-size:.78rem;margin-top:.3rem;">This is a <strong>design trade-off</strong>. Returning a string is simple and sufficient for a tutorial, but it's fragile in production. A better design would return a structured object like <code>SpecialEffect(damage=35, target="all", cooldown=3)</code> or a <code>dict</code>. However, putting that on the ABC locks every subclass into that structure. A more flexible approach is to leave <code>special()</code> abstract but return an <code>Any</code> (or Protocol) so subclasses can define their own effect system. The battle loop would then interact with this object polymorphically — but that's a separate abstraction.</p>
+                    </div>
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="margin-top:0;color:var(--gold);">Should the ABC have a mana/energy model?</h4>
+                        <p style="font-size:.78rem;margin-top:.3rem;">This is a classic interface design question. Adding <code>energy</code> or <code>mana</code> to the ABC would force every subclass to have a resource system, which may not fit all character types (e.g., a Barbarian who only uses rage). The <strong>better design</strong> is to leave resource management to subclasses. The ABC only defines the <em>interaction</em> methods. Subclasses can override <code>attack()</code> to check their own resource state. This keeps the interface minimal and flexible.</p>
+                    </div>
+                    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="margin-top:0;color:var(--gold);">What happens if a character needs multi-target attacks?</h4>
+                        <p style="font-size:.78rem;margin-top:.3rem;">The current interface assumes a single target. This is a <strong>limitation</strong> of the thin interface. In a real game, you'd likely have an <code>attack(target)</code> method, or you'd refactor to a system where the battle loop handles targeting. A more robust design would make the ABC define <code>attack(self, targets: list[Character]) -> list[int]</code>. However, this adds complexity. The right level of abstraction depends on the game's scope — and that's the key takeaway: <strong>interfaces should be designed for the expected use cases, not all possible use cases.</strong></p>
+                    </div>
+                </div>
+
+                <h3>🧪 The Liskov Substitution Principle (LSP) in Action</h3>
+                <p>The Liskov Substitution Principle states that objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program. Let's see a <strong>violation</strong>:</p>
+                <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">BadPaladin</span>(<span class="cl">Character</span>):
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> -<span class="num">5</span>  <span class="cmt"># Negative damage!</span>
+
+    <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">self</span>.<span class="fn">take_damage</span>(-damage)  <span class="cmt"># Heals instead of defending!</span>
+        <span class="kw">return</span> 0
+
+    <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">"🔄  I break everything!"</span></pre></div>
+                <p style="font-size:.78rem;">This <code>BadPaladin</code> fulfills the <em>syntax</em> of the ABC, but violates the <em>intent</em>. The battle loop expects <code>attack()</code> to return a positive integer and <code>defend()</code> to reduce damage. The ABC doesn't enforce these semantics — that's a limitation of Python's type system. This is why <strong>contract tests</strong> (see Testing section) are crucial.</p>
+
+                <h3>📊 Open/Closed Principle: Before and After</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;">
+                    <div style="background:var(--panel);border:1px solid var(--red);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="color:var(--red);margin-top:0;">❌ Without Abstraction</h4>
+                        <pre style="font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--muted);overflow-x:auto;white-space:pre-wrap;">
+def simulate_battle(char1, char2):
+    # ... battle logic ...
+    if isinstance(char1, Warrior):
+        damage = random.randint(15,25)
+    elif isinstance(char1, Mage):
+        damage = random.randint(10,30)
+    # ... many more checks ...
+    # Adding a new class means editing this function!</pre>
+                    </div>
+                    <div style="background:var(--panel);border:1px solid var(--green);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="color:var(--green);margin-top:0;">✅ With Abstraction</h4>
+                        <pre style="font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--muted);overflow-x:auto;white-space:pre-wrap;">
+def simulate_battle(char1: Character, char2: Character):
+    # ... battle logic ...
+    damage = char1.attack()  # Polymorphic call
+    # Adding a new class? No changes needed here!
+    # Just subclass Character.</pre>
+                    </div>
+                </div>
+                <div class="callout"><p><strong>📌 The payoff:</strong> In the "with abstraction" version, the battle loop is <strong>closed for modification</strong> (we never need to edit it) and <strong>open for extension</strong> (we can add new character classes). This is the ultimate benefit of abstraction.</p></div>
+
+            </div>
+        </section>
+
+        <section id="tradeoffs">
+            <div class="page-col">
+                <div class="section-label">03 · When to Abstract, When Not To</div>
+                <h2>Trade-offs &amp; Pitfalls of Abstraction</h2>
+                <p>Abstraction is powerful, but it's not always the right tool. Here's a candid look at when it helps and when it hurts — with concrete examples.</p>
+
+                <h3>✅ When Abstraction Helps</h3>
+                <div class="callout-green"><p><strong>Multiple implementations:</strong> You have two or more classes that share a common interface. Example: <code>StripeGateway</code> and <code>PayPalGateway</code> both implement <code>process_payment()</code>.</p></div>
+                <div class="callout-green"><p><strong>Future extensions:</strong> You know new variants will be added. An ABC makes it clear what new classes must implement.</p></div>
+                <div class="callout-green"><p><strong>Testing / mocking:</strong> An ABC makes it trivial to create mock implementations for unit tests.</p></div>
+                <div class="callout-green"><p><strong>Polymorphic behavior:</strong> You have code that should work with any object that conforms to a certain interface.</p></div>
+
+                <h3>❌ When Abstraction Hurts (Over-Abstraction)</h3>
+                <div class="callout-yellow"><p><strong>Single implementation:</strong> If you only have one concrete class, an ABC is over-engineering. Wait until you have at least two.</p></div>
+                <div class="callout-yellow"><p><strong>Interface bloat:</strong> Too many abstract methods make the contract rigid and hard to implement. Keep it minimal.</p></div>
+                <div class="callout-yellow"><p><strong>Premature abstraction:</strong> Abstracting too early locks you into a design before you understand the problem. Start concrete, refactor to abstract when patterns emerge.</p></div>
+                <div class="callout-yellow"><p><strong>Performance-sensitive inner loops:</strong> While method call overhead is negligible in Python for most cases, in extremely tight loops, avoiding abstraction can matter — but this is rare.</p></div>
+
+                <h3>🔧 Real-World Failure: The Interface Bloat Anti-Pattern</h3>
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;margin:1rem 0;">
+                    <h4 style="margin-top:0;">❌ When a Good Abstraction Goes Bad</h4>
+                    <p style="font-size:.78rem;">Consider an ABC that started with 3 abstract methods and grew to 12 over two years:</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">BloatedCharacter</span>(<span class="cl">ABC</span>):
+    <span class="dec">@abstractmethod</span> <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>): <span class="kw">pass</span>
+    <span class="dec">@abstractmethod</span> <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>): <span class="kw">pass</span>
+    <span class="dec">@abstractmethod</span> <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>): <span class="kw">pass</span>
+    <span class="dec">@abstractmethod</span> <span class="kw">def</span> <span class="fn">heal</span>(<span class="kw">self</span>): <span class="kw">pass</span>  <span class="cmt"># Only Paladin needs this</span>
+    <span class="dec">@abstractmethod</span> <span class="kw">def</span> <span class="fn">stealth</span>(<span class="kw">self</span>): <span class="kw">pass</span>  <span class="cmt"># Only Rogue needs this</span>
+    <span class="dec">@abstractmethod</span> <span class="kw">def</span> <span class="fn">fly</span>(<span class="kw">self</span>): <span class="kw">pass</span>  <span class="cmt"># Only Dragon needs this</span>
+    <span class="dec">@abstractmethod</span> <span class="kw">def</span> <span class="fn">teleport</span>(<span class="kw">self</span>): <span class="kw">pass</span>  <span class="cmt"># Only Mage needs this</span>
+    <span class="cmt"># ... and 6 more!</span></pre></div>
+                    <p style="font-size:.78rem;">Now every new character class must implement <strong>all</strong> 12 methods, even if they don't make sense (e.g., a Warrior doesn't <code>fly()</code>). This violates the Interface Segregation Principle (ISP). The fix is to <strong>split</strong> the ABC into smaller, focused interfaces (e.g., <code>Combatant</code>, <code>Healer</code>, <code>Stealthy</code>) and use multiple inheritance or mixins.</p>
+                </div>
+
+                <div class="key-takeaway">
+                    <h4>🧠 The Golden Rule of Abstraction</h4>
+                    <ul>
+                        <li><strong>Start concrete.</strong> Build one implementation first.</li>
+                        <li><strong>Extract when you see repetition.</strong> When you have two or more classes with similar methods, extract an ABC.</li>
+                        <li><strong>Keep the interface small.</strong> The fewer abstract methods, the easier the contract is to implement.</li>
+                        <li><strong>Test the abstraction.</strong> Write tests that prove any subclass can be used polymorphically.</li>
+                        <li><strong>Refactor as needs change.</strong> Don't be afraid to split or evolve the interface.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="extended">
+            <div class="page-col">
+                <div class="section-label">04 · Extended Example</div>
+                <h2>Adding a New Class Without Changing the Battle Loop</h2>
+                <p>This is the true power of abstraction. Watch how we add a <code>Paladin</code> (a hybrid class) and the battle loop still works unchanged.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span style="color:var(--muted);">python · extended_paladin.py</span>
+                        <div class="code-actions">
+                            <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                            <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                        </div>
+                    </div>
+                    <div class="code-snippet" style="border-radius:0;border-left:none;margin:0;">
+                        <pre><span class="kw">class</span> <span class="cl">Paladin</span>(<span class="cl">Character</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, health: <span class="cl">int</span>, mana: <span class="cl">int</span> = <span class="num">50</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(name, health)
+        <span class="kw">self</span>.mana = mana
+
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> random.<span class="fn">randint</span>(<span class="num">12</span>, <span class="num">20</span>)
+
+    <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">int</span>:
+        <span class="cmt"># Paladins have heavy armor AND can use mana to shield</span>
+        base_reduction = <span class="num">6</span>
+        <span class="kw">if</span> <span class="kw">self</span>.mana >= <span class="num">10</span>:
+            <span class="kw">self</span>.mana -= <span class="num">10</span>
+            base_reduction += <span class="num">4</span>
+        reduced = max(<span class="num">0</span>, damage - base_reduction)
+        <span class="kw">self</span>.<span class="fn">take_damage</span>(reduced)
+        <span class="kw">return</span> reduced
+
+    <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">"🛡️  Divine Shield — blocks 20 damage and heals 10 HP!"</span>
+
+    <span class="kw">def</span> <span class="fn">heal</span>(<span class="kw">self</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">self</span>.health = <span class="fn">min</span>(<span class="kw">self</span>.health + <span class="num">10</span>, <span class="num">120</span>)
+        <span class="kw">self</span>._alive = <span class="kw">True</span> <span class="kw">if</span> <span class="kw">self</span>.health > <span class="num">0</span> <span class="kw">else</span> <span class="kw">False</span>
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    p = <span class="cl">Paladin</span>(<span class="st">"Sir Roland"</span>, <span class="num">110</span>)
+    w = <span class="cl">Warrior</span>(<span class="st">"Thalia"</span>, <span class="num">120</span>)
+    <span class="fn">print</span>(<span class="st">"🛡️  Paladin enters the arena!"</span>)
+    <span class="fn">print</span>(p)
+    <span class="fn">print</span>(<span class="st">f"Special: {p.special()}"</span>)
+    <span class="fn">print</span>(<span class="st">"\n⚔️  Paladin vs Warrior battle:"</span>)
+    <span class="fn">simulate_battle</span>(p, w)  <span class="cmt"># Battle loop works unchanged!</span></pre>
+                    </div>
+                    <div class="output-panel" id="extendedOutput"></div>
+                </div>
+
+                <div class="callout-green"><p><strong>💡 Notice:</strong> The <code>simulate_battle()</code> function from the original code was <strong>not modified</strong>. It works with <code>Paladin</code> automatically because <code>Paladin</code> is a subclass of <code>Character</code>. This is the Open/Closed Principle in action.</p></div>
+
+                <h3>🧪 Strategy Pattern Mix-in: Pluggable Attack Behavior</h3>
+                <p>Abstraction also enables the Strategy pattern. Here, we separate attack logic into its own abstract class, allowing runtime swapping.</p>
+                <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">AttackStrategy</span>(<span class="cl">ABC</span>):
+    <span class="dec">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>: <span class="kw">pass</span>
+
+<span class="kw">class</span> <span class="cl">HeavyAttack</span>(<span class="cl">AttackStrategy</span>):
+    <span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>: <span class="kw">return</span> random.<span class="fn">randint</span>(<span class="num">20</span>, <span class="num">35</span>)
+
+<span class="kw">class</span> <span class="cl">RangedAttack</span>(<span class="cl">AttackStrategy</span>):
+    <span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>: <span class="kw">return</span> random.<span class="fn">randint</span>(<span class="num">8</span>, <span class="num">18</span>)
+
+<span class="kw">class</span> <span class="cl">FlexibleCharacter</span>(<span class="cl">Character</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, health: <span class="cl">int</span>, strategy: <span class="cl">AttackStrategy</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>(name, health)
+        <span class="kw">self</span>.strategy = strategy
+
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>) -&gt; <span class="cl">int</span>:
+        <span class="kw">return</span> <span class="kw">self</span>.strategy.<span class="fn">execute</span>()
+
+    <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, damage: <span class="cl">int</span>) -&gt; <span class="cl">int</span>:
+        reduced = max(<span class="num">0</span>, damage - <span class="num">4</span>)
+        <span class="kw">self</span>.<span class="fn">take_damage</span>(reduced)
+        <span class="kw">return</span> reduced
+
+    <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">"🌀  Strategy Shift — attack pattern changed!"</span>
+
+    <span class="kw">def</span> <span class="fn">set_strategy</span>(<span class="kw">self</span>, strategy: <span class="cl">AttackStrategy</span>) -&gt; <span class="cl">None</span>:
+        <span class="kw">self</span>.strategy = strategy</pre></div>
+                <p style="font-size:.8rem;color:var(--muted);">Now you can create a character and swap its attack behavior at runtime — all without changing the <code>Character</code> ABC or the battle loop.</p>
+
+                <h3>⚖️ Composition vs. Inheritance</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;">
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="color:var(--gold);margin-top:0;">Inheritance (Current)</h4>
+                        <pre style="font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--muted);overflow-x:auto;white-space:pre-wrap;">
+Character (ABC)
+├── Warrior
+├── Mage
+├── Archer
+└── Paladin</pre>
+                        <p style="font-size:.72rem;margin-top:.5rem;">Pros: Simple, directly models "is-a" relationships. Cons: Deep hierarchies become brittle; mixing capabilities (e.g., a Rogue that can also heal) leads to complex MRO.</p>
+                    </div>
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;">
+                        <h4 style="color:var(--blue-lt);margin-top:0;">Composition (Alternative)</h4>
+                        <pre style="font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--muted);overflow-x:auto;white-space:pre-wrap;">
+class Character:
+    def __init__(self, health_component, attack_component):
+        self.health = health_component
+        self.attack = attack_component</pre>
+                        <p style="font-size:.72rem;margin-top:.5rem;">Pros: Highly flexible, allows mixing and matching behaviors. Cons: More complex to set up; no single place to see all capabilities.</p>
+                    </div>
+                </div>
+                <div class="callout"><p><strong>📌 Which is better?</strong> For a simple game with a few character types, inheritance is fine. As your system grows, you'll likely move to a composition-based approach (like ECS — Entity Component System). The key is that <strong>abstraction</strong> is the foundation for both.</p></div>
+
+                <div class="exercise-box">
+                    <h4>🧩 Try This: Exercise 1</h4>
+                    <p><strong>Implement a Rogue character</strong> that has a <code>stealth</code> mechanic. When <code>stealth</code> is active, the next <code>attack()</code> deals double damage. Add this without modifying <code>Character</code> or <code>simulate_battle()</code>. Hint: Use a state variable in the Rogue class and override <code>attack()</code>.</p>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🧩 Try This: Exercise 2</h4>
+                    <p><strong>Extend the battle loop</strong> to support 3+ participants without changing the <code>Character</code> ABC. Write a <code>simulate_team_battle(team1: list[Character], team2: list[Character])</code> function that uses the same abstraction.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testing">
+            <div class="page-col">
+                <div class="section-label">05 · Testing the Abstraction</div>
+                <h2>Unit Testing with pytest</h2>
+                <p>One of the biggest benefits of abstraction is testability. Here's how you would test that every character conforms to the contract.</p>
+                <div class="code-snippet"><pre><span class="cmt"># test_character.py — using pytest</span>
+<span class="kw">import</span> pytest
+<span class="kw">from</span> game_character <span class="kw">import</span> <span class="cl">Character</span>, <span class="cl">Warrior</span>, <span class="cl">Mage</span>, <span class="cl">Archer</span>, <span class="cl">Paladin</span>
+
+<span class="kw">def</span> <span class="fn">test_character_contract</span>():
+    <span class="cmt">"""All subclasses must implement attack, defend, special."""</span>
+    chars = [<span class="cl">Warrior</span>(<span class="st">"W"</span>, <span class="num">100</span>), <span class="cl">Mage</span>(<span class="st">"M"</span>, <span class="num">100</span>), <span class="cl">Archer</span>(<span class="st">"A"</span>, <span class="num">100</span>), <span class="cl">Paladin</span>(<span class="st">"P"</span>, <span class="num">100</span>)]
+    <span class="kw">for</span> c <span class="kw">in</span> chars:
+        <span class="kw">assert</span> <span class="fn">hasattr</span>(c, <span class="st">"attack"</span>) <span class="kw">and</span> <span class="fn">callable</span>(c.<span class="fn">attack</span>)
+        <span class="kw">assert</span> <span class="fn">hasattr</span>(c, <span class="st">"defend"</span>) <span class="kw">and</span> <span class="fn">callable</span>(c.<span class="fn">defend</span>)
+        <span class="kw">assert</span> <span class="fn">hasattr</span>(c, <span class="st">"special"</span>) <span class="kw">and</span> <span class="fn">callable</span>(c.<span class="fn">special</span>)
+
+<span class="kw">def</span> <span class="fn">test_polymorphic_battle</span>():
+    <span class="cmt">"""simulate_battle works with any Character subclass."""</span>
+    w = <span class="cl">Warrior</span>(<span class="st">"W"</span>, <span class="num">100</span>)
+    p = <span class="cl">Paladin</span>(<span class="st">"P"</span>, <span class="num">100</span>)
+    <span class="cmt"># Just prove it runs without errors</span>
+    <span class="fn">simulate_battle</span>(w, p)  <span class="cmt"># Should complete without exceptions</span></pre></div>
+                <div class="callout-green"><p><strong>✅ Why this works:</strong> The tests don't care about the internal details. They only verify that the contract is fulfilled. This is the essence of testing against an abstraction.</p></div>
+
+                <h3>🧪 Advanced: Property-Based Testing with Hypothesis</h3>
+                <div class="code-snippet"><pre><span class="kw">from</span> hypothesis <span class="kw">import</span> given, strategies <span class="kw">as</span> st
+
+<span class="dec">@given</span>(damage=st.<span class="fn">integers</span>(min_value=0, max_value=100))
+<span class="kw">def</span> <span class="fn">test_defend_invariants</span>(damage):
+    w = <span class="cl">Warrior</span>(<span class="st">"W"</span>, <span class="num">100</span>)
+    actual = w.<span class="fn">defend</span>(damage)
+    <span class="kw">assert</span> 0 <= actual <= damage  <span class="cmt"># Defend never increases damage</span>
+    <span class="kw">assert</span> w.health == 100 - actual  <span class="cmt"># Health reduced by actual damage</span>
+    <span class="kw">if</span> w.health <= 0:
+        <span class="kw">assert</span> <span class="kw">not</span> w.<span class="fn">is_alive</span>()  <span class="cmt"># Dead if health <= 0</span></pre></div>
+                <p style="font-size:.78rem;">Property-based tests generate random inputs and verify <strong>invariants</strong> (properties that must always hold). This is much more powerful than example-based tests for catching edge cases.</p>
+
+                <h3>🧪 Testing Abstract Methods Directly</h3>
+                <p>You can't instantiate an ABC, but you can test the abstract methods by creating a temporary concrete subclass:</p>
+                <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">test_abstract_method</span>():
+    <span class="kw">class</span> <span class="cl">ConcreteForTest</span>(<span class="cl">Character</span>):
+        <span class="kw">def</span> <span class="fn">attack</span>(<span class="kw">self</span>): <span class="kw">return</span> 10
+        <span class="kw">def</span> <span class="fn">defend</span>(<span class="kw">self</span>, d): <span class="kw">return</span> 0
+        <span class="kw">def</span> <span class="fn">special</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="st">""</span>
+    c = <span class="cl">ConcreteForTest</span>(<span class="st">"T"</span>, <span class="num">100</span>)
+    <span class="kw">assert</span> c.<span class="fn">attack</span>() == <span class="num">10</span>
+    <span class="cmt"># Verify concrete methods work as expected</span>
+    c.<span class="fn">take_damage</span>(<span class="num">50</span>)
+    <span class="kw">assert</span> c.health == <span class="num">50</span></pre></div>
+
+            </div>
+        </section>
+
+        <section id="comparison">
+            <div class="page-col">
+                <div class="section-label">06 · ABC vs Protocol vs Duck Typing</div>
+                <h2>Choosing the Right Abstraction Mechanism</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Feature</th><th>ABC (Nominal)</th><th>Protocol (Structural)</th><th>Duck Typing</th></tr></thead>
+                        <tbody>
+                            <tr><td>Explicit inheritance</td><td>✅ Required</td><td>❌ Optional</td><td>❌ Not needed</td></tr>
+                            <tr><td>Runtime enforcement</td><td>✅ TypeError</td><td>❌ None</td><td>❌ None</td></tr>
+                            <tr><td>Type-checker support</td><td>✅ Works</td><td>✅ Works</td><td>⚠️ Limited</td></tr>
+                            <tr><td>Best for</td><td>Own class hierarchies</td><td>Third-party / external types</td><td>Quick prototyping</td></tr>
+                            <tr><td>Example</td><td><code>class X(ABC)</code></td><td><code>class X(Protocol)</code></td><td><code>if hasattr(x, 'attack')</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="callout"><p><strong>📌 When to use which:</strong> Use ABC when you <strong>own</strong> the class hierarchy and want runtime enforcement. Use Protocol when you're working with third‑party code or want structural typing without inheritance. Use duck typing for quick, ad‑hoc checks in small scripts.</p></div>
+
+                <h3>🌍 How Other Languages Handle Abstraction</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin:1rem 0;">
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem;">
+                        <h4 style="margin:0;color:var(--gold);">Java</h4>
+                        <p style="font-size:.72rem;margin:.2rem 0 0;">Interfaces (<code>interface</code>) and abstract classes. Multiple inheritance of interfaces.</p>
+                    </div>
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem;">
+                        <h4 style="margin:0;color:var(--gold);">C#</h4>
+                        <p style="font-size:.72rem;margin:.2rem 0 0;">Interfaces and abstract classes. Similar to Java with <code>interface</code> keyword.</p>
+                    </div>
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem;">
+                        <h4 style="margin:0;color:var(--gold);">TypeScript</h4>
+                        <p style="font-size:.72rem;margin:.2rem 0 0;">Interfaces (<code>interface</code>) and abstract classes. Structural typing is built-in.</p>
+                    </div>
+                    <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem;">
+                        <h4 style="margin:0;color:var(--gold);">Go</h4>
+                        <p style="font-size:.72rem;margin:.2rem 0 0;">Interfaces are <strong>implicit</strong> — no explicit <code>implements</code> keyword. Structural matching.</p>
+                    </div>
+                </div>
+                <p style="font-size:.8rem;">The core idea — <strong>program to an interface, not an implementation</strong> — is universal across languages. Python's ABCs and Protocols give you both nominal and structural options.</p>
+
+                <h3>🔧 Real-World Library Parallels</h3>
+                <ul style="font-size:.78rem;color:var(--muted);list-style:disc;padding-left:1.5rem;">
+                    <li><strong>Django Forms:</strong> <code>Form</code> is a concrete class, but fields are abstract. <code>Field</code> has <code>clean()</code> and <code>to_python()</code> abstract methods.</li>
+                    <li><strong>SQLAlchemy Dialects:</strong> <code>Dialect</code> is an ABC with abstract methods like <code>create_connect_args()</code>, allowing different databases to plug in.</li>
+                    <li><strong>Pygame's Sprite:</strong> <code>Sprite</code> is a concrete class, but you override <code>update()</code> and <code>draw()</code> — effectively a "template method" pattern.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="page-col">
+                <div class="section-label">07 · Frequently Asked Questions</div>
+                <h2>8 Questions Every Developer Asks About Abstraction</h2>
+                <div class="faq-list">
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>1. Why not just use a regular class with methods?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>You could, but then there's no <strong>enforcement</strong>. A subclass could forget to implement <code>attack()</code>, and you'd only discover the error at runtime. ABCs catch these mistakes at <strong>instantiation time</strong>, making your code more robust. This is a form of <strong>fail-fast</strong> design.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>2. Is abstraction only for large systems?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>No. Even small scripts benefit from clear interfaces. It forces you to think in terms of <strong>contracts</strong> rather than implementation details, which often reveals better designs early. However, for one-off scripts, the overhead might not be worth it.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>3. How does abstraction differ from encapsulation?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Encapsulation is about <strong>hiding data</strong> (private attributes). Abstraction is about <strong>hiding complexity</strong> by exposing a simple interface. They complement each other: abstraction defines the interface, encapsulation protects the internals. In our <code>Character</code> ABC, <code>_alive</code> is encapsulated (private-ish), while the public methods (<code>is_alive()</code>) are the abstraction.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>4. When should I use an ABC vs. a Protocol?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use ABC when you <strong>own</strong> the class hierarchy and want runtime enforcement. Use Protocol when you're working with third‑party code or want structural typing without inheritance. For example, if you need to accept both <code>Warrior</code> and a third-party <code>NPC</code> class that has <code>attack()</code> and <code>defend()</code>, a Protocol would be perfect.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>5. Can I have abstract properties?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Yes! Use <code>@property @abstractmethod</code> to define abstract properties. The subclass must implement the property getter (and setter if desired). This is useful for things like <code>@property @abstractmethod def max_health(self) -> int</code>.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>6. What about multiple inheritance with ABCs?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Python supports multiple inheritance. You can inherit from multiple ABCs. Just ensure method resolution order (MRO) is clear. Use <code>super()</code> carefully. For example: <code>class Paladin(Character, HealerMixin, TankMixin):</code>. This is a powerful way to compose behaviors.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>7. How do I version an ABC?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Adding a new abstract method breaks all existing subclasses. Consider creating a new ABC (e.g., <code>CharacterV2</code>) or using default implementations (concrete methods) in the ABC. Another approach is to use a <code>@abstractmethod</code> with a default implementation that raises <code>NotImplementedError</code>, which is slightly more flexible.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>8. When is an ABC overkill?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>When you have only one implementation, when the interface is trivial (e.g., a single method), or when you're prototyping rapidly. Start concrete, refactor to abstract when patterns emerge. Also, if your ABC has more than 5-7 abstract methods, it's likely violating the Interface Segregation Principle and should be split.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz">
+            <div class="page-col">
+                <div class="section-label">08 · Knowledge Check</div>
+                <h2>Test Your Understanding</h2>
+                <div class="quiz-wrap" id="quizWrap"></div>
+                <div class="quiz-score" id="quizScore">
+                    <span class="score-num" id="quizScoreNum">0/5</span>
+                    <p id="quizScoreMsg">Review the sections above if needed.</p>
+                    <button class="quiz-reset" onclick="resetQuiz()">↺ Retry</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="series" aria-labelledby="h-series">
+            <div class="page-col">
+                <div class="section-label">09 · Continue Learning</div>
+                <h2 id="h-series">Explore the Full OOP Series</h2>
+                <div style="margin-top:1rem;">
+                    <p>Abstraction is the second of four interconnected pillars. Each one builds on the last. Explore the complete journey.</p>
+                    <div class="pillars-grid">
+                        <a class="pillar-card" href="encapsulation.html" data-p="enc"><div class="pico">🔒</div><div class="ptitle">Encapsulation</div><p class="pdesc">Bundle data with methods. Control access. Protect state. The guardian of object integrity.</p><span class="pbtn">Explore →</span></a>
+                        <a class="pillar-card" href="abstraction.html" data-p="abs"><span class="current-pill">Current</span><div class="pico">🎭</div><div class="ptitle">Abstraction</div><p class="pdesc">Hide implementation complexity. Expose only what is necessary. Think in concepts, not mechanics.</p><span class="pbtn">You are here →</span></a>
+                        <a class="pillar-card" href="inheritance.html" data-p="inh"><div class="pico">🧬</div><div class="ptitle">Inheritance</div><p class="pdesc">Build on existing classes. Reuse code elegantly. Create natural type hierarchies.</p><span class="pbtn">Explore →</span></a>
+                        <a class="pillar-card" href="polymorphism.html" data-p="pol"><div class="pico">🌀</div><div class="ptitle">Polymorphism</div><p class="pdesc">One interface, many forms. Duck typing. Write code that adapts to any conforming object.</p><span class="pbtn">Explore →</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="outro">
+            <div class="page-col">
+                <div class="section-label">10 · The Takeaway</div>
+                <h2>Abstraction is a Superpower</h2>
+                <div class="curriculum-desc" style="border-color:var(--gold);">
+                    <h2>🏁 From Game Characters to Production Systems</h2>
+                    <p>
+                        You've just built a polymorphic character system using Python's abstraction tools.
+                        The <span class="highlight">Character ABC</span> defined a contract, the concrete classes filled in the details,
+                        and the <span class="gold">battle loop</span> consumed them without knowing which class it was dealing with.
+                    </p>
+                    <p>
+                        This is the same pattern that powers payment gateways, AI toolchains, UI frameworks, and database repositories.
+                        Once you internalize abstraction, you stop thinking in terms of <em>specific classes</em> and start thinking in terms of
+                        <span class="highlight">capabilities and contracts</span>. That shift is what separates junior code from professional‑grade architecture.
+                    </p>
+                    <p>
+                        <strong>Your next steps:</strong> Apply this pattern to your own projects. Identify areas where you have multiple implementations of the same concept — and extract an ABC. Then watch how your code becomes more flexible, testable, and maintainable.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 1 ABC, 5 concrete classes</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 6 abstract methods enforced</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 8 FAQ items</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 quiz questions</span>
+                    </div>
+                </div>
+
+                <div class="key-takeaway">
+                    <h4>📌 Final Key Takeaways</h4>
+                    <ul>
+                        <li><strong>Abstraction = Contract + Implementation</strong> — Define <em>what</em>, let subclasses define <em>how</em>.</li>
+                        <li><strong>ABCs enforce consistency</strong> — Every subclass must implement all abstract methods, guaranteeing polymorphism.</li>
+                        <li><strong>Don't over-abstract</strong> — Start concrete, extract when you see patterns.</li>
+                        <li><strong>Test against the interface</strong> — Write tests that prove any subclass satisfies the contract.</li>
+                        <li><strong>It's universal</strong> — The same idea appears in Java, C#, TypeScript, and Go.</li>
+                    </ul>
+                </div>
+
+                <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;">
+                    <a href="abstraction.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Abstraction Guide</a>
+                    <a href="#intro" class="btn btn-outline"><i class="fas fa-arrow-up"></i> Top</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-top" id="backTop"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            // Progress bar
+            const pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', () => {
+                const h = document.documentElement;
+                pbar.style.width = Math.min(h.scrollTop / (h.scrollHeight - h.clientHeight) * 100, 100) + '%';
+            }, { passive: true });
+
+            // Mobile menu
+            const menuToggle = document.getElementById('menuToggle');
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const closeDrawer = () => { menuToggle.classList.remove('active');
+                drawer.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = ''; };
+            menuToggle.addEventListener('click', () => {
+                const open = drawer.classList.toggle('active');
+                menuToggle.classList.toggle('active', open);
+                overlay.classList.toggle('active', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            });
+            overlay.addEventListener('click', closeDrawer);
+            document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(b => b.addEventListener('click', function() {
+                document.querySelector(this.dataset.href)?.scrollIntoView({ behavior: 'smooth' });
+                closeDrawer();
+            }));
+
+            // Back to top
+            const backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 500), { passive: true });
+            backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            // FAQ toggle
+            window.toggleFaq = function(el) {
+                const a = el.nextElementSibling;
+                const toggle = el.querySelector('.faq-toggle');
+                a.classList.toggle('open');
+                toggle.textContent = a.classList.contains('open') ? '−' : '+';
+            };
+
+            // ---- Pyodide runner ----
+            const containers = document.querySelectorAll('.code-container');
+            async function loadPyodideAndPackages() {
+                if (!window._pyodideReady) {
+                    window._pyodideInstance = await loadPyodide();
+                    window._pyodideReady = true;
+                }
+                return window._pyodideInstance;
+            }
+
+            function indentCode(code, spaces) {
+                const pad = ' '.repeat(spaces);
+                return code.split('\n').map(l => pad + l).join('\n');
+            }
+
+            async function runCode(container, outputId) {
+                const runBtn = container.querySelector('.run-btn');
+                const output = document.getElementById(outputId);
+                const pre = container.querySelector('.code-snippet pre');
+                const codeText = pre.textContent;
+
+                runBtn.disabled = true;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+                output.style.display = 'block';
+                output.className = 'output-panel loading';
+                output.textContent = 'Loading Python runtime...\n\n';
+                try {
+                    const pyodide = await loadPyodideAndPackages();
+                    output.textContent = '';
+                    output.className = 'output-panel';
+
+                    const wrapper = [
+                        'import sys',
+                        'from io import StringIO',
+                        '_out = StringIO()',
+                        '_old = sys.stdout',
+                        'sys.stdout = _out',
+                        'try:',
+                        indentCode(codeText, 4),
+                        'finally:',
+                        '    sys.stdout = _old',
+                        '_out.getvalue()'
+                    ].join('\n');
+
+                    const result = await pyodide.runPythonAsync(wrapper);
+                    output.textContent = result || '✓ Execution finished (no output).';
+                    output.style.color = '#4ade80';
+                } catch (err) {
+                    output.className = 'output-panel error';
+                    output.textContent = 'Error:\n' + err.message;
+                    output.style.color = '#f87171';
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+                }
+            }
+
+            containers.forEach((container, idx) => {
+                const outputId = idx === 0 ? 'outputPanel' : 'extendedOutput';
+                const runBtn = container.querySelector('.run-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const pre = container.querySelector('.code-snippet pre');
+                const codeText = pre.textContent;
+
+                copyBtn.addEventListener('click', () => {
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(codeText.trim()).then(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                            setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy', 2000);
+                        });
+                    } else {
+                        const ta = document.createElement('textarea');
+                        ta.value = codeText.trim();
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        ta.remove();
+                        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy', 2000);
+                    }
+                });
+
+                runBtn.addEventListener('click', () => runCode(container, outputId));
+            });
+
+            // ---- Quiz ----
+            const QUIZ = [
+                { q: "What does the Character ABC enforce?",
+                    opts: ["That every character has a name", "That every character implements attack(), defend(), and special()",
+                        "That every character has a health attribute", "That every character is a subclass of object"
+                    ], ans: 1,
+                    fb: "Correct! The ABC enforces the contract — every concrete subclass must implement all abstract methods." },
+                { q: "Why is simulate_battle() considered polymorphic?",
+                    opts: ["Because it uses random numbers", "Because it works with any subclass of Character",
+                        "Because it prints output", "Because it has a while loop"
+                    ], ans: 1,
+                    fb: "Exactly! simulate_battle() depends only on the Character interface, so it works with any subclass." },
+                { q: "What is the role of take_damage() in Character?",
+                    opts: ["It is abstract and must be overridden", "It is a concrete method shared by all subclasses",
+                        "It is a private method", "It is used only for debugging"
+                    ], ans: 1,
+                    fb: "Right! take_damage() is a concrete method that provides shared logic — reducing duplication across subclasses." },
+                { q: "If you create a new class Paladin that inherits from Character, what must you do?",
+                    opts: ["Override only attack()", "Override only special()",
+                        "Override all abstract methods: attack, defend, special", "Nothing — it's optional"
+                    ], ans: 2,
+                    fb: "Correct! To be instantiable, Paladin must implement every method marked with @abstractmethod." },
+                { q: "Which statement best describes the benefit of abstraction in this program?",
+                    opts: ["It makes the code run faster", "It allows the battle loop to work with any character type without changes",
+                        "It reduces memory usage", "It makes the code shorter"
+                    ], ans: 1,
+                    fb: "Yes! Abstraction decouples the battle logic from the concrete classes, enabling extension without modification." },
+            ];
+
+            let answered = 0,
+                correct = 0;
+
+            function buildQuiz() {
+                const wrap = document.getElementById('quizWrap');
+                let html = '';
+                QUIZ.forEach((item, i) => {
+                    html += `<div class="quiz-q" id="qq-${i}"><div class="quiz-prompt">Q${i+1}. ${item.q}</div><div class="quiz-opts">`;
+                    item.opts.forEach((opt, j) => {
+                        html += `<div class="quiz-opt" id="qo-${i}-${j}" onclick="answerQ(${i},${j})"><span style="font-family:JetBrains Mono,monospace;font-size:.65rem;opacity:.5;flex-shrink:0">${'ABCD'[j]}.</span> ${opt}</div>`;
+                    });
+                    html += `</div><div class="quiz-feedback" id="qf-${i}"></div></div>`;
+                });
+                wrap.innerHTML = html;
+            }
+
+            window.answerQ = function(qi, oi) {
+                const item = QUIZ[qi];
+                const qEl = document.getElementById('qq-' + qi);
+                if (qEl.classList.contains('correct') || qEl.classList.contains('wrong')) return;
+                const opts = qEl.querySelectorAll('.quiz-opt');
+                opts.forEach(o => o.classList.add('disabled'));
+                const chosen = document.getElementById('qo-' + qi + '-' + oi);
+                const fb = document.getElementById('qf-' + qi);
+                if (oi === item.ans) {
+                    chosen.classList.add('correct-ans');
+                    qEl.classList.add('correct');
+                    fb.textContent = '✓ ' + item.fb;
+                    fb.className = 'quiz-feedback ok';
+                    correct++;
+                } else {
+                    chosen.classList.add('wrong-ans');
+                    document.getElementById('qo-' + qi + '-' + item.ans).classList.add('correct-ans');
+                    qEl.classList.add('wrong');
+                    fb.textContent = '✗ Correct answer is ' + 'ABCD' [item.ans] + '. ' + item.fb;
+                    fb.className = 'quiz-feedback bad';
+                }
+                answered++;
+                if (answered === QUIZ.length) showScore();
+            };
+
+            function showScore() {
+                const scoreEl = document.getElementById('quizScore');
+                document.getElementById('quizScoreNum').textContent = correct + '/' + QUIZ.length;
+                const msgs = ['Keep studying.', 'Good start.', 'Solid understanding.', 'Almost perfect!',
+                    'Perfect — you mastered abstraction! 🎉'
+                ];
+                document.getElementById('quizScoreMsg').textContent = msgs[Math.min(correct, msgs.length - 1)];
+                scoreEl.style.display = 'block';
+                scoreEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            window.resetQuiz = function() { answered = 0;
+                correct = 0;
+                document.getElementById('quizScore').style.display = 'none';
+                buildQuiz(); };
+            buildQuiz();
+        })();
+    </script>
+
+</body>
+</html>
