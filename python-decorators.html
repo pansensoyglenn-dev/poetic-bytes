@@ -784,6 +784,9 @@
             padding: .8rem 0;
             background: var(--bg);
         }
+        .ad-slot ins {
+            display: block;
+        }
         .page-footer {
             padding: 3rem 0 1.5rem;
             background: #1a2535;
@@ -1518,13 +1521,13 @@ greet = uppercase_decorator(greet)
 <span class="kw">def</span> <span class="fn">bold</span>(func):
     @functools.wraps(func)
     <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
-        <span class="kw">return</span> <span class="st">"<b>"</span> + func(*args, **kwargs) + <span class="st">"</b>"</span>
+        <span class="kw">return</span> <span class="st">"&lt;b&gt;"</span> + func(*args, **kwargs) + <span class="st">"&lt;/b&gt;"</span>
     <span class="kw">return</span> wrapper
 
 <span class="kw">def</span> <span class="fn">italic</span>(func):
     @functools.wraps(func)
     <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
-        <span class="kw">return</span> <span class="st">"<i>"</span> + func(*args, **kwargs) + <span class="st">"</i>"</span>
+        <span class="kw">return</span> <span class="st">"&lt;i&gt;"</span> + func(*args, **kwargs) + <span class="st">"&lt;/i&gt;"</span>
     <span class="kw">return</span> wrapper
 
 @bold
@@ -1534,9 +1537,9 @@ greet = uppercase_decorator(greet)
 
 <span class="fn">print</span>(message())</pre>
                         <button class="run-btn" data-output="stack-output"><i class="fas fa-play"></i> Run</button>
-                        <div class="code-output" id="stack-output"><b><i>Hello</i></b></div>
+                        <div class="code-output" id="stack-output">&lt;b&gt;&lt;i&gt;Hello&lt;/i&gt;&lt;/b&gt;</div>
                     </div>
-                    <div class="insight">💡 Stacking order: <code>@bold</code> wraps <code>@italic</code> which wraps <code>message()</code>. The output is <code><b><i>Hello</i></b></code>.</div>
+                    <div class="insight">💡 Stacking order: <code>@bold</code> wraps <code>@italic</code> which wraps <code>message()</code>. The output is <code>&lt;b&gt;&lt;i&gt;Hello&lt;/i&gt;&lt;/b&gt;</code>.</div>
                 </div>
 
                 <div class="oop-block">
