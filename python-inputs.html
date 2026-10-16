@@ -145,8 +145,7 @@
         }
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous">
-    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
@@ -1429,6 +1428,16 @@
             justify-content: center;
             margin-top: 1.2rem;
         }
+
+        .ad-slot {
+            text-align: center;
+            padding: 1rem 0;
+            background: var(--bg);
+            min-height: 60px;
+        }
+        .ad-slot ins {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -1849,6 +1858,16 @@ handle_empty()</pre></div>
                 </div>
             </div>
         </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498658"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
 
         <section id="type-conversion" aria-labelledby="conversion-heading">
             <div class="page-col">
@@ -2279,6 +2298,16 @@ email = validate_email()
                 </div>
             </div>
         </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498659"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
 
         <section id="multiple-inputs" aria-labelledby="multi-heading">
             <div class="page-col">
@@ -2892,9 +2921,7 @@ read_text_file("sample.txt")'>
                                 <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
                             </div>
                         </div>
-                        <div class="code-snippet"><pre><span class="kw">from</span> pathlib <span class="kw">import</span> Path
-
-<span class="kw">def</span> <span class="fn">read_text_file</span>(path: <span class="cl">str</span>):
+                        <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">read_text_file</span>(path: <span class="cl">str</span>):
     <span class="kw">try</span>:
         <span class="kw">with</span> open(path, <span class="st">"r"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
             content = f.read()
@@ -3678,6 +3705,16 @@ main()</pre></div>
             </div>
         </section>
 
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498660"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
         <section id="faq-inputs" aria-labelledby="faq-inputs-heading">
             <div class="page-col">
                 <div class="section-intro">
@@ -3695,6 +3732,16 @@ main()</pre></div>
                 </div>
             </div>
         </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498661"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
 
         <section id="outro" aria-labelledby="outro-heading">
             <div class="page-col">
@@ -3942,8 +3989,6 @@ main()</pre></div>
             if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
             if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
 
-            // ── Pyodide runner (fixed) ──────────────────────────────────────────────
-
             function dedent(code) {
                 var lines = code.split('\n');
                 var minIndent = Infinity;
@@ -4016,11 +4061,6 @@ _sys.argv = ['script.py', 'Alice', '28']
                     var outputRef = { text: '' };
                     var printFn = makePrintFn(outputRef);
 
-                    // Register as plain Python globals — NOT as js.* attributes.
-                    // js.something only resolves to real `window` properties; these
-                    // functions were never attached to window, so calling them via
-                    // `_js._js_print(...)` raised AttributeError: _js_print.
-                    // Calling them directly as globals fixes that.
                     pyodide.globals.set('_js_print', printFn);
                     pyodide.globals.set('_js_input', function(promptText) {
                         var result = prompt(promptText != null ? String(promptText) : '');
@@ -4045,8 +4085,6 @@ builtins.input = _input
                     try {
                         await pyodide.runPythonAsync(clean);
                     } catch (innerErr) {
-                        // SystemExit (argparse --help, sys.exit(), etc.) is expected
-                        // behaviour for some demos, not a real failure.
                         var innerMsg = innerErr && innerErr.message ? innerErr.message : String(innerErr);
                         if (innerMsg.indexOf('SystemExit') !== -1) {
                             outputRef.text += '\n[Program exited via SystemExit]\n';
