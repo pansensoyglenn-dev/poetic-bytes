@@ -43,8 +43,7 @@
         }
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1311,9 +1310,42 @@
             font-size: .76rem;
         }
         .ad-slot {
+            margin: 0;
+            padding: 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
             text-align: center;
-            padding: .8rem 0;
-            background: var(--bg);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            overflow: hidden;
+        }
+        .ad-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: .55;
+        }
+        .ad-slot .adsbygoogle {
+            display: block;
+            width: 100%;
+            min-height: 90px;
+        }
+        @media(max-width:480px) {
+            .ad-slot {
+                min-height: 100px;
+                padding: .75rem;
+            }
+            .ad-slot .adsbygoogle {
+                min-height: 70px;
+            }
         }
         .snippet-note {
             font-size: 0.65rem;
@@ -2509,66 +2541,6 @@
             border-color: rgba(255, 0, 0, .32);
             color: #ff5555;
         }
-        .sbtn.s-rd:hover {
-            background: rgba(255, 69, 0, .14);
-            border-color: rgba(255, 69, 0, .38);
-            color: #ff6534;
-        }
-        .sbtn.s-dt:hover {
-            background: rgba(0, 0, 0, .2);
-            border-color: rgba(255, 255, 255, .3);
-            color: #ffffff;
-        }
-        .sbtn.s-hn:hover {
-            background: rgba(36, 99, 235, .14);
-            border-color: rgba(36, 99, 235, .38);
-            color: #6096ff;
-        }
-        .sbtn.s-dc:hover {
-            background: rgba(88, 101, 242, .14);
-            border-color: rgba(88, 101, 242, .38);
-            color: #8b9aff;
-        }
-        .sbtn.s-fbg:hover {
-            background: rgba(24, 119, 242, .14);
-            border-color: rgba(24, 119, 242, .38);
-            color: #5597ee;
-        }
-        .sbtn.s-tk:hover {
-            background: rgba(255, 0, 80, .1);
-            border-color: rgba(255, 0, 80, .35);
-            color: #ff0050;
-        }
-        .sbtn.s-ig:hover {
-            background: rgba(225, 48, 108, .12);
-            border-color: rgba(225, 48, 108, .38);
-            color: #e1306c;
-        }
-        .sbtn.s-tg:hover {
-            background: rgba(0, 136, 204, .14);
-            border-color: rgba(0, 136, 204, .38);
-            color: #29b6f6;
-        }
-        .sbtn.s-pi:hover {
-            background: rgba(230, 0, 35, .12);
-            border-color: rgba(230, 0, 35, .35);
-            color: #e60023;
-        }
-        .sbtn.s-md:hover {
-            background: rgba(255, 255, 255, .08);
-            border-color: rgba(255, 255, 255, .25);
-            color: #ffffff;
-        }
-        .sbtn.s-qr:hover {
-            background: rgba(185, 43, 39, .12);
-            border-color: rgba(185, 43, 39, .35);
-            color: #b92b27;
-        }
-        .sbtn.s-sl:hover {
-            background: rgba(74, 21, 75, .2);
-            border-color: rgba(224, 30, 90, .35);
-            color: #e01e5a;
-        }
         .share-toast {
             margin-top: .9rem;
             font-size: .7rem;
@@ -3395,9 +3367,22 @@
             </div>
         </section>
 
-        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script></div>
+        <section id="ad-middle" aria-label="Advertisement" style="padding:1.5rem 0;">
+            <div class="page-col">
+                <div class="ad-slot">
+                    <span class="ad-label">Advertisement</span>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6428799122405621"
+                         data-ad-slot="7847699765"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </section>
 
         <section id="intro" aria-labelledby="h-intro">
             <div class="page-col">
@@ -3777,10 +3762,6 @@ class TestATM(unittest.TestCase):
             </div>
         </section>
 
-        <div class="ad-slot page-col"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6428799122405621" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script></div>
-
         <section id="exercises" aria-labelledby="h-exercises">
             <div class="page-col">
                 <div class="section-label">09 — Practice Exercises</div>
@@ -3916,6 +3897,23 @@ class TestATM(unittest.TestCase):
             </div>
         </section>
     </main>
+
+    <section id="ad-bottom" aria-label="Advertisement" style="padding:1.5rem 0; border-top:1px solid var(--border);">
+        <div class="page-col">
+            <div class="ad-slot">
+                <span class="ad-label">Advertisement</span>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </section>
 
     <footer class="page-footer" aria-label="Site footer">
         <div class="page-col">
