@@ -23,6 +23,8 @@
     <meta name="twitter:title" content="Python Strings – Complete Tutorial with Examples" />
     <meta name="twitter:description" content="Master Python strings in 2026. Learn creation, slicing, formatting, 40+ methods, Unicode, and regex. Interactive examples, quizzes, and real-world projects." />
     <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="google-adsense-account" content="ca-pub-6428799122405621" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -1397,6 +1399,49 @@
         .pyodide-status .dot.red {
             background: var(--red);
         }
+        .ad-slot {
+            text-align: center;
+            padding: 1.2rem 0;
+            background: var(--bg);
+            margin: 0 auto;
+            max-width: 860px;
+            overflow: hidden;
+            position: relative;
+        }
+        .ad-slot ins {
+            display: block;
+            margin: 0 auto;
+            min-height: 90px;
+        }
+        .ad-slot-inline {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(15, 28, 47, 0.4);
+            padding: 1.5rem 1.25rem;
+        }
+        .ad-slot-inline::before {
+            content: 'ADVERTISEMENT';
+            display: block;
+            font-size: .55rem;
+            letter-spacing: .18em;
+            color: var(--muted);
+            opacity: .5;
+            margin-bottom: .6rem;
+            font-weight: 700;
+        }
+        .ad-slot-bottom {
+            padding: 2rem 1.25rem 1rem;
+        }
+        .ad-slot-bottom::before {
+            content: 'ADVERTISEMENT';
+            display: block;
+            font-size: .55rem;
+            letter-spacing: .18em;
+            color: var(--muted);
+            opacity: .5;
+            margin-bottom: .6rem;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
@@ -1514,8 +1559,8 @@
 
 text = <span class="st">"  python is awesome  "</span>
 clean = text.strip().upper()
-<span class="fn">print</span>(clean)                     <span class="cmt"># PYTHON IS AWESOME</span>
-<span class="fn">print</span>(greet(<span class="st">"glenn"</span>))            <span class="cmt"># Hello, Glenn!</span></pre>
+<span class="fn">print</span>(clean)
+<span class="fn">print</span>(greet(<span class="st">"glenn"</span>))</pre>
                     </div>
                     <div class="terminal">$ python strings_demo.py<br>PYTHON IS AWESOME<br>Hello, Glenn!</div>
                 </div>
@@ -1605,18 +1650,15 @@ clean = text.strip().upper()
                 <div class="oop-block">
                     <h3>Single, Double, and Triple Quotes</h3>
                     <p>Use single or double quotes interchangeably. Triple quotes allow multi-line strings and preserve formatting.</p>
-                    <div class="code-snippet"><pre><span class="cmt"># Single and double quotes are equivalent</span>
-single = <span class="st">'Hello'</span>
+                    <div class="code-snippet"><pre>single = <span class="st">'Hello'</span>
 double = <span class="st">"World"</span>
 <span class="fn">print</span>(single, double)
 
-<span class="cmt"># Triple quotes for multi-line strings</span>
 multiline = <span class="st">"""This is a
 multi-line string
 that preserves newlines."""</span>
 <span class="fn">print</span>(multiline)
 
-<span class="cmt"># Including a quote inside a string</span>
 quote = <span class="st">"She said, 'Python is awesome!'"</span>
 <span class="fn">print</span>(quote)</pre></div>
                     <div class="insight">
@@ -1632,11 +1674,9 @@ quote = <span class="st">"She said, 'Python is awesome!'"</span>
                 <div class="oop-block">
                     <h3>Special Characters with Backslashes</h3>
                     <p>Escape sequences let you include newlines (<code>\n</code>), tabs (<code>\t</code>), and quotes inside strings.</p>
-                    <div class="code-snippet"><pre><span class="cmt"># Escape sequences</span>
-escaped = <span class="st">"Line1\nLine2\tTabbed"</span>
+                    <div class="code-snippet"><pre>escaped = <span class="st">"Line1\nLine2\tTabbed"</span>
 <span class="fn">print</span>(escaped)
 
-<span class="cmt"># Raw strings (r"...") ignore escape sequences</span>
 path = <span class="st">r"C:\Users\Glenn\Documents"</span>
 <span class="fn">print</span>(path)</pre></div>
                     <div class="insight">
@@ -1673,10 +1713,10 @@ repeat = <span class="st">"Ha"</span> * 3
                     <h3>Accessing Characters and Substrings</h3>
                     <p>Strings are sequences – you can index with <code>[i]</code> and slice with <code>[start:stop:step]</code>.</p>
                     <div class="code-snippet"><pre>s = <span class="st">"Python"</span>
-<span class="fn">print</span>(s[0])    <span class="cmt"># P</span>
-<span class="fn">print</span>(s[-1])   <span class="cmt"># n (last character)</span>
-<span class="fn">print</span>(s[1:4])  <span class="cmt"># yth (characters 1,2,3)</span>
-<span class="fn">print</span>(s[::-1]) <span class="cmt"># nohtyP (reverse)</span></pre></div>
+<span class="fn">print</span>(s[0])
+<span class="fn">print</span>(s[-1])
+<span class="fn">print</span>(s[1:4])
+<span class="fn">print</span>(s[::-1])</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Indexing and slicing let you extract specific characters or substrings from a string — essential for text parsing and data extraction.
                         <br><br>
@@ -1690,15 +1730,14 @@ repeat = <span class="st">"Ha"</span> * 3
                 <div class="oop-block">
                     <h3>Comparing Strings and Testing "Contains"</h3>
                     <p>Strings compare lexicographically (character by character, by Unicode code point), and you can test membership with <code>in</code>.</p>
-                    <div class="code-snippet"><pre><span class="fn">print</span>(<span class="st">"apple"</span> == <span class="st">"apple"</span>)     <span class="cmt"># True</span>
-<span class="fn">print</span>(<span class="st">"apple"</span> &lt; <span class="st">"banana"</span>)    <span class="cmt"># True ('a' &lt; 'b')</span>
-<span class="fn">print</span>(<span class="st">"Apple"</span> == <span class="st">"apple"</span>)    <span class="cmt"># False (case-sensitive)</span>
-<span class="fn">print</span>(<span class="st">"cat"</span> <span class="kw">in</span> <span class="st">"concatenate"</span>) <span class="cmt"># True</span>
-<span class="fn">print</span>(<span class="st">"dog"</span> <span class="kw">not in</span> <span class="st">"concatenate"</span>) <span class="cmt"># True</span>
+                    <div class="code-snippet"><pre><span class="fn">print</span>(<span class="st">"apple"</span> == <span class="st">"apple"</span>)
+<span class="fn">print</span>(<span class="st">"apple"</span> &lt; <span class="st">"banana"</span>)
+<span class="fn">print</span>(<span class="st">"Apple"</span> == <span class="st">"apple"</span>)
+<span class="fn">print</span>(<span class="st">"cat"</span> <span class="kw">in</span> <span class="st">"concatenate"</span>)
+<span class="fn">print</span>(<span class="st">"dog"</span> <span class="kw">not in</span> <span class="st">"concatenate"</span>)
 
-<span class="cmt"># Case-insensitive comparison</span>
 a, b = <span class="st">"Python"</span>, <span class="st">"PYTHON"</span>
-<span class="fn">print</span>(a.casefold() == b.casefold())  <span class="cmt"># True</span></pre></div>
+<span class="fn">print</span>(a.casefold() == b.casefold())</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Comparisons and membership tests are used constantly — filtering data, validating input, and building conditionals.
                         <br><br>
@@ -1720,12 +1759,12 @@ a, b = <span class="st">"Python"</span>, <span class="st">"PYTHON"</span>
                 <div class="cat-label"><span>🔡</span> Case Conversion</div>
                 <div class="oop-block">
                     <div class="code-snippet"><pre>text = <span class="st">"  hello WORLD  "</span>
-<span class="fn">print</span>(text.upper())     <span class="cmt"># "  HELLO WORLD  "</span>
-<span class="fn">print</span>(text.lower())     <span class="cmt"># "  hello world  "</span>
-<span class="fn">print</span>(text.title())     <span class="cmt"># "  Hello World  "</span>
-<span class="fn">print</span>(text.capitalize())<span class="cmt"># "  Hello world  "</span>
-<span class="fn">print</span>(text.swapcase())  <span class="cmt"># "  HELLO world  "</span>
-<span class="fn">print</span>(text.casefold())  <span class="cmt"># aggressive lower for case-insensitive comparison</span></pre></div>
+<span class="fn">print</span>(text.upper())
+<span class="fn">print</span>(text.lower())
+<span class="fn">print</span>(text.title())
+<span class="fn">print</span>(text.capitalize())
+<span class="fn">print</span>(text.swapcase())
+<span class="fn">print</span>(text.casefold())</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Case conversion methods normalize text for comparison, display, or storage. They're used in search, user input validation, and formatting.
                         <br><br>
@@ -1739,12 +1778,12 @@ a, b = <span class="st">"Python"</span>, <span class="st">"PYTHON"</span>
                 <div class="oop-block">
                     <div class="code-snippet"><pre>messy = <span class="st">"  \t\n  Python  \n\t  "</span>
 clean = messy.strip()
-<span class="fn">print</span>(clean)           <span class="cmt"># "Python"</span>
-<span class="fn">print</span>(messy.lstrip())  <span class="cmt"># left strip</span>
-<span class="fn">print</span>(messy.rstrip())  <span class="cmt"># right strip</span>
-<span class="cmt"># You can also strip specific characters</span>
+<span class="fn">print</span>(clean)
+<span class="fn">print</span>(messy.lstrip())
+<span class="fn">print</span>(messy.rstrip())
+
 s = <span class="st">"---hello---"</span>
-<span class="fn">print</span>(s.strip(<span class="st">"-"</span>))    <span class="cmt"># "hello"</span></pre></div>
+<span class="fn">print</span>(s.strip(<span class="st">"-"</span>))</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> User input, file data, and API responses often contain extra whitespace. Stripping removes it, making data clean and consistent.
                         <br><br>
@@ -1758,20 +1797,17 @@ s = <span class="st">"---hello---"</span>
                 <div class="oop-block">
                     <div class="code-snippet"><pre>csv = <span class="st">"apple,banana,cherry"</span>
 items = csv.split(<span class="st">","</span>)
-<span class="fn">print</span>(items)              <span class="cmt"># ['apple', 'banana', 'cherry']</span>
+<span class="fn">print</span>(items)
 
-<span class="cmt"># Split with max splits</span>
 parts = <span class="st">"a,b,c,d"</span>.split(<span class="st">","</span>, 2)
-<span class="fn">print</span>(parts)              <span class="cmt"># ['a', 'b', 'c,d']</span>
+<span class="fn">print</span>(parts)
 
-<span class="cmt"># rsplit (splits from the right)</span>
 rs = <span class="st">"a,b,c,d"</span>.rsplit(<span class="st">","</span>, 2)
-<span class="fn">print</span>(rs)                <span class="cmt"># ['a,b', 'c', 'd']</span>
+<span class="fn">print</span>(rs)
 
-<span class="cmt"># Join</span>
 fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
 joined = <span class="st">" | "</span>.join(fruits)
-<span class="fn">print</span>(joined)            <span class="cmt"># "apple | banana | cherry"</span></pre></div>
+<span class="fn">print</span>(joined)</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> <code>split()</code> and <code>join()</code> are inverse operations used to parse and construct strings. They're essential for CSV parsing, URL parsing, and building output.
                         <br><br>
@@ -1784,12 +1820,11 @@ joined = <span class="st">" | "</span>.join(fruits)
                 <div class="cat-label"><span>🔍</span> Search &amp; Replace</div>
                 <div class="oop-block">
                     <div class="code-snippet"><pre>s = <span class="st">"hello world, hello python"</span>
-<span class="fn">print</span>(s.find(<span class="st">"hello"</span>))      <span class="cmt"># 0</span>
-<span class="fn">print</span>(s.rfind(<span class="st">"hello"</span>))     <span class="cmt"># 13 (last occurrence)</span>
-<span class="fn">print</span>(s.index(<span class="st">"world"</span>))     <span class="cmt"># 6</span>
-<span class="fn">print</span>(s.count(<span class="st">"l"</span>))          <span class="cmt"># 5</span>
-<span class="fn">print</span>(s.replace(<span class="st">"hello"</span>, <span class="st">"hi"</span>)) <span class="cmt"># "hi world, hi python"</span>
-<span class="cmt"># Replace only first 2 occurrences</span>
+<span class="fn">print</span>(s.find(<span class="st">"hello"</span>))
+<span class="fn">print</span>(s.rfind(<span class="st">"hello"</span>))
+<span class="fn">print</span>(s.index(<span class="st">"world"</span>))
+<span class="fn">print</span>(s.count(<span class="st">"l"</span>))
+<span class="fn">print</span>(s.replace(<span class="st">"hello"</span>, <span class="st">"hi"</span>))
 <span class="fn">print</span>(s.replace(<span class="st">"hello"</span>, <span class="st">"hi"</span>, 2))</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Searching and replacing are fundamental for text processing — from finding keywords to cleaning data.
@@ -1803,15 +1838,15 @@ joined = <span class="st">" | "</span>.join(fruits)
                 <div class="cat-label"><span>✔️</span> Checks &amp; Predicates</div>
                 <div class="oop-block">
                     <div class="code-snippet"><pre>s = <span class="st">"Python123"</span>
-<span class="fn">print</span>(s.isalpha())   <span class="cmt"># False (contains digits)</span>
-<span class="fn">print</span>(s.isalnum())   <span class="cmt"># True (letters and digits)</span>
-<span class="fn">print</span>(s.isdigit())   <span class="cmt"># False</span>
-<span class="fn">print</span>(s.islower())   <span class="cmt"># False (has uppercase)</span>
-<span class="fn">print</span>(s.isspace())   <span class="cmt"># False</span>
-<span class="fn">print</span>(s.startswith(<span class="st">"Py"</span>)) <span class="cmt"># True</span>
-<span class="fn">print</span>(s.endswith(<span class="st">"23"</span>))  <span class="cmt"># True</span>
-<span class="fn">print</span>(s.isascii())   <span class="cmt"># True (all characters are ASCII)</span>
-<span class="fn">print</span>(<span class="st">"123"</span>.isdecimal()) <span class="cmt"># True</span></pre></div>
+<span class="fn">print</span>(s.isalpha())
+<span class="fn">print</span>(s.isalnum())
+<span class="fn">print</span>(s.isdigit())
+<span class="fn">print</span>(s.islower())
+<span class="fn">print</span>(s.isspace())
+<span class="fn">print</span>(s.startswith(<span class="st">"Py"</span>))
+<span class="fn">print</span>(s.endswith(<span class="st">"23"</span>))
+<span class="fn">print</span>(s.isascii())
+<span class="fn">print</span>(<span class="st">"123"</span>.isdecimal())</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Predicate methods validate the content of a string — used in form validation, data cleaning, and input checks.
                         <br><br>
@@ -1824,10 +1859,10 @@ joined = <span class="st">" | "</span>.join(fruits)
                 <div class="cat-label"><span>📊</span> Alignment &amp; Padding</div>
                 <div class="oop-block">
                     <div class="code-snippet"><pre>s = <span class="st">"42"</span>
-<span class="fn">print</span>(s.zfill(5))             <span class="cmt"># "00042"</span>
-<span class="fn">print</span>(s.rjust(5, <span class="st">"*"</span>))    <span class="cmt"># "***42"</span>
-<span class="fn">print</span>(s.ljust(5, <span class="st">"*"</span>))    <span class="cmt"># "42***"</span>
-<span class="fn">print</span>(s.center(7, <span class="st">"="</span>))   <span class="cmt"># "===42==="</span></pre></div>
+<span class="fn">print</span>(s.zfill(5))
+<span class="fn">print</span>(s.rjust(5, <span class="st">"*"</span>))
+<span class="fn">print</span>(s.ljust(5, <span class="st">"*"</span>))
+<span class="fn">print</span>(s.center(7, <span class="st">"="</span>))</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Padding and alignment are used for formatting output in reports, logs, and terminal applications.
                         <br><br>
@@ -1839,25 +1874,20 @@ joined = <span class="st">" | "</span>.join(fruits)
 
                 <div class="cat-label"><span>🔧</span> More Useful Methods</div>
                 <div class="oop-block">
-                    <div class="code-snippet"><pre><span class="cmt"># partition – splits at first occurrence</span>
-s = <span class="st">"name: John"</span>
+                    <div class="code-snippet"><pre>s = <span class="st">"name: John"</span>
 left, sep, right = s.partition(<span class="st">":"</span>)
-<span class="fn">print</span>(left, sep, right)  <span class="cmt"># "name" ":" " John"</span>
+<span class="fn">print</span>(left, sep, right)
 
-<span class="cmt"># rpartition – from the right</span>
 s = <span class="st">"a:b:c"</span>
 left, sep, right = s.rpartition(<span class="st">":"</span>)
-<span class="fn">print</span>(left, sep, right)  <span class="cmt"># "a:b" ":" "c"</span>
+<span class="fn">print</span>(left, sep, right)
 
-<span class="cmt"># expandtabs – convert tabs to spaces</span>
 tabbed = <span class="st">"1\t2\t3"</span>
-<span class="fn">print</span>(tabbed.expandtabs(4)) <span class="cmt"># "1   2   3"</span>
+<span class="fn">print</span>(tabbed.expandtabs(4))
 
-<span class="cmt"># translate – character mapping</span>
 trans = str.maketrans(<span class="st">"aeiou"</span>, <span class="st">"12345"</span>)
-<span class="fn">print</span>(<span class="st">"hello"</span>.translate(trans)) <span class="cmt"># "h2ll4"</span>
+<span class="fn">print</span>(<span class="st">"hello"</span>.translate(trans))
 
-<span class="cmt"># format_map – like .format() but with a dict</span>
 data = {<span class="st">"name"</span>: <span class="st">"Glenn"</span>, <span class="st">"age"</span>: 30}
 <span class="fn">print</span>(<span class="st">"{name} is {age}"</span>.format_map(data))</pre></div>
                     <div class="insight">
@@ -1874,18 +1904,16 @@ data = {<span class="st">"name"</span>: <span class="st">"Glenn"</span>, <span c
                     <h3>splitlines(), removeprefix(), removesuffix()</h3>
                     <p>Modern additions (Python 3.9+) that make common cleanup one-liners instead of slicing tricks.</p>
                     <div class="code-snippet"><pre>log = <span class="st">"line1\nline2\r\nline3"</span>
-<span class="fn">print</span>(log.splitlines())        <span class="cmt"># ['line1', 'line2', 'line3']</span>
+<span class="fn">print</span>(log.splitlines())
 <span class="fn">print</span>(log.splitlines(keepends=<span class="kw">True</span>))
 
-<span class="cmt"># removeprefix / removesuffix (3.9+)</span>
 url = <span class="st">"https://example.com"</span>
-<span class="fn">print</span>(url.removeprefix(<span class="st">"https://"</span>))  <span class="cmt"># "example.com"</span>
+<span class="fn">print</span>(url.removeprefix(<span class="st">"https://"</span>))
 
 filename = <span class="st">"report.csv"</span>
-<span class="fn">print</span>(filename.removesuffix(<span class="st">".csv"</span>))  <span class="cmt"># "report"</span>
+<span class="fn">print</span>(filename.removesuffix(<span class="st">".csv"</span>))
 
-<span class="cmt"># Safe: does nothing if the prefix/suffix isn't there</span>
-<span class="fn">print</span>(<span class="st">"data.json"</span>.removesuffix(<span class="st">".csv"</span>))  <span class="cmt"># "data.json" (unchanged)</span></pre></div>
+<span class="fn">print</span>(<span class="st">"data.json"</span>.removesuffix(<span class="st">".csv"</span>))</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> <code>splitlines()</code> correctly handles mixed line endings (<code>\n</code>, <code>\r\n</code>) across platforms, which naive <code>split("\n")</code> does not. <code>removeprefix()</code>/<code>removesuffix()</code> replace error-prone slicing like <code>s[len(prefix):]</code>.
                         <br><br>
@@ -1951,6 +1979,16 @@ filename = <span class="st">"report.csv"</span>
             </div>
         </section>
 
+        <div class="ad-slot page-col ad-slot-inline">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498659"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
         <section id="formatting" aria-labelledby="formatting-heading">
             <div class="page-col">
                 <div class="section-intro">
@@ -1965,21 +2003,19 @@ age = 30
 score = 95.678
 
 <span class="fn">print</span>(<span class="st">f"Name: {name}, Age: {age}"</span>)
-<span class="fn">print</span>(<span class="st">f"Score: {score:.2f}"</span>)        <span class="cmt"># two decimals</span>
-<span class="fn">print</span>(<span class="st">f"Hello, {name.upper()}!"</span>)    <span class="cmt"># call methods</span>
-<span class="fn">print</span>(<span class="st">f"Result: {5 + 3 * 2}"</span>)       <span class="cmt"># expressions</span>
+<span class="fn">print</span>(<span class="st">f"Score: {score:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Hello, {name.upper()}!"</span>)
+<span class="fn">print</span>(<span class="st">f"Result: {5 + 3 * 2}"</span>)
 
-<span class="cmt"># Format specifiers: alignment, padding, sign, grouping</span>
 num = 12345.6789
-<span class="fn">print</span>(<span class="st">f"Currency: ${num:,.2f}"</span>)      <span class="cmt"># $12,345.68</span>
-<span class="fn">print</span>(<span class="st">f"Right-aligned: {name:&gt;10}"</span>)  <span class="cmt"># "     Glenn"</span>
-<span class="fn">print</span>(<span class="st">f"Centered: {name:^10}"</span>)       <span class="cmt"># "  Glenn   "</span>
-<span class="fn">print</span>(<span class="st">f"Hex: {255:#x}"</span>)              <span class="cmt"># 0xff</span>
-<span class="fn">print</span>(<span class="st">f"Percent: {0.875:.1%}"</span>)        <span class="cmt"># 87.5%</span>
+<span class="fn">print</span>(<span class="st">f"Currency: ${num:,.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Right-aligned: {name:&gt;10}"</span>)
+<span class="fn">print</span>(<span class="st">f"Centered: {name:^10}"</span>)
+<span class="fn">print</span>(<span class="st">f"Hex: {255:#x}"</span>)
+<span class="fn">print</span>(<span class="st">f"Percent: {0.875:.1%}"</span>)
 
-<span class="cmt"># Debugging with = (Python 3.8+)</span>
 x = 42
-<span class="fn">print</span>(<span class="st">f"{x=}"</span>)  <span class="cmt"># x=42</span></pre></div>
+<span class="fn">print</span>(<span class="st">f"{x=}"</span>)</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> f‑strings are the preferred way to format strings in modern Python. They're used in logging, error messages, report generation, and UI text.
                         <br><br>
@@ -1992,13 +2028,10 @@ x = 42
                 <div class="oop-block">
                     <h3>The <code>.format()</code> Method</h3>
                     <p>Older but still widely used. Placeholders <code>{}</code> are replaced by arguments.</p>
-                    <div class="code-snippet"><pre><span class="cmt"># Positional arguments</span>
-<span class="fn">print</span>(<span class="st">"{} + {} = {}"</span>.format(2, 3, 5))
+                    <div class="code-snippet"><pre><span class="fn">print</span>(<span class="st">"{} + {} = {}"</span>.format(2, 3, 5))
 
-<span class="cmt"># Named arguments</span>
 <span class="fn">print</span>(<span class="st">"{name} is {age} years old"</span>.format(name=<span class="st">"Alice"</span>, age=25))
 
-<span class="cmt"># Formatting numbers</span>
 <span class="fn">print</span>(<span class="st">"{:.2f}"</span>.format(3.14159))
 <span class="fn">print</span>(<span class="st">"{:,.2f}"</span>.format(12345.6789))</pre></div>
                     <div class="insight">
@@ -2042,16 +2075,14 @@ x = 42
                     <p>Python strings are Unicode by default. You can encode to bytes and decode back.</p>
                     <div class="code-snippet"><pre>text = <span class="st">"Café 🐍"</span>
 encoded = text.encode(<span class="st">"utf-8"</span>)
-<span class="fn">print</span>(encoded)        <span class="cmt"># b'Caf\xc3\xa9 \xf0\x9f\x90\x8d'</span>
+<span class="fn">print</span>(encoded)
 
 decoded = encoded.decode(<span class="st">"utf-8"</span>)
-<span class="fn">print</span>(decoded)        <span class="cmt"># Café 🐍</span>
+<span class="fn">print</span>(decoded)
 
-<span class="cmt"># Handling encoding errors</span>
 text = <span class="st">"Hello"</span>
-<span class="fn">print</span>(text.encode(<span class="st">"ascii"</span>))                 <span class="cmt"># works</span>
-<span class="cmt"># text.encode("ascii") would raise for non-ASCII; use errors='ignore'</span>
-<span class="fn">print</span>(<span class="st">"Café"</span>.encode(<span class="st">"ascii"</span>, errors=<span class="st">"ignore"</span>)) <span class="cmt"># b'Caf'</span></pre></div>
+<span class="fn">print</span>(text.encode(<span class="st">"ascii"</span>))
+<span class="fn">print</span>(<span class="st">"Café"</span>.encode(<span class="st">"ascii"</span>, errors=<span class="st">"ignore"</span>))</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> When reading from/writing to files, sending data over networks, or interfacing with databases, you need to convert between strings and bytes.
                         <br><br>
@@ -2069,15 +2100,13 @@ text = <span class="st">"Hello"</span>
 text = <span class="st">"Contact: john@example.com or jane@company.co.uk"</span>
 pattern = <span class="st">r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"</span>
 matches = re.findall(pattern, text)
-<span class="fn">print</span>(matches)      <span class="cmt"># ['john@example.com', 'jane@company.co.uk']</span>
+<span class="fn">print</span>(matches)
 
-<span class="cmt"># Substitute</span>
 cleaned = re.sub(<span class="st">r"\d+"</span>, <span class="st">"X"</span>, <span class="st">"My number is 123-456"</span>)
-<span class="fn">print</span>(cleaned)      <span class="cmt"># My number is X-X</span>
+<span class="fn">print</span>(cleaned)
 
-<span class="cmt"># Split with regex</span>
 parts = re.split(<span class="st">r"[;,\s]+"</span>, <span class="st">"apple, banana; cherry"</span>)
-<span class="fn">print</span>(parts)        <span class="cmt"># ['apple', 'banana', 'cherry']</span></pre></div>
+<span class="fn">print</span>(parts)</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Regular expressions are the most powerful tool for text pattern matching — used in validation, parsing, search, and data extraction.
                         <br><br>
@@ -2092,17 +2121,16 @@ parts = re.split(<span class="st">r"[;,\s]+"</span>, <span class="st">"apple, ba
                     <p>Understanding what happens in memory when you manipulate strings — and why some strings are shared, and some aren't.</p>
                     <div class="code-snippet"><pre>a = <span class="st">"hello"</span>
 b = <span class="st">"hello"</span>
-<span class="fn">print</span>(a <span class="kw">is</span> b)          <span class="cmt"># True — short literals are often interned</span>
+<span class="fn">print</span>(a <span class="kw">is</span> b)
 
 c = <span class="st">"".join</span>([<span class="st">"hel"</span>, <span class="st">"lo"</span>])
-<span class="fn">print</span>(a == c, a <span class="kw">is</span> c)  <span class="cmt"># True False — same value, different object</span>
+<span class="fn">print</span>(a == c, a <span class="kw">is</span> c)
 
-<span class="cmt"># Immutability in practice: methods never modify in place</span>
 name = <span class="st">"glenn"</span>
 name.upper()
-<span class="fn">print</span>(name)          <span class="cmt"># still "glenn" — upper() returned a NEW string we discarded</span>
-name = name.upper()  <span class="cmt"># reassign to capture the result</span>
-<span class="fn">print</span>(name)          <span class="cmt"># "GLENN"</span></pre></div>
+<span class="fn">print</span>(name)
+name = name.upper()
+<span class="fn">print</span>(name)</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> This is one of the most common beginner bugs — calling a string method and expecting the original variable to change.
                         <br><br>
@@ -2138,7 +2166,6 @@ Liza,72,C"""</span>
 rows = [line.split(<span class="st">","</span>) <span class="kw">for</span> line <span class="kw">in</span> raw.splitlines()]
 header, *data = rows
 
-<span class="cmt"># Compute column widths dynamically</span>
 widths = [max(len(row[i]) <span class="kw">for</span> row <span class="kw">in</span> rows) <span class="kw">for</span> i <span class="kw">in</span> range(len(header))]
 
 <span class="kw">def</span> <span class="fn">format_row</span>(row):
@@ -2165,15 +2192,13 @@ widths = [max(len(row[i]) <span class="kw">for</span> row <span class="kw">in</s
 
 <span class="kw">def</span> <span class="fn">slugify</span>(title: <span class="cl">str</span>) -&gt; <span class="cl">str</span>:
     slug = title.lower().strip()
-    slug = re.sub(<span class="st">r"[^a-z0-9\s-]"</span>, <span class="st">""</span>, slug)   <span class="cmt"># drop punctuation</span>
-    slug = re.sub(<span class="st">r"[\s]+"</span>, <span class="st">"-"</span>, slug)          <span class="cmt"># spaces to hyphens</span>
-    slug = re.sub(<span class="st">r"-+"</span>, <span class="st">"-"</span>, slug)             <span class="cmt"># collapse repeats</span>
+    slug = re.sub(<span class="st">r"[^a-z0-9\s-]"</span>, <span class="st">""</span>, slug)
+    slug = re.sub(<span class="st">r"[\s]+"</span>, <span class="st">"-"</span>, slug)
+    slug = re.sub(<span class="st">r"-+"</span>, <span class="st">"-"</span>, slug)
     <span class="kw">return</span> slug.strip(<span class="st">"-"</span>)
 
 <span class="fn">print</span>(slugify(<span class="st">"Python Strings: The Complete Guide!"</span>))
-<span class="cmt"># python-strings-the-complete-guide</span>
-<span class="fn">print</span>(slugify(<span class="st">"  Café & Croissants — 2026  "</span>))
-<span class="cmt"># caf-croissants-2026</span></pre></div>
+<span class="fn">print</span>(slugify(<span class="st">"  Café & Croissants — 2026  "</span>))</pre></div>
                     <div class="insight">
                         <strong>🔍 Why this code is used:</strong> Slugs are used everywhere URLs need to be human-readable and safe — blog posts, product pages, documentation anchors.
                         <br><br>
@@ -2255,24 +2280,16 @@ orders = [
                     <p style="margin-top:0.8rem;">Try writing your solution in the interactive runner below. (Paste your code and click Run.)</p>
                     <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
                         <pre><span class="kw">def</span> <span class="fn">clean_string</span>(s: <span class="cl">str</span>) -&gt; <span class="cl">str</span>:
-    <span class="cmt"># Your code here</span>
     <span class="kw">pass</span>
 
-<span class="cmt"># Test it</span>
-<span class="fn">print</span>(clean_string(<span class="st">"  Hello World  "</span>))  <span class="cmt"># Should print "hello_world"</span>
-<span class="fn">print</span>(clean_string(<span class="st">"   "</span>))           <span class="cmt"># Should print "empty"</span></pre>
+<span class="fn">print</span>(clean_string(<span class="st">"  Hello World  "</span>))
+<span class="fn">print</span>(clean_string(<span class="st">"   "</span>))</pre>
                     </div>
                     <button class="show-solution-btn" onclick="toggleSolution('sol1')">Show Solution</button>
                     <div class="exercise-solution" id="sol1">
                         <pre><span class="kw">def</span> <span class="fn">clean_string</span>(s: <span class="cl">str</span>) -&gt; <span class="cl">str</span>:
     cleaned = s.strip().lower().replace(<span class="st">" "</span>, <span class="st">"_"</span>)
-    <span class="kw">return</span> cleaned <span class="kw">if</span> cleaned <span class="kw">else</span> <span class="st">"empty"</span>
-
-<span class="cmt"># Explanation:</span>
-<span class="cmt"># 1. .strip() removes leading/trailing whitespace</span>
-<span class="cmt"># 2. .lower() converts to lowercase</span>
-<span class="cmt"># 3. .replace(" ", "_") replaces spaces with underscores</span>
-<span class="cmt"># 4. The conditional returns "empty" if the cleaned string is empty</span></pre>
+    <span class="kw">return</span> cleaned <span class="kw">if</span> cleaned <span class="kw">else</span> <span class="st">"empty"</span></pre>
                     </div>
                 </div>
 
@@ -2283,24 +2300,16 @@ orders = [
                     <div class="insight">💡 <strong>Hint:</strong> Remove spaces with <code>.replace(" ", "")</code>, convert to lowercase, then compare with its reverse.</div>
                     <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
                         <pre><span class="kw">def</span> <span class="fn">is_palindrome</span>(s: <span class="cl">str</span>) -&gt; <span class="cl">bool</span>:
-    <span class="cmt"># Your code here</span>
     <span class="kw">pass</span>
 
-<span class="cmt"># Test</span>
-<span class="fn">print</span>(is_palindrome(<span class="st">"Race car"</span>))   <span class="cmt"># True</span>
-<span class="fn">print</span>(is_palindrome(<span class="st">"Python"</span>))    <span class="cmt"># False</span></pre>
+<span class="fn">print</span>(is_palindrome(<span class="st">"Race car"</span>))
+<span class="fn">print</span>(is_palindrome(<span class="st">"Python"</span>))</pre>
                     </div>
                     <button class="show-solution-btn" onclick="toggleSolution('sol2')">Show Solution</button>
                     <div class="exercise-solution" id="sol2">
                         <pre><span class="kw">def</span> <span class="fn">is_palindrome</span>(s: <span class="cl">str</span>) -&gt; <span class="cl">bool</span>:
     cleaned = s.replace(<span class="st">" "</span>, <span class="st">""</span>).lower()
-    <span class="kw">return</span> cleaned == cleaned[::-1]
-
-<span class="cmt"># Explanation:</span>
-<span class="cmt"># 1. .replace(" ", "") removes all spaces</span>
-<span class="cmt"># 2. .lower() converts to lowercase for case-insensitive comparison</span>
-<span class="cmt"># 3. cleaned[::-1] reverses the string using slicing</span>
-<span class="cmt"># 4. Compare the cleaned string with its reverse</span></pre>
+    <span class="kw">return</span> cleaned == cleaned[::-1]</pre>
                     </div>
                 </div>
 
@@ -2311,12 +2320,10 @@ orders = [
                     <div class="insight">💡 <strong>Hint:</strong> Use <code>.split("@")</code> and check the length of the resulting list.</div>
                     <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
                         <pre><span class="kw">def</span> <span class="fn">get_domain</span>(email: <span class="cl">str</span>) -&gt; <span class="cl">str</span> <span class="kw">|</span> <span class="kw">None</span>:
-    <span class="cmt"># Your code here</span>
     <span class="kw">pass</span>
 
-<span class="cmt"># Test</span>
-<span class="fn">print</span>(get_domain(<span class="st">"user@example.com"</span>))  <span class="cmt"># "example.com"</span>
-<span class="fn">print</span>(get_domain(<span class="st">"invalid"</span>))         <span class="cmt"># None</span></pre>
+<span class="fn">print</span>(get_domain(<span class="st">"user@example.com"</span>))
+<span class="fn">print</span>(get_domain(<span class="st">"invalid"</span>))</pre>
                     </div>
                     <button class="show-solution-btn" onclick="toggleSolution('sol3')">Show Solution</button>
                     <div class="exercise-solution" id="sol3">
@@ -2324,12 +2331,7 @@ orders = [
     parts = email.split(<span class="st">"@"</span>)
     <span class="kw">if</span> len(parts) == 2 <span class="kw">and</span> parts[0] <span class="kw">and</span> parts[1]:
         <span class="kw">return</span> parts[1]
-    <span class="kw">return</span> <span class="kw">None</span>
-
-<span class="cmt"># Explanation:</span>
-<span class="cmt"># 1. .split("@") splits the email into [local, domain]</span>
-<span class="cmt"># 2. Check that we got exactly 2 parts and both are non-empty</span>
-<span class="cmt"># 3. Return the domain part (index 1) or None if invalid</span></pre>
+    <span class="kw">return</span> <span class="kw">None</span></pre>
                     </div>
                 </div>
 
@@ -2340,26 +2342,16 @@ orders = [
                     <div class="insight">💡 <strong>Hint:</strong> Use <code>.lower()</code> and <code>.count()</code> for each vowel, or loop over characters.</div>
                     <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
                         <pre><span class="kw">def</span> <span class="fn">count_vowels</span>(s: <span class="cl">str</span>) -&gt; <span class="cl">int</span>:
-    <span class="cmt"># Your code here</span>
     <span class="kw">pass</span>
 
-<span class="cmt"># Test</span>
-<span class="fn">print</span>(count_vowels(<span class="st">"Hello World"</span>))  <span class="cmt"># 3</span>
-<span class="fn">print</span>(count_vowels(<span class="st">"Python"</span>))     <span class="cmt"># 1</span></pre>
+<span class="fn">print</span>(count_vowels(<span class="st">"Hello World"</span>))
+<span class="fn">print</span>(count_vowels(<span class="st">"Python"</span>))</pre>
                     </div>
                     <button class="show-solution-btn" onclick="toggleSolution('sol4')">Show Solution</button>
                     <div class="exercise-solution" id="sol4">
                         <pre><span class="kw">def</span> <span class="fn">count_vowels</span>(s: <span class="cl">str</span>) -&gt; <span class="cl">int</span>:
     vowels = <span class="st">"aeiou"</span>
-    <span class="kw">return</span> sum(1 <span class="kw">for</span> ch <span class="kw">in</span> s.lower() <span class="kw">if</span> ch <span class="kw">in</span> vowels)
-
-<span class="cmt"># Alternative with .count():</span>
-<span class="cmt"># return sum(s.lower().count(v) for v in "aeiou")</span>
-
-<span class="cmt"># Explanation:</span>
-<span class="cmt"># 1. Convert to lowercase for case-insensitivity</span>
-<span class="cmt"># 2. Use a generator expression to count characters in the vowel set</span>
-<span class="cmt"># 3. sum() adds up the 1s for each vowel found</span></pre>
+    <span class="kw">return</span> sum(1 <span class="kw">for</span> ch <span class="kw">in</span> s.lower() <span class="kw">if</span> ch <span class="kw">in</span> vowels)</pre>
                     </div>
                 </div>
 
@@ -2370,10 +2362,8 @@ orders = [
                     <div class="insight">💡 <strong>Hint:</strong> Strip punctuation with <code>str.translate()</code> or a simple loop, then <code>.split()</code> and count.</div>
                     <div class="code-snippet" style="background:var(--panel); border-left-color: var(--gold);">
                         <pre><span class="kw">def</span> <span class="fn">word_freq</span>(text: <span class="cl">str</span>) -&gt; <span class="cl">dict</span>:
-    <span class="cmt"># Your code here</span>
     <span class="kw">pass</span>
 
-<span class="cmt"># Test</span>
 <span class="fn">print</span>(word_freq(<span class="st">"The cat sat. The cat ran!"</span>))</pre>
                     </div>
                     <button class="show-solution-btn" onclick="toggleSolution('sol5')">Show Solution</button>
@@ -2385,13 +2375,7 @@ orders = [
     counts = {}
     <span class="kw">for</span> word <span class="kw">in</span> cleaned.split():
         counts[word] = counts.get(word, 0) + 1
-    <span class="kw">return</span> counts
-
-<span class="cmt"># Explanation:</span>
-<span class="cmt"># 1. .lower() normalises case</span>
-<span class="cmt"># 2. .translate() with maketrans("", "", punctuation) removes punctuation efficiently</span>
-<span class="cmt"># 3. .split() breaks the cleaned text into words</span>
-<span class="cmt"># 4. counts.get(word, 0) + 1 tallies each word's frequency</span></pre>
+    <span class="kw">return</span> counts</pre>
                     </div>
                 </div>
 
@@ -2530,6 +2514,16 @@ orders = [
                 </div>
             </div>
         </section>
+
+        <div class="ad-slot page-col ad-slot-bottom">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498660"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
 
     </main>
 
