@@ -125,8 +125,7 @@
         }
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -556,10 +555,42 @@
             }
         }
         .ad-slot {
+            margin: 0;
+            padding: 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
             text-align: center;
-            padding: 1.5rem 0;
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            overflow: hidden;
+        }
+        .ad-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: .55;
+        }
+        .ad-slot .adsbygoogle {
+            display: block;
+            width: 100%;
+            min-height: 90px;
+        }
+        @media(max-width:480px) {
+            .ad-slot {
+                min-height: 100px;
+                padding: .75rem;
+            }
+            .ad-slot .adsbygoogle {
+                min-height: 70px;
+            }
         }
         .card-grid {
             display: flex;
@@ -1316,7 +1347,6 @@
                 opacity: 0.3;
             }
         }
-
         .intro-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -1359,7 +1389,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
         .why-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1387,7 +1416,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
         .sig-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -1431,7 +1459,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
         .outro-box {
             background: radial-gradient(ellipse at 50% 100%, rgba(75, 139, 190, .12) 0%, transparent 70%);
             border: 1px solid var(--border);
@@ -1539,9 +1566,6 @@
 
     <main style="padding-top:56px;">
 
-        <!-- ============================================================ -->
-        <!-- LOCAL SETUP INSTRUCTION BLOCK – VISIBLE AT THE TOP              -->
-        <!-- ============================================================ -->
         <section style="padding:1.5rem 0 0.5rem 0; border-bottom: none;">
             <div class="page-col">
                 <div style="background: rgba(16,185,129,0.08); border: 2px solid var(--green); border-radius: var(--card-r); padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
@@ -1549,11 +1573,11 @@
                         <i class="fas fa-laptop-code"></i> Run This Page Locally – Python Setup Instructions
                     </h3>
                     <p style="font-size: 0.85rem; color: var(--text); line-height: 1.8; margin-bottom: 0.8rem;">
-                        This page is designed as a <strong>reference and learning resource</strong>. 
-                        The <strong>"Run"</strong> button uses <strong>Pyodide</strong> (Python in your browser) 
-                        and can only execute pure Python code. 
-                        <strong style="color: var(--gold);">For the advanced automation examples</strong> 
-                        (Selenium, OpenCV, psutil, watchdog, etc.), you <strong>must run them locally</strong> 
+                        This page is designed as a <strong>reference and learning resource</strong>.
+                        The <strong>"Run"</strong> button uses <strong>Pyodide</strong> (Python in your browser)
+                        and can only execute pure Python code.
+                        <strong style="color: var(--gold);">For the advanced automation examples</strong>
+                        (Selenium, OpenCV, psutil, watchdog, etc.), you <strong>must run them locally</strong>
                         on your own computer.
                     </p>
                     <div style="background: var(--code-bg); border-radius: var(--btn-r); padding: 1rem 1.2rem; margin: 0.8rem 0; border: 1px solid var(--border);">
@@ -1562,17 +1586,17 @@
                         </p>
                         <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #a5d6ff; background: #0a1a24; padding: 0.6rem 0.8rem; border-radius: 4px; overflow-x: auto; margin: 0.2rem 0 0.6rem 0; white-space: pre-wrap; word-break: break-word;">pip install schedule apscheduler requests beautifulsoup4 openpyxl psutil pyautogui selenium opencv-python watchdog</pre>
                         <p style="font-size: 0.7rem; color: var(--muted);">
-                            <i class="fas fa-info-circle" style="color: var(--blue-lt);"></i> 
+                            <i class="fas fa-info-circle" style="color: var(--blue-lt);"></i>
                             Built-in modules (no install needed): <code>os</code>, <code>pathlib</code>, <code>shutil</code>, <code>subprocess</code>, <code>smtplib</code>, <code>time</code>, <code>datetime</code>
                         </p>
                         <p style="font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem;">
-                            <i class="fas fa-info-circle" style="color: var(--blue-lt);"></i> 
+                            <i class="fas fa-info-circle" style="color: var(--blue-lt);"></i>
                             For ADB phone automation: install <a href="https://developer.android.com/studio/releases/platform-tools" target="_blank" style="color: var(--blue-lt);">Android Platform Tools</a>
                         </p>
                     </div>
                     <p style="font-size: 0.8rem; color: var(--muted);">
-                        <i class="fas fa-arrow-right" style="color: var(--gold);"></i> 
-                        <strong>Copy</strong> any code snippet using the <span style="background: rgba(75,139,190,0.2); padding: 0.1rem 0.6rem; border-radius: 4px; font-size: 0.7rem;"><i class="fas fa-copy"></i> Copy</span> button, 
+                        <i class="fas fa-arrow-right" style="color: var(--gold);"></i>
+                        <strong>Copy</strong> any code snippet using the <span style="background: rgba(75,139,190,0.2); padding: 0.1rem 0.6rem; border-radius: 4px; font-size: 0.7rem;"><i class="fas fa-copy"></i> Copy</span> button,
                         paste it into a <code>.py</code> file, and run with <code>python filename.py</code>.
                     </p>
                 </div>
@@ -1642,18 +1666,22 @@
             </div>
         </section>
 
-        <!-- AD SLOT 1 - MIDDLE OF PAGE -->
-        <div class="ad-slot page-col">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-6428799122405621"
-                 data-ad-slot="8844498658"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+        <section id="ad-middle" aria-label="Advertisement" style="padding:1.5rem 0;">
+            <div class="page-col">
+                <div class="ad-slot">
+                    <span class="ad-label">Advertisement</span>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6428799122405621"
+                         data-ad-slot="7847699765"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </section>
 
         <section id="why-learn" aria-labelledby="why-heading">
             <div class="page-col">
@@ -3342,11 +3370,11 @@ def health_check():
 
     alerts = []
     if cpu > thresholds["cpu"]:
-        alerts.append(f"CPU at {cpu}% (threshold: {thresholds['cpu']}%)")
+        alerts.append(f"CPU at {cpu}% (threshold: {thresholds[&#39;cpu&#39;]}%)")
     if mem.percent > thresholds["ram"]:
-        alerts.append(f"RAM at {mem.percent}% (threshold: {thresholds['ram']}%)")
+        alerts.append(f"RAM at {mem.percent}% (threshold: {thresholds[&#39;ram&#39;]}%)")
     if disk.percent > thresholds["disk"]:
-        alerts.append(f"Disk at {disk.percent}% (threshold: {thresholds['disk']}%)")
+        alerts.append(f"Disk at {disk.percent}% (threshold: {thresholds[&#39;disk&#39;]}%)")
 
     print("🖥️ System Health Check")
     print(f"CPU: {cpu}%")
@@ -3683,19 +3711,6 @@ folder_watcher_demo()</pre></div>
             </div>
         </section>
 
-        <!-- AD SLOT 2 - BOTTOM OF PAGE -->
-        <div class="ad-slot page-col">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-6428799122405621"
-                 data-ad-slot="8844498658"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
         <section id="faq-automation" aria-labelledby="faq-heading">
             <div class="page-col">
                 <div class="section-intro">
@@ -3778,6 +3793,23 @@ folder_watcher_demo()</pre></div>
         </section>
 
     </main>
+
+    <section id="ad-bottom" aria-label="Advertisement" style="padding:1.5rem 0; border-top:1px solid var(--border);">
+        <div class="page-col">
+            <div class="ad-slot">
+                <span class="ad-label">Advertisement</span>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </section>
 
     <footer class="page-footer" aria-label="Site footer">
         <div class="page-col">
@@ -3965,8 +3997,6 @@ folder_watcher_demo()</pre></div>
             var copyBottom = document.getElementById('copyLinkBottom');
             if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
             if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
-
-            
 
             function dedent(code) {
                 var lines = code.split('\n');
