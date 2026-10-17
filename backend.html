@@ -116,8 +116,7 @@
         }
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -545,6 +544,44 @@
             .lesson-counter {
                 margin-left: 0;
                 justify-content: center;
+            }
+        }
+        .ad-slot {
+            margin: 0;
+            padding: 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            overflow: hidden;
+        }
+        .ad-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: .55;
+        }
+        .ad-slot .adsbygoogle {
+            display: block;
+            width: 100%;
+            min-height: 90px;
+        }
+        @media(max-width:480px) {
+            .ad-slot {
+                min-height: 100px;
+                padding: .75rem;
+            }
+            .ad-slot .adsbygoogle {
+                min-height: 70px;
             }
         }
         .card-grid {
@@ -2228,6 +2265,23 @@
             </div>
         </section>
 
+        <section id="ad-middle" aria-label="Advertisement" style="padding:1.5rem 0;">
+            <div class="page-col">
+                <div class="ad-slot">
+                    <span class="ad-label">Advertisement</span>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6428799122405621"
+                         data-ad-slot="7847699765"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </section>
+
         <section id="django" aria-labelledby="django-heading">
             <div class="page-col">
                 <div class="section-intro">
@@ -3404,6 +3458,23 @@
         </section>
 
     </main>
+
+    <section id="ad-bottom" aria-label="Advertisement" style="padding:1.5rem 0; border-top:1px solid var(--border);">
+        <div class="page-col">
+            <div class="ad-slot">
+                <span class="ad-label">Advertisement</span>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </section>
 
     <footer class="page-footer" aria-label="Site footer">
         <div class="page-col">
