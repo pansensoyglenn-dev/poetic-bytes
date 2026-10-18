@@ -3,34 +3,129 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title>Robot Factory – Inheritance Project | Poetic Bytes</title>
-    <meta name="description" content="Build a robot hierarchy with Python inheritance: CleaningBot, DeliveryBot, SecurityBot — each extends a base Robot class with specialized run_task(). Live code + output." />
+    <title>Robot Factory: Python Inheritance Project with Live Code | Poetic Bytes</title>
+    <meta name="description" content="Learn Python inheritance by building a Robot Factory: base Robot class + CleaningBot, DeliveryBot, SecurityBot subclasses. Live code runner, exercises, quiz — free tutorial." />
+    <meta name="keywords" content="Python inheritance, Python OOP, Robot Factory Python, super() Python, method overriding, polymorphism Python, base class Python, Python tutorial, learn Python OOP" />
     <meta name="author" content="Glenn Junsay Pansensoy" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href="https://poetic-bytes.vercel.app/robots.html" />
-    <meta property="og:title" content="Robot Factory – Inheritance Project" />
-    <meta property="og:description" content="Learn Python inheritance by building a robot family. Cleaner, Delivery, Security — each overrides run_task() while sharing core logic." />
+    <meta name="theme-color" content="#0B121C" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Robot Factory: Python Inheritance Project with Live Code" />
+    <meta property="og:description" content="Build a robot hierarchy with Python inheritance. Base Robot class with CleaningBot, DeliveryBot, SecurityBot subclasses. Live code runner + exercises." />
     <meta property="og:url" content="https://poetic-bytes.vercel.app/robots.html" />
     <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Robot Factory — Python Inheritance Project by Poetic Bytes" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="article:published_time" content="2026-03-14T00:00:00+00:00" />
+    <meta property="article:modified_time" content="2026-03-14T00:00:00+00:00" />
+    <meta property="article:author" content="Glenn Junsay Pansensoy" />
+    <meta property="article:section" content="Python Programming" />
+    <meta property="article:tag" content="Python" />
+    <meta property="article:tag" content="Inheritance" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Robot Factory – Inheritance Project" />
-    <meta name="twitter:description" content="Build a robot hierarchy with Python inheritance. Live code + output." />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Robot Factory: Python Inheritance Project with Live Code" />
+    <meta name="twitter:description" content="Build a robot hierarchy with Python inheritance. Live code runner, exercises, quiz — free tutorial." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:image:alt" content="Robot Factory — Python Inheritance Project" />
     <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
         {
-            "@context": "https://schema.org",
-            "@type": "TechArticle",
-            "headline": "Robot Factory – Inheritance Project",
-            "description": "Hands-on Python inheritance project: Robot base class with CleaningBot, DeliveryBot, and SecurityBot subclasses. Live code examples with Pyodide.",
-            "author": { "@type": "Organization", "name": "Poetic Bytes" },
-            "datePublished": "2026-03-14"
+          "@type": "TechArticle",
+          "@id": "https://poetic-bytes.vercel.app/robots.html#article",
+          "headline": "Robot Factory: Python Inheritance Project with Live Code",
+          "description": "Hands-on Python inheritance project: base Robot class with CleaningBot, DeliveryBot, and SecurityBot subclasses. Live code examples, exercises, and quiz with Pyodide.",
+          "image": "https://poetic-bytes.vercel.app/og-python-image.png",
+          "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy", "url": "https://www.linkedin.com/in/glenn-pansensoy" },
+          "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app", "logo": { "@type": "ImageObject", "url": "https://poetic-bytes.vercel.app/og-python-image.png" } },
+          "datePublished": "2026-03-14",
+          "dateModified": "2026-03-14",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/robots.html" },
+          "keywords": "Python inheritance, Python OOP, Robot Factory, super() Python, method overriding, polymorphism, base class, abstract method",
+          "articleSection": "Python Programming",
+          "inLanguage": "en-US",
+          "proficiencyLevel": "Beginner",
+          "learningResourceType": "Tutorial",
+          "educationalLevel": "Beginner to Intermediate",
+          "timeRequired": "PT20M",
+          "teaches": [
+            "Python inheritance with a base class and subclasses",
+            "Calling super().__init__() correctly",
+            "Method overriding in Python",
+            "Polymorphism via a shared interface",
+            "The Open/Closed Principle in practice"
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://poetic-bytes.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Python", "item": "https://poetic-bytes.vercel.app/python.html" },
+            { "@type": "ListItem", "position": 3, "name": "Inheritance", "item": "https://poetic-bytes.vercel.app/inheritance.html" },
+            { "@type": "ListItem", "position": 4, "name": "Robot Factory" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What does super().__init__() do in Python?",
+              "acceptedAnswer": { "@type": "Answer", "text": "super().__init__() calls the parent class's __init__ method, initializing all inherited attributes on the current instance. If you forget it in a subclass constructor, inherited attributes like self.name or self.battery will be missing and cause AttributeError." }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does the base Robot class raise NotImplementedError in run_task()?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Raising NotImplementedError forces every subclass to provide its own run_task() implementation. It is a lightweight alternative to abc.abstractmethod and ensures no robot silently inherits a broken task method." }
+            },
+            {
+              "@type": "Question",
+              "name": "When should I use inheritance vs composition in Python?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Use inheritance for true is-a relationships — a CleaningBot is a Robot. Use composition for has-a relationships — a Robot has a BatteryManager. Inheritance shares behavior through a hierarchy; composition delegates behavior to another object, giving you more flexibility." }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the Open/Closed Principle in Python OOP?",
+              "acceptedAnswer": { "@type": "Answer", "text": "The Open/Closed Principle states that classes should be open for extension but closed for modification. In this project, the base Robot class stays unchanged when you add a new ChefBot — you simply create a new subclass. No existing code needs editing." }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I run the Python code directly in my browser?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. The code snippets on this page run in your browser using Pyodide, a WebAssembly build of CPython. No installation is required — click Run to see the output, or Copy to paste the code into your own environment." }
+            }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "Build a Robot Factory in Python using Inheritance",
+          "description": "Create a base Robot class with shared behavior and specialize it with CleaningBot, DeliveryBot, and SecurityBot subclasses.",
+          "totalTime": "PT20M",
+          "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
+          "step": [
+            { "@type": "HowToStep", "name": "Define the base Robot class", "text": "Create a Robot class with __init__ storing name and battery, plus charge(), status(), and a placeholder run_task() that raises NotImplementedError." },
+            { "@type": "HowToStep", "name": "Create the CleaningBot subclass", "text": "Subclass Robot, call super().__init__(name, battery), add a floor_type attribute, and override run_task() with vacuum logic that drains 15% battery per run." },
+            { "@type": "HowToStep", "name": "Create the DeliveryBot subclass", "text": "Subclass Robot, add a destination attribute, and override run_task() with delivery logic that drains 25% battery and requires at least 30% to start." },
+            { "@type": "HowToStep", "name": "Create the SecurityBot subclass", "text": "Subclass Robot, add a patrol_zone attribute, and override run_task() with patrol logic that drains 10% battery and requires at least 10% to start." },
+            { "@type": "HowToStep", "name": "Run and observe polymorphism", "text": "Instantiate all three robots, iterate over them in a list, and call status() and run_task() on each. The same call produces different behavior based on the actual class." }
+          ]
         }
+      ]
+    }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
     <style>
-        /* ===== BASE ===== */
         :root {
             --bg: #0B121C;
             --panel: #0F1C2F;
@@ -86,6 +181,15 @@
         }
         section:last-child {
             border-bottom: none;
+        }
+        section[aria-label="Advertisement"] {
+            background: transparent;
+        }
+        section[aria-label="Advertisement"] .page-col {
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .progress-bar-wrap {
             position: fixed;
@@ -867,8 +971,6 @@
             background: var(--blue);
             border-radius: 3px;
         }
-
-        /* Quiz Styles */
         .quiz-container {
             margin-top: 1.5rem;
         }
@@ -920,8 +1022,6 @@
             border-left: 3px solid var(--red);
             color: var(--red);
         }
-
-        /* Exercise Styles */
         .exercise-container {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -960,8 +1060,6 @@
         .exercise-container .solution-content.show {
             display: block;
         }
-
-        /* Hierarchy Diagram */
         .hierarchy-diagram {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -996,8 +1094,6 @@
             color: var(--muted);
             margin: 0.2rem 0;
         }
-
-        /* Progress Checklist */
         .checklist {
             display: flex;
             flex-direction: column;
@@ -1024,8 +1120,6 @@
             text-decoration: line-through;
             opacity: 0.7;
         }
-
-        /* Learning Objectives */
         .learning-objectives {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -1046,8 +1140,6 @@
         .learning-objectives ul li::marker {
             color: var(--blue);
         }
-
-        /* Comparison Table */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
@@ -1076,8 +1168,6 @@
         .comparison-table .highlight {
             color: var(--blue-lt);
         }
-
-        /* Step-by-step sections */
         .step {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -1115,8 +1205,6 @@
             white-space: pre-wrap;
             word-break: break-word;
         }
-
-        /* Key takeaways */
         .takeaway-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
@@ -1143,7 +1231,6 @@
             color: var(--muted);
             margin-top: 0.2rem;
         }
-
         .editable-code {
             min-height: 100px;
             background: var(--code-bg);
@@ -1165,10 +1252,8 @@
 </head>
 <body>
 
-    <!-- ===== PROGRESS BAR ===== -->
     <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
 
-    <!-- ===== NAVIGATION ===== -->
     <nav class="nav-bar" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
@@ -1188,7 +1273,6 @@
         </div>
     </nav>
 
-    <!-- ===== DRAWER ===== -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
         <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
@@ -1208,7 +1292,6 @@
         </div>
     </div>
 
-    <!-- ===== FLOATING SHARE ===== -->
     <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
         <button class="fs-btn" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
         <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
@@ -1217,10 +1300,8 @@
     </div>
     <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <main>
 
-        <!-- ===== HERO ===== -->
         <section class="hero" aria-label="Robot Factory Inheritance Project">
             <div class="page-col">
                 <div class="section-label" style="margin-bottom:0.4rem;">🧬 Inheritance in Action</div>
@@ -1240,7 +1321,6 @@
             </div>
         </section>
 
-        <!-- ===== LEARNING OBJECTIVES ===== -->
         <section id="objectives">
             <div class="page-col">
                 <div class="section-label">00 — Learning Objectives</div>
@@ -1259,7 +1339,6 @@
             </div>
         </section>
 
-        <!-- ===== THE PROBLEM: DUPLICATION ===== -->
         <section id="problem">
             <div class="page-col">
                 <div class="section-label">01 — The Duplication Problem</div>
@@ -1275,12 +1354,12 @@
         <span class="kw">self</span>.battery = battery
         <span class="kw">self</span>.floor_type = floor_type
     <span class="kw">def</span> <span class="fn">charge</span>(<span class="kw">self</span>): <span class="kw">self</span>.battery = <span class="num">100</span>
-    <span class="kw">def</span> <span class="fn">run_task</span>(<span class="kw">self</span>): <span class="cmt"># vacuum logic</span>
+    <span class="kw">def</span> <span class="fn">run_task</span>(<span class="kw">self</span>):
         <span class="kw">self</span>.battery -= <span class="num">15</span>
         <span class="kw">return</span> <span class="st">f"🧹 Cleaning {self.floor_type}"</span>
 
-<span class="kw">class</span> <span class="cl">DeliveryBot</span>:   <span class="cmt"># Same __init__, same charge, same structure</span>
-<span class="kw">class</span> <span class="cl">SecurityBot</span>:  <span class="cmt"># Same __init__, same charge, same structure</span>
+<span class="kw">class</span> <span class="cl">DeliveryBot</span>:
+<span class="kw">class</span> <span class="cl">SecurityBot</span>:
                     </div>
                     <div class="callout-red">
                         <p><strong>⚠️ The Problem:</strong> The <code>__init__</code>, <code>charge()</code>, and <code>status()</code> logic is duplicated in every class. If you need to change the charging logic, you must update it in three places. If you add a new robot type, you copy-paste again. This is brittle, error-prone, and violates the <strong>DRY</strong> (Don't Repeat Yourself) principle.</p>
@@ -1291,7 +1370,6 @@
                     <p><strong>💡 The Solution:</strong> Use inheritance to <em>extract</em> the shared code into a base class. The subclasses will then <em>inherit</em> the common behavior and only define what makes them unique.</p>
                 </div>
 
-                <!-- Progress Checklist -->
                 <div style="margin-top: 1.5rem;">
                     <h3>📋 Your Learning Progress</h3>
                     <div class="checklist" id="progressChecklist">
@@ -1332,7 +1410,20 @@
             </div>
         </section>
 
-        <!-- ===== EXTRACTING THE BASE CLASS ===== -->
+        <section aria-label="Advertisement">
+            <div class="page-col">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+
         <section id="base">
             <div class="page-col">
                 <div class="section-label">02 — Extracting the Base Class</div>
@@ -1344,17 +1435,17 @@
                     <div class="step-code">
 <span class="kw">class</span> <span class="cl">Robot</span>:
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, battery: <span class="cl">int</span> = <span class="num">100</span>):
-        <span class="kw">self</span>.name = name          <span class="cmt"># Shared state</span>
-        <span class="kw">self</span>.battery = battery    <span class="cmt"># Shared state</span>
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>.battery = battery
 
-    <span class="kw">def</span> <span class="fn">charge</span>(<span class="kw">self</span>) -&gt; <span class="cl">None</span>:   <span class="cmt"># Shared behavior</span>
+    <span class="kw">def</span> <span class="fn">charge</span>(<span class="kw">self</span>) -&gt; <span class="cl">None</span>:
         <span class="kw">self</span>.battery = <span class="num">100</span>
         <span class="fn">print</span>(<span class="st">f"⚡ {self.name} charged to 100%"</span>)
 
-    <span class="kw">def</span> <span class="fn">status</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:     <span class="cmt"># Shared behavior</span>
+    <span class="kw">def</span> <span class="fn">status</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">return</span> <span class="st">f"🤖 {self.name}: battery {self.battery}%"</span>
 
-    <span class="kw">def</span> <span class="fn">run_task</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:   <span class="cmt"># Abstract placeholder</span>
+    <span class="kw">def</span> <span class="fn">run_task</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">raise</span> <span class="cl">NotImplementedError</span>(<span class="st">"Subclasses must implement run_task()"</span>)
                     </div>
                     <div class="callout-yellow">
@@ -1374,7 +1465,6 @@
             </div>
         </section>
 
-        <!-- ===== BUILDING THE HIERARCHY ===== -->
         <section id="hierarchy">
             <div class="page-col">
                 <div class="section-label">03 — Building the Hierarchy</div>
@@ -1390,12 +1480,12 @@
                 <div class="step">
                     <div><span class="step-number">2</span> <h4>The <code>CleaningBot</code> Subclass</h4></div>
                     <div class="step-code">
-<span class="kw">class</span> <span class="cl">CleaningBot</span>(<span class="cl">Robot</span>):      <span class="cmt"># Inherits from Robot</span>
+<span class="kw">class</span> <span class="cl">CleaningBot</span>(<span class="cl">Robot</span>):
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, battery=<span class="num">100</span>, floor_type=<span class="st">"tile"</span>):
-        <span class="kw">super</span>().<span class="fn">__init__</span>(name, battery)   <span class="cmt"># ← Initialize parent first!</span>
-        <span class="kw">self</span>.floor_type = floor_type    <span class="cmt"># ← Add specialized attribute</span>
+        <span class="kw">super</span>().<span class="fn">__init__</span>(name, battery)
+        <span class="kw">self</span>.floor_type = floor_type
 
-    <span class="kw">def</span> <span class="fn">run_task</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:        <span class="cmt"># ← Override with custom logic</span>
+    <span class="kw">def</span> <span class="fn">run_task</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">if</span> <span class="kw">self</span>.battery < <span class="num">20</span>:
             <span class="kw">return</span> <span class="st">f"🧹 {self.name} needs to charge before cleaning {self.floor_type}."</span>
         <span class="kw">self</span>.battery -= <span class="num">15</span>
@@ -1433,7 +1523,6 @@
                     </div>
                 </div>
 
-                <!-- Hierarchy Diagram -->
                 <div class="hierarchy-diagram">
                     <div style="margin-bottom: 0.5rem;">
                         <span class="node base">🤖 Robot (Base)</span>
@@ -1466,7 +1555,6 @@
             </div>
         </section>
 
-        <!-- ===== CODE ===== -->
         <section id="code">
             <div class="page-col">
                 <div class="section-label">04 — Complete Code</div>
@@ -1531,7 +1619,6 @@
         <span class="kw">self</span>.battery -= <span class="num">10</span>
         <span class="kw">return</span> <span class="st">f"🔒 {self.name} is patrolling the {self.patrol_zone}. Battery now {self.battery}%"</span>
 
-<span class="cmt"># --- Demonstration ---</span>
 cleaner = <span class="cl">CleaningBot</span>(<span class="st">"Dusty"</span>, floor_type=<span class="st">"carpet"</span>)
 delivery = <span class="cl">DeliveryBot</span>(<span class="st">"Speedy"</span>, destination=<span class="st">"downtown"</span>)
 security = <span class="cl">SecurityBot</span>(<span class="st">"Guardian"</span>, patrol_zone=<span class="st">"building B"</span>)
@@ -1556,7 +1643,6 @@ cleaner.<span class="fn">charge</span>()
             </div>
         </section>
 
-        <!-- ===== OUTPUT ===== -->
         <section id="output">
             <div class="page-col">
                 <div class="section-label">05 — Expected Output</div>
@@ -1589,14 +1675,12 @@ cleaner.<span class="fn">charge</span>()
             </div>
         </section>
 
-        <!-- ===== INSIGHTS ===== -->
         <section id="insights">
             <div class="page-col">
                 <div class="section-label">06 — Deep Insights</div>
                 <h2>The Core Ideas Illustrated by the Robot Factory</h2>
                 <p>This project is deliberately small so the important ideas stand out clearly. Below is what each part of the design is teaching you.</p>
 
-                <!-- Key Takeaways Grid -->
                 <div class="takeaway-grid">
                     <div class="takeaway-card">
                         <div class="icon">🧬</div>
@@ -1661,7 +1745,7 @@ cleaner.<span class="fn">charge</span>()
                 <div class="insight">
                     <strong>6. Abstract-like Behavior with <code>NotImplementedError</code></strong>
                     <p style="margin-top:.3rem;"><code>def run_task(self) -> str: raise NotImplementedError(...)</code></p>
-                    <p style="font-size:.78rem;">This is a lightweight way to say “every real robot must define its task.” In larger projects you would often use <code>abc.ABC</code> and <code>@abstractmethod</code>, but the principle is the same.</p>
+                    <p style="font-size:.78rem;">This is a lightweight way to say "every real robot must define its task." In larger projects you would often use <code>abc.ABC</code> and <code>@abstractmethod</code>, but the principle is the same.</p>
                 </div>
 
                 <h3 style="margin-top:1.5rem;">Inheritance vs Composition</h3>
@@ -1720,14 +1804,12 @@ cleaner.<span class="fn">charge</span>()
             </div>
         </section>
 
-        <!-- ===== EXERCISES ===== -->
         <section id="exercises">
             <div class="page-col">
                 <div class="section-label">07 — Practice Exercises</div>
                 <h2>Reinforce Your Learning</h2>
                 <p>Try these exercises to solidify your understanding of inheritance. Each one builds on the concepts you've just learned.</p>
 
-                <!-- Exercise 1: Add ChefBot -->
                 <div class="exercise-container">
                     <h4>🧪 Exercise 1: Add a ChefBot</h4>
                     <p>Create a new robot that follows the same contract. A ChefBot should have a <code>specialty</code> attribute and a <code>run_task()</code> that cooks a dish. It should drain <strong>20%</strong> battery per cooking session and require at least <strong>25%</strong> battery to start.</p>
@@ -1756,7 +1838,6 @@ cleaner.<span class="fn">charge</span>()
                     </div>
                 </div>
 
-                <!-- Exercise 2: Fix the Broken Robot -->
                 <div class="exercise-container">
                     <h4>🧪 Exercise 2: Fix the Broken Robot</h4>
                     <p>This code is broken — it will cause an <code>AttributeError</code>. Can you fix it?</p>
@@ -1764,7 +1845,6 @@ cleaner.<span class="fn">charge</span>()
                         <label style="font-size:0.8rem;color:var(--muted);">Fix the bug, then click "Run My Fix" to test:</label>
                         <textarea class="editable-code" id="broken-editor" rows="8">class BrokenBot(Robot):
     def __init__(self, name):
-        # 🚨 BUG: Missing super().__init__()
         self.name = name
 
     def run_task(self):
@@ -1782,11 +1862,10 @@ cleaner.<span class="fn">charge</span>()
                         <pre style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--text);margin:.5rem 0 0;white-space:pre-wrap;">
 <span class="kw">class</span> <span class="cl">FixedBot</span>(<span class="cl">Robot</span>):
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, battery: <span class="cl">int</span> = <span class="num">100</span>):
-        <span class="kw">super</span>().<span class="fn">__init__</span>(name, battery)  <span class="cmt"># ✅ Always call the parent!</span></pre>
+        <span class="kw">super</span>().<span class="fn">__init__</span>(name, battery)</pre>
                     </div>
                 </div>
 
-                <!-- Exercise 3: Predict the Output -->
                 <div class="exercise-container">
                     <h4>🧪 Exercise 3: Predict the Output</h4>
                     <p>What will this code print when run? Try to work it out in your head, then click "Show Result" to check.</p>
@@ -1816,7 +1895,6 @@ Testing... battery now 45%
                     </div>
                 </div>
 
-                <!-- ===== QUIZ ===== -->
                 <div style="margin-top: 2rem;">
                     <h3>📝 Test Your Understanding</h3>
                     <div class="quiz-container">
@@ -1888,7 +1966,7 @@ Testing... battery now 45%
                                 <label><input type="radio" name="q6" value="c"> C) It depends on the relationship (is-a vs has-a)</label>
                                 <label><input type="radio" name="q6" value="d"> D) Neither is ever useful</label>
                             </div>
-                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q6', 'c', 'Use inheritance for "is-a" relationships and composition for "has-a" relationships. Both have their place.')">Check Answer</button>
+                            <button class="code-btn" style="margin-top:0.5rem;font-size:0.7rem;" onclick="checkQuiz('q6', 'c', 'Use inheritance for is-a relationships and composition for has-a relationships. Both have their place.')">Check Answer</button>
                             <div class="quiz-feedback" id="q6-feedback"></div>
                         </div>
                     </div>
@@ -1896,7 +1974,20 @@ Testing... battery now 45%
             </div>
         </section>
 
-        <!-- ===== MORE PROJECTS ===== -->
+        <section aria-label="Advertisement">
+            <div class="page-col">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+
         <section id="apps">
             <div class="page-col">
                 <div class="section-label">08 — Explore More OOP Projects</div>
@@ -1920,7 +2011,6 @@ Testing... battery now 45%
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="page-footer" aria-label="Site footer">
         <div class="page-col">
             <div class="footer-grid">
@@ -1988,13 +2078,11 @@ Testing... battery now 45%
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
     <script>
         (function() {
             'use strict';
 
-            // --- Progress bar ---
             var pbar = document.getElementById('pbar');
             window.addEventListener('scroll', function() {
                 var h = document.documentElement;
@@ -2002,7 +2090,6 @@ Testing... battery now 45%
                 if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
             }, { passive: true });
 
-            // --- Drawer ---
             var menuToggle = document.getElementById('menuToggle');
             var drawer = document.getElementById('mobileDrawer');
             var overlay = document.getElementById('drawerOverlay');
@@ -2034,7 +2121,6 @@ Testing... battery now 45%
                 });
             });
 
-            // --- Back to top ---
             var backTop = document.getElementById('backTop');
             window.addEventListener('scroll', function() {
                 backTop.classList.toggle('visible', window.scrollY > 500);
@@ -2043,7 +2129,6 @@ Testing... battery now 45%
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // --- Copy link ---
             var copyLinkBtn = document.getElementById('copyLinkBtn');
             if (copyLinkBtn) {
                 copyLinkBtn.addEventListener('click', function() {
@@ -2074,9 +2159,8 @@ Testing... battery now 45%
                 setTimeout(function() { copyLinkBtn.innerHTML = orig; }, 2000);
             }
 
-            // --- Share buttons ---
             var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/robots.html');
-            var PAGE_TITLE = encodeURIComponent('Robot Factory – Inheritance Project | Poetic Bytes');
+            var PAGE_TITLE = encodeURIComponent('Robot Factory: Python Inheritance Project with Live Code');
 
             function shareTo(url) {
                 window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
@@ -2088,7 +2172,6 @@ Testing... battery now 45%
             document.getElementById('shareLi').addEventListener('click', function(e) { e.preventDefault();
                 shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
 
-            // --- Quiz Functions ---
             window.checkQuiz = function(questionName, correctAnswer, feedbackText) {
                 var selected = document.querySelector('input[name="' + questionName + '"]:checked');
                 var feedback = document.getElementById(questionName + '-feedback');
@@ -2106,7 +2189,6 @@ Testing... battery now 45%
                 }
             };
 
-            // --- Exercise Functions ---
             window.toggleSolution = function(id) {
                 var content = document.getElementById(id);
                 content.classList.toggle('show');
@@ -2118,7 +2200,6 @@ Testing... battery now 45%
                 }
             };
 
-            // --- Progress Checklist ---
             document.querySelectorAll('#progressChecklist input[type="checkbox"]').forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
                     var item = this.parentElement;
@@ -2145,7 +2226,6 @@ Testing... battery now 45%
                 }
             });
 
-            // --- Pyodide Code Runner ---
             var pyodideReady = false;
             var pyodideInstance = null;
 
@@ -2231,7 +2311,6 @@ Testing... battery now 45%
                 setTimeout(function() { btn.innerHTML = original; }, 2000);
             }
 
-            // --- Main Code Runner ---
             var codePre = document.querySelector('#codeBlock pre');
             var fullCode = codePre ? codePre.textContent : '';
 
@@ -2252,7 +2331,6 @@ Testing... battery now 45%
             }
             if (resetBtn && codePre) {
                 resetBtn.addEventListener('click', function() {
-                    // Reload the original code
                     var original = document.querySelector('#codeBlock pre').textContent;
                     document.querySelector('#codeBlock pre').textContent = original;
                     fullCode = original;
@@ -2261,7 +2339,6 @@ Testing... battery now 45%
                 });
             }
 
-            // --- ChefBot Exercise Runner ---
             var chefbotEditor = document.getElementById('chefbot-editor');
             var chefbotRunBtn = document.getElementById('chefbotRunBtn');
             var chefbotCopyBtn = document.getElementById('chefbotCopyBtn');
@@ -2297,7 +2374,7 @@ try:
     chef = ChefBot("Gordon", specialty="risotto")
     print(chef.status())
     print(chef.run_task())
-    print(chef.run_task())  # second run shows battery drain
+    print(chef.run_task())
     chef.charge()
     print(chef.status())
     print(chef.run_task())
@@ -2314,7 +2391,6 @@ except Exception as e:
                 });
             }
 
-            // --- Broken Bot Exercise Runner ---
             var brokenEditor = document.getElementById('broken-editor');
             var brokenRunBtn = document.getElementById('brokenRunBtn');
             var brokenCopyBtn = document.getElementById('brokenCopyBtn');
@@ -2323,7 +2399,6 @@ except Exception as e:
 
             var brokenDefaultCode = `class BrokenBot(Robot):
     def __init__(self, name):
-        # 🚨 BUG: Missing super().__init__()
         self.name = name
 
     def run_task(self):
