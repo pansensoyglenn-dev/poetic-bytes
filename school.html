@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>School System · Python Inheritance Deep Dive | Poetic Bytes</title>
-    <meta name="description" content="Master Python inheritance through a school system: Person → Student, Teacher, Staff. Deep explanations, MRO, Liskov Substitution Principle, composition vs inheritance, and live code." />
-    <meta name="keywords" content="Python inheritance, OOP, polymorphism, method resolution order, super(), Liskov Substitution Principle, composition vs inheritance, school system, Python tutorial" />
+    <meta name="description" content="Master Python inheritance through a school system: Person → Student, Teacher, Staff. Learn MRO, super(), Liskov Substitution Principle, composition vs inheritance, and run live code." />
+    <meta name="keywords" content="Python inheritance, OOP, polymorphism, method resolution order, super(), Liskov Substitution Principle, composition vs inheritance, school system, Python tutorial, Python OOP" />
     <meta name="author" content="Glenn Junsay Pansensoy" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#0B121C" />
+    <meta name="google-adsense-account" content="ca-pub-6428799122405621" />
     <link rel="canonical" href="https://poetic-bytes.vercel.app/school.html" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Poetic Bytes" />
@@ -24,6 +27,10 @@
     <meta name="twitter:title" content="School System · Python Inheritance Deep Dive" />
     <meta name="twitter:description" content="Deep exploration of Python inheritance using a school system. Learn MRO, super(), Liskov Substitution Principle, composition vs inheritance, and run live code." />
     <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
+         crossorigin="anonymous"></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -31,16 +38,48 @@
             "headline": "School System – Python Inheritance Deep Dive",
             "description": "Deep exploration of Python inheritance using a school system. Learn MRO, super(), Liskov Substitution Principle, composition vs inheritance, and run live code.",
             "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy", "url": "https://twitter.com/PoeticGlenn" },
-            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app", "logo": { "@type": "ImageObject", "url": "https://poetic-bytes.vercel.app/og-python-image.png" } },
             "datePublished": "2026-08-03",
-            "dateModified": "2026-08-03",
+            "dateModified": "2026-10-18",
             "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/school.html" },
             "keywords": "Python inheritance, OOP, polymorphism, MRO, super(), Liskov Substitution Principle, composition, school system",
             "articleSection": "Python Programming",
             "inLanguage": "en-US",
             "learningResourceType": "Tutorial",
             "educationalLevel": "Intermediate",
-            "wordCount": "4600+"
+            "wordCount": "4600+",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://poetic-bytes.vercel.app/og-python-image.png",
+                "width": 1200,
+                "height": 630
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Poetic Bytes",
+            "url": "https://poetic-bytes.vercel.app",
+            "logo": "https://poetic-bytes.vercel.app/og-python-image.png",
+            "sameAs": [
+                "https://twitter.com/PoeticGlenn",
+                "https://www.linkedin.com/in/glenn-pansensoy",
+                "https://www.facebook.com/Glenn-Pansensoy",
+                "https://pansensoyglenn-dev.github.io/poetic-bytes"
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://poetic-bytes.vercel.app/" },
+                { "@type": "ListItem", "position": 2, "name": "OOP Series", "item": "https://poetic-bytes.vercel.app/inheritance.html" },
+                { "@type": "ListItem", "position": 3, "name": "School System Deep Dive", "item": "https://poetic-bytes.vercel.app/school.html" }
+            ]
         }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1172,14 +1211,34 @@
         .comparison-table .good { color: var(--green); }
         .comparison-table .bad { color: var(--red); }
         .comparison-table .neutral { color: var(--gold); }
+
+        /* ===== AD SLOTS ===== */
+        section#ad-middle, section#ad-bottom {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            background: rgba(75,139,190,.02);
+        }
+        section#ad-middle ins, section#ad-bottom ins {
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        section#ad-middle::before, section#ad-bottom::before {
+            content: 'ADVERTISEMENT';
+            display: block;
+            text-align: center;
+            font-size: .55rem;
+            letter-spacing: .18em;
+            color: var(--muted);
+            opacity: .5;
+            margin-bottom: .6rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== PROGRESS BAR ===== -->
     <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
 
-    <!-- ===== NAV ===== -->
     <nav class="nav-bar" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
@@ -1190,13 +1249,13 @@
                 <li><a href="#playground">Playground</a></li>
                 <li><a href="#exercises">Exercises</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="#series">Series</a></li>
                 <li><a href="inheritance.html">← Guide</a></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- ===== DRAWER ===== -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
         <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
@@ -1208,17 +1267,16 @@
                 <li><button data-href="#playground"><i class="fas fa-play"></i>Playground</button></li>
                 <li><button data-href="#exercises"><i class="fas fa-pencil-alt"></i>Exercises</button></li>
                 <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#series"><i class="fas fa-layer-group"></i>Series</button></li>
                 <li><a href="inheritance.html"><i class="fas fa-arrow-left"></i>Back to Inheritance Guide</a></li>
             </ul>
         </div>
     </div>
 
-    <!-- ===== BACK TO TOP ===== -->
     <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
     <main style="padding-top:56px;">
 
-        <!-- ===== HERO ===== -->
         <section class="hero" aria-label="School System — Inheritance Deep Dive">
             <div class="page-col">
                 <div class="hero-tag"><span style="color:var(--gold);">🏫</span> Inheritance Deep Dive · School System</div>
@@ -1238,7 +1296,6 @@
             </div>
         </section>
 
-        <!-- ===== INTRO ===== -->
         <section id="intro" aria-labelledby="h-intro">
             <div class="page-col">
                 <div class="section-label">01 — Beyond the Basics</div>
@@ -1316,7 +1373,6 @@
             </div>
         </section>
 
-        <!-- ===== DEEP DIVE ===== -->
         <section id="deep-dive" aria-labelledby="h-deep">
             <div class="page-col">
                 <div class="section-label">02 — The Mechanics of Inheritance</div>
@@ -1575,7 +1631,20 @@ s = <span class="cl">Student</span>(<span class="st">"Alice"</span>, <span class
             </div>
         </section>
 
-        <!-- ===== HIERARCHY ===== -->
+        <section id="ad-middle" aria-label="Advertisement">
+            <div class="page-col">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+
         <section id="hierarchy" aria-labelledby="h-hierarchy">
             <div class="page-col">
                 <div class="section-label">03 — The Code</div>
@@ -1739,7 +1808,6 @@ ms_smith.assign_grade(alice, <span class="num">92.5</span>)
             </div>
         </section>
 
-        <!-- ===== PLAYGROUND ===== -->
         <section id="playground" aria-labelledby="h-playground">
             <div class="page-col">
                 <div class="section-label">04 — Live Playground</div>
@@ -1864,7 +1932,6 @@ people = [
             </div>
         </section>
 
-        <!-- ===== EXERCISES ===== -->
         <section id="exercises" aria-labelledby="h-exercises">
             <div class="page-col">
                 <div class="section-label">05 — Practice Exercises</div>
@@ -2018,7 +2085,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
             </div>
         </section>
 
-        <!-- ===== FAQ ===== -->
         <section id="faq" aria-labelledby="h-faq">
             <div class="page-col">
                 <div class="section-label">06 — Frequently Asked Questions</div>
@@ -2082,7 +2148,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
             </div>
         </section>
 
-        <!-- ===== OOP SERIES ===== -->
         <section id="series" aria-labelledby="h-series">
             <div class="page-col">
                 <div class="section-label">07 — Continue Learning</div>
@@ -2118,7 +2183,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
             </div>
         </section>
 
-        <!-- ===== SUBSCRIBE ===== -->
         <section id="subscribe" aria-labelledby="h-sub" style="padding-top:0">
             <div class="page-col">
                 <div class="section-label">08 — Stay in the Loop</div>
@@ -2148,7 +2212,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
             </div>
         </section>
 
-        <!-- ===== FOLLOW ===== -->
         <section id="follow" aria-labelledby="h-follow" style="padding-top:0">
             <div class="page-col">
                 <div class="section-label">09 — Connect With Us</div>
@@ -2196,7 +2259,20 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
+    <section id="ad-bottom" aria-label="Advertisement">
+        <div class="page-col" style="padding:2rem 1.25rem;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="7847699765"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </section>
+
     <footer class="page-footer" aria-label="Site footer">
         <div class="page-col">
             <div class="footer-grid">
@@ -2264,13 +2340,11 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
     <script>
         (function() {
             'use strict';
 
-            // Progress bar
             var pbar = document.getElementById('pbar');
             window.addEventListener('scroll', function() {
                 var h = document.documentElement;
@@ -2278,7 +2352,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
             }, { passive: true });
 
-            // Drawer
             var menuToggle = document.getElementById('menuToggle');
             var drawer = document.getElementById('mobileDrawer');
             var overlay = document.getElementById('drawerOverlay');
@@ -2310,7 +2383,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 });
             });
 
-            // Back to top
             var backTop = document.getElementById('backTop');
             window.addEventListener('scroll', function() {
                 backTop.classList.toggle('visible', window.scrollY > 500);
@@ -2319,7 +2391,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // FAQ Toggle
             window.toggleFaq = function(el) {
                 var answer = el.nextElementSibling;
                 var toggle = el.querySelector('.faq-toggle');
@@ -2332,7 +2403,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 }
             };
 
-            // Exercise solution toggle
             window.toggleSolution = function(id) {
                 var box = document.getElementById(id);
                 var btn = box.previousElementSibling;
@@ -2345,7 +2415,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 }
             };
 
-            // Follow toggles
             var F_KEY = 'vb_follows_school';
             var follows = {};
             try { follows = JSON.parse(localStorage.getItem(F_KEY) || '{}'); } catch (_) {}
@@ -2389,7 +2458,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
             }
             restoreFollows();
 
-            // Subscribe
             window.selectPlan = function(plan) {
                 document.getElementById('planFree').classList.toggle('active', plan === 'free');
                 document.getElementById('planPro').classList.toggle('active', plan === 'pro');
@@ -2420,7 +2488,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 setTimeout(function() { msg.textContent = ''; }, 5000);
             };
 
-            // --- Pyodide Code Runner ---
             var pyodideReady = false;
             var pyodideInstance = null;
 
@@ -2506,7 +2573,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 setTimeout(function() { btn.innerHTML = original; }, 2000);
             }
 
-            // Hierarchy runner
             var hierarchyCode = document.getElementById('hierarchyCode').querySelector('pre').textContent;
             document.getElementById('copyHierarchy').addEventListener('click', function() {
                 copyCode(this, hierarchyCode);
@@ -2515,7 +2581,6 @@ school.<span class="fn">add_person</span>(<span class="cl">Teacher</span>(<span 
                 runCode(hierarchyCode, document.getElementById('hierarchyOutput'), this);
             });
 
-            // Playground runner
             var playgroundCode = document.getElementById('playgroundCode').querySelector('pre').textContent;
             document.getElementById('copyPlayground').addEventListener('click', function() {
                 copyCode(this, playgroundCode);
