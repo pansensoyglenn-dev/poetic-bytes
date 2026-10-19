@@ -324,6 +324,27 @@
         .ad-label { font-family: 'JetBrains Mono', monospace; font-size: .55rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); opacity: .55; }
         .ad-slot .adsbygoogle { display: block; width: 100%; min-height: 90px; }
 
+        /* Deep-dive teaching blocks */
+        .sub-h { font-size: .8rem; color: var(--blue-lt); margin: 1.4rem 0 .6rem; display: flex; align-items: center; gap: .4rem; }
+        .walk { list-style: none; counter-reset: w; margin: .6rem 0 1rem; }
+        .walk li { counter-increment: w; position: relative; padding: .6rem .8rem .6rem 2.5rem; margin-bottom: .45rem; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; font-size: .76rem; color: var(--muted); line-height: 1.7; }
+        .walk li::before { content: counter(w); position: absolute; left: .65rem; top: .6rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: rgba(75,139,190,.18); color: var(--blue-lt); font-family: 'JetBrains Mono', monospace; font-size: .65rem; display: flex; align-items: center; justify-content: center; }
+        .walk li strong { color: var(--text); }
+        .out-label { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 1rem; }
+        .out-block { background: #06121a; border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 6px; padding: .8rem 1rem; margin: .4rem 0 1rem; font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: #4ade80; white-space: pre-wrap; line-height: 1.6; overflow-x: auto; }
+        .mistake, .tryit { padding: .6rem 1rem; margin: .6rem 0; border-radius: 4px; }
+        .mistake { border-left: 3px solid var(--red); background: rgba(239,68,68,.06); }
+        .tryit { border-left: 3px solid var(--purple); background: rgba(192,132,252,.06); }
+        .mistake p, .tryit p { margin: 0; font-size: .76rem; }
+        .mistake strong { color: #f87171; } .tryit strong { color: var(--purple); }
+        .tryit ul { margin: .4rem 0 0 1.1rem; font-size: .76rem; color: var(--muted); line-height: 1.7; }
+        details.sol { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; margin-top: .8rem; }
+        details.sol summary { cursor: pointer; padding: .7rem 1rem; font-size: .76rem; font-weight: 700; color: var(--gold); min-height: var(--btn-h); display: flex; align-items: center; }
+        details.sol[open] summary { border-bottom: 1px solid var(--border); }
+        details.sol .sol-body { padding: 1rem; }
+        .ex-head { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-bottom: .5rem; }
+        .ex-level { font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 100px; background: rgba(16,185,129,.15); color: var(--green); }
+        .ex-level.mid { background: rgba(245,158,11,.15); color: var(--amber); }
         ::-webkit-scrollbar { width: 5px; height: 5px; } ::-webkit-scrollbar-track { background: var(--border); } ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
         @media(max-width:768px) { .floating-share { right: 14px; bottom: 76px; gap: 8px; } .fs-btn { width: 42px; height: 42px; font-size: 1rem; } .fs-btn .tooltip { display: none; } }
         @media(max-width:480px) {
@@ -344,6 +365,7 @@
                 <li><a href="#intro">Intro</a></li>
                 <li><a href="#architecture">Architecture</a></li>
                 <li><a href="#build">Build</a></li>
+                <li><a href="#exercises">Exercises</a></li>
                 <li><a href="#demo">Live Demo</a></li>
                 <li><a href="#patterns">Patterns</a></li>
                 <li><a href="#best-practices">Best Practices</a></li>
@@ -362,8 +384,10 @@
         <div class="drawer-body">
             <ul>
                 <li><button data-href="#intro"><i class="fas fa-book-open"></i>Introduction</button></li>
+                <li><button data-href="#concepts"><i class="fas fa-lightbulb"></i>Key Concepts</button></li>
                 <li><button data-href="#architecture"><i class="fas fa-sitemap"></i>Architecture</button></li>
                 <li><button data-href="#build"><i class="fas fa-code"></i>Build It</button></li>
+                <li><button data-href="#exercises"><i class="fas fa-dumbbell"></i>Exercises</button></li>
                 <li><button data-href="#demo"><i class="fas fa-play-circle"></i>Live Demo</button></li>
                 <li><button data-href="#patterns"><i class="fas fa-puzzle-piece"></i>Patterns</button></li>
                 <li><button data-href="#best-practices"><i class="fas fa-check-circle"></i>Best Practices</button></li>
@@ -383,8 +407,10 @@
         <div class="toc-header"><span>📚 Jump to</span><button id="tocCloseBtn" aria-label="Close"><i class="fas fa-times"></i></button></div>
         <div class="toc-body">
             <a href="#intro">📖 Introduction</a>
+            <a href="#concepts">💡 Key Concepts</a>
             <a href="#architecture">🏗️ Architecture</a>
             <a href="#build">⚙️ Build It</a>
+            <a href="#exercises">🏋️ Exercises</a>
             <a href="#demo">▶️ Live Demo</a>
             <a href="#patterns">🧩 Patterns</a>
             <a href="#best-practices">✅ Best Practices</a>
@@ -426,7 +452,7 @@
                 </p>
                 <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;">
                     <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📅 October 19, 2026</span>
-                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 20 min read</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 40 min read</span>
                     <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🎓 Intermediate</span>
                     <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🐍 Python 3.11+</span>
                 </div>
@@ -460,7 +486,8 @@
                         working course player.
                     </p>
                     <div class="desc-meta">
-                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 4 live code examples</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 live code examples with full walkthroughs</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 6 hands-on exercises with solutions</span>
                         <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Interactive course player</span>
                         <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 5 knowledge-check questions</span>
                         <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Best practices &amp; cheat sheet</span>
@@ -476,9 +503,117 @@
             </div>
         </section>
 
+        <section id="concepts" aria-labelledby="h-concepts">
+            <div class="page-col">
+                <div class="section-label">02 — Concepts First</div>
+                <h2 id="h-concepts">Key Ideas Before the Code</h2>
+                <div style="margin-top:1rem;">
+                    <p>This project uses a handful of terms again and again. Skim this glossary now, and come back whenever a word in the walkthroughs feels unfamiliar.</p>
+
+                    <div class="oop-block">
+                        <h3>Glossary</h3>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Term</th><th>Plain-English meaning</th><th>Where you'll see it</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Abstraction</td><td>Focusing on <em>what</em> something does and hiding <em>how</em>.</td><td>The whole <code>Content</code> design</td></tr>
+                                    <tr><td>Abstract base class (ABC)</td><td>A class meant to be inherited from, never instantiated directly.</td><td><code>Content</code>, <code>CompletionPolicy</code></td></tr>
+                                    <tr><td>Abstract method</td><td>A method with a name and signature but no real body; every concrete subclass must provide one.</td><td><code>render</code>, <code>is_complete</code></td></tr>
+                                    <tr><td>Concrete class</td><td>A class with no abstract members left, so it can be instantiated.</td><td><code>Video</code>, <code>Quiz</code>, <code>Article</code></td></tr>
+                                    <tr><td>Contract / interface</td><td>The set of promises an object makes to its callers.</td><td>The three members of <code>Content</code></td></tr>
+                                    <tr><td>Polymorphism</td><td>The same call behaves differently depending on the object receiving it.</td><td><code>lesson.render()</code></td></tr>
+                                    <tr><td>Dynamic dispatch</td><td>Python picks which method to run by looking at the object's real type at runtime.</td><td><code>l.is_complete(...)</code> in <code>Course</code></td></tr>
+                                    <tr><td>Template Method</td><td>A base-class method with a fixed skeleton that calls abstract steps.</td><td><code>label()</code></td></tr>
+                                    <tr><td>Factory</td><td>Code that builds the right object from data.</td><td><code>Content.from_dict()</code></td></tr>
+                                    <tr><td>Registry</td><td>A lookup table from names to classes.</td><td><code>Content.registry</code></td></tr>
+                                    <tr><td>Strategy</td><td>Swappable behavior behind a shared interface.</td><td><code>CompletionPolicy</code></td></tr>
+                                    <tr><td>Metaclass</td><td>The "class of a class" — what builds class objects. <code>ABCMeta</code> is the one that tracks abstract methods.</td><td>Behind <code>ABC</code></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>A 30-Second Experiment: Watch Abstractness Disappear</h3>
+                        <p>This tiny program uses shapes instead of lessons so you can focus on <em>one</em> mechanism: Python's list of still-unimplemented methods. We inherit twice and print that list at each stage.</p>
+                        <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        ...
+
+    @abstractmethod
+    def name(self):
+        ...
+
+print(type(Shape))
+print(sorted(Shape.__abstractmethods__))
+
+class Square(Shape):
+    def __init__(self, side):
+        self.side = side
+
+    def area(self):
+        return self.side ** 2
+
+print(sorted(Square.__abstractmethods__))
+try:
+    Square(3)
+except TypeError as err:
+    print("TypeError:", err)
+
+class FullSquare(Square):
+    def name(self):
+        return "square"
+
+print(sorted(FullSquare.__abstractmethods__))
+sq = FullSquare(3)
+print(sq.name(), sq.area())</pre></div>
+                        <span class="out-label">Expected output</span>
+                        <div class="out-block">&lt;class 'abc.ABCMeta'&gt;
+['area', 'name']
+['name']
+TypeError: Can't instantiate abstract class Square without an implementation for abstract method 'name'
+[]
+square 9</div>
+                        <div class="insight" style="margin-top:1rem;">
+                            <strong>📝 How to read this</strong>
+                            <ol style="margin-top:.6rem;padding-left:1.2rem;display:flex;flex-direction:column;gap:.55rem;">
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>type(Shape)</code></strong> prints <code>ABCMeta</code>: inheriting from <code>ABC</code> changed which machinery builds the class.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>Shape</code> owes two methods</strong> (<code>area</code>, <code>name</code>). <code>Square</code> pays one of the two debts, so one remains.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>Square(3)</code> fails</strong> because one debt remains. The check happens at instantiation, not when <code>Square</code> was defined — the class definition itself was accepted.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>FullSquare</code> pays the last debt</strong>, the set becomes empty, and instantiation works. Abstractness is just "is this list empty?"</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Error Message Decoder</h3>
+                        <p>You will meet these errors while experimenting. Each one points at a specific design mistake.</p>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Message</th><th>What it means</th><th>Fix</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>TypeError: Can't instantiate abstract class X…</code></td><td>The class still has unimplemented abstract methods (they're listed in the message).</td><td>Implement every method named.</td></tr>
+                                    <tr><td><code>AttributeError: 'X' object has no attribute 'title'</code></td><td>The parent <code>__init__</code> never ran.</td><td>Call <code>super().__init__(...)</code> first.</td></tr>
+                                    <tr><td><code>KeyError: 'watched_pct'</code></td><td>You used <code>dict[key]</code> on a key nobody recorded yet.</td><td>Use <code>.get(key, default)</code>.</td></tr>
+                                    <tr><td><code>ValueError: Unknown lesson type</code></td><td>The type string isn't in the registry.</td><td>Check the spelling, or make sure the class's module was imported.</td></tr>
+                                    <tr><td><code>ZeroDivisionError</code></td><td>A percentage was computed over zero items.</td><td>Guard the empty case.</td></tr>
+                                    <tr><td>Output shows <code>&lt;bound method …&gt;</code></td><td>You forgot <code>@property</code> on an override.</td><td>Add the decorator.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="callout-green"><p><strong>How to study the four programs:</strong> (1) read the code once without running it; (2) predict the output; (3) press <strong>Run</strong> and compare; (4) read the deep dive; (5) do the "Try it yourself" experiments. Predicting before running is what turns reading into learning.</p></div>
+                </div>
+            </div>
+        </section>
+
         <section id="architecture" aria-labelledby="h-arch">
             <div class="page-col">
-                <div class="section-label">02 — Design</div>
+                <div class="section-label">03 — Design</div>
                 <h2 id="h-arch">The Architecture</h2>
                 <div style="margin-top:1rem;">
                     <div class="oop-block">
@@ -518,7 +653,7 @@
 
         <section id="build" aria-labelledby="h-build">
             <div class="page-col">
-                <div class="section-label">03 — Build It</div>
+                <div class="section-label">04 — Build It</div>
                 <h2 id="h-build">Step-by-Step Implementation</h2>
                 <div style="margin-top:1rem;">
 
@@ -619,6 +754,64 @@ for item in lessons:
                     </div>
 
                     <div class="oop-block">
+                        <h3>🔍 Step 1 Deep Dive — How Python Enforces the Contract</h3>
+                        <p>Before reading the code line by line, learn <em>when</em> Python checks things. There are two separate moments, and mixing them up is the most common source of confusion with abstract classes.</p>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Moment</th><th>What Python does</th><th>Result here</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Defining <code>class Content(ABC)</code></td><td>The metaclass <code>ABCMeta</code> scans the class body, collects every member marked abstract, and stores their names in <code>Content.__abstractmethods__</code>.</td><td>No error. Defining an abstract class is always allowed. The set holds <code>kind</code>, <code>render</code>, <code>is_complete</code>.</td></tr>
+                                    <tr><td>Defining <code>class Video(Content)</code></td><td>Repeats the scan: every inherited abstract name is looked up on the new class. If <code>Video</code> supplies a real (non-abstract) version, that name is crossed off.</td><td><code>Video.__abstractmethods__</code> is empty, so <code>Video</code> is <em>concrete</em>.</td></tr>
+                                    <tr><td>Calling <code>Video(...)</code></td><td><code>object.__new__</code> checks whether <code>__abstractmethods__</code> is empty. If it is not, it raises before <code>__init__</code> runs.</td><td>The instance is created normally.</td></tr>
+                                    <tr><td>Calling <code>Content("Nope", 1)</code></td><td>Same check, but the set still has three names.</td><td><code>TypeError</code> — and <code>__init__</code> never ran.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="callout"><p><strong>Key idea:</strong> enforcement happens at <em>instantiation</em>, not at class definition. A half-finished subclass can sit in your code for weeks without complaint — until someone tries to create an object from it.</p></div>
+
+                        <h4 class="sub-h">📖 Line-by-line walkthrough</h4>
+                        <ol class="walk">
+                            <li><strong><code>from abc import ABC, abstractmethod</code></strong> — <code>ABC</code> is a ready-made base class whose metaclass is <code>ABCMeta</code>. <code>abstractmethod</code> is the decorator that flags a method as "must be overridden".</li>
+                            <li><strong><code>class Content(ABC):</code></strong> — inheriting from <code>ABC</code> is what switches on the abstract-class machinery. Without it, <code>@abstractmethod</code> does nothing at all.</li>
+                            <li><strong><code>__init__(self, title, minutes)</code></strong> — shared state lives here once. Every lesson has a title and a duration, so subclasses reuse this through <code>super().__init__(...)</code> instead of copying it.</li>
+                            <li><strong><code>@property</code> above <code>@abstractmethod</code> on <code>kind</code></strong> — this declares an abstract <em>read-only attribute</em>. Callers write <code>item.kind</code> with no parentheses. The body is <code>...</code> (Ellipsis), a placeholder meaning "intentionally empty". Decorators apply bottom-up: <code>abstractmethod</code> first, then <code>property</code> wraps the result.</li>
+                            <li><strong>Abstract <code>render()</code> and <code>is_complete(progress)</code></strong> — the names and parameters are the contract. Python only checks that a method with that <em>name</em> exists; it does not verify the parameters match. Keeping signatures consistent is your discipline, which is why type hints and tests matter.</li>
+                            <li><strong><code>label()</code> (concrete)</strong> — a normal method that every subclass inherits. Inside it, <code>self.kind</code> is looked up at runtime on the real object, so a <code>Video</code> prints <code>[Video]</code> and a <code>Quiz</code> prints <code>[Quiz]</code>. This is the Template Method idea: fixed skeleton in the base, variable details in subclasses.</li>
+                            <li><strong><code>class Video(Content)</code> and <code>super().__init__(title, minutes)</code></strong> — <code>Video</code> needs an extra <code>url</code>, so it has its own <code>__init__</code>. It must call the parent's first, otherwise <code>self.title</code> and <code>self.minutes</code> are never set.</li>
+                            <li><strong><code>kind</code> returns a constant</strong> — because it is a property with no setter, <code>video.kind = "X"</code> raises <code>AttributeError</code>. The lesson's type cannot be changed by accident.</li>
+                            <li><strong><code>progress.get("watched_pct", 0) &gt;= 90</code></strong> — <code>.get(key, default)</code> returns <code>0</code> when nothing has been recorded yet. Writing <code>progress["watched_pct"]</code> would crash with <code>KeyError</code> for a brand-new learner.</li>
+                            <li><strong><code>pass_mark=0.7</code> in <code>Quiz</code></strong> — a fraction from 0 to 1. The score stored in progress must use the same scale (0.8 means 80%). Mixing 0.8 with 80 is a classic unit bug.</li>
+                            <li><strong><code>try: Content("Nope", 1)</code></strong> — a live proof that the class is abstract. We catch the <code>TypeError</code> and print it so you can read the message Python gives.</li>
+                            <li><strong>The final <code>for</code> loop</strong> — it calls <code>label()</code> and <code>render()</code> on three different types with identical code. No <code>if</code>, no <code>isinstance</code>. That is polymorphism.</li>
+                        </ol>
+
+                        <span class="out-label">Expected output</span>
+                        <div class="out-block">Blocked: Can't instantiate abstract class Content without an implementation for abstract methods 'is_complete', 'kind', 'render'
+[Video] Welcome (6 min)
+    ▶ Streaming welcome.mp4
+[Article] Why Interfaces Matter (8 min)
+    📄 Showing 1200 words
+[Quiz] Checkpoint (5 min)
+    ❓ Asking 3 questions</div>
+                        <p style="font-size:.72rem;">The first line's wording depends on your Python version (older versions say "with abstract methods is_complete, kind, render"). The method names are listed alphabetically, not in the order you wrote them.</p>
+
+                        <h4 class="sub-h">⚠️ Common mistakes</h4>
+                        <div class="mistake"><p><strong>Forgetting <code>super().__init__(...)</code>.</strong> The object is created without error, then <code>label()</code> fails with <code>AttributeError: 'Video' object has no attribute 'title'</code>. The error appears far from the cause.</p></div>
+                        <div class="mistake"><p><strong>Defining <code>kind</code> as a plain method in a subclass.</strong> Python accepts this silently (a normal method satisfies the abstract name), but <code>self.kind</code> becomes a bound method, and <code>label()</code> prints something like <code>&lt;bound method Video.kind ...&gt;</code>. Always repeat <code>@property</code> when overriding a property.</p></div>
+                        <div class="mistake"><p><strong>Assuming Python checks signatures.</strong> A subclass can define <code>render(self, extra)</code> and pass the abstract check; the mismatch only explodes when the engine calls <code>render()</code> with no arguments.</p></div>
+
+                        <h4 class="sub-h">🧪 Try it yourself</h4>
+                        <div class="tryit"><p><strong>Copy the program into your editor (or the <a href="code-runner.html" style="color:var(--purple);">Code Runner</a>) and change one thing at a time:</strong></p>
+                            <ul>
+                                <li>Delete <code>render</code> from <code>Quiz</code> and create a <code>Quiz</code>. Read the error — which method does it name?</li>
+                                <li>Swap the order of <code>@property</code> and <code>@abstractmethod</code> on <code>kind</code>. What happens, and at which moment (class definition or instantiation)?</li>
+                                <li>Remove <code>@property</code> from <code>Video.kind</code>. Run the loop and look at the first label.</li>
+                                <li>Print <code>Video.__abstractmethods__</code> and <code>Content.__abstractmethods__</code> to see the sets from the table above.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
                         <h3>Step 2 — The Course Engine</h3>
                         <p>The <code>Course</code> class stores lessons and learner progress. Notice that it never checks a lesson's type.</p>
                         <div class="code-snippet"><pre>from abc import ABC, abstractmethod
@@ -680,6 +873,61 @@ print(f"Progress: {course.percent_complete()}%")</pre></div>
                                 <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Why <code>add()</code> returns <code>self</code>:</strong> it allows fluent chaining when building a course.</li>
                                 <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Contribution to output:</strong> the video (95%) and quiz (0.8) pass their rules; the article (60%) does not. The result is <code>Progress: 67%</code>.</li>
                             </ol>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>🔍 Step 2 Deep Dive — Following One Call Through the Engine</h3>
+                        <p>The best way to understand polymorphism is to follow a single call and watch where Python chooses the code to run. Here is everything that happens when we call <code>course.percent_complete()</code>.</p>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>#</th><th>What runs</th><th>What Python decides</th></tr></thead>
+                                <tbody>
+                                    <tr><td>1</td><td><code>percent_complete()</code> calls <code>self.status()</code></td><td>Ordinary method call on <code>Course</code>.</td></tr>
+                                    <tr><td>2</td><td><code>status()</code> loops over <code>self._lessons</code></td><td>Lessons come back in the order they were added.</td></tr>
+                                    <tr><td>3</td><td>For "Welcome": <code>self._progress.get("Welcome", {})</code></td><td>Finds <code>{"watched_pct": 95}</code>.</td></tr>
+                                    <tr><td>4</td><td><code>l.is_complete(...)</code> with <code>l</code> being a <code>Video</code></td><td><strong>Dynamic dispatch:</strong> Python looks at the <em>actual type</em> of <code>l</code>, finds <code>Video.is_complete</code>, runs it: <code>95 &gt;= 90</code> → <code>True</code>.</td></tr>
+                                    <tr><td>5</td><td>Same expression, <code>l</code> now an <code>Article</code></td><td>Python picks <code>Article.is_complete</code>: <code>60 &gt;= 100</code> → <code>False</code>.</td></tr>
+                                    <tr><td>6</td><td>Same expression, <code>l</code> now a <code>Quiz</code></td><td>Python picks <code>Quiz.is_complete</code>: <code>0.8 &gt;= 0.7</code> → <code>True</code>.</td></tr>
+                                    <tr><td>7</td><td><code>sum(1 for _, ok in ... if ok)</code></td><td>Counts the <code>True</code> results: <code>2</code>.</td></tr>
+                                    <tr><td>8</td><td><code>round(100 * 2 / 3)</code></td><td><code>66.67</code> rounds to <code>67</code>.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="callout-green"><p><strong>The same line of code (step 4/5/6) ran three different functions.</strong> The engine wrote <code>l.is_complete(...)</code> once; the objects decided what that means. That is the whole payoff of the abstraction.</p></div>
+
+                        <h4 class="sub-h">📖 Line-by-line walkthrough</h4>
+                        <ol class="walk">
+                            <li><strong>The compact <code>Content</code> at the top</strong> — this example repeats a trimmed contract so it runs on its own. It keeps only <code>title</code> and <code>is_complete</code>, because those are the only parts <code>Course</code> needs. In a real project you would <code>import</code> the full class from one module.</li>
+                            <li><strong>Three tiny subclasses</strong> — each holds only its completion rule. They inherit <code>__init__</code> from <code>Content</code>, so <code>Video("Welcome")</code> works without writing a constructor.</li>
+                            <li><strong><code>self._lessons = []</code> and <code>self._progress = {}</code></strong> — the leading underscore is a convention meaning "internal; use the methods, not these attributes". Lessons are stored in a list because order matters; progress is a dict keyed by lesson title for quick lookup.</li>
+                            <li><strong><code>add(self, lesson: Content)</code></strong> — the type hint says "anything that is a <code>Content</code>". It documents the dependency on the <em>abstraction</em>. Returning <code>self</code> lets you chain: <code>course.add(a).add(b).add(c)</code>.</li>
+                            <li><strong><code>record(self, title, **data)</code></strong> — <code>**data</code> collects keyword arguments into a dict, so <code>record("Welcome", watched_pct=95)</code> gives <code>data = {"watched_pct": 95}</code>. <code>setdefault(title, {})</code> returns the existing dict for that title or creates an empty one, and <code>.update(data)</code> merges the new values in.</li>
+                            <li><strong><code>status()</code> list comprehension</strong> — builds <code>(title, done)</code> tuples. Notice the engine never asks <em>what kind</em> of lesson it has. There is no <code>isinstance</code> anywhere.</li>
+                            <li><strong><code>percent_complete()</code></strong> — <code>for _, ok in self.status()</code> unpacks each tuple and ignores the title with <code>_</code>. <code>sum(1 for ... if ok)</code> counts the finished lessons.</li>
+                            <li><strong>The fluent <code>course.add(...).add(...).add(...)</code></strong> — builds the course in one expression, thanks to <code>return self</code>.</li>
+                            <li><strong>Three <code>record</code> calls</strong> — simulate a learner: watched 95% of the video, scrolled 60% of the article, scored 80% on the quiz.</li>
+                            <li><strong>The printing loop</strong> — shows <code>✓</code> for done and <code>·</code> for not done using a conditional expression: <code>"✓" if ok else "·"</code>.</li>
+                        </ol>
+
+                        <span class="out-label">Expected output</span>
+                        <div class="out-block">✓ Welcome
+· Interfaces
+✓ Checkpoint
+Progress: 67%</div>
+
+                        <h4 class="sub-h">⚠️ Common mistakes and design weak spots</h4>
+                        <div class="mistake"><p><strong>Empty course → crash.</strong> <code>percent_complete()</code> divides by <code>len(self._lessons)</code>. With no lessons that is a <code>ZeroDivisionError</code>. Guard it: return <code>0</code> when the list is empty.</p></div>
+                        <div class="mistake"><p><strong>Titles as keys.</strong> Two lessons both called "Introduction" would share one progress record. Real systems give each lesson a unique id and key progress by that.</p></div>
+                        <div class="mistake"><p><strong>Progress can go backwards.</strong> <code>record("Welcome", watched_pct=40)</code> after 95 overwrites the value and un-completes the lesson. The live demo below avoids this with <code>Math.max</code>. Decide deliberately whether progress should ever decrease.</p></div>
+
+                        <h4 class="sub-h">🧪 Try it yourself</h4>
+                        <div class="tryit"><p><strong>Experiments:</strong></p>
+                            <ul>
+                                <li>Add a fourth lesson but never call <code>record</code> for it. Which results does <code>status()</code> show, and why doesn't it crash?</li>
+                                <li>Change the quiz score to <code>80</code> instead of <code>0.8</code>. It still "passes" — why is that a bug in disguise?</li>
+                                <li>Replace <code>.get("watched_pct", 0)</code> with <code>["watched_pct"]</code> in <code>Video</code> and run it on an unrecorded lesson. Read the <code>KeyError</code>.</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -751,6 +999,58 @@ except ValueError as err:
                     </div>
 
                     <div class="oop-block">
+                        <h3>🔍 Step 3 Deep Dive — Self-Registering Classes</h3>
+                        <p>This step uses two features that look magical until you see the timeline: <code>__init_subclass__</code> and class methods. Here is what happens as Python reads the file from top to bottom.</p>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Python reaches…</th><th>What happens</th><th><code>Content.registry</code> afterwards</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>class Content(ABC)</code></td><td>The class is created. <code>__init_subclass__</code> is <em>not</em> called for the class that defines it, only for its children.</td><td><code>{}</code></td></tr>
+                                    <tr><td><code>class Video(Content)</code></td><td>After <code>Video</code> is created, Python calls <code>Content.__init_subclass__(Video)</code>. The hook stores <code>"video"</code> → <code>Video</code>.</td><td><code>{'video': Video}</code></td></tr>
+                                    <tr><td><code>class CodeExercise(Content)</code></td><td>Same hook runs again with the new class.</td><td><code>{'video': Video, 'codeexercise': CodeExercise}</code></td></tr>
+                                    <tr><td><code>Content.from_dict({...})</code></td><td>Looks the type string up in the registry and calls the class it finds.</td><td>Unchanged.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="callout"><p><strong>Why this matters:</strong> registration is a <em>side effect of defining the class</em>. You never write <code>registry["codeexercise"] = CodeExercise</code> by hand, so you cannot forget it.</p></div>
+
+                        <h4 class="sub-h">📖 Line-by-line walkthrough</h4>
+                        <ol class="walk">
+                            <li><strong><code>registry = {}</code> inside <code>Content</code></strong> — a <em>class attribute</em>: one dict shared by <code>Content</code> and every subclass. That sharing is exactly what we want here, because all subclasses must write into the same table.</li>
+                            <li><strong><code>def __init_subclass__(cls, **kwargs)</code></strong> — a special hook Python calls every time someone subclasses <code>Content</code>. <code>cls</code> is the <em>new subclass</em> (for example <code>Video</code>), not <code>Content</code>. It is an implicit class method, so no decorator is needed.</li>
+                            <li><strong><code>super().__init_subclass__(**kwargs)</code></strong> — passes any extra arguments up the inheritance chain. It is good manners (cooperative inheritance): if another base class also uses this hook, it still works.</li>
+                            <li><strong><code>Content.registry[cls.__name__.lower()] = cls</code></strong> — <code>cls.__name__</code> is the text <code>"Video"</code>; <code>.lower()</code> makes it <code>"video"</code>. We store the <em>class itself</em> (not an instance) as the value, because classes are ordinary objects you can keep in a dict and call later.</li>
+                            <li><strong>Abstract <code>render</code> and <code>is_complete</code></strong> — the contract is unchanged. The registry adds a way to <em>find</em> classes; it does not replace the contract.</li>
+                            <li><strong><code>@classmethod def from_dict(cls, data)</code></strong> — an alternative constructor. A class method receives the class as its first argument, so it can be called as <code>Content.from_dict(...)</code> without creating an instance first.</li>
+                            <li><strong><code>if kind not in cls.registry: raise ValueError(...)</code></strong> — fail loudly with a clear message. Returning <code>None</code> instead would let a bad lesson slip into a course and cause a confusing error much later.</li>
+                            <li><strong><code>return cls.registry[kind](data["title"])</code></strong> — read it in two halves: <code>cls.registry[kind]</code> fetches a class; <code>(data["title"])</code> calls it like any constructor. Two pairs of brackets, two different jobs.</li>
+                            <li><strong><code>CodeExercise.is_complete</code></strong> — uses <code>progress.get("tests_total", -1)</code>. The default of <code>-1</code> can never equal a real count of passed tests, so a lesson with no recorded results is never accidentally "complete" (<code>0 == 0</code> would be a bug).</li>
+                            <li><strong>The <code>catalog</code> list of dicts</strong> — stands in for data loaded from JSON or a database. Only strings, no Python classes, so storage stays independent of code.</li>
+                            <li><strong>The final <code>try/except</code></strong> — shows the failure path: an unknown type produces a readable <code>ValueError</code>.</li>
+                        </ol>
+
+                        <span class="out-label">Expected output</span>
+                        <div class="out-block">Video → ▶ Streaming video
+CodeExercise → 💻 Opening code editor
+True
+Error: Unknown lesson type: hologram</div>
+
+                        <h4 class="sub-h">⚠️ Common mistakes</h4>
+                        <div class="mistake"><p><strong>The class was never imported.</strong> Registration happens when the class statement <em>runs</em>. If <code>CodeExercise</code> lives in a module nobody imports, it is not in the registry and <code>from_dict</code> reports "Unknown lesson type". This is the number-one real-world bug with registries.</p></div>
+                        <div class="mistake"><p><strong>Type strings drift from class names.</strong> Here <code>"codeexercise"</code> is simply the lowercase class name — awkward. Many projects register an explicit short name instead (see Exercise 5's idea in the practice section).</p></div>
+                        <div class="mistake"><p><strong>Registering abstract intermediates.</strong> If you add <code>class MediaContent(Content)</code> as a half-finished helper, it is registered too. Asking for it raises the abstract <code>TypeError</code>. Skip classes that still have abstract methods if that matters to you.</p></div>
+
+                        <h4 class="sub-h">🧪 Try it yourself</h4>
+                        <div class="tryit"><p><strong>Experiments:</strong></p>
+                            <ul>
+                                <li>Add an <code>Article</code> class below <code>CodeExercise</code> and print <code>Content.registry</code>. Did you have to change <code>from_dict</code>?</li>
+                                <li>Add <code>print("registered", cls.__name__)</code> inside <code>__init_subclass__</code> and watch the messages appear as the classes are defined, before any lesson is created.</li>
+                                <li>Delete <code>is_complete</code> from <code>CodeExercise</code> and call <code>from_dict</code>. Which exception do you get, and from which line?</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
                         <h3>Step 4 — Certificates via the Strategy Pattern</h3>
                         <p>Different courses award certificates differently. Rather than hard-coding one rule, abstract it behind a <code>CompletionPolicy</code>.</p>
                         <div class="code-snippet"><pre>from abc import ABC, abstractmethod
@@ -808,13 +1108,372 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
                         </div>
                     </div>
 
+                    <div class="oop-block">
+                        <h3>🔍 Step 4 Deep Dive — The Strategy Pattern, Role by Role</h3>
+                        <p>Strategy has three participants. Naming them makes the pattern easy to spot in other codebases.</p>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Role</th><th>In this code</th><th>Job</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Strategy interface</td><td><code>CompletionPolicy</code></td><td>Declares <em>what</em> a rule must offer: a <code>name</code> and <code>earns_certificate(results)</code>.</td></tr>
+                                    <tr><td>Concrete strategies</td><td><code>AllLessons</code>, <code>Threshold</code>, <code>MustPassQuizzes</code></td><td>Each implements the rule differently.</td></tr>
+                                    <tr><td>Context (the user of a strategy)</td><td>The <code>for policy in [...]</code> loop</td><td>Holds a policy and calls it. It does not know which rule it got. In a real app this would be a <code>CertificateService</code>.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="callout-yellow"><p><strong>Without Strategy</strong> you would write one function full of <code>if course.rule == "all": ... elif course.rule == "threshold": ...</code>. Every new rule edits that function and risks breaking the old ones. With Strategy, a new rule is a new class and the old code stays untouched.</p></div>
+
+                        <h4 class="sub-h">📖 Line-by-line walkthrough</h4>
+                        <ol class="walk">
+                            <li><strong><code>CompletionPolicy</code> with an abstract <code>name</code> property</strong> — lets any policy describe itself, which is handy for dashboards and logs ("Why didn't I get my certificate?").</li>
+                            <li><strong><code>earns_certificate(self, results)</code></strong> — the policy receives a simple dict of <code>{title: finished?}</code>, not the lesson objects. Keeping the input small makes strategies trivial to test and keeps them independent from <code>Content</code>.</li>
+                            <li><strong><code>AllLessons</code>: <code>all(results.values())</code></strong> — <code>all()</code> returns <code>True</code> only if every item is true, and it stops at the first <code>False</code>, so it is also efficient.</li>
+                            <li><strong><code>Threshold.__init__(self, percent)</code></strong> — strategies can carry settings. <code>Threshold(60)</code> and <code>Threshold(80)</code> are two different rules created from one class.</li>
+                            <li><strong><code>sum(results.values())</code></strong> — in Python <code>True</code> equals <code>1</code> and <code>False</code> equals <code>0</code>, so summing booleans counts the trues. Then <code>100 * done / len(results)</code> uses true division and gives <code>66.666…</code> for 2 of 3.</li>
+                            <li><strong><code>f"Finish at least {self.percent}%"</code></strong> — the <code>name</code> is built from configuration, so each <code>Threshold</code> describes itself accurately.</li>
+                            <li><strong><code>MustPassQuizzes</code>: the generator expression</strong> — <code>ok for title, ok in results.items() if title.startswith("Quiz:")</code> keeps only quiz entries and yields their results; <code>all(...)</code> then requires every one to be true. It relies on a title prefix, a weakness discussed below.</li>
+                            <li><strong>The <code>results</code> dict</strong> — in a real system you would build this from <code>course.status()</code> in Step 2.</li>
+                            <li><strong><code>for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]</code></strong> — a list holding three different classes. They are interchangeable because all share the interface — the same reason a <code>Course</code> can hold three lesson types.</li>
+                            <li><strong><code>f"{policy.name:&lt;24} {verdict}"</code></strong> — the <code>:&lt;24</code> format spec left-aligns the name inside 24 characters so the verdicts line up in a column.</li>
+                        </ol>
+
+                        <span class="out-label">Expected output</span>
+                        <div class="out-block">Finish every lesson      ✗ Not yet
+Finish at least 60%      🎓 Certificate
+Pass every quiz          🎓 Certificate</div>
+                        <p style="font-size:.72rem;">Same learner, same results, three different outcomes — only the strategy changed.</p>
+
+                        <h4 class="sub-h">⚠️ Common mistakes and design weak spots</h4>
+                        <div class="mistake"><p><strong>Vacuous truth.</strong> <code>all([])</code> is <code>True</code>. If a course has no quizzes, <code>MustPassQuizzes</code> hands out a certificate to everyone. Decide what "no quizzes" should mean and handle it explicitly.</p></div>
+                        <div class="mistake"><p><strong>Empty results.</strong> <code>Threshold</code> divides by <code>len(results)</code>, so an empty dict raises <code>ZeroDivisionError</code>.</p></div>
+                        <div class="mistake"><p><strong>Strings as a type system.</strong> Detecting quizzes by <code>"Quiz:"</code> in a title is fragile: rename a lesson and the rule silently breaks. A sturdier design passes the lesson's <code>kind</code> (from Step 1) along with each result. Exercise 4 below pushes you toward this.</p></div>
+
+                        <h4 class="sub-h">🧪 Try it yourself</h4>
+                        <div class="tryit"><p><strong>Experiments:</strong></p>
+                            <ul>
+                                <li>Before running, predict the verdict for <code>Threshold(80)</code>. Then run it and check your arithmetic.</li>
+                                <li>Flip the article result to <code>True</code>. Which verdicts change?</li>
+                                <li>Pass an empty dict to each policy and note which one crashes and which one "passes".</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" aria-labelledby="h-exercises">
+            <div class="page-col">
+                <div class="section-label">05 — Practice</div>
+                <h2 id="h-exercises">Hands-On Exercises</h2>
+                <div style="margin-top:1rem;">
+                    <p>Reading code teaches recognition; writing it teaches understanding. Try each exercise on your own first — use your editor or the <a href="code-runner.html" style="color:var(--blue-lt);">Code Runner</a> — and only then open the solution. Every solution can be run right here.</p>
+
+                    <div class="oop-block">
+                        <div class="ex-head"><h3 style="margin:0;">Exercise 1 — Add an Assignment lesson</h3><span class="ex-level">Warm-up</span></div>
+                        <p><strong>Task:</strong> create <code>Assignment(title, max_points)</code> that extends <code>Content</code>. Its <code>kind</code> is <code>"Assignment"</code>, <code>render()</code> returns a message mentioning the points, and it is complete only when the progress dict contains <code>submitted: True</code>.</p>
+                        <div class="callout"><p><strong>Hint:</strong> copy the structure of <code>Video</code>. Remember <code>super().__init__</code> for the title, and use <code>.get</code> so an empty progress dict does not crash.</p></div>
+                        <details class="sol">
+                            <summary>Show solution &amp; explanation</summary>
+                            <div class="sol-body">
+                                <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class Content(ABC):
+    def __init__(self, title):
+        self.title = title
+
+    @property
+    @abstractmethod
+    def kind(self) -> str:
+        ...
+
+    @abstractmethod
+    def render(self) -> str:
+        ...
+
+    @abstractmethod
+    def is_complete(self, progress: dict) -> bool:
+        ...
+
+class Assignment(Content):
+    def __init__(self, title, max_points):
+        super().__init__(title)
+        self.max_points = max_points
+
+    @property
+    def kind(self):
+        return "Assignment"
+
+    def render(self):
+        return f"📝 Submit your work ({self.max_points} points)"
+
+    def is_complete(self, progress):
+        return progress.get("submitted", False) is True
+
+task = Assignment("Build a Shape ABC", 20)
+print(task.kind, "|", task.render())
+print(task.is_complete({}))
+print(task.is_complete({"submitted": True}))</pre></div>
+                                <span class="out-label">Expected output</span>
+                                <div class="out-block">Assignment | 📝 Submit your work (20 points)
+False
+True</div>
+                                <p>Notice what you did <em>not</em> touch: no engine code, no other lesson. That is the Open/Closed Principle in practice. <code>is True</code> (instead of plain truthiness) prevents a stray value like <code>"no"</code> from counting as submitted.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="oop-block">
+                        <div class="ex-head"><h3 style="margin:0;">Exercise 2 — Which lesson is next?</h3><span class="ex-level">Easy</span></div>
+                        <p><strong>Task:</strong> add <code>next_lesson()</code> to <code>Course</code>. It returns the title of the first lesson that is not yet complete, or <code>None</code> when everything is done.</p>
+                        <div class="callout"><p><strong>Hint:</strong> loop through <code>self._lessons</code> in order and reuse <code>is_complete</code> — do not check lesson types.</p></div>
+                        <details class="sol">
+                            <summary>Show solution &amp; explanation</summary>
+                            <div class="sol-body">
+                                <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class Content(ABC):
+    def __init__(self, title):
+        self.title = title
+
+    @abstractmethod
+    def is_complete(self, progress: dict) -> bool:
+        ...
+
+class Video(Content):
+    def is_complete(self, progress):
+        return progress.get("watched_pct", 0) >= 90
+
+class Course:
+    def __init__(self):
+        self._lessons = []
+        self._progress = {}
+
+    def add(self, lesson):
+        self._lessons.append(lesson)
+        return self
+
+    def record(self, title, **data):
+        self._progress.setdefault(title, {}).update(data)
+
+    def next_lesson(self):
+        for lesson in self._lessons:
+            if not lesson.is_complete(self._progress.get(lesson.title, {})):
+                return lesson.title
+        return None
+
+course = Course().add(Video("One")).add(Video("Two")).add(Video("Three"))
+course.record("One", watched_pct=100)
+print(course.next_lesson())
+course.record("Two", watched_pct=95)
+course.record("Three", watched_pct=92)
+print(course.next_lesson())</pre></div>
+                                <span class="out-label">Expected output</span>
+                                <div class="out-block">Two
+None</div>
+                                <p>The loop returns on the first incomplete lesson, so order is respected. Falling off the end of the loop means every lesson passed, and we return <code>None</code> explicitly so the intent is visible.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="oop-block">
+                        <div class="ex-head"><h3 style="margin:0;">Exercise 3 — Test the engine with a fake</h3><span class="ex-level mid">Medium</span></div>
+                        <p><strong>Task:</strong> write a <code>FakeContent</code> subclass whose completion is just a stored <code>True</code>/<code>False</code>, then use <code>assert</code> to test a <code>percent_complete</code> function — including the empty-course case — without any videos or browsers.</p>
+                        <div class="callout"><p><strong>Hint:</strong> a fake is a tiny, boring implementation of the contract. Its simplicity is what makes tests fast and reliable.</p></div>
+                        <details class="sol">
+                            <summary>Show solution &amp; explanation</summary>
+                            <div class="sol-body">
+                                <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class Content(ABC):
+    def __init__(self, title):
+        self.title = title
+
+    @abstractmethod
+    def is_complete(self, progress: dict) -> bool:
+        ...
+
+class FakeContent(Content):
+    def __init__(self, title, done):
+        super().__init__(title)
+        self.done = done
+
+    def is_complete(self, progress):
+        return self.done
+
+def percent_complete(lessons):
+    if not lessons:
+        return 0
+    done = sum(1 for lesson in lessons if lesson.is_complete({}))
+    return round(100 * done / len(lessons))
+
+assert percent_complete([]) == 0
+assert percent_complete([FakeContent("a", True), FakeContent("b", False)]) == 50
+assert percent_complete([FakeContent("a", True)] * 3) == 100
+print("All tests passed")</pre></div>
+                                <span class="out-label">Expected output</span>
+                                <div class="out-block">All tests passed</div>
+                                <p>This is a major reason abstraction pays off: because the engine depends on the <em>interface</em>, you can substitute a fake and test the engine's logic in isolation. The empty-list guard also fixes the <code>ZeroDivisionError</code> noted in Step 2.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="oop-block">
+                        <div class="ex-head"><h3 style="margin:0;">Exercise 4 — A weighted certificate policy</h3><span class="ex-level mid">Medium</span></div>
+                        <p><strong>Task:</strong> write <code>WeightedPolicy(percent, quiz_weight=2)</code> as a new <code>CompletionPolicy</code>. Quizzes count <code>quiz_weight</code> times; other lessons count once. A certificate is earned when the weighted percentage reaches <code>percent</code>. For the sample results, weights are 1 + 1 + 2 = 4 and the learner earned 3.</p>
+                        <div class="callout"><p><strong>Hint:</strong> accumulate <code>total</code> and <code>earned</code> in a loop. Handle an empty dict. Stretch goal: think about how to avoid the <code>"Quiz:"</code> title-prefix trick (for example, by passing each lesson's kind with its result).</p></div>
+                        <details class="sol">
+                            <summary>Show solution &amp; explanation</summary>
+                            <div class="sol-body">
+                                <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class CompletionPolicy(ABC):
+    @abstractmethod
+    def earns_certificate(self, results: dict) -> bool:
+        ...
+
+class WeightedPolicy(CompletionPolicy):
+    def __init__(self, percent, quiz_weight=2):
+        self.percent = percent
+        self.quiz_weight = quiz_weight
+
+    def earns_certificate(self, results):
+        if not results:
+            return False
+        total = earned = 0
+        for title, ok in results.items():
+            weight = self.quiz_weight if title.startswith("Quiz:") else 1
+            total += weight
+            if ok:
+                earned += weight
+        return 100 * earned / total >= self.percent
+
+results = {"Video: Welcome": True, "Article: Interfaces": False, "Quiz: Checkpoint": True}
+print(WeightedPolicy(70).earns_certificate(results))
+print(WeightedPolicy(80).earns_certificate(results))</pre></div>
+                                <span class="out-label">Expected output</span>
+                                <div class="out-block">True
+False</div>
+                                <p>The learner earned 3 of 4 weighted points = 75%. That passes a 70% bar and misses an 80% bar. The new strategy slotted in without changing any existing policy — and it returns <code>False</code> for empty input instead of crashing.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="oop-block">
+                        <div class="ex-head"><h3 style="margin:0;">Exercise 5 — Explicit registry names</h3><span class="ex-level mid">Medium</span></div>
+                        <p><strong>Task:</strong> improve the Step 3 registry so a subclass can choose its own type name: <code>class CodeExercise(Content, type_name="code")</code>. When no name is given, fall back to the lowercase class name.</p>
+                        <div class="callout"><p><strong>Hint:</strong> class definitions can take keyword arguments, and Python forwards them to <code>__init_subclass__</code>. Add a <code>type_name=None</code> parameter there.</p></div>
+                        <details class="sol">
+                            <summary>Show solution &amp; explanation</summary>
+                            <div class="sol-body">
+                                <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class Content(ABC):
+    registry = {}
+
+    def __init__(self, title):
+        self.title = title
+
+    def __init_subclass__(cls, type_name=None, **kwargs):
+        super().__init_subclass__(**kwargs)
+        Content.registry[type_name or cls.__name__.lower()] = cls
+
+    @abstractmethod
+    def render(self) -> str:
+        ...
+
+class Video(Content):
+    def render(self):
+        return "▶ video"
+
+class CodeExercise(Content, type_name="code"):
+    def render(self):
+        return "💻 editor"
+
+print(sorted(Content.registry))
+print(Content.registry["code"]("Hello").render())</pre></div>
+                                <span class="out-label">Expected output</span>
+                                <div class="out-block">['code', 'video']
+💻 editor</div>
+                                <p>Now your stored data can say <code>"type": "code"</code> while your class keeps a descriptive Python name. Renaming the class no longer breaks saved courses, because the stable public name is chosen explicitly.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="oop-block">
+                        <div class="ex-head"><h3 style="margin:0;">Exercise 6 — Debug the broken lesson</h3><span class="ex-level mid">Medium</span></div>
+                        <p><strong>Task:</strong> the program below is broken. Run it, read the error, fix it, run again, and keep going until <code>render()</code> works. Then add a working <code>is_complete</code> that does not crash when the learner has no recorded progress. Expect more than one bug.</p>
+                        <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class Lesson(ABC):
+    def __init__(self, title):
+        self.title = title
+
+    @abstractmethod
+    def render(self):
+        ...
+
+    @abstractmethod
+    def is_complete(self, progress):
+        ...
+
+class Reading(Lesson):
+    def __init__(self, title, pages):
+        self.pages = pages
+
+    def render(self):
+        return f"Reading {self.title}: {self.pages} pages"
+
+lesson = Reading("Intro", 12)
+print(lesson.render())</pre></div>
+                        <div class="callout"><p><strong>Hint:</strong> the first error names the missing method. After fixing it, a second error appears that mentions <code>title</code> — ask yourself who is supposed to set it.</p></div>
+                        <details class="sol">
+                            <summary>Show solution &amp; explanation</summary>
+                            <div class="sol-body">
+                                <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class Lesson(ABC):
+    def __init__(self, title):
+        self.title = title
+
+    @abstractmethod
+    def render(self):
+        ...
+
+    @abstractmethod
+    def is_complete(self, progress):
+        ...
+
+class Reading(Lesson):
+    def __init__(self, title, pages):
+        super().__init__(title)
+        self.pages = pages
+
+    def render(self):
+        return f"Reading {self.title}: {self.pages} pages"
+
+    def is_complete(self, progress):
+        return progress.get("pages_read", 0) >= self.pages
+
+lesson = Reading("Intro", 12)
+print(lesson.render())
+print(lesson.is_complete({}))
+print(lesson.is_complete({"pages_read": 12}))</pre></div>
+                                <span class="out-label">Expected output</span>
+                                <div class="out-block">Reading Intro: 12 pages
+False
+True</div>
+                                <p><strong>Bug 1:</strong> <code>Reading</code> never implemented <code>is_complete</code>, so it was still abstract and instantiation raised <code>TypeError</code>. <strong>Bug 2:</strong> its <code>__init__</code> skipped <code>super().__init__(title)</code>, so <code>self.title</code> was never set and <code>render()</code> raised <code>AttributeError</code>. <strong>Bug 3 (the trap):</strong> writing <code>progress["pages_read"]</code> would crash with <code>KeyError</code> for a new learner; <code>.get(..., 0)</code> avoids it.</p>
+                            </div>
+                        </details>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="demo" aria-labelledby="h-demo">
             <div class="page-col">
-                <div class="section-label">04 — Live Demo</div>
+                <div class="section-label">06 — Live Demo</div>
                 <h2 id="h-demo">Try the Course Player</h2>
                 <div style="margin-top:1rem;">
                     <p>This player runs the same design in JavaScript: an abstract <code>Content</code> class that throws if you try to instantiate it, with <code>VideoContent</code>, <code>ArticleContent</code>, and <code>QuizContent</code> each implementing <code>render()</code> and <code>isComplete()</code>. The player loop only ever calls those two methods. Progress is saved in your browser.</p>
@@ -859,7 +1518,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="patterns" aria-labelledby="h-patterns">
             <div class="page-col">
-                <div class="section-label">05 — Patterns at Work</div>
+                <div class="section-label">07 — Patterns at Work</div>
                 <h2 id="h-patterns">Design Patterns in This Project</h2>
                 <div style="margin-top:1rem;">
                     <p>Abstraction is the foundation for several classic patterns. This one small project uses four of them.</p>
@@ -877,7 +1536,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="best-practices" aria-labelledby="h-bp">
             <div class="page-col">
-                <div class="section-label">06 — Do's &amp; Don'ts</div>
+                <div class="section-label">08 — Do's &amp; Don'ts</div>
                 <h2 id="h-bp">Best Practices for Platform Abstractions</h2>
                 <div style="margin-top:1rem;">
                     <div class="oop-block">
@@ -895,7 +1554,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="cheatsheet" aria-labelledby="h-cheat" style="padding-top:0">
             <div class="page-col">
-                <div class="section-label">07 — Quick Reference</div>
+                <div class="section-label">09 — Quick Reference</div>
                 <h2 id="h-cheat">Project Cheat Sheet</h2>
                 <div style="margin-top:1rem;">
                     <div class="cheat-grid">
@@ -954,7 +1613,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="quiz" aria-labelledby="h-quiz" style="padding-top:0">
             <div class="page-col">
-                <div class="section-label">08 — Test Yourself</div>
+                <div class="section-label">10 — Test Yourself</div>
                 <h2 id="h-quiz">Quick Knowledge Check</h2>
                 <div style="margin-top:1rem;">
                     <p>Five questions on the ideas behind this project.</p>
@@ -970,7 +1629,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="apps" aria-labelledby="h-apps">
             <div class="page-col">
-                <div class="section-label">09 — More Live Projects</div>
+                <div class="section-label">11 — More Live Projects</div>
                 <h2 id="h-apps">Abstraction in Action — Other Projects</h2>
                 <div style="margin-top:1rem;">
                     <p>Each project applies the same idea — a stable interface with interchangeable implementations — to a different domain.</p>
@@ -992,7 +1651,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="series" aria-labelledby="h-series">
             <div class="page-col">
-                <div class="section-label">10 — Continue Learning</div>
+                <div class="section-label">12 — Continue Learning</div>
                 <h2 id="h-series">Explore the Full OOP Series</h2>
                 <div style="margin-top:1rem;">
                     <p>This project applies <strong>Abstraction</strong> and <strong>Polymorphism</strong> together. Revisit the pillars or move on to the next.</p>
@@ -1008,7 +1667,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="outro" aria-labelledby="h-outro">
             <div class="page-col">
-                <div class="section-label">11 — The Road Ahead</div>
+                <div class="section-label">13 — The Road Ahead</div>
                 <h2 id="h-outro">Wrapping Up</h2>
                 <div style="margin-top:1rem;">
                     <div class="curriculum-desc" style="border-color:var(--gold);">
@@ -1052,7 +1711,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="share" aria-labelledby="h-share" style="padding-top:0">
             <div class="page-col">
-                <div class="section-label">12 — Spread the Knowledge</div>
+                <div class="section-label">14 — Spread the Knowledge</div>
                 <h2 id="h-share">Share This Project</h2>
                 <div class="share-wrap" style="margin-top:1rem;">
                     <h2>Found this useful? Share it.</h2>
@@ -1072,7 +1731,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="subscribe" aria-labelledby="h-sub" style="padding-top:0">
             <div class="page-col">
-                <div class="section-label">13 — Stay in the Loop</div>
+                <div class="section-label">15 — Stay in the Loop</div>
                 <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
                 <div style="margin-top:1rem;">
                     <div class="sub-wrap">
@@ -1101,7 +1760,7 @@ for policy in [AllLessons(), Threshold(60), MustPassQuizzes()]:
 
         <section id="follow" aria-labelledby="h-follow" style="padding-top:0">
             <div class="page-col">
-                <div class="section-label">14 — Connect With Us</div>
+                <div class="section-label">16 — Connect With Us</div>
                 <h2 id="h-follow">Follow Poetic Bytes</h2>
                 <div style="margin-top:1rem;">
                     <p>Stay connected for Python tips, OOP insights, and new project walkthroughs.</p>
