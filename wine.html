@@ -41,10 +41,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
-    <!-- Pyodide for Python in the browser -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
+     crossorigin="anonymous"></script>
     <style>
-        /* ===== BASE ===== */
         :root {
             --bg: #0B121C;
             --panel: #0F1C2F;
@@ -590,7 +590,6 @@
             color: var(--gold);
             font-size: 0.7rem;
         }
-        /* ===== INTERACTIVE TERMINAL ===== */
         .terminal-wrapper {
             background: var(--code-bg);
             border: 1px solid var(--border);
@@ -1514,14 +1513,21 @@
                 transform: rotate(360deg);
             }
         }
+        #ad-banner-1 {
+            padding: 2rem 0;
+            background: var(--panel);
+            border-bottom: 1px solid var(--border);
+        }
+        #ad-banner-1 ins.adsbygoogle {
+            display: block;
+            min-height: 90px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== PROGRESS BAR ===== -->
     <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
 
-    <!-- ===== NAVIGATION ===== -->
     <nav class="nav-bar" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
@@ -1540,7 +1546,6 @@
         </div>
     </nav>
 
-    <!-- ===== DRAWER ===== -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
         <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
@@ -1561,7 +1566,6 @@
         </div>
     </div>
 
-    <!-- ===== FLOATING SHARE ===== -->
     <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
         <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
         <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
@@ -1571,10 +1575,8 @@
     </div>
     <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <main style="padding-top:56px;">
 
-        <!-- ===== HERO ===== -->
         <section class="hero" aria-label="VINO PH Python Wine Shop Program">
             <div class="page-col">
                 <div class="hero-tag"><span class="live-dot"></span> Python · Beginner · VINO PH · Interactive</div>
@@ -1606,7 +1608,6 @@
             </div>
         </section>
 
-        <!-- ===== INTRODUCTION ===== -->
         <section id="intro" aria-labelledby="h-intro">
             <div class="page-col">
                 <div class="section-label">01 — The Program</div>
@@ -1673,7 +1674,6 @@
             </div>
         </section>
 
-        <!-- ===== INTERACTIVE RUNNER ===== -->
         <section id="interactive" aria-labelledby="h-interactive">
             <div class="page-col">
                 <div class="section-label">⚡ Live Runner</div>
@@ -1724,7 +1724,20 @@
             </div>
         </section>
 
-        <!-- ===== SOURCE CODE ===== -->
+        <section id="ad-banner-1" aria-label="Sponsored">
+            <div class="page-col">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+
         <section id="source" aria-labelledby="h-source">
             <div class="page-col">
                 <div class="section-label">02 — Full Source</div>
@@ -1821,14 +1834,12 @@
             </div>
         </section>
 
-        <!-- ===== WALKTHROUGH ===== -->
         <section id="walkthrough" aria-labelledby="h-walk">
             <div class="page-col">
                 <div class="section-label">03 — Logical Breakdown</div>
                 <h2 id="h-walk">Step-by-Step Explanation</h2>
                 <div style="margin-top:1rem;">
 
-                    <!-- Step 1 -->
                     <div class="step-card open">
                         <div class="step-header" onclick="toggleStep(this)">
                             <div class="step-num">01</div>
@@ -1867,7 +1878,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 2 -->
                     <div class="step-card">
                         <div class="step-header" onclick="toggleStep(this)">
                             <div class="step-num">02</div>
@@ -1900,7 +1910,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 3 -->
                     <div class="step-card">
                         <div class="step-header" onclick="toggleStep(this)">
                             <div class="step-num">03</div>
@@ -1937,7 +1946,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 4 -->
                     <div class="step-card">
                         <div class="step-header" onclick="toggleStep(this)">
                             <div class="step-num">04</div>
@@ -1978,7 +1986,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 5 -->
                     <div class="step-card">
                         <div class="step-header" onclick="toggleStep(this)">
                             <div class="step-num">05</div>
@@ -2017,7 +2024,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 6 -->
                     <div class="step-card">
                         <div class="step-header" onclick="toggleStep(this)">
                             <div class="step-num">06</div>
@@ -2052,7 +2058,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 7 -->
                     <div class="step-card">
                         <div class="step-header" onclick="toggleStep(this)">
                             <div class="step-num">07</div>
@@ -2098,7 +2103,6 @@
             </div>
         </section>
 
-        <!-- ===== CONCEPTS ===== -->
         <section id="concepts" aria-labelledby="h-concepts">
             <div class="page-col">
                 <div class="section-label">04 — Deep Dive</div>
@@ -2122,7 +2126,6 @@
             </div>
         </section>
 
-        <!-- ===== WHY IT MATTERS ===== -->
         <section id="why" aria-labelledby="h-why">
             <div class="page-col">
                 <div class="section-label">05 — The Bigger Picture</div>
@@ -2183,7 +2186,6 @@
             </div>
         </section>
 
-        <!-- ===== SUMMARY ===== -->
         <section id="summary" aria-labelledby="h-summary">
             <div class="page-col">
                 <div class="section-label">06 — Quick Reference</div>
@@ -2215,7 +2217,6 @@
             </div>
         </section>
 
-        <!-- ===== SHARE ===== -->
         <section id="share" aria-labelledby="h-share">
             <div class="page-col">
                 <div class="section-label">07 — Share</div>
@@ -2237,7 +2238,6 @@
             </div>
         </section>
 
-        <!-- ===== FOLLOW ===== -->
         <section id="follow" aria-labelledby="h-follow">
             <div class="page-col">
                 <div class="section-label">08 — Connect</div>
@@ -2254,7 +2254,6 @@
             </div>
         </section>
 
-        <!-- ===== SUBSCRIBE ===== -->
         <section id="subscribe" aria-labelledby="h-sub">
             <div class="page-col">
                 <div class="section-label">09 — Stay Updated</div>
@@ -2280,7 +2279,6 @@
             </div>
         </section>
 
-        <!-- ===== OUTRO ===== -->
         <section id="outro" aria-labelledby="h-outro">
             <div class="page-col">
                 <div class="section-label">10 — The Road Ahead</div>
@@ -2319,7 +2317,6 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="page-footer" aria-label="Site footer">
         <div class="page-col">
             <div class="footer-grid">
@@ -2385,12 +2382,10 @@
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
             'use strict';
 
-            // --- Progress bar ---
             var pbar = document.getElementById('pbar');
             window.addEventListener('scroll', function() {
                 var h = document.documentElement;
@@ -2398,7 +2393,6 @@
                 if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
             }, { passive: true });
 
-            // --- Drawer ---
             var menuToggle = document.getElementById('menuToggle');
             var drawer = document.getElementById('mobileDrawer');
             var overlay = document.getElementById('drawerOverlay');
@@ -2430,7 +2424,6 @@
                 });
             });
 
-            // --- Back to top ---
             var backTop = document.getElementById('backTop');
             window.addEventListener('scroll', function() {
                 backTop.classList.toggle('visible', window.scrollY > 500);
@@ -2439,7 +2432,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // --- Share ---
             var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/wine.html');
             var PAGE_TITLE = encodeURIComponent('VINO PH – Interactive Python Wine Shop');
 
@@ -2494,13 +2486,11 @@
             var copyBtn = document.getElementById('copyLinkBtn');
             if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
 
-            // --- Step toggles ---
             window.toggleStep = function(header) {
                 var card = header.closest('.step-card');
                 if (card) card.classList.toggle('open');
             };
 
-            // --- Copy full code ---
             window.copyFullCode = function() {
                 var code = document.getElementById('fullCode').innerText;
                 if (navigator.clipboard) {
@@ -2513,7 +2503,6 @@
                 }
             };
 
-            // --- Follow toggles ---
             var F_KEY = 'vb_follows_wine';
             var follows = {};
             try { follows = JSON.parse(localStorage.getItem(F_KEY) || '{}'); } catch (_) {}
@@ -2556,7 +2545,6 @@
             }
             restoreFollows();
 
-            // --- AI Share preview ---
             var fallbackMessages = {
                 facebook: "📚 Just ran an incredible interactive Python walkthrough on VINO PH — a wine shop program for the Philippines!\n\nKey takeaways:\n✅ Nested dictionaries as a mini-database\n✅ f-strings with format specifiers\n✅ while True + try/except for input validation\n✅ Senior citizen discount logic\n✅ Live in-browser execution\n\nhttps://poetic-bytes.vercel.app/wine.html",
                 linkedin: "🐍 Just published a complete interactive Python walkthrough for VINO PH — a Philippine wine shop ordering system with senior citizen discount.\n\nWhat's inside:\n→ Nested dictionaries (O(1) lookup)\n→ f-strings with alignment and comma formatting\n→ Defensive input with while True + try/except\n→ Senior citizen discount logic (10%)\n→ Live in-browser Python execution with Pyodide\n\nPerfect for beginners who want to learn by doing.\nhttps://poetic-bytes.vercel.app/wine.html\n\n#Python #Programming #Philippines",
@@ -2612,7 +2600,6 @@
                 setTimeout(function() { el.style.opacity = '0'; }, ms || 5000);
             }
 
-            // --- Subscribe ---
             window.handleSubscribe = function() {
                 var el = document.getElementById('subEmail');
                 var msg = document.getElementById('subMsg');
@@ -2638,10 +2625,6 @@
                 setTimeout(function() { msg.style.opacity = '0'; }, 6000);
             };
 
-            // ============================================================
-            // ===== INTERACTIVE PYTHON RUNNER (Pyodide) =====
-            // ============================================================
-
             let pyodide = null;
             let isPyodideReady = false;
             let terminalOutput = document.getElementById('terminal-output');
@@ -2650,7 +2633,6 @@
             let inputResolver = null;
             let isRunning = false;
 
-            // --- Append to terminal ---
             function appendTerminal(text, className = 'output') {
                 const span = document.createElement('span');
                 span.textContent = text;
@@ -2660,12 +2642,6 @@
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
             }
 
-            // --- Live output streaming ---
-            // Python's stdout is piped to this a character/chunk at a time as
-            // the program runs (see JSStream in runVinoPh), instead of being
-            // buffered and dumped all at once after the script finishes. That
-            // buffering was the real reason the program felt "not interactive":
-            // the menu and prompts never appeared until everything was over.
             let pendingLine = '';
 
             function classifyLine(line) {
@@ -2691,7 +2667,6 @@
                 }
             }
 
-            // --- Load Pyodide ---
             async function loadPyodideInterpreter() {
                 if (isPyodideReady) return true;
                 appendTerminal('🔄 Loading Python interpreter...', 'info');
@@ -2709,7 +2684,6 @@
                 }
             }
 
-            // --- Clear terminal ---
             window.clearTerminal = function() {
                 terminalOutput.innerHTML = '';
                 appendTerminal('🧹 Terminal cleared', 'muted');
@@ -2717,7 +2691,6 @@
                 inputArea.style.display = 'none';
             };
 
-            // --- Show input field and wait for response ---
             function showInput() {
                 inputArea.style.display = 'flex';
                 terminalInput.value = '';
@@ -2728,13 +2701,8 @@
                 });
             }
 
-            // Shared submit path used by the Enter/Return/Go key AND the
-            // explicit Send button. Some mobile webviews don't reliably fire
-            // a 'keydown' event with key === 'Enter' for the on-screen
-            // keyboard's Return/Go key, which made the form look "stuck"
-            // with no way to submit -- the Send button guarantees a way in.
             function submitTerminalInput() {
-                if (!inputResolver) return; // nothing waiting on input right now
+                if (!inputResolver) return;
                 const value = terminalInput.value;
                 inputArea.style.display = 'none';
                 terminalInput.disabled = true;
@@ -2750,7 +2718,6 @@
                     submitTerminalInput();
                 }
             });
-            // Fallback in case keydown's Enter doesn't fire in this webview
             terminalInput.addEventListener('keyup', function(e) {
                 if (e.key === 'Enter' || e.keyCode === 13) {
                     submitTerminalInput();
@@ -2764,14 +2731,12 @@
                 });
             }
 
-            // --- Run VINO PH ---
             window.runVinoPh = async function() {
                 if (isRunning) {
                     appendTerminal('⏳ Program is already running...', 'info');
                     return;
                 }
 
-                // Load Pyodide if not ready
                 if (!isPyodideReady) {
                     const loaded = await loadPyodideInterpreter();
                     if (!loaded) return;
@@ -2782,32 +2747,8 @@
                 runBtn.innerHTML = '<span class="loading-indicator"></span> Running...';
                 runBtn.disabled = true;
 
-                // Hide input area initially
                 inputArea.style.display = 'none';
 
-                // Define the Python program itself.
-                //
-                // IMPORTANT: this is passed straight to pyodide.runPythonAsync()
-                // as top-level source -- never spliced as text into another
-                // wrapping template. Two bugs were fixed by structuring it
-                // this way:
-                //
-                // 1. IndentationError -- previously this code was inserted as
-                //    text inside a Python "with:" block built from another
-                //    template literal, and the two blocks' indentation didn't
-                //    line up. Running it directly, unwrapped, removes the
-                //    seam where that could go wrong.
-                //
-                // 2. "int() argument must be ... not 'PyodideFuture'" --
-                //    __js_input__ is an *async* JS function, so calling it
-                //    the normal synchronous way (return __js_input__()) does
-                //    not give you the typed string; it gives you the pending
-                //    Promise/Future object itself, and int(that) blows up.
-                //    The fix is to make the whole interactive section of the
-                //    program an `async def main(): ...` and `await` every
-                //    call that reads user input, then `await main()` at the
-                //    top level. pyodide.runPythonAsync() natively supports
-                //    top-level await, so no special compile flags are needed.
                 const pythonCode = `
 import sys
 
@@ -2826,7 +2767,6 @@ async def ask(prompt=''):
         print(prompt, end='')
     return await __js_input__()
 
-# --- VINO PH Program ---
 wines = {
     1:  {"name": "Yellow Tail Cabernet Sauvignon (Australia)",          "price": 799},
     2:  {"name": "Jacob's Creek Shiraz (Australia)",                   "price": 899},
@@ -2907,35 +2847,20 @@ finally:
     sys.stdout = sys.__stdout__
 `;
 
-                // Every chunk Python writes to stdout arrives here immediately
-                // (see the JSStream class inside pythonCode) and is pushed
-                // straight into the terminal, instead of being collected and
-                // shown only after the whole script has finished.
                 pyodide.globals.set('__js_output__', function(text) {
                     streamOutput(text);
                 });
 
-                // Called from Python as `await __js_input__()`. First flush
-                // whatever prompt text is still pending (it was printed with
-                // end='' so it has no trailing newline yet), THEN show the
-                // input box and wait for the person to type a reply. This
-                // MUST be awaited on the Python side (see `ask()` above) --
-                // calling an async JS function without awaiting it returns
-                // the pending Future itself, not the typed string.
                 pyodide.globals.set('__js_input__', async function() {
                     flushPending();
                     const result = await showInput();
                     return result;
                 });
 
-                // Clear terminal and show starting message
                 terminalOutput.innerHTML = '';
                 pendingLine = '';
                 appendTerminal('🚀 Running VINO PH program...', 'info');
 
-                // Run the Python code directly -- runPythonAsync() supports
-                // top-level `await` natively, which is what makes the
-                // async ask()/await __js_input__() pattern above work.
                 try {
                     await pyodide.runPythonAsync(pythonCode);
                     flushPending();
@@ -2944,7 +2869,6 @@ finally:
                     appendTerminal('❌ Error: ' + err.message, 'error');
                 }
 
-                // Hide input area after completion
                 inputArea.style.display = 'none';
                 isRunning = false;
                 runBtn.innerHTML = '<i class="fas fa-play"></i> Run Program';
@@ -2953,9 +2877,7 @@ finally:
                 appendTerminal('✅ Program finished. Click "Run Program" to run again.', 'success');
             };
 
-            // --- Load Pyodide on page load ---
             document.addEventListener('DOMContentLoaded', function() {
-                // Load Pyodide in the background
                 loadPyodideInterpreter();
             });
 
