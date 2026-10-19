@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
     <style>
-        /* ===== BASE (shared design system — same tokens as inheritance.html) ===== */
         :root {
             --bg: #0B121C;
             --panel: #0F1C2F;
@@ -184,8 +184,6 @@
         .ai-card-icon { font-size: 1.5rem; margin-bottom: .6rem; }
         .ai-card h3 { font-size: 1rem; color: var(--text); margin-bottom: .4rem; }
         .ai-card p { font-size: .78rem; margin: 0; }
-
-        /* ===== EXERCISES ===== */
         .exercise-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
             gap: 1rem; margin-top: 1.4rem;
@@ -206,8 +204,6 @@
         .ex-beg { background: rgba(16, 185, 129, .15); color: #10b981; }
         .ex-int { background: rgba(245, 158, 11, .15); color: #f59e0b; }
         .ex-adv { background: rgba(212, 88, 136, .15); color: var(--red); }
-
-        /* ===== TABLES (glossary, etc.) ===== */
         .table-wrap { overflow-x: auto; margin-top: 1rem; }
         .glossary-table { width: 100%; border-collapse: collapse; font-size: .76rem; min-width: 480px; }
         .glossary-table thead tr { background: var(--card); border-bottom: 2px solid var(--blue); }
@@ -216,15 +212,11 @@
         .glossary-table td:first-child { color: var(--blue-lt); font-weight: 600; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
         .glossary-table tbody tr:nth-child(even) { background: rgba(75, 139, 190, .03); }
         .glossary-table tbody tr:hover td { background: rgba(75, 139, 190, .06); }
-
-        /* ===== INTERVIEW PREP ===== */
         .interview-grid { display: flex; flex-direction: column; gap: .8rem; margin-top: 1.2rem; }
         .interview-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.1rem 1.2rem; }
         .interview-card .iv-q { font-size: .82rem; font-weight: 700; color: var(--gold); margin-bottom: .5rem; display: flex; gap: .5rem; }
         .interview-card .iv-q span.iv-num { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-weight: 400; flex-shrink: 0; }
         .interview-card .iv-a { font-size: .78rem; color: var(--muted); line-height: 1.7; }
-
-        /* ===== FAQ ===== */
         .faq-list { display: flex; flex-direction: column; gap: .6rem; }
         .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); overflow: hidden; }
         .faq-q {
@@ -237,8 +229,6 @@
         .faq-a { max-height: 0; overflow: hidden; transition: max-height .28s ease, padding .28s; }
         .faq-a.open { max-height: 300px; padding: 0 1.1rem 1rem; }
         .faq-a p { font-size: .78rem; }
-
-        /* ===== SUBSCRIBE ===== */
         .sub-wrap {
             background: linear-gradient(135deg, var(--card) 0%, var(--panel) 100%);
             border: 1px solid var(--border); border-radius: var(--card-r); padding: 3.2rem 2.5rem;
@@ -351,8 +341,6 @@
         .output-panel.error { color: #f87171; }
         .output-panel.loading { color: var(--blue-lt); }
         .code-container .code-snippet { border-radius: 0; border-left: none; margin-bottom: 0; padding: 1rem; }
-
-        /* ===== ZOO SIMULATOR ===== */
         .spawn-bar {
             display: flex; gap: .6rem; flex-wrap: wrap; margin: 1.2rem 0 1.6rem;
         }
@@ -455,11 +443,25 @@
             section { padding: 2rem 0; }
             .hero { padding: 5.5rem 0 2rem; }
         }
+        .ad-container {
+            padding: 2rem 0;
+            background: var(--panel);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+        .ad-container ins.adsbygoogle { display: block; min-height: 90px; }
+        .ad-label {
+            font-size: .58rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--muted);
+            margin-bottom: .5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAVIGATION ===== -->
     <nav class="nav-bar" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
@@ -470,10 +472,8 @@
         </div>
     </nav>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <main>
 
-        <!-- ===== HERO ===== -->
         <section class="hero" aria-label="Zoo Manager — Inheritance demo">
             <div class="page-col">
                 <div class="hero-tag"><span class="live-dot"></span> Inheritance Project · Live Demo</div>
@@ -492,7 +492,19 @@
             </div>
         </section>
 
-        <!-- ===== INTRODUCTION ===== -->
+        <section class="ad-container" aria-label="Advertisement">
+            <div class="page-col">
+                <div class="ad-label">Advertisement</div>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </section>
+
         <section id="intro" aria-labelledby="h-intro">
             <div class="page-col">
                 <div class="section-label">01 — The Essence</div>
@@ -542,7 +554,6 @@
             </div>
         </section>
 
-        <!-- ===== WHY IT MATTERS ===== -->
         <section id="why-matters" aria-labelledby="h-why">
             <div class="page-col">
                 <div class="section-label">02 — Why This Is Worth Building</div>
@@ -566,7 +577,6 @@
             </div>
         </section>
 
-        <!-- ===== HOW IT WORKS ===== -->
         <section id="how-it-works" aria-labelledby="h-how">
             <div class="page-col">
                 <div class="section-label">03 — The Hierarchy</div>
@@ -590,7 +600,6 @@
             </div>
         </section>
 
-        <!-- ===== SIMULATOR ===== -->
         <section id="simulator" aria-labelledby="h-sim">
             <div class="page-col">
                 <div class="section-label">04 — Live Simulator</div>
@@ -615,7 +624,6 @@
             </div>
         </section>
 
-        <!-- ===== PYTHON SOURCE ===== -->
         <section id="source" aria-labelledby="h-source">
             <div class="page-col">
                 <div class="section-label">05 — The Real Python</div>
@@ -658,7 +666,6 @@
     <span class="kw">def</span> <span class="fn">makeSound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">return</span> <span class="st">f"{self.name} squawks: 'Polly wants a cracker!'"</span>
 
-<span class="cmt"># One list, three different subclasses — polymorphism via inheritance</span>
 zoo = [<span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class="cl">Elephant</span>(<span class="st">"Ella"</span>), <span class="cl">Parrot</span>(<span class="st">"Polly"</span>)]
 <span class="kw">for</span> animal <span class="kw">in</span> zoo:
     <span class="fn">print</span>(animal.<span class="fn">makeSound</span>())
@@ -669,42 +676,18 @@ zoo = [<span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class=
                         <p>Below is every meaningful line in the script, explained in the order Python actually executes it — from class definition to the final printed line.</p>
                         <div class="insight">
                             <ol style="padding-left:1.2rem;display:flex;flex-direction:column;gap:.6rem;">
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>class Animal:</code></strong> Declares the base class with no parent of its own (it implicitly inherits from Python's built-in <code>object</code>). Nothing runs yet — Python is just registering the blueprint.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>def __init__(self, name: str):</code></strong> The constructor every animal will run first. <code>self.name = name</code> stores the given name; <code>self.hunger = 50</code> gives every new animal an identical, deliberately <span class="intro-em">mid-range</span> starting hunger — hungry enough that feeding visibly matters, not so hungry it looks broken on arrival.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>def feed(self) -&gt; str:</code></strong> The base implementation of feeding. <code>max(0, self.hunger - 25)</code> subtracts 25 points but clamps the floor at zero using <code>max()</code>, so hunger can never go negative no matter how many times an already-full animal is fed. It then returns a plain, species-neutral confirmation string.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>def makeSound(self) -&gt; str: raise NotImplementedError(...)</code></strong> Deliberately provides no real sound. If any future subclass forgets to override this, calling it fails loudly and immediately, rather than silently returning a wrong or empty sound — the same contract-enforcement pattern used by <code>Shape.area()</code> in the main Inheritance guide.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>class Lion(Animal):</code></strong> The parentheses declare <code>Animal</code> as the parent. <code>Lion</code> now has <code>__init__</code>, <code>feed()</code>, and <code>makeSound()</code> automatically available, and will override the last two.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)">Lion's <code>feed()</code>:</strong> <code>base = super().feed()</code> calls <code>Animal.feed()</code> first, running the exact same hunger-clamping math and capturing its returned sentence in a local variable named <code>base</code>. The next line returns <code>f"{base} It devours a slab of meat."</code> — the parent's sentence with a lion-specific sentence appended. Nothing about the hunger math was duplicated.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)">Lion's <code>makeSound()</code>:</strong> Fully replaces the parent's version (no <code>super()</code> call here, since there's no shared sound logic worth reusing) and returns <code>f"{self.name} lets out a mighty ROAR!"</code>.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>class Elephant(Animal):</code> and <code>class Parrot(Animal):</code></strong> Structurally identical to <code>Lion</code> — each calls <code>super().feed()</code> and appends its own diet-specific sentence, then fully overrides <code>makeSound()</code> with its own vocalization. The repetition across all three subclasses is intentional: it's what makes the "same shape, different content" nature of overriding so visible.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>zoo = [Lion("Leo"), Elephant("Ella"), Parrot("Polly")]</code></strong> Builds one Python list holding three objects of three <span class="intro-em">different</span> classes. Python lists don't enforce a single element type, so this is perfectly valid — the only thing all three objects share is that they're each some kind of <code>Animal</code>.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>for animal in zoo:</code></strong> On each pass, <code>animal</code> is bound to the next object in the list — first the <code>Lion</code>, then the <code>Elephant</code>, then the <code>Parrot</code>. The loop body never asks <code>type(animal)</code> or branches on species; it treats every iteration identically.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)"><code>print(animal.makeSound())</code> then <code>print(animal.feed())</code>:</strong> For each animal, Python looks up <code>makeSound</code> and <code>feed</code> starting from that <em>specific object's actual class</em> — not from whatever type the variable "looks like" in the code. This is why the identical two lines produce a roar-then-meat-sentence for Leo, a trumpet-then-hay-sentence for Ella, and a squawk-then-seed-sentence for Polly.
-                                </li>
-                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;">
-                                    <strong style="color:var(--text)">Final output:</strong> Six printed lines total — two per animal — with zero <code>if</code> statements checking species anywhere in the loop. Every difference in the output comes entirely from which subclass's overridden method actually executed.
-                                </li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>class Animal:</code></strong> Declares the base class with no parent of its own (it implicitly inherits from Python's built-in <code>object</code>). Nothing runs yet — Python is just registering the blueprint.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>def __init__(self, name: str):</code></strong> The constructor every animal will run first. <code>self.name = name</code> stores the given name; <code>self.hunger = 50</code> gives every new animal an identical, deliberately <span class="intro-em">mid-range</span> starting hunger — hungry enough that feeding visibly matters, not so hungry it looks broken on arrival.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>def feed(self) -&gt; str:</code></strong> The base implementation of feeding. <code>max(0, self.hunger - 25)</code> subtracts 25 points but clamps the floor at zero using <code>max()</code>, so hunger can never go negative no matter how many times an already-full animal is fed. It then returns a plain, species-neutral confirmation string.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>def makeSound(self) -&gt; str: raise NotImplementedError(...)</code></strong> Deliberately provides no real sound. If any future subclass forgets to override this, calling it fails loudly and immediately, rather than silently returning a wrong or empty sound — the same contract-enforcement pattern used by <code>Shape.area()</code> in the main Inheritance guide.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>class Lion(Animal):</code></strong> The parentheses declare <code>Animal</code> as the parent. <code>Lion</code> now has <code>__init__</code>, <code>feed()</code>, and <code>makeSound()</code> automatically available, and will override the last two.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Lion's <code>feed()</code>:</strong> <code>base = super().feed()</code> calls <code>Animal.feed()</code> first, running the exact same hunger-clamping math and capturing its returned sentence in a local variable named <code>base</code>. The next line returns <code>f"{base} It devours a slab of meat."</code> — the parent's sentence with a lion-specific sentence appended. Nothing about the hunger math was duplicated.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Lion's <code>makeSound()</code>:</strong> Fully replaces the parent's version (no <code>super()</code> call here, since there's no shared sound logic worth reusing) and returns <code>f"{self.name} lets out a mighty ROAR!"</code>.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>class Elephant(Animal):</code> and <code>class Parrot(Animal):</code></strong> Structurally identical to <code>Lion</code> — each calls <code>super().feed()</code> and appends its own diet-specific sentence, then fully overrides <code>makeSound()</code> with its own vocalization. The repetition across all three subclasses is intentional: it's what makes the "same shape, different content" nature of overriding so visible.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>zoo = [Lion("Leo"), Elephant("Ella"), Parrot("Polly")]</code></strong> Builds one Python list holding three objects of three <span class="intro-em">different</span> classes. Python lists don't enforce a single element type, so this is perfectly valid — the only thing all three objects share is that they're each some kind of <code>Animal</code>.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>for animal in zoo:</code></strong> On each pass, <code>animal</code> is bound to the next object in the list — first the <code>Lion</code>, then the <code>Elephant</code>, then the <code>Parrot</code>. The loop body never asks <code>type(animal)</code> or branches on species; it treats every iteration identically.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)"><code>print(animal.makeSound())</code> then <code>print(animal.feed())</code>:</strong> For each animal, Python looks up <code>makeSound</code> and <code>feed</code> starting from that <em>specific object's actual class</em> — not from whatever type the variable "looks like" in the code. This is why the identical two lines produce a roar-then-meat-sentence for Leo, a trumpet-then-hay-sentence for Ella, and a squawk-then-seed-sentence for Polly.</li>
+                                <li style="font-size:.78rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--text)">Final output:</strong> Six printed lines total — two per animal — with zero <code>if</code> statements checking species anywhere in the loop. Every difference in the output comes entirely from which subclass's overridden method actually executed.</li>
                             </ol>
                         </div>
                         <div class="callout" style="margin-top:1rem;"><p><strong>Same shape in JavaScript:</strong> The Live Simulator above runs a JavaScript class hierarchy — <code>class Lion extends Animal</code>, <code>super.feed()</code>, and so on — that mirrors this Python source line for line. Clicking "Feed" on the Lion card triggers the exact same override chain you just read, just in a different syntax.</p></div>
@@ -713,7 +696,6 @@ zoo = [<span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class=
             </div>
         </section>
 
-        <!-- ===== AI ERA ===== -->
         <section id="ai-era" aria-labelledby="h-ai">
             <div class="page-col">
                 <div class="section-label">06 — This Pattern × AI</div>
@@ -735,7 +717,6 @@ zoo = [<span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class=
             </div>
         </section>
 
-        <!-- ===== DESIGN PATTERNS ===== -->
         <section id="patterns" aria-labelledby="h-patterns">
             <div class="page-col">
                 <div class="section-label">07 — Naming What You Built</div>
@@ -746,25 +727,22 @@ zoo = [<span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class=
                     <div class="oop-block">
                         <h3>Pattern 1: Template Method</h3>
                         <p>The <strong>Template Method</strong> pattern defines the skeleton of an operation in a base class, deferring some steps to subclasses. That's exactly what <code>Animal.feed()</code> does: the "reduce hunger, don't go below zero" skeleton lives in the parent, and each subclass supplies its own closing detail by calling <code>super().feed()</code> and appending to it.</p>
-                        <div class="code-snippet"><pre><span class="cmt"># The parent defines the "skeleton" — clamp hunger, return a base sentence</span>
-<span class="kw">class</span> <span class="cl">Animal</span>:
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Animal</span>:
     <span class="kw">def</span> <span class="fn">feed</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">self</span>.hunger = <span class="fn">max</span>(<span class="num">0</span>, <span class="kw">self</span>.hunger - <span class="num">25</span>)
         <span class="kw">return</span> <span class="st">f"{self.name} has been fed."</span>
 
-<span class="cmt"># Every subclass fills in its own "final step" — the flavor text</span>
 <span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
     <span class="kw">def</span> <span class="fn">feed</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
-        base = <span class="kw">super</span>().<span class="fn">feed</span>()   <span class="cmt"># run the shared skeleton first</span>
-        <span class="kw">return</span> <span class="st">f"{base} It devours a slab of meat."</span>  <span class="cmt"># fill in the "hook"</span></pre></div>
+        base = <span class="kw">super</span>().<span class="fn">feed</span>()
+        <span class="kw">return</span> <span class="st">f"{base} It devours a slab of meat."</span></pre></div>
                         <div class="callout"><p><strong>Where you'll see this again:</strong> Django's class-based views, pytest's fixture teardown chains, and PyTorch's <code>nn.Module.__call__</code> (which runs bookkeeping, then calls your overridden <code>forward()</code>) all follow this exact "fixed skeleton, overridable steps" shape.</p></div>
                     </div>
 
                     <div class="oop-block">
                         <h3>Pattern 2 (the road not taken): Strategy</h3>
                         <p>It's worth seeing the alternative you <em>didn't</em> choose, because the comparison sharpens your judgment about when inheritance is the right tool. The <strong>Strategy</strong> pattern achieves similar flexibility through <em>composition</em> instead of inheritance — you'd store a "feeding behavior" object as an attribute rather than overriding a method.</p>
-                        <div class="code-snippet"><pre><span class="cmt"># Strategy version — composition instead of inheritance</span>
-<span class="kw">class</span> <span class="cl">FeedingStrategy</span>:
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">FeedingStrategy</span>:
     <span class="kw">def</span> <span class="fn">describe</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">raise</span> <span class="cl">NotImplementedError</span>
 
@@ -775,7 +753,7 @@ zoo = [<span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class=
 <span class="kw">class</span> <span class="cl">Animal</span>:
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, diet: <span class="cl">FeedingStrategy</span>):
         <span class="kw">self</span>.name = name
-        <span class="kw">self</span>.diet = diet  <span class="cmt"># the behavior is an object, not a class relationship</span>
+        <span class="kw">self</span>.diet = diet
         <span class="kw">self</span>.hunger = <span class="num">50</span>
 
     <span class="kw">def</span> <span class="fn">feed</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
@@ -790,8 +768,6 @@ leo = <span class="cl">Animal</span>(<span class="st">"Leo"</span>, <span class=
                         <h3>Pattern 3: Factory Method</h3>
                         <p>Notice that <code>spawnAnimal('lion')</code> in the JavaScript simulator takes a plain string and decides which class to instantiate — the calling code (the spawn buttons) never writes <code>new Lion(...)</code> directly. That indirection is the <strong>Factory Method</strong> pattern: centralizing "which concrete subclass do I create?" in one place instead of scattering constructor calls everywhere.</p>
                         <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">make_animal</span>(species: <span class="cl">str</span>, name: <span class="cl">str</span>) -&gt; <span class="cl">Animal</span>:
-    <span class="cmt"># One place decides which concrete class to build — callers never</span>
-    <span class="cmt"># need to import Lion, Elephant, or Parrot directly.</span>
     factories = {
         <span class="st">"lion"</span>: <span class="cl">Lion</span>,
         <span class="st">"elephant"</span>: <span class="cl">Elephant</span>,
@@ -801,7 +777,6 @@ leo = <span class="cl">Animal</span>(<span class="st">"Leo"</span>, <span class=
         <span class="kw">raise</span> <span class="cl">ValueError</span>(<span class="st">f"Unknown species: {species}"</span>)
     <span class="kw">return</span> factories[species](name)
 
-<span class="cmt"># The caller only ever deals with strings and the Animal interface</span>
 zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span class="st">"Leo"</span>), <span class="fn">make_animal</span>(<span class="st">"parrot"</span>, <span class="st">"Polly"</span>)]</pre></div>
                         <div class="callout"><p><strong>Why this matters:</strong> if a new species is added later, only <code>make_animal</code>'s dictionary needs a new entry — every call site that already uses <code>make_animal("...", "...")</code> keeps working unchanged. This is precisely what the JavaScript simulator's <code>makeAnimal(kind)</code> helper function does, just with an <code>if</code>/<code>else</code> chain instead of a dictionary lookup.</p></div>
                     </div>
@@ -809,7 +784,6 @@ zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span
             </div>
         </section>
 
-        <!-- ===== TESTING ===== -->
         <section id="testing" aria-labelledby="h-testing">
             <div class="page-col">
                 <div class="section-label">08 — Prove It Works</div>
@@ -820,7 +794,6 @@ zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span
 <span class="kw">from</span> zoo <span class="kw">import</span> Animal, Lion, Elephant, Parrot
 
 <span class="kw">def</span> <span class="fn">test_base_animal_cannot_make_sound</span>():
-    <span class="cmt"># Animal.makeSound() must fail loudly — it has no sound of its own</span>
     generic = <span class="cl">Animal</span>(<span class="st">"Generic"</span>)
     <span class="kw">with</span> pytest.raises(<span class="cl">NotImplementedError</span>):
         generic.<span class="fn">makeSound</span>()
@@ -833,14 +806,14 @@ zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span
 
 <span class="kw">def</span> <span class="fn">test_hunger_never_goes_negative</span>():
     leo = <span class="cl">Lion</span>(<span class="st">"Leo"</span>)
-    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>):  <span class="cmt"># feed far more times than needed</span>
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>):
         leo.<span class="fn">feed</span>()
     <span class="kw">assert</span> leo.hunger == <span class="num">0</span>
 
 <span class="kw">def</span> <span class="fn">test_each_subclass_returns_a_unique_sound</span>():
     leo, ella, polly = <span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class="cl">Elephant</span>(<span class="st">"Ella"</span>), <span class="cl">Parrot</span>(<span class="st">"Polly"</span>)
     sounds = {leo.<span class="fn">makeSound</span>(), ella.<span class="fn">makeSound</span>(), polly.<span class="fn">makeSound</span>()}
-    <span class="kw">assert</span> <span class="fn">len</span>(sounds) == <span class="num">3</span>  <span class="cmt"># no two subclasses accidentally share an override</span>
+    <span class="kw">assert</span> <span class="fn">len</span>(sounds) == <span class="num">3</span>
 
 <span class="kw">def</span> <span class="fn">test_feed_message_mentions_the_animals_name</span>():
     ella = <span class="cl">Elephant</span>(<span class="st">"Ella"</span>)
@@ -852,8 +825,6 @@ zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span
     (<span class="cl">Parrot</span>, <span class="st">"seed"</span>),
 ])
 <span class="kw">def</span> <span class="fn">test_each_subclass_mentions_its_own_diet</span>(cls, expected_fragment):
-    <span class="cmt"># A parametrized test — one function, three subclasses, matching the</span>
-    <span class="cmt"># "one interface, many overrides" shape of the hierarchy it's testing.</span>
     animal = cls(<span class="st">"Test Animal"</span>)
     <span class="kw">assert</span> expected_fragment <span class="kw">in</span> animal.<span class="fn">feed</span>()
 
@@ -863,14 +834,13 @@ zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span
 
 <span class="dec">@pytest.fixture</span>
 <span class="kw">def</span> <span class="fn">sample_zoo</span>():
-    <span class="cmt"># A shared fixture — every test below gets a fresh, identical zoo</span>
     <span class="kw">return</span> [<span class="cl">Lion</span>(<span class="st">"Leo"</span>), <span class="cl">Elephant</span>(<span class="st">"Ella"</span>), <span class="cl">Parrot</span>(<span class="st">"Polly"</span>)]
 
 <span class="kw">def</span> <span class="fn">test_feeding_one_animal_does_not_affect_others</span>(sample_zoo):
-    sample_zoo[<span class="num">0</span>].<span class="fn">feed</span>()  <span class="cmt"># feed only the Lion</span>
+    sample_zoo[<span class="num">0</span>].<span class="fn">feed</span>()
     <span class="kw">assert</span> sample_zoo[<span class="num">0</span>].hunger == <span class="num">25</span>
-    <span class="kw">assert</span> sample_zoo[<span class="num">1</span>].hunger == <span class="num">50</span>  <span class="cmt"># Elephant untouched</span>
-    <span class="kw">assert</span> sample_zoo[<span class="num">2</span>].hunger == <span class="num">50</span>  <span class="cmt"># Parrot untouched</span>
+    <span class="kw">assert</span> sample_zoo[<span class="num">1</span>].hunger == <span class="num">50</span>
+    <span class="kw">assert</span> sample_zoo[<span class="num">2</span>].hunger == <span class="num">50</span>
 
 <span class="kw">def</span> <span class="fn">test_zoo_size_matches_number_of_animals_created</span>(sample_zoo):
     <span class="kw">assert</span> <span class="fn">len</span>(sample_zoo) == <span class="num">3</span></pre></div>
@@ -889,7 +859,6 @@ zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span
             </div>
         </section>
 
-        <!-- ===== COMMON MISTAKES ===== -->
         <section id="mistakes" aria-labelledby="h-mistakes">
             <div class="page-col">
                 <div class="section-label">09 — Debugging Guide</div>
@@ -899,99 +868,86 @@ zoo = [<span class="fn">make_animal</span>(<span class="st">"lion"</span>, <span
 
                     <div class="oop-block">
                         <h3>Mistake 1: Forgetting <code>super().__init__()</code></h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Wrong — never calls the parent constructor</span>
-<span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>):
-        <span class="kw">self</span>.roar_volume = <span class="st">"loud"</span>  <span class="cmt"># self.name and self.hunger are never set!</span></pre></div>
+        <span class="kw">self</span>.roar_volume = <span class="st">"loud"</span></pre></div>
                         <p><strong>Symptom:</strong> <code>AttributeError: 'Lion' object has no attribute 'name'</code> the first time you call <code>.feed()</code> or <code>.makeSound()</code>. <strong>Fix:</strong> call <code>super().__init__(name)</code> as the first line of any overridden <code>__init__</code>.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 2: Misspelling the Method Name in the Override</h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Wrong — "makeSound" vs "make_sound" silently creates a NEW method</span>
-<span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
-    <span class="kw">def</span> <span class="fn">make_sound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:  <span class="cmt"># typo — doesn't override anything</span>
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
+    <span class="kw">def</span> <span class="fn">make_sound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">return</span> <span class="st">"ROAR"</span></pre></div>
-                        <p><strong>Symptom:</strong> No error at all — Python happily lets you define a brand-new method. Calling <code>lion.makeSound()</code> still raises the parent's <code>NotImplementedError</code>, which is confusing because you were sure you overrode it. <strong>Fix:</strong> the override's method name (and parameter signature) must match the parent's exactly — copy-paste the <code>def</code> line from the parent class instead of retyping it.</p>
+                        <p><strong>Symptom:</strong> No error at all — Python happily lets you define a brand-new method. Calling <code>lion.makeSound()</code> still raises the parent's <code>NotImplementedError</code>. <strong>Fix:</strong> the override's method name must match the parent's exactly — copy-paste the <code>def</code> line from the parent class instead of retyping it.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 3: Calling <code>super()</code> with the Wrong Method Name</h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Wrong — calls feed() but you're inside makeSound()</span>
-<span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
     <span class="kw">def</span> <span class="fn">makeSound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
-        base = <span class="kw">super</span>().<span class="fn">feed</span>()  <span class="cmt"># mismatched — reduces hunger during a sound call!</span>
+        base = <span class="kw">super</span>().<span class="fn">feed</span>()
         <span class="kw">return</span> <span class="st">f"{self.name} roars."</span></pre></div>
-                        <p><strong>Symptom:</strong> No crash, but hunger mysteriously decreases every time an animal makes a sound — a hard-to-spot logic bug rather than a hard crash. <strong>Fix:</strong> <code>super().&lt;method&gt;()</code> should almost always call the <em>same</em> method name you're currently overriding.</p>
+                        <p><strong>Symptom:</strong> No crash, but hunger mysteriously decreases every time an animal makes a sound. <strong>Fix:</strong> <code>super().&lt;method&gt;()</code> should almost always call the <em>same</em> method name you're currently overriding.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 4: Mutating a Class Attribute Instead of an Instance Attribute</h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Wrong — hunger defined on the class, shared by every instance</span>
-<span class="kw">class</span> <span class="cl">Animal</span>:
-    hunger = <span class="num">50</span>  <span class="cmt"># class attribute, not self.hunger in __init__</span>
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Animal</span>:
+    hunger = <span class="num">50</span>
 
     <span class="kw">def</span> <span class="fn">feed</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
-        <span class="cl">Animal</span>.hunger -= <span class="num">25</span>  <span class="cmt"># mutates the SHARED class attribute</span>
+        <span class="cl">Animal</span>.hunger -= <span class="num">25</span>
         <span class="kw">return</span> <span class="st">"fed"</span></pre></div>
-                        <p><strong>Symptom:</strong> Feeding <em>any</em> animal reduces <em>every</em> animal's hunger, because they're all reading and writing the same shared class-level variable instead of their own instance state. <strong>Fix:</strong> initialize per-instance state inside <code>__init__</code> as <code>self.hunger = 50</code>, never as a bare class-body assignment.</p>
+                        <p><strong>Symptom:</strong> Feeding <em>any</em> animal reduces <em>every</em> animal's hunger. <strong>Fix:</strong> initialize per-instance state inside <code>__init__</code> as <code>self.hunger = 50</code>, never as a bare class-body assignment.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 5: Testing the Wrong Thing with <code>type()</code> Instead of <code>isinstance()</code></h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Fragile — breaks the moment you add a BigCat(Lion) subclass</span>
-<span class="kw">if</span> <span class="fn">type</span>(animal) == <span class="cl">Lion</span>:
+                        <div class="code-snippet"><pre><span class="kw">if</span> <span class="fn">type</span>(animal) == <span class="cl">Lion</span>:
     <span class="fn">print</span>(<span class="st">"It's a lion!"</span>)
 
-<span class="cmt"># ✓ Correct — respects the hierarchy, works for future subclasses too</span>
 <span class="kw">if</span> <span class="fn">isinstance</span>(animal, <span class="cl">Lion</span>):
     <span class="fn">print</span>(<span class="st">"It's a lion (or some kind of lion)!"</span>)</pre></div>
-                        <p><strong>Symptom:</strong> Code that works today silently stops recognizing an animal once you introduce a deeper hierarchy (Exercise 05's <code>BigCat</code> → <code>Lion</code> chain, for example). <strong>Fix:</strong> prefer <code>isinstance()</code> over <code>type() ==</code> whenever you're checking "is this object part of this family," which is almost always what you actually mean.</p>
+                        <p><strong>Symptom:</strong> Code that works today silently stops recognizing an animal once you introduce a deeper hierarchy. <strong>Fix:</strong> prefer <code>isinstance()</code> over <code>type() ==</code> whenever you're checking "is this object part of this family."</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 6: Overriding <code>__init__</code> Signature Incompatibly</h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Fragile — Parrot needs an extra required argument other animals don't</span>
-<span class="kw">class</span> <span class="cl">Parrot</span>(<span class="cl">Animal</span>):
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, vocabulary_size: <span class="cl">int</span>):  <span class="cmt"># no default!</span>
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Parrot</span>(<span class="cl">Animal</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, vocabulary_size: <span class="cl">int</span>):
         <span class="kw">super</span>().<span class="fn">__init__</span>(name)
         <span class="kw">self</span>.vocabulary_size = vocabulary_size
 
-<span class="cmt"># Anywhere that builds animals generically now breaks for Parrot:</span>
 <span class="kw">for</span> cls <span class="kw">in</span> [<span class="cl">Lion</span>, <span class="cl">Elephant</span>, <span class="cl">Parrot</span>]:
-    cls(<span class="st">"Test"</span>)  <span class="cmt"># TypeError on Parrot — missing vocabulary_size</span></pre></div>
-                        <p><strong>Symptom:</strong> Generic code that constructs any subclass the same way ("Liskov substitution" — a subclass should be usable anywhere the parent is expected) breaks specifically on the one subclass with a different constructor signature. <strong>Fix:</strong> give new required parameters a sensible default, or keep the constructor signature consistent across the whole family.</p>
+    cls(<span class="st">"Test"</span>)</pre></div>
+                        <p><strong>Symptom:</strong> Generic code that constructs any subclass the same way breaks specifically on the one subclass with a different constructor signature (violating Liskov Substitution). <strong>Fix:</strong> give new required parameters a sensible default, or keep the constructor signature consistent across the whole family.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 7: Forgetting That <code>print()</code> Isn't the Same as <code>return</code></h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Wrong — prints instead of returning, so the caller gets None</span>
-<span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
     <span class="kw">def</span> <span class="fn">makeSound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
-        <span class="fn">print</span>(<span class="st">f"{self.name} roars"</span>)  <span class="cmt"># this prints immediately...</span>
-        <span class="cmt"># ...but there's no return statement, so the method returns None</span>
+        <span class="fn">print</span>(<span class="st">f"{self.name} roars"</span>)
 
-<span class="cmt"># Somewhere else in the code:</span>
 message = leo.<span class="fn">makeSound</span>()
-<span class="fn">print</span>(<span class="st">f"Logged: {message}"</span>)  <span class="cmt"># prints "Logged: None"</span></pre></div>
-                        <p><strong>Symptom:</strong> The sound appears to work fine when called directly, but any code that tries to <em>use</em> the returned value — log it, display it in a UI, test it — gets <code>None</code> instead. This exact mismatch is precisely what a type checker catches automatically, as shown in the Type Hints section. <strong>Fix:</strong> decide once whether a method's job is to print (a side effect) or to return (a value the caller can use), and stay consistent with what the base class's signature promises.</p>
+<span class="fn">print</span>(<span class="st">f"Logged: {message}"</span>)</pre></div>
+                        <p><strong>Symptom:</strong> The sound appears to work fine when called directly, but any code that tries to <em>use</em> the returned value gets <code>None</code>. <strong>Fix:</strong> decide once whether a method's job is to print or to return, and stay consistent with what the base class's signature promises.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 8: Catching Exceptions Too Broadly Around Polymorphic Calls</h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Wrong — swallows the exact error you added NotImplementedError to surface</span>
-<span class="kw">for</span> animal <span class="kw">in</span> zoo:
+                        <div class="code-snippet"><pre><span class="kw">for</span> animal <span class="kw">in</span> zoo:
     <span class="kw">try</span>:
         <span class="fn">print</span>(animal.<span class="fn">makeSound</span>())
     <span class="kw">except</span> <span class="cl">Exception</span>:
-        <span class="fn">pass</span>  <span class="cmt"># a forgotten override now fails completely silently</span></pre></div>
-                        <p><strong>Symptom:</strong> An animal that was never given a proper <code>makeSound()</code> override just... doesn't print anything, with no error anywhere in the logs. The deliberate, loud <code>NotImplementedError</code> from the base class — designed specifically to be impossible to miss — gets silently absorbed by an overly broad <code>except</code> clause several layers up. <strong>Fix:</strong> catch specific, expected exceptions only; never blanket-catch <code>Exception</code> around code whose entire safety net depends on a specific error actually surfacing.</p>
+        <span class="kw">pass</span></pre></div>
+                        <p><strong>Symptom:</strong> An animal that was never given a proper <code>makeSound()</code> override just doesn't print anything, with no error anywhere. <strong>Fix:</strong> catch specific, expected exceptions only; never blanket-catch <code>Exception</code> around code whose safety net depends on a specific error actually surfacing.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>Mistake 9: Not Checking the MRO Before Adding Multiple Inheritance</h3>
-                        <div class="code-snippet"><pre><span class="cmt"># ✗ Confusing — both parents define feed(), which one actually runs?</span>
-<span class="kw">class</span> <span class="cl">LandAnimal</span>:
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">LandAnimal</span>:
     <span class="kw">def</span> <span class="fn">feed</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">return</span> <span class="st">"Grazes on land."</span>
 
@@ -1000,33 +956,31 @@ message = leo.<span class="fn">makeSound</span>()
         <span class="kw">return</span> <span class="st">"Filters food from water."</span>
 
 <span class="kw">class</span> <span class="cl">Hippo</span>(<span class="cl">LandAnimal</span>, <span class="cl">WaterAnimal</span>):
-    <span class="kw">pass</span>  <span class="cmt"># which feed() runs? Depends entirely on parent order.</span>
+    <span class="kw">pass</span>
 
-<span class="fn">print</span>(<span class="cl">Hippo</span>().<span class="fn">feed</span>())      <span class="cmt"># "Grazes on land." — LandAnimal wins</span>
-<span class="fn">print</span>(<span class="cl">Hippo</span>.__mro__)       <span class="cmt"># reveals exactly why, in order</span></pre></div>
-                        <p><strong>Symptom:</strong> Multiple inheritance silently picks one parent's method over the other based on the order they were listed in the class definition — <code>class Hippo(LandAnimal, WaterAnimal)</code> behaves differently from <code>class Hippo(WaterAnimal, LandAnimal)</code>, and neither raises an error to warn you about the ambiguity. <strong>Fix:</strong> whenever two parent classes define the same method name, print <code>Cls.__mro__</code> and confirm the resulting order actually matches your intent — or better, avoid the ambiguity entirely by giving each parent a distinctly named method instead of a colliding one.</p>
+<span class="fn">print</span>(<span class="cl">Hippo</span>().<span class="fn">feed</span>())
+<span class="fn">print</span>(<span class="cl">Hippo</span>.__mro__)</pre></div>
+                        <p><strong>Symptom:</strong> Multiple inheritance silently picks one parent's method over the other based on the order they were listed — <code>class Hippo(LandAnimal, WaterAnimal)</code> behaves differently from <code>class Hippo(WaterAnimal, LandAnimal)</code>. <strong>Fix:</strong> whenever two parent classes define the same method name, print <code>Cls.__mro__</code> and confirm the order matches your intent.</p>
                     </div>
 
                     <div class="oop-block">
                         <h3>A Full Debugging Session, Narrated</h3>
                         <p>Here's what actually diagnosing one of these bugs looks like in practice, start to finish — useful to read once so the process feels familiar the first time it happens to you for real.</p>
                         <p><strong>The report:</strong> "I added a <code>Giraffe</code> class and now feeding any animal in my zoo raises <code>AttributeError: 'Giraffe' object has no attribute 'hunger'</code> — but only for Giraffe, everything else still works."</p>
-                        <p><strong>Step 1 — Reproduce narrowly.</strong> Confirm it's specifically <code>Giraffe("Gerald").feed()</code> that fails, not the whole zoo. It is — <code>Lion("Leo").feed()</code> still works fine in isolation.</p>
-                        <p><strong>Step 2 — Read the traceback bottom to top.</strong> The error points at the line <code>self.hunger = max(0, self.hunger - 25)</code> inside <code>Animal.feed()</code>. That's shared code every subclass uses — so if only <code>Giraffe</code> fails there, the bug isn't in that line, it's in why <code>Giraffe</code> never got a <code>hunger</code> attribute in the first place.</p>
+                        <p><strong>Step 1 — Reproduce narrowly.</strong> Confirm it's specifically <code>Giraffe("Gerald").feed()</code> that fails, not the whole zoo.</p>
+                        <p><strong>Step 2 — Read the traceback bottom to top.</strong> The error points at <code>self.hunger = max(0, self.hunger - 25)</code> inside <code>Animal.feed()</code>. That's shared code every subclass uses — so the bug isn't in that line, it's in why <code>Giraffe</code> never got a <code>hunger</code> attribute.</p>
                         <p><strong>Step 3 — Check the constructor.</strong> Sure enough:</p>
-                        <div class="code-snippet"><pre><span class="cmt"># The actual bug — found by checking Giraffe's __init__</span>
-<span class="kw">class</span> <span class="cl">Giraffe</span>(<span class="cl">Animal</span>):
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Giraffe</span>(<span class="cl">Animal</span>):
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, neck_length_m: <span class="cl">float</span>):
-        <span class="kw">self</span>.neck_length_m = neck_length_m  <span class="cmt"># super().__init__() was never called!</span></pre></div>
-                        <p><strong>Step 4 — Connect it to a known pattern.</strong> This is Mistake 1 from earlier on this exact page: a forgotten <code>super().__init__()</code> call. <code>Animal.__init__</code> — the only place <code>self.hunger</code> gets set — never ran for this object.</p>
-                        <p><strong>Step 5 — Fix and verify with a test, not just a manual check.</strong> Add <code>super().__init__(name)</code> as the constructor's first line, then run (or write) a test like <code>test_hunger_never_goes_negative</code> from the Testing section against <code>Giraffe</code> specifically, so this exact regression can't silently return later.</p>
-                        <div class="callout-green"><p><strong>The pattern behind the pattern:</strong> almost every bug in an inheritance hierarchy traces back to one of the numbered mistakes on this page. Building a mental index of "symptom → likely mistake number" is, in practice, most of what makes debugging these hierarchies fast instead of frustrating.</p></div>
+        <span class="kw">self</span>.neck_length_m = neck_length_m</pre></div>
+                        <p><strong>Step 4 — Connect it to a known pattern.</strong> This is Mistake 1 from earlier on this exact page: a forgotten <code>super().__init__()</code> call.</p>
+                        <p><strong>Step 5 — Fix and verify with a test.</strong> Add <code>super().__init__(name)</code> as the constructor's first line, then run a test like <code>test_hunger_never_goes_negative</code> against <code>Giraffe</code> specifically.</p>
+                        <div class="callout-green"><p><strong>The pattern behind the pattern:</strong> almost every bug in an inheritance hierarchy traces back to one of the numbered mistakes on this page. Building a mental index of "symptom → likely mistake number" is, in practice, most of what makes debugging these hierarchies fast.</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== CASE STUDY ===== -->
         <section id="case-study" aria-labelledby="h-case-study">
             <div class="page-col">
                 <div class="section-label">10 — Beyond the Toy Example</div>
@@ -1057,7 +1011,7 @@ message = leo.<span class="fn">makeSound</span>()
 
 <span class="kw">class</span> <span class="cl">SMSNotifier</span>(<span class="cl">Notifier</span>):
     <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, message: <span class="cl">str</span>) -&gt; <span class="cl">str</span>:
-        base = <span class="kw">super</span>().<span class="fn">send</span>(message[:<span class="num">160</span>])  <span class="cmt"># SMS-specific truncation rule</span>
+        base = <span class="kw">super</span>().<span class="fn">send</span>(message[:<span class="num">160</span>])
         <span class="kw">return</span> <span class="st">f"{base} (via carrier gateway, 160-char limit)"</span>
 
     <span class="kw">def</span> <span class="fn">channel_name</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
@@ -1071,7 +1025,6 @@ message = leo.<span class="fn">makeSound</span>()
     <span class="kw">def</span> <span class="fn">channel_name</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
         <span class="kw">return</span> <span class="st">"Push"</span>
 
-<span class="cmt"># A dispatcher that has NEVER heard of Email, SMS, or Push specifically</span>
 <span class="kw">class</span> <span class="cl">AlertDispatcher</span>:
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, channels: <span class="cl">list</span>):
         <span class="kw">self</span>.channels = channels
@@ -1086,7 +1039,7 @@ dispatcher = <span class="cl">AlertDispatcher</span>([
     <span class="cl">PushNotifier</span>(<span class="st">"device-token-abc123"</span>),
 ])
 dispatcher.<span class="fn">broadcast</span>(<span class="st">"Server deploy completed successfully."</span>)</pre></div>
-                        <div class="callout-green"><p><strong>Map it back to the zoo:</strong> <code>Notifier ↔ Animal</code>, <code>channel_name() ↔ makeSound()</code>, <code>send() ↔ feed()</code>, and <code>AlertDispatcher.broadcast() ↔</code> the zookeeper's <code>for animal in zoo</code> loop. A dispatcher was written once and will keep working correctly the day someone adds a <code>SlackNotifier</code> or a <code>WebhookNotifier</code> — exactly the way the zoo's loop kept working the day you added a <code>Giraffe</code> in Exercise 01.</p></div>
+                        <div class="callout-green"><p><strong>Map it back to the zoo:</strong> <code>Notifier ↔ Animal</code>, <code>channel_name() ↔ makeSound()</code>, <code>send() ↔ feed()</code>, and <code>AlertDispatcher.broadcast() ↔</code> the zookeeper's <code>for animal in zoo</code> loop. A dispatcher was written once and will keep working correctly the day someone adds a <code>SlackNotifier</code> or a <code>WebhookNotifier</code>.</p></div>
                     </div>
 
                     <div class="oop-block">
@@ -1117,7 +1070,6 @@ dispatcher.<span class="fn">broadcast</span>(<span class="st">"Server deploy com
         opts = <span class="st">""</span>.join(<span class="st">f'&lt;option&gt;{o}&lt;/option&gt;'</span> <span class="kw">for</span> o <span class="kw">in</span> <span class="kw">self</span>.options)
         <span class="kw">return</span> <span class="st">f'&lt;label&gt;{self.label}&lt;/label&gt;&lt;select name="{self.name}"&gt;{opts}&lt;/select&gt;'</span>
 
-<span class="cmt"># The form itself never knows or cares which widget types it contains</span>
 <span class="kw">class</span> <span class="cl">Form</span>:
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, fields: <span class="cl">list</span>):
         <span class="kw">self</span>.fields = fields
@@ -1131,7 +1083,7 @@ signup_form = <span class="cl">Form</span>([
     <span class="cl">DropdownField</span>(<span class="st">"Country"</span>, <span class="st">"country"</span>, [<span class="st">"PH"</span>, <span class="st">"US"</span>, <span class="st">"UK"</span>]),
 ])
 <span class="fn">print</span>(signup_form.<span class="fn">render</span>())</pre></div>
-                        <div class="callout"><p><strong>The same shape, a third time:</strong> <code>FormField ↔ Animal</code>, <code>render() ↔ makeSound()</code>, and <code>Form.render() ↔</code> the zookeeper's loop. This is, structurally, how real UI frameworks like React's class components, Django's form widgets, and native mobile UI toolkits render heterogeneous collections of components without a giant <code>if isinstance(field, TextField): ... elif isinstance(field, CheckboxField): ...</code> chain anywhere in their rendering code.</p></div>
+                        <div class="callout"><p><strong>The same shape, a third time:</strong> <code>FormField ↔ Animal</code>, <code>render() ↔ makeSound()</code>, and <code>Form.render() ↔</code> the zookeeper's loop. This is, structurally, how real UI frameworks like React's class components, Django's form widgets, and native mobile UI toolkits render heterogeneous collections of components without a giant <code>if isinstance(field, TextField): ... elif ...</code> chain.</p></div>
                     </div>
 
                     <div class="oop-block">
@@ -1142,11 +1094,11 @@ signup_form = <span class="cl">Form</span>([
                                 <thead><tr><th>Framework</th><th>Base Class</th><th>What Gets Overridden</th></tr></thead>
                                 <tbody>
                                     <tr><td>Django</td><td><code>models.Model</code></td><td>Field declarations and <code>Meta</code> options — every model "is a" database table row.</td></tr>
-                                    <tr><td>Django REST Framework</td><td><code>APIView</code></td><td><code>get()</code>, <code>post()</code>, <code>put()</code> — the HTTP dispatcher never checks which view it's calling, just calls the method matching the request verb.</td></tr>
+                                    <tr><td>Django REST Framework</td><td><code>APIView</code></td><td><code>get()</code>, <code>post()</code>, <code>put()</code> — the HTTP dispatcher never checks which view it's calling.</td></tr>
                                     <tr><td>PyTorch</td><td><code>nn.Module</code></td><td><code>forward()</code> — every custom layer or model overrides exactly this one method.</td></tr>
-                                    <tr><td>pytest</td><td><code>unittest.TestCase</code> (when used)</td><td><code>setUp()</code>, <code>tearDown()</code> — a Template Method pair subclasses hook into.</td></tr>
+                                    <tr><td>pytest</td><td><code>unittest.TestCase</code></td><td><code>setUp()</code>, <code>tearDown()</code> — a Template Method pair subclasses hook into.</td></tr>
                                     <tr><td>Flask-RESTful</td><td><code>Resource</code></td><td><code>get()</code>, <code>post()</code>, <code>delete()</code> — structurally identical to Django REST Framework's approach.</td></tr>
-                                    <tr><td>Gymnasium (RL)</td><td><code>Env</code></td><td><code>step()</code>, <code>reset()</code> — every custom environment overrides exactly these two, mirroring <code>Animal</code>'s exactly-two-method contract.</td></tr>
+                                    <tr><td>Gymnasium (RL)</td><td><code>Env</code></td><td><code>step()</code>, <code>reset()</code> — every custom environment overrides exactly these two.</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -1155,7 +1107,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== GLOSSARY ===== -->
         <section id="glossary" aria-labelledby="h-glossary">
             <div class="page-col">
                 <div class="section-label">11 — Reference</div>
@@ -1172,26 +1123,26 @@ signup_form = <span class="cl">Form</span>([
                                 <tr><td><code>super()</code></td><td>A built-in that gives you access to the parent class's version of a method from inside an override.</td></tr>
                                 <tr><td>Polymorphism</td><td>Calling the same method name on different objects and getting behavior appropriate to each object's actual class.</td></tr>
                                 <tr><td>Dynamic dispatch</td><td>The runtime mechanism that decides, at the moment a method is called, which actual class's implementation to run.</td></tr>
-                                <tr><td>MRO (Method Resolution Order)</td><td>The exact order Python searches through a class hierarchy when looking up a method or attribute — critical with multiple inheritance.</td></tr>
+                                <tr><td>MRO (Method Resolution Order)</td><td>The exact order Python searches through a class hierarchy when looking up a method or attribute.</td></tr>
                                 <tr><td><code>isinstance(obj, Cls)</code></td><td>Checks whether an object is an instance of a class or any of its subclasses.</td></tr>
                                 <tr><td><code>NotImplementedError</code></td><td>An exception deliberately raised in a base class method to force subclasses to override it before use.</td></tr>
-                                <tr><td>"is-a" relationship</td><td>The test for whether inheritance is appropriate — "a Lion <em>is a(n)</em> Animal" holds true; forcing an unrelated relationship into inheritance is a common design mistake.</td></tr>
-                                <tr><td>Composition</td><td>Building behavior by holding a reference to another object as an attribute, instead of inheriting from a class — the alternative shown in the Strategy pattern above.</td></tr>
+                                <tr><td>"is-a" relationship</td><td>The test for whether inheritance is appropriate — "a Lion <em>is a(n)</em> Animal" holds true.</td></tr>
+                                <tr><td>Composition</td><td>Building behavior by holding a reference to another object as an attribute, instead of inheriting from a class.</td></tr>
                                 <tr><td>Multilevel inheritance</td><td>A chain of three or more classes — <code>Tiger → BigCat → Animal</code>, as explored in Exercise 05.</td></tr>
                                 <tr><td>Multiple inheritance</td><td>A class inheriting from two or more parents at once — <code>class FlyingSquirrel(Mammal, Glider):</code>.</td></tr>
-                                <tr><td>Liskov Substitution Principle</td><td>The design rule that any subclass should be usable anywhere its parent class is expected, without breaking the caller — violated in Mistake 6 above.</td></tr>
-                                <tr><td>Template Method pattern</td><td>A design pattern where a base class defines a fixed algorithm skeleton and defers specific steps to subclasses — see the Design Patterns section above.</td></tr>
-                                <tr><td>Instance attribute vs. class attribute</td><td>An instance attribute (<code>self.hunger</code>) belongs to one object; a class attribute (<code>hunger</code> at class body level) is shared by every instance — confusing the two causes Mistake 4 above.</td></tr>
-                                <tr><td>Duck typing</td><td>Python's tendency to care about what an object <em>can do</em> rather than its declared type — a looser cousin of the formal inheritance-based polymorphism this project demonstrates.</td></tr>
-                                <tr><td>Contract (informal)</td><td>The implicit agreement that every subclass's override behaves consistently with what callers expect — e.g., always returning a <code>str</code>, never raising unexpectedly.</td></tr>
-                                <tr><td>Mixin</td><td>A class meant to be combined with others via multiple inheritance to add one specific capability, without representing a full "is-a" relationship on its own.</td></tr>
-                                <tr><td>Factory Method (pattern)</td><td>Centralizing which concrete subclass to instantiate behind one function, so callers never need to name the subclass directly — see the Design Patterns section.</td></tr>
+                                <tr><td>Liskov Substitution Principle</td><td>Any subclass should be usable anywhere its parent class is expected, without breaking the caller.</td></tr>
+                                <tr><td>Template Method pattern</td><td>A design pattern where a base class defines a fixed algorithm skeleton and defers specific steps to subclasses.</td></tr>
+                                <tr><td>Instance attribute vs. class attribute</td><td>An instance attribute (<code>self.hunger</code>) belongs to one object; a class attribute is shared by every instance.</td></tr>
+                                <tr><td>Duck typing</td><td>Python's tendency to care about what an object <em>can do</em> rather than its declared type.</td></tr>
+                                <tr><td>Contract (informal)</td><td>The implicit agreement that every subclass's override behaves consistently with what callers expect.</td></tr>
+                                <tr><td>Mixin</td><td>A class meant to be combined with others via multiple inheritance to add one specific capability.</td></tr>
+                                <tr><td>Factory Method (pattern)</td><td>Centralizing which concrete subclass to instantiate behind one function.</td></tr>
                                 <tr><td>Strategy (pattern)</td><td>Achieving flexible, swappable behavior through composition instead of inheritance.</td></tr>
-                                <tr><td>Open/Closed Principle</td><td>Classes should be open for extension (new subclasses) but closed for modification (the base class shouldn't need edits every time a new subclass appears).</td></tr>
-                                <tr><td>Type checker (static)</td><td>A tool like mypy that analyzes type hints without running the code, catching contract mismatches before runtime.</td></tr>
-                                <tr><td>Class attribute counter</td><td>A shared, class-level value (like <code>Animal.population</code> in Exercise 09) that every instance can read and increment, distinct from any single instance's own state.</td></tr>
-                                <tr><td>Parametrized test</td><td>A single test function run multiple times with different inputs, via <code>@pytest.mark.parametrize</code> — avoids writing near-identical test functions per subclass.</td></tr>
-                                <tr><td>Runtime class</td><td>The actual, concrete class an object was constructed as — what Python's dynamic dispatch looks up, regardless of what a variable's declared or annotated type might suggest.</td></tr>
+                                <tr><td>Open/Closed Principle</td><td>Classes should be open for extension but closed for modification.</td></tr>
+                                <tr><td>Type checker (static)</td><td>A tool like mypy that analyzes type hints without running the code.</td></tr>
+                                <tr><td>Class attribute counter</td><td>A shared, class-level value that every instance can read and increment.</td></tr>
+                                <tr><td>Parametrized test</td><td>A single test function run multiple times with different inputs, via <code>@pytest.mark.parametrize</code>.</td></tr>
+                                <tr><td>Runtime class</td><td>The actual, concrete class an object was constructed as — what Python's dynamic dispatch looks up.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -1199,7 +1150,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== EXERCISES ===== -->
         <section id="exercises" aria-labelledby="h-exercises">
             <div class="page-col">
                 <div class="section-label">12 — Practice</div>
@@ -1210,62 +1160,62 @@ signup_form = <span class="cl">Form</span>([
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-beg">Beginner</span><span class="ex-num">01</span></div>
                             <h3>Add a Giraffe</h3>
-                            <p>Create a fourth subclass, <code>Giraffe(Animal)</code>, that overrides <code>makeSound()</code> to return a humming sound and overrides <code>feed()</code> to append a sentence about eating acacia leaves via <code>super().feed()</code>. Add it to the <code>zoo</code> list and confirm the loop picks it up automatically — with zero changes to the loop itself.</p>
+                            <p>Create a fourth subclass, <code>Giraffe(Animal)</code>, that overrides <code>makeSound()</code> to return a humming sound and overrides <code>feed()</code> to append a sentence about eating acacia leaves via <code>super().feed()</code>. Add it to the <code>zoo</code> list and confirm the loop picks it up automatically.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-beg">Beginner</span><span class="ex-num">02</span></div>
                             <h3>Refuse to Overfeed</h3>
-                            <p>Modify <code>Animal.feed()</code> so that if <code>self.hunger</code> is already <code>0</code>, it returns <code>f"{self.name} is already full."</code> instead of the usual message — without calling <code>max()</code> again. Then verify every subclass still works without touching <code>Lion</code>, <code>Elephant</code>, or <code>Parrot</code> at all.</p>
+                            <p>Modify <code>Animal.feed()</code> so that if <code>self.hunger</code> is already <code>0</code>, it returns <code>f"{self.name} is already full."</code> instead of the usual message. Then verify every subclass still works without touching <code>Lion</code>, <code>Elephant</code>, or <code>Parrot</code> at all.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-int">Intermediate</span><span class="ex-num">03</span></div>
                             <h3>Add a Diet Attribute</h3>
-                            <p>Give <code>Animal.__init__</code> a new parameter, <code>diet: str</code>, and store it as <code>self.diet</code>. Update each subclass's <code>super().__init__()</code> call to pass the right value ("carnivore", "herbivore", "omnivore"). Add a new method <code>describe_diet()</code> on <code>Animal</code> that every subclass inherits unchanged.</p>
+                            <p>Give <code>Animal.__init__</code> a new parameter, <code>diet: str</code>, and store it as <code>self.diet</code>. Update each subclass's <code>super().__init__()</code> call to pass the right value. Add a new method <code>describe_diet()</code> on <code>Animal</code> that every subclass inherits unchanged.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-int">Intermediate</span><span class="ex-num">04</span></div>
                             <h3>Build a Zookeeper Class</h3>
-                            <p>Write a <code>Zookeeper</code> class with a <code>rounds(zoo: list)</code> method that loops through every animal and calls <code>feed()</code> and <code>makeSound()</code>, exactly like the current bottom-of-file loop — but now it's reusable. Call <code>Zookeeper().rounds(zoo)</code> instead of writing the loop inline.</p>
+                            <p>Write a <code>Zookeeper</code> class with a <code>rounds(zoo: list)</code> method that loops through every animal and calls <code>feed()</code> and <code>makeSound()</code>. Call <code>Zookeeper().rounds(zoo)</code> instead of writing the loop inline.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-int">Intermediate</span><span class="ex-num">05</span></div>
                             <h3>Multilevel: Add a BigCat Layer</h3>
-                            <p>Insert a new class <code>BigCat(Animal)</code> between <code>Animal</code> and <code>Lion</code>, so the chain becomes <code>Lion(BigCat)</code> and <code>BigCat(Animal)</code>. Give <code>BigCat</code> a shared <code>pounce()</code> method. Add a <code>Tiger(BigCat)</code> subclass that also gets <code>pounce()</code> for free. This is multilevel inheritance — the same shape covered in the main guide's Types section.</p>
+                            <p>Insert a new class <code>BigCat(Animal)</code> between <code>Animal</code> and <code>Lion</code>, so the chain becomes <code>Lion(BigCat)</code> and <code>BigCat(Animal)</code>. Give <code>BigCat</code> a shared <code>pounce()</code> method. Add a <code>Tiger(BigCat)</code> subclass that also gets <code>pounce()</code> for free.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-adv">Challenge</span><span class="ex-num">06</span></div>
                             <h3>Wire It Into the JS Simulator</h3>
-                            <p>Open this page's source and find the JavaScript <code>Lion</code>/<code>Elephant</code>/<code>Parrot</code> classes near the bottom. Add a matching <code>Giraffe extends Animal</code> class with its own <code>emoji</code>, <code>feed()</code>, and <code>makeSound()</code>, then wire a fourth "Add Giraffe" button into the spawn bar. If you did Exercise 01 first, you already know exactly what the Python version should say.</p>
+                            <p>Open this page's source and find the JavaScript <code>Lion</code>/<code>Elephant</code>/<code>Parrot</code> classes near the bottom. Add a matching <code>Giraffe extends Animal</code> class, then wire a fourth "Add Giraffe" button into the spawn bar.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-beg">Beginner</span><span class="ex-num">07</span></div>
                             <h3>Add a <code>__repr__</code> Method</h3>
-                            <p>Give <code>Animal</code> a <code>__repr__(self)</code> that returns something like <code>f"&lt;{type(self).__name__} name={self.name!r} hunger={self.hunger}&gt;"</code>. Confirm that printing a <code>Lion</code>, an <code>Elephant</code>, and a <code>Parrot</code> each shows the correct class name automatically — without any subclass overriding <code>__repr__</code> itself.</p>
+                            <p>Give <code>Animal</code> a <code>__repr__(self)</code> that returns something like <code>f"&lt;{type(self).__name__} name={self.name!r} hunger={self.hunger}&gt;"</code>. Confirm that printing each animal shows the correct class name automatically.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-beg">Beginner</span><span class="ex-num">08</span></div>
                             <h3>Count Animals by Species</h3>
-                            <p>Write a standalone function <code>count_by_species(zoo: list) -&gt; dict</code> that returns a dictionary like <code>{"Lion": 1, "Elephant": 2}</code>. Use <code>type(animal).__name__</code> to get each animal's class name as a string — no <code>isinstance</code> chain needed.</p>
+                            <p>Write a standalone function <code>count_by_species(zoo: list) -&gt; dict</code> that returns a dictionary like <code>{"Lion": 1, "Elephant": 2}</code>. Use <code>type(animal).__name__</code> to get each animal's class name as a string.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-int">Intermediate</span><span class="ex-num">09</span></div>
                             <h3>Add a Class-Level Population Counter</h3>
-                            <p>Add a <em>class attribute</em> <code>population = 0</code> directly on <code>Animal</code>, and increment <code>Animal.population += 1</code> inside <code>__init__</code>. Confirm that <code>Lion("Leo")</code>, <code>Elephant("Ella")</code>, and <code>Parrot("Polly")</code> all increment the <em>same shared counter</em> — proving you understand the class-vs-instance distinction from Mistake 4 in the Debugging Guide, applied correctly this time.</p>
+                            <p>Add a <em>class attribute</em> <code>population = 0</code> directly on <code>Animal</code>, and increment <code>Animal.population += 1</code> inside <code>__init__</code>. Confirm all three species increment the <em>same shared counter</em>.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-int">Intermediate</span><span class="ex-num">10</span></div>
                             <h3>Write the pytest Suite Yourself</h3>
-                            <p>Before looking at the Testing section above, write your own <code>test_hunger_never_goes_negative</code> and <code>test_each_subclass_returns_a_unique_sound</code> functions from scratch. Then compare your version against the one provided — differences in approach are often more instructive than matches.</p>
+                            <p>Before looking at the Testing section above, write your own <code>test_hunger_never_goes_negative</code> and <code>test_each_subclass_returns_a_unique_sound</code> functions from scratch. Then compare your version against the one provided.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-adv">Challenge</span><span class="ex-num">11</span></div>
                             <h3>Refactor to the Strategy Pattern</h3>
-                            <p>Using the Strategy pattern example from the Design Patterns section as a starting point, fully rewrite the <code>Lion</code>/<code>Elephant</code>/<code>Parrot</code> hierarchy as a single <code>Animal</code> class that takes a <code>sound_strategy</code> and <code>diet_strategy</code> object instead of subclassing. Then write two or three sentences arguing which version — inheritance or composition — you'd actually choose for this specific problem, and why.</p>
+                            <p>Using the Strategy pattern example from the Design Patterns section as a starting point, fully rewrite the hierarchy as a single <code>Animal</code> class that takes a <code>sound_strategy</code> and <code>diet_strategy</code> object. Then argue which version — inheritance or composition — you'd actually choose, and why.</p>
                         </div>
                         <div class="exercise-card">
                             <div class="ex-head"><span class="ex-badge ex-adv">Challenge</span><span class="ex-num">12</span></div>
                             <h3>Build the Notification System</h3>
-                            <p>Implement the full <code>Notifier</code>/<code>EmailNotifier</code>/<code>SMSNotifier</code>/<code>PushNotifier</code>/<code>AlertDispatcher</code> hierarchy from the Case Study section yourself, from memory, without copying the code block. Then add a fourth channel, <code>SlackNotifier</code>, and confirm <code>AlertDispatcher.broadcast()</code> picks it up with zero changes to the dispatcher itself.</p>
+                            <p>Implement the full <code>Notifier</code>/<code>EmailNotifier</code>/<code>SMSNotifier</code>/<code>PushNotifier</code>/<code>AlertDispatcher</code> hierarchy from the Case Study section yourself, from memory. Then add a fourth channel, <code>SlackNotifier</code>, and confirm the dispatcher picks it up with zero changes.</p>
                         </div>
                     </div>
                     <div class="oop-block" style="margin-top:1.4rem;">
@@ -1275,28 +1225,27 @@ signup_form = <span class="cl">Form</span>([
                             <table class="glossary-table">
                                 <thead><tr><th>Exercise</th><th>Hint</th></tr></thead>
                                 <tbody>
-                                    <tr><td>01 — Giraffe</td><td>Copy <code>Lion</code>'s structure exactly and just change the two strings inside <code>feed()</code> and <code>makeSound()</code> — the shape of the class doesn't need to change at all.</td></tr>
-                                    <tr><td>02 — Refuse to Overfeed</td><td>Check <code>self.hunger == 0</code> as the very first line inside <code>feed()</code>, before the existing <code>max()</code> logic runs, and return early with a different message.</td></tr>
-                                    <tr><td>03 — Diet Attribute</td><td>Add <code>diet</code> as a new parameter to <code>Animal.__init__</code>, then update every <code>super().__init__(...)</code> call in <code>Lion</code>, <code>Elephant</code>, and <code>Parrot</code> to pass a matching string.</td></tr>
-                                    <tr><td>04 — Zookeeper Class</td><td>The method body is almost a direct copy of the existing bottom-of-file <code>for</code> loop — just wrap it in a class and a method definition.</td></tr>
-                                    <tr><td>05 — BigCat Layer</td><td>Change <code>class Lion(Animal):</code> to <code>class Lion(BigCat):</code>, then define <code>class BigCat(Animal):</code> above it with the shared <code>pounce()</code> method.</td></tr>
-                                    <tr><td>06 — Wire Into JS</td><td>Find the <code>NAME_POOLS</code> object and the <code>if (kind === 'lion') ...</code> chain inside <code>makeAnimal()</code> — both need a new branch for <code>'giraffe'</code>.</td></tr>
-                                    <tr><td>07 — <code>__repr__</code></td><td><code>type(self).__name__</code> gives you the actual runtime class name as a string, without needing any subclass to do anything special.</td></tr>
-                                    <tr><td>08 — Count by Species</td><td>A single line does most of the work: <code>collections.Counter(type(a).__name__ for a in zoo)</code>.</td></tr>
-                                    <tr><td>09 — Population Counter</td><td>Declare <code>population = 0</code> directly inside the class body of <code>Animal</code> (not inside <code>__init__</code>), then reference it as <code>Animal.population</code>, never <code>self.population</code>, when incrementing.</td></tr>
-                                    <tr><td>10 — Write Your Own Tests</td><td>Start from "what should never happen" (hunger below zero) and "what must always differ" (each subclass's sound) — those two ideas cover most of the value.</td></tr>
-                                    <tr><td>11 — Strategy Refactor</td><td>Give <code>Animal</code> a constructor parameter that accepts a small object with a <code>describe()</code> method, and call <code>self.diet.describe()</code> instead of anything hardcoded.</td></tr>
-                                    <tr><td>12 — Notification System</td><td>Build <code>Notifier</code> first with just <code>send()</code> and <code>channel_name()</code>, get one subclass fully working end to end, then copy that shape for the rest.</td></tr>
+                                    <tr><td>01 — Giraffe</td><td>Copy <code>Lion</code>'s structure exactly and just change the two strings inside <code>feed()</code> and <code>makeSound()</code>.</td></tr>
+                                    <tr><td>02 — Refuse to Overfeed</td><td>Check <code>self.hunger == 0</code> as the very first line inside <code>feed()</code> and return early with a different message.</td></tr>
+                                    <tr><td>03 — Diet Attribute</td><td>Add <code>diet</code> as a new parameter to <code>Animal.__init__</code>, then update every <code>super().__init__(...)</code> call.</td></tr>
+                                    <tr><td>04 — Zookeeper Class</td><td>The method body is almost a direct copy of the existing bottom-of-file <code>for</code> loop — just wrap it.</td></tr>
+                                    <tr><td>05 — BigCat Layer</td><td>Change <code>class Lion(Animal):</code> to <code>class Lion(BigCat):</code>, then define <code>class BigCat(Animal):</code> above it.</td></tr>
+                                    <tr><td>06 — Wire Into JS</td><td>Find the <code>NAME_POOLS</code> object and the <code>if (kind === 'lion') ...</code> chain inside <code>makeAnimal()</code> — both need a new branch.</td></tr>
+                                    <tr><td>07 — <code>__repr__</code></td><td><code>type(self).__name__</code> gives you the actual runtime class name as a string.</td></tr>
+                                    <tr><td>08 — Count by Species</td><td><code>collections.Counter(type(a).__name__ for a in zoo)</code> does most of the work.</td></tr>
+                                    <tr><td>09 — Population Counter</td><td>Declare <code>population = 0</code> directly inside the class body of <code>Animal</code>, then reference it as <code>Animal.population</code>.</td></tr>
+                                    <tr><td>10 — Write Your Own Tests</td><td>Start from "what should never happen" (hunger below zero) and "what must always differ" (each subclass's sound).</td></tr>
+                                    <tr><td>11 — Strategy Refactor</td><td>Give <code>Animal</code> a constructor parameter that accepts a small object with a <code>describe()</code> method.</td></tr>
+                                    <tr><td>12 — Notification System</td><td>Build <code>Notifier</code> first with just <code>send()</code> and <code>channel_name()</code>, get one subclass working end to end, then copy the shape.</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="callout" style="margin-top:1.2rem;"><p><strong>No solutions posted on purpose:</strong> Every exercise above is checkable by running your code and reading the output — that feedback loop is more valuable than a provided answer key. If you get stuck, re-read the Line-by-Line Walkthrough above; every mechanism you need is already explained there.</p></div>
+                    <div class="callout" style="margin-top:1.2rem;"><p><strong>No solutions posted on purpose:</strong> Every exercise above is checkable by running your code and reading the output — that feedback loop is more valuable than a provided answer key.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== INTERVIEW PREP ===== -->
         <section id="interview" aria-labelledby="h-interview">
             <div class="page-col">
                 <div class="section-label">13 — Talking About It</div>
@@ -1306,58 +1255,57 @@ signup_form = <span class="cl">Form</span>([
                     <div class="interview-grid">
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q1.</span> What's the difference between inheritance and composition, and when would you choose one over the other?</div>
-                            <div class="iv-a">Inheritance models an "is-a" relationship and is fixed for an object's lifetime — a Lion is always a Lion. Composition models a "has-a" relationship and can change at runtime — an object can swap out a strategy object it holds. Choose inheritance when the specialization is permanent and the hierarchy is shallow; choose composition when the behavior needs to be swappable or the relationships would require multiple, unrelated inheritance chains.</div>
+                            <div class="iv-a">Inheritance models an "is-a" relationship and is fixed for an object's lifetime — a Lion is always a Lion. Composition models a "has-a" relationship and can change at runtime. Choose inheritance when the specialization is permanent and the hierarchy is shallow; choose composition when the behavior needs to be swappable.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q2.</span> Walk me through what happens when you call an overridden method on a subclass instance.</div>
-                            <div class="iv-a">Python looks up the method starting from the object's actual runtime class — not the variable's declared type — following the Method Resolution Order. It finds the closest override in that chain and executes it. If that override calls <code>super().method()</code>, the lookup continues up the chain from that point, running the parent's version before returning control to the subclass's code.</div>
+                            <div class="iv-a">Python looks up the method starting from the object's actual runtime class — not the variable's declared type — following the Method Resolution Order. It finds the closest override in that chain and executes it. If that override calls <code>super().method()</code>, the lookup continues up the chain.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q3.</span> Why would you deliberately make a base class method raise <code>NotImplementedError</code>?</div>
-                            <div class="iv-a">To enforce a contract: every subclass must supply its own implementation before the class can be meaningfully used. It converts a silent, hard-to-trace bug (a subclass forgetting to implement required behavior) into an immediate, loud failure at the exact call site where the missing piece matters.</div>
+                            <div class="iv-a">To enforce a contract: every subclass must supply its own implementation before the class can be meaningfully used. It converts a silent, hard-to-trace bug into an immediate, loud failure at the exact call site where the missing piece matters.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q4.</span> What's the Liskov Substitution Principle, and can you give an example of violating it?</div>
-                            <div class="iv-a">It states that a subclass should be usable anywhere its parent is expected without breaking the caller's assumptions. Mistake 6 in this project's Debugging Guide is a direct violation: giving <code>Parrot</code> a required constructor argument the other subclasses don't have means generic code that builds any animal the same way breaks specifically on <code>Parrot</code>.</div>
+                            <div class="iv-a">It states that a subclass should be usable anywhere its parent is expected without breaking the caller's assumptions. Mistake 6 in this project's Debugging Guide is a direct violation: giving <code>Parrot</code> a required constructor argument the other subclasses don't have.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q5.</span> How does Python resolve method lookups when a class inherits from multiple parents?</div>
-                            <div class="iv-a">Via the C3 linearization algorithm, producing a single, consistent Method Resolution Order stored on <code>Cls.__mro__</code>. Python searches that order left to right and uses the first matching implementation it finds — this avoids the classic "diamond problem" ambiguity that plagues naive multiple-inheritance implementations in other languages.</div>
+                            <div class="iv-a">Via the C3 linearization algorithm, producing a single, consistent Method Resolution Order stored on <code>Cls.__mro__</code>. Python searches that order left to right and uses the first matching implementation it finds.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q6.</span> What's a practical difference between an instance attribute and a class attribute, and how have you seen that go wrong?</div>
-                            <div class="iv-a">An instance attribute (<code>self.hunger</code>, set in <code>__init__</code>) belongs to one object; a class attribute (declared directly in the class body) is shared across every instance of that class. Mistake 4 in this project shows the failure mode directly: defining <code>hunger</code> as a class attribute means feeding any one animal silently changes every animal's hunger, because they're all reading and writing the same shared value.</div>
+                            <div class="iv-a">An instance attribute belongs to one object; a class attribute is shared across every instance. Mistake 4 in this project shows the failure mode: defining <code>hunger</code> as a class attribute means feeding any one animal silently changes every animal's hunger.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q7.</span> How would you unit test that a base class's contract is actually being enforced by its subclasses?</div>
-                            <div class="iv-a">Write a parametrized test that instantiates each subclass and asserts the overridden method returns something meaningful (not the base class's fallback or an exception), plus a separate test confirming the base class itself still raises when called directly. The Testing section above shows exactly this: <code>test_base_animal_cannot_make_sound</code> and the parametrized <code>test_each_subclass_mentions_its_own_diet</code> test together cover both directions.</div>
+                            <div class="iv-a">Write a parametrized test that instantiates each subclass and asserts the overridden method returns something meaningful, plus a separate test confirming the base class itself still raises when called directly.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q8.</span> What's the Factory Method pattern, and why not just call constructors directly everywhere?</div>
-                            <div class="iv-a">Factory Method centralizes the decision of which concrete subclass to instantiate in one place — like this project's <code>make_animal(species, name)</code> function — instead of scattering <code>Lion(...)</code>, <code>Elephant(...)</code> constructor calls throughout the codebase. When a new subclass is added, only the factory needs a new entry; every existing call site that already goes through the factory keeps working unchanged.</div>
+                            <div class="iv-a">Factory Method centralizes the decision of which concrete subclass to instantiate in one place — like this project's <code>make_animal(species, name)</code> function. When a new subclass is added, only the factory needs a new entry.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q9.</span> If you had a hierarchy five levels deep, how would you refactor it?</div>
-                            <div class="iv-a">Start by identifying which parts of the chain are genuine "is-a" relationships versus behaviors that got bolted on as convenient shortcuts. Behaviors used by only some branches of the hierarchy are strong candidates for extraction into mixins or composed strategy objects — flattening the inheritance chain back down to two or three levels while keeping the shared behavior available where it's actually needed.</div>
+                            <div class="iv-a">Start by identifying which parts of the chain are genuine "is-a" relationships versus behaviors that got bolted on as convenient shortcuts. Behaviors used by only some branches are strong candidates for extraction into mixins or composed strategy objects.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q10.</span> How do type hints interact with inheritance and static type checkers?</div>
-                            <div class="iv-a">A subclass's overridden method should return a type compatible with what the base class promises — narrowing the return type is generally fine, widening or changing it isn't. Tools like mypy check this automatically: if <code>Animal.feed() -&gt; str</code> and a subclass override implicitly returns <code>None</code> because of a missing <code>return</code> statement, mypy flags it before the code ever runs, as demonstrated in the Type Hints section.</div>
+                            <div class="iv-a">A subclass's overridden method should return a type compatible with what the base class promises. Tools like mypy check this automatically: if <code>Animal.feed() -&gt; str</code> and a subclass override implicitly returns <code>None</code>, mypy flags it before the code ever runs.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q11.</span> What's a mixin, and how is it different from a normal parent class?</div>
-                            <div class="iv-a">A mixin is a class designed to be combined with others via multiple inheritance to add one specific, self-contained capability — it typically has no <code>__init__</code> of its own and isn't meant to be instantiated alone. Unlike a normal parent class representing an "is-a" relationship, a mixin represents a "can-do" capability, like a hypothetical <code>FlyableMixin</code> that could be added to <code>Parrot</code> without implying every flying thing is the same kind of object.</div>
+                            <div class="iv-a">A mixin is a class designed to be combined with others via multiple inheritance to add one specific, self-contained capability — it typically has no <code>__init__</code> of its own and isn't meant to be instantiated alone.</div>
                         </div>
                         <div class="interview-card">
                             <div class="iv-q"><span class="iv-num">Q12.</span> Describe a bug you'd expect from forgetting <code>super().__init__()</code>, and how you'd diagnose it.</div>
-                            <div class="iv-a">The subclass instance would be missing every attribute the parent constructor was responsible for setting — calling any method that reads those attributes raises <code>AttributeError</code>. Diagnosis: read the traceback for which attribute is missing, then check whether that subclass's <code>__init__</code> actually delegates to <code>super().__init__()</code> — exactly the debugging session narrated in the Common Mistakes section above.</div>
+                            <div class="iv-a">The subclass instance would be missing every attribute the parent constructor was responsible for setting — calling any method that reads those attributes raises <code>AttributeError</code>. Read the traceback for which attribute is missing, then check the subclass's <code>__init__</code>.</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== FAQ ===== -->
         <section id="faq" aria-labelledby="h-faq">
             <div class="page-col">
                 <div class="section-label">14 — Common Questions</div>
@@ -1370,94 +1318,93 @@ signup_form = <span class="cl">Form</span>([
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>What happens if a subclass forgets to call <code>super().feed()</code>?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Nothing crashes — Python doesn't require it. But the subclass's <code>feed()</code> would then be responsible for updating <code>self.hunger</code> itself, or hunger would silently stop decreasing whenever that animal is fed. This is a common real-world bug: overriding a method and forgetting that <code>super()</code> was doing important work you now have to replicate.</p></div>
+                            <div class="faq-a"><p>Nothing crashes — Python doesn't require it. But the subclass's <code>feed()</code> would then be responsible for updating <code>self.hunger</code> itself, or hunger would silently stop decreasing whenever that animal is fed.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Isn't this the same as just writing three separate, unrelated <code>feed_lion()</code>, <code>feed_elephant()</code>, and <code>feed_parrot()</code> functions?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>No — and that difference is the whole point. Three separate functions would each need their own hunger-clamping logic duplicated, and the calling code would need an <code>if</code>/<code>elif</code> chain to pick the right one. With inheritance, the hunger math exists exactly once, and the calling loop never checks species at all. Fixing a bug in the clamping logic means editing one method, not three.</p></div>
+                            <div class="faq-a"><p>No — and that difference is the whole point. Three separate functions would each need their own hunger-clamping logic duplicated, and the calling code would need an <code>if</code>/<code>elif</code> chain to pick the right one. With inheritance, the hunger math exists exactly once, and the calling loop never checks species at all.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Does the JavaScript simulator work identically to the Python source?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Structurally, yes — <code>class Lion extends Animal</code> with <code>super.feed()</code> follows the same override-and-extend pattern as Python's <code>class Lion(Animal)</code> with <code>super().feed()</code>. The syntax differs (JavaScript uses <code>extends</code> and getters for read-only properties like <code>emoji</code>), but the dispatch mechanism — call a method, let the runtime resolve it to the actual subclass — is conceptually identical in both languages.</p></div>
+                            <div class="faq-a"><p>Structurally, yes — <code>class Lion extends Animal</code> with <code>super.feed()</code> follows the same override-and-extend pattern as Python's <code>class Lion(Animal)</code> with <code>super().feed()</code>. The syntax differs but the dispatch mechanism is conceptually identical in both languages.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Is my zoo roster saved anywhere if I refresh the page?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>No. The simulator keeps your roster in an in-memory JavaScript array for the current page session only, so refreshing or navigating away resets it. This is intentional — the simulator is a teaching tool for watching dispatch happen, not a persistence demo.</p></div>
+                            <div class="faq-a"><p>No. The simulator keeps your roster in an in-memory JavaScript array for the current page session only, so refreshing or navigating away resets it.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Can I add a species that behaves like two different animals at once?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Yes, using multiple inheritance — <code>class FlyingSquirrel(Mammal, Glider):</code>, for example. Python resolves conflicts between the parents using the Method Resolution Order (MRO), covered in the main Inheritance guide's Types section. It's a legitimate pattern, but reach for it only when the animal genuinely needs behavior from two unrelated hierarchies — not as a shortcut around a messy single hierarchy.</p></div>
+                            <div class="faq-a"><p>Yes, using multiple inheritance — <code>class FlyingSquirrel(Mammal, Glider):</code>, for example. Python resolves conflicts between the parents using the Method Resolution Order (MRO).</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Why start hunger at 50 instead of 0 or 100?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>A deliberate design choice, not a technical requirement — starting at the midpoint means the hunger bar visibly moves the first time you click "Feed" without immediately hitting the floor. It's a small UX decision that makes the underlying mechanism easier to observe, which matters more here than realism.</p></div>
+                            <div class="faq-a"><p>A deliberate design choice, not a technical requirement — starting at the midpoint means the hunger bar visibly moves the first time you click "Feed" without immediately hitting the floor.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Why does the Case Study use a totally different example (notifications) instead of more animals?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>To prove the pattern generalizes. If the only example you'd ever seen was animals, it would be easy to mistake "inheritance" for "a trick that works for zoo simulators." Seeing the identical shape — base class, contract-enforcing method, several overriding subclasses, one caller that never checks type — reappear in a notification system is what proves you learned a transferable pattern, not a one-off recipe.</p></div>
+                            <div class="faq-a"><p>To prove the pattern generalizes. If the only example you'd ever seen was animals, it would be easy to mistake "inheritance" for "a trick that works for zoo simulators." Seeing the identical shape reappear in a notification system is what proves you learned a transferable pattern.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Do I need to know the Template Method and Strategy pattern names to use inheritance well?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>No — you can write correct code without ever naming the pattern. But knowing the names lets you communicate design decisions precisely with other engineers ("I used Template Method here because the skeleton is fixed") instead of re-explaining the whole mechanism from scratch every time it comes up in a code review or design discussion.</p></div>
+                            <div class="faq-a"><p>No — you can write correct code without ever naming the pattern. But knowing the names lets you communicate design decisions precisely with other engineers instead of re-explaining the whole mechanism every time.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>What's the actual difference between <code>type(x) == Lion</code> and <code>isinstance(x, Lion)</code>?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p><code>type(x) == Lion</code> only matches if <code>x</code> is <em>exactly</em> a <code>Lion</code> — a hypothetical <code>WhiteLion(Lion)</code> subclass would fail the check. <code>isinstance(x, Lion)</code> matches <code>Lion</code> and any of its subclasses, respecting the hierarchy. Mistake 5 in the Debugging Guide covers exactly this trap.</p></div>
+                            <div class="faq-a"><p><code>type(x) == Lion</code> only matches if <code>x</code> is <em>exactly</em> a <code>Lion</code> — a hypothetical <code>WhiteLion(Lion)</code> subclass would fail the check. <code>isinstance(x, Lion)</code> matches <code>Lion</code> and any of its subclasses.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Can two different subclasses accidentally have identical <code>makeSound()</code> output, and would that be a bug?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Nothing stops it syntactically — Python doesn't enforce distinct return values. Whether it's a bug depends entirely on your domain: for a zoo simulator it would almost certainly be an accidental copy-paste, which is exactly what the <code>test_each_subclass_returns_a_unique_sound</code> test in the Testing section is designed to catch.</p></div>
+                            <div class="faq-a"><p>Nothing stops it syntactically — Python doesn't enforce distinct return values. Whether it's a bug depends entirely on your domain; for a zoo simulator it would almost certainly be an accidental copy-paste.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Why does the pytest suite use <code>@pytest.mark.parametrize</code> instead of three separate test functions?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Because writing <code>test_lion_diet</code>, <code>test_elephant_diet</code>, and <code>test_parrot_diet</code> as three near-identical functions would duplicate the same assertion logic three times — the exact kind of repetition inheritance itself exists to eliminate. Parametrizing keeps the test's own logic written once, run three times, one case per subclass.</p></div>
+                            <div class="faq-a"><p>Because writing <code>test_lion_diet</code>, <code>test_elephant_diet</code>, and <code>test_parrot_diet</code> as three near-identical functions would duplicate the same assertion logic three times. Parametrizing keeps the test's own logic written once, run three times.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Is it bad practice to have every subclass call <code>super()</code> in every overridden method?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Not inherently — it depends on whether the parent's logic is actually worth reusing. <code>feed()</code> calls <code>super()</code> in every subclass because the hunger-clamping math is genuinely shared. <code>makeSound()</code> deliberately does <em>not</em> call <code>super()</code> in any subclass, because the base version only raises an error — there's nothing useful to reuse. Call <code>super()</code> when there's real shared logic; skip it when the override is a full replacement.</p></div>
+                            <div class="faq-a"><p>Not inherently — it depends on whether the parent's logic is actually worth reusing. <code>feed()</code> calls <code>super()</code> in every subclass because the hunger-clamping math is genuinely shared. <code>makeSound()</code> deliberately does <em>not</em> call <code>super()</code>, because the base version only raises an error.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>How would this project change if two animals needed to interact with each other, like a predator and prey?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>You'd likely introduce a separate method or a small coordinating class rather than cramming interaction logic into <code>Animal</code> itself — for example, a <code>hunt(predator, prey)</code> function or a <code>PredatorMixin</code> class that only certain subclasses inherit alongside <code>Animal</code>. This is a good moment to reach for multiple inheritance or composition rather than overloading the base class with a concern most animals don't share.</p></div>
+                            <div class="faq-a"><p>You'd likely introduce a separate method or a small coordinating class rather than cramming interaction logic into <code>Animal</code> itself — for example, a <code>hunt(predator, prey)</code> function or a <code>PredatorMixin</code> class that only certain subclasses inherit.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Does adding more subclasses ever make the base class itself need to change?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Ideally, no — that's the whole promise of the Open/Closed Principle mentioned in the main Inheritance guide: classes should be open for extension (new subclasses) but closed for modification (the base class shouldn't need edits). If adding a new animal type keeps forcing you back into <code>Animal</code>'s code, that's a signal the base class's interface is missing something, or the new type doesn't actually belong in this hierarchy.</p></div>
+                            <div class="faq-a"><p>Ideally, no — that's the whole promise of the Open/Closed Principle: classes should be open for extension but closed for modification. If adding a new animal type keeps forcing you back into <code>Animal</code>'s code, that's a signal the base class's interface is missing something.</p></div>
                         </div>
                         <div class="faq-item">
                             <div class="faq-q" onclick="toggleFaq(this)"><h3>Where should I go next after finishing this project?</h3><span class="faq-toggle">+</span></div>
-                            <div class="faq-a"><p>Back to the <a href="inheritance.html#apps" style="color:var(--blue-lt);">Inheritance guide's Projects section</a> for the other nine planned builds (Vehicle Garage, RPG Character Builder, Org Chart, and more), or forward to the <a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism guide</a> — since everything this project demonstrated about "one interface, many overriding subclasses" is, formally speaking, polymorphism in action.</p></div>
+                            <div class="faq-a"><p>Back to the <a href="inheritance.html#apps" style="color:var(--blue-lt);">Inheritance guide's Projects section</a> for the other nine planned builds, or forward to the <a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism guide</a> — since everything this project demonstrated is, formally speaking, polymorphism in action.</p></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== EXECUTION TRACE ===== -->
         <section id="trace" aria-labelledby="h-trace">
             <div class="page-col">
                 <div class="section-label">15 — Watching It Run</div>
                 <h2 id="h-trace">Step-by-Step Execution Trace</h2>
                 <div style="margin-top:1rem;">
-                    <p>The Line-by-Line Walkthrough in the Python Source section explains what each line <em>does</em>. This table traces exactly what <em>happens</em>, statement by statement, when the bottom of that script actually runs — a level of detail worth working through slowly at least once.</p>
+                    <p>The Line-by-Line Walkthrough in the Python Source section explains what each line <em>does</em>. This table traces exactly what <em>happens</em>, statement by statement, when the bottom of that script actually runs.</p>
                     <div class="table-wrap">
                         <table class="glossary-table">
                             <thead><tr><th>Step</th><th>Statement</th><th>What Actually Happens</th></tr></thead>
                             <tbody>
                                 <tr><td>1</td><td><code>Lion("Leo")</code></td><td><code>Lion.__init__</code> doesn't exist, so Python uses <code>Animal.__init__</code> directly. <code>self.name = "Leo"</code>, <code>self.hunger = 50</code>.</td></tr>
                                 <tr><td>2</td><td><code>Elephant("Ella")</code></td><td>Same lookup: no <code>Elephant.__init__</code> override exists, so <code>Animal.__init__</code> runs again for a completely separate object.</td></tr>
-                                <tr><td>3</td><td><code>Parrot("Polly")</code></td><td>Same again — three independent objects, three independent <code>self.hunger = 50</code> values, no shared state between them.</td></tr>
-                                <tr><td>4</td><td><code>zoo = [leo, ella, polly]</code></td><td>One list object is created holding three references. The list itself has no idea these are different classes — it just holds three Python objects.</td></tr>
+                                <tr><td>3</td><td><code>Parrot("Polly")</code></td><td>Same again — three independent objects, three independent <code>self.hunger = 50</code> values.</td></tr>
+                                <tr><td>4</td><td><code>zoo = [leo, ella, polly]</code></td><td>One list object is created holding three references. The list itself has no idea these are different classes.</td></tr>
                                 <tr><td>5</td><td><code>for animal in zoo:</code> (iteration 1)</td><td><code>animal</code> is bound to the <code>Lion</code> object. Python does not evaluate anything about its type yet.</td></tr>
-                                <tr><td>6</td><td><code>animal.makeSound()</code></td><td>Python looks up <code>makeSound</code> starting at <code>type(animal)</code>, which is <code>Lion</code>. Finds <code>Lion.makeSound</code> immediately — the search stops there and never reaches <code>Animal.makeSound</code>.</td></tr>
-                                <tr><td>7</td><td><code>return f"{self.name} lets out a mighty ROAR!"</code></td><td><code>self.name</code> resolves to the instance attribute set in step 1: <code>"Leo"</code>. The formatted string is returned to the caller.</td></tr>
+                                <tr><td>6</td><td><code>animal.makeSound()</code></td><td>Python looks up <code>makeSound</code> starting at <code>type(animal)</code>, which is <code>Lion</code>. Finds <code>Lion.makeSound</code> immediately.</td></tr>
+                                <tr><td>7</td><td><code>return f"{self.name} lets out a mighty ROAR!"</code></td><td><code>self.name</code> resolves to the instance attribute set in step 1: <code>"Leo"</code>.</td></tr>
                                 <tr><td>8</td><td><code>print(...)</code></td><td>The string <code>"Leo lets out a mighty ROAR!"</code> is written to stdout.</td></tr>
-                                <tr><td>9</td><td><code>animal.feed()</code></td><td>Lookup starts at <code>Lion</code> again, finds <code>Lion.feed</code>. Inside it, <code>super().feed()</code> explicitly continues the lookup from <code>Animal</code>, running <code>Animal.feed</code> to completion first.</td></tr>
+                                <tr><td>9</td><td><code>animal.feed()</code></td><td>Lookup starts at <code>Lion</code> again, finds <code>Lion.feed</code>. Inside it, <code>super().feed()</code> explicitly continues the lookup from <code>Animal</code>.</td></tr>
                                 <tr><td>10</td><td><code>self.hunger = max(0, 50 - 25)</code></td><td>Executes inside <code>Animal.feed</code>, using <code>self</code> — which is still the same <code>Lion</code> object. <code>self.hunger</code> becomes <code>25</code>.</td></tr>
                                 <tr><td>11</td><td><code>return f"{self.name} has been fed."</code></td><td><code>Animal.feed</code> returns <code>"Leo has been fed."</code> back up to <code>Lion.feed</code>, where it's stored in the local variable <code>base</code>.</td></tr>
                                 <tr><td>12</td><td><code>return f"{base} It devours a slab of meat."</code></td><td><code>Lion.feed</code> appends its own sentence and returns the combined string, which <code>print()</code> then writes out.</td></tr>
-                                <tr><td>13</td><td>Loop iteration 2</td><td><code>animal</code> is rebound to the <code>Elephant</code> object. Steps 6–12 repeat identically in structure, but every lookup now resolves to <code>Elephant</code>'s overrides instead of <code>Lion</code>'s — same code path, different destination.</td></tr>
-                                <tr><td>14</td><td>Loop iteration 3</td><td><code>animal</code> is rebound to the <code>Parrot</code> object; the same structural steps run a third time, resolving to <code>Parrot</code>'s overrides.</td></tr>
+                                <tr><td>13</td><td>Loop iteration 2</td><td><code>animal</code> is rebound to the <code>Elephant</code> object. Steps 6–12 repeat identically in structure, but every lookup now resolves to <code>Elephant</code>'s overrides.</td></tr>
+                                <tr><td>14</td><td>Loop iteration 3</td><td><code>animal</code> is rebound to the <code>Parrot</code> object; the same structural steps run a third time.</td></tr>
                                 <tr><td>15</td><td>Loop ends</td><td><code>zoo</code> is exhausted. Six total lines have been printed — two per animal — and at no point did any line of code branch on species.</td></tr>
                             </tbody>
                         </table>
@@ -1467,7 +1414,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== PERFORMANCE & MEMORY ===== -->
         <section id="performance" aria-labelledby="h-performance">
             <div class="page-col">
                 <div class="section-label">16 — Under the Hood</div>
@@ -1475,63 +1421,55 @@ signup_form = <span class="cl">Form</span>([
                 <div style="margin-top:1rem;">
                     <div class="oop-block">
                         <h3>Is Method Lookup Through Inheritance Slow?</h3>
-                        <p>In CPython, resolving <code>animal.makeSound()</code> walks the object's Method Resolution Order until it finds a match, then caches that result. For a hierarchy this shallow — one level deep — the lookup cost is negligible, effectively a single dictionary access per call. Performance only becomes a real conversation at much deeper hierarchies (five-plus levels) or extremely hot loops calling millions of overridden methods per second, neither of which apply here.</p>
-                        <div class="callout"><p><strong>Rule of thumb:</strong> Don't avoid inheritance for performance reasons at this scale — reach for flatter hierarchies when the <em>design</em> calls for it (as the Best Practices section of the main Inheritance guide argues), not because you're worried about lookup speed.</p></div>
+                        <p>In CPython, resolving <code>animal.makeSound()</code> walks the object's Method Resolution Order until it finds a match, then caches that result. For a hierarchy this shallow — one level deep — the lookup cost is negligible, effectively a single dictionary access per call.</p>
+                        <div class="callout"><p><strong>Rule of thumb:</strong> Don't avoid inheritance for performance reasons at this scale — reach for flatter hierarchies when the <em>design</em> calls for it, not because you're worried about lookup speed.</p></div>
                     </div>
                     <div class="oop-block">
                         <h3>Memory: Every Instance Carries Its Own <code>__dict__</code></h3>
-                        <p>By default, each <code>Lion</code>, <code>Elephant</code>, and <code>Parrot</code> instance stores its attributes (<code>name</code>, <code>hunger</code>) in a per-instance dictionary. For three animals in a browser demo, this is irrelevant. For a real system tracking hundreds of thousands of objects, that per-instance dictionary overhead adds up — which is exactly the problem <code>__slots__</code> solves, as covered in the Encapsulation guide's cheat sheet.</p>
-                        <div class="code-snippet"><pre><span class="cmt"># A memory-conscious version of Animal for large-scale use</span>
-<span class="kw">class</span> <span class="cl">Animal</span>:
-    __slots__ = (<span class="st">'name'</span>, <span class="st">'hunger'</span>)  <span class="cmt"># no per-instance __dict__ at all</span>
+                        <p>By default, each <code>Lion</code>, <code>Elephant</code>, and <code>Parrot</code> instance stores its attributes in a per-instance dictionary. For three animals in a browser demo, this is irrelevant. For a real system tracking hundreds of thousands of objects, that per-instance dictionary overhead adds up — which is exactly the problem <code>__slots__</code> solves.</p>
+                        <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">Animal</span>:
+    __slots__ = (<span class="st">'name'</span>, <span class="st">'hunger'</span>)
 
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>):
         <span class="kw">self</span>.name = name
         <span class="kw">self</span>.hunger = <span class="num">50</span>
 
-<span class="cmt"># Subclasses that add NEW attributes must declare their own __slots__ too</span>
 <span class="kw">class</span> <span class="cl">Parrot</span>(<span class="cl">Animal</span>):
     __slots__ = (<span class="st">'vocabulary_size'</span>,)
 
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="cl">str</span>, vocabulary_size: <span class="cl">int</span> = <span class="num">0</span>):
         <span class="kw">super</span>().<span class="fn">__init__</span>(name)
         <span class="kw">self</span>.vocabulary_size = vocabulary_size</pre></div>
-                        <p>Every subclass in a <code>__slots__</code>-based hierarchy must declare its own <code>__slots__</code> tuple — even an empty one, <code>__slots__ = ()</code> — or Python silently gives that subclass a <code>__dict__</code> anyway, quietly undoing the memory savings for that branch of the hierarchy.</p>
+                        <p>Every subclass in a <code>__slots__</code>-based hierarchy must declare its own <code>__slots__</code> tuple — even an empty one, <code>__slots__ = ()</code> — or Python silently gives that subclass a <code>__dict__</code> anyway.</p>
                     </div>
                     <div class="oop-block">
                         <h3>The Real Cost Is Almost Always Human, Not Computational</h3>
-                        <p>In practice, the performance question that matters far more than CPU cycles is: <em>how long does it take a new engineer to understand this hierarchy?</em> A shallow, well-named hierarchy like this project's — one base class, three direct children, two overridden methods — costs almost nothing to read. Deep, tangled hierarchies cost real engineering time regardless of how fast the CPU resolves them.</p>
+                        <p>In practice, the performance question that matters far more than CPU cycles is: <em>how long does it take a new engineer to understand this hierarchy?</em> A shallow, well-named hierarchy costs almost nothing to read. Deep, tangled hierarchies cost real engineering time regardless of how fast the CPU resolves them.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== TYPE HINTS ===== -->
         <section id="type-hints" aria-labelledby="h-hints">
             <div class="page-col">
                 <div class="section-label">17 — Reading the Signatures</div>
                 <h2 id="h-hints">A Closer Look at the Type Hints</h2>
                 <div style="margin-top:1rem;">
                     <p>Every method in the Python source uses type hints — <code>name: str</code>, <code>-&gt; str</code> — that are easy to skim past. They're not decoration; they're a second, machine-checkable description of the contract every subclass has to honor.</p>
-                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">feed</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:  <span class="cmt"># promises every override also returns a str</span>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">feed</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
     ...
 
-<span class="kw">def</span> <span class="fn">makeSound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:  <span class="cmt"># the SAME promise, on the SAME contract</span>
+<span class="kw">def</span> <span class="fn">makeSound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
     <span class="kw">raise</span> <span class="cl">NotImplementedError</span>(...)</pre></div>
-                    <p>Because <code>Animal.feed()</code> is annotated <code>-&gt; str</code>, a static type checker like <strong>mypy</strong> can flag any subclass override that returns something else — say, <code>None</code> because a developer forgot a <code>return</code> statement — <em>before the code ever runs</em>, not after a user notices a blank line in the Zoo Log.</p>
-                    <div class="code-snippet"><pre><span class="cmt"># A type checker catches this WITHOUT running the code:</span>
-<span class="kw">class</span> <span class="cl">BrokenLion</span>(<span class="cl">Animal</span>):
+                    <p>Because <code>Animal.feed()</code> is annotated <code>-&gt; str</code>, a static type checker like <strong>mypy</strong> can flag any subclass override that returns something else — say, <code>None</code> because a developer forgot a <code>return</code> statement — <em>before the code ever runs</em>.</p>
+                    <div class="code-snippet"><pre><span class="kw">class</span> <span class="cl">BrokenLion</span>(<span class="cl">Animal</span>):
     <span class="kw">def</span> <span class="fn">makeSound</span>(<span class="kw">self</span>) -&gt; <span class="cl">str</span>:
-        <span class="fn">print</span>(<span class="st">f"{self.name} roars"</span>)  <span class="cmt"># prints instead of returning — bug!</span>
-        <span class="cmt"># implicitly returns None, which violates "-> str"</span>
-
-<span class="cmt"># mypy output: error: Missing return statement  [return-value]</span></pre></div>
-                    <div class="callout-green"><p><strong>Why this matters for inheritance specifically:</strong> type hints on a base class method are effectively a formal, checkable version of the "contract" language used throughout this page. <code>mypy --strict</code> run over this hierarchy would catch a mismatched override before you ever clicked "Run" — a second, automated line of defense on top of the manual tests in the Testing section.</p></div>
+        <span class="fn">print</span>(<span class="st">f"{self.name} roars"</span>)</pre></div>
+                    <div class="callout-green"><p><strong>Why this matters for inheritance specifically:</strong> type hints on a base class method are effectively a formal, checkable version of the "contract" language used throughout this page. <code>mypy --strict</code> run over this hierarchy would catch a mismatched override before you ever clicked "Run".</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== CODE REVIEW CHECKLIST ===== -->
         <section id="review-checklist" aria-labelledby="h-checklist">
             <div class="page-col">
                 <div class="section-label">18 — Before You Ship It</div>
@@ -1542,14 +1480,14 @@ signup_form = <span class="cl">Form</span>([
                         <table class="glossary-table">
                             <thead><tr><th>Check</th><th>Why It Matters</th></tr></thead>
                             <tbody>
-                                <tr><td>Does the "is-a" test genuinely hold?</td><td>Prevents forcing an unnatural relationship into inheritance — see the Why This Matters section.</td></tr>
+                                <tr><td>Does the "is-a" test genuinely hold?</td><td>Prevents forcing an unnatural relationship into inheritance.</td></tr>
                                 <tr><td>Does <code>__init__</code> call <code>super().__init__()</code>?</td><td>Guarantees inherited attributes are actually initialized — Mistake 1.</td></tr>
                                 <tr><td>Does the override's method name match exactly?</td><td>A typo silently creates a new method instead of overriding — Mistake 2.</td></tr>
-                                <tr><td>Does <code>super().method()</code> reference the correct method name?</td><td>Calling the wrong parent method causes silent, hard-to-trace side effects — Mistake 3.</td></tr>
+                                <tr><td>Does <code>super().method()</code> reference the correct method name?</td><td>Calling the wrong parent method causes silent side effects — Mistake 3.</td></tr>
                                 <tr><td>Is shared state stored as an instance attribute, not a class attribute?</td><td>Class attributes are shared across every instance — Mistake 4.</td></tr>
                                 <tr><td>Does type-checking code use <code>isinstance()</code>, not <code>type() ==</code>?</td><td>Respects future subclasses instead of breaking on them — Mistake 5.</td></tr>
                                 <tr><td>Is the constructor signature compatible across all subclasses?</td><td>Violating this breaks the Liskov Substitution Principle — Mistake 6.</td></tr>
-                                <tr><td>Does at least one test confirm the base class enforces its contract?</td><td>Catches a forgotten override immediately — see the Testing section.</td></tr>
+                                <tr><td>Does at least one test confirm the base class enforces its contract?</td><td>Catches a forgotten override immediately.</td></tr>
                                 <tr><td>Does at least one test confirm subclasses produce genuinely distinct output?</td><td>Catches accidental copy-paste duplication between subclasses.</td></tr>
                                 <tr><td>Are type hints present and accurate on every overridden method?</td><td>Lets a static type checker catch contract violations before runtime.</td></tr>
                                 <tr><td>Is the hierarchy no deeper than 2–3 levels without a specific reason?</td><td>Deep hierarchies cost real engineering time to read and reason about.</td></tr>
@@ -1561,7 +1499,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== FURTHER READING ===== -->
         <section id="further-reading" aria-labelledby="h-further">
             <div class="page-col">
                 <div class="section-label">19 — Keep Going</div>
@@ -1570,17 +1507,17 @@ signup_form = <span class="cl">Form</span>([
                     <div class="oop-block">
                         <h3>On This Site</h3>
                         <ul class="outro-list">
-                            <li><strong><a href="inheritance.html" style="color:var(--blue-lt);">The full Inheritance guide</a></strong> — every concept this project demonstrates, explained from first principles: single, multilevel, hierarchical, multiple, and hybrid inheritance, plus <code>super()</code>, MRO, and abstract base classes.</li>
-                            <li><strong><a href="encapsulation.html" style="color:var(--blue-lt);">Encapsulation</a></strong> — covers <code>@property</code>, access modifiers, and <code>__slots__</code> in far more depth than the Performance section above.</li>
-                            <li><strong><a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism</a></strong> — the formal name for "one interface, many overriding subclasses," the exact behavior this entire project revolves around.</li>
-                            <li><strong><a href="abstraction.html" style="color:var(--blue-lt);">Abstraction</a></strong> — a closer look at why <code>Animal.makeSound()</code> exposes only an interface and hides every implementation detail behind it.</li>
+                            <li><strong><a href="inheritance.html" style="color:var(--blue-lt);">The full Inheritance guide</a></strong> — every concept this project demonstrates, explained from first principles.</li>
+                            <li><strong><a href="encapsulation.html" style="color:var(--blue-lt);">Encapsulation</a></strong> — covers <code>@property</code>, access modifiers, and <code>__slots__</code> in far more depth.</li>
+                            <li><strong><a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism</a></strong> — the formal name for "one interface, many overriding subclasses."</li>
+                            <li><strong><a href="abstraction.html" style="color:var(--blue-lt);">Abstraction</a></strong> — a closer look at why <code>Animal.makeSound()</code> exposes only an interface.</li>
                         </ul>
                     </div>
                     <div class="oop-block">
                         <h3>Standard Library &amp; Language Reference</h3>
                         <ul class="outro-list">
-                            <li><strong>The <code>abc</code> module</strong> — for formally enforcing abstract methods with <code>@abstractmethod</code>, instead of the informal <code>NotImplementedError</code> convention used throughout this project.</li>
-                            <li><strong><code>pytest.mark.parametrize</code></strong> — the decorator used in the Testing section to run one test function against every subclass.</li>
+                            <li><strong>The <code>abc</code> module</strong> — for formally enforcing abstract methods with <code>@abstractmethod</code>.</li>
+                            <li><strong><code>pytest.mark.parametrize</code></strong> — the decorator used in the Testing section.</li>
                             <li><strong><code>typing</code> module and <code>mypy</code></strong> — for statically checking the contracts described in the Type Hints section.</li>
                             <li><strong>Python's data model documentation on <code>__mro__</code> and <code>super()</code></strong> — the authoritative reference for exactly how method resolution order is computed.</li>
                         </ul>
@@ -1589,7 +1526,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== ACCESSIBILITY NOTES ===== -->
         <section id="accessibility-notes" aria-labelledby="h-a11y">
             <div class="page-col">
                 <div class="section-label">20 — How This Page Was Built</div>
@@ -1604,7 +1540,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== JS SOURCE ===== -->
         <section id="js-source" aria-labelledby="h-jssource">
             <div class="page-col">
                 <div class="section-label">21 — The Other Half</div>
@@ -1653,7 +1588,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== HISTORY ===== -->
         <section id="history" aria-labelledby="h-history">
             <div class="page-col">
                 <div class="section-label">22 — Where This Comes From</div>
@@ -1669,7 +1603,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== STYLE GUIDE ===== -->
         <section id="style-guide" aria-labelledby="h-style">
             <div class="page-col">
                 <div class="section-label">23 — Naming Things Well</div>
@@ -1693,7 +1626,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== DECISION TREE ===== -->
         <section id="decision-tree" aria-labelledby="h-decision">
             <div class="page-col">
                 <div class="section-label">24 — Choosing the Right Tool</div>
@@ -1720,7 +1652,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== MOCK INTERVIEW ===== -->
         <section id="mock-interview" aria-labelledby="h-mock">
             <div class="page-col">
                 <div class="section-label">25 — Putting It Together Live</div>
@@ -1785,7 +1716,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== OUTRO ===== -->
         <section id="outro" aria-labelledby="h-outro">
             <div class="page-col">
                 <div class="section-label">26 — The Road Ahead</div>
@@ -1874,7 +1804,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== AI-ASSISTED REFACTORING ===== -->
         <section id="ai-refactor" aria-labelledby="h-ai-refactor">
             <div class="page-col">
                 <div class="section-label">27 — One More AI Angle</div>
@@ -1892,7 +1821,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== PROJECT STRUCTURE ===== -->
         <section id="project-structure" aria-labelledby="h-structure">
             <div class="page-col">
                 <div class="section-label">28 — Beyond a Single File</div>
@@ -1904,27 +1832,14 @@ signup_form = <span class="cl">Form</span>([
                         <div class="code-snippet"><pre>zoo_project/
 ├── zoo/
 │   ├── __init__.py
-│   ├── animals.py        <span class="cmt"># Animal, Lion, Elephant, Parrot</span>
-│   ├── factory.py        <span class="cmt"># make_animal() — the Factory Method from the Design Patterns section</span>
-│   └── zookeeper.py      <span class="cmt"># Zookeeper class from Exercise 04</span>
+│   ├── animals.py
+│   ├── factory.py
+│   └── zookeeper.py
 ├── tests/
-│   └── test_zoo.py       <span class="cmt"># the pytest suite from the Testing section</span>
+│   └── test_zoo.py
 └── README.md</pre></div>
                         <p>Splitting <code>animals.py</code> from <code>zookeeper.py</code> matters for a concrete reason: the zookeeper-facing code (the "caller" in every example on this page) should only ever need to import the <code>Animal</code> base class's public interface and the factory — never the individual subclasses directly. That's the multi-file version of the same discipline the loop demonstrates in a single file: depend on the shared interface, not on any specific concrete type.</p>
-                        <div class="code-snippet"><pre><span class="cmt"># zoo/animals.py</span>
-<span class="kw">class</span> <span class="cl">Animal</span>:
-    ...
-
-<span class="kw">class</span> <span class="cl">Lion</span>(<span class="cl">Animal</span>):
-    ...
-
-<span class="cmt"># zoo/factory.py</span>
-<span class="kw">from</span> .animals <span class="kw">import</span> Animal, Lion, Elephant, Parrot
-
-<span class="kw">def</span> <span class="fn">make_animal</span>(species: <span class="cl">str</span>, name: <span class="cl">str</span>) -&gt; <span class="cl">Animal</span>:
-    ...
-
-<span class="cmt"># zoo/zookeeper.py — notice: no import of Lion, Elephant, or Parrot at all</span>
+                        <div class="code-snippet"><pre><span class="kw">from</span> .animals <span class="kw">import</span> Animal, Lion, Elephant, Parrot
 <span class="kw">from</span> .animals <span class="kw">import</span> Animal
 
 <span class="kw">class</span> <span class="cl">Zookeeper</span>:
@@ -1938,7 +1853,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== CODE REVIEW COMMENTS ===== -->
         <section id="review-comments" aria-labelledby="h-review-comments">
             <div class="page-col">
                 <div class="section-label">29 — What Reviewers Actually Say</div>
@@ -1962,7 +1876,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== COMMON VARIATIONS ===== -->
         <section id="variations" aria-labelledby="h-variations">
             <div class="page-col">
                 <div class="section-label">30 — Recognizing the Pattern Elsewhere</div>
@@ -1988,7 +1901,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== FINAL CHECKLIST ===== -->
         <section id="final-checklist" aria-labelledby="h-final-checklist">
             <div class="page-col">
                 <div class="section-label">31 — Before You Move On</div>
@@ -2013,7 +1925,6 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== UI RENDERING CODE ===== -->
         <section id="ui-rendering" aria-labelledby="h-ui-rendering">
             <div class="page-col">
                 <div class="section-label">32 — The Part That Draws the Cards</div>
@@ -2052,7 +1963,19 @@ signup_form = <span class="cl">Form</span>([
             </div>
         </section>
 
-        <!-- ===== SUBSCRIBE ===== -->
+        <section class="ad-container" aria-label="Advertisement">
+            <div class="page-col">
+                <div class="ad-label">Advertisement</div>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6428799122405621"
+                     data-ad-slot="7847699765"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </section>
+
         <section id="subscribe" aria-labelledby="h-sub" style="padding-top:0">
             <div class="page-col">
                 <div class="section-label">33 — Stay in the Loop</div>
@@ -2084,7 +2007,6 @@ signup_form = <span class="cl">Form</span>([
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="page-footer" aria-label="Site footer">
         <div class="page-col">
             <div class="footer-grid">
@@ -2154,13 +2076,11 @@ signup_form = <span class="cl">Form</span>([
 
     <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-    <!-- ===== SCRIPTS ===== -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
     <script>
         (function() {
             'use strict';
 
-            // --- Back to top ---
             var backTop = document.getElementById('backTop');
             window.addEventListener('scroll', function() {
                 backTop.classList.toggle('visible', window.scrollY > 400);
@@ -2168,12 +2088,6 @@ signup_form = <span class="cl">Form</span>([
             backTop.addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-
-            // ============================================================
-            // ZOO SIMULATOR — a JS mirror of the Python Animal hierarchy.
-            // Each class overrides feed() and makeSound() exactly like the
-            // Python source shown in the "Python Behind This App" section.
-            // ============================================================
 
             class Animal {
                 constructor(name) {
@@ -2290,7 +2204,6 @@ signup_form = <span class="cl">Form</span>([
 
             function renderRoster() {
                 var roster = document.getElementById('roster');
-                var empty = document.getElementById('emptyRoster');
                 if (zoo.length === 0) {
                     roster.innerHTML = '';
                     roster.appendChild(makeEmptyState());
@@ -2348,11 +2261,9 @@ signup_form = <span class="cl">Form</span>([
 
             renderRoster();
 
-            // --- FAQ accordion ---
             window.toggleFaq = function(headEl) {
                 var item = headEl.closest('.faq-item');
                 var answer = item.querySelector('.faq-a');
-                var toggleIcon = item.querySelector('.faq-toggle');
                 var isOpen = item.classList.contains('open');
                 document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
                     if (openItem !== item) {
@@ -2364,7 +2275,6 @@ signup_form = <span class="cl">Form</span>([
                 answer.classList.toggle('open', !isOpen);
             };
 
-            // --- Subscribe ---
             function toast(el, msg, ms) {
                 el.textContent = msg;
                 el.style.opacity = '1';
@@ -2399,7 +2309,6 @@ signup_form = <span class="cl">Form</span>([
                 toast(msg, '✓ Welcome aboard! Subscribed successfully.', 6000);
             };
 
-            // --- Pyodide Code Runner (same architecture as inheritance.html) ---
             var pyodideReady = false;
             var pyodideInstance = null;
 
