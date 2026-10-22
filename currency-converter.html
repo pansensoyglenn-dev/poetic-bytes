@@ -32,7 +32,7 @@
         "author": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
         "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
         "datePublished": "2026-10-20",
-        "dateModified": "2026-10-20",
+        "dateModified": "2026-10-23",
         "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/currency-converter.html" },
         "keywords": "Currency Converter, Python OOP, Money class, operator overloading, dunder methods",
         "articleSection": "Python Programming",
@@ -1692,7 +1692,7 @@ Thank you for using Interactive Currency Converter. Goodbye!</div>
                             <li><strong><code>while True</code> loop</strong> — keeps the menu running until the user types "3".</li>
                             <li><strong><code>choice == "2"</code></strong> — triggers <code>show_history()</code>, which reads the last 10 lines from the TXT log.</li>
                             <li><strong><code>amount = Decimal(amount_str)</code></strong> — ensures the amount is exact. Errors (like "abc") are caught and handled cleanly.</li>
-                            <li><strong><code>KeyboardInterrupt</code></strong> — a safety net in case you cancel a prompt. In a real terminal, this is Ctrl+C. In our browser environment, it catches the cancel event from the prompt dialogue.</li>
+                            <li><strong><code>KeyboardInterrupt</code></strong> — a safety net in case you cancel a prompt. In a real terminal, this is Ctrl+C. In our browser environment, tapping Cancel on the prompt dialog raises it.</li>
                         </ol>
 
                         <h4 class="sub-h">⚠️ Common mistakes</h4>
@@ -2831,11 +2831,61 @@ print(Money("0.10") + Money("0.20"))
             return out + esc(src.slice(last));
         }
 
+        /* ------------------------------------------------------------------
+           Python runner (shared by every Run button and the playground)
+           FIX: the old code called exec(compile(_src, ...)) but never defined
+           _src in Python, causing "NameError: name '_src' is not defined".
+           execPython() now sets _src (and _label) before running the wrapper.
+           ------------------------------------------------------------------ */
+        var PY_RUNNER = [
+            'import sys',
+            'import builtins',
+            'import traceback',
+            'from io import StringIO',
+            '',
+            'def web_input(prompt=""):',
+            '    import js',
+            '    prompt = str(prompt)',
+            '    sys.stdout.write(prompt)',
+            '    answer = js.prompt(prompt)',
+            '    if answer is None:',
+            '        raise KeyboardInterrupt',
+            '    answer = str(answer)',
+            '    sys.stdout.write(answer + "\\n")',
+            '    return answer',
+            '',
+            'builtins.input = web_input',
+            '',
+            '_buf = StringIO()',
+            '_failed = False',
+            '_old = sys.stdout',
+            'sys.stdout = _buf',
+            'try:',
+            '    exec(compile(_src, _label, "exec"), {"__name__": "__main__"})',
+            'except BaseException:',
+            '    _failed = True',
+            '    sys.stdout = _old',
+            '    _buf.write("\\n" + traceback.format_exc(limit=-3))',
+            'finally:',
+            '    sys.stdout = _old'
+        ].join('\n');
+
         var pyodideInstance = null;
         async function getPyodide() {
             if (!pyodideInstance) pyodideInstance = await loadPyodide();
             return pyodideInstance;
         }
+        async function execPython(code, label) {
+            var py = await getPyodide();
+            py.globals.set('_src', code);
+            py.globals.set('_label', label || '<example>');
+            await py.runPythonAsync(PY_RUNNER);
+            return {
+                out: py.globals.get('_buf').getvalue(),
+                failed: !!py.globals.get('_failed')
+            };
+        }
+
         async function runCode(code, outputEl, runBtn) {
             runBtn.disabled = true;
             var original = runBtn.innerHTML;
@@ -2845,37 +2895,9 @@ print(Money("0.10") + Money("0.20"))
             outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n';
             try {
                 if (typeof loadPyodide === 'undefined') throw new Error('Python runtime failed to load. Check your connection and refresh.');
-                var py = await getPyodide();
-                outputEl.className = 'output-panel';
-                outputEl.textContent = '';
-                
-                // This safely bridges Python's input() to JavaScript's prompt()
-                await py.runPythonAsync(`
-import sys
-import builtins
-from io import StringIO
-
-def web_input(prompt=""):
-    if prompt:
-        sys.stdout.write(prompt)
-    sys.stdout.flush()
-    import js
-    return js.prompt(prompt)
-
-builtins.input = web_input
-
-_buf = StringIO()
-_old = sys.stdout
-sys.stdout = _buf
-try:
-    exec(compile(_src, "<example>", "exec"), {"__name__": "__main__"})
-finally:
-    sys.stdout = _old
-_buf.getvalue()
-`);
-                
-                var result = py.globals.get('_buf').getvalue();
-                outputEl.textContent = result || '✓ Code executed successfully (no output).';
+                var res = await execPython(code, '<example>');
+                outputEl.className = 'output-panel' + (res.failed ? ' error' : '');
+                outputEl.textContent = res.out || '✓ Code executed successfully (no output).';
             } catch (err) {
                 outputEl.className = 'output-panel error';
                 outputEl.textContent = 'Error:\n' + err.message;
@@ -2928,37 +2950,11 @@ _buf.getvalue()
             pgOutput.textContent = 'Loading Python runtime...';
             pgRun.disabled = true;
             try {
-                var py = await getPyodide();
-                pgOutput.className = 'playground-out';
-                pgOutput.textContent = '';
-                
-                await py.runPythonAsync(`
-import sys
-import builtins
-from io import StringIO
-
-def web_input(prompt=""):
-    if prompt:
-        sys.stdout.write(prompt)
-    sys.stdout.flush()
-    import js
-    return js.prompt(prompt)
-
-builtins.input = web_input
-
-_buf = StringIO()
-_old = sys.stdout
-sys.stdout = _buf
-try:
-    exec(compile(_src, "<playground>", "exec"), {"__name__": "__main__"})
-finally:
-    sys.stdout = _old
-_buf.getvalue()
-`);
-                
-                var result = py.globals.get('_buf').getvalue();
-                pgOutput.textContent = result || '✓ Ran successfully (no output).';
-                var d = loadTracker(); d['playground'] = true; saveTracker(d); renderTracker();
+                if (typeof loadPyodide === 'undefined') throw new Error('Python runtime failed to load. Check your connection and refresh.');
+                var res = await execPython(pgEditor.value, '<playground>');
+                pgOutput.className = 'playground-out' + (res.failed ? ' error' : '');
+                pgOutput.textContent = res.out || '✓ Ran successfully (no output).';
+                if (!res.failed) { var d = loadTracker(); d['playground'] = true; saveTracker(d); renderTracker(); }
             } catch (err) {
                 pgOutput.className = 'playground-out error';
                 pgOutput.textContent = 'Error:\n' + err.message;
