@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Media Player – Polymorphism in Action | Poetic Bytes</title>
+    <meta name="description" content="A complete hands-on lesson on Python polymorphism. Build a media player step by step, avoid common mistakes, solve challenges and test yourself with a quiz." />
+    <meta name="keywords" content="Python polymorphism, method overriding, abstract base class, duck typing, MediaItem, OOP tutorial, Poetic Bytes" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/media-player.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Media Player – Polymorphism in Action" />
+    <meta property="og:description" content="One transport bar, four media kinds. A full lesson: build, break, practice and quiz yourself." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/media-player.html" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Media Player – Polymorphism in Action | Poetic Bytes" />
+    <meta name="twitter:description" content="One transport bar, four media kinds. A full lesson: build, break, practice and quiz yourself." />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
+            crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C; --panel: #0F1C2F; --card: #111e30; --border: #1F4060;
+            --blue: #4B8BBE; --blue-deep: #306998; --blue-lt: #78B9E6; --gold: #FFD966;
+            --text: #E2E8F0; --muted: #8BA3BF; --code-bg: #0A1A24;
+            --green: #10B981; --amber: #F59E0B; --red: #EF4444; --purple: #c084fc;
+            --btn-h: 44px; --btn-r: 8px; --card-r: 12px;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { overflow-x: hidden; scroll-behavior: smooth; scroll-padding-top: 70px; }
+        body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; overflow-x: hidden; }
+        .page-col { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 1.25rem; }
+        section { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+        section:last-child { border-bottom: none; }
+
+        .nav-bar { position: fixed; top: 0; left: 0; right: 0; background: rgba(11,18,28,.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .nav-inner { max-width: 900px; margin: 0 auto; padding: .6rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .brand { display: flex; align-items: center; gap: .5rem; text-decoration: none; color: #fff; font-weight: 800; font-size: .85rem; letter-spacing: .08em; }
+        .brand-icon { width: 2rem; height: 2rem; border-radius: 6px; background: linear-gradient(145deg, var(--blue), var(--blue-deep)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .nav-links { display: flex; gap: .9rem; list-style: none; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: .7rem; font-weight: 600; transition: color .2s; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a.nav-home { color: var(--gold); }
+        @media(max-width:860px) { .nav-links { display: none; } }
+        .read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: linear-gradient(90deg, var(--blue), var(--gold)); }
+
+        h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.25; font-weight: 700; }
+        h1 { font-size: 1.6rem; } h2 { font-size: 1.25rem; } h3 { font-size: .95rem; }
+        p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+        p + p { margin-top: .6rem; }
+        ul.plain, ol.plain { margin: .5rem 0 .5rem 1.2rem; font-size: .8rem; color: var(--muted); line-height: 1.75; }
+        ul.plain li, ol.plain li { margin-bottom: .25rem; }
+        ul.plain strong, ol.plain strong, p strong { color: var(--text); }
+        code { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: #a5d6ff; }
+        .section-label { font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: .6rem; margin-bottom: 1rem; }
+        .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: var(--btn-h); padding: 0 1.3rem; border-radius: var(--btn-r); font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem; cursor: pointer; transition: all .2s; border: none; text-decoration: none; white-space: nowrap; }
+        .btn-primary { background: linear-gradient(135deg, var(--blue), var(--blue-deep)); color: #fff; box-shadow: 0 4px 14px rgba(75,139,190,.35); }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-outline:hover { border-color: var(--blue); background: rgba(75,139,190,.08); }
+        .btn-home { background: linear-gradient(135deg, var(--blue-deep), var(--blue)); color: #fff; border: 1px solid rgba(120,185,230,.45); }
+        .btn-home:hover { transform: translateY(-2px); }
+
+        .hero { padding: 5rem 0 2.5rem; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75,139,190,.18) 0%, transparent 70%); }
+        .hero-tag { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); border-radius: 40px; padding: .3rem .9rem; font-size: .68rem; font-weight: 600; margin-bottom: 1.1rem; background: var(--card); }
+        .live-dot { width: 7px; height: 7px; background: var(--blue-lt); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+        .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); color: var(--gold); margin-bottom: .8rem; }
+        .hero p.lead { font-size: .88rem; color: var(--muted); max-width: 620px; margin-bottom: 1.4rem; line-height: 1.75; }
+        .meta-row { display: flex; gap: .6rem; flex-wrap: wrap; margin: 1rem 0 0; }
+        .meta-pill { font-family: 'JetBrains Mono', monospace; font-size: .64rem; color: var(--muted); border: 1px solid var(--border); border-radius: 100px; padding: .25rem .7rem; background: var(--card); }
+        .meta-pill i { color: var(--blue-lt); margin-right: .3rem; }
+
+        .callout { padding: .6rem 1rem; margin: 1rem 0; border-radius: 4px; border-left: 3px solid var(--blue); background: rgba(75,139,190,.06); }
+        .callout-yellow { border-left: 3px solid var(--gold); background: rgba(255,212,59,.06); padding: .6rem 1rem; margin: 1rem 0; border-radius: 4px; }
+        .callout-green { border-left: 3px solid var(--green); background: rgba(16,185,129,.06); padding: .6rem 1rem; margin: 1rem 0; border-radius: 4px; }
+        .callout-red { border-left: 3px solid var(--red); background: rgba(239,68,68,.06); padding: .6rem 1rem; margin: 1rem 0; border-radius: 4px; }
+        .callout p, .callout-yellow p, .callout-green p, .callout-red p { margin: 0; font-size: .78rem; }
+        .callout strong { color: var(--blue-lt); } .callout-yellow strong { color: var(--gold); } .callout-green strong { color: var(--green); } .callout-red strong { color: var(--red); }
+
+        .access-table { width: 100%; border-collapse: collapse; margin-top: .8rem; font-size: .76rem; }
+        .access-table th { background: var(--card); color: var(--text); font-weight: 600; padding: .7rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        .access-table td { padding: .65rem 1rem; color: var(--muted); border-bottom: 1px solid var(--border); vertical-align: top; }
+        .table-wrap { overflow-x: auto; margin-top: 1rem; }
+        .table-wrap .access-table { min-width: 480px; margin-top: 0; }
+
+        .code-snippet { background: var(--code-bg); border-radius: 6px; border-left: 3px solid var(--blue); padding: .9rem 1rem; overflow-x: auto; margin-bottom: .7rem; }
+        .code-snippet pre { font-family: 'JetBrains Mono', monospace; font-size: .73rem; line-height: 1.65; color: var(--text); margin: 0; white-space: pre-wrap; word-break: break-word; }
+        .code-snippet .kw { color: #ff7b72; font-weight: 600; } .code-snippet .fn { color: #d2a8ff; } .code-snippet .st { color: #a5d6ff; }
+        .code-snippet .cl { color: #FFD966; font-weight: 600; } .code-snippet .cmt { color: #546e7a; font-style: italic; }
+        .code-snippet .num { color: #f78c6c; } .code-snippet .dec { color: #c792ea; font-weight: 500; }
+        .code-container { position: relative; margin: 1rem 0; }
+        .code-header { background: #0a1a24; padding: .5rem 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); border-radius: var(--card-r) var(--card-r) 0 0; font-size: .72rem; flex-wrap: wrap; gap: .5rem; }
+        .code-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+        .code-btn { padding: .35rem .8rem; font-size: .7rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: .4rem; font-family: 'Syne', sans-serif; border: none; }
+        .copy-btn { background: rgba(75,139,190,.15); color: var(--blue-lt); border: 1px solid rgba(75,139,190,.3); }
+        .copy-btn:hover { background: rgba(75,139,190,.25); }
+        .run-btn { background: var(--green); color: #000; font-weight: 700; }
+        .run-btn:hover { background: #34d399; }
+        .run-btn:disabled { opacity: .6; cursor: not-allowed; }
+        .output-panel { background: #0a1a24; border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--card-r) var(--card-r); padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: .76rem; color: #4ade80; max-height: 300px; overflow-y: auto; display: none; white-space: pre-wrap; word-break: break-word; line-height: 1.6; }
+        .output-panel.error { color: #f87171; } .output-panel.loading { color: var(--blue-lt); }
+        .code-container .code-snippet { border-radius: 0; border-left: none; margin-bottom: 0; padding: 1rem; }
+        .code-container.norun .code-header { border-radius: var(--card-r) var(--card-r) 0 0; }
+
+        .oop-block { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.3rem; margin-bottom: 1.2rem; }
+        .oop-block h3 { font-size: .88rem; color: var(--gold); margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+        .oop-block p { font-size: .78rem; margin-bottom: .8rem; }
+
+        .goal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: .8rem; margin-top: 1rem; }
+        .goal { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1rem 1.1rem; }
+        .goal h3 { font-size: .8rem; color: var(--gold); margin-bottom: .45rem; display: flex; gap: .45rem; align-items: center; }
+        .goal ul { margin-left: 1.1rem; font-size: .76rem; color: var(--muted); line-height: 1.7; }
+
+        .roadmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .6rem; margin-top: 1rem; }
+        .road { text-decoration: none; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: .7rem .8rem; transition: all .2s; display: block; }
+        .road:hover { border-color: var(--blue); transform: translateY(-2px); }
+        .road .n { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--blue-lt); }
+        .road .t { font-size: .76rem; font-weight: 700; color: var(--text); margin-top: .15rem; }
+        .road .d { font-size: .66rem; color: var(--muted); margin-top: .15rem; line-height: 1.4; }
+
+        .kind-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .7rem; margin-top: 1rem; }
+        .kind-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: .9rem; }
+        .kind-card .ic { font-size: 1.4rem; }
+        .kind-card h4 { font-size: .8rem; color: var(--text); margin: .3rem 0 .25rem; }
+        .kind-card p { font-size: .72rem; }
+        .kind-card code { font-size: .66rem; }
+
+        .step { position: relative; margin-bottom: 1.4rem; padding-left: 2.6rem; }
+        .step::before { content: attr(data-n); position: absolute; left: 0; top: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--blue-deep)); color: #fff; font-weight: 800; font-size: .8rem; display: flex; align-items: center; justify-content: center; }
+        .step::after { content: ''; position: absolute; left: .93rem; top: 2.1rem; bottom: -1.2rem; width: 2px; background: var(--border); }
+        .step:last-child::after { display: none; }
+        .step h3 { color: var(--gold); margin-bottom: .35rem; font-size: .9rem; }
+
+        .mistake { border: 1px solid var(--border); border-radius: var(--card-r); background: var(--card); padding: 1.2rem; margin-bottom: 1.2rem; }
+        .mistake h3 { color: var(--red); font-size: .88rem; margin-bottom: .5rem; display: flex; gap: .45rem; align-items: center; }
+        .fix-label { font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--green); margin: .8rem 0 .2rem; }
+
+        details.challenge { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); margin-bottom: 1rem; overflow: hidden; }
+        details.challenge > summary { cursor: pointer; padding: 1rem 1.2rem; font-weight: 700; font-size: .85rem; color: var(--text); list-style: none; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+        details.challenge > summary::-webkit-details-marker { display: none; }
+        details.challenge > summary::after { content: '＋'; margin-left: auto; color: var(--blue-lt); }
+        details.challenge[open] > summary::after { content: '－'; }
+        .level { font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: .08em; padding: .15rem .55rem; border-radius: 100px; text-transform: uppercase; }
+        .lv-easy { background: rgba(16,185,129,.15); color: var(--green); border: 1px solid rgba(16,185,129,.35); }
+        .lv-med { background: rgba(245,158,11,.15); color: var(--amber); border: 1px solid rgba(245,158,11,.35); }
+        .lv-hard { background: rgba(239,68,68,.15); color: var(--red); border: 1px solid rgba(239,68,68,.35); }
+        .ch-body { padding: 0 1.2rem 1.2rem; }
+        details.hint, details.solution { margin-top: .7rem; border: 1px dashed var(--border); border-radius: 8px; padding: .55rem .9rem; }
+        details.hint > summary, details.solution > summary { cursor: pointer; font-size: .74rem; font-weight: 700; color: var(--blue-lt); }
+        details.solution > summary { color: var(--gold); }
+        details.hint p, details.solution .code-container { margin-top: .6rem; }
+
+        .playground textarea { width: 100%; min-height: 260px; background: var(--code-bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px 8px 0 0; padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: .74rem; line-height: 1.6; resize: vertical; tab-size: 4; }
+        .playground textarea:focus { outline: 1px solid var(--blue); }
+        .pg-bar { display: flex; gap: .5rem; flex-wrap: wrap; padding: .6rem .8rem; background: #0a1a24; border: 1px solid var(--border); border-top: none; }
+        .pg-out { border-radius: 0 0 var(--card-r) var(--card-r); }
+
+        .quiz-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.3rem; }
+        .quiz-top { display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--muted); margin-bottom: .8rem; flex-wrap: wrap; gap: .4rem; }
+        .quiz-bar { height: 6px; background: var(--panel); border-radius: 6px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; }
+        .quiz-bar > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), var(--gold)); transition: width .3s; }
+        .quiz-q { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: .8rem; line-height: 1.45; }
+        .quiz-code { background: var(--code-bg); border-left: 3px solid var(--blue); border-radius: 6px; padding: .7rem .9rem; margin-bottom: .9rem; font-family: 'JetBrains Mono', monospace; font-size: .72rem; line-height: 1.6; white-space: pre-wrap; color: var(--text); overflow-x: auto; }
+        .quiz-opts { display: flex; flex-direction: column; gap: .5rem; }
+        .quiz-opt { text-align: left; background: var(--panel); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: .7rem .9rem; font-family: 'Syne', sans-serif; font-size: .78rem; cursor: pointer; transition: all .2s; min-height: 44px; }
+        .quiz-opt:hover:not(:disabled) { border-color: var(--blue); background: rgba(75,139,190,.08); }
+        .quiz-opt.correct { border-color: var(--green); background: rgba(16,185,129,.12); }
+        .quiz-opt.wrong { border-color: var(--red); background: rgba(239,68,68,.1); }
+        .quiz-opt:disabled { cursor: default; }
+        .quiz-exp { margin-top: .9rem; font-size: .76rem; padding: .7rem .9rem; border-radius: 6px; background: rgba(75,139,190,.07); border-left: 3px solid var(--blue); color: var(--muted); display: none; }
+        .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; gap: .6rem; flex-wrap: wrap; }
+        .quiz-result { text-align: center; padding: 1rem 0; }
+        .quiz-result .score { font-size: 2.4rem; font-weight: 800; color: var(--gold); }
+
+        .gloss { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .7rem; margin-top: 1rem; }
+        .gloss div { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: .8rem .9rem; }
+        .gloss dt, .gloss .term { font-weight: 700; font-size: .78rem; color: var(--gold); margin-bottom: .2rem; font-family: 'JetBrains Mono', monospace; }
+        .gloss p { font-size: .72rem; }
+        details.faq { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: .6rem; }
+        details.faq > summary { cursor: pointer; padding: .8rem 1rem; font-size: .8rem; font-weight: 700; color: var(--text); list-style: none; display: flex; justify-content: space-between; gap: .6rem; }
+        details.faq > summary::-webkit-details-marker { display: none; }
+        details.faq > summary::after { content: '＋'; color: var(--blue-lt); }
+        details.faq[open] > summary::after { content: '－'; }
+        details.faq .ans { padding: 0 1rem 1rem; }
+        .takeaways { list-style: none; margin: 1rem 0 0; display: grid; gap: .6rem; }
+        .takeaways li { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 8px; padding: .7rem 1rem; font-size: .8rem; color: var(--muted); }
+        .takeaways li strong { color: var(--text); }
+
+        .player-app { background: linear-gradient(160deg, #0d1a2b 0%, #0a1420 100%); border: 1px solid var(--border); border-radius: var(--card-r); overflow: hidden; margin-top: 1rem; box-shadow: 0 10px 40px rgba(0,0,0,.4); }
+        .mp-header { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .8rem 1.2rem; background: rgba(75,139,190,.08); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+        .mp-header .ttl { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue-lt); letter-spacing: .04em; }
+        .mp-status { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--muted); display: inline-flex; align-items: center; gap: .4rem; }
+        .mp-status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+        .mp-status.playing .dot { background: var(--green); box-shadow: 0 0 8px var(--green); }
+        .mp-status.paused .dot { background: var(--amber); }
+
+        .mp-now { padding: 1.6rem 1.4rem; display: flex; align-items: center; gap: 1.3rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+        .mp-art { width: 92px; height: 92px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; flex-shrink: 0; background: rgba(75,139,190,.15); border: 1px solid rgba(75,139,190,.3); transition: transform .4s cubic-bezier(.23,1,.32,1); }
+        .mp-now.playing .mp-art { transform: scale(1.05); }
+        .mp-info { flex: 1; min-width: 180px; }
+        .mp-kind { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: .25rem; }
+        .mp-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: .2rem; }
+        .mp-sub { font-size: .78rem; color: var(--muted); }
+        .mp-method { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--gold); margin-top: .5rem; padding: .25rem .6rem; background: rgba(255,212,59,.08); border: 1px solid rgba(255,212,59,.22); border-radius: 100px; display: inline-block; }
+
+        .mp-progress-wrap { padding: 0 1.4rem 1.2rem; }
+        .mp-progress { height: 8px; background: var(--panel); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; }
+        .mp-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), var(--blue-lt)); transition: width .3s linear; }
+        .mp-times { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: .64rem; color: var(--muted); margin-top: .45rem; }
+
+        .mp-controls { display: flex; align-items: center; justify-content: center; gap: .8rem; padding: 0 1.4rem 1.3rem; }
+        .mp-ctrl { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: var(--panel); color: var(--text); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+        .mp-ctrl:hover { border-color: var(--blue); color: var(--blue-lt); transform: scale(1.06); }
+        .mp-ctrl.play { width: 58px; height: 58px; background: linear-gradient(135deg, var(--blue), var(--blue-deep)); border: none; color: #fff; font-size: 1.3rem; box-shadow: 0 4px 16px rgba(75,139,190,.45); }
+        .mp-ctrl.play:hover { transform: scale(1.08); }
+        .mp-ctrl:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+        .mp-volume { display: flex; align-items: center; gap: .6rem; padding: 0 1.4rem 1.3rem; justify-content: center; }
+        .mp-volume i { color: var(--muted); font-size: .9rem; }
+        .mp-volume input { accent-color: var(--blue); width: 140px; }
+        .mp-volume span { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); min-width: 2.2rem; }
+
+        .mp-library { border-top: 1px solid var(--border); padding: 1rem 1.4rem 1.4rem; }
+        .mp-library-hd { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin-bottom: .8rem; flex-wrap: wrap; }
+        .mp-library-hd h4 { font-size: .8rem; color: var(--text); }
+        .mp-library-hd .hint { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--muted); }
+        .mp-tracks { display: flex; flex-direction: column; gap: .5rem; }
+        .mp-track { display: flex; align-items: center; gap: .8rem; padding: .65rem .9rem; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: all .2s; }
+        .mp-track:hover { border-color: var(--blue); background: rgba(75,139,190,.06); }
+        .mp-track.active { border-color: var(--gold); background: rgba(255,212,59,.06); }
+        .mp-track-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; background: rgba(75,139,190,.15); }
+        .mp-track-info { flex: 1; min-width: 0; }
+        .mp-track-title { font-size: .8rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mp-track-kind { font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--muted); letter-spacing: .05em; }
+        .mp-track-dur { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--muted); flex-shrink: 0; }
+        .mp-track.active .mp-track-dur { color: var(--gold); }
+
+        .mp-trace { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: #4ade80; padding: .9rem 1.4rem; background: #06121a; border-top: 1px solid var(--border); min-height: 5rem; max-height: 180px; overflow-y: auto; white-space: pre-wrap; line-height: 1.7; }
+        .mp-trace .hd { color: var(--muted); display: block; margin-bottom: .35rem; }
+        .mp-trace .hl { color: var(--gold); }
+
+        .mp-foot { display: flex; justify-content: space-between; align-items: center; gap: .6rem; flex-wrap: wrap; padding: .7rem 1.4rem; border-top: 1px solid var(--border); background: #0a1a24; }
+        .link-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: .3rem .8rem; font-size: .68rem; cursor: pointer; font-family: 'Syne', sans-serif; min-height: 32px; }
+        .link-btn:hover { border-color: var(--blue); color: var(--text); }
+
+        .kind-song .mp-art, .kind-song .mp-track-icon { background: rgba(75,139,190,.18); border: 1px solid rgba(75,139,190,.35); }
+        .kind-podcast .mp-art, .kind-podcast .mp-track-icon { background: rgba(192,132,252,.15); border: 1px solid rgba(192,132,252,.35); }
+        .kind-audiobook .mp-art, .kind-audiobook .mp-track-icon { background: rgba(255,212,59,.12); border: 1px solid rgba(255,212,59,.35); }
+        .kind-video .mp-art, .kind-video .mp-track-icon { background: rgba(255,107,107,.15); border: 1px solid rgba(255,107,107,.35); }
+        .kind-lecture .mp-art, .kind-lecture .mp-track-icon { background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.35); }
+        .kind-duck .mp-art, .kind-duck .mp-track-icon { background: rgba(245,158,11,.15); border: 1px solid rgba(245,158,11,.35); }
+
+        .app-note { font-family: 'JetBrains Mono', monospace; font-size: .64rem; color: var(--muted); }
+
+        /* ---------- SITE FOOTER (consistent with polymorphism.html) ---------- */
+        .page-footer { padding: 3rem 0 1.5rem; background: #1a2535; border-top: 1px solid var(--border); margin-top: 2rem; }
+        .footer-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+        .footer-col h5 { font-size: .72rem; font-weight: 800; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .7rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: .4rem; }
+        .footer-col a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .74rem; transition: color .2s; }
+        .footer-col a:hover { color: #fff; }
+        .copyright { border-top: 1px solid var(--border); padding-top: 1.2rem; text-align: center; font-size: .72rem; color: var(--muted); }
+        .copyright a { color: rgba(255,255,255,.5); text-decoration: none; }
+        @media(min-width:700px) {
+            .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; }
+        }
+
+        .floating-home { position: fixed; left: 16px; bottom: 16px; height: 42px; padding: 0 .9rem; display: inline-flex; align-items: center; gap: .45rem; background: linear-gradient(135deg, var(--blue), var(--blue-deep)); color: #fff; border: 1px solid rgba(120,185,230,.45); border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: .72rem; text-decoration: none; z-index: 900; box-shadow: 0 6px 20px rgba(75,139,190,.35); transition: all .25s; }
+        .floating-home:hover { transform: translateY(-2px); }
+
+        .back-top { position: fixed; right: 16px; bottom: 16px; width: 42px; height: 42px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-size: 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 900; transition: .2s; opacity: 0; visibility: hidden; }
+        .back-top.visible { opacity: 1; visibility: visible; }
+        .back-top:hover { border-color: var(--blue); color: var(--blue-lt); }
+
+        ::-webkit-scrollbar { width: 5px; height: 5px; } ::-webkit-scrollbar-track { background: var(--border); } ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+        @media(max-width:480px) { .mp-now { flex-direction: column; text-align: center; } .mp-art { width: 78px; height: 78px; font-size: 2.3rem; } .page-col { padding: 0 .8rem; } .step { padding-left: 2.3rem; } }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="polymorphism.html">← Guide</a></li>
+                <li><a href="#player">Player</a></li>
+                <li><a href="#concept">Concept</a></li>
+                <li><a href="#build">Build</a></li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#mistakes">Mistakes</a></li>
+                <li><a href="#practice">Practice</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+            </ul>
+        </div>
+        <div class="read-progress" id="readProgress"></div>
+    </nav>
+
+    <a href="polymorphism.html" class="floating-home" aria-label="Back to Polymorphism Guide" title="Back to Guide">
+        <i class="fas fa-arrow-left"></i> Guide
+    </a>
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Media Player – Polymorphism in Action">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Project 05 · Method Overriding</div>
+                <h1>🎧 Media Player</h1>
+                <p class="lead">
+                    Songs, podcasts, audiobooks and video clips — four different kinds of media, each with a completely
+                    different idea of what <code>play()</code>, <code>pause()</code> and <code>duration()</code> mean.
+                    Yet the transport bar below calls exactly the same three methods on every one of them.
+                </p>
+                <p class="lead" style="margin-top:-0.4rem;">
+                    This is <strong>method overriding</strong> in action: a single <code>MediaItem</code> base class defines the interface,
+                    each subclass overrides the behaviour, and the player loop never asks "what are you?". In this lesson you will
+                    play with it, build it from scratch, break it on purpose, then prove you understand it.
+                </p>
+                <div class="meta-row">
+                    <span class="meta-pill"><i class="fas fa-clock"></i> ~45 min</span>
+                    <span class="meta-pill"><i class="fas fa-signal"></i> Beginner → Intermediate</span>
+                    <span class="meta-pill"><i class="fas fa-flask"></i> 14 runnable examples</span>
+                    <span class="meta-pill"><i class="fas fa-circle-question"></i> 8-question quiz</span>
+                </div>
+                <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem;">
+                    <a href="polymorphism.html" class="btn btn-home"><i class="fas fa-book-open"></i> Full Guide</a>
+                    <a href="#player" class="btn btn-primary"><i class="fas fa-play"></i> Open the Player</a>
+                    <a href="#build" class="btn btn-outline"><i class="fas fa-hammer"></i> Build It Step by Step</a>
+                    <a href="#quiz" class="btn btn-outline"><i class="fas fa-circle-question"></i> Jump to Quiz</a>
+                </div>
+
+                <div class="goal-grid">
+                    <div class="goal">
+                        <h3><i class="fas fa-bullseye"></i> By the end you can…</h3>
+                        <ul>
+                            <li>Explain polymorphism in one sentence</li>
+                            <li>Override methods and call <code>super()</code> correctly</li>
+                            <li>Use <code>ABC</code> to enforce a contract</li>
+                            <li>Replace <code>isinstance</code> ladders with one call</li>
+                            <li>Choose between inheritance and duck typing</li>
+                        </ul>
+                    </div>
+                    <div class="goal">
+                        <h3><i class="fas fa-list-check"></i> You should already know</h3>
+                        <ul>
+                            <li>Defining classes and <code>__init__</code></li>
+                            <li>Basic inheritance (<code>class B(A)</code>)</li>
+                            <li>f-strings, loops and lists</li>
+                        </ul>
+                        <p style="margin-top:.5rem;font-size:.7rem;">New to classes? Skim the <a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism Guide</a> first.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap" aria-label="Lesson roadmap">
+                    <a class="road" href="#player"><div class="n">01</div><div class="t">Play</div><div class="d">Explore the live app</div></a>
+                    <a class="road" href="#concept"><div class="n">02</div><div class="t">Understand</div><div class="d">The idea and its four forms</div></a>
+                    <a class="road" href="#build"><div class="n">03</div><div class="t">Build</div><div class="d">Five guided steps</div></a>
+                    <a class="road" href="#code"><div class="n">04</div><div class="t">Read</div><div class="d">The full source</div></a>
+                    <a class="road" href="#explain"><div class="n">05</div><div class="t">Go deeper</div><div class="d">MRO, super(), patterns</div></a>
+                    <a class="road" href="#mistakes"><div class="n">06</div><div class="t">Break it</div><div class="d">Four classic mistakes</div></a>
+                    <a class="road" href="#practice"><div class="n">07</div><div class="t">Practice</div><div class="d">Challenges + playground</div></a>
+                    <a class="road" href="#quiz"><div class="n">08</div><div class="t">Prove it</div><div class="d">Quiz and takeaways</div></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="player" aria-labelledby="h-player">
+            <div class="page-col">
+                <div class="section-label">01 — The Live App</div>
+                <h2 id="h-player">One Transport Bar, Four Media Kinds</h2>
+                <p style="margin:.6rem 0 1rem;">Click any track to load it. Press ▶ to play, ⏸ to pause, or click the progress bar to seek. Watch the trace panel at the bottom — every action calls a method that the object's <em>own class</em> implements differently.</p>
+
+                <div class="callout-yellow">
+                    <p><strong>Try this experiment (2 minutes):</strong> ① Play each of the four tracks and compare the trace lines. ② Press <strong>➕ Add Lecture</strong> and play it — the player code did not change. ③ Press <strong>🦆 Duck-type test</strong> to add an object that does <em>not</em> inherit from <code>MediaItem</code>. ④ Press <strong>⚠ Call base play()</strong> to see what the abstract base class does.</p>
+                </div>
+
+                <div class="player-app" id="playerApp">
+                    <div class="mp-header">
+                        <span class="ttl">🎚️ Poetic Bytes Media Player</span>
+                        <span class="mp-status paused" id="mpStatus"><span class="dot"></span><span id="mpStatusText">Ready</span></span>
+                    </div>
+
+                    <div class="mp-now" id="mpNow">
+                        <div class="mp-art" id="mpArt">🎵</div>
+                        <div class="mp-info">
+                            <div class="mp-kind" id="mpKind">SONG</div>
+                            <div class="mp-title" id="mpTitle">Select a track below</div>
+                            <div class="mp-sub" id="mpSub">No media loaded</div>
+                            <div class="mp-method" id="mpMethod">item.duration() → —</div>
+                        </div>
+                    </div>
+
+                    <div class="mp-progress-wrap">
+                        <div class="mp-progress" id="mpProgress" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="mp-progress-fill" id="mpProgressFill"></div></div>
+                        <div class="mp-times"><span id="mpCurrent">0:00</span><span id="mpDuration">0:00</span></div>
+                    </div>
+
+                    <div class="mp-controls">
+                        <button class="mp-ctrl" id="mpPrev" aria-label="Previous track"><i class="fas fa-step-backward"></i></button>
+                        <button class="mp-ctrl play" id="mpPlay" aria-label="Play"><i class="fas fa-play"></i></button>
+                        <button class="mp-ctrl" id="mpNext" aria-label="Next track"><i class="fas fa-step-forward"></i></button>
+                    </div>
+
+                    <div class="mp-volume">
+                        <i class="fas fa-volume-down"></i>
+                        <input type="range" id="mpVolume" min="0" max="100" value="70" aria-label="Volume" />
+                        <i class="fas fa-volume-up"></i>
+                        <span id="mpVolText">70%</span>
+                    </div>
+
+                    <div class="mp-library">
+                        <div class="mp-library-hd">
+                            <h4>📚 Library</h4>
+                            <span class="hint">each row = a different subclass</span>
+                        </div>
+                        <div class="mp-tracks" id="mpTracks"></div>
+                    </div>
+
+                    <div class="mp-trace" id="mpTrace"><span class="hd">Method trace — click a track or press play:</span></div>
+
+                    <div class="mp-foot">
+                        <span class="app-note" id="mpNote">Load a track to begin.</span>
+                        <span style="display:flex;gap:.5rem;flex-wrap:wrap;">
+                            <button class="link-btn" id="mpLecture">➕ Add Lecture</button>
+                            <button class="link-btn" id="mpBreak">⚠ Call base play()</button>
+                            <button class="link-btn" id="mpDuck">🦆 Duck-type test</button>
+                            <button class="link-btn" id="mpReset">↺ Reset</button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="callout" style="margin-top:1.2rem;">
+                    <p><strong>What to notice:</strong> the controls section only calls <code>item.play()</code>, <code>item.pause()</code> and <code>item.duration()</code>. The base class <code>MediaItem</code> declares these methods; each subclass (Song, Podcast, Audiobook, VideoClip) overrides them with its own logic. The player never checks the type.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="concept" aria-labelledby="h-concept">
+            <div class="page-col">
+                <div class="section-label">02 — The Idea</div>
+                <h2 id="h-concept">What Is Polymorphism, Really?</h2>
+                <p style="margin:.6rem 0 1rem;">The word comes from Greek: <em>poly</em> (many) + <em>morph</em> (forms). In programming it means <strong>one interface, many implementations</strong>. The caller says <em>what</em> it wants done; each object decides <em>how</em>.</p>
+
+                <div class="oop-block">
+                    <h3>🔌 Real-world analogy: the wall socket</h3>
+                    <p>A wall socket promises one thing: "plug in and receive power." A lamp, a phone charger and a fan all plug into the same socket, and each does something completely different with the electricity. The socket never needs to know which device is attached. Your media player is the socket; <code>Song</code>, <code>Podcast</code> and friends are the devices.</p>
+                    <div class="callout"><p><strong>The contract:</strong> every <code>MediaItem</code> promises <code>play()</code>, <code>pause()</code> and <code>duration()</code>. As long as the promise holds, the player works with any item — including ones that do not exist yet.</p></div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>The four faces of polymorphism in Python</h3>
+                    <div class="kind-grid">
+                        <div class="kind-card"><div class="ic">🔁</div><h4>Method overriding</h4><p>A subclass replaces a parent method. <strong>This page.</strong></p><code>class Song(MediaItem)</code></div>
+                        <div class="kind-card"><div class="ic">🦆</div><h4>Duck typing</h4><p>"If it quacks like a duck…" No shared parent needed.</p><code>obj.play()</code></div>
+                        <div class="kind-card"><div class="ic">➕</div><h4>Operator overloading</h4><p>Your class defines what <code>+</code>, <code>==</code>, <code>&lt;</code> mean.</p><code>__add__, __lt__</code></div>
+                        <div class="kind-card"><div class="ic">🎯</div><h4>Single dispatch</h4><p>One function name, behaviour chosen by argument type.</p><code>@singledispatch</code></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>Why bother? Three payoffs</h3>
+                    <ul class="plain">
+                        <li><strong>Open for extension, closed for modification.</strong> Add a <code>Lecture</code> class without touching the player (the <em>Open/Closed Principle</em>).</li>
+                        <li><strong>Less branching.</strong> No growing <code>if/elif</code> ladder that must be edited in every function that handles media.</li>
+                        <li><strong>Easier testing.</strong> Swap in a fake item that records calls — the player cannot tell the difference.</li>
+                    </ul>
+                    <div class="callout-green"><p><strong>Liskov Substitution Principle in one line:</strong> anywhere your code expects a <code>MediaItem</code>, any subclass must work without surprises. Overrides may change <em>behaviour</em>, but not the <em>promise</em> (names, arguments, return type).</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="build" aria-labelledby="h-build">
+            <div class="page-col">
+                <div class="section-label">03 — Build It Step by Step</div>
+                <h2 id="h-build">From a Messy Ladder to Clean Polymorphism</h2>
+                <p style="margin:.6rem 0 1.4rem;">Press <strong>Run</strong> on every step. Each block is self-contained, so you can also edit it in the playground later. (The first run loads Python in your browser and takes a few seconds.)</p>
+
+                <div class="step" data-n="1">
+                    <h3>Start with the problem</h3>
+                    <p>Without polymorphism, the player must know every media type. Notice how <code>play_item</code> already needs editing each time a new kind appears.</p>
+                    <div class="code-snippet"><pre>def play_item(item):
+    if item["kind"] == "song":
+        return f"🎵 Now playing {item['title']}"
+    elif item["kind"] == "podcast":
+        return f"🎙 Episode {item['episode']}: {item['title']}"
+    elif item["kind"] == "audiobook":
+        return f"📖 Chapter {item['chapter']} of {item['title']}"
+    else:
+        return "❓ Unknown media type"
+
+library = [
+    {"kind": "song", "title": "Sunrise"},
+    {"kind": "podcast", "title": "Why OOP Matters", "episode": 12},
+    {"kind": "video", "title": "Polymorphism Explained"},
+]
+for item in library:
+    print(play_item(item))</pre></div>
+                    <div class="callout-red"><p><strong>The smell:</strong> the video fell into <code>else</code> and printed "Unknown". Every new kind means editing this function — and every other function with a similar ladder.</p></div>
+                </div>
+
+                <div class="step" data-n="2">
+                    <h3>Define the contract with a base class</h3>
+                    <p>We declare <em>what</em> every media item must do, and leave <em>how</em> to the subclasses. <code>@abstractmethod</code> turns the promise into a rule Python enforces.</p>
+                    <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator):
+        self.title = title
+        self.creator = creator
+
+    @abstractmethod
+    def play(self): ...
+
+    @abstractmethod
+    def pause(self): ...
+
+    @abstractmethod
+    def duration(self): ...
+
+try:
+    MediaItem("x", "y")
+except TypeError as e:
+    print("TypeError:", e)</pre></div>
+                </div>
+
+                <div class="step" data-n="3">
+                    <h3>Write the first subclass</h3>
+                    <p>A subclass <strong>overrides</strong> each abstract method. Use <code>super().__init__()</code> to reuse the parent's setup instead of copying it.</p>
+                    <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator):
+        self.title, self.creator = title, creator
+    @abstractmethod
+    def play(self): ...
+    @abstractmethod
+    def pause(self): ...
+    @abstractmethod
+    def duration(self): ...
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        super().__init__(title, artist)
+        self.seconds = seconds
+
+    def play(self):     return f"🎵 Now playing '{self.title}' by {self.creator}"
+    def pause(self):    return f"⏸ Song paused at chorus of '{self.title}'"
+    def duration(self): return self.seconds
+
+s = Song("Sunrise", "The Harbors", 213)
+print(s.play())
+print(s.pause())
+print(isinstance(s, MediaItem))</pre></div>
+                </div>
+
+                <div class="step" data-n="4">
+                    <h3>Add more kinds and use one loop</h3>
+                    <p>Now the payoff. Two more subclasses, and the loop is identical for all of them.</p>
+                    <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator):
+        self.title, self.creator = title, creator
+    @abstractmethod
+    def play(self): ...
+    @abstractmethod
+    def pause(self): ...
+    @abstractmethod
+    def duration(self): ...
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        super().__init__(title, artist); self.seconds = seconds
+    def play(self):     return f"🎵 Now playing '{self.title}'"
+    def pause(self):    return "⏸ Song paused"
+    def duration(self): return self.seconds
+
+class Podcast(MediaItem):
+    def __init__(self, title, host, seconds, episode):
+        super().__init__(title, host); self.seconds = seconds; self.episode = episode
+    def play(self):     return f"🎙 Episode {self.episode}: '{self.title}'"
+    def pause(self):    return f"⏸ Bookmarked at episode {self.episode}"
+    def duration(self): return self.seconds
+
+library = [Song("Sunrise", "The Harbors", 213),
+           Podcast("Why OOP Matters", "Byte Talk", 1540, 12)]
+
+for item in library:
+    print(item.play())
+    print(item.pause())</pre></div>
+                </div>
+
+                <div class="step" data-n="5">
+                    <h3>Extend without touching the loop</h3>
+                    <p>This is the Open/Closed Principle proving itself. We add a brand-new <code>Lecture</code> class and the loop from step 4 stays exactly the same.</p>
+                    <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator):
+        self.title, self.creator = title, creator
+    @abstractmethod
+    def play(self): ...
+    @abstractmethod
+    def pause(self): ...
+    @abstractmethod
+    def duration(self): ...
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        super().__init__(title, artist); self.seconds = seconds
+    def play(self):     return f"🎵 Now playing '{self.title}'"
+    def pause(self):    return "⏸ Song paused"
+    def duration(self): return self.seconds
+
+class Lecture(MediaItem):
+    def __init__(self, title, professor, seconds, week):
+        super().__init__(title, professor); self.seconds = seconds; self.week = week
+    def play(self):     return f"🎓 Week {self.week}: '{self.title}' with Prof. {self.creator}"
+    def pause(self):    return f"⏸ Lecture paused — notes saved for week {self.week}"
+    def duration(self): return self.seconds
+
+library = [Song("Sunrise", "The Harbors", 213),
+           Lecture("Intro to Polymorphism", "Reyes", 3000, 4)]
+
+for item in library:
+    print(item.play())</pre></div>
+                    <div class="callout-green"><p><strong>Milestone reached.</strong> You just used inheritance, overriding, <code>super()</code>, an abstract contract and the Open/Closed Principle. The ➕ Add Lecture button in the live player does the same thing in JavaScript.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="code" aria-labelledby="h-code">
+            <div class="page-col">
+                <div class="section-label">04 — The Python Source</div>
+                <h2 id="h-code">The Same App, in Python OOP</h2>
+                <p style="margin:.6rem 0 1rem;">This is the exact model that runs the player above — a <code>MediaItem</code> base class and four subclasses, each overriding <code>play()</code>, <code>pause()</code>, <code>duration()</code> and <code>info()</code>. Press <strong>Run</strong> to execute it in your browser with Pyodide.</p>
+
+                <div class="oop-block">
+                    <h3>media_player.py</h3>
+                    <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+
+class MediaItem(ABC):
+    """Base contract: every media item can play, pause, and report its duration."""
+
+    def __init__(self, title, creator):
+        self.title = title
+        self.creator = creator
+
+    @abstractmethod
+    def play(self):
+        ...
+
+    @abstractmethod
+    def pause(self):
+        ...
+
+    @abstractmethod
+    def duration(self):
+        """Return duration in seconds."""
+
+    def info(self):
+        m, s = divmod(int(self.duration()), 60)
+        return f"{type(self).__name__:&lt;10} {self.title!r} by {self.creator} ({m}:{s:02d})"
+
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        super().__init__(title, artist)
+        self.seconds = seconds
+
+    def play(self):
+        return f"🎵 Now playing '{self.title}' by {self.creator}"
+
+    def pause(self):
+        return f"⏸ Song paused at chorus of '{self.title}'"
+
+    def duration(self):
+        return self.seconds
+
+
+class Podcast(MediaItem):
+    def __init__(self, title, host, seconds, episode):
+        super().__init__(title, host)
+        self.seconds = seconds
+        self.episode = episode
+
+    def play(self):
+        return f"🎙 Episode {self.episode}: '{self.title}' with {self.creator}"
+
+    def pause(self):
+        return f"⏸ Podcast paused — bookmarked at episode {self.episode}"
+
+    def duration(self):
+        return self.seconds
+
+
+class Audiobook(MediaItem):
+    def __init__(self, title, narrator, seconds, chapter):
+        super().__init__(title, narrator)
+        self.seconds = seconds
+        self.chapter = chapter
+
+    def play(self):
+        return f"📖 Chapter {self.chapter} of '{self.title}', read by {self.creator}"
+
+    def pause(self):
+        return f"⏸ Audiobook closed at chapter {self.chapter}"
+
+    def duration(self):
+        return self.seconds
+
+
+class VideoClip(MediaItem):
+    def __init__(self, title, channel, seconds, resolution="1080p"):
+        super().__init__(title, channel)
+        self.seconds = seconds
+        self.resolution = resolution
+
+    def play(self):
+        return f"🎬 Streaming '{self.title}' from {self.creator} at {self.resolution}"
+
+    def pause(self):
+        return f"⏸ Video paused at {self.resolution}"
+
+    def duration(self):
+        return self.seconds
+
+
+library = [
+    Song("Sunrise", "The Harbors", 213),
+    Podcast("Why OOP Matters", "Byte Talk", 1540, 12),
+    Audiobook("Pythonic Patterns", "R. Domingo", 7200, 3),
+    VideoClip("Polymorphism Explained", "Poetic Bytes", 480, "4K"),
+]
+
+print("─" * 50)
+for item in library:
+    print(item.info())
+print("─" * 50)
+
+for item in library:
+    print(item.play())
+    print(item.pause())
+
+print("─" * 50)
+print("Total library time:", sum(i.duration() for i in library), "seconds")
+</pre></div>
+                </div>
+
+                <div class="callout-green">
+                    <p><strong>Why this works:</strong> <code>item.play()</code> appears once in the loop, but Python dispatches it to <code>Song.play</code>, <code>Podcast.play</code>, <code>Audiobook.play</code> or <code>VideoClip.play</code> depending on the object's real class. Adding a <code>Lecture</code> class later means writing the class — the loop stays untouched.</p>
+                </div>
+
+                <div class="oop-block" style="margin-top:1.2rem;">
+                    <h3>🔍 Code-reading guide</h3>
+                    <ul class="plain">
+                        <li><strong>Lines 1–2:</strong> <code>ABC</code> and <code>abstractmethod</code> come from the standard library's <code>abc</code> module.</li>
+                        <li><strong><code>MediaItem.__init__</code>:</strong> stores the data every item shares, so subclasses do not repeat it.</li>
+                        <li><strong><code>info()</code>:</strong> a <em>concrete</em> method in the base class. It calls <code>self.duration()</code>, which resolves to whichever subclass the object really is.</li>
+                        <li><strong><code>super().__init__(title, artist)</code>:</strong> hands shared setup to the parent, then each subclass adds its own fields.</li>
+                        <li><strong>The final loops:</strong> no <code>isinstance</code>, no <code>if</code>. That absence is the whole lesson.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="explain" aria-labelledby="h-explain">
+            <div class="page-col">
+                <div class="section-label">05 — Inside the Dispatch</div>
+                <h2 id="h-explain">How the Player Chooses a Method</h2>
+                <div style="margin-top:1rem;">
+                    <div class="oop-block">
+                        <h3>The Dispatch Table</h3>
+                        <p>When the player calls <code>item.play()</code>, Python searches the object's Method Resolution Order for a <code>play</code> attribute. Here is what it finds for each media kind:</p>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Object</th><th>MRO search</th><th>Resolves to</th><th>Behaviour</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>Song</code></td><td>Song → MediaItem → ABC → object</td><td><code>Song.play</code></td><td>Title + artist message</td></tr>
+                                    <tr><td><code>Podcast</code></td><td>Podcast → MediaItem → ABC → object</td><td><code>Podcast.play</code></td><td>Episode-numbered message</td></tr>
+                                    <tr><td><code>Audiobook</code></td><td>Audiobook → MediaItem → ABC → object</td><td><code>Audiobook.play</code></td><td>Chapter-numbered message</td></tr>
+                                    <tr><td><code>VideoClip</code></td><td>VideoClip → MediaItem → ABC → object</td><td><code>VideoClip.play</code></td><td>Resolution-aware message</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="margin-top:.8rem;">You can inspect this yourself — every class stores its search order in <code>__mro__</code>:</p>
+                        <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    @abstractmethod
+    def play(self): ...
+
+class Song(MediaItem):
+    def play(self): return "song"
+
+for cls in Song.__mro__:
+    print(cls.__name__)
+
+print()
+print("play defined on Song itself?", "play" in vars(Song))
+print("info defined on Song itself?", "info" in vars(Song))</pre></div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Why the Base Class Declares <code>@abstractmethod</code></h3>
+                        <p><code>MediaItem</code> cannot be instantiated directly — pressing <strong>⚠ Call base play()</strong> in the player demonstrates the equivalent: the base <code>play()</code> has no implementation, so it refuses to run. That guarantees every item in the library actually <em>has</em> a working <code>play()</code>.</p>
+                        <div class="callout-yellow"><p><strong>Without the abstract method</strong>, a subclass could "forget" to override <code>play()</code> and inherit a stub that silently does nothing — a classic late-night bug. With <code>ABC</code> + <code>@abstractmethod</code>, the error is loud and immediate at instantiation.</p></div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Template Method: overriding <em>part</em> of the behaviour</h3>
+                        <p>Notice <code>info()</code> is written once in the base class, yet it prints different durations per subclass. It calls <code>self.duration()</code>, and Python picks the override. This is called the <strong>Template Method pattern</strong>: the parent defines the skeleton, children fill in the steps. Overrides can also <em>extend</em> a parent method by calling <code>super()</code>:</p>
+                        <div class="code-snippet"><pre>class MediaItem:
+    def __init__(self, title):
+        self.title = title
+    def info(self):
+        return f"{self.title}"
+
+class VideoClip(MediaItem):
+    def __init__(self, title, resolution):
+        super().__init__(title)
+        self.resolution = resolution
+    def info(self):
+        base = super().info()
+        return f"{base} [{self.resolution}]"
+
+print(MediaItem("Intro").info())
+print(VideoClip("Intro", "4K").info())</pre></div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Duck Typing Means You Don't Even Need the Base Class</h3>
+                        <p>The <strong>🦆 Duck-type test</strong> button injects a completely unrelated class — no inheritance from <code>MediaItem</code> — and the player still works, because it only calls <code>.play()</code>, <code>.pause()</code> and <code>.duration()</code>. That's the duck-typing version of the same polymorphism.</p>
+                        <div class="code-snippet"><pre>class Platypus:
+    def play(self):     return "🦆 Platypus Stream"
+    def pause(self):    return "⏸ Platypus paused"
+    def duration(self): return 60
+
+def run(item):
+    print(item.play(), "|", item.duration(), "s")
+
+run(Platypus())</pre></div>
+                        <div class="callout"><p><strong>Rule of thumb:</strong> use inheritance when subclasses share code (here: the <code>info()</code> formatting and the <code>title</code> / <code>creator</code> fields). Use duck typing when you want unrelated objects to plug in — like a test double or a plugin.</p></div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>A Modern Middle Path: <code>typing.Protocol</code></h3>
+                        <p>Since Python 3.8 you can describe the interface <em>without</em> inheritance, and let type checkers (mypy, Pyright) verify duck-typed objects. Nothing is enforced at runtime, but your editor warns you before you ship the bug.</p>
+                        <div class="code-snippet"><pre>from typing import Protocol
+
+class Playable(Protocol):
+    def play(self) -&gt; str: ...
+    def pause(self) -&gt; str: ...
+    def duration(self) -&gt; int: ...
+
+class Jingle:
+    def play(self):     return "🔔 ding"
+    def pause(self):    return "⏸"
+    def duration(self): return 3
+
+def start(item: Playable) -&gt; None:
+    print(item.play())
+
+start(Jingle())</pre></div>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Approach</th><th>Enforced when?</th><th>Shares code?</th><th>Best for</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>ABC</code> + inheritance</td><td>At instantiation (runtime)</td><td>Yes</td><td>Families of related classes</td></tr>
+                                    <tr><td>Plain duck typing</td><td>Never — fails when called</td><td>No</td><td>Small scripts, plugins, test doubles</td></tr>
+                                    <tr><td><code>Protocol</code></td><td>By the type checker (before running)</td><td>No</td><td>Large codebases, library APIs</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>Side-by-Side: Ladder vs Polymorphism</h3>
+                        <div class="code-snippet" data-norun="1"><pre><span class="cmt"># ✗ Ladder version — every new media kind edits the player</span>
+<span class="kw">def</span> <span class="fn">play_item</span>(item):
+    <span class="kw">if</span> <span class="fn">isinstance</span>(item, <span class="cl">Song</span>):
+        <span class="kw">return</span> <span class="st">"🎵 Now playing"</span>
+    <span class="kw">elif</span> <span class="fn">isinstance</span>(item, <span class="cl">Podcast</span>):
+        <span class="kw">return</span> <span class="st">"🎙 Episode"</span>
+    <span class="kw">elif</span> <span class="fn">isinstance</span>(item, <span class="cl">Audiobook</span>):
+        <span class="kw">return</span> <span class="st">"📖 Chapter"</span>
+    <span class="cmt"># add VideoClip → edit here, and every other ladder too</span>
+
+<span class="cmt"># ✓ Polymorphic version — one call, zero edits for new types</span>
+<span class="kw">for</span> item <span class="kw">in</span> library:
+    item.<span class="fn">play</span>()</pre></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mistakes" aria-labelledby="h-mistakes">
+            <div class="page-col">
+                <div class="section-label">06 — Break It On Purpose</div>
+                <h2 id="h-mistakes">Four Classic Polymorphism Mistakes</h2>
+                <p style="margin:.6rem 0 1rem;">The fastest way to understand a rule is to watch it fail. Run each broken example, read the error, then run the fix.</p>
+
+                <div class="mistake">
+                    <h3><i class="fas fa-bug"></i> Mistake 1 — Forgetting to override an abstract method</h3>
+                    <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    @abstractmethod
+    def play(self): ...
+    @abstractmethod
+    def duration(self): ...
+
+class Song(MediaItem):
+    def play(self):
+        return "playing"
+
+Song()</pre></div>
+                    <p>Python refuses to create the object and names the missing method. That is the contract doing its job.</p>
+                    <div class="fix-label">✓ Fix: implement every abstract method</div>
+                    <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    @abstractmethod
+    def play(self): ...
+    @abstractmethod
+    def duration(self): ...
+
+class Song(MediaItem):
+    def play(self):     return "playing"
+    def duration(self): return 213
+
+print(Song().play(), Song().duration())</pre></div>
+                </div>
+
+                <div class="mistake">
+                    <h3><i class="fas fa-bug"></i> Mistake 2 — Changing the method signature in the override</h3>
+                    <p>Python will not stop you, but you have broken the Liskov Substitution Principle: callers written for the base class now crash for one subclass.</p>
+                    <div class="code-snippet"><pre>class Song:
+    def play(self):
+        return "song playing"
+
+class Podcast(Song):
+    def play(self, episode):
+        return f"episode {episode}"
+
+for item in [Song(), Podcast()]:
+    print(item.play())</pre></div>
+                    <div class="fix-label">✓ Fix: keep the promise; make extras optional or store them on the object</div>
+                    <div class="code-snippet"><pre>class Song:
+    def play(self):
+        return "song playing"
+
+class Podcast(Song):
+    def __init__(self, episode=1):
+        self.episode = episode
+    def play(self):
+        return f"episode {self.episode}"
+
+for item in [Song(), Podcast(12)]:
+    print(item.play())</pre></div>
+                </div>
+
+                <div class="mistake">
+                    <h3><i class="fas fa-bug"></i> Mistake 3 — Rebuilding the ladder with <code>isinstance</code></h3>
+                    <p>If you catch yourself writing <code>isinstance</code> to decide which behaviour to run, the behaviour probably belongs <em>inside</em> the classes.</p>
+                    <div class="code-snippet"><pre>class Song: pass
+class Podcast: pass
+class Lecture: pass
+
+def label(item):
+    if isinstance(item, Song):    return "🎵"
+    elif isinstance(item, Podcast): return "🎙"
+    return "❓"
+
+print([label(x) for x in (Song(), Podcast(), Lecture())])</pre></div>
+                    <div class="fix-label">✓ Fix: make each class carry its own icon</div>
+                    <div class="code-snippet"><pre>class Song:    icon = "🎵"
+class Podcast: icon = "🎙"
+class Lecture: icon = "🎓"
+
+print([x.icon for x in (Song(), Podcast(), Lecture())])</pre></div>
+                </div>
+
+                <div class="mistake">
+                    <h3><i class="fas fa-bug"></i> Mistake 4 — Forgetting <code>super().__init__()</code></h3>
+                    <p>When a subclass defines its own <code>__init__</code>, the parent's is <em>not</em> called automatically. Shared fields never get set.</p>
+                    <div class="code-snippet"><pre>class MediaItem:
+    def __init__(self, title, creator):
+        self.title = title
+        self.creator = creator
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        self.seconds = seconds
+
+s = Song("Sunrise", "The Harbors", 213)
+print(s.title)</pre></div>
+                    <div class="fix-label">✓ Fix: delegate to the parent first</div>
+                    <div class="code-snippet"><pre>class MediaItem:
+    def __init__(self, title, creator):
+        self.title = title
+        self.creator = creator
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        super().__init__(title, artist)
+        self.seconds = seconds
+
+s = Song("Sunrise", "The Harbors", 213)
+print(s.title, "-", s.creator)</pre></div>
+                </div>
+
+                <div class="callout"><p><strong>Debug habit:</strong> when a method does something unexpected, print <code>type(obj).__mro__</code> and <code>type(obj).play</code>. They tell you exactly which version Python picked.</p></div>
+            </div>
+        </section>
+
+        <section id="practice" aria-labelledby="h-practice">
+            <div class="page-col">
+                <div class="section-label">07 — Practice</div>
+                <h2 id="h-practice">Four Challenges and a Playground</h2>
+                <p style="margin:.6rem 0 1rem;">Reading builds recognition; writing builds skill. Try each challenge in the playground below <em>before</em> opening the hint or the solution.</p>
+
+                <details class="challenge">
+                    <summary><span class="level lv-easy">Easy</span> Challenge 1 — Add a <code>Radio</code> class</summary>
+                    <div class="ch-body">
+                        <p>Create <code>Radio(MediaItem)</code> with a <code>station</code> attribute. <code>play()</code> should return <code>"📻 Tuned to {station}"</code>, <code>pause()</code> should return <code>"⏸ Radio muted"</code>, and <code>duration()</code> should return <code>0</code> (live streams never end). Do <strong>not</strong> modify the loop.</p>
+                        <details class="hint"><summary>💡 Hint</summary><p>Copy the structure of <code>Song</code>. Call <code>super().__init__(title, creator)</code>, then set <code>self.station</code>. Return a constant from <code>duration()</code>.</p></details>
+                        <details class="solution"><summary>✅ Solution</summary>
+                            <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator):
+        self.title, self.creator = title, creator
+    @abstractmethod
+    def play(self): ...
+    @abstractmethod
+    def pause(self): ...
+    @abstractmethod
+    def duration(self): ...
+
+class Radio(MediaItem):
+    def __init__(self, title, host, station):
+        super().__init__(title, host)
+        self.station = station
+    def play(self):     return f"📻 Tuned to {self.station}"
+    def pause(self):    return "⏸ Radio muted"
+    def duration(self): return 0
+
+for item in [Radio("Morning Show", "DJ Ana", "96.7 FM")]:
+    print(item.play(), item.duration())</pre></div>
+                        </details>
+                    </div>
+                </details>
+
+                <details class="challenge">
+                    <summary><span class="level lv-med">Medium</span> Challenge 2 — A <code>Playlist</code> that is itself playable</summary>
+                    <div class="ch-body">
+                        <p>Build <code>Playlist(MediaItem)</code> that holds a list of items. Its <code>duration()</code> must return the <strong>sum</strong> of its children, and its <code>play()</code> must return the <code>play()</code> text of every child joined by newlines. Because a playlist <em>is</em> a <code>MediaItem</code>, you should be able to put a playlist inside another playlist.</p>
+                        <details class="hint"><summary>💡 Hint</summary><p>Store <code>self.items = list(items)</code>. Use <code>sum(i.duration() for i in self.items)</code>. This is the <strong>Composite pattern</strong>: the container and its contents share one interface.</p></details>
+                        <details class="solution"><summary>✅ Solution</summary>
+                            <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator):
+        self.title, self.creator = title, creator
+    @abstractmethod
+    def play(self): ...
+    @abstractmethod
+    def pause(self): ...
+    @abstractmethod
+    def duration(self): ...
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        super().__init__(title, artist); self.seconds = seconds
+    def play(self):     return f"🎵 {self.title}"
+    def pause(self):    return "⏸"
+    def duration(self): return self.seconds
+
+class Playlist(MediaItem):
+    def __init__(self, title, items):
+        super().__init__(title, "You")
+        self.items = list(items)
+    def play(self):     return "\n".join(i.play() for i in self.items)
+    def pause(self):    return "⏸ Playlist paused"
+    def duration(self): return sum(i.duration() for i in self.items)
+
+inner = Playlist("Chill", [Song("A", "x", 100), Song("B", "y", 200)])
+outer = Playlist("Everything", [inner, Song("C", "z", 50)])
+print(outer.play())
+print("Total:", outer.duration(), "seconds")</pre></div>
+                        </details>
+                    </div>
+                </details>
+
+                <details class="challenge">
+                    <summary><span class="level lv-med">Medium</span> Challenge 3 — Sort the library by duration</summary>
+                    <div class="ch-body">
+                        <p>Make <code>sorted(library)</code> work by giving <code>MediaItem</code> a <code>__lt__</code> method that compares durations. This combines method overriding with <strong>operator overloading</strong> — two flavours of polymorphism in one feature.</p>
+                        <details class="hint"><summary>💡 Hint</summary><p><code>sorted()</code> only needs <code>__lt__</code>. Define it once on the base class: <code>return self.duration() &lt; other.duration()</code>.</p></details>
+                        <details class="solution"><summary>✅ Solution</summary>
+                            <div class="code-snippet"><pre>from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator, seconds):
+        self.title, self.creator, self.seconds = title, creator, seconds
+    @abstractmethod
+    def play(self): ...
+    def duration(self): return self.seconds
+    def __lt__(self, other):
+        return self.duration() &lt; other.duration()
+    def __repr__(self):
+        return f"{type(self).__name__}({self.title!r}, {self.duration()}s)"
+
+class Song(MediaItem):
+    def play(self): return "🎵"
+class Podcast(MediaItem):
+    def play(self): return "🎙"
+
+library = [Podcast("Long", "a", 1540), Song("Short", "b", 213), Song("Mid", "c", 480)]
+print(sorted(library))</pre></div>
+                        </details>
+                    </div>
+                </details>
+
+                <details class="challenge">
+                    <summary><span class="level lv-hard">Hard</span> Challenge 4 — Refactor the ladder</summary>
+                    <div class="ch-body">
+                        <p>The code below works but breaks every time a new shape arrives. Refactor it so each class computes its own area and <code>total_area</code> contains <strong>no</strong> <code>isinstance</code>. Then add a <code>Triangle</code> without editing <code>total_area</code>.</p>
+                        <div class="code-snippet"><pre>import math
+
+class Circle:
+    def __init__(self, r): self.r = r
+class Square:
+    def __init__(self, s): self.s = s
+
+def total_area(shapes):
+    total = 0
+    for sh in shapes:
+        if isinstance(sh, Circle):
+            total += math.pi * sh.r ** 2
+        elif isinstance(sh, Square):
+            total += sh.s ** 2
+    return total
+
+print(round(total_area([Circle(1), Square(2)]), 2))</pre></div>
+                        <details class="hint"><summary>💡 Hint</summary><p>Move each formula into an <code>area()</code> method on its class. Then <code>total_area</code> becomes <code>sum(sh.area() for sh in shapes)</code>.</p></details>
+                        <details class="solution"><summary>✅ Solution</summary>
+                            <div class="code-snippet"><pre>import math
+
+class Circle:
+    def __init__(self, r): self.r = r
+    def area(self): return math.pi * self.r ** 2
+
+class Square:
+    def __init__(self, s): self.s = s
+    def area(self): return self.s ** 2
+
+class Triangle:
+    def __init__(self, b, h): self.b, self.h = b, h
+    def area(self): return 0.5 * self.b * self.h
+
+def total_area(shapes):
+    return sum(sh.area() for sh in shapes)
+
+print(round(total_area([Circle(1), Square(2), Triangle(3, 4)]), 2))</pre></div>
+                        </details>
+                    </div>
+                </details>
+
+                <div class="oop-block playground" style="margin-top:1.4rem;">
+                    <h3>🧪 Playground — write your own code</h3>
+                    <p>Edit freely, then press <strong>Run</strong>. Starter code is below; solve the challenges here. Press <kbd style="font-family:'JetBrains Mono',monospace;font-size:.68rem;">Ctrl</kbd>/<kbd style="font-family:'JetBrains Mono',monospace;font-size:.68rem;">⌘</kbd> + <kbd style="font-family:'JetBrains Mono',monospace;font-size:.68rem;">Enter</kbd> to run quickly.</p>
+                    <textarea id="pgCode" spellcheck="false" aria-label="Python playground">from abc import ABC, abstractmethod
+
+class MediaItem(ABC):
+    def __init__(self, title, creator):
+        self.title, self.creator = title, creator
+
+    @abstractmethod
+    def play(self): ...
+
+    @abstractmethod
+    def pause(self): ...
+
+    @abstractmethod
+    def duration(self): ...
+
+
+class Song(MediaItem):
+    def __init__(self, title, artist, seconds):
+        super().__init__(title, artist)
+        self.seconds = seconds
+
+    def play(self):     return f"🎵 Now playing '{self.title}'"
+    def pause(self):    return "⏸ paused"
+    def duration(self): return self.seconds
+
+
+# TODO: add your own subclass here
+
+
+library = [Song("Sunrise", "The Harbors", 213)]
+
+for item in library:
+    print(item.play())
+    print(item.duration(), "seconds")
+</textarea>
+                    <div class="pg-bar">
+                        <button class="code-btn run-btn" id="pgRun" type="button"><i class="fas fa-play"></i> Run</button>
+                        <button class="code-btn copy-btn" id="pgReset" type="button"><i class="fas fa-rotate-left"></i> Reset</button>
+                        <button class="code-btn copy-btn" id="pgCopy" type="button"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                    <div class="output-panel pg-out" id="pgOut"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" aria-labelledby="h-quiz">
+            <div class="page-col">
+                <div class="section-label">08 — Prove It</div>
+                <h2 id="h-quiz">Check Your Understanding</h2>
+                <p style="margin:.6rem 0 1rem;">Eight questions. You get instant feedback and an explanation after each answer. Your best score is saved in this browser.</p>
+                <div class="quiz-card" id="quizCard" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section id="review" aria-labelledby="h-review">
+            <div class="page-col">
+                <div class="section-label">09 — Review</div>
+                <h2 id="h-review">Key Takeaways</h2>
+                <ul class="takeaways">
+                    <li><strong>One interface, many forms.</strong> Callers rely on method names; objects decide behaviour.</li>
+                    <li><strong>Overriding</strong> replaces a parent method in a subclass. Keep the same signature and return type.</li>
+                    <li><strong><code>ABC</code> + <code>@abstractmethod</code></strong> turns a promise into an enforced rule, failing loudly at instantiation.</li>
+                    <li><strong><code>super()</code></strong> lets a child reuse or extend parent behaviour instead of copying it.</li>
+                    <li><strong>Duck typing and <code>Protocol</code></strong> give polymorphism without inheritance.</li>
+                    <li><strong>Smell test:</strong> an <code>isinstance</code> ladder usually means behaviour belongs inside the classes.</li>
+                </ul>
+
+                <h2 style="margin-top:2.2rem;">Where You See This in Real Software</h2>
+                <div class="kind-grid">
+                    <div class="kind-card"><div class="ic">🗄️</div><h4>Databases</h4><p>One <code>connection.execute()</code> API; PostgreSQL, SQLite and MySQL drivers each implement it differently.</p></div>
+                    <div class="kind-card"><div class="ic">🎮</div><h4>Games</h4><p>Every enemy has <code>update()</code> and <code>draw()</code>; the game loop calls them on a mixed list.</p></div>
+                    <div class="kind-card"><div class="ic">💳</div><h4>Payments</h4><p><code>gateway.charge()</code> hides whether it talks to Stripe, PayPal or GCash.</p></div>
+                    <div class="kind-card"><div class="ic">📁</div><h4>File-like objects</h4><p>Anything with <code>.read()</code> works: files, network sockets, in-memory buffers.</p></div>
+                </div>
+
+                <h2 style="margin-top:2.2rem;">Glossary</h2>
+                <div class="gloss">
+                    <div><div class="term">Polymorphism</div><p>Using one interface to work with objects of different classes.</p></div>
+                    <div><div class="term">Override</div><p>Redefining an inherited method in a subclass.</p></div>
+                    <div><div class="term">Abstract class</div><p>A class that cannot be instantiated until its abstract methods are implemented.</p></div>
+                    <div><div class="term">MRO</div><p>Method Resolution Order: the sequence Python searches to find a method.</p></div>
+                    <div><div class="term">super()</div><p>A proxy to the parent class, used to reuse its methods.</p></div>
+                    <div><div class="term">Duck typing</div><p>Judging an object by the methods it has, not by its class.</p></div>
+                    <div><div class="term">Protocol</div><p>A type-hint-only interface matched by shape, not inheritance.</p></div>
+                    <div><div class="term">Liskov principle</div><p>Subclasses must be usable wherever the parent is expected.</p></div>
+                    <div><div class="term">Open/Closed</div><p>Open for extension, closed for modification.</p></div>
+                    <div><div class="term">Template Method</div><p>Parent defines the algorithm skeleton; children supply the steps.</p></div>
+                </div>
+
+                <h2 style="margin-top:2.2rem;margin-bottom:1rem;">Frequently Asked Questions</h2>
+                <details class="faq"><summary>Is polymorphism the same as inheritance?</summary><div class="ans"><p>No. Inheritance is a <em>mechanism</em> for sharing code and a type relationship. Polymorphism is the <em>benefit</em> of treating different objects uniformly. Python gets polymorphism from inheritance, but also from duck typing, which needs no inheritance at all.</p></div></details>
+                <details class="faq"><summary>Do I always need an abstract base class?</summary><div class="ans"><p>No. Use <code>ABC</code> when you control a family of classes and want errors early. For small scripts or plugin-style code, duck typing is simpler. For large typed codebases, consider <code>Protocol</code>.</p></div></details>
+                <details class="faq"><summary>What is the difference between overriding and overloading?</summary><div class="ans"><p><em>Overriding</em> replaces a parent's method in a subclass (this lesson). <em>Overloading</em> means several functions sharing a name with different parameters. Python has no built-in overloading by signature; use default arguments, <code>*args</code>, or <code>@singledispatch</code> instead. "Operator overloading" (<code>__add__</code>) is a separate, Python-supported idea.</p></div></details>
+                <details class="faq"><summary>Does polymorphism make code slower?</summary><div class="ans"><p>The lookup cost is tiny and Python caches it. In practice the clarity and maintainability gains far outweigh any difference. Measure before optimising.</p></div></details>
+                <details class="faq"><summary>Why does the base class have a <code>duration()</code> docstring but no body?</summary><div class="ans"><p>A function whose body is only a docstring (or <code>...</code>) is valid and returns <code>None</code>. Because the method is abstract, subclasses must override it anyway, so the stub is never reached through a normal instance.</p></div></details>
+                <details class="faq"><summary>Where should I go next?</summary><div class="ans"><p>Continue with the other nine projects below. A good order: <strong>Shape Renderer</strong> (same overriding idea, simpler), <strong>Test-Double Lab</strong> (duck typing for testing), then <strong>Currency Converter</strong> (operator overloading).</p></div></details>
+            </div>
+        </section>
+
+        <section id="apps" aria-labelledby="h-apps">
+            <div class="page-col">
+                <div class="section-label">10 — The Collection</div>
+                <h2 id="h-apps">10 Live Projects</h2>
+                <p style="margin:.6rem 0 1rem;">You're looking at Project 05. Here are the other nine — each demonstrates a different flavor of polymorphism.</p>
+                <div class="table-wrap">
+                    <table class="access-table">
+                        <thead><tr><th>#</th><th>Project</th><th>Flavor</th></tr></thead>
+                        <tbody>
+                            <tr><td>01</td><td><a href="shape-renderer.html" style="color:var(--blue-lt);">🔷 Shape Renderer</a></td><td>Method overriding</td></tr>
+                            <tr><td>02</td><td><a href="image-filter-plugin.html" style="color:var(--blue-lt);">🖼️ Image Filter Plugin</a></td><td>Duck typing</td></tr>
+                            <tr><td>03</td><td><a href="currency-converter.html" style="color:var(--blue-lt);">💱 Currency Converter</a></td><td>Operator overloading</td></tr>
+                            <tr><td>04</td><td><a href="recipe-formatter.html" style="color:var(--blue-lt);">🍳 Recipe Formatter</a></td><td>Single dispatch</td></tr>
+                            <tr><td><strong style="color:var(--gold);">05</strong></td><td><strong style="color:var(--gold);">🎧 Media Player</strong></td><td><strong style="color:var(--gold);">Method overriding ← you are here</strong></td></tr>
+                            <tr><td>06</td><td><a href="test-double-lab.html" style="color:var(--blue-lt);">🧪 Test-Double Lab</a></td><td>Duck typing</td></tr>
+                            <tr><td>07</td><td><a href="ledger.html" style="color:var(--blue-lt);">📒 Double-Entry Ledger</a></td><td>Operator overloading</td></tr>
+                            <tr><td>08</td><td><a href="log-router.html" style="color:var(--blue-lt);">📨 Log Router</a></td><td>Single dispatch</td></tr>
+                            <tr><td>09</td><td><a href="chess-pieces.html" style="color:var(--blue-lt);">♞ Chess Pieces</a></td><td>Method overriding</td></tr>
+                            <tr><td>10</td><td><a href="protocol-checker.html" style="color:var(--blue-lt);">✅ Protocol Checker</a></td><td>Duck typing</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.5rem;">
+                    <a href="polymorphism.html" class="btn btn-home"><i class="fas fa-book-open"></i> Read the Full Guide</a>
+                    <a href="polymorphism.html#apps" class="btn btn-outline"><i class="fas fa-project-diagram"></i> All 10 Projects</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | Project 05 of 10 · <a href="polymorphism.html">← Back to Polymorphism Guide</a> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var backTop = document.getElementById('backTop');
+        var readBar = document.getElementById('readProgress');
+        window.addEventListener('scroll', function () {
+            backTop.classList.toggle('visible', window.scrollY > 500);
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            readBar.style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + '%';
+        }, { passive: true });
+        backTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        var TOKEN_RE = /(#[^\n]*)|("""[\s\S]*?"""|f?"(?:\\.|[^"\\\n])*"|f?'(?:\\.|[^'\\\n])*')|(@\w+)|\b(from|import|class|def|return|if|else|elif|for|in|not|and|or|try|except|raise|with|as|pass|None|True|False|self|lambda|while|is|yield|break|continue)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Z]\w*)\b|\b([a-z_]\w*)(?=\()/g;
+        function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+        function highlight(src) {
+            var out = '', last = 0, m;
+            TOKEN_RE.lastIndex = 0;
+            while ((m = TOKEN_RE.exec(src)) !== null) {
+                out += esc(src.slice(last, m.index));
+                var cls = m[1] ? 'cmt' : m[2] ? 'st' : m[3] ? 'dec' : m[4] ? 'kw' : m[5] ? 'num' : m[6] ? 'cl' : 'fn';
+                out += '<span class="' + cls + '">' + esc(m[0]) + '</span>';
+                last = m.index + m[0].length;
+            }
+            return out + esc(src.slice(last));
+        }
+
+        var pyodideInstance = null;
+        async function getPyodide() {
+            if (!pyodideInstance) pyodideInstance = await loadPyodide();
+            return pyodideInstance;
+        }
+        async function runCode(code, outputEl, runBtn) {
+            runBtn.disabled = true;
+            var original = runBtn.innerHTML;
+            runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+            outputEl.style.display = 'block';
+            outputEl.className = 'output-panel loading';
+            outputEl.textContent = pyodideInstance ? 'Running…\n' : 'Loading Python runtime... (first run may take 8–12s)\n';
+            try {
+                if (typeof loadPyodide === 'undefined') throw new Error('Python runtime failed to load. Check your connection.');
+                var py = await getPyodide();
+                outputEl.className = 'output-panel';
+                outputEl.textContent = '';
+                py.globals.set('_src', code);
+                var result = await py.runPythonAsync(
+                    'import sys\nfrom io import StringIO\n' +
+                    '_buf = StringIO()\n_old = sys.stdout\nsys.stdout = _buf\n' +
+                    'try:\n    exec(compile(_src, "<media>", "exec"), {"__name__": "__main__"})\n' +
+                    'finally:\n    sys.stdout = _old\n_buf.getvalue()'
+                );
+                outputEl.textContent = result || '✓ Code executed successfully (no output).';
+            } catch (err) {
+                outputEl.className = 'output-panel error';
+                var msg = String(err.message || err);
+                var lines = msg.split('\n').filter(function (l) { return l.trim() !== ''; });
+                var tail = lines.slice(-3).join('\n');
+                outputEl.textContent = 'Error:\n' + (lines.length > 3 ? tail : msg);
+            } finally {
+                runBtn.disabled = false;
+                runBtn.innerHTML = original;
+            }
+        }
+        function enhanceCodeBlocks() {
+            document.querySelectorAll('.code-snippet').forEach(function (block) {
+                if (block.closest('.code-container')) return;
+                var pre = block.querySelector('pre');
+                if (!pre) return;
+                var noRun = block.hasAttribute('data-norun');
+                var codeText = pre.textContent;
+                pre.innerHTML = highlight(codeText);
+                var container = document.createElement('div');
+                container.className = 'code-container' + (noRun ? ' norun' : '');
+                var header = document.createElement('div');
+                header.className = 'code-header';
+                header.innerHTML = '<span style="color:var(--muted);">python' + (noRun ? ' · illustration' : '') + '</span>' +
+                    '<div class="code-actions">' +
+                    '<button class="code-btn copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>' +
+                    (noRun ? '' : '<button class="code-btn run-btn" type="button"><i class="fas fa-play"></i> Run</button>') +
+                    '</div>';
+                var out = document.createElement('div');
+                out.className = 'output-panel';
+                block.parentNode.insertBefore(container, block);
+                container.appendChild(header);
+                container.appendChild(block);
+                if (!noRun) container.appendChild(out);
+                var copyBtn = header.querySelector('.copy-btn'), runBtn = header.querySelector('.run-btn');
+                copyBtn.addEventListener('click', function () {
+                    var orig = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    try { if (navigator.clipboard) { navigator.clipboard.writeText(codeText.trim()); } } catch (e) {}
+                    setTimeout(function () { copyBtn.innerHTML = orig; }, 1800);
+                });
+                if (runBtn) runBtn.addEventListener('click', function () { runCode(codeText, out, runBtn); });
+            });
+        }
+        enhanceCodeBlocks();
+
+        var pgCode = document.getElementById('pgCode');
+        var pgOut = document.getElementById('pgOut');
+        var pgRun = document.getElementById('pgRun');
+        var pgStarter = pgCode.value;
+        pgRun.addEventListener('click', function () { runCode(pgCode.value, pgOut, pgRun); });
+        document.getElementById('pgReset').addEventListener('click', function () { pgCode.value = pgStarter; pgOut.style.display = 'none'; });
+        document.getElementById('pgCopy').addEventListener('click', function () {
+            try { if (navigator.clipboard) navigator.clipboard.writeText(pgCode.value); } catch (e) {}
+        });
+        pgCode.addEventListener('keydown', function (e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                var s = pgCode.selectionStart, en = pgCode.selectionEnd;
+                pgCode.value = pgCode.value.substring(0, s) + '    ' + pgCode.value.substring(en);
+                pgCode.selectionStart = pgCode.selectionEnd = s + 4;
+            } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                pgRun.click();
+            }
+        });
+
+        var BASE_TRACKS = [
+            { kind: 'song',      icon: '🎵', type: 'Song',      title: 'Sunrise',                creator: 'The Harbors', seconds: 213,  extra: '',           parent: true },
+            { kind: 'podcast',   icon: '🎙️', type: 'Podcast',   title: 'Why OOP Matters',        creator: 'Byte Talk',   seconds: 1540, extra: 'Episode 12', parent: true },
+            { kind: 'audiobook', icon: '📖', type: 'Audiobook', title: 'Pythonic Patterns',      creator: 'R. Domingo',  seconds: 7200, extra: 'Chapter 3',  parent: true },
+            { kind: 'video',     icon: '🎬', type: 'VideoClip', title: 'Polymorphism Explained', creator: 'Poetic Bytes', seconds: 480, extra: '4K',         parent: true }
+        ];
+        var LECTURE = { kind: 'lecture', icon: '🎓', type: 'Lecture', title: 'Intro to Polymorphism', creator: 'Prof. Reyes', seconds: 3000, extra: 'Week 4', parent: true };
+        var DUCK = { kind: 'duck', icon: '🦆', type: 'DuckTest', title: 'Platypus Stream', creator: 'Unknown', seconds: 60, extra: 'no MediaItem parent', parent: false };
+
+        var BEHAVIOUR = {
+            song:      { play: function (t) { return "🎵 Now playing '" + t.title + "' by " + t.creator; },
+                         pause: function (t) { return "⏸ Song paused at chorus of '" + t.title + "'"; } },
+            podcast:   { play: function (t) { return "🎙 Episode 12: '" + t.title + "' with " + t.creator; },
+                         pause: function () { return "⏸ Podcast paused — bookmarked at episode 12"; } },
+            audiobook: { play: function (t) { return "📖 Chapter 3 of '" + t.title + "', read by " + t.creator; },
+                         pause: function () { return "⏸ Audiobook closed at chapter 3"; } },
+            video:     { play: function (t) { return "🎬 Streaming '" + t.title + "' from " + t.creator + " at 4K"; },
+                         pause: function () { return "⏸ Video paused at 4K"; } },
+            lecture:   { play: function (t) { return "🎓 Week 4: '" + t.title + "' with " + t.creator; },
+                         pause: function () { return "⏸ Lecture paused — notes saved for week 4"; } },
+            duck:      { play: function (t) { return "🦆 " + t.title; },
+                         pause: function () { return "⏸ Platypus paused"; } }
+        };
+
+        var state = { index: -1, playing: false, elapsed: 0, volume: 70, timer: null, library: BASE_TRACKS.slice() };
+
+        var el = {
+            status: document.getElementById('mpStatus'), statusText: document.getElementById('mpStatusText'),
+            now: document.getElementById('mpNow'), art: document.getElementById('mpArt'),
+            kind: document.getElementById('mpKind'), title: document.getElementById('mpTitle'),
+            sub: document.getElementById('mpSub'), method: document.getElementById('mpMethod'),
+            fill: document.getElementById('mpProgressFill'), progress: document.getElementById('mpProgress'),
+            current: document.getElementById('mpCurrent'), duration: document.getElementById('mpDuration'),
+            play: document.getElementById('mpPlay'), prev: document.getElementById('mpPrev'), next: document.getElementById('mpNext'),
+            vol: document.getElementById('mpVolume'), volText: document.getElementById('mpVolText'),
+            tracks: document.getElementById('mpTracks'), trace: document.getElementById('mpTrace'), note: document.getElementById('mpNote')
+        };
+
+        function fmt(sec) {
+            sec = Math.max(0, Math.floor(sec));
+            var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+            return (h ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        }
+        function trace(msg) {
+            var line = document.createElement('div');
+            line.textContent = msg;
+            el.trace.appendChild(line);
+            el.trace.scrollTop = el.trace.scrollHeight;
+        }
+        function traceClear() { el.trace.innerHTML = '<span class="hd">Method trace — click a track or press play:</span>'; }
+        function setNote(text, color) { el.note.textContent = text; el.note.style.color = color || 'var(--muted)'; }
+        function has(type) { return state.library.some(function (t) { return t.type === type; }); }
+
+        function renderLibrary() {
+            el.tracks.innerHTML = '';
+            state.library.forEach(function (t, i) {
+                var row = document.createElement('div');
+                row.className = 'mp-track kind-' + t.kind + (i === state.index ? ' active' : '');
+                var icon = document.createElement('div'); icon.className = 'mp-track-icon'; icon.textContent = t.icon;
+                var info = document.createElement('div'); info.className = 'mp-track-info';
+                var ttl = document.createElement('div'); ttl.className = 'mp-track-title'; ttl.textContent = t.title;
+                var kd = document.createElement('div'); kd.className = 'mp-track-kind'; kd.textContent = t.type + (t.extra ? ' · ' + t.extra : '');
+                info.appendChild(ttl); info.appendChild(kd);
+                var dur = document.createElement('div'); dur.className = 'mp-track-dur'; dur.textContent = fmt(t.seconds);
+                row.appendChild(icon); row.appendChild(info); row.appendChild(dur);
+                row.addEventListener('click', function () { loadTrack(i, true); });
+                el.tracks.appendChild(row);
+            });
+        }
+
+        function setPlayIcon(playing) {
+            el.play.innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            el.play.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+        }
+        function setStatus(kind, text) { el.status.className = 'mp-status ' + kind; el.statusText.textContent = text; }
+
+        function loadTrack(i, autoplay) {
+            stopTimer();
+            state.index = i; state.elapsed = 0; state.playing = false;
+            var t = state.library[i];
+            el.now.className = 'mp-now kind-' + t.kind;
+            el.art.className = 'mp-art';
+            el.art.textContent = t.icon;
+            el.kind.textContent = t.type.toUpperCase();
+            el.title.textContent = t.title;
+            el.sub.textContent = t.creator + (t.extra ? ' · ' + t.extra : '');
+            el.method.textContent = 'item.duration() → ' + t.seconds + 's  ·  item.play() → ' + t.type + '.play()';
+            el.duration.textContent = fmt(t.seconds);
+            el.current.textContent = '0:00';
+            el.fill.style.width = '0%';
+            el.progress.setAttribute('aria-valuenow', '0');
+            setStatus('paused', 'Loaded — press ▶');
+            setPlayIcon(false);
+            renderLibrary();
+
+            traceClear();
+            trace('▸ Loaded: ' + t.type + "('" + t.title + "')");
+            trace(t.parent ? '  class ' + t.type + '(MediaItem)  — inherits from the base class'
+                           : '  class ' + t.type + '  — NO parent class (duck typing)');
+            trace('  ' + t.type + '.duration() → ' + t.seconds);
+            trace('  ' + t.type + '.info() → ' + t.type + "  '" + t.title + "' by " + t.creator + ' (' + fmt(t.seconds) + ')');
+            setNote('Loaded ' + t.title);
+            if (autoplay) doPlay();
+        }
+
+        function doPlay() {
+            if (state.index < 0) { loadTrack(0, false); }
+            var t = state.library[state.index];
+            state.playing = true;
+            setStatus('playing', 'Playing');
+            el.now.classList.add('playing');
+            setPlayIcon(true);
+            trace('▸ item.play()  →  dispatched to ' + t.type + '.play()');
+            trace('  ' + BEHAVIOUR[t.kind].play(t));
+            startTimer();
+        }
+        function doPause() {
+            if (state.index < 0 || !state.playing) return;
+            var t = state.library[state.index];
+            state.playing = false;
+            setStatus('paused', 'Paused');
+            el.now.classList.remove('playing');
+            setPlayIcon(false);
+            stopTimer();
+            trace('▸ item.pause() →  dispatched to ' + t.type + '.pause()');
+            trace('  ' + BEHAVIOUR[t.kind].pause(t));
+        }
+        function doToggle() { if (state.playing) doPause(); else doPlay(); }
+
+        function startTimer() {
+            stopTimer();
+            state.timer = setInterval(function () {
+                var t = state.library[state.index];
+                state.elapsed += 1;
+                if (state.elapsed >= t.seconds) {
+                    state.elapsed = t.seconds;
+                    updateProgress(t);
+                    doPause();
+                    trace('  ✦ reached end of ' + t.title);
+                    return;
+                }
+                updateProgress(t);
+            }, 1000);
+        }
+        function stopTimer() { if (state.timer) { clearInterval(state.timer); state.timer = null; } }
+        function updateProgress(t) {
+            var pct = t.seconds ? (state.elapsed / t.seconds) * 100 : 0;
+            el.fill.style.width = pct + '%';
+            el.progress.setAttribute('aria-valuenow', String(Math.round(pct)));
+            el.current.textContent = fmt(state.elapsed);
+        }
+
+        function prevTrack() { loadTrack(state.index <= 0 ? 0 : state.index - 1, state.playing); }
+        function nextTrack() { loadTrack(state.index >= state.library.length - 1 ? 0 : state.index + 1, state.playing); }
+
+        el.play.addEventListener('click', doToggle);
+        el.prev.addEventListener('click', prevTrack);
+        el.next.addEventListener('click', nextTrack);
+        el.vol.addEventListener('input', function () {
+            state.volume = +el.vol.value;
+            el.volText.textContent = state.volume + '%';
+        });
+        el.progress.addEventListener('click', function (e) {
+            if (state.index < 0) return;
+            var t = state.library[state.index];
+            var r = el.progress.getBoundingClientRect();
+            var pct = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+            state.elapsed = Math.floor(pct * t.seconds);
+            updateProgress(t);
+            trace('▸ seek → ' + fmt(state.elapsed) + ' of ' + fmt(t.seconds) + '  (uses item.duration(), never the type)');
+        });
+
+        document.getElementById('mpBreak').addEventListener('click', function () {
+            trace('▸ MediaItem()  →  ⚠ abstract base class');
+            trace("  TypeError: Can't instantiate abstract class MediaItem");
+            trace('  with abstract methods duration, pause, play');
+            trace('  → The ABC refuses to exist without a real implementation.');
+            setNote('Base class refused — that is the point of @abstractmethod.', 'var(--red)');
+        });
+
+        document.getElementById('mpLecture').addEventListener('click', function () {
+            var btn = this;
+            if (!has('Lecture')) {
+                state.library = state.library.concat([Object.assign({}, LECTURE)]);
+                renderLibrary();
+                btn.textContent = '➖ Remove Lecture';
+                trace('▸ New class Lecture(MediaItem) registered.');
+                trace('  Player code changed? NO. Lines edited in the loop: 0.');
+                trace('  → Open/Closed Principle: extended without modifying.');
+                setNote('Lecture added — play it and watch the trace.', 'var(--green)');
+            } else {
+                var playingType = state.index >= 0 ? state.library[state.index].type : null;
+                state.library = state.library.filter(function (t) { return t.type !== 'Lecture'; });
+                if (playingType === 'Lecture') { stopTimer(); state.index = -1; state.playing = false; setPlayIcon(false); setStatus('paused', 'Ready'); }
+                else if (state.index >= state.library.length) { state.index = state.library.length - 1; }
+                renderLibrary();
+                btn.textContent = '➕ Add Lecture';
+                trace('▸ Removed Lecture.');
+                setNote('Lecture removed.');
+            }
+        });
+
+        document.getElementById('mpDuck').addEventListener('click', function () {
+            if (!has('DuckTest')) {
+                state.library = state.library.concat([Object.assign({}, DUCK)]);
+                renderLibrary();
+                trace('▸ Injected DuckTest — does NOT inherit MediaItem');
+                trace('  Has play(), pause(), duration()? yes  →  player works unchanged.');
+                setNote('Duck-typed object added — the loop did not change.', 'var(--green)');
+            } else {
+                var playingType = state.index >= 0 ? state.library[state.index].type : null;
+                state.library = state.library.filter(function (t) { return t.type !== 'DuckTest'; });
+                if (playingType === 'DuckTest') { stopTimer(); state.index = -1; state.playing = false; setPlayIcon(false); setStatus('paused', 'Ready'); }
+                else if (state.index >= state.library.length) { state.index = state.library.length - 1; }
+                renderLibrary();
+                trace('▸ Removed duck-typed object.');
+                setNote('Duck-typed object removed.');
+            }
+        });
+
+        document.getElementById('mpReset').addEventListener('click', function () {
+            stopTimer();
+            state = { index: -1, playing: false, elapsed: 0, volume: 70, timer: null, library: BASE_TRACKS.slice() };
+            el.vol.value = 70; el.volText.textContent = '70%';
+            el.now.className = 'mp-now'; el.art.className = 'mp-art'; el.art.textContent = '🎵';
+            el.kind.textContent = 'SONG'; el.title.textContent = 'Select a track below';
+            el.sub.textContent = 'No media loaded'; el.method.textContent = 'item.duration() → —';
+            el.current.textContent = '0:00'; el.duration.textContent = '0:00'; el.fill.style.width = '0%';
+            document.getElementById('mpLecture').textContent = '➕ Add Lecture';
+            setStatus('paused', 'Ready'); setPlayIcon(false);
+            renderLibrary(); traceClear();
+            setNote('Reset — load a track to begin.');
+        });
+
+        renderLibrary();
+        loadTrack(0, false);
+
+        var QUIZ = [
+            { q: 'What does polymorphism let a caller do?',
+              o: ['Hide all data inside private variables', 'Call the same method on different objects and get behaviour specific to each', 'Copy code from one class into another', 'Run Python faster'],
+              a: 1, e: 'Polymorphism means one interface, many implementations. The caller says what to do; each object decides how.' },
+            { q: 'Why does MediaItem inherit from ABC and use @abstractmethod?',
+              o: ['So methods run faster', 'So Python raises an error if a subclass forgets to implement a required method', 'So the class can be printed', 'Because Python requires every base class to be abstract'],
+              a: 1, e: 'ABC plus @abstractmethod makes the contract enforceable: instantiating an incomplete subclass raises TypeError immediately.' },
+            { q: 'What does this print?', code: 'class A:\n    def hi(self): return "A"\nclass B(A):\n    def hi(self): return "B"\n\nfor x in [A(), B()]:\n    print(x.hi(), end=" ")',
+              o: ['A A', 'B B', 'A B', 'Error'],
+              a: 2, e: 'Each object uses the hi() defined on its own class: A() runs A.hi, B() runs the override B.hi.' },
+            { q: 'Which line is a sign you should consider polymorphism instead?',
+              o: ['for item in library: item.play()', 'if isinstance(item, Song): ... elif isinstance(item, Podcast): ...', 'super().__init__(title, creator)', 'self.seconds = seconds'],
+              a: 1, e: 'A growing isinstance ladder means type-specific behaviour lives outside the classes. Move it into overridden methods.' },
+            { q: 'A subclass defines its own __init__ but never calls super().__init__(). What happens?',
+              o: ['Python calls the parent __init__ automatically', 'The parent\'s attributes (like title) are never set', 'The class cannot be created', 'The subclass becomes abstract'],
+              a: 1, e: 'Defining __init__ replaces the parent\'s. Without super().__init__(...), the shared fields are missing and later access raises AttributeError.' },
+            { q: 'The 🦆 Duck-type test object works in the player even though it does not inherit from MediaItem. Why?',
+              o: ['Python secretly makes it a MediaItem', 'The player only needs the methods play, pause and duration to exist', 'Because it has the same name as a real class', 'Duck typing only works inside browsers'],
+              a: 1, e: 'Duck typing judges objects by the methods they provide, not by their class ancestry.' },
+            { q: 'Which override breaks the Liskov Substitution Principle?',
+              o: ['Same name, same parameters, different behaviour', 'Calling super().play() and adding extra text', 'Adding a new required parameter that the base play() does not have', 'Returning a string like the parent does'],
+              a: 2, e: 'Callers written for the base signature call play() with no arguments. A new required argument makes that call fail for the subclass.' },
+            { q: 'You add a Lecture subclass. What must change in the existing player loop?',
+              o: ['Add an elif isinstance(item, Lecture) branch', 'Nothing at all', 'Rewrite play() in MediaItem', 'Register Lecture in a global dictionary'],
+              a: 1, e: 'That is the Open/Closed Principle: the loop calls item.play(), and the new class supplies its own override.' }
+        ];
+        var quizCard = document.getElementById('quizCard');
+        var qs = { i: 0, score: 0, answered: false };
+        function bestGet() { try { return parseInt(localStorage.getItem('pb_mediaplayer_best') || '0', 10) || 0; } catch (e) { return 0; } }
+        function bestSet(v) { try { localStorage.setItem('pb_mediaplayer_best', String(v)); } catch (e) {} }
+
+        function renderQuiz() {
+            quizCard.innerHTML = '';
+            if (qs.i >= QUIZ.length) { renderResult(); return; }
+            var item = QUIZ[qs.i]; qs.answered = false;
+            var top = document.createElement('div'); top.className = 'quiz-top';
+            var l = document.createElement('span'); l.textContent = 'Question ' + (qs.i + 1) + ' of ' + QUIZ.length;
+            var r = document.createElement('span'); r.textContent = 'Score: ' + qs.score; r.id = 'quizScore';
+            top.appendChild(l); top.appendChild(r);
+            var bar = document.createElement('div'); bar.className = 'quiz-bar';
+            var fillEl = document.createElement('div'); fillEl.style.width = (qs.i / QUIZ.length * 100) + '%'; bar.appendChild(fillEl);
+            var q = document.createElement('div'); q.className = 'quiz-q'; q.textContent = item.q;
+            quizCard.appendChild(top); quizCard.appendChild(bar); quizCard.appendChild(q);
+            if (item.code) { var c = document.createElement('div'); c.className = 'quiz-code'; c.textContent = item.code; quizCard.appendChild(c); }
+            var opts = document.createElement('div'); opts.className = 'quiz-opts';
+            var exp = document.createElement('div'); exp.className = 'quiz-exp';
+            var nav = document.createElement('div'); nav.className = 'quiz-nav';
+            var nextBtn = document.createElement('button'); nextBtn.className = 'btn btn-primary'; nextBtn.style.display = 'none';
+            nextBtn.textContent = qs.i === QUIZ.length - 1 ? 'See my result' : 'Next question →';
+            nextBtn.addEventListener('click', function () { qs.i++; renderQuiz(); });
+            item.o.forEach(function (text, idx) {
+                var b = document.createElement('button'); b.className = 'quiz-opt'; b.type = 'button'; b.textContent = text;
+                b.addEventListener('click', function () {
+                    if (qs.answered) return; qs.answered = true;
+                    var btns = opts.querySelectorAll('.quiz-opt');
+                    btns.forEach(function (x, j) { x.disabled = true; if (j === item.a) x.classList.add('correct'); });
+                    if (idx === item.a) { qs.score++; }
+                    else { b.classList.add('wrong'); }
+                    document.getElementById('quizScore').textContent = 'Score: ' + qs.score;
+                    exp.textContent = (idx === item.a ? '✓ Correct. ' : '✗ Not quite. ') + item.e;
+                    exp.style.display = 'block'; nextBtn.style.display = 'inline-flex';
+                });
+                opts.appendChild(b);
+            });
+            quizCard.appendChild(opts); quizCard.appendChild(exp);
+            nav.appendChild(nextBtn); quizCard.appendChild(nav);
+        }
+        function renderResult() {
+            var pct = Math.round(qs.score / QUIZ.length * 100);
+            var best = Math.max(bestGet(), qs.score); bestSet(best);
+            var msg = pct === 100 ? '🏆 Flawless. You are ready for the other nine projects.'
+                    : pct >= 75 ? '👏 Strong grasp. Review the explanations for the ones you missed.'
+                    : pct >= 50 ? '📘 Good start. Re-run the build steps and the mistakes section, then try again.'
+                    : '🌱 Worth another pass. Begin again at the Build section and run every example.';
+            var wrap = document.createElement('div'); wrap.className = 'quiz-result';
+            var s = document.createElement('div'); s.className = 'score'; s.textContent = qs.score + ' / ' + QUIZ.length;
+            var p = document.createElement('p'); p.style.margin = '.4rem 0'; p.textContent = msg;
+            var b = document.createElement('p'); b.className = 'app-note'; b.textContent = 'Best score in this browser: ' + best + ' / ' + QUIZ.length;
+            var again = document.createElement('button'); again.className = 'btn btn-primary'; again.style.marginTop = '1rem'; again.textContent = '↺ Try again';
+            again.addEventListener('click', function () { qs = { i: 0, score: 0, answered: false }; renderQuiz(); });
+            wrap.appendChild(s); wrap.appendChild(p); wrap.appendChild(b); wrap.appendChild(again);
+            quizCard.appendChild(wrap);
+        }
+        renderQuiz();
+    })();
+    </script>
+
+</body>
+</html>
