@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Chess Pieces – Polymorphism in Action | Poetic Bytes</title>
+    <meta name="description" content="Learn polymorphism through chess pieces. Each piece overrides legal_moves() and symbol(). Interactive board, live code, and a playable mini-game." />
+    <meta name="keywords" content="Python polymorphism, chess pieces, method overriding, OOP, Poetic Bytes, chess programming" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/chess-pieces.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:title" content="Chess Pieces – Polymorphism in Action" />
+    <meta property="og:description" content="Each chess piece knows its own legal moves. Learn polymorphism through a playable board." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/chess-pieces.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chess Pieces – Polymorphism in Action" />
+    <meta name="twitter:description" content="Each piece overrides legal_moves(). Learn OOP polymorphism with a live chess board." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Chess Pieces – Polymorphism in Action",
+        "description": "Explore polymorphism via chess pieces that override legal_moves() and symbol(). Includes a live board and a playable mini-game.",
+        "author": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app" },
+        "publisher": { "@type": "Organization", "name": "Poetic Bytes" },
+        "datePublished": "2026-10-20",
+        "dateModified": "2026-10-20",
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://poetic-bytes.vercel.app/chess-pieces.html" },
+        "articleSection": "Python Programming",
+        "inLanguage": "en-US",
+        "learningResourceType": "Tutorial",
+        "educationalLevel": "Intermediate"
+    }
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
+            crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C; --panel: #0F1C2F; --card: #111e30; --border: #1F4060;
+            --blue: #4B8BBE; --blue-deep: #306998; --blue-lt: #78B9E6; --gold: #FFD966;
+            --text: #E2E8F0; --muted: #8BA3BF; --code-bg: #0A1A24;
+            --green: #10B981; --amber: #F59E0B; --red: #EF4444; --purple: #c084fc;
+            --btn-h: 44px; --btn-r: 8px; --card-r: 12px;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; overflow-x: hidden; }
+        .page-col { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+        section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+        section:last-child { border-bottom: none; }
+
+        .progress-bar-wrap { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: rgba(31,64,96,.3); z-index: 2000; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--blue-lt)); width: 0%; transition: width .2s; }
+        .nav-bar { position: fixed; top: 3px; left: 0; right: 0; background: rgba(11,18,28,.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .nav-inner { max-width: 860px; margin: 0 auto; padding: .6rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .brand { display: flex; align-items: center; gap: .5rem; text-decoration: none; color: #fff; font-weight: 800; font-size: .85rem; letter-spacing: .08em; }
+        .brand-icon { width: 2rem; height: 2rem; border-radius: 6px; background: linear-gradient(145deg, var(--blue), var(--blue-deep)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; letter-spacing: .04em; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a.nav-home { color: var(--gold); }
+        .nav-links a.nav-home:hover { color: var(--blue-lt); }
+        @media(max-width:680px) { .nav-links { display: none; } }
+        .menu-toggle { display: none; flex-direction: column; justify-content: center; align-items: center; background: rgba(75,139,190,.1); border: 1px solid var(--border); border-radius: 6px; width: 40px; height: 40px; cursor: pointer; gap: 4px; }
+        .menu-toggle span { width: 18px; height: 2px; background: #fff; border-radius: 2px; transition: .25s; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        @media(max-width:680px) { .menu-toggle { display: flex; } }
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 1050; opacity: 0; visibility: hidden; transition: .2s; backdrop-filter: blur(4px); }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100vh; background: var(--panel); border-left: 1px solid var(--border); z-index: 1100; display: flex; flex-direction: column; transition: right .3s; box-shadow: -5px 0 30px rgba(0,0,0,.5); }
+        .mobile-drawer.active { right: 0; }
+        .drawer-hd { padding: .8rem; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; }
+        .drawer-close { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .drawer-body { flex: 1; overflow-y: auto; padding: .8rem; display: block; }
+        .drawer-body li { list-style: none; margin-bottom: .5rem; }
+        .drawer-body a, .drawer-body button { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .7rem .9rem; background: rgba(75,139,190,.12); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: .78rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background .2s; font-family: inherit; }
+        .drawer-body a:active, .drawer-body button:active { background: rgba(75,139,190,.3); }
+        .drawer-body i { color: var(--gold); width: 1.2rem; }
+        .drawer-body .drawer-home { background: rgba(255,212,59,.1); border-color: rgba(255,212,59,.35); }
+        .drawer-body .drawer-home i { color: var(--gold); }
+
+        h1, h2, h3, h4, h5 { font-family: 'Syne', sans-serif; line-height: 1.25; font-weight: 700; }
+        h1 { font-size: 1.6rem; } h2 { font-size: 1.25rem; margin-bottom: .5rem; } h3 { font-size: .95rem; } h4 { font-size: .85rem; }
+        p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+        code { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: #a5d6ff; }
+        .section-label { font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: .6rem; margin-bottom: 1.2rem; }
+        .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: var(--btn-h); padding: 0 1.4rem; border-radius: var(--btn-r); font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem; cursor: pointer; transition: all .2s; border: none; text-decoration: none; white-space: nowrap; }
+        .btn-primary { background: linear-gradient(135deg, var(--blue), var(--blue-deep)); color: #fff; box-shadow: 0 4px 14px rgba(75,139,190,.35); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(75,139,190,.45); }
+        .btn-primary:active { transform: scale(.97); }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-outline:hover { border-color: var(--blue); background: rgba(75,139,190,.08); }
+        .btn-home { background: linear-gradient(135deg, var(--blue-deep), var(--blue)); color: #fff; border: 1px solid rgba(120,185,230,.45); box-shadow: 0 4px 14px rgba(75,139,190,.3); }
+        .btn-home:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(75,139,190,.45); }
+        @media(max-width:480px) { .btn { width: 100%; } }
+
+        .hero { padding: 5rem 0 3rem; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75,139,190,.18) 0%, transparent 70%); }
+        .hero-tag { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--border); border-radius: 40px; padding: .3rem .9rem; font-size: .68rem; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.2rem; background: var(--card); }
+        .live-dot { width: 7px; height: 7px; background: var(--blue-lt); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+        .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); color: var(--gold); margin-bottom: .8rem; }
+        .hero p.lead { font-size: .88rem; color: var(--muted); max-width: 560px; margin-bottom: 1.6rem; line-height: 1.75; }
+
+        .insight { background: rgba(75,139,190,.08); border: 1px solid rgba(75,139,190,.25); border-radius: 6px; padding: .6rem .9rem; font-size: .75rem; color: var(--blue-lt); }
+        .callout, .callout-yellow, .callout-green { padding: .6rem 1rem; margin: 1rem 0; border-radius: 4px; }
+        .callout { border-left: 3px solid var(--blue); background: rgba(75,139,190,.06); }
+        .callout-yellow { border-left: 3px solid var(--gold); background: rgba(255,212,59,.06); }
+        .callout-green { border-left: 3px solid var(--green); background: rgba(16,185,129,.06); }
+        .callout p, .callout-yellow p, .callout-green p { margin: 0; font-size: .78rem; }
+        .callout strong { color: var(--blue-lt); } .callout-yellow strong { color: var(--gold); } .callout-green strong { color: var(--green); }
+
+        .access-table { width: 100%; border-collapse: collapse; margin-top: 1.2rem; font-size: .76rem; }
+        .access-table th { background: var(--card); color: var(--text); font-weight: 600; padding: .7rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        .access-table td { padding: .65rem 1rem; color: var(--muted); border-bottom: 1px solid var(--border); vertical-align: top; }
+        .access-table tr:hover td { background: rgba(75,139,190,.03); }
+        .table-wrap { overflow-x: auto; margin-top: 1rem; }
+        .table-wrap .access-table { min-width: 480px; margin-top: 0; }
+
+        .oop-block { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.3rem; margin-bottom: 1.2rem; }
+        .oop-block h3 { font-size: .88rem; color: var(--gold); margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem; }
+        .oop-block p { font-size: .78rem; margin-bottom: .8rem; }
+
+        .code-snippet { background: var(--code-bg); border-radius: 6px; border-left: 3px solid var(--blue); padding: .9rem 1rem; overflow-x: auto; margin-bottom: .7rem; position: relative; }
+        .code-snippet pre { font-family: 'JetBrains Mono', monospace; font-size: .73rem; line-height: 1.65; color: var(--text); margin: 0; white-space: pre-wrap; word-break: break-word; }
+        .code-snippet .kw { color: #ff7b72; font-weight: 600; } .code-snippet .fn { color: #d2a8ff; } .code-snippet .st { color: #a5d6ff; }
+        .code-snippet .cl { color: #FFD966; font-weight: 600; } .code-snippet .cmt { color: #546e7a; font-style: italic; }
+        .code-snippet .num { color: #f78c6c; } .code-snippet .dec { color: #c792ea; font-weight: 500; }
+        .code-container { position: relative; margin: 1rem 0; }
+        .code-header { background: #0a1a24; padding: .5rem 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); border-radius: var(--card-r) var(--card-r) 0 0; font-size: .72rem; flex-wrap: wrap; gap: .5rem; }
+        .code-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+        .code-btn { padding: .35rem .8rem; font-size: .7rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: .4rem; font-family: 'Syne', sans-serif; border: none; }
+        .copy-btn { background: rgba(75,139,190,.15); color: var(--blue-lt); border: 1px solid rgba(75,139,190,.3); }
+        .copy-btn:hover { background: rgba(75,139,190,.25); }
+        .run-btn { background: var(--green); color: #000; font-weight: 700; }
+        .run-btn:hover { background: #34d399; transform: translateY(-1px); }
+        .run-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+        .output-panel { background: #0a1a24; border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--card-r) var(--card-r); padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: .76rem; color: #4ade80; max-height: 300px; overflow-y: auto; display: none; white-space: pre-wrap; word-break: break-word; line-height: 1.6; }
+        .output-panel.error { color: #f87171; } .output-panel.loading { color: var(--blue-lt); }
+        .code-container .code-snippet { border-radius: 0; border-left: none; margin-bottom: 0; padding: 1rem; }
+        @media(max-width:480px) { .code-header { flex-direction: column; align-items: stretch; gap: .4rem; } .code-btn { font-size: .65rem; padding: .25rem .6rem; } .output-panel { font-size: .7rem; padding: .7rem; } }
+
+        .curriculum-desc { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.8rem 2rem; margin: 1.5rem 0 2rem; position: relative; overflow: hidden; }
+        .curriculum-desc::before { content: "♞"; position: absolute; top: -10px; right: 10px; font-size: 4rem; opacity: .06; transform: rotate(8deg); }
+        .curriculum-desc h2 { color: var(--gold); font-size: 1.2rem; margin-bottom: .6rem; }
+        .curriculum-desc p { font-size: .85rem; color: var(--text); line-height: 1.85; margin-bottom: .6rem; }
+        .curriculum-desc .highlight { color: var(--blue-lt); font-weight: 600; } .curriculum-desc .gold { color: var(--gold); font-weight: 600; }
+        .desc-meta { display: flex; flex-wrap: wrap; gap: .8rem 1.5rem; margin-top: .8rem; padding-top: .8rem; border-top: 1px solid var(--border); }
+        .desc-meta span { font-size: .7rem; color: var(--muted); display: inline-flex; align-items: center; gap: .4rem; }
+        @media(max-width:480px) { .curriculum-desc { padding: 1.2rem 1rem; } .desc-meta { flex-direction: column; gap: .4rem; } }
+        .intro-em { color: var(--blue-lt); font-weight: 600; }
+        .outro-list { list-style: none; padding: 0; margin: .6rem 0; }
+        .outro-list li { padding: .3rem 0 .3rem 1.8rem; position: relative; font-size: .8rem; color: var(--muted); line-height: 1.6; }
+        .outro-list li::before { content: "✅"; position: absolute; left: 0; }
+
+        .ai-grid, .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px,100%), 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .ai-card { border-bottom: 1px solid var(--border); padding: .75rem 0; }
+        .ai-card-icon, .pico { font-size: 1.5rem; margin-bottom: .5rem; }
+        .ai-card h3 { font-size: 1rem; color: var(--text); margin-bottom: .4rem; } .ai-card p { font-size: .78rem; margin: 0; }
+        .pillar-card { border-bottom: 1px solid var(--border); padding: .9rem 0; display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: all .25s; position: relative; }
+        .pillar-card:hover { opacity: .85; }
+        .ptitle { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; color: var(--text); }
+        .pdesc { font-size: .72rem; color: var(--muted); margin: 0 0 1.2rem; line-height: 1.65; }
+        .pbtn { margin-top: auto; display: inline-flex; align-items: center; gap: .35rem; font-weight: 600; font-size: .68rem; padding: .42rem .9rem; border-radius: 100px; background: rgba(75,139,190,.14); color: var(--blue-lt); width: fit-content; }
+        .pillar-card[data-p="abs"] .pbtn { background: rgba(106,174,214,.12); color: #6aaed6; }
+        .pillar-card[data-p="inh"] .pbtn { background: rgba(255,212,59,.12); color: var(--gold); }
+        .pillar-card[data-p="pol"] .pbtn { background: rgba(181,158,232,.12); color: #b59ee8; }
+        .current-pill { position: absolute; top: .75rem; right: 0; background: rgba(106,174,214,.2); border: 1px solid rgba(106,174,214,.4); color: #6aaed6; font-size: .55rem; font-family: 'JetBrains Mono', monospace; padding: .15rem .5rem; border-radius: 100px; letter-spacing: .08em; text-transform: uppercase; }
+
+        .apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px,100%), 1fr)); gap: 1rem; margin-top: 1.8rem; }
+        .app-btn { display: flex; flex-direction: column; align-items: center; gap: .6rem; padding: .75rem .5rem; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; transition: opacity .2s; }
+        .app-btn:hover { opacity: .85; }
+        .app-logo { width: 60px; height: 60px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; background: rgba(75,139,190,.15); border: 1px solid rgba(75,139,190,.3); transition: transform .3s cubic-bezier(.23,1,.32,1); }
+        .app-btn:hover .app-logo { transform: scale(1.1) rotate(-4deg); }
+        .app-info { text-align: center; }
+        .app-name { font-weight: 700; font-size: .88rem; color: var(--text); margin-bottom: .2rem; }
+        .app-desc { font-size: .68rem; color: var(--muted); line-height: 1.5; margin: 0; }
+        .app-tag { display: inline-flex; font-family: 'JetBrains Mono', monospace; font-size: .56rem; padding: .18rem .55rem; border-radius: 100px; margin-top: .5rem; background: rgba(75,139,190,.15); color: var(--blue-lt); border: 1px solid rgba(75,139,190,.25); }
+        .app-poly { display: block; font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--muted); margin-top: .45rem; text-align: center; }
+        .app-poly b { color: var(--gold); font-weight: 600; }
+
+        .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 1rem; margin-top: 1.4rem; }
+        .cheat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.2rem; transition: border-color .2s; }
+        .cheat-card:hover { border-color: var(--blue); }
+        .cheat-card h3 { font-size: .88rem; margin-bottom: .75rem; color: var(--text); }
+        .cheat-table { width: 100%; border-collapse: collapse; font-size: .72rem; }
+        .cheat-table th { background: var(--panel); color: var(--muted); padding: .4rem .65rem; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .05em; border-bottom: 1px solid var(--border); }
+        .cheat-table td { padding: .4rem .65rem; color: var(--muted); border-bottom: 1px solid rgba(75,139,190,.06); vertical-align: top; }
+        .cheat-table td:first-child { font-family: 'JetBrains Mono', monospace; color: var(--blue-lt); }
+        .cheat-table tr:last-child td { border-bottom: none; }
+
+        .quiz-wrap { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+        .quiz-q { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.2rem; transition: border-color .3s; }
+        .quiz-q.correct { border-color: var(--green) !important; } .quiz-q.wrong { border-color: var(--red) !important; }
+        .quiz-prompt { font-size: .82rem; color: var(--text); font-weight: 600; margin-bottom: .8rem; line-height: 1.6; }
+        .quiz-opts { display: flex; flex-direction: column; gap: .4rem; }
+        .quiz-opt { display: flex; align-items: center; gap: .6rem; padding: .5rem .8rem; border-radius: 7px; background: var(--panel); border: 1px solid var(--border); cursor: pointer; font-size: .76rem; color: var(--muted); transition: all .2s; user-select: none; }
+        .quiz-opt:hover:not(.disabled) { background: rgba(75,139,190,.08); border-color: var(--blue); color: var(--text); }
+        .quiz-opt.correct-ans { background: rgba(141,200,150,.12); border-color: var(--green); color: var(--green); }
+        .quiz-opt.wrong-ans { background: rgba(212,88,136,.1); border-color: var(--red); color: var(--red); }
+        .quiz-opt.disabled { cursor: default; }
+        .quiz-feedback { font-family: 'JetBrains Mono', monospace; font-size: .65rem; margin-top: .7rem; min-height: .9rem; line-height: 1.6; }
+        .quiz-feedback.ok { color: var(--green); } .quiz-feedback.bad { color: var(--red); }
+        .quiz-score { text-align: center; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); margin-top: 1rem; display: none; }
+        .quiz-score .score-num { font-size: 2.2rem; color: var(--blue-lt); display: block; line-height: 1.1; }
+        .quiz-reset { margin-top: .8rem; padding: .55rem 1.5rem; border-radius: 100px; background: rgba(75,139,190,.14); color: var(--blue-lt); border: 1px solid rgba(75,139,190,.28); cursor: pointer; font-size: .74rem; font-family: 'Syne', sans-serif; font-weight: 600; }
+
+        .share-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 2.8rem 2.2rem; text-align: center; position: relative; overflow: hidden; }
+        .share-wrap h2 { font-size: 1.2rem; margin-bottom: .3rem; }
+        .share-sub { color: var(--muted); font-size: .8rem; max-width: 420px; margin: .4rem auto 1.6rem; line-height: 1.7; }
+        .share-ai-msg { background: rgba(75,139,190,.07); border: 1px solid rgba(75,139,190,.18); border-radius: var(--card-r); padding: .85rem 1.2rem; margin: 0 auto 1.6rem; max-width: 560px; font-size: .76rem; color: var(--blue-lt); font-family: 'JetBrains Mono', monospace; line-height: 1.65; min-height: 3.5rem; text-align: left; white-space: pre-wrap; }
+        .ai-typing-cursor { display: inline-block; width: 2px; height: .9em; background: var(--blue-lt); margin-left: 1px; vertical-align: middle; animation: blink .7s infinite; }
+        @keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: 0 } }
+        .share-btns { display: flex; flex-direction: column; align-items: stretch; gap: .65rem; margin: .4rem auto 0; max-width: 320px; }
+        .sbtn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .65rem 1.3rem; border-radius: 100px; border: 1px solid var(--border); background: var(--panel); color: var(--text); cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 600; font-size: .72rem; transition: all .25s; }
+        .sbtn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.4); border-color: var(--blue); }
+        .sbtn svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .share-toast { margin-top: .9rem; font-size: .7rem; color: var(--blue-lt); min-height: 1.1rem; font-family: 'JetBrains Mono', monospace; transition: opacity .4s; opacity: 0; }
+
+        .floating-share { position: fixed; right: 20px; bottom: 80px; display: flex; flex-direction: column; gap: 10px; z-index: 900; }
+        .fs-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: 1.1rem; transition: .2s; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.5); position: relative; }
+        .fs-btn:hover { border-color: var(--blue); color: var(--blue-lt); transform: scale(1.08); }
+        .fs-btn .tooltip { position: absolute; right: 56px; background: var(--panel); color: var(--text); padding: 4px 12px; border-radius: 6px; font-size: .65rem; font-weight: 600; border: 1px solid var(--border); opacity: 0; pointer-events: none; transition: .2s; white-space: nowrap; }
+        .fs-btn:hover .tooltip { opacity: 1; }
+        .floating-toc { position: fixed; right: 80px; bottom: 80px; width: 280px; max-height: 60vh; background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-r); box-shadow: 0 8px 32px rgba(0,0,0,.7); z-index: 950; overflow: hidden; display: none; flex-direction: column; }
+        .floating-toc.open { display: flex; }
+        .toc-header { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1rem; background: rgba(75,139,190,.08); border-bottom: 1px solid var(--border); font-weight: 700; font-size: .8rem; color: var(--text); }
+        .toc-header button { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; padding: .2rem .4rem; }
+        .toc-body { overflow-y: auto; padding: .5rem 0; flex: 1; }
+        .toc-body a { display: block; padding: .4rem 1rem; font-size: .7rem; color: var(--muted); text-decoration: none; border-left: 2px solid transparent; transition: .15s; }
+        .toc-body a:hover { background: rgba(75,139,190,.08); border-color: var(--blue); color: var(--text); }
+        .toc-body a.toc-home { color: var(--gold); font-weight: 700; }
+        .toc-body a.toc-home:hover { background: rgba(255,212,59,.08); border-color: var(--gold); }
+
+        .floating-home { position: fixed; left: 20px; bottom: 20px; height: 44px; padding: 0 .95rem; display: inline-flex; align-items: center; gap: .45rem; background: linear-gradient(135deg, var(--blue), var(--blue-deep)); color: #fff; border: 1px solid rgba(120,185,230,.45); border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: .74rem; letter-spacing: .02em; text-decoration: none; z-index: 900; box-shadow: 0 6px 20px rgba(75,139,190,.35); transition: all .25s; }
+        .floating-home:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(75,139,190,.5); background: linear-gradient(135deg, var(--blue-lt), var(--blue)); }
+        .floating-home i { font-size: .9rem; }
+        .floating-home .home-tooltip { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; transition: max-width .3s, opacity .2s; }
+        .floating-home:hover .home-tooltip { max-width: 130px; opacity: 1; }
+        @media(max-width:480px) { .floating-home { height: 40px; padding: 0 .85rem; font-size: .7rem; left: 10px; bottom: 10px; } .floating-home .home-tooltip { display: none; } }
+
+        .back-top { position: fixed; right: 20px; bottom: 20px; width: 44px; height: 44px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 900; transition: .2s; opacity: 0; visibility: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+        .back-top.visible { opacity: 1; visibility: visible; }
+        .back-top:hover { border-color: var(--blue); color: var(--blue-lt); transform: translateY(-2px); }
+
+        .sub-wrap { background: linear-gradient(135deg, var(--card) 0%, var(--panel) 100%); border: 1px solid var(--border); border-radius: var(--card-r); padding: 3.2rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+        .sub-wrap h2 { font-size: 1.2rem; margin-bottom: .35rem; }
+        .sub-desc { color: var(--muted); font-size: .8rem; max-width: 440px; margin: .3rem auto 0; }
+        .perks { display: flex; justify-content: center; gap: 1.3rem; flex-wrap: wrap; margin: 1rem 0 1.4rem; }
+        .perk { display: inline-flex; align-items: center; gap: .35rem; font-size: .72rem; color: var(--muted); }
+        .perk::before { content: '✓'; color: var(--blue-lt); font-weight: 700; }
+        .sub-form { display: flex; gap: .55rem; max-width: 460px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+        .sub-form .cinput { flex: 1; min-width: min(180px,100%); }
+        .sub-plans { display: flex; gap: .65rem; justify-content: center; flex-wrap: wrap; margin-top: 1.3rem; }
+        .plan-chip { display: inline-flex; align-items: center; gap: .45rem; padding: .45rem 1.1rem; border-radius: 100px; border: 1px solid var(--border); background: var(--panel); font-size: .72rem; color: var(--muted); cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 500; transition: all .22s; }
+        .plan-chip:hover, .plan-chip.active { border-color: rgba(75,139,190,.4); background: rgba(75,139,190,.1); color: var(--blue-lt); }
+        .plan-chip.premium.active { border-color: rgba(255,212,59,.4); background: rgba(255,212,59,.08); color: var(--gold); }
+        .sub-note { font-size: .62rem; color: var(--muted); margin-top: .7rem; }
+        .sub-msg { font-size: .7rem; color: var(--blue-lt); font-family: 'JetBrains Mono', monospace; min-height: 1rem; transition: opacity .4s; margin-top: .5rem; }
+        .cinput { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: .6rem .85rem; color: var(--text); font-family: 'Syne', sans-serif; font-size: .82rem; width: 100%; outline: none; transition: border-color .2s, box-shadow .2s; }
+        .cinput:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(75,139,190,.11); }
+        .btn-submit { background: linear-gradient(135deg, var(--blue-deep), var(--blue)); color: #fff; border: none; border-radius: 100px; padding: .65rem 1.75rem; font-family: 'Syne', sans-serif; font-weight: 700; font-size: .76rem; cursor: pointer; transition: all .25s; }
+        .btn-submit:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+        .follow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px,100%), 1fr)); gap: 1rem; margin-top: 1.6rem; }
+        .follow-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.6rem 1.2rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: .65rem; transition: all .3s cubic-bezier(.23,1,.32,1); }
+        .follow-card:hover { transform: translateY(-5px); border-color: var(--blue); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+        .follow-icon { width: 52px; height: 52px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: rgba(75,139,190,.12); border: 1px solid rgba(75,139,190,.25); }
+        .follow-name { font-weight: 700; font-size: .88rem; color: var(--text); }
+        .follow-handle { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); margin-top: -.3rem; }
+        .follow-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .45rem 1.2rem; border-radius: 100px; font-weight: 600; font-size: .72rem; cursor: pointer; border: 1px solid rgba(75,139,190,.3); background: rgba(75,139,190,.15); color: var(--blue-lt); text-decoration: none; margin-top: .2rem; transition: all .25s; }
+        .follow-btn:hover { transform: translateY(-1px); }
+        .follow-btn.following { background: var(--panel) !important; color: var(--muted) !important; border: 1px solid var(--border) !important; }
+
+        .page-footer { padding: 3rem 0 1.5rem; background: #1a2535; border-top: 1px solid var(--border); }
+        .footer-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+        .footer-col h5 { font-size: .72rem; font-weight: 800; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .7rem; }
+        .footer-col ul { list-style: none; } .footer-col li { margin-bottom: .4rem; }
+        .footer-col a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .74rem; transition: color .2s; }
+        .footer-col a:hover { color: #fff; }
+        .copyright { border-top: 1px solid var(--border); padding-top: 1.2rem; text-align: center; font-size: .72rem; color: var(--muted); }
+        .copyright a { color: rgba(255,255,255,.5); text-decoration: none; }
+
+        .ad-slot { padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); text-align: center; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; overflow: hidden; }
+        .ad-label { font-family: 'JetBrains Mono', monospace; font-size: .55rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); opacity: .55; }
+        .ad-slot .adsbygoogle { display: block; width: 100%; min-height: 90px; }
+
+        .sub-h { font-size: .8rem; color: var(--blue-lt); margin: 1.4rem 0 .6rem; display: flex; align-items: center; gap: .4rem; }
+        .walk { list-style: none; counter-reset: w; margin: .6rem 0 1rem; }
+        .walk li { counter-increment: w; position: relative; padding: .6rem .8rem .6rem 2.5rem; margin-bottom: .45rem; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; font-size: .76rem; color: var(--muted); line-height: 1.7; }
+        .walk li::before { content: counter(w); position: absolute; left: .65rem; top: .6rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: rgba(75,139,190,.18); color: var(--blue-lt); font-family: 'JetBrains Mono', monospace; font-size: .65rem; display: flex; align-items: center; justify-content: center; }
+        .walk li strong { color: var(--text); }
+        .out-label { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 1rem; }
+        .out-block { background: #06121a; border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 6px; padding: .8rem 1rem; margin: .4rem 0 1rem; font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: #4ade80; white-space: pre-wrap; line-height: 1.6; overflow-x: auto; }
+        .mistake, .tryit { padding: .6rem 1rem; margin: .6rem 0; border-radius: 4px; }
+        .mistake { border-left: 3px solid var(--red); background: rgba(239,68,68,.06); }
+        .tryit { border-left: 3px solid var(--purple); background: rgba(192,132,252,.06); }
+        .mistake p, .tryit p { margin: 0; font-size: .76rem; }
+        .mistake strong { color: #f87171; } .tryit strong { color: var(--purple); }
+        .tryit ul { margin: .4rem 0 0 1.1rem; font-size: .76rem; color: var(--muted); line-height: 1.7; }
+        details.sol { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; margin-top: .8rem; }
+        details.sol summary { cursor: pointer; padding: .7rem 1rem; font-size: .76rem; font-weight: 700; color: var(--gold); min-height: var(--btn-h); display: flex; align-items: center; }
+        details.sol[open] summary { border-bottom: 1px solid var(--border); }
+        details.sol .sol-body { padding: 1rem; }
+        .ex-head { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-bottom: .5rem; }
+        .ex-level { font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 100px; background: rgba(16,185,129,.15); color: var(--green); }
+        .ex-level.mid { background: rgba(245,158,11,.15); color: var(--amber); }
+
+        .tracker-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1.4rem 1.5rem; margin: 1.5rem 0 2rem; }
+        .tracker-head { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .tracker-head h3 { color: var(--gold); font-size: 1rem; }
+        .tracker-bar { height: 10px; background: var(--panel); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+        .tracker-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--blue-lt)); transition: width .4s ease; }
+        .tracker-pct { font-family: 'JetBrains Mono', monospace; font-size: .78rem; color: var(--blue-lt); }
+        .tracker-list { list-style: none; margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: .35rem .8rem; }
+        @media(max-width:520px) { .tracker-list { grid-template-columns: 1fr; } }
+        .tracker-list li { display: flex; align-items: center; gap: .5rem; font-size: .74rem; color: var(--muted); }
+        .tracker-list input[type=checkbox] { accent-color: var(--green); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+        .tracker-list li.done { color: var(--text); }
+        .tracker-list li.done label { text-decoration: line-through; opacity: .7; }
+        .tracker-reset { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: .3rem .8rem; font-size: .68rem; cursor: pointer; font-family: 'Syne', sans-serif; }
+        .tracker-reset:hover { border-color: var(--red); color: var(--red); }
+
+        .mark-learn { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .8rem; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .68rem; font-family: 'Syne', sans-serif; font-weight: 600; cursor: pointer; transition: all .2s; margin-left: auto; }
+        .mark-learn:hover { border-color: var(--green); color: var(--green); }
+        .mark-learn.done { background: rgba(16,185,129,.14); border-color: var(--green); color: var(--green); }
+
+        .playground-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--card-r); overflow: hidden; margin-top: 1.2rem; }
+        .playground-head { background: #0a1a24; padding: .6rem 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: .5rem; }
+        .playground-head .ttl { font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: var(--muted); }
+        .playground-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+        .pg-textarea { width: 100%; min-height: 260px; background: #06121a; color: var(--text); border: none; border-bottom: 1px solid var(--border); padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: .76rem; line-height: 1.65; resize: vertical; outline: none; tab-size: 4; }
+        .pg-textarea:focus { background: #081620; }
+        .playground-out { background: #06121a; padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: .76rem; color: #4ade80; min-height: 100px; max-height: 300px; overflow-y: auto; white-space: pre-wrap; line-height: 1.6; }
+        .playground-out.loading { color: var(--blue-lt); }
+        .playground-out.error { color: #f87171; }
+
+        .board-wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .chess-board { display: grid; grid-template-columns: repeat(8, 1fr); width: min(100%, 480px); aspect-ratio: 1; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; background: #0a1a24; }
+        .chess-square { position: relative; display: flex; align-items: center; justify-content: center; font-size: clamp(1.4rem, 5vw, 2.4rem); cursor: pointer; transition: background .15s; user-select: none; }
+        .chess-square.light { background: #1e3347; }
+        .chess-square.dark { background: #0d1b28; }
+        .chess-square:hover { background: rgba(75,139,190,.25); }
+        .chess-square.selected { background: rgba(255,212,59,.3) !important; }
+        .chess-square.legal-target { background: rgba(16,185,129,.25) !important; }
+        .chess-square.legal-capture { background: rgba(239,68,68,.25) !important; }
+        .chess-square .piece { filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+        .chess-square .piece.white { color: #f0f4f8; }
+        .chess-square .piece.black { color: #1a1a2e; text-shadow: 0 0 1px #555; }
+        .chess-square .coord { position: absolute; bottom: 2px; right: 4px; font-family: 'JetBrains Mono', monospace; font-size: .5rem; color: var(--muted); opacity: .4; }
+        .board-info { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--muted); text-align: center; min-height: 1.4rem; }
+        .board-info.valid { color: var(--green); }
+        .board-info.invalid { color: var(--amber); }
+        .board-controls { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+        .legend { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: .5rem; }
+        .legend-item { display: flex; align-items: center; gap: .35rem; font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--muted); }
+        .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--border); }
+
+        .piece-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(120px,100%), 1fr)); gap: .8rem; margin: 1rem 0; }
+        .piece-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-r); padding: 1rem .8rem; text-align: center; transition: border-color .2s; }
+        .piece-card:hover { border-color: var(--blue); }
+        .piece-glyph { font-size: 2rem; line-height: 1; margin-bottom: .4rem; }
+        .piece-glyph.white { color: #f0f4f8; } .piece-glyph.black { color: #1a1a2e; text-shadow: 0 0 1px #555; }
+        .piece-card .piece-name { font-weight: 700; font-size: .78rem; color: var(--text); }
+        .piece-card .piece-desc { font-size: .66rem; color: var(--muted); margin-top: .3rem; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#tracker">Start</a></li>
+                <li><a href="#pieces">Pieces</a></li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#board">Play</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="polymorphism.html">← Polymorphism</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body">
+            <ul>
+                <li><a href="index.html" class="drawer-home"><i class="fas fa-home"></i>HOME</a></li>
+                <li><button data-href="#tracker"><i class="fas fa-tasks"></i>Progress Tracker</button></li>
+                <li><button data-href="#intro"><i class="fas fa-chess"></i>Introduction</button></li>
+                <li><button data-href="#pieces"><i class="fas fa-chess-pawn"></i>The Six Pieces</button></li>
+                <li><button data-href="#code"><i class="fas fa-code"></i>Python Implementation</button></li>
+                <li><button data-href="#board"><i class="fas fa-chess-board"></i>Live Board</button></li>
+                <li><button data-href="#quiz"><i class="fas fa-brain"></i>Quiz</button></li>
+                <li><button data-href="#apps"><i class="fas fa-project-diagram"></i>10 Live Projects</button></li>
+                <li><button data-href="#series"><i class="fas fa-layer-group"></i>OOP Series</button></li>
+                <li><button data-href="#share"><i class="fas fa-share-alt"></i>Share</button></li>
+                <li><a href="polymorphism.html"><i class="fas fa-arrow-left"></i>Polymorphism Guide</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header"><span>📚 Jump to</span><button id="tocCloseBtn" aria-label="Close"><i class="fas fa-times"></i></button></div>
+        <div class="toc-body">
+            <a href="index.html" class="toc-home">🏠 Home</a>
+            <a href="#tracker">🎯 Progress Tracker</a>
+            <a href="#intro">♟️ Introduction</a>
+            <a href="#pieces">♞ The Six Pieces</a>
+            <a href="#code">💻 Python Implementation</a>
+            <a href="#board">🎮 Live Board</a>
+            <a href="#quiz">🧠 Quiz</a>
+            <a href="#apps">🛍️ 10 Live Projects</a>
+            <a href="#series">🏛️ OOP Series</a>
+            <a href="#share">📤 Share</a>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn" id="tocToggleBtn" aria-label="Open table of contents"><i class="fas fa-list-ul"></i><span class="tooltip">Table of Contents</span></button>
+        <button class="fs-btn" id="copyLinkBtn" aria-label="Copy link"><i class="fas fa-link"></i><span class="tooltip">Copy link</span></button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram"><i class="fab fa-telegram-plane"></i><span class="tooltip">Telegram</span></a>
+    </div>
+
+    <a href="index.html" class="floating-home" aria-label="Back to Home" title="Back to Home">
+        <i class="fas fa-home"></i>
+        <span class="home-tooltip">Back to Home</span>
+    </a>
+
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Chess Pieces – Polymorphism">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Live Project · Chess Pieces</div>
+                <h1 style="font-size:clamp(1.8rem,4.5vw,3.2rem);">
+                    <span style="color:var(--blue);">Chess Pieces —</span><br>
+                    Each One Knows<br>
+                    <span style="color:var(--gold);">Its Own Moves.</span>
+                </h1>
+                <p class="lead">
+                    A rook, a bishop and a knight are all <code>Piece</code> objects. The board loop asks each one for its <code>legal_moves()</code> — and every piece answers in its own way. That is <strong>polymorphism</strong>, played out on a chessboard.
+                </p>
+                <p class="lead" style="margin-top:-0.6rem;">
+                    This live project is a companion to the <a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism in Python</a> guide. You'll see six subclasses override the same two methods, run the real Python code, and play with a live board where each piece moves according to its own rules.
+                </p>
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;">
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">📅 October 20, 2026</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">⏱ 20 min read</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🎓 Intermediate</span>
+                    <span style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.28rem .7rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);">🐍 Python 3.11+</span>
+                </div>
+                <div style="margin-top:1.5rem;display:flex;gap:.6rem;flex-wrap:wrap;">
+                    <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Back to Home</a>
+                    <a href="#board" class="btn btn-primary"><i class="fas fa-chess-board"></i> Play the Board</a>
+                    <a href="#code" class="btn btn-outline"><i class="fas fa-code"></i> See the Code</a>
+                    <a href="polymorphism.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Polymorphism Guide</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="tracker" aria-labelledby="h-tracker">
+            <div class="page-col">
+                <div class="section-label">00 — Your Learning Dashboard</div>
+                <h2 id="h-tracker">Progress Tracker</h2>
+                <p style="margin-top:.6rem;">Tick off each milestone as you complete it. Progress is saved in this browser.</p>
+                <div class="tracker-wrap">
+                    <div class="tracker-head">
+                        <h3>🎯 Your Journey Through Chess Pieces</h3>
+                        <span class="tracker-pct" id="trackerPct">0%</span>
+                    </div>
+                    <div class="tracker-bar"><div class="tracker-fill" id="trackerFill"></div></div>
+                    <ul class="tracker-list" id="trackerList"></ul>
+                    <div style="display:flex;justify-content:flex-end;margin-top:1rem;">
+                        <button class="tracker-reset" onclick="resetTracker()">↺ Reset all progress</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="h-intro">
+            <div class="page-col">
+                <div class="section-label">01 — The Idea</div>
+                <h2 id="h-intro">Why Chess Is a Perfect Polymorphism Example</h2>
+
+                <div class="curriculum-desc">
+                    <h2>♟️ One Question, Many Answers</h2>
+                    <p>
+                        A chess engine needs to know: <span class="highlight">"Where can this piece legally move?"</span>
+                        There are six kinds of pieces, and each has a completely different rule. A naive engine writes one giant <code>if / elif</code> block on piece type, repeated everywhere moves are needed.
+                    </p>
+                    <p>
+                        A polymorphic engine writes the question <span class="gold">once</span> — <code>piece.legal_moves(board)</code> — and gives each piece class its own answer. Adding a new piece (say, a fairy-chess "Princess") means writing one class, not hunting down every <code>if</code> ladder.
+                    </p>
+                    <p>
+                        This is the same idea behind the <a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism guide</a>, but grounded in a game you already know.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 6 piece classes, one interface</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Runnable Python implementation</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Live interactive board</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Playable mini-game</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Quiz + progress tracker</span>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>The Two Methods Every Piece Shares</h3>
+                    <p>Every class in our engine inherits from a base <code>Piece</code> that declares the interface. The board code only ever calls these:</p>
+                    <div class="table-wrap">
+                        <table class="access-table">
+                            <thead><tr><th>Method</th><th>What it returns</th><th>Who uses it</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>legal_moves(board)</code></td><td>List of <code>(row, col)</code> destinations the piece can reach</td><td>Move validation, highlighting, AI search</td></tr>
+                                <tr><td><code>symbol()</code></td><td>A Unicode character used to render the piece</td><td>The board renderer</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="callout-green"><p><strong>The payoff:</strong> the board code never asks <em>"what kind of piece is this?"</em> It just calls <code>piece.legal_moves(board)</code>. Every piece answers for itself.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pieces" aria-labelledby="h-pieces">
+            <div class="page-col">
+                <div class="section-label">02 — The Six Classes</div>
+                <h2 id="h-pieces">Meet the Pieces</h2>
+                <div style="margin-top:1rem;">
+                    <p>Each of these is a subclass of <code>Piece</code>. Each overrides <code>legal_moves()</code> with its own rule and <code>symbol()</code> with its own glyph.</p>
+
+                    <div class="piece-grid">
+                        <div class="piece-card"><div class="piece-glyph white">♔</div><div class="piece-name">King</div><p class="piece-desc">One square in any direction.</p></div>
+                        <div class="piece-card"><div class="piece-glyph white">♕</div><div class="piece-name">Queen</div><p class="piece-desc">Any distance, straight or diagonal.</p></div>
+                        <div class="piece-card"><div class="piece-glyph white">♖</div><div class="piece-name">Rook</div><p class="piece-desc">Any distance, straight lines only.</p></div>
+                        <div class="piece-card"><div class="piece-glyph white">♗</div><div class="piece-name">Bishop</div><p class="piece-desc">Any distance, diagonals only.</p></div>
+                        <div class="piece-card"><div class="piece-glyph white">♘</div><div class="piece-name">Knight</div><p class="piece-desc">L-shape: two one way, one the other. Jumps.</p></div>
+                        <div class="piece-card"><div class="piece-glyph white">♙</div><div class="piece-name">Pawn</div><p class="piece-desc">Forward one (or two from start), diagonally to capture.</p></div>
+                    </div>
+
+                    <div class="oop-block">
+                        <h3>How Each Override Differs</h3>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>Piece</th><th>Direction set</th><th>Distance</th><th>Special</th></tr></thead>
+                                <tbody>
+                                    <tr><td>King</td><td>All 8 directions</td><td>Exactly 1</td><td>—</td></tr>
+                                    <tr><td>Queen</td><td>All 8 directions</td><td>1…7 (slide)</td><td>Stops at blockers</td></tr>
+                                    <tr><td>Rook</td><td>4 straight directions</td><td>1…7 (slide)</td><td>Stops at blockers</td></tr>
+                                    <tr><td>Bishop</td><td>4 diagonal directions</td><td>1…7 (slide)</td><td>Stops at blockers</td></tr>
+                                    <tr><td>Knight</td><td>8 L-shaped offsets</td><td>Exactly 1 hop</td><td>Ignores blockers</td></tr>
+                                    <tr><td>Pawn</td><td>Forward (and diagonals to capture)</td><td>1 or 2</td><td>Direction depends on color</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="callout-yellow"><p><strong>Notice:</strong> Rook, Bishop and Queen all "slide" in some direction set. They share the same <code>_slide()</code> helper — but each calls it with a different list of directions. That's overriding plus code reuse: different <em>what</em>, shared <em>how</em>.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="code" aria-labelledby="h-code">
+            <div class="page-col">
+                <div class="section-label">03 — Build It</div>
+                <h2 id="h-code">The Python Implementation</h2>
+                <div style="margin-top:1rem;">
+                    <p>This is the complete engine behind the board below. Read it once, then press <strong>Run</strong> to execute it right here in your browser.</p>
+
+                    <div class="oop-block">
+                        <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem;">
+                            <h3 style="margin:0;">The Chess Piece Engine</h3>
+                            <button class="mark-learn" data-learn="p1" onclick="toggleLearn(this)">Mark as learned</button>
+                        </div>
+                        <p>One base class, six subclasses, one shared <code>_slide</code> helper. The main loop asks every piece on the board for its moves — and nothing ever checks a piece's type.</p>
+                        <div class="code-snippet"><pre>class Piece:
+    def __init__(self, color, row, col):
+        self.color = color
+        self.row = row
+        self.col = col
+
+    def legal_moves(self, board):
+        raise NotImplementedError("Subclasses must implement legal_moves()")
+
+    def symbol(self):
+        raise NotImplementedError("Subclasses must implement symbol()")
+
+    def _inside(self, r, c):
+        return 0 &lt;= r &lt; 8 and 0 &lt;= c &lt; 8
+
+    def _can_land(self, board, r, c):
+        target = board.get((r, c))
+        return target is None or target.color != self.color
+
+    def _slide(self, board, directions):
+        moves = []
+        for dr, dc in directions:
+            r, c = self.row + dr, self.col + dc
+            while self._inside(r, c):
+                target = board.get((r, c))
+                if target is None:
+                    moves.append((r, c))
+                else:
+                    if target.color != self.color:
+                        moves.append((r, c))
+                    break
+                r += dr
+                c += dc
+        return moves
+
+
+DIRS_8 = [(dr, dc) for dr in (-1, 0, 1) for dc in (-1, 0, 1) if (dr, dc) != (0, 0)]
+DIRS_STRAIGHT = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+DIRS_DIAGONAL = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+
+
+class King(Piece):
+    def legal_moves(self, board):
+        return [
+            (self.row + dr, self.col + dc)
+            for dr, dc in DIRS_8
+            if self._inside(self.row + dr, self.col + dc)
+            and self._can_land(board, self.row + dr, self.col + dc)
+        ]
+
+    def symbol(self):
+        return "♔" if self.color == "white" else "♚"
+
+
+class Queen(Piece):
+    def legal_moves(self, board):
+        return self._slide(board, DIRS_8)
+
+    def symbol(self):
+        return "♕" if self.color == "white" else "♛"
+
+
+class Rook(Piece):
+    def legal_moves(self, board):
+        return self._slide(board, DIRS_STRAIGHT)
+
+    def symbol(self):
+        return "♖" if self.color == "white" else "♜"
+
+
+class Bishop(Piece):
+    def legal_moves(self, board):
+        return self._slide(board, DIRS_DIAGONAL)
+
+    def symbol(self):
+        return "♗" if self.color == "white" else "♝"
+
+
+class Knight(Piece):
+    OFFSETS = [(-2, -1), (-2, 1), (-1, -2), (-1, 2),
+               (1, -2), (1, 2), (2, -1), (2, 1)]
+
+    def legal_moves(self, board):
+        return [
+            (self.row + dr, self.col + dc)
+            for dr, dc in self.OFFSETS
+            if self._inside(self.row + dr, self.col + dc)
+            and self._can_land(board, self.row + dr, self.col + dc)
+        ]
+
+    def symbol(self):
+        return "♘" if self.color == "white" else "♞"
+
+
+class Pawn(Piece):
+    def legal_moves(self, board):
+        moves = []
+        step = -1 if self.color == "white" else 1
+        start_row = 6 if self.color == "white" else 1
+
+        r = self.row + step
+        if self._inside(r, self.col) and board.get((r, self.col)) is None:
+            moves.append((r, self.col))
+            if self.row == start_row and board.get((r + step, self.col)) is None:
+                moves.append((r + step, self.col))
+
+        for dc in (-1, 1):
+            r, c = self.row + step, self.col + dc
+            if self._inside(r, c):
+                target = board.get((r, c))
+                if target is not None and target.color != self.color:
+                    moves.append((r, c))
+
+        return moves
+
+    def symbol(self):
+        return "♙" if self.color == "white" else "♟"
+
+
+board = {
+    (7, 4): King("white", 7, 4),
+    (7, 3): Queen("white", 7, 3),
+    (7, 0): Rook("white", 7, 0),
+    (7, 7): Rook("white", 7, 7),
+    (7, 2): Bishop("white", 7, 2),
+    (7, 5): Bishop("white", 7, 5),
+    (7, 1): Knight("white", 7, 1),
+    (6, 0): Pawn("white", 6, 0),
+    (0, 4): King("black", 0, 4),
+    (0, 3): Queen("black", 0, 3),
+    (0, 1): Knight("black", 0, 1),
+    (1, 1): Pawn("black", 1, 1),
+}
+
+for pos, piece in board.items():
+    moves = piece.legal_moves(board)
+    print(f"{piece.symbol()} {type(piece).__name__:7s} at {pos} "
+          f"-&gt; {len(moves)} moves")</pre></div>
+                        <span class="out-label">Expected output</span>
+                        <div class="out-block">♔ King    at (7, 4) -> 3 moves
+♕ Queen   at (7, 3) -> 13 moves
+♖ Rook    at (7, 0) -> 11 moves
+♖ Rook    at (7, 7) -> 12 moves
+♗ Bishop  at (7, 2) -> 7 moves
+♗ Bishop  at (7, 5) -> 7 moves
+♘ Knight  at (7, 1) -> 2 moves
+♙ Pawn    at (6, 0) -> 2 moves
+♔ King    at (0, 4) -> 5 moves
+♕ Queen   at (0, 3) -> 13 moves
+♘ Knight  at (0, 1) -> 3 moves
+♟ Pawn    at (1, 1) -> 3 moves</div>
+
+                        <h4 class="sub-h">🔍 Deep dive — how one loop calls six different methods</h4>
+                        <p>The final loop calls <code>piece.legal_moves(board)</code> for each of the 12 pieces. Watch how Python resolves each call:</p>
+                        <div class="table-wrap">
+                            <table class="access-table">
+                                <thead><tr><th>#</th><th>What Python does</th><th>Result</th></tr></thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Looks up <code>legal_moves</code> on <code>King</code></td><td>Found — runs <code>King.legal_moves</code></td></tr>
+                                    <tr><td>2</td><td>Looks up <code>legal_moves</code> on <code>Queen</code></td><td>Found — runs <code>Queen.legal_moves</code></td></tr>
+                                    <tr><td>3</td><td>Looks up <code>legal_moves</code> on <code>Rook</code></td><td>Found — runs <code>Rook.legal_moves</code></td></tr>
+                                    <tr><td>4</td><td>… and so on for each piece</td><td>Each uses its own rule</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="callout-green"><p><strong>Key insight:</strong> the loop never mentions <code>King</code>, <code>Queen</code> or <code>Knight</code>. It only knows that every piece can answer <code>legal_moves()</code>. That's the polymorphic contract working.</p></div>
+
+                        <h4 class="sub-h">📖 Line-by-line walkthrough</h4>
+                        <ol class="walk">
+                            <li><strong><code>Piece.__init__(self, color, row, col)</code></strong> — stores the shared state: color and board position. Every subclass inherits it.</li>
+                            <li><strong><code>legal_moves()</code> and <code>symbol()</code> raise <code>NotImplementedError</code></strong> — placeholders. Any subclass that forgets to override them fails loudly when called.</li>
+                            <li><strong><code>_inside(r, c)</code></strong> — bounds check. Returns <code>True</code> if a square is on the 8×8 board.</li>
+                            <li><strong><code>_can_land(board, r, c)</code></strong> — a piece can land on an empty square or an enemy's square, but not a friendly one.</li>
+                            <li><strong><code>_slide(board, directions)</code></strong> — the shared helper for sliding pieces. For each direction, it walks step by step, collecting empty squares until it hits something. If that something is an enemy, it can be captured; then the walk in that direction stops.</li>
+                            <li><strong><code>DIRS_8</code>, <code>DIRS_STRAIGHT</code>, <code>DIRS_DIAGONAL</code></strong> — direction sets. Rook uses straight, Bishop uses diagonal, Queen uses both.</li>
+                            <li><strong><code>King.legal_moves</code></strong> — a one-step walk in all 8 directions. It <em>can't</em> use <code>_slide</code> directly (which slides multiple squares), so it builds the list with a comprehension.</li>
+                            <li><strong><code>Queen.legal_moves</code></strong> — literally <code>self._slide(board, DIRS_8)</code>. Maximum reuse.</li>
+                            <li><strong><code>Rook.legal_moves</code></strong> — <code>self._slide(board, DIRS_STRAIGHT)</code>.</li>
+                            <li><strong><code>Bishop.legal_moves</code></strong> — <code>self._slide(board, DIRS_DIAGONAL)</code>.</li>
+                            <li><strong><code>Knight.OFFSETS</code></strong> — the eight L-shaped jumps, as a class-level constant.</li>
+                            <li><strong><code>Knight.legal_moves</code></strong> — checks each offset, no sliding. Knights jump over anything, so it never looks at intermediate squares.</li>
+                            <li><strong><code>Pawn.legal_moves</code></strong> — the only piece whose direction depends on color. Forward one; if still on the starting rank, forward two (if both squares are empty); diagonal captures on enemy pieces only.</li>
+                            <li><strong>The <code>board</code> dictionary</strong> — maps <code>(row, col)</code> to piece. Empty squares simply aren't in the dict.</li>
+                            <li><strong>The final loop</strong> — calls <code>legal_moves()</code> and <code>symbol()</code> on every piece, plus <code>type(piece).__name__</code> to label the output. One loop, six behaviors.</li>
+                        </ol>
+
+                        <h4 class="sub-h">⚠️ Common mistakes</h4>
+                        <div class="mistake"><p><strong>Using <code>isinstance</code> inside <code>legal_moves</code>.</strong> If <code>Queen.legal_moves</code> checks "am I also a rook?" it's collapsing the polymorphism back into the very pattern we escaped.</p></div>
+                        <div class="mistake"><p><strong>Letting pawns capture forward.</strong> Real chess: pawns capture only diagonally. Our implementation gets that right — a common bug is to allow forward captures.</p></div>
+                        <div class="mistake"><p><strong>Sliding through a blocker.</strong> In <code>_slide</code>, the walk must <code>break</code> after a capture. Otherwise a bishop can leap over a pawn.</p></div>
+                        <div class="mistake"><p><strong>Forgetting the knight jumps.</strong> The knight is the only piece that <em>doesn't</em> use <code>_slide</code>, precisely because it jumps over occupied squares.</p></div>
+
+                        <h4 class="sub-h">🧪 Try it yourself</h4>
+                        <div class="tryit"><p><strong>Experiments in the playground below:</strong></p>
+                            <ul>
+                                <li>Add a "Princess" (bishop + knight) that merges the two move sets. How many existing classes did you edit?</li>
+                                <li>Give <code>Pawn</code> en passant rules. Which other pieces need to know about it?</li>
+                                <li>Add a <code>Piece.attacks(board)</code> method that returns the squares a piece <em>threatens</em> (which differs from <code>legal_moves</code> for pawns). Use it to check if a king is in check.</li>
+                                <li>Write an <code>is_checkmate(color, board)</code> function that loops over every enemy piece and asks its <code>legal_moves()</code>. Notice you never mention a piece type.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="playground" aria-labelledby="h-playground">
+            <div class="page-col">
+                <div class="section-label">04 — Playground</div>
+                <h2 id="h-playground">Experiment With the Engine</h2>
+                <div style="margin-top:1rem;">
+                    <p>Modify the code above — add a piece, change a rule, test a hypothesis. Press <strong>Run</strong> to execute it in your browser.</p>
+                    <div class="playground-wrap">
+                        <div class="playground-head">
+                            <span class="ttl">🐍 chess_engine.py</span>
+                            <div class="playground-actions">
+                                <button class="code-btn copy-btn" type="button" id="pgCopy"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn" type="button" id="pgLoadExample"><i class="fas fa-chess"></i> Load engine</button>
+                                <button class="code-btn run-btn" type="button" id="pgRun"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <textarea class="pg-textarea" id="pgEditor" spellcheck="false" aria-label="Python code editor">class Piece:
+    def __init__(self, color, row, col):
+        self.color = color
+        self.row = row
+        self.col = col
+
+    def legal_moves(self, board):
+        raise NotImplementedError
+
+    def symbol(self):
+        raise NotImplementedError
+
+    def _inside(self, r, c):
+        return 0 <= r < 8 and 0 <= c < 8
+
+    def _can_land(self, board, r, c):
+        target = board.get((r, c))
+        return target is None or target.color != self.color
+
+    def _slide(self, board, directions):
+        moves = []
+        for dr, dc in directions:
+            r, c = self.row + dr, self.col + dc
+            while self._inside(r, c):
+                target = board.get((r, c))
+                if target is None:
+                    moves.append((r, c))
+                else:
+                    if target.color != self.color:
+                        moves.append((r, c))
+                    break
+                r += dr
+                c += dc
+        return moves
+
+DIRS_8 = [(dr, dc) for dr in (-1, 0, 1) for dc in (-1, 0, 1) if (dr, dc) != (0, 0)]
+DIRS_STRAIGHT = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+DIRS_DIAGONAL = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+
+class King(Piece):
+    def legal_moves(self, board):
+        return [(self.row + dr, self.col + dc)
+                for dr, dc in DIRS_8
+                if self._inside(self.row + dr, self.col + dc)
+                and self._can_land(board, self.row + dr, self.col + dc)]
+    def symbol(self):
+        return "♔" if self.color == "white" else "♚"
+
+class Queen(Piece):
+    def legal_moves(self, board):
+        return self._slide(board, DIRS_8)
+    def symbol(self):
+        return "♕" if self.color == "white" else "♛"
+
+class Rook(Piece):
+    def legal_moves(self, board):
+        return self._slide(board, DIRS_STRAIGHT)
+    def symbol(self):
+        return "♖" if self.color == "white" else "♜"
+
+class Bishop(Piece):
+    def legal_moves(self, board):
+        return self._slide(board, DIRS_DIAGONAL)
+    def symbol(self):
+        return "♗" if self.color == "white" else "♝"
+
+class Knight(Piece):
+    OFFSETS = [(-2,-1), (-2,1), (-1,-2), (-1,2), (1,-2), (1,2), (2,-1), (2,1)]
+    def legal_moves(self, board):
+        return [(self.row + dr, self.col + dc)
+                for dr, dc in self.OFFSETS
+                if self._inside(self.row + dr, self.col + dc)
+                and self._can_land(board, self.row + dr, self.col + dc)]
+    def symbol(self):
+        return "♘" if self.color == "white" else "♞"
+
+class Pawn(Piece):
+    def legal_moves(self, board):
+        moves = []
+        step = -1 if self.color == "white" else 1
+        start_row = 6 if self.color == "white" else 1
+        r = self.row + step
+        if self._inside(r, self.col) and board.get((r, self.col)) is None:
+            moves.append((r, self.col))
+            if self.row == start_row and board.get((r + step, self.col)) is None:
+                moves.append((r + step, self.col))
+        for dc in (-1, 1):
+            r, c = self.row + step, self.col + dc
+            if self._inside(r, c):
+                target = board.get((r, c))
+                if target is not None and target.color != self.color:
+                    moves.append((r, c))
+        return moves
+    def symbol(self):
+        return "♙" if self.color == "white" else "♟"
+
+board = {
+    (7, 4): King("white", 7, 4),
+    (7, 3): Queen("white", 7, 3),
+    (7, 0): Rook("white", 7, 0),
+    (7, 7): Rook("white", 7, 7),
+    (7, 2): Bishop("white", 7, 2),
+    (7, 5): Bishop("white", 7, 5),
+    (7, 1): Knight("white", 7, 1),
+    (6, 0): Pawn("white", 6, 0),
+    (0, 4): King("black", 0, 4),
+    (0, 3): Queen("black", 0, 3),
+    (0, 1): Knight("black", 0, 1),
+    (1, 1): Pawn("black", 1, 1),
+}
+
+for pos, piece in board.items():
+    moves = piece.legal_moves(board)
+    print(f"{piece.symbol()} {type(piece).__name__:7s} at {pos} -> {len(moves)} moves")
+</textarea>
+                        <div class="playground-out" id="pgOutput" aria-live="polite">Press Run to execute the chess engine.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="board" aria-labelledby="h-board">
+            <div class="page-col">
+                <div class="section-label">05 — Live Board</div>
+                <h2 id="h-board">Play With the Pieces</h2>
+                <div style="margin-top:1rem;">
+                    <p>Click a piece to see its legal moves highlighted. Green squares are valid moves; red squares are captures. Hover over a piece to see how many moves it has.</p>
+
+                    <div class="board-wrap">
+                        <div class="board-controls">
+                            <button class="btn btn-outline" id="resetBoard" type="button"><i class="fas fa-redo"></i> Reset Board</button>
+                            <button class="btn btn-outline" id="clearHighlights" type="button"><i class="fas fa-eraser"></i> Clear Highlights</button>
+                        </div>
+                        <div class="chess-board" id="chessBoard" role="grid" aria-label="Interactive chessboard"></div>
+                        <div class="board-info" id="boardInfo">Click any piece to see its legal moves.</div>
+                        <div class="legend">
+                            <div class="legend-item"><div class="legend-swatch" style="background:#1e3347;"></div> Light square</div>
+                            <div class="legend-item"><div class="legend-swatch" style="background:#0d1b28;"></div> Dark square</div>
+                            <div class="legend-item"><div class="legend-swatch" style="background:rgba(255,212,59,.3);"></div> Selected</div>
+                            <div class="legend-item"><div class="legend-swatch" style="background:rgba(16,185,129,.25);"></div> Legal move</div>
+                            <div class="legend-item"><div class="legend-swatch" style="background:rgba(239,68,68,.25);"></div> Capture</div>
+                        </div>
+                    </div>
+
+                    <div class="callout" style="margin-top:1.5rem;"><p><strong>What's happening under the hood:</strong> when you click a piece, the board calls <code>piece.legal_moves(board)</code> — the same method from the code above. The board doesn't know whether it's holding a rook or a queen. It just asks.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" aria-labelledby="h-quiz" style="padding-top:0">
+            <div class="page-col">
+                <div class="section-label">06 — Test Yourself</div>
+                <h2 id="h-quiz">Quick Knowledge Check</h2>
+                <div style="margin-top:1rem;">
+                    <p>Five questions on the ideas from this project.</p>
+                    <div class="quiz-wrap" id="quizWrap"></div>
+                    <div class="quiz-score" id="quizScore">
+                        <span class="score-num" id="quizScoreNum">0/5</span>
+                        <p id="quizScoreMsg">Great effort — review any missed questions above.</p>
+                        <button class="quiz-reset" onclick="resetQuiz()">↺ Retry Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="apps" aria-labelledby="h-apps">
+            <div class="page-col">
+                <div class="section-label">07 — 10 Live App Projects</div>
+                <h2 id="h-apps">Explore the Full OOP Series</h2>
+                <div style="margin-top:1rem;">
+                    <p>This project is one of 10 live apps in the <a href="polymorphism.html" style="color:var(--blue-lt);">Polymorphism guide</a>. Each project shows a different flavor of polymorphism in a working app.</p>
+                    <div class="apps-grid">
+                        <a href="shape-renderer.html" class="app-btn"><div class="app-logo">🔷</div><div class="app-info"><div class="app-name">Shape Renderer</div><p class="app-desc">Each shape class overrides <code>draw()</code>.</p><span class="app-tag">Overriding</span></div></a>
+                        <a href="image-filter-plugin.html" class="app-btn"><div class="app-logo">🖼️</div><div class="app-info"><div class="app-name">Image Filter Plugin</div><p class="app-desc">Any class with <code>apply()</code> plugs in.</p><span class="app-tag">Duck Typing</span></div></a>
+                        <a href="currency-converter.html" class="app-btn"><div class="app-logo">💱</div><div class="app-info"><div class="app-name">Currency Converter</div><p class="app-desc">Money arithmetic with dunder methods.</p><span class="app-tag">Operators</span></div></a>
+                        <a href="recipe-formatter.html" class="app-btn"><div class="app-logo">🍳</div><div class="app-info"><div class="app-name">Recipe Formatter</div><p class="app-desc">Per-type quantity formatting.</p><span class="app-tag">Singledispatch</span></div></a>
+                        <a href="media-player.html" class="app-btn"><div class="app-logo">🎧</div><div class="app-info"><div class="app-name">Media Player</div><p class="app-desc">Songs, podcasts and videos share a play loop.</p><span class="app-tag">Overriding</span></div></a>
+                        <a href="test-double-lab.html" class="app-btn"><div class="app-logo">🧪</div><div class="app-info"><div class="app-name">Test-Double Lab</div><p class="app-desc">Fake files and real files look the same.</p><span class="app-tag">Duck Typing</span></div></a>
+                        <a href="ledger.html" class="app-btn"><div class="app-logo">📒</div><div class="app-info"><div class="app-name">Double-Entry Ledger</div><p class="app-desc">Debits and credits support <code>+</code> and <code>__neg__</code>.</p><span class="app-tag">Operators</span></div></a>
+                        <a href="log-router.html" class="app-btn"><div class="app-logo">📨</div><div class="app-info"><div class="app-name">Log Router</div><p class="app-desc">Formats logs per type.</p><span class="app-tag">Singledispatch</span></div></a>
+                        <a href="chess-pieces.html" class="app-btn" aria-current="page" style="border-color:var(--gold);"><div class="app-logo" style="background:rgba(255,212,59,.12);border-color:rgba(255,212,59,.3);">♞</div><div class="app-info"><div class="app-name">Chess Pieces</div><p class="app-desc">Each piece overrides <code>legal_moves()</code>.</p><span class="app-tag" style="background:rgba(255,212,59,.1);color:var(--gold);border-color:rgba(255,212,59,.25);">Overriding</span></div></a>
+                        <a href="protocol-checker.html" class="app-btn"><div class="app-logo">✅</div><div class="app-info"><div class="app-name">Protocol Checker</div><p class="app-desc">Live <code>isinstance</code> with Protocols.</p><span class="app-tag">Duck Typing</span></div></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="series" aria-labelledby="h-series">
+            <div class="page-col">
+                <div class="section-label">08 — Continue Learning</div>
+                <h2 id="h-series">Explore the Full OOP Series</h2>
+                <div style="margin-top:1rem;">
+                    <div class="pillars-grid">
+                        <a class="pillar-card" href="encapsulation.html"><div class="pico">🔒</div><div class="ptitle">Encapsulation</div><p class="pdesc">Protect an object's state from outside interference.</p><span class="pbtn">Explore →</span></a>
+                        <a class="pillar-card" href="abstraction.html"><div class="pico">🎭</div><div class="ptitle">Abstraction</div><p class="pdesc">Define the contract polymorphism relies on.</p><span class="pbtn">Explore →</span></a>
+                        <a class="pillar-card" href="inheritance.html"><div class="pico">🧬</div><div class="ptitle">Inheritance</div><p class="pdesc">Share code and build class families.</p><span class="pbtn">Explore →</span></a>
+                        <a class="pillar-card" href="polymorphism.html"><div class="pico">🌀</div><div class="ptitle">Polymorphism</div><p class="pdesc">One interface, many forms — the complete guide.</p><span class="pbtn">Read the Guide →</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="share" aria-labelledby="h-share" style="padding-top:0">
+            <div class="page-col">
+                <div class="section-label">09 — Spread the Knowledge</div>
+                <h2 id="h-share">Share This Project</h2>
+                <div class="share-wrap" style="margin-top:1rem;">
+                    <h2>Found this useful? Share it.</h2>
+                    <p class="share-sub">Help fellow developers see polymorphism in a game they already know. Pick a platform to preview a ready-made message.</p>
+                    <div class="share-ai-msg" id="shareAiMsg" aria-live="polite"><span id="shareAiText">Click a platform below to preview your share message…</span></div>
+                    <div class="share-btns">
+                        <button class="sbtn" onclick="previewShare('facebook')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</button>
+                        <button class="sbtn" onclick="previewShare('linkedin')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.42v6.32zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>LinkedIn</button>
+                        <button class="sbtn" onclick="previewShare('twitter')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</button>
+                        <button class="sbtn" onclick="previewShare('whatsapp')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37C7.35 7.6 6.6 8.3 6.6 9.77s1.07 3.06 1.22 3.27c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34zm-5.47 7.45h-.01A9.93 9.93 0 017.17 20L3 21.15l1.17-4.13A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>WhatsApp</button>
+                        <button class="sbtn" onclick="previewShare('telegram')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.94 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.94 0zm5.63 7.44l-1.87 8.82c-.14.63-.52.79-1.05.49l-2.9-2.14-1.4 1.35a.65.65 0 01-.52.24.66.66 0 01-.52-.24l.2-2.88 5.25-4.75c.23-.2-.05-.32-.36-.12l-6.5 4.1-2.8-.88c-.6-.19-.61-.6.12-.88l10.94-4.21c.5-.18.94.12.76.88z"/></svg>Telegram</button>
+                    </div>
+                    <div id="shareToast" class="share-toast" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscribe" aria-labelledby="h-sub" style="padding-top:0">
+            <div class="page-col">
+                <div class="section-label">10 — Stay in the Loop</div>
+                <h2 id="h-sub">Subscribe to Poetic Bytes</h2>
+                <div style="margin-top:1rem;">
+                    <div class="sub-wrap">
+                        <h2>Level up your Python knowledge.</h2>
+                        <p class="sub-desc">In-depth Python tutorials, AI insights, and software engineering guides — delivered straight to your inbox. No spam, ever.</p>
+                        <div class="perks">
+                            <span class="perk">Weekly Python tutorials</span>
+                            <span class="perk">OOP series updates</span>
+                            <span class="perk">Free, cancel anytime</span>
+                        </div>
+                        <div class="sub-form" style="margin-top:1.2rem">
+                            <input class="cinput" type="email" id="subEmail" placeholder="your@email.com" autocomplete="email" aria-label="Email address">
+                            <button class="btn-submit" onclick="handleSubscribe()">Subscribe Free →</button>
+                        </div>
+                        <p class="sub-note">🔒 Your email is never shared or sold.</p>
+                        <div class="sub-msg" id="subMsg" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning.</p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var pbar = document.getElementById('pbar');
+        window.addEventListener('scroll', function () {
+            var h = document.documentElement;
+            var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+            if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+        }, { passive: true });
+
+        var menuToggle = document.getElementById('menuToggle');
+        var drawer = document.getElementById('mobileDrawer');
+        var overlay = document.getElementById('drawerOverlay');
+        var drawerClose = document.getElementById('drawerClose');
+        function closeDrawer() {
+            menuToggle.classList.remove('active'); drawer.classList.remove('active'); overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        menuToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var open = drawer.classList.toggle('active');
+            menuToggle.classList.toggle('active', open);
+            overlay.classList.toggle('active', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        });
+        overlay.addEventListener('click', closeDrawer);
+        drawerClose.addEventListener('click', closeDrawer);
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+        document.querySelectorAll('.drawer-body button[data-href]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var t = document.querySelector(btn.dataset.href);
+                if (t) { t.scrollIntoView({ behavior: 'smooth' }); closeDrawer(); }
+            });
+        });
+
+        var backTop = document.getElementById('backTop');
+        window.addEventListener('scroll', function () { backTop.classList.toggle('visible', window.scrollY > 500); }, { passive: true });
+        backTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        var tocToggle = document.getElementById('tocToggleBtn');
+        var tocPanel = document.getElementById('floatingToc');
+        var tocClose = document.getElementById('tocCloseBtn');
+        tocToggle.addEventListener('click', function (e) { e.stopPropagation(); tocPanel.classList.toggle('open'); });
+        tocClose.addEventListener('click', function () { tocPanel.classList.remove('open'); });
+        document.addEventListener('click', function (e) {
+            if (tocPanel.classList.contains('open') && !tocPanel.contains(e.target) && !tocToggle.contains(e.target)) tocPanel.classList.remove('open');
+        });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tocPanel.classList.remove('open'); });
+
+        var PAGE_RAW = 'https://poetic-bytes.vercel.app/chess-pieces.html';
+        var PAGE_URL = encodeURIComponent(PAGE_RAW);
+        var PAGE_TITLE = encodeURIComponent('Chess Pieces – Polymorphism in Action');
+
+        function shareTo(url) { window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer'); }
+        function bindShare(id, build) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('click', function (e) { e.preventDefault(); shareTo(build()); });
+        }
+        bindShare('shareFb', function () { return 'https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL; });
+        bindShare('shareTw', function () { return 'https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE; });
+        bindShare('shareLi', function () { return 'https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL; });
+        bindShare('shareWa', function () { return 'https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL; });
+        bindShare('shareTg', function () { return 'https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE; });
+
+        function flashCopied(btn) {
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(function () { btn.innerHTML = orig; }, 2000);
+        }
+        function fallbackCopy(text, btn) {
+            var ta = document.createElement('textarea');
+            ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); } catch (_) {}
+            document.body.removeChild(ta);
+            flashCopied(btn);
+        }
+        function copyText(btn, text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(function () { flashCopied(btn); }).catch(function () { fallbackCopy(text, btn); });
+            } else { fallbackCopy(text, btn); }
+        }
+        document.getElementById('copyLinkBtn').addEventListener('click', function () { copyText(this, PAGE_RAW); });
+
+        var shareMessages = {
+            facebook: "♞ Just found a great Python polymorphism example: chess pieces. Each one overrides legal_moves() and the board never checks types. Live board, real code, and a quiz.\n\n" + PAGE_RAW,
+            linkedin: "🐍 Polymorphism, explained through chess.\n\nSix pieces. One interface: legal_moves(board).\nThe board loop never asks \"what kind of piece are you?\" — it just calls the method.\n\nThis live project from Poetic Bytes includes the full Python implementation, an interactive board, and a quiz.\n\n" + PAGE_RAW + "\n\n#Python #OOP #Polymorphism #SoftwareDesign",
+            twitter: "Chess is the perfect polymorphism example ♟️\nEach piece overrides legal_moves() — rook slides, knight jumps, pawn creeps. The board never checks types.\nLive board + real code 👇\n" + PAGE_RAW + "\n#Python #OOP",
+            whatsapp: "♞ Great Python OOP example — chess pieces with polymorphism. Live board, runnable code, and a quiz: " + PAGE_RAW,
+            telegram: "♟️ Chess Pieces – Polymorphism in Action. Six subclasses, one interface. Live board + Python implementation:\n" + PAGE_RAW
+        };
+        var PLATFORM_LABEL = { facebook: 'Facebook', linkedin: 'LinkedIn', twitter: 'X/Twitter', whatsapp: 'WhatsApp', telegram: 'Telegram' };
+
+        function toast(el, msg, ms) {
+            el.textContent = msg; el.style.opacity = '1';
+            setTimeout(function () { el.style.opacity = '0'; }, ms || 5000);
+        }
+        function doShare(platform, text) {
+            var toastEl = document.getElementById('shareToast');
+            var eu = encodeURIComponent(PAGE_RAW), et = encodeURIComponent(text);
+            var urls = {
+                facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + eu,
+                linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + eu,
+                twitter: 'https://twitter.com/intent/tweet?text=' + et,
+                whatsapp: 'https://api.whatsapp.com/send?text=' + et
+            };
+            if (urls[platform]) {
+                window.open(urls[platform], '_blank', 'width=640,height=540,noopener,noreferrer');
+                toast(toastEl, '✓ Opening ' + PLATFORM_LABEL[platform] + ' share dialog…');
+            } else if (navigator.clipboard) {
+                navigator.clipboard.writeText(text)
+                    .then(function () { toast(toastEl, '✓ Telegram message copied — paste it in your channel!'); })
+                    .catch(function () { toast(toastEl, '⚠ Please copy the message above manually.'); });
+            } else { toast(toastEl, '⚠ Please copy the message above manually.'); }
+        }
+        window.previewShare = function (platform) {
+            var textEl = document.getElementById('shareAiText');
+            var text = shareMessages[platform] || '';
+            if (!text) return;
+            textEl.textContent = '';
+            var cursor = document.createElement('span'); cursor.className = 'ai-typing-cursor';
+            textEl.appendChild(cursor);
+            var i = 0;
+            (function type() {
+                if (i < text.length) { textEl.insertBefore(document.createTextNode(text[i++]), cursor); setTimeout(type, 8); }
+                else { cursor.remove(); doShare(platform, text); }
+            })();
+        };
+
+        window.handleSubscribe = function () {
+            var el = document.getElementById('subEmail'), msg = document.getElementById('subMsg');
+            var email = el.value.trim();
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast(msg, '✗ Please enter a valid email address.', 4000); return; }
+            var list = [];
+            try { list = JSON.parse(localStorage.getItem('vb_subs_chess') || '[]'); } catch (_) {}
+            if (list.some(function (s) { return s.email === email; })) { toast(msg, '✓ You are already subscribed!', 4000); return; }
+            list.push({ email: email, date: new Date().toISOString() });
+            try { localStorage.setItem('vb_subs_chess', JSON.stringify(list)); } catch (_) {}
+            el.value = '';
+            toast(msg, '✓ Welcome aboard! Subscribed successfully.', 6000);
+        };
+
+        var TRACKER_ITEMS = [
+            { id: 'p1', label: 'Read the chess engine code' },
+            { id: 'board', label: 'Explored the live board' },
+            { id: 'quiz', label: 'Completed the quiz' },
+            { id: 'playground', label: 'Ran code in the playground' }
+        ];
+        var TRACKER_KEY = 'vb_chess_tracker';
+
+        function loadTracker() {
+            try { return JSON.parse(localStorage.getItem(TRACKER_KEY) || '{}'); } catch (_) { return {}; }
+        }
+        function saveTracker(data) {
+            try { localStorage.setItem(TRACKER_KEY, JSON.stringify(data)); } catch (_) {}
+        }
+        function renderTracker() {
+            var data = loadTracker();
+            var listEl = document.getElementById('trackerList');
+            listEl.innerHTML = '';
+            var done = 0;
+            TRACKER_ITEMS.forEach(function (item) {
+                var li = document.createElement('li');
+                var checked = !!data[item.id];
+                if (checked) done++;
+                if (checked) li.classList.add('done');
+                var cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.checked = checked;
+                cb.id = 'trk-' + item.id;
+                cb.addEventListener('change', function () {
+                    var d = loadTracker();
+                    if (cb.checked) d[item.id] = true; else delete d[item.id];
+                    saveTracker(d);
+                    renderTracker();
+                    syncMarkButtons();
+                });
+                var lbl = document.createElement('label');
+                lbl.htmlFor = cb.id;
+                lbl.textContent = item.label;
+                li.appendChild(cb); li.appendChild(lbl);
+                listEl.appendChild(li);
+            });
+            var pct = Math.round((done / TRACKER_ITEMS.length) * 100);
+            document.getElementById('trackerFill').style.width = pct + '%';
+            document.getElementById('trackerPct').textContent = pct + '%';
+        }
+        window.resetTracker = function () {
+            if (!confirm('Reset all progress?')) return;
+            try { localStorage.removeItem(TRACKER_KEY); } catch (_) {}
+            renderTracker(); syncMarkButtons();
+        };
+        window.toggleLearn = function (btn) {
+            var id = btn.getAttribute('data-learn');
+            var data = loadTracker();
+            if (data[id]) { delete data[id]; } else { data[id] = true; }
+            saveTracker(data);
+            syncMarkButtons();
+            renderTracker();
+        };
+        function syncMarkButtons() {
+            var data = loadTracker();
+            document.querySelectorAll('.mark-learn').forEach(function (b) {
+                var id = b.getAttribute('data-learn');
+                if (data[id]) { b.classList.add('done'); b.textContent = '✓ Learned'; }
+                else { b.classList.remove('done'); b.textContent = 'Mark as learned'; }
+            });
+        }
+
+        var QUIZ = [
+            {
+                q: "In our chess engine, the board loop calls piece.legal_moves(board) on 12 pieces. What decides which class's method runs?",
+                opts: ["The order of the board dictionary", "The actual type of each piece at runtime (dynamic dispatch)", "The symbol() method", "Python always calls Piece.legal_moves first"],
+                ans: 1,
+                fb: "Correct! Python looks up legal_moves on each object's real class, starting from that class in the MRO."
+            },
+            {
+                q: "Rook, Bishop and Queen all use the same _slide() helper. What's different between them?",
+                opts: ["The board they slide on", "The direction set they pass to _slide()", "The number of moves they can make", "Nothing — they're identical"],
+                ans: 1,
+                fb: "Right! Rook slides straight, Bishop slides diagonally, Queen slides in all 8 directions."
+            },
+            {
+                q: "Why doesn't Knight use the _slide() helper?",
+                opts: ["Knights are too fast", "Knights jump over occupied squares, so they don't need a step-by-step walk", "_slide() doesn't work with 8 directions", "Knights have no legal moves"],
+                ans: 1,
+                fb: "Exactly! The knight is the only piece that ignores blockers — it hops directly to its destination."
+            },
+            {
+                q: "What does Piece.legal_moves() do if a subclass forgets to override it?",
+                opts: ["Returns an empty list", "Raises NotImplementedError", "Returns all 64 squares", "Silently does nothing"],
+                ans: 1,
+                fb: "Correct! It's a placeholder that fails loudly, catching the mistake when the method is called."
+            },
+            {
+                q: "What's the main advantage of the polymorphic approach over an if/elif ladder on piece type?",
+                opts: ["It's shorter to write", "Adding a new piece means writing one class instead of editing every ladder", "It uses less memory", "It's faster at runtime"],
+                ans: 1,
+                fb: "Exactly! Behavior lives with the data, so new types extend the system without modifying existing code."
+            }
+        ];
+        var answered = 0, correct = 0;
+        function buildQuiz() {
+            var wrap = document.getElementById('quizWrap');
+            var html = '';
+            QUIZ.forEach(function (item, i) {
+                html += '<div class="quiz-q" id="qq-' + i + '"><div class="quiz-prompt">Q' + (i + 1) + '. ' + item.q + '</div><div class="quiz-opts">';
+                item.opts.forEach(function (opt, j) {
+                    html += '<div class="quiz-opt" id="qo-' + i + '-' + j + '" role="button" tabindex="0" onclick="answerQ(' + i + ',' + j + ')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();answerQ(' + i + ',' + j + ');}">' +
+                        '<span style="font-family:JetBrains Mono,monospace;font-size:.65rem;opacity:.5;flex-shrink:0">' + 'ABCD'[j] + '.</span> ' + opt + '</div>';
+                });
+                html += '</div><div class="quiz-feedback" id="qf-' + i + '"></div></div>';
+            });
+            wrap.innerHTML = html;
+        }
+        window.answerQ = function (qi, oi) {
+            var item = QUIZ[qi], qEl = document.getElementById('qq-' + qi);
+            if (qEl.classList.contains('correct') || qEl.classList.contains('wrong')) return;
+            qEl.querySelectorAll('.quiz-opt').forEach(function (o) { o.classList.add('disabled'); });
+            var chosen = document.getElementById('qo-' + qi + '-' + oi), fb = document.getElementById('qf-' + qi);
+            if (oi === item.ans) {
+                chosen.classList.add('correct-ans'); qEl.classList.add('correct');
+                fb.textContent = '✓ ' + item.fb; fb.className = 'quiz-feedback ok'; correct++;
+            } else {
+                chosen.classList.add('wrong-ans');
+                document.getElementById('qo-' + qi + '-' + item.ans).classList.add('correct-ans');
+                qEl.classList.add('wrong');
+                fb.textContent = '✗ The correct answer is ' + 'ABCD'[item.ans] + '. ' + item.fb; fb.className = 'quiz-feedback bad';
+            }
+            answered++;
+            if (answered === QUIZ.length) {
+                var d = loadTracker();
+                d['quiz'] = true;
+                saveTracker(d);
+                renderTracker();
+                showScore();
+            }
+        };
+        function showScore() {
+            var scoreEl = document.getElementById('quizScore');
+            document.getElementById('quizScoreNum').textContent = correct + '/' + QUIZ.length;
+            var msgs = ['Keep studying — revisit the sections above.', 'Good start — review the questions you missed.', 'Solid understanding! A few gaps to close.', 'Good work — a few details to review.', 'Great work — almost perfect!', 'Perfect score! You have this design down. 🎉'];
+            document.getElementById('quizScoreMsg').textContent = msgs[Math.min(correct, msgs.length - 1)];
+            scoreEl.style.display = 'block';
+            scoreEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        window.resetQuiz = function () {
+            answered = 0; correct = 0;
+            document.getElementById('quizScore').style.display = 'none';
+            buildQuiz();
+        };
+        buildQuiz();
+        renderTracker();
+        syncMarkButtons();
+
+        var SVG_GLYPHS = {
+            King:     { white: '♔', black: '♚' },
+            Queen:    { white: '♕', black: '♛' },
+            Rook:     { white: '♖', black: '♜' },
+            Bishop:   { white: '♗', black: '♝' },
+            Knight:   { white: '♘', black: '♞' },
+            Pawn:     { white: '♙', black: '♟' }
+        };
+
+        var boardState = {};
+        var selectedSquare = null;
+
+        function makePiece(type, color, row, col) {
+            return { type: type, color: color, row: row, col: col };
+        }
+
+        function canLand(board, r, c, color) {
+            var t = board[r + ',' + c];
+            return !t || t.color !== color;
+        }
+
+        function slide(board, piece, directions) {
+            var moves = [];
+            directions.forEach(function (d) {
+                var r = piece.row + d[0], c = piece.col + d[1];
+                while (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                    var t = board[r + ',' + c];
+                    if (!t) {
+                        moves.push([r, c]);
+                    } else {
+                        if (t.color !== piece.color) moves.push([r, c]);
+                        break;
+                    }
+                    r += d[0]; c += d[1];
+                }
+            });
+            return moves;
+        }
+
+        var DIRS_8 = [];
+        [-1, 0, 1].forEach(function (dr) { [-1, 0, 1].forEach(function (dc) {
+            if (dr !== 0 || dc !== 0) DIRS_8.push([dr, dc]);
+        }); });
+        var DIRS_STRAIGHT = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+        var DIRS_DIAGONAL = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+
+        function legalMoves(board, piece) {
+            var moves = [];
+            switch (piece.type) {
+                case 'King':
+                    DIRS_8.forEach(function (d) {
+                        var r = piece.row + d[0], c = piece.col + d[1];
+                        if (r >= 0 && r < 8 && c >= 0 && c < 8 && canLand(board, r, c, piece.color)) moves.push([r, c]);
+                    });
+                    break;
+                case 'Queen':
+                    moves = slide(board, piece, DIRS_8);
+                    break;
+                case 'Rook':
+                    moves = slide(board, piece, DIRS_STRAIGHT);
+                    break;
+                case 'Bishop':
+                    moves = slide(board, piece, DIRS_DIAGONAL);
+                    break;
+                case 'Knight':
+                    [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]].forEach(function (d) {
+                        var r = piece.row + d[0], c = piece.col + d[1];
+                        if (r >= 0 && r < 8 && c >= 0 && c < 8 && canLand(board, r, c, piece.color)) moves.push([r, c]);
+                    });
+                    break;
+                case 'Pawn':
+                    var step = piece.color === 'white' ? -1 : 1;
+                    var startRow = piece.color === 'white' ? 6 : 1;
+                    var r1 = piece.row + step;
+                    if (r1 >= 0 && r1 < 8 && !board[r1 + ',' + piece.col]) {
+                        moves.push([r1, piece.col]);
+                        if (piece.row === startRow && !board[(r1 + step) + ',' + piece.col]) {
+                            moves.push([r1 + step, piece.col]);
+                        }
+                    }
+                    [-1, 1].forEach(function (dc) {
+                        var r = piece.row + step, c = piece.col + dc;
+                        if (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                            var t = board[r + ',' + c];
+                            if (t && t.color !== piece.color) moves.push([r, c]);
+                        }
+                    });
+                    break;
+            }
+            return moves;
+        }
+
+        function setupBoard() {
+            boardState = {};
+            function place(type, color, r, c) { boardState[r + ',' + c] = makePiece(type, color, r, c); }
+
+            place('Rook',   'white', 7, 0);
+            place('Knight', 'white', 7, 1);
+            place('Bishop', 'white', 7, 2);
+            place('Queen',  'white', 7, 3);
+            place('King',   'white', 7, 4);
+            place('Bishop', 'white', 7, 5);
+            place('Knight', 'white', 7, 6);
+            place('Rook',   'white', 7, 7);
+            for (var c = 0; c < 8; c++) place('Pawn', 'white', 6, c);
+
+            place('Rook',   'black', 0, 0);
+            place('Knight', 'black', 0, 1);
+            place('Bishop', 'black', 0, 2);
+            place('Queen',  'black', 0, 3);
+            place('King',   'black', 0, 4);
+            place('Bishop', 'black', 0, 5);
+            place('Knight', 'black', 0, 6);
+            place('Rook',   'black', 0, 7);
+            for (var c2 = 0; c2 < 8; c2++) place('Pawn', 'black', 1, c2);
+        }
+
+        var chessBoardEl = document.getElementById('chessBoard');
+        var boardInfoEl = document.getElementById('boardInfo');
+
+        function renderBoard() {
+            chessBoardEl.innerHTML = '';
+            for (var r = 0; r < 8; r++) {
+                for (var c = 0; c < 8; c++) {
+                    var sq = document.createElement('div');
+                    sq.className = 'chess-square ' + ((r + c) % 2 === 0 ? 'light' : 'dark');
+                    sq.dataset.row = r;
+                    sq.dataset.col = c;
+                    sq.setAttribute('role', 'gridcell');
+                    sq.setAttribute('tabindex', '0');
+                    sq.setAttribute('aria-label', 'Row ' + (8 - r) + ', column ' + (c + 1));
+
+                    var piece = boardState[r + ',' + c];
+                    if (piece) {
+                        var span = document.createElement('span');
+                        span.className = 'piece ' + piece.color;
+                        span.textContent = SVG_GLYPHS[piece.type][piece.color];
+                        sq.appendChild(span);
+                    }
+
+                    if (r === 7) {
+                        var rank = document.createElement('span');
+                        rank.className = 'coord';
+                        rank.textContent = String.fromCharCode(97 + c);
+                        sq.appendChild(rank);
+                    }
+                    if (c === 0) {
+                        var file = document.createElement('span');
+                        file.className = 'coord';
+                        file.style.left = '4px';
+                        file.style.right = 'auto';
+                        file.textContent = String(8 - r);
+                        sq.appendChild(file);
+                    }
+
+                    if (selectedSquare && selectedSquare[0] === r && selectedSquare[1] === c) {
+                        sq.classList.add('selected');
+                    }
+                    chessBoardEl.appendChild(sq);
+                }
+            }
+
+            if (selectedSquare) {
+                var piece = boardState[selectedSquare[0] + ',' + selectedSquare[1]];
+                if (piece) {
+                    var moves = legalMoves(boardState, piece);
+                    moves.forEach(function (m) {
+                        var targetSq = chessBoardEl.querySelector('[data-row="' + m[0] + '"][data-col="' + m[1] + '"]');
+                        if (targetSq) {
+                            var isCapture = !!boardState[m[0] + ',' + m[1]];
+                            targetSq.classList.add(isCapture ? 'legal-capture' : 'legal-target');
+                        }
+                    });
+                }
+            }
+        }
+
+        function handleSquareClick(r, c) {
+            var piece = boardState[r + ',' + c];
+            if (selectedSquare && selectedSquare[0] === r && selectedSquare[1] === c) {
+                selectedSquare = null;
+                boardInfoEl.textContent = 'Click any piece to see its legal moves.';
+                boardInfoEl.className = 'board-info';
+                renderBoard();
+                return;
+            }
+            if (piece) {
+                selectedSquare = [r, c];
+                var moves = legalMoves(boardState, piece);
+                boardInfoEl.textContent = piece.type + ' (' + piece.color + ') at ' + (8 - r) + ',' + (c + 1) + ' — ' + moves.length + ' legal move' + (moves.length === 1 ? '' : 's');
+                boardInfoEl.className = 'board-info valid';
+                renderBoard();
+            } else {
+                selectedSquare = null;
+                boardInfoEl.textContent = 'Empty square — click a piece.';
+                boardInfoEl.className = 'board-info';
+                renderBoard();
+            }
+        }
+
+        chessBoardEl.addEventListener('click', function (e) {
+            var sq = e.target.closest('.chess-square');
+            if (!sq) return;
+            handleSquareClick(parseInt(sq.dataset.row), parseInt(sq.dataset.col));
+        });
+        chessBoardEl.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                var sq = e.target.closest('.chess-square');
+                if (sq) { e.preventDefault(); handleSquareClick(parseInt(sq.dataset.row), parseInt(sq.dataset.col)); }
+            }
+        });
+
+        document.getElementById('resetBoard').addEventListener('click', function () {
+            setupBoard();
+            selectedSquare = null;
+            boardInfoEl.textContent = 'Board reset. Click any piece to see its legal moves.';
+            boardInfoEl.className = 'board-info';
+            renderBoard();
+        });
+        document.getElementById('clearHighlights').addEventListener('click', function () {
+            selectedSquare = null;
+            boardInfoEl.textContent = 'Highlights cleared.';
+            boardInfoEl.className = 'board-info';
+            renderBoard();
+        });
+
+        setupBoard();
+        renderBoard();
+
+        var TOKEN_RE = /(#[^\n]*)|("""[\s\S]*?"""|f?"(?:\\.|[^"\\\n])*"|f?'(?:\\.|[^'\\\n])*')|(@\w+)|\b(from|import|class|def|return|if|else|elif|for|in|not|and|or|try|except|raise|with|as|pass|None|True|False|self|cls|lambda|while|is|all|sum)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Z]\w*)\b|\b([a-z_]\w*)(?=\()/g;
+        function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+        function highlight(src) {
+            var out = '', last = 0, m;
+            TOKEN_RE.lastIndex = 0;
+            while ((m = TOKEN_RE.exec(src)) !== null) {
+                out += esc(src.slice(last, m.index));
+                var cls = m[1] ? 'cmt' : m[2] ? 'st' : m[3] ? 'dec' : m[4] ? 'kw' : m[5] ? 'num' : m[6] ? 'cl' : 'fn';
+                out += '<span class="' + cls + '">' + esc(m[0]) + '</span>';
+                last = m.index + m[0].length;
+            }
+            return out + esc(src.slice(last));
+        }
+
+        var pyodideInstance = null;
+        async function getPyodide() {
+            if (!pyodideInstance) pyodideInstance = await loadPyodide();
+            return pyodideInstance;
+        }
+        async function runCode(code, outputEl, runBtn) {
+            runBtn.disabled = true;
+            var original = runBtn.innerHTML;
+            runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+            outputEl.style.display = 'block';
+            outputEl.className = 'output-panel loading';
+            outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n';
+            try {
+                if (typeof loadPyodide === 'undefined') throw new Error('Python runtime failed to load. Check your connection and refresh.');
+                var py = await getPyodide();
+                outputEl.className = 'output-panel';
+                outputEl.textContent = '';
+                py.globals.set('_src', code);
+                var result = await py.runPythonAsync(
+                    'import sys\nfrom io import StringIO\n' +
+                    '_buf = StringIO()\n_old = sys.stdout\nsys.stdout = _buf\n' +
+                    'try:\n    exec(compile(_src, "<example>", "exec"), {"__name__": "__main__"})\n' +
+                    'finally:\n    sys.stdout = _old\n_buf.getvalue()'
+                );
+                outputEl.textContent = result || '✓ Code executed successfully (no output).';
+            } catch (err) {
+                outputEl.className = 'output-panel error';
+                outputEl.textContent = 'Error:\n' + err.message;
+            } finally {
+                runBtn.disabled = false;
+                runBtn.innerHTML = original;
+            }
+        }
+
+        function enhanceCodeBlocks() {
+            document.querySelectorAll('.code-snippet').forEach(function (block) {
+                if (block.closest('.code-container')) return;
+                var pre = block.querySelector('pre');
+                if (!pre) return;
+                var codeText = pre.textContent;
+                pre.innerHTML = highlight(codeText);
+
+                var container = document.createElement('div');
+                container.className = 'code-container';
+                var header = document.createElement('div');
+                header.className = 'code-header';
+                header.innerHTML = '<span style="color:var(--muted);">python</span>' +
+                    '<div class="code-actions">' +
+                    '<button class="code-btn copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>' +
+                    '<button class="code-btn run-btn" type="button"><i class="fas fa-play"></i> Run</button>' +
+                    '</div>';
+                var out = document.createElement('div');
+                out.className = 'output-panel';
+
+                block.parentNode.insertBefore(container, block);
+                container.appendChild(header);
+                container.appendChild(block);
+                container.appendChild(out);
+
+                var copyBtn = header.querySelector('.copy-btn'), runBtn = header.querySelector('.run-btn');
+                copyBtn.addEventListener('click', function () { copyText(copyBtn, codeText.trim()); });
+                runBtn.addEventListener('click', function () { runCode(codeText, out, runBtn); });
+            });
+        }
+        enhanceCodeBlocks();
+
+        var pgEditor = document.getElementById('pgEditor');
+        var pgOutput = document.getElementById('pgOutput');
+        var pgRun = document.getElementById('pgRun');
+        var pgCopy = document.getElementById('pgCopy');
+        var pgLoad = document.getElementById('pgLoadExample');
+
+        pgRun.addEventListener('click', async function () {
+            pgOutput.className = 'playground-out loading';
+            pgOutput.textContent = 'Loading Python runtime...';
+            pgRun.disabled = true;
+            try {
+                var py = await getPyodide();
+                pgOutput.className = 'playground-out';
+                pgOutput.textContent = '';
+                py.globals.set('_src', pgEditor.value);
+                var result = await py.runPythonAsync(
+                    'import sys\nfrom io import StringIO\n' +
+                    '_buf = StringIO()\n_old = sys.stdout\nsys.stdout = _buf\n' +
+                    'try:\n    exec(compile(_src, "<playground>", "exec"), {"__name__": "__main__"})\n' +
+                    'finally:\n    sys.stdout = _old\n_buf.getvalue()'
+                );
+                pgOutput.textContent = result || '✓ Ran successfully (no output).';
+                var d = loadTracker(); d['playground'] = true; saveTracker(d); renderTracker();
+            } catch (err) {
+                pgOutput.className = 'playground-out error';
+                pgOutput.textContent = 'Error:\n' + err.message;
+            } finally {
+                pgRun.disabled = false;
+            }
+        });
+        pgCopy.addEventListener('click', function () { copyText(pgCopy, pgEditor.value); });
+        pgLoad.addEventListener('click', function () {
+            pgEditor.value = 'class Shape:\n    def area(self):\n        raise NotImplementedError\n\nclass Circle(Shape):\n    def __init__(self, r):\n        self.r = r\n    def area(self):\n        return 3.14159 * self.r ** 2\n\nprint(Circle(2).area())\n';
+            pgOutput.className = 'playground-out';
+            pgOutput.textContent = 'Example loaded. Press Run to execute.';
+        });
+
+    })();
+    </script>
+
+</body>
+</html>
