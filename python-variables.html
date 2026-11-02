@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Variables 2026 – Complete Guide to Assignment, Scope & Naming | Poetic Bytes</title>
+    <meta name="description" content="Learn Python variables from scratch — assignment, multiple assignment, naming rules, scope (LEGB), constants, and memory model. Free interactive tutorial with runnable examples." />
+    <meta name="keywords" content="python variables, python assignment, python variable scope, python naming conventions, python constants, python LEGB rule, python variables tutorial, python beginner" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-codes.pages.dev/python-variables.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://poetic-codes.pages.dev/python-variables.html" />
+    <meta property="og:title" content="Python Variables 2026 – Complete Guide to Assignment, Scope & Naming" />
+    <meta property="og:description" content="Learn Python variables from scratch — assignment, multiple assignment, naming rules, scope (LEGB), constants, and memory model." />
+    <meta property="og:image" content="https://poetic-codes.pages.dev/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Python Variables 2026 – Complete Beginner's Guide by Poetic Bytes" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Variables 2026 – Complete Guide | Poetic Bytes" />
+    <meta name="twitter:description" content="Learn Python variables from scratch — assignment, naming rules, scope, and the memory model." />
+    <meta name="twitter:image" content="https://poetic-codes.pages.dev/og-python-image.png" />
+    <meta name="twitter:image:alt" content="Python Variables 2026 – Complete Beginner's Guide" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": "Python Variables 2026 – Complete Guide to Assignment, Scope & Naming",
+            "description": "Learn Python variables from scratch — assignment, multiple assignment, naming rules, scope (LEGB), constants, and memory model.",
+            "provider": {
+                "@type": "Organization",
+                "name": "Poetic Bytes",
+                "url": "https://poetic-codes.pages.dev",
+                "sameAs": "https://poetic-codes.pages.dev",
+                "email": "pansensoyglenn150@gmail.com"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "url": "https://www.linkedin.com/in/glenn-pansensoy",
+                "sameAs": "https://twitter.com/PoeticGlenn"
+            },
+            "url": "https://poetic-codes.pages.dev/python-variables.html",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "educationalLevel": "Beginner",
+            "teaches": ["Python variables", "Assignment", "Variable scope", "LEGB rule", "Naming conventions", "Python memory model"]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://poetic-codes.pages.dev/" },
+                { "@type": "ListItem", "position": 2, "name": "Python Variables", "item": "https://poetic-codes.pages.dev/python-variables.html" }
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Poetic Bytes",
+            "url": "https://poetic-codes.pages.dev",
+            "email": "pansensoyglenn150@gmail.com",
+            "founder": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "sameAs": "https://twitter.com/PoeticGlenn"
+            },
+            "sameAs": [
+                "https://twitter.com/PoeticGlenn"
+            ]
+        }
+    </script>
+
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621"
+     crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{overflow-x:hidden;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden}
+        .skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;padding:.6rem 1.2rem;border-radius:0 0 8px 8px;font-weight:700;z-index:9999;text-decoration:none;transition:top .2s}
+        .skip-link:focus{top:0}
+        :root{--bg:#0B121C;--panel:#0F1C2F;--card:#111e30;--border:#1F4060;--blue:#4B8BBE;--blue-deep:#306998;--blue-lt:#78B9E6;--gold:#FFD966;--text:#E2E8F0;--muted:#A8C0D8;--code-bg:#0A1A24;--green:#10B981;--amber:#F59E0B;--red:#EF4444;--purple:#c084fc;--teal:#2DD4BF;--orange:#FB923C;--btn-h:44px;--btn-r:8px;--card-r:12px;--gap:1rem}
+        @media print{
+            .nav-bar,.floating-share,.back-top,.floating-toc,.ad-slot,.subscribe-box,.share-box,#commentForm,.code-container .code-header .code-actions,.code-container .output-panel{display:none!important}
+            body{background:#fff;color:#000;font-size:12pt}
+            .page-col{max-width:100%;padding:0 .5in}
+            .card,.oop-block{break-inside:avoid;border-color:#ccc;background:#f9f9f9}
+            .code-snippet,.code-body{background:#f0f0f0;border:1px solid #ccc;color:#000}
+            .terminal{background:#eee;color:#000;border-top:1px solid #ccc}
+            .hero{background:none}
+            .section-label::before,.section-label::after{background:#ccc}
+            a{color:#000;text-decoration:underline}
+            .page-footer{background:#f5f5f5;border-top:1px solid #ccc}
+            .copyright{border-top:1px solid #ccc}
+            .code-container .code-header{background:#eaeaea;border-bottom:1px solid #ccc;color:#000}
+            .code-container .code-header span{color:#000!important}
+            .output-panel{background:#f5f5f5;border:1px solid #ccc;border-top:none;color:#000}
+            .output-panel.error{color:#c00}
+            .faq-item,.info-box{border-color:#ccc;background:#f5f5f5}
+            .badge{border:1px solid #999;background:#eee!important;color:#000!important}
+        }
+        .page-col{width:100%;max-width:860px;margin:0 auto;padding:0 1.25rem}
+        section{padding:3rem 0;border-bottom:1px solid var(--border)}
+        section:last-child{border-bottom:none}
+        .progress-bar-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(31,64,96,.3);z-index:2000}
+        .progress-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-lt));width:0%;transition:width .2s}
+        .nav-bar{position:fixed;top:3px;left:0;right:0;background:rgba(11,18,28,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:1000}
+        .nav-inner{max-width:860px;margin:0 auto;padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.08em}
+        .brand-icon{width:2rem;height:2rem;border-radius:6px;background:linear-gradient(145deg,var(--blue),var(--blue-deep));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+        .nav-links{display:flex;gap:1.2rem;list-style:none}
+        .nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:color .2s;letter-spacing:.04em}
+        .nav-links a:hover{color:var(--gold)}
+        @media(max-width:680px){.nav-links{display:none}}
+        .menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;background:rgba(75,139,190,.1);border:1px solid var(--border);border-radius:6px;width:40px;height:40px;cursor:pointer;gap:4px}
+        .menu-toggle span{width:18px;height:2px;background:#fff;border-radius:2px;transition:.25s}
+        .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .menu-toggle.active span:nth-child(2){opacity:0}
+        .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        @media(max-width:680px){.menu-toggle{display:flex}}
+        .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1050;opacity:0;visibility:hidden;transition:.2s;backdrop-filter:blur(4px)}
+        .drawer-overlay.active{opacity:1;visibility:visible}
+        .mobile-drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--panel);border-left:1px solid var(--border);z-index:1100;display:flex;flex-direction:column;transition:right .3s;box-shadow:-5px 0 30px rgba(0,0,0,.5)}
+        .mobile-drawer.active{right:0}
+        .drawer-hd{padding:.8rem;border-bottom:1px solid var(--border);display:flex;justify-content:flex-end}
+        .drawer-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
+        .drawer-body{flex:1;overflow-y:auto;padding:.8rem}
+        .drawer-body li{list-style:none;margin-bottom:.5rem}
+        .drawer-body a,.drawer-body button{display:flex;align-items:center;gap:.6rem;width:100%;padding:.7rem .9rem;background:rgba(75,139,190,.12);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+        .drawer-body a:active,.drawer-body button:active{background:rgba(75,139,190,.3)}
+        .drawer-body i{color:var(--gold);width:1.2rem}
+        h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.25;font-weight:700}
+        h1{font-size:1.6rem}
+        h2{font-size:1.25rem;margin-bottom:.5rem}
+        h3{font-size:.95rem}
+        h4{font-size:.85rem}
+        p{font-size:.82rem;color:var(--muted);line-height:1.7}
+        code{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#a5d6ff}
+        .section-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+        .section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+        .section-intro{max-width:640px;margin:0 auto .5rem;text-align:center}
+        .section-intro h2{color:var(--text)}
+        .section-intro p{font-size:.8rem}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:var(--btn-h);padding:0 1.4rem;border-radius:var(--btn-r);font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .2s;border:none;text-decoration:none;white-space:nowrap}
+        .btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;box-shadow:0 4px 14px rgba(75,139,190,.35)}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(75,139,190,.45)}
+        .btn-primary:active{transform:scale(.97)}
+        .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+        .btn-outline:hover{border-color:var(--blue);background:rgba(75,139,190,.08)}
+        @media(max-width:480px){.btn{width:100%}}
+        .hero{padding:5rem 0 3rem;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(75,139,190,.18) 0%,transparent 70%)}
+        .hero-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:40px;padding:.3rem .9rem;font-size:.68rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.2rem;background:var(--card)}
+        .live-dot{width:7px;height:7px;background:var(--blue-lt);border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+        .hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);margin-bottom:.8rem}
+        .hero p.lead{font-size:.88rem;color:var(--muted);max-width:560px;margin-bottom:1.6rem;line-height:1.75}
+        .hero-btns{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+        .code-preview{background:var(--code-bg);border:1px solid var(--border);border-radius:var(--card-r);overflow:hidden;margin-top:1.5rem}
+        .code-chrome{background:#0a1a24;padding:.6rem .9rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--border)}
+        .dots{display:flex;gap:.35rem}
+        .dots span{width:10px;height:10px;border-radius:50%}
+        .dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f}
+        .win-title{font-size:.68rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:.4rem}
+        .code-body{padding:1rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.76rem;line-height:1.7}
+        .code-body pre{margin:0;white-space:pre-wrap;word-break:break-word}
+        .terminal{background:#0a1a24;border-top:1px solid var(--border);padding:.7rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#4ade80}
+        .card-grid{display:flex;flex-direction:column;gap:var(--gap)}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.25rem;display:flex;flex-direction:column;gap:.55rem;transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;color:inherit;cursor:pointer;min-height:140px}
+        .card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(75,139,190,.16)}
+        .card:active{transform:scale(.98)}
+        .card-icon{font-size:1.5rem;line-height:1}
+        .card h3,.card h4{font-size:.82rem;color:var(--text)}
+        .card p{font-size:.74rem;margin:0}
+        .card-arrow{margin-top:auto;font-size:.65rem;color:var(--blue);opacity:0;transition:opacity .2s,transform .2s}
+        .card:hover .card-arrow{opacity:1;transform:translateX(3px)}
+        .card-meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-top:.2rem}
+        .badge{display:inline-block;padding:.12rem .55rem;border-radius:20px;font-size:.6rem;font-weight:700}
+        .badge-beg{background:rgba(16,185,129,.15);color:#10b981}
+        .badge-int{background:rgba(245,158,11,.15);color:#f59e0b}
+        .badge-adv{background:rgba(139,92,246,.15);color:#a78bfa}
+        .checklist{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+        .checklist li{display:flex;gap:.55rem;align-items:flex-start;font-size:.78rem;color:var(--muted);padding:.5rem;border-bottom:1px dashed var(--border)}
+        .checklist li:last-child{border-bottom:none}
+        .checklist li span.check{color:var(--blue);flex-shrink:0;margin-top:.1rem}
+        .faq-list{display:flex;flex-direction:column;gap:.6rem}
+        .faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);overflow:hidden}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.1rem;cursor:pointer;gap:.8rem;min-height:var(--btn-h);background:transparent;border:none;width:100%;font-family:inherit;text-align:left;color:var(--text);font-weight:600;font-size:.8rem}
+        .faq-q h3{font-size:.8rem;font-weight:600;color:var(--text);flex:1;margin:0}
+        .faq-toggle{font-size:.9rem;color:var(--blue);width:20px;text-align:center;flex-shrink:0;transition:transform .25s}
+        .faq-item.open .faq-toggle{transform:rotate(45deg)}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .28s ease,padding .28s}
+        .faq-a.open{max-height:600px;padding:0 1.1rem 1rem}
+        .faq-a p{font-size:.78rem}
+        .info-box{background:rgba(75,139,190,.06);border:1px solid rgba(75,139,190,.22);border-radius:var(--card-r);padding:1.1rem 1.3rem}
+        .info-box h4{font-size:.8rem;color:var(--blue-lt);display:flex;align-items:center;gap:.4rem;margin-bottom:.4rem}
+        .info-box p{font-size:.76rem}
+        .ad-slot{text-align:center;padding:.8rem 0;background:var(--bg)}
+        .page-footer{padding:3rem 0 1.5rem;background:#1a2535;border-top:1px solid var(--border)}
+        .footer-grid{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:1.5rem}
+        .footer-col h5{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem}
+        .footer-col ul{list-style:none}
+        .footer-col li{margin-bottom:.4rem}
+        .footer-col a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.74rem;transition:color .2s}
+        .footer-col a:hover{color:#fff}
+        .copyright{border-top:1px solid var(--border);padding-top:1.2rem;text-align:center;font-size:.72rem;color:var(--muted)}
+        .copyright a{color:rgba(255,255,255,.5);text-decoration:none}
+        ::-webkit-scrollbar{width:5px;height:5px}
+        ::-webkit-scrollbar-track{background:var(--border)}
+        ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+        @media(max-width:480px){
+            .page-col{padding:0 .8rem}
+            section{padding:2rem 0}
+            .hero{padding:3.5rem 0 2rem}
+            .hero h1{font-size:1.3rem}
+            .floating-share{right:10px;bottom:70px;gap:8px}
+            .floating-share .fs-btn{width:40px;height:40px;font-size:.9rem}
+            .floating-share .fs-btn .tooltip{display:none}
+            .back-top{width:36px;height:36px;right:10px;bottom:10px;font-size:.9rem}
+            .share-row{flex-direction:column;align-items:center}
+            .share-btn{width:100%;max-width:240px}
+        }
+        .floating-share{position:fixed;right:20px;bottom:80px;display:flex;flex-direction:column;gap:10px;z-index:900}
+        .floating-share .fs-btn{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:1.1rem;transition:.2s;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.5);position:relative}
+        .floating-share .fs-btn:hover{border-color:var(--blue);color:var(--blue-lt);transform:scale(1.08)}
+        .floating-share .fs-btn.fs-copy:hover{border-color:var(--gold);color:var(--gold)}
+        .floating-share .fs-btn .tooltip{position:absolute;right:56px;background:var(--panel);color:var(--text);padding:4px 12px;border-radius:6px;font-size:.65rem;font-weight:600;border:1px solid var(--border);opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}
+        .floating-share .fs-btn:hover .tooltip{opacity:1}
+        .back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;transition:.2s;opacity:0;visibility:hidden;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+        .back-top.visible{opacity:1;visibility:visible}
+        .back-top:hover{border-color:var(--blue);color:var(--blue-lt);transform:translateY(-2px)}
+        .comment-form{display:flex;flex-direction:column;gap:.7rem}
+        .comment-form input,.comment-form textarea{background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);color:#fff;font-size:.8rem;padding:.7rem .9rem;width:100%;transition:border-color .2s}
+        .comment-form input{height:var(--btn-h)}
+        .comment-form textarea{min-height:80px;resize:vertical}
+        .comment-form input:focus,.comment-form textarea:focus{border-color:var(--blue);outline:none}
+        .comment-form button{height:var(--btn-h);background:var(--blue);border:none;border-radius:var(--btn-r);color:#fff;font-weight:700;font-size:.78rem;cursor:pointer;transition:.2s}
+        .comment-form button:hover{background:var(--blue-deep)}
+        .empty-state{text-align:center;padding:2.5rem;background:var(--card);border-radius:var(--card-r);border:1px solid var(--border)}
+        .empty-state i{font-size:2rem;color:var(--muted);display:block;margin-bottom:.6rem}
+        .empty-state p{font-size:.78rem}
+        .share-box{text-align:center}
+        .share-row{display:flex;flex-direction:row;flex-wrap:wrap;gap:.6rem;margin-top:1rem;justify-content:center}
+        .share-btn{height:var(--btn-h);display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border:1px solid var(--border);border-radius:var(--btn-r);font-size:.74rem;color:var(--muted);text-decoration:none;transition:.2s;font-weight:600;background:var(--card);cursor:pointer;padding:0 1rem}
+        .share-btn:hover{border-color:var(--blue);color:var(--text);background:rgba(75,139,190,.1)}
+        .share-btn:active{transform:scale(.96)}
+        .share-btn.copy-btn{border-color:rgba(75,139,190,.3)}
+        .share-btn.copy-btn:hover{border-color:var(--blue);background:rgba(75,139,190,.15)}
+        .floating-toc{position:fixed;right:80px;bottom:80px;width:280px;max-height:60vh;background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);box-shadow:0 8px 32px rgba(0,0,0,.7);z-index:950;overflow:hidden;display:none;flex-direction:column;transition:opacity .25s ease,transform .25s ease;opacity:0;transform:translateY(12px)}
+        .floating-toc.open{display:flex;opacity:1;transform:translateY(0)}
+        .floating-toc .toc-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:rgba(75,139,190,.08);border-bottom:1px solid var(--border);font-weight:700;font-size:.8rem;color:var(--text)}
+        .floating-toc .toc-header button{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.2rem .4rem}
+        .floating-toc .toc-header button:hover{color:var(--text)}
+        .floating-toc .toc-body{overflow-y:auto;padding:.5rem 0;flex:1}
+        .floating-toc .toc-body a{display:block;padding:.4rem 1rem;font-size:.7rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:background .15s,border-color .15s,color .15s}
+        .floating-toc .toc-body a:hover{background:rgba(75,139,190,.08);border-color:var(--blue);color:var(--text)}
+        .floating-toc .toc-body a.toc-highlight{border-color:var(--gold);color:var(--gold);background:rgba(255,217,102,.05)}
+        @media(max-width:768px){.floating-toc{right:10px;bottom:130px;width:220px;max-height:50vh}}
+        .oop-block{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.3rem;margin-bottom:1.2rem}
+        .oop-block h3{font-size:.88rem;color:var(--gold);margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+        .oop-block p{font-size:.78rem;margin-bottom:.8rem}
+        .code-snippet{background:var(--code-bg);border-radius:6px;border-left:3px solid var(--blue);padding:.9rem 1rem;overflow-x:auto;margin-bottom:.7rem;position:relative}
+        .code-snippet pre{font-family:'JetBrains Mono',monospace;font-size:.73rem;line-height:1.65;color:var(--text);margin:0;white-space:pre-wrap;word-break:break-word}
+        .code-snippet .kw{color:#ff7b72;font-weight:600}
+        .code-snippet .fn{color:#d2a8ff}
+        .code-snippet .st{color:#a5d6ff}
+        .code-snippet .cl{color:#FFD966;font-weight:600}
+        .code-snippet .cmt{color:#546e7a;font-style:italic}
+        .code-snippet .num{color:#f78c6c}
+        .code-snippet .op{color:#89ddff}
+        .insight{background:rgba(75,139,190,.08);border:1px solid rgba(75,139,190,.25);border-radius:6px;padding:.6rem .9rem;font-size:.75rem;color:var(--blue-lt)}
+        .note-warn{font-size:.74rem;color:var(--amber);font-style:italic;margin-top:.4rem}
+        .curriculum-desc{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.8rem 2rem;margin:1.5rem 0 2rem;position:relative;overflow:hidden}
+        .curriculum-desc::before{content:"📦";position:absolute;top:-10px;right:10px;font-size:4rem;opacity:.06;transform:rotate(8deg)}
+        .curriculum-desc h2{color:var(--gold);font-size:1.2rem;margin-bottom:.6rem}
+        .curriculum-desc p{font-size:.85rem;color:var(--text);line-height:1.85;margin-bottom:.6rem}
+        .curriculum-desc .highlight{color:var(--blue-lt);font-weight:600}
+        .curriculum-desc .gold{color:var(--gold);font-weight:600}
+        .curriculum-desc .desc-meta{display:flex;flex-wrap:wrap;gap:.8rem 1.5rem;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border)}
+        .curriculum-desc .desc-meta span{font-size:.7rem;color:var(--muted);display:inline-flex;align-items:center;gap:.4rem}
+        .curriculum-desc .desc-metai{color:var(--gold);font-size:.7rem}
+        @media(max-width:480px){
+            .curriculum-desc{padding:1.2rem 1rem}
+            .curriculum-desc h2{font-size:1rem}
+            .curriculum-desc p{font-size:.78rem}
+            .curriculum-desc .desc-meta{flex-direction:column;gap:.4rem}
+        }
+        .subject-desc{font-size:.78rem;color:var(--muted);margin-bottom:.8rem;padding:.8rem 1rem;background:rgba(75,139,190,.06);border-left:3px solid var(--blue);border-radius:4px;line-height:1.6}
+        .subject-desc strong{color:var(--text)}
+        .syntax-table{width:100%;border-collapse:collapse;font-size:.76rem;margin:1rem 0}
+        .syntax-table thead tr{background:var(--card);border-bottom:2px solid var(--blue)}
+        .syntax-table th{padding:.7rem .8rem;text-align:left;color:var(--gold)}
+        .syntax-table td{padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top}
+        .syntax-table td:first-child{color:var(--text);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:.72rem;white-space:nowrap}
+        .syntax-table code{font-size:.72rem}
+        .do-dont{display:flex;flex-direction:column;gap:var(--gap);margin:1rem 0}
+        .do-dont-item{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem;display:flex;flex-direction:column;gap:.4rem}
+        .do-dont-item .label{display:inline-flex;align-items:center;gap:.35rem;font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:.15rem .6rem;border-radius:20px;align-self:flex-start}
+        .do-dont-item .label.good{background:rgba(16,185,129,.15);color:#10b981}
+        .do-dont-item .label.bad{background:rgba(239,68,68,.15);color:#f87171}
+        .do-dont-item pre{font-family:'JetBrains Mono',monospace;font-size:.72rem;line-height:1.6;color:var(--text);margin:.2rem 0 0;white-space:pre-wrap;word-break:break-word}
+        .do-dont-item .why{font-size:.72rem;color:var(--muted);margin-top:.3rem}
+        .do-dont-item .why strong{color:var(--text)}
+        .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.2rem}
+        .toc-grid a{display:flex;align-items:center;justify-content:center;text-align:center;padding:.7rem .8rem;background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:border-color .2s,color .2s,background .2s,transform .15s;min-height:48px;width:100%;line-height:1.4;word-break:break-word}
+        .toc-grid a:hover{border-color:var(--blue);color:var(--text);background:rgba(75,139,190,.08);transform:translateY(-2px)}
+        .toc-grid a:active{transform:scale(.98)}
+        @media(max-width:480px){.toc-grid a{font-size:.65rem;padding:.6rem .5rem;min-height:40px}}
+        .code-container{position:relative;margin:1rem 0}
+        .code-header{background:#0a1a24;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);border-radius:var(--card-r) var(--card-r) 0 0;font-size:.72rem;flex-wrap:wrap;gap:.5rem}
+        .code-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+        .code-btn{padding:.35rem .8rem;font-size:.7rem;font-weight:600;border-radius:6px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem;font-family:'Syne',sans-serif;border:none}
+        .copy-btn{background:rgba(75,139,190,.15);color:var(--blue-lt);border:1px solid rgba(75,139,190,.3)}
+        .copy-btn:hover{background:rgba(75,139,190,.25)}
+        .run-btn{background:var(--green);color:#000;border:none;font-weight:700}
+        .run-btn:hover{background:#34d399;transform:translateY(-1px)}
+        .run-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+        .output-panel{background:#0a1a24;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--card-r) var(--card-r);padding:1rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#4ade80;max-height:300px;overflow-y:auto;display:none;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+        .output-panel.error{color:#f87171}
+        .output-panel.loading{color:var(--blue-lt)}
+        .output-panel.file-warning{color:var(--amber);border-left:3px solid var(--amber);padding-left:1rem}
+        .code-container .code-snippet{border-radius:0;border-left:none;margin-bottom:0;padding:1rem}
+        .code-container .code-body{padding:1rem;border-radius:0}
+        .subscribe-box{background:linear-gradient(135deg,#1a2a3a,#0f1c2f);border:1px solid var(--border);border-radius:var(--card-r);padding:2rem 1.5rem;text-align:center}
+        .subscribe-box h3{font-size:.95rem;color:var(--text);margin-bottom:.3rem}
+        .sub-form{display:flex;flex-direction:column;gap:.7rem;max-width:340px;margin:1.2rem auto 0}
+        .sub-form input{height:var(--btn-h);padding:0 .9rem;background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);color:#fff;font-size:.8rem;width:100%;transition:border-color .2s}
+        .sub-form input:focus{border-color:var(--blue);outline:none}
+        .sub-form button{height:var(--btn-h);background:var(--blue);border:none;border-radius:var(--btn-r);color:#fff;font-weight:700;font-size:.8rem;cursor:pointer;transition:.2s}
+        .sub-form button:hover{background:var(--blue-deep)}
+        .sub-message{margin-top:.8rem;font-size:.78rem;display:none}
+        .sub-message.success{color:var(--green);display:block}
+        .sub-message.error{color:var(--red);display:block}
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#what-is-variable">What is a Variable?</a></li>
+                <li><a href="#assignment">Assignment</a></li>
+                <li><a href="#multiple-assignment">Multiple Assignment</a></li>
+                <li><a href="#naming-rules">Naming Rules</a></li>
+                <li><a href="#scope">Scope</a></li>
+                <li><a href="#memory">Memory Model</a></li>
+                <li><a href="#constants">Constants</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose" aria-label="Close navigation"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><button data-href="#overview"><i class="fas fa-info-circle"></i>Overview</button></li>
+                <li><button data-href="#what-is-variable"><i class="fas fa-box"></i>What is a Variable?</button></li>
+                <li><button data-href="#assignment"><i class="fas fa-equals"></i>Assignment</button></li>
+                <li><button data-href="#multiple-assignment"><i class="fas fa-layer-group"></i>Multiple Assignment</button></li>
+                <li><button data-href="#naming-rules"><i class="fas fa-font"></i>Naming Rules</button></li>
+                <li><button data-href="#scope"><i class="fas fa-binoculars"></i>Scope &amp; LEGB</button></li>
+                <li><button data-href="#memory"><i class="fas fa-memory"></i>Memory Model</button></li>
+                <li><button data-href="#constants"><i class="fas fa-lock"></i>Constants</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question-circle"></i>FAQ</button></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header">
+            <span>📚 Jump to</span>
+            <button id="tocCloseBtn" aria-label="Close table of contents"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="toc-body" id="tocBody">
+            <a href="#overview">📋 Overview</a>
+            <a href="#what-is-variable">📦 What is a Variable?</a>
+            <a href="#assignment">✏️ Assignment</a>
+            <a href="#multiple-assignment">🔗 Multiple Assignment</a>
+            <a href="#naming-rules">🔤 Naming Rules</a>
+            <a href="#scope">🔭 Scope &amp; LEGB</a>
+            <a href="#memory">🧠 Memory Model</a>
+            <a href="#constants">🔒 Constants</a>
+            <a href="#next-steps">➡️ Next Steps</a>
+            <a href="#faq">❓ FAQ</a>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents" aria-expanded="false">
+            <i class="fas fa-list-ul"></i>
+            <span class="tooltip">Table of Contents</span>
+        </button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram"><i class="fab fa-telegram-plane"></i><span class="tooltip">Telegram</span></a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <main id="main-content" style="padding-top:56px;">
+
+        <section class="hero" aria-label="Hero — Python Variables">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Lesson 3 of Python Basics · Updated June 2026</div>
+                <h1>Python Variables<br><span style="color:var(--blue-lt)">Naming, Assignment, and Scope</span></h1>
+                <p class="lead">Variables are the containers that hold your data. Learn how Python binds names to values, how scope determines what a variable refers to, and how Python's memory model differs from other languages.</p>
+                <div class="hero-btns">
+                    <a href="#what-is-variable" class="btn btn-primary"><i class="fas fa-play"></i> Start the lesson</a>
+                    <a href="python-syntax.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Previous: Python Syntax</a>
+                </div>
+                <div class="code-preview" aria-label="Variables example">
+                    <div class="code-chrome"><div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div><span class="win-title">variables_demo.py</span></div>
+                    <div class="code-body">
+                        <pre>name = <span class="st">"Alice"</span>
+age = 30
+is_student = <span class="kw">False</span>
+
+<span class="fn">print</span>(<span class="st">f"{name} is {age} years old."</span>)
+
+age = age + 1
+<span class="fn">print</span>(<span class="st">f"Next year, {name} will be {age}."</span>)</pre>
+                    </div>
+                    <div class="terminal">$ python variables_demo.py<br>Alice is 30 years old.<br>Next year, Alice will be 31.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" aria-labelledby="overview-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="overview-heading">📋 What This Lesson Covers</h2>
+                    <p>Everything you need to know about Python's most fundamental building block</p>
+                </div>
+                <div class="curriculum-desc" style="margin-top:1.2rem;">
+                    <h2>📦 Why Variables Matter</h2>
+                    <p>
+                        A <span class="highlight">variable</span> is a name that refers to a value stored in memory. Without variables, every program would have to hardcode its data — you couldn't read user input, loop over items, or build up results incrementally. Variables are how programs remember things.
+                    </p>
+                    <p>
+                        Python's variable model is <span class="gold">subtly different from most languages</span>. In C or Java, a variable is a box that holds a value. In Python, a variable is a <em>name</em> that refers to an object — assignment doesn't copy values, it binds names to objects. This difference matters: it explains why two variables can point to the same list, why <code>id()</code> is useful, and why reassigning one variable doesn't always affect the other.
+                    </p>
+                    <p>
+                        This lesson walks through assignment, multiple assignment, naming rules, scope (the LEGB rule), the memory model, and conventions for constants. By the end, you'll have a solid mental model for how Python handles data.
+                    </p>
+                    <div class="desc-meta">
+                        <span><i class="fas fa-clock"></i> 20–25 minutes</span>
+                        <span><i class="fas fa-layer-group"></i> 8 sections</span>
+                        <span><i class="fas fa-check-circle"></i> Beginner friendly</span>
+                    </div>
+                </div>
+                <div class="card-grid">
+                    <div class="card"><div class="card-icon">📦</div><h4>What is a Variable?</h4><p>Names, values, and the binding between them — the conceptual foundation.</p><span class="badge badge-beg" style="align-self:flex-start;margin-top:.4rem;">Core</span></div>
+                    <div class="card"><div class="card-icon">✏️</div><h4>Assignment</h4><p>The <code>=</code> operator, augmented assignment, and why order matters.</p><span class="badge badge-beg" style="align-self:flex-start;margin-top:.4rem;">Core</span></div>
+                    <div class="card"><div class="card-icon">🔭</div><h4>Scope &amp; LEGB</h4><p>Local, enclosing, global, built-in — how Python resolves names.</p><span class="badge badge-int" style="align-self:flex-start;margin-top:.4rem;">Intermediate</span></div>
+                    <div class="card"><div class="card-icon">🧠</div><h4>Memory Model</h4><p>Objects, references, <code>id()</code>, and the difference between <code>is</code> and <code>==</code>.</p><span class="badge badge-int" style="align-self:flex-start;margin-top:.4rem;">Intermediate</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="what-is-variable" aria-labelledby="what-is-variable-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="what-is-variable-heading">📦 What Is a Variable?</h2>
+                    <p>A name that refers to a value — but the exact meaning is more subtle than it first appears</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🎯 The Conceptual Model</h3>
+                    <p>In Python, a variable is a <strong style="color:var(--text);">name bound to an object</strong>. When you write <code>x = 42</code>, Python:</p>
+                    <ol class="step-list">
+                        <li><strong>Creates an integer object</strong> with value <code>42</code> somewhere in memory.</li>
+                        <li><strong>Binds the name</strong> <code>x</code> to that object.</li>
+                        <li><strong>Stores the binding</strong> in the current scope (usually the local namespace of your script or function).</li>
+                    </ol>
+                    <div class="code-snippet"><pre>x = 42
+<span class="fn">print</span>(x)
+<span class="fn">print</span>(<span class="fn">id</span>(x))
+<span class="fn">print</span>(<span class="fn">type</span>(x))</pre></div>
+                    <p>The <code>id()</code> function returns the object's memory address — a unique integer that identifies which object <code>x</code> refers to. Two names referring to the same object will have the same <code>id()</code>.</p>
+                    <div class="insight">💡 Many tutorials describe variables as "boxes that hold values." That's a useful metaphor for C or Java, but inaccurate for Python. In Python, the "box" is the object, and the variable is a sticky note stuck to the outside of the box.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔁 Reassignment Rebinds, Not Mutates</h3>
+                    <p>When you reassign a variable, Python doesn't modify the original object — it binds the name to a new object. The old object may still exist if other names refer to it.</p>
+                    <div class="code-snippet"><pre>a = 10
+b = a
+<span class="fn">print</span>(<span class="st">"a:"</span>, a, <span class="st">"b:"</span>, b)
+
+a = 20
+<span class="fn">print</span>(<span class="st">"a:"</span>, a, <span class="st">"b:"</span>, b)
+<span class="fn">print</span>(<span class="st">"Same object?"</span>, a <span class="kw">is</span> b)</pre></div>
+                    <p>Output:</p>
+                    <div class="code-snippet"><pre>a: 10 b: 10
+a: 20 b: 10
+Same object? <span class="kw">False</span></pre></div>
+                    <p>When <code>a = 20</code> runs, Python creates a new integer object with value <code>20</code> and binds <code>a</code> to it. The name <code>b</code> still refers to the original <code>10</code> object. Both objects coexist in memory — <code>10</code> because <code>b</code> still references it, <code>20</code> because <code>a</code> now does.</p>
+                    <div class="note-warn">⚠️ This is different from C or Java, where <code>a = 20</code> would change the value inside <code>a</code>'s box, and <code>b</code> would be a separate box holding the original copy. Python's behavior is more like "referencing" than "copying."</div>
+                </div>
+                <div class="oop-block">
+                    <h3>📋 Variables in Python vs Other Languages</h3>
+                    <table class="syntax-table">
+                        <thead><tr><th>Language</th><th>Model</th><th>Behavior of <code>x = 42</code></th></tr></thead>
+                        <tbody>
+                            <tr><td>Python</td><td>Name → object</td><td>Binds the name <code>x</code> to a new object <code>42</code>.</td></tr>
+                            <tr><td>C</td><td>Box → value</td><td>Stores <code>42</code> in a memory location named <code>x</code>.</td></tr>
+                            <tr><td>Java</td><td>Box → value/reference</td><td>Primitives store the value; objects store a reference to the object.</td></tr>
+                            <tr><td>JavaScript</td><td>Reference or value</td><td>Similar to Python for objects, but primitive types are copied.</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="insight">💡 Python uses a uniform model: <em>every</em> value is an object, and every variable is a name. There are no primitive types at the language level. Even integers and booleans are objects — they just happen to be small, immutable, and optimised heavily by CPython.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="7847699765"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <section id="assignment" aria-labelledby="assignment-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="assignment-heading">✏️ Assignment — Binding Names to Values</h2>
+                    <p>The <code>=</code> operator, augmented assignment, and common pitfalls</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🎯 Basic Assignment</h3>
+                    <p>An assignment statement uses the <code>=</code> operator. The left side is the name; the right side is an expression that evaluates to a value.</p>
+                    <div class="code-snippet"><pre>x = 42
+name = <span class="st">"Alice"</span>
+is_active = <span class="kw">True</span>
+pi = 3.14159
+empty = <span class="kw">None</span>
+
+result = 10 + 20 * 3
+
+user = {<span class="st">"name"</span>: <span class="st">"Bob"</span>, <span class="st">"age"</span>: 25}
+
+<span class="fn">print</span>(x, name, is_active, pi, empty)
+<span class="fn">print</span>(result)</pre></div>
+                    <p>The right side is evaluated first — fully, to a single value — and <em>then</em> the assignment happens. So <code>x = x + 1</code> works because <code>x + 1</code> is computed using the <em>old</em> value of <code>x</code>, and only after that does <code>x</code> get rebound to the result.</p>
+                </div>
+                <div class="oop-block">
+                    <h3>➕ Augmented Assignment</h3>
+                    <p>Python provides shorthand operators that combine arithmetic with assignment: <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>//=</code>, <code>%=</code>, <code>**=</code>. These are equivalent to the long form but more concise.</p>
+                    <div class="code-snippet"><pre>counter = 0
+counter += 1
+counter += 1
+counter += 1
+<span class="fn">print</span>(counter)
+
+total = 100
+total -= 25
+total *= 2
+total //= 5
+<span class="fn">print</span>(total)
+
+message = <span class="st">"Hello"</span>
+message += <span class="st">", World!"</span>
+<span class="fn">print</span>(message)</pre></div>
+                    <div class="insight">💡 Augmented assignment on mutable objects (like lists) can behave subtly differently from the long form. <code>x += [1]</code> on a list mutates in place; <code>x = x + [1]</code> creates a new list. For immutable objects like integers and strings, they're equivalent.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>🚫 Assignment Is Not Equality</h3>
+                    <p>A common beginner mistake is confusing <code>=</code> (assignment) with <code>==</code> (equality comparison). They are completely different operators.</p>
+                    <div class="do-dont">
+                        <div class="do-dont-item">
+                            <span class="label bad"><i class="fas fa-times"></i> Wrong</span>
+                            <pre>if x = 5:
+    print("x is five")</pre>
+                            <p class="why"><strong>Error:</strong> <code>SyntaxError: invalid syntax</code>. You cannot use assignment inside a condition.</p>
+                        </div>
+                        <div class="do-dont-item">
+                            <span class="label good"><i class="fas fa-check"></i> Correct</span>
+                            <pre>if x == 5:
+    print("x is five")</pre>
+                            <p class="why"><code>==</code> compares; <code>=</code> assigns. Use the right one.</p>
+                        </div>
+                    </div>
+                    <div class="insight">💡 Python 3.8 added the "walrus operator" <code>:=</code> which <em>does</em> assign inside an expression: <code>if (n := len(data)) &gt; 10: print(f"Too long: {n}")</code>. This is the only case where assignment appears inside a condition, and it's still fairly rare in day-to-day code.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔗 Chained Assignment</h3>
+                    <p>You can assign the same value to multiple names in a single statement:</p>
+                    <div class="code-snippet"><pre>a = b = c = 0
+<span class="fn">print</span>(a, b, c)
+
+x = y = [1, 2, 3]
+x.append(4)
+<span class="fn">print</span>(y)</pre></div>
+                    <p>Chained assignment with mutable objects is <strong style="color:var(--red);">dangerous</strong> — all three names point to the <em>same</em> object. Modifying through one name affects the others. This is often a subtle bug.</p>
+                    <div class="note-warn">⚠️ Avoid <code>a = b = []</code>. Use <code>a = []; b = []</code> instead if you want each to be independent. The chain form is safest with immutable values like <code>0</code>, <code>None</code>, or strings.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="multiple-assignment" aria-labelledby="multiple-assignment-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="multiple-assignment-heading">🔗 Multiple Assignment &amp; Unpacking</h2>
+                    <p>Assign several variables in one line — one of Python's most convenient features</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🔀 Tuple Unpacking</h3>
+                    <p>Python evaluates the right side as a tuple, then matches each element to a name on the left:</p>
+                    <div class="code-snippet"><pre>x, y, z = 1, 2, 3
+<span class="fn">print</span>(x, y, z)
+
+name, age, city = <span class="st">"Alice"</span>, 30, <span class="st">"Manila"</span>
+<span class="fn">print</span>(name, age, city)</pre></div>
+                    <p>If the number of names doesn't match the number of values, Python raises a <code>ValueError</code>:</p>
+                    <div class="code-snippet"><pre><span class="cmt"># ValueError: too many values to unpack</span>
+<span class="cmt"># a, b = 1, 2, 3</span>
+
+<span class="cmt"># ValueError: not enough values to unpack</span>
+<span class="cmt"># a, b, c = 1, 2</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>⭐ Starred Assignment</h3>
+                    <p>A single name can be prefixed with <code>*</code> to absorb all "extra" values into a list. This is called <em>extended unpacking</em> and is useful when you know the first item or two but not the rest.</p>
+                    <div class="code-snippet"><pre>first, *middle, last = [1, 2, 3, 4, 5]
+<span class="fn">print</span>(<span class="st">"First:"</span>, first)
+<span class="fn">print</span>(<span class="st">"Middle:"</span>, middle)
+<span class="fn">print</span>(<span class="st">"Last:"</span>, last)
+
+head, *tail = [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>]
+<span class="fn">print</span>(head, tail)</pre></div>
+                    <div class="insight">💡 Only one starred name can appear per assignment, and it doesn't have to be the middle one. <code>*head, last = ...</code> works too.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔄 Swapping Variables Without a Temp</h3>
+                    <p>Because Python evaluates the right side first, you can swap two variables without a temporary:</p>
+                    <div class="code-snippet"><pre>a = 10
+b = 20
+a, b = b, a
+<span class="fn">print</span>(a, b)</pre></div>
+                    <p>Compare to the C-style approach, which needs a temp variable:</p>
+                    <div class="code-snippet"><pre>temp = a
+a = b
+b = temp</pre></div>
+                    <p>Python's version is shorter, safer, and more readable — no risk of accidentally overwriting a value before it's been used.</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🎯 Unpacking Function Return Values</h3>
+                    <p>When a function returns a tuple, you can unpack it directly into names:</p>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">min_max</span>(numbers):
+    <span class="kw">return</span> min(numbers), max(numbers)
+
+low, high = min_max([3, 1, 4, 1, 5, 9, 2, 6])
+<span class="fn">print</span>(<span class="st">f"Low: {low}, High: {high}"</span>)
+
+values = min_max([1, 2, 3])
+<span class="fn">print</span>(values)</pre></div>
+                    <div class="insight">💡 This pattern is used constantly in real code — <code>divmod(17, 5)</code> returns <code>(3, 2)</code>, and you can write <code>quotient, remainder = divmod(17, 5)</code> for a clean, direct destructuring.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="naming-rules" aria-labelledby="naming-rules-head<div class="page-col">
+                <div class="section-intro">
+                    <h2 id="naming-rules-heading">🔤 Variable Naming Rules &amp; Conventions</h2>
+                    <p>What Python allows, and what the community expects</p>
+                </div>
+                <div class="oop-block">
+                    <h3>✅ Rules the Interpreter Enforces</h3>
+                    <p>These are hard requirements — violating any of them raises a <code>SyntaxError</code> or <code>NameError</code> at runtime:</p>
+                    <ul class="checklist">
+                        <li><span class="check">✓</span>Must begin with a letter (a–z, A–Z) or underscore (<code>_</code>)</li>
+                        <li><span class="check">✓</span>Can contain letters, digits, and underscores after the first character</li>
+                        <li><span class="check">✓</span>Cannot be a reserved keyword (<code>class</code>, <code>def</code>, <code>if</code>, <code>for</code>, etc.)</li>
+                        <li><span class="check">✓</span>Case-sensitive — <code>name</code>, <code>Name</code>, and <code>NAME</code> are three different variables</li>
+                        <li><span class="check">✓</span>Cannot contain spaces, hyphens, or most punctuation</li>
+                    </ul>
+                    <div class="code-snippet"><pre><span class="cmt"># Valid names:</span>
+name = <span class="st">"Alice"</span>
+_user_id = 42
+MAX_SIZE = 100
+count2 = 5
+myLongVariableName = <span class="kw">True</span>
+
+<span class="cmt"># Invalid — will raise SyntaxError:</span>
+<span class="cmt"># 2fast = 10</span>
+<span class="cmt"># first-name = "Bob"</span>
+<span class="cmt"># class = "Physics"</span>
+<span class="cmt"># my var = 5</span></pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>💡 Conventions Python Expects (PEP 8)</h3>
+                    <p>These aren't enforced by the interpreter, but they're followed universally in professional Python code. Following them makes your code instantly readable to any other Python developer.</p>
+                    <table class="syntax-table">
+                        <thead><tr><th>Name Style</th><th>Used For</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>snake_case</code></td><td>Variables, functions, modules</td><td><code>user_name</code>, <code>total_price</code></td></tr>
+                            <tr><td><code>PascalCase</code></td><td>Classes</td><td><code>UserAccount</code>, <code>HttpClient</code></td></tr>
+                            <tr><td><code>UPPER_SNAKE_CASE</code></td><td>Constants</td><td><code>MAX_RETRIES</code>, <code>DEFAULT_TIMEOUT</code></td></tr>
+                            <tr><td><code>_leading_underscore</code></td><td>Internal / private use</td><td><code>_cache</code>, <code>_helper</code></td></tr>
+                            <tr><td><code>__double_leading</code></td><td>Name mangling (rare)</td><td><code>__secret</code> (used inside classes)</td></tr>
+                            <tr><td><code>__dunder__</code></td><td>Python-defined special names</td><td><code>__init__</code>, <code>__repr__</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oop-block">
+                    <h3>🎯 What Makes a Good Variable Name</h3>
+                    <p>Beyond the rules, good names have a few qualities:</p>
+                    <ul class="checklist">
+                        <li><span class="check">✓</span><strong>Descriptive, not abbreviated.</strong> <code>user_account_balance</code> is clearer than <code>uab</code> or <code>bal</code>.</li>
+                        <li><span class="check">✓</span><strong>Pronounceable.</strong> If you can't say it out loud, you'll struggle to talk about the code with others.</li>
+                        <li><span class="check">✓</span><strong>Not too long.</strong> <code>the_total_quantity_of_items_in_the_shopping_cart</code> is excessive — <code>cart_total</code> is better.</li>
+                        <li><span class="check">✓</span><strong>No type suffixes.</strong> <code>user_list</code> or <code>name_str</code> are un-Pythonic — let the value speak for itself.</li>
+                        <li><span class="check">✓</span><strong>Not shadowing built-ins.</strong> Never name a variable <code>list</code>, <code>dict</code>, <code>type</code>, <code>id</code>, or <code>input</code> — it breaks the built-in function.</li>
+                    </ul>
+                    <div class="do-dont">
+                        <div class="do-dont-item">
+                            <span class="label good"><i class="fas fa-check"></i> Clear</span>
+                            <pre>active_users = get_active_users()
+max_retry_count = 3
+is_authenticated = check_auth()</pre>
+                        </div>
+                        <div class="do-dont-item">
+                            <span class="label bad"><i class="fas fa-times"></i> Unclear</span>
+                            <pre>au = get_active_users()
+mrc = 3
+flag = check_auth()</pre>
+                            <p class="why"><code>au</code>, <code>mrc</code>, and <code>flag</code> tell the reader nothing. They were fast to type and will be slow to read six months from now.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="oop-block">
+                    <h3>⚠️ Never Shadow Built-ins</h3>
+                    <p>Python has 35+ built-in functions and constants available by default. Naming a variable after one of them "shadows" the built-in, making it unavailable in the current scope — and leading to confusing bugs.</p>
+                    <div class="do-dont">
+                        <div class="do-dont-item">
+                            <span class="label bad"><i class="fas fa-times"></i> Shadows built-in</span>
+                            <pre>list = [1, 2, 3]
+<span class="fn">print</span>(list(x))  <span class="cmt"># TypeError: 'list' object is not callable</span></pre>
+                            <p class="why">After <code>list = [1, 2, 3]</code>, the name <code>list</code> refers to a list, not the built-in function. Anywhere else in this scope that calls <code>list()</code> will fail.</p>
+                        </div>
+                        <div class="do-dont-item">
+                            <span class="label good"><i class="fas fa-check"></i> Clear and safe</span>
+                            <pre>my_list = [1, 2, 3]
+<span class="fn">print</span>(list(my_list))</pre>
+                        </div>
+                    </div>
+                    <div class="insight">💡 Common built-ins to avoid as variable names: <code>list</code>, <code>dict</code>, <code>set</code>, <code>tuple</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>type</code>, <code>id</code>, <code>input</code>, <code>print</code>, <code>sum</code>, <code>min</code>, <code>max</code>, <code>len</code>, <code>range</code>, <code>open</code>, <code>file</code>, <code>bytes</code>, <code>object</code>.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="7847699765"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <section id="scope" aria-labelledby="scope-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="scope-heading">🔭 Variable Scope &amp; the LEGB Rule</h2>
+                    <p>How Python decides which object a name refers to — and why <code>UnboundLocalError</code> happens</p>
+                </div>
+                <p style="margin-bottom:1.5rem;">Not every name is visible everywhere. Python has four scopes, and its rules for resolving names are governed by the <strong style="color:var(--text);">LEGB</strong> rule: Local, Enclosing, Global, Built-in. Understanding this is essential for debugging errors and writing clean, side-effect-free functions.</p>
+
+                <div class="oop-block">
+                    <h3>🧭 The Four Scopes</h3>
+                    <table class="syntax-table">
+                        <thead><tr><th>Scope</th><th>Letter</th><th>What It Contains</th></tr></thead>
+                        <tbody>
+                            <tr><td>Local</td><td>L</td><td>Names defined inside the current function.</td></tr>
+                            <tr><td>Enclosing</td><td>E</td><td>Names defined in any enclosing function (for nested functions).</td></tr>
+                            <tr><td>Global</td><td>G</td><td>Names defined at the top level of the module.</td></tr>
+                            <tr><td>Built-in</td><td>B</td><td>Names Python provides by default (<code>print</code>, <code>len</code>, <code>range</code>, etc.).</td></tr>
+                        </tbody>
+                    </table>
+                    <p>When Python encounters a name, it searches these scopes <em>in order</em>: L → E → G → B. The first match wins.</p>
+                    <div class="code-snippet"><pre>x = <span class="st">"global"</span>
+
+<span class="kw">def</span> <span class="fn">outer</span>():
+    x = <span class="st">"enclosing"</span>
+
+    <span class="kw">def</span> <span class="fn">inner</span>():
+        x = <span class="st">"local"</span>
+        <span class="fn">print</span>(x)
+
+    inner()
+    <span class="fn">print</span>(x)
+
+outer()
+<span class="fn">print</span>(x)</pre></div>
+                    <p>Output:</p>
+                    <div class="code-snippet"><pre>local
+enclosing
+global</pre></div>
+                    <p>Each function defines a new local scope. The inner function's <code>x</code> shadows the enclosing function's, which shadows the global. Reading the name at different points in the program gives different results.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🌐 Global Statement</h3>
+                    <p>By default, assignment inside a function creates a local variable — it doesn't touch the global. To reassign a global variable from inside a function, use the <code>global</code> keyword.</p>
+                    <div class="code-snippet"><pre>counter = 0
+
+<span class="kw">def</span> <span class="fn">increment_bad</span>():
+    counter = counter + 1  <span class="cmt"># UnboundLocalError</span>
+
+<span class="kw">def</span> <span class="fn">increment_good</span>():
+    <span class="kw">global</span> counter
+    counter += 1
+
+increment_good()
+<span class="fn">print</span>(counter)</pre></div>
+                    <div class="note-warn">⚠️ <code>increment_bad</code> raises <code>UnboundLocalError</code> — not <code>NameError</code>. This confuses beginners. The reason: Python sees <code>counter = ...</code> inside the function, so it treats <code>counter</code> as a <em>local</em> name for the entire function. When the right side tries to read <code>counter</code> (before assignment), it isn't yet bound locally — hence "referenced before assignment."</div>
+                    <div class="insight">💡 <code>global</code> is often considered a code smell. Prefer returning values from functions over mutating global state. Global variables make code harder to test, reason about, and parallelise.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🏠 nonlocal Statement</h3>
+                    <p>For nested functions, <code>nonlocal</code> rebinds a name in the nearest enclosing scope — useful for closures and counters.</p>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">make_counter</span>():
+    count = 0
+
+    <span class="kw">def</span> <span class="fn">increment</span>():
+        <span class="kw">nonlocal</span> count
+        count += 1
+        <span class="kw">return</span> count
+
+    <span class="kw">return</span> increment
+
+counter = make_counter()
+<span class="fn">print</span>(counter())
+<span class="fn">print</span>(counter())
+<span class="fn">print</span>(counter())</pre></div>
+                    <p>Each call to <code>increment()</code> modifies the <code>count</code> in the enclosing <code>make_counter</code> scope. The <code>nonlocal</code> keyword tells Python "this name is not local to <code>increment</code>; look in the enclosing scope."</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>🔍 Inspecting Scope — <code>locals()</code> and <code>globals()</code></h3>
+                    <p>You can inspect the current scope's namespaces at any time:</p>
+                    <div class="code-snippet"><pre>x = <span class="st">"global_x"</span>
+y = 42
+
+<span class="kw">def</span> <span class="fn">demo</span>():
+    local_var = <span class="st">"local"</span>
+    <span class="fn">print</span>(<span class="st">"Locals:"</span>, locals())
+    <span class="fn">print</span>(<span class="st">"Globals count:"</span>, len(globals()))
+
+demo()</pre></div>
+                    <div class="insight">💡 <code>locals()</code> returns a dict of the current local namespace. <code>globals()</code> returns a dict of all module-level names — including the ones you defined plus the built-ins that have been imported. Both are useful for debugging.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="memory" aria-labelledby="memory-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="memory-heading">🧠 The Memory Model — Objects &amp; References</h2>
+                    <p>Understanding <code>id()</code>, <code>is</code> vs <code>==</code>, and why mutable variables behave surprisingly</p>
+                </div>
+                <div class="oop-block">
+                    <h3>🎯 Every Value Is an Object</h3>
+                    <p>In Python, everything is an object: integers, strings, functions, classes, modules, and even <code>None</code>. Every object has:</p>
+                    <ul class="checklist">
+                        <li><span class="check">✓</span>An <strong>identity</strong> — a unique integer, retrievable with <code>id(obj)</code>, never changes during the object's lifetime</li>
+                        <li><span class="check">✓</span>A <strong>type</strong> — retrievable with <code>type(obj)</code>, never changes</li>
+                        <li><span class="check">✓</span>A <strong>value</strong> — mutable objects can change; immutable objects cannot</li>
+                    </ul>
+                    <div class="code-snippet"><pre>x = 42
+<span class="fn">print</span>(<span class="fn">id</span>(x))
+<span class="fn">print</span>(<span class="fn">type</span>(x))
+<span class="fn">print</span>(x)
+
+name = <span class="st">"Alice"</span>
+<span class="fn">print</span>(<span class="fn">id</span>(name))
+<span class="fn">print</span>(<span class="fn">type</span>(name))
+<span class="fn">print</span>(name)</pre></div>
+                </div>
+                <div class="oop-block">
+                    <h3>🆔 Understanding <code>id()</code> and Identity</h3>
+                    <p><code>id()</code> returns the memory address of an object (in CPython). Two variables referring to the <em>same object</em> will have the same <code>id()</code>:</p>
+                    <div class="code-snippet"><pre>a = [1, 2, 3]
+b = a
+c = [1, 2, 3]
+
+<span class="fn">print</span>(a <span class="kw">is</span> b)
+<span class="fn">print</span>(a <span class="kw">is</span> c)
+<span class="fn">print</span>(a == c)
+
+<span class="fn">print</span>(<span class="fn">id</span>(a) == <span class="fn">id</span>(b))
+<span class="fn">print</span>(<span class="fn">id</span>(a) == <span class="fn">id</span>(c))</pre></div>
+                    <p><code>a</code> and <code>b</code> refer to the same object — same <code>id</code>, <code>is</code> returns <code>True</code>. <code>c</code> is a distinct object with the same value — different <code>id</code>, <code>is</code> returns <code>False</code>, but <code>==</code> returns <code>True</code>.</p>
+                </div>
+                <div class="oop-block">
+                    <h3>⚖️ <code>is</code> vs <code>==</code> — The Critical Distinction</h3>
+                    <table class="syntax-table">
+                        <thead><tr><th>Operator</th><th>Compares</th><th>When to Use</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>is</code></td><td>Identity (same object)</td><td>Comparing to <code>None</code>, <code>True</code>, <code>False</code>, or checking for object identity</td></tr>
+                            <tr><td><code>==</code></td><td>Equality (same value)</td><td>Almost everything else — numbers, strings, lists, custom objects</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="do-dont">
+                        <div class="do-dont-item">
+                            <span class="label good"><i class="fas fa-check"></i> Correct</span>
+                            <pre><span class="kw">if</span> value <span class="kw">is None</span>:
+    <span class="kw">pass</span>
+
+<span class="kw">if</span> a == b:
+    <span class="kw">pass</span></pre>
+                        </div>
+                        <div class="do-dont-item">
+                            <span class="label bad"><i class="fas fa-times"></i> Fragile</span>
+                            <pre><span class="kw">if</span> value == None:
+    <span class="kw">pass</span>
+
+<span class="kw">if</span> a <span class="kw">is</span> b:
+    <span class="kw">pass</span>  <span class="cmt"># rarely what you want</span></pre>
+                        </div>
+                    </div>
+                    <div class="insight">💡 The <code>is</code> comparison with <code>None</code> works because <code>None</code> is a singleton — there's only ever one <code>None</code> object in Python. Comparing <code>x == None</code> is technically allowed but discouraged — a custom <code>__eq__</code> could make it return non-<code>True</code> for a genuinely-None value. <code>is</code> bypasses <code>__eq__</code> entirely.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔒 Mutable vs Immutable Objects</h3>
+                    <p>Python objects fall into two camps:</p>
+                    <ul class="checklist">
+                        <li><span class="check">✓</span><strong>Immutable:</strong> <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>tuple</code>, <code>frozenset</code>, <code>bytes</code>, <code>None</code> — cannot be changed after creation</li>
+                        <li><span class="check">✓</span><strong>Mutable:</strong> <code>list</code>, <code>dict</code>, <code>set</code>, <code>bytearray</code>, custom classes — can be modified in place</li>
+                    </ul>
+                    <div class="code-snippet"><pre><span class="cmt"># Immutable — reassignment creates a new object</span>
+s = <span class="st">"hello"</span>
+s2 = s
+s += <span class="st">" world"</span>
+<span class="fn">print</span>(s, s2)  <span class="cmt"># s2 is unchanged</span>
+
+<span class="cmt"># Mutable — in-place mutation affects all references</span>
+nums = [1, 2, 3]
+nums2 = nums
+nums.append(4)
+<span class="fn">print</span>(nums, nums2)  <span class="cmt"># both are [1, 2, 3, 4]</span></pre></div>
+                    <div class="note-warn">⚠️ The mutation gotcha: when you pass a list to a function and the function mutates it, the caller sees the change. This is a common source of surprising bugs. To avoid it, either pass a copy (<code>my_list.copy()</code>) or design functions to return new lists instead of mutating in place.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>📋 Copying — <code>copy()</code> vs <code>deepcopy()</code></h3>
+                    <p>For nested mutable structures, a shallow copy doesn't protect you:</p>
+                    <div class="code-snippet"><pre><span class="kw">import</span> copy
+
+original = [[1, 2], [3, 4]]
+shallow = copy.copy(original)
+deep = copy.deepcopy(original)
+
+original[0][0] = 99
+<span class="fn">print</span>(<span class="st">"Shallow:"</span>, shallow)
+<span class="fn">print</span>(<span class="st">"Deep:"</span>, deep)</pre></div>
+                    <p>Both <code>shallow</code> and <code>original</code> share the same inner lists, so changing one changes both. <code>deepcopy</code> recursively copies every nested object — the truly independent copy.</p>
+                    <div class="insight">💡 Use <code>deepcopy</code> sparingly — it's slow and can't copy objects that don't support deep copying (like file handles). For most flat structures, a shallow copy is enough.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="constants" aria-labelledby="constants-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="constants-heading">🔒 Constants — Python's Convention</h2>
+                    <p>Python has no true constants — but the convention is well-established</p>
+                </div>
+                <div class="oop-block">
+                    <h3>📌 UPPER_CASE by Convention</h3>
+                    <p>Python doesn't have a <code>const</code> keyword. Instead, the community follows a naming convention: a variable whose name is entirely uppercase (<code>UPPER_SNAKE_CASE</code>) is treated as a constant — meaning "don't reassign this."</p>
+                    <div class="code-snippet"><pre>MAX_RETRIES = 3
+DEFAULT_TIMEOUT = 30
+API_BASE_URL = <span class="st">"https://api.example.com"</span>
+PI = 3.141592653589793
+
+<span class="fn">print</span>(MAX_RETRIES)
+<span class="fn">print</span>(API_BASE_URL)</pre></div>
+                    <div class="note-warn">⚠️ Python <em>will let you</em> reassign a constant — the language doesn't enforce the convention. But doing so violates the implicit contract and confuses anyone reading the code. Some linters (like pylint) will warn if you try.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>🔐 Enforcing Constants with Enums or Frozen Dataclasses</h3>
+                    <p>If you truly need immutability, Python has options:</p>
+                    <div class="code-snippet"><pre><span class="kw">from</span> enum <span class="kw">import</span> Enum
+
+<span class="kw">class</span> <span class="cl">Status</span>(<span class="cl">Enum</span>):
+    PENDING = <span class="st">"pending"</span>
+    ACTIVE = <span class="st">"active"</span>
+    COMPLETE = <span class="st">"complete"</span>
+
+<span class="fn">print</span>(Status.PENDING.value)
+<span class="cmt"># Status.PENDING = "other"  # AttributeError: cannot reassign</span>
+
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+@dataclass(frozen=<span class="kw">True</span>)
+<span class="kw">class</span> <span class="cl">Config</span>:
+    host: <span class="cl">str</span> = <span class="st">"localhost"</span>
+    port: <span class="cl">int</span> = 8080
+
+config = Config()
+<span class="cmt"># config.port = 9000  # FrozenInstanceError</span></pre></div>
+                    <div class="insight">💡 For most projects, UPPER_CASE variables at the top of the module are enough. Use <code>Enum</code> when you need a fixed set of related constants; use <code>frozen=True</code> on a dataclass when a whole record should be immutable.</div>
+                </div>
+                <div class="oop-block">
+                    <h3>📍 Where to Put Constants</h3>
+                    <p>Two common patterns:</p>
+                    <ol class="step-list">
+                        <li><strong>At the top of a module</strong> — best when the constants belong to a single file.</li>
+                        <li><strong>In a dedicated <code>constants.py</code></strong> — best when shared across many modules in a project.</li>
+                    </ol>
+                    <div class="code-snippet"><pre><span class="cmt"># constants.py</span>
+DATABASE_URL = <span class="st">"postgresql://localhost/mydb"</span>
+MAX_LOGIN_ATTEMPTS = 5
+SESSION_TIMEOUT_SECONDS = 3600
+
+<span class="cmt"># other_module.py</span>
+<span class="kw">from</span> constants <span class="kw">import</span> MAX_LOGIN_ATTEMPTS
+
+<span class="kw">if</span> attempts &gt;= MAX_LOGIN_ATTEMPTS:
+    lock_account()</pre></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps" aria-labelledby="next-steps-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="next-steps-heading">➡️ What's Next</h2>
+                    <p>You understand variables — now let's explore the types of values they can hold</p>
+                </div>
+                <div class="card-grid" style="margin-top:1.2rem;">
+                    <a class="card" href="python-data-types.html">
+                        <div class="card-icon">🧬</div>
+                        <div class="card-meta"><h4>Python Data Types</h4><span class="badge badge-beg">Beginner</span></div>
+                        <p>int, float, str, bool, list, tuple, dict, set, and None — everything a variable can hold.</p>
+                        <span class="card-arrow">Start lesson → <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="card" href="python-numbers.html">
+                        <div class="card-icon">🔢</div>
+                        <div class="card-meta"><h4>Python Numbers</h4><span class="badge badge-beg">Beginner</span></div>
+                        <p>Integers, floats, and complex numbers — with arithmetic, math module, and precision tips.</p>
+                        <span class="card-arrow">Start lesson → <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="card" href="python-type-casting.html">
+                        <div class="card-icon">🔁</div>
+                        <div class="card-meta"><h4>Type Casting</h4><span class="badge badge-beg">Beginner</span></div>
+                        <p>Convert between strings, numbers, lists and more — with safe parsing patterns.</p>
+                        <span class="card-arrow">Start lesson → <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="card" href="python-functions.html">
+                        <div class="card-icon">🛠️</div>
+                        <div class="card-meta"><h4>Python Functions</h4><span class="badge badge-int">Intermediate</span></div>
+                        <p>Parameters, return values, scope, closures — where variables interact with functions.</p>
+                        <span class="card-arrow">Start lesson → <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="7847699765"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <section id="faq" aria-labelledby="faq-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="faq-heading">❓ Frequently Asked Questions</h2>
+                    <p>Common questions about Python variables</p>
+                </div>
+                <div class="faq-list" style="margin-top:1.2rem;">
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-1"><h3>Do I need to declare a variable type in Python?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-1">
+                            <p>No — Python is dynamically typed. When you write <code>x = 42</code>, Python infers the type from the value. You never write <code>int x = 42</code> like in C or Java. However, Python 3.6+ supports optional type hints: <code>x: int = 42</code>. These hints are ignored at runtime, but tools like mypy and your editor use them to catch type errors before they reach production. Hints are highly recommended for any codebase larger than a single script.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-2"><h3>What happens when I reassign a variable to a different type?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-2">
+                            <p>Python allows it — a variable can refer to an integer at one moment and a string the next. This is a consequence of the "name → object" model: reassigning just rebinds the name to a new object of the new type. However, the type checker (if you use one) will flag the inconsistency, and code that switches types is usually harder to follow. If a variable genuinely needs to hold different types at different times, consider whether a union type hint (<code>int | str</code>) or a redesign would be clearer.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-3"><h3>Why do I get <code>UnboundLocalError</code> when the variable exists globally?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-3">
+                            <p>This is one of Python's most confusing error messages for beginners. It happens because Python decides at compile time that any name assigned anywhere in a function is a <em>local</em> name for the whole function. So this code:</p>
+                            <div class="code-snippet" style="margin-top:.5rem;"><pre>counter = 0
+
+def increment():
+    print(counter)  # UnboundLocalError
+    counter = 1</pre></div>
+                            <p style="margin-top:.5rem;">fails on the <code>print</code> line — Python sees <code>counter = 1</code> somewhere in the function, decides <code>counter</code> is local to the whole function, and the <code>print</code> reads an unassigned local. The fix is to remove the assignment, or declare <code>global counter</code> at the top of the function.</p>
+                        </div>
+                    </div>
+
+                    <div<div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-3"><h3>Why do I get <code>UnboundLocalError</code> when the variable exists globally?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-3">
+                            <p>This is one of Python's most confusing error messages for beginners. It happens because Python decides at compile time that any name assigned anywhere in a function is a <em>local</em> name for the whole function. So this code:</p>
+                            <div class="code-snippet" style="margin-top:.5rem;"><pre>counter = 0
+
+def increment():
+    print(counter)  # UnboundLocalError
+    counter = 1</pre></div>
+                            <p style="margin-top:.5rem;">fails on the <code>print</code> line — Python sees <code>counter = 1</code> somewhere in the function, decides <code>counter</code> is local to the whole function, and the <code>print</code> reads an unassigned local. The fix is to remove the assignment, or declare <code>global counter</code> at the top of the function.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-4"><h3>Is <code>x == None</code> or <code>x is None</code> preferred?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-4">
+                            <p><code>x is None</code> is preferred — and it's not just style. <code>None</code> is a singleton: there's only one <code>None</code> object in memory, so <code>is</code> always gives the right answer, and it's faster. <code>x == None</code> works for <code>None</code>, but if <code>x</code> happens to be a custom class with a broken <code>__eq__</code> method, the comparison could return something unexpected. Using <code>is</code> bypasses <code>__eq__</code> entirely. Every Python linter will flag <code>== None</code> and suggest <code>is None</code>.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-5"><h3>What's the difference between <code>del x</code> and <code>x = None</code>?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-5">
+                            <p><code>del x</code> removes the binding entirely — afterward, <code>x</code> no longer refers to anything, and trying to read it raises <code>NameError</code>. <code>x = None</code> rebinds <code>x</code> to the <code>None</code> object — the name still exists, just referring to a different value. Use <code>del</code> when you want to free the memory associated with the object (if nothing else references it), and <code>x = None</code> when you want to mark a variable as "empty" but keep it around.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-6"><h3>Are variable names case-sensitive?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-6">
+                            <p>Yes, strictly. <code>myvar</code>, <code>myVar</code>, <code>MyVar</code>, and <code>MYVAR</code> are four completely distinct names — Python treats them as unrelated. This catches beginners who mix camelCase and snake_case across a file. Follow PEP 8's snake_case convention consistently to avoid confusion.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-7"><h3>Can a variable name start with a number?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-7">
+                            <p>No. Identifiers must start with a letter (a–z, A–Z) or underscore. <code>2fast</code> is a syntax error. You <em>can</em> have digits later: <code>var2</code>, <code>player_1</code>, and <code>_2fast</code> are all valid. The underscore prefix is the standard workaround when you need a name that conceptually starts with a digit.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-8"><h3>What are the legal characters in a Python variable name?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-8">
+                            <p>Letters (a–z, A–Z), digits (0–9), and underscores (<code>_</code>). Python 3 also technically allows Unicode letters, so <code>variable_eñe</code>, <code>变数</code>, or <code>变量</code> work — but PEP 8 strongly recommends ASCII-only identifiers for portability and readability. Don't use <code>$</code>, <code>@</code>, <code>#</code>, <code>-</code>, or any other punctuation — Python will reject it.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-9"><h3>Is it OK to use single-letter variable names?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-9">
+                            <p>Sometimes. Standard exceptions: <code>i</code>, <code>j</code>, <code>k</code> for loop counters; <code>x</code>, <code>y</code>, <code>z</code> for coordinates; <code>e</code> for exception variables in <code>except</code> blocks; <code>_</code> for throwaway values (unused tuple elements, unused loop variables). Everywhere else, prefer descriptive names. If a single-letter name needs a comment to explain it, use a longer name instead.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-10"><h3>What does <code>_</code> mean as a variable name?</h3><span class="faq-toggle">+</span></button>
+                        <div class="faq-a" id="faq-10">
+                            <p>By convention, <code>_</code> is used to indicate "I don't care about this value." Examples: <code>for _ in range(10):</code> when you just need to loop 10 times, or <code>first, _, third = my_tuple</code> when you only need the first and third elements. The underscore is a normal variable, but the community treats it as a marker of intent — a signal to readers that this value is intentionally ignored.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Share this lesson">
+            <div class="page-col">
+                <div class="share-box" id="shareSection">
+                    <h3>📤 Share this lesson</h3>
+                    <p style="margin-top:.3rem;">If this was useful, passing it along helps other learners find it</p>
+                    <div class="share-row" id="shareRowBottom">
+                        <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                        <a href="#" class="share-btn" id="shareEmailBottom" target="_blank" rel="noopener"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsletter" aria-label="Newsletter">
+            <div class="page-col">
+                <div class="subscribe-box" id="subscribeBox">
+                    <h3>📬 Python, weekly</h3>
+                    <p>Short lessons, real code, and ecosystem news — sent about once a week</p>
+                    <form class="sub-form" id="subscribeForm" novalidate>
+                        <input type="email" id="subEmail" name="email" placeholder="your@email.dev" required autocomplete="email" aria-label="Email address">
+                        <button type="submit" id="subBtn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                        <div class="sub-message" id="subMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="comments-heading">
+            <div class="page-col">
+                <h2 id="comments-heading" style="margin-bottom:1.2rem;">🗣️ Learner Voices</h2>
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;margin-bottom:1rem;">
+                    <form class="comment-form" id="commentForm" novalidate>
+                        <input type="text" id="commentName" placeholder="Display name" required autocomplete="name">
+                        <textarea id="commentText" placeholder="Ask a question, share progress, or leave a tip for other learners …" rows="3" required></textarea>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Publish comment</button>
+                    </form>
+                </div>
+                <div class="empty-state" id="commentEmpty"><i class="fas fa-comments"></i><p>No comments yet — your voice starts the conversation.</p></div>
+                <div id="commentList"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="python-installation.html">Install Python</a></li>
+                        <li><a href="python-syntax.html">Python Syntax</a></li>
+                        <li><a href="python-variables.html">Python Variables</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter / X</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="mailto:pansensoyglenn150@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Written and maintained by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · <a href="mailto:pansensoyglenn150@gmail.com">pansensoyglenn150@gmail.com</a></p>
+                <p style="margin-top:.4rem;">Built with <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            function qs(sel, ctx) { return (ctx || document).querySelector(sel); }
+            function qsa(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+            function escapeHtml(str) {
+                var d = document.createElement('div');
+                d.textContent = str;
+                return d.innerHTML;
+            }
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+            var focusableDrawer = drawer ? qsa('button, a, [tabindex]:not([tabindex="-1"])', drawer) : [];
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                if (menuToggle) menuToggle.focus();
+            }
+
+            function openDrawer() {
+                if (menuToggle) menuToggle.classList.add('active');
+                if (drawer) drawer.classList.add('active');
+                if (overlay) overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (focusableDrawer.length) focusableDrawer[0].focus();
+            }
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (drawer.classList.contains('active')) { closeDrawer(); } else { openDrawer(); }
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && drawer && drawer.classList.contains('active')) closeDrawer();
+                if (e.key === 'Tab' && drawer && drawer.classList.contains('active')) {
+                    var focusable = qsa('button, a, [tabindex]:not([tabindex="-1"])', drawer);
+                    if (!focusable.length) return;
+                    var first = focusable[0];
+                    var last = focusable[focusable.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            });
+
+            qsa('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' }); closeDrawer(); }
+                });
+            });
+
+            window.toggleFaq = function(btn) {
+                var item = btn.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var isOpen = answer.classList.contains('open');
+                qsa('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    var parentBtn = a.closest('.faq-item').querySelector('.faq-q');
+                    if (parentBtn) parentBtn.setAttribute('aria-expanded', 'false');
+                    var toggle = parentBtn ? parentBtn.querySelector('.faq-toggle') : null;
+                    if (toggle) toggle.textContent = '+';
+                });
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                    var toggle = btn.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '−';
+                } else {
+                    btn.setAttribute('aria-expanded', 'false');
+                    var toggle2 = btn.querySelector('.faq-toggle');
+                    if (toggle2) toggle2.textContent = '+';
+                }
+            };
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                if (backTop) backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            if (backTop) backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            var tocBody = document.getElementById('tocBody');
+            var tocLinks = tocBody ? qsa('a', tocBody) : [];
+
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = tocPanel.classList.toggle('open');
+                    tocToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        var target = e.target;
+                        if (!tocPanel.contains(target) && target !== tocToggle && !tocToggle.contains(target)) {
+                            tocPanel.classList.remove('open');
+                            tocToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                        tocToggle.setAttribute('aria-expanded', 'false');
+                        tocToggle.focus();
+                    }
+                });
+            }
+            if (tocClose) {
+                tocClose.addEventListener('click', function() {
+                    if (tocPanel) { tocPanel.classList.remove('open'); tocToggle.setAttribute('aria-expanded', 'false'); }
+                });
+            }
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY + 120;
+                var currentId = null;
+                document.querySelectorAll('section[id]').forEach(function(el) {
+                    if (el.offsetTop <= scrollY) { currentId = el.id; }
+                });
+                tocLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    if (href && href === '#' + currentId) { link.classList.add('toc-highlight'); }
+                    else { link.classList.remove('toc-highlight'); }
+                });
+            }, { passive: true });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-codes.pages.dev/python-variables.html');
+            var PAGE_TITLE = encodeURIComponent('Python Variables 2026 – Complete Guide to Assignment, Scope & Naming');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+
+            qsa('#shareFb, #shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            qsa('#shareTw, #shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            qsa('#shareLi, #shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            qsa('#shareWa, #shareWaBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            qsa('#shareTg, #shareTgBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            var shareEmailB = document.getElementById('shareEmailBottom');
+            if (shareEmailB) {
+                shareEmailB.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'mailto:?subject=' + PAGE_TITLE + '&body=Check%20out%20this%20free%20Python%20lesson%3A%20' + PAGE_URL;
+                });
+            }
+
+            function copyLink(btn) {
+                var url = 'https://poetic-codes.pages.dev/python-variables.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopy(url, btn); });
+                } else {
+                    fallbackCopy(url, btn);
+                }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            var subForm = document.getElementById('subscribeForm');
+            var subEmail = document.getElementById('subEmail');
+            var subMessage = document.getElementById('subMessage');
+            var subBtn = document.getElementById('subBtn');
+            if (subForm) {
+                subForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var email = subEmail.value.trim();
+                    if (!email || !email.includes('@') || !email.includes('.')) {
+                        subMessage.textContent = 'Please enter a valid email address.';
+                        subMessage.className = 'sub-message error';
+                        return;
+                    }
+                    subBtn.disabled = true;
+                    subBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing…';
+                    subMessage.className = 'sub-message';
+                    subMessage.textContent = '';
+                    setTimeout(function() {
+                        subMessage.textContent = 'Subscribed — check your inbox for a confirmation email.';
+                        subMessage.className = 'sub-message success';
+                        subEmail.value = '';
+                        subBtn.disabled = false;
+                        subBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe';
+                    }, 1200);
+                });
+            }
+
+            var commentForm = document.getElementById('commentForm');
+            var commentName = document.getElementById('commentName');
+            var commentText = document.getElementById('commentText');
+            var commentList = document.getElementById('commentList');
+            var commentEmpty = document.getElementById('commentEmpty');
+
+            var comments = [];
+            try {
+                var stored = localStorage.getItem('python_variables_comments');
+                if (stored) comments = JSON.parse(stored);
+            } catch (_) {}
+
+            function renderComments() {
+                if (!commentList) return;
+                if (comments.length === 0) {
+                    commentList.innerHTML = '';
+                    if (commentEmpty) commentEmpty.style.display = 'block';
+                    return;
+                }
+                if (commentEmpty) commentEmpty.style.display = 'none';
+                commentList.innerHTML = comments.map(function(c) {
+                    return '<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem 1.2rem;margin-bottom:.6rem;">' +
+                        '<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">' +
+                        '<span style="font-weight:700;color:var(--gold);font-size:.8rem;">' + escapeHtml(c.name) + '</span>' +
+                        '<span style="font-size:.6rem;color:var(--muted);">' + escapeHtml(c.time || 'just now') + '</span>' +
+                        '</div>' +
+                        '<p style="font-size:.78rem;color:var(--text);margin:0;">' + escapeHtml(c.text) + '</p>' +
+                        '</div>';
+                }).join('');
+            }
+
+            if (commentForm) {
+                commentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var name = commentName.value.trim() || 'Anonymous';
+                    var text = commentText.value.trim();
+                    if (!text) return;
+                    comments.unshift({ name: name, text: text, time: new Date().toLocaleString() });
+                    try { localStorage.setItem('python_variables_comments', JSON.stringify(comments)); } catch (_) {}
+                    renderComments();
+                    commentText.value = '';
+                    commentName.value = '';
+                });
+            }
+            renderComments();
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+            var pyodideLoading = false;
+
+            function indentCode(code, spaces) {
+                spaces = spaces || 4;
+                var prefix = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) {
+                    return line ? prefix + line : '';
+                }).join('\n');
+            }
+
+            function hasFileOperations(code) {
+                var patterns = [/open\s*\(/, /Path\s*\(/, /with\s+open\s*\(/, /\.read\s*\(/, /\.write\s*\(/, /os\.path/, /shutil\./, /glob\s*\(/, /__file__/];
+                for (var i = 0; i < patterns.length; i++) {
+                    if (patterns[i].test(code)) return true;
+                }
+                return false;
+            }
+
+            function loadPyodideOnce() {
+                return new Promise(function(resolve, reject) {
+                    if (pyodideReady) { resolve(pyodideInstance); return; }
+                    if (pyodideLoading) {
+                        var check = setInterval(function() {
+                            if (pyodideReady) { clearInterval(check); resolve(pyodideInstance); }
+                        }, 100);
+                        return;
+                    }
+                    pyodideLoading = true;
+                    if (typeof loadPyodide === 'undefined') {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js';
+                        script.onload = function() {
+                            loadPyodide().then(function(py) {
+                                pyodideInstance = py;
+                                pyodideReady = true;
+                                pyodideLoading = false;
+                                resolve(pyodideInstance);
+                            }).catch(reject);
+                        };
+                        script.onerror = function() { pyodideLoading = false; reject(new Error('Failed to load Pyodide script')); };
+                        document.head.appendChild(script);
+                    } else {
+                        loadPyodide().then(function(py) {
+                            pyodideInstance = py;
+                            pyodideReady = true;
+                            pyodideLoading = false;
+                            resolve(pyodideInstance);
+                        }).catch(reject);
+                    }
+                });
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideOnce();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var hasWarning = false;
+                    if (hasFileOperations(code)) {
+                        hasWarning = true;
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent = '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+
+                    var indentedCode = indentCode(code, 4);
+                    var wrappedCode =
+                        'import sys\n' +
+                        'from io import StringIO\n' +
+                        '_captured_output = StringIO()\n' +
+                        '_old_stdout = sys.stdout\n' +
+                        'sys.stdout = _captured_output\n' +
+                        'try:\n' + indentedCode + '\n' +
+                        'finally:\n' +
+                        '    sys.stdout = _old_stdout\n' +
+                        '_captured_output.getvalue()\n';
+
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+                    var resultText = result || '✓ Code executed successfully (no output).';
+
+                    if (hasWarning) {
+                        outputEl.textContent += resultText;
+                    } else {
+                        outputEl.textContent = resultText;
+                        outputEl.style.color = '#4ade80';
+                    }
+                } catch (err) {
+                    if (outputEl.className === 'output-panel file-warning') {
+                        outputEl.textContent += '\n\nError:\n' + err.message;
+                    } else {
+                        outputEl.className = 'output-panel error';
+                        outputEl.textContent = 'Error:\n' + err.message;
+                        outputEl.style.color = '#f87171';
+                    }
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalText;
+                }
+            }
+
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopyCode(btn, code); });
+                } else {
+                    fallbackCopyCode(btn, code);
+                }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim();
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+
+            function enhanceCodeBlocks() {
+                var blocks = qsa('.code-snippet:not(.code-preview .code-snippet), .code-body:not(.code-preview .code-body)');
+                blocks.forEach(function(block) {
+                    if (block.closest('.code-container')) return;
+                    if (block.closest('.hero .code-preview')) return;
+                    var pre = block.querySelector('pre');
+                    if (!pre) return;
+                    var codeText = pre.textContent;
+
+                    var firstLine = codeText.split('\n')[0].trim();
+                    var isShell = /^(#|\$|\$ )/.test(firstLine) || /^(sudo|apt|dnf|pacman|brew|pip|python3?|mkdir|cd|source|deactivate|\.venv|open|which|Get-Command|pwd|ls|dir)\b/.test(firstLine);
+                    var hasError = /Error|Traceback|SyntaxError|IndentationError|TabError|NameError|TypeError|ValueError|KeyError/.test(codeText);
+                    var shouldSkipRun = isShell || hasError;
+
+                    var container = documentvar container = document.createElement('div');
+                    container.className = 'code-container';
+
+                    var header = document.createElement('div');
+                    header.className = 'code-header';
+                    var langLabel = isShell ? 'shell' : (hasError ? 'python (error example)' : 'python');
+                    header.innerHTML =
+                        '<span style="color:var(--muted);">' + langLabel + '</span>' +
+                        '<div class="code-actions">' +
+                        '<button class="code-btn copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>' +
+                        (shouldSkipRun ? '' : '<button class="code-btn run-btn" type="button"><i class="fas fa-play"></i> Run</button>') +
+                        '</div>';
+
+                    var outputPanel = document.createElement('div');
+                    outputPanel.className = 'output-panel';
+
+                    block.parentNode.insertBefore(container, block);
+                    container.appendChild(header);
+                    container.appendChild(block);
+                    if (!shouldSkipRun) {
+                        container.appendChild(outputPanel);
+                    }
+
+                    var copyBtn = header.querySelector('.copy-btn');
+                    var runBtn = header.querySelector('.run-btn');
+
+                    copyBtn.addEventListener('click', function() { copyCode(copyBtn, codeText); });
+                    if (runBtn) {
+                        runBtn.addEventListener('click', function() { runCode(codeText, outputPanel, runBtn); });
+                    }
+                });
+            }
+
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                enhanceCodeBlocks();
+            } else {
+                document.addEventListener('DOMContentLoaded', enhanceCodeBlocks);
+            }
+
+        })();
+    </script>
+</body>
+</html>
