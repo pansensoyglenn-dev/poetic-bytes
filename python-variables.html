@@ -695,7 +695,8 @@ values = min_max([1, 2, 3])
             </div>
         </section>
 
-        <section id="naming-rules" aria-labelledby="naming-rules-head<div class="page-col">
+        <section id="naming-rules" aria-labelledby="naming-rules-heading">
+            <div class="page-col">
                 <div class="section-intro">
                     <h2 id="naming-rules-heading">🔤 Variable Naming Rules &amp; Conventions</h2>
                     <p>What Python allows, and what the community expects</p>
@@ -1131,19 +1132,6 @@ SESSION_TIMEOUT_SECONDS = 3600
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-3"><h3>Why do I get <code>UnboundLocalError</code> when the variable exists globally?</h3><span class="faq-toggle">+</span></button>
-                        <div class="faq-a" id="faq-3">
-                            <p>This is one of Python's most confusing error messages for beginners. It happens because Python decides at compile time that any name assigned anywhere in a function is a <em>local</em> name for the whole function. So this code:</p>
-                            <div class="code-snippet" style="margin-top:.5rem;"><pre>counter = 0
-
-def increment():
-    print(counter)  # UnboundLocalError
-    counter = 1</pre></div>
-                            <p style="margin-top:.5rem;">fails on the <code>print</code> line — Python sees <code>counter = 1</code> somewhere in the function, decides <code>counter</code> is local to the whole function, and the <code>print</code> reads an unassigned local. The fix is to remove the assignment, or declare <code>global counter</code> at the top of the function.</p>
-                        </div>
-                    </div>
-
-                    <div<div class="faq-item">
                         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-3"><h3>Why do I get <code>UnboundLocalError</code> when the variable exists globally?</h3><span class="faq-toggle">+</span></button>
                         <div class="faq-a" id="faq-3">
                             <p>This is one of Python's most confusing error messages for beginners. It happens because Python decides at compile time that any name assigned anywhere in a function is a <em>local</em> name for the whole function. So this code:</p>
@@ -1761,7 +1749,7 @@ def increment():
                     var hasError = /Error|Traceback|SyntaxError|IndentationError|TabError|NameError|TypeError|ValueError|KeyError/.test(codeText);
                     var shouldSkipRun = isShell || hasError;
 
-                    var container = documentvar container = document.createElement('div');
+                    var container = document.createElement('div');
                     container.className = 'code-container';
 
                     var header = document.createElement('div');
