@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="QEVZypEFSBb2vnchFfNajL-Fme3ZFTP_KNJIC9R-2CY" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Data Types 2026 – Complete Guide with Line-by-Line Explanations | Poetic Bytes</title>
+    <meta name="description" content="Master every Python data type in 2026: int, float, str, bool, list, tuple, dict, set, None. Every program explained line by line with runnable examples, practice exercises, and a full quick-reference table." />
+    <meta name="keywords" content="python data types, python int, python float, python str, python bool, python list, python tuple, python dict, python set, python none, type conversion, mutable immutable python, python tutorial 2026" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/python-data-types.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/python-data-types.html" />
+    <meta property="og:title" content="Python Data Types 2026 – Complete Guide with Line-by-Line Explanations" />
+    <meta property="og:description" content="Every Python data type explained: int, float, str, bool, list, tuple, dict, set, None — with runnable code, line-by-line breakdowns, and practice exercises." />
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Python Data Types 2026 – Complete Guide by Poetic Bytes" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Data Types 2026 | Poetic Bytes" />
+    <meta name="twitter:description" content="Every Python data type explained with line-by-line breakdowns, runnable code, and practice exercises." />
+    <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta name="twitter:image:alt" content="Python Data Types 2026 – Complete Guide by Poetic Bytes" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python Data Types 2026 – Complete Guide with Line-by-Line Explanations",
+            "description": "Every Python data type explained: int, float, str, bool, list, tuple, dict, set, None — with runnable code, line-by-line breakdowns, and practice exercises.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy", "url": "https://www.linkedin.com/in/glenn-pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app/" },
+            "datePublished": "2026-01-15",
+            "dateModified": "2026-11-03",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "educationalLevel": "Beginner to Intermediate",
+            "about": "Python data types",
+            "teaches": ["Python int", "Python float", "Python str", "Python bool", "Python list", "Python tuple", "Python dict", "Python set", "Python NoneType", "Type conversion", "Mutable vs immutable"]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://poetic-bytes.vercel.app/index.html" },
+                { "@type": "ListItem", "position": 2, "name": "Python Data Types", "item": "https://poetic-bytes.vercel.app/python-data-types.html" }
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "Why does 0.1 + 0.2 not equal 0.3 in Python?", "acceptedAnswer": { "@type": "Answer", "text": "Because float values are stored in binary (IEEE 754 double precision), and the decimal fractions 0.1 and 0.2 have no exact binary representation. The sum carries a tiny error (~5.5e-17). Use math.isclose for comparisons and Decimal for money." } },
+                { "@type": "Question", "name": "When should I use a tuple instead of a list?", "acceptedAnswer": { "@type": "Answer", "text": "Use a tuple when the collection is fixed and should not change — coordinates, RGB values, database records, or anything you need as a dictionary key (tuples are hashable). Use a list when you need to add, remove, or reorder items." } },
+                { "@type": "Question", "name": "Is bool really a subclass of int in Python?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. True and False are instances of bool, and bool inherits from int. Numerically, True == 1 and False == 0. This is why isinstance(True, int) returns True." } },
+                { "@type": "Question", "name": "How do I check whether a value is None?", "acceptedAnswer": { "@type": "Answer", "text": "Use 'if x is None:' — not 'if x == None:' and not 'if not x:'. The 'is' operator checks identity against the single None object and cannot be overridden." } }
+            ]
+        }
+    </script>
+
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{overflow-x:hidden;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden}
+        .skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;padding:.6rem 1.2rem;border-radius:0 0 8px 8px;font-weight:700;z-index:9999;text-decoration:none;transition:top .2s}
+        .skip-link:focus{top:0}
+        :root{--bg:#0B121C;--panel:#0F1C2F;--card:#111e30;--border:#1F4060;--blue:#4B8BBE;--blue-deep:#306998;--blue-lt:#78B9E6;--gold:#FFD966;--text:#E2E8F0;--muted:#A8C0D8;--code-bg:#0A1A24;--green:#10B981;--amber:#F59E0B;--red:#EF4444;--purple:#c084fc;--teal:#2DD4BF;--orange:#FB923C;--btn-h:44px;--btn-r:8px;--card-r:12px;--gap:1rem}
+        @media print{
+            .nav-bar,.floating-share,.back-top,.floating-toc,.ad-slot,.subscribe-box,.share-box,#commentForm,.code-container .code-header .code-actions,.code-container .output-panel{display:none!important}
+            body{background:#fff;color:#000;font-size:12pt}
+            .page-col{max-width:100%;padding:0 .5in}
+            .card,.explain-block{break-inside:avoid;border-color:#ccc;background:#f9f9f9}
+            .code-snippet,.code-body{background:#f0f0f0;border:1px solid #ccc;color:#000}
+            .section-label::before,.section-label::after{background:#ccc}
+            a{color:#000;text-decoration:underline}
+            .page-footer{background:#f5f5f5;border-top:1px solid #ccc}
+        }
+        .page-col{width:100%;max-width:860px;margin:0 auto;padding:0 1.25rem}
+        section{padding:3rem 0;border-bottom:1px solid var(--border)}
+        section:last-child{border-bottom:none}
+        .progress-bar-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(31,64,96,.3);z-index:2000}
+        .progress-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-lt));width:0%;transition:width .2s}
+        .nav-bar{position:fixed;top:3px;left:0;right:0;background:rgba(11,18,28,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:1000}
+        .nav-inner{max-width:860px;margin:0 auto;padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.08em}
+        .brand-icon{width:2rem;height:2rem;border-radius:6px;background:linear-gradient(145deg,var(--blue),var(--blue-deep));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+        .nav-links{display:flex;gap:1.2rem;list-style:none;align-items:center}
+        .nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:color .2s;letter-spacing:.04em}
+        .nav-links a:hover{color:var(--gold)}
+        .nav-links a.nav-home{display:inline-flex;align-items:center;gap:.35rem;background:rgba(75,139,190,.14);border:1px solid var(--border);border-radius:6px;padding:.35rem .75rem;color:var(--text)}
+        .nav-links a.nav-home:hover{border-color:var(--blue);color:var(--gold);background:rgba(75,139,190,.22)}
+        @media(max-width:680px){.nav-links{display:none}}
+        .menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;background:rgba(75,139,190,.1);border:1px solid var(--border);border-radius:6px;width:40px;height:40px;cursor:pointer;gap:4px}
+        .menu-toggle span{width:18px;height:2px;background:#fff;border-radius:2px;transition:.25s}
+        .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .menu-toggle.active span:nth-child(2){opacity:0}
+        .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        @media(max-width:680px){.menu-toggle{display:flex}}
+        .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1050;opacity:0;visibility:hidden;transition:.2s;backdrop-filter:blur(4px)}
+        .drawer-overlay.active{opacity:1;visibility:visible}
+        .mobile-drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--panel);border-left:1px solid var(--border);z-index:1100;display:flex;flex-direction:column;transition:right .3s;box-shadow:-5px 0 30px rgba(0,0,0,.5)}
+        .mobile-drawer.active{right:0}
+        .drawer-hd{padding:.8rem;border-bottom:1px solid var(--border);display:flex;justify-content:flex-end}
+        .drawer-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
+        .drawer-body{flex:1;overflow-y:auto;padding:.8rem}
+        .drawer-body li{list-style:none;margin-bottom:.5rem}
+        .drawer-body a,.drawer-body button{display:flex;align-items:center;gap:.6rem;width:100%;padding:.7rem .9rem;background:rgba(75,139,190,.12);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;min-height:44px}
+        .drawer-body a:active,.drawer-body button:active{background:rgba(75,139,190,.3)}
+        .drawer-body i{color:var(--gold);width:1.2rem}
+        h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.25;font-weight:700}
+        h1{font-size:1.6rem}
+        h2{font-size:1.25rem;margin-bottom:.5rem}
+        h3{font-size:.95rem}
+        h4{font-size:.85rem}
+        p{font-size:.82rem;color:var(--muted);line-height:1.7}
+        code{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#a5d6ff}
+        .section-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+        .section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+        .section-intro{max-width:640px;margin:0 auto .5rem;text-align:center}
+        .section-intro h2{color:var(--text)}
+        .section-intro p{font-size:.8rem}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:var(--btn-h);padding:0 1.4rem;border-radius:var(--btn-r);font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .2s;border:none;text-decoration:none;white-space:nowrap}
+        .btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;box-shadow:0 4px 14px rgba(75,139,190,.35)}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(75,139,190,.45)}
+        .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+        .btn-outline:hover{border-color:var(--blue);background:rgba(75,139,190,.08)}
+        @media(max-width:480px){.btn{width:100%}}
+        .hero{padding:5rem 0 3rem;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(75,139,190,.18) 0%,transparent 70%)}
+        .hero-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:40px;padding:.3rem .9rem;font-size:.68rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.2rem;background:var(--card)}
+        .live-dot{width:7px;height:7px;background:var(--blue-lt);border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+        .hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);margin-bottom:.8rem}
+        .hero p.lead{font-size:.88rem;color:var(--muted);max-width:560px;margin-bottom:1.6rem;line-height:1.75}
+        .hero-btns{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.25rem;display:flex;flex-direction:column;gap:.55rem;transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;color:inherit;min-height:140px}
+        .card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(75,139,190,.16)}
+        .card-icon{font-size:1.5rem;line-height:1}
+        .card h3,.card h4{font-size:.82rem;color:var(--text)}
+        .card p{font-size:.74rem;margin:0}
+        .card-grid{display:flex;flex-direction:column;gap:var(--gap)}
+        .badge{display:inline-block;padding:.12rem .55rem;border-radius:20px;font-size:.6rem;font-weight:700}
+        .badge-beg{background:rgba(16,185,129,.15);color:#10b981}
+        .badge-int{background:rgba(245,158,11,.15);color:#f59e0b}
+        .tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.3rem}
+        .tag{font-size:.6rem;background:rgba(75,139,190,.1);border:1px solid rgba(75,139,190,.2);border-radius:20px;padding:.1rem .45rem;color:var(--blue-lt)}
+        .explain-block{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.3rem;margin-bottom:1.4rem}
+        .explain-block h3{font-size:.9rem;color:var(--gold);margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+        .explain-block p{font-size:.78rem;margin-bottom:.8rem}
+        .code-snippet{background:var(--code-bg);border-radius:6px;border-left:3px solid var(--blue);padding:.9rem 1rem;overflow-x:auto;margin-bottom:.7rem;position:relative}
+        .code-snippet pre{font-family:'JetBrains Mono',monospace;font-size:.73rem;line-height:1.65;color:var(--text);margin:0;white-space:pre-wrap;word-break:break-word}
+        .code-snippet .kw{color:#ff7b72;font-weight:600}
+        .code-snippet .fn{color:#d2a8ff}
+        .code-snippet .st{color:#a5d6ff}
+        .code-snippet .cl{color:#FFD966;font-weight:600}
+        .code-snippet .cmt{color:#546e7a;font-style:italic}
+        .code-snippet .num{color:#f78c6c}
+        .insight{background:rgba(75,139,190,.08);border:1px solid rgba(75,139,190,.25);border-radius:6px;padding:.6rem .9rem;font-size:.75rem;color:var(--blue-lt)}
+        .note-new{font-size:.74rem;color:var(--teal);font-style:italic;margin-top:.4rem}
+        .line-explain{display:grid;grid-template-columns:1fr;gap:.6rem;margin-top:.8rem;background:rgba(75,139,190,.04);border:1px dashed rgba(75,139,190,.3);border-radius:8px;padding:.9rem}
+        .line-explain .line-explain-title{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:.2rem}
+        .line-explain ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.35rem}
+        .line-explain li{display:flex;gap:.6rem;font-size:.75rem;color:var(--muted);line-height:1.55;align-items:flex-start}
+        .line-explain li .ln{flex-shrink:0;min-width:1.6rem;height:1.6rem;border-radius:6px;background:rgba(75,139,190,.15);border:1px solid rgba(75,139,190,.3);color:var(--blue-lt);font-family:'JetBrains Mono',monospace;font-size:.68rem;display:flex;align-items:center;justify-content:center;font-weight:700}
+        .line-explain li code{color:#a5d6ff;background:rgba(165,214,255,.08);padding:0 .25rem;border-radius:3px}
+        .output-expected{background:#0a1a24;border:1px solid var(--border);border-radius:6px;padding:.7rem .9rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#4ade80;margin-top:.6rem;white-space:pre-wrap;line-height:1.55}
+        .output-expected .out-label{display:block;color:var(--muted);font-family:'Syne',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+        .code-container{position:relative;margin:1rem 0}
+        .code-header{background:#0a1a24;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);border-radius:var(--card-r) var(--card-r) 0 0;font-size:.72rem;flex-wrap:wrap;gap:.5rem}
+        .code-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+        .code-btn{padding:.35rem .8rem;font-size:.7rem;font-weight:600;border-radius:6px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem;font-family:'Syne',sans-serif;border:none;min-height:34px}
+        .copy-btn{background:rgba(75,139,190,.15);color:var(--blue-lt);border:1px solid rgba(75,139,190,.3)}
+        .copy-btn:hover{background:rgba(75,139,190,.25)}
+        .run-btn{background:var(--green);color:#000;border:none;font-weight:700}
+        .run-btn:hover{background:#34d399;transform:translateY(-1px)}
+        .run-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+        .output-panel{background:#0a1a24;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--card-r) var(--card-r);padding:1rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#4ade80;max-height:300px;overflow-y:auto;display:none;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+        .output-panel.error{color:#f87171}
+        .output-panel.loading{color:var(--blue-lt)}
+        .output-panel.file-warning{color:var(--amber);border-left:3px solid var(--amber);padding-left:1rem}
+        .code-container .code-snippet{border-radius:0;border-left:none;margin-bottom:0;padding:1rem}
+        .code-container .code-body{padding:1rem;border-radius:0}
+        .info-box{background:rgba(75,139,190,.06);border:1px solid rgba(75,139,190,.22);border-radius:var(--card-r);padding:1.1rem 1.3rem}
+        .info-box h4{font-size:.8rem;color:var(--blue-lt);display:flex;align-items:center;gap:.4rem;margin-bottom:.4rem}
+        .info-box p{font-size:.76rem}
+        .ad-slot{text-align:center;padding:.8rem 0;background:var(--bg)}
+        .subscribe-box{background:linear-gradient(135deg,#1a2a3a,#0f1c2f);border:1px solid var(--border);border-radius:var(--card-r);padding:2rem 1.5rem;text-align:center}
+        .subscribe-box h3{font-size:.95rem;color:var(--text);margin-bottom:.3rem}
+        .sub-form{display:flex;flex-direction:column;gap:.7rem;max-width:340px;margin:1.2rem auto 0}
+        .sub-form input{height:var(--btn-h);padding:0 .9rem;background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);color:#fff;font-size:.8rem;width:100%;transition:border-color .2s}
+        .sub-form input:focus{border-color:var(--blue);outline:none}
+        .sub-form button{height:var(--btn-h);background:var(--blue);border:none;border-radius:var(--btn-r);color:#fff;font-weight:700;font-size:.8rem;cursor:pointer;transition:.2s}
+        .sub-form button:hover{background:var(--blue-deep)}
+        .sub-message{margin-top:.8rem;font-size:.78rem;display:none}
+        .sub-message.success{color:var(--green);display:block}
+        .sub-message.error{color:var(--red);display:block}
+        .share-box{text-align:center}
+        .share-row{display:flex;flex-direction:row;flex-wrap:wrap;gap:.6rem;margin-top:1rem;justify-content:center}
+        .share-btn{height:var(--btn-h);display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border:1px solid var(--border);border-radius:var(--btn-r);font-size:.74rem;color:var(--muted);text-decoration:none;transition:.2s;font-weight:600;background:var(--card);cursor:pointer;padding:0 1rem}
+        .share-btn:hover{border-color:var(--blue);color:var(--text);background:rgba(75,139,190,.1)}
+        .floating-share{position:fixed;right:20px;bottom:80px;display:flex;flex-direction:column;gap:10px;z-index:900}
+        .floating-share .fs-btn{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:1.1rem;transition:.2s;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.5);position:relative}
+        .floating-share .fs-btn:hover{border-color:var(--blue);color:var(--blue-lt);transform:scale(1.08)}
+        .floating-share .fs-btn .tooltip{position:absolute;right:56px;background:var(--panel);color:var(--text);padding:4px 12px;border-radius:6px;font-size:.65rem;font-weight:600;border:1px solid var(--border);opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}
+        .floating-share .fs-btn:hover .tooltip{opacity:1}
+        .back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;transition:.2s;opacity:0;visibility:hidden;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+        .back-top.visible{opacity:1;visibility:visible}
+        .back-top:hover{border-color:var(--blue);color:var(--blue-lt);transform:translateY(-2px)}
+        .comment-form{display:flex;flex-direction:column;gap:.7rem}
+        .comment-form input,.comment-form textarea{background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);color:#fff;font-size:.8rem;padding:.7rem .9rem;width:100%;transition:border-color .2s}
+        .comment-form input{height:var(--btn-h)}
+        .comment-form textarea{min-height:80px;resize:vertical}
+        .comment-form input:focus,.comment-form textarea:focus{border-color:var(--blue);outline:none}
+        .comment-form button{height:var(--btn-h);background:var(--blue);border:none;border-radius:var(--btn-r);color:#fff;font-weight:700;font-size:.78rem;cursor:pointer;transition:.2s}
+        .comment-form button:hover{background:var(--blue-deep)}
+        .empty-state{text-align:center;padding:2.5rem;background:var(--card);border-radius:var(--card-r);border:1px solid var(--border)}
+        .empty-state i{font-size:2rem;color:var(--muted);display:block;margin-bottom:.6rem}
+        .empty-state p{font-size:.78rem}
+        .page-footer{padding:3rem 0 1.5rem;background:#1a2535;border-top:1px solid var(--border)}
+        .footer-grid{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:1.5rem}
+        .footer-col h5{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem}
+        .footer-col ul{list-style:none}
+        .footer-col li{margin-bottom:.4rem}
+        .footer-col a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.74rem;transition:color .2s}
+        .footer-col a:hover{color:#fff}
+        .copyright{border-top:1px solid var(--border);padding-top:1.2rem;text-align:center;font-size:.72rem;color:var(--muted)}
+        .copyright a{color:rgba(255,255,255,.5);text-decoration:none}
+        ::-webkit-scrollbar{width:5px;height:5px}
+        ::-webkit-scrollbar-track{background:var(--border)}
+        ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+        /* ===== FAQ — thicker, tappable, accessible ===== */
+        .faq-list{display:flex;flex-direction:column;gap:.7rem}
+        .faq-item{
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:var(--card-r);
+            overflow:hidden;
+            transition:border-color .2s, box-shadow .2s, background .2s;
+        }
+        .faq-item:hover{
+            border-color:var(--blue);
+            box-shadow:0 4px 16px rgba(75,139,190,.12);
+        }
+        .faq-item.open{
+            border-color:var(--blue);
+            background:rgba(75,139,190,.03);
+        }
+        .faq-q{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:1.15rem 1.25rem;
+            cursor:pointer;
+            gap:1rem;
+            min-height:64px;
+            background:transparent;
+            border:none;
+            width:100%;
+            font-family:inherit;
+            text-align:left;
+            color:var(--text);
+            font-weight:600;
+            font-size:.85rem;
+            line-height:1.45;
+            transition:background .2s;
+        }
+        .faq-q:hover{background:rgba(75,139,190,.06);}
+        .faq-q:focus-visible{outline:2px solid var(--blue);outline-offset:-2px;}
+        .faq-item.open .faq-q{background:rgba(75,139,190,.08);}
+        .faq-q h3{
+            font-size:.88rem;
+            font-weight:700;
+            color:var(--text);
+            flex:1;
+            margin:0;
+            line-height:1.45;
+        }
+        .faq-toggle{
+            font-size:1.15rem;
+            font-weight:700;
+            color:var(--blue-lt);
+            width:34px;
+            height:34px;
+            border-radius:50%;
+            background:rgba(75,139,190,.15);
+            border:1px solid rgba(75,139,190,.35);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-shrink:0;
+            transition:transform .25s, background .2s, border-color .2s, color .2s;
+            line-height:1;
+        }
+        .faq-q:hover .faq-toggle{background:rgba(75,139,190,.28);border-color:var(--blue);}
+        .faq-item.open .faq-toggle{transform:rotate(45deg);background:var(--blue);color:#fff;border-color:var(--blue);}
+        .faq-a{
+            max-height:0;
+            overflow:hidden;
+            transition:max-height .3s ease, padding .3s ease;
+        }
+        .faq-a.open{max-height:420px;padding:0 1.25rem 1.25rem;}
+        .faq-a p{font-size:.82rem;line-height:1.75;color:var(--muted);}
+
+        .floating-toc{position:fixed;right:80px;bottom:80px;width:280px;max-height:60vh;background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);box-shadow:0 8px 32px rgba(0,0,0,.7);z-index:950;overflow:hidden;display:none;flex-direction:column;transition:opacity .25s ease,transform .25s ease;opacity:0;transform:translateY(12px)}
+        .floating-toc.open{display:flex;opacity:1;transform:translateY(0)}
+        .floating-toc .toc-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:rgba(75,139,190,.08);border-bottom:1px solid var(--border);font-weight:700;font-size:.8rem;color:var(--text)}
+        .floating-toc .toc-header button{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.2rem .4rem}
+        .floating-toc .toc-body{overflow-y:auto;padding:.5rem 0;flex:1}
+        .floating-toc .toc-body a{display:block;padding:.4rem 1rem;font-size:.7rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:background .15s,border-color .15s,color .15s}
+        .floating-toc .toc-body a:hover{background:rgba(75,139,190,.08);border-color:var(--blue);color:var(--text)}
+        .floating-toc .toc-body a.toc-highlight{border-color:var(--gold);color:var(--gold);background:rgba(255,217,102,.05)}
+        .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.2rem}
+        .toc-grid a{display:flex;align-items:center;justify-content:center;text-align:center;padding:.7rem .8rem;background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:border-color .2s,color .2s,background .2s,transform .15s;min-height:48px;width:100%;line-height:1.4;word-break:break-word}
+        .toc-grid a:hover{border-color:var(--blue);color:var(--text);background:rgba(75,139,190,.08);transform:translateY(-2px)}
+
+        details.practice-details{margin-top:.6rem;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:.7rem .9rem;transition:border-color .2s}
+        details.practice-details:hover{border-color:rgba(16,185,129,.5)}
+        details.practice-details summary{cursor:pointer;font-size:.78rem;font-weight:700;color:var(--green);list-style:none;display:flex;align-items:center;gap:.4rem;min-height:28px}
+        details.practice-details summary::-webkit-details-marker{display:none}
+        details.practice-details summary::after{content:"▸";margin-left:auto;transition:transform .2s;color:var(--green)}
+        details.practice-details[open] summary::after{transform:rotate(90deg)}
+        details.practice-details p, details.practice-details div{font-size:.76rem;margin-top:.5rem;line-height:1.8;color:var(--muted)}
+
+        @media(max-width:480px){
+            .page-col{padding:0 .8rem}
+            section{padding:2rem 0}
+            .hero{padding:3.5rem 0 2rem}
+            .hero h1{font-size:1.3rem}
+            .floating-share{right:10px;bottom:70px;gap:8px}
+            .floating-share .fs-btn{width:40px;height:40px;font-size:.9rem}
+            .floating-share .fs-btn .tooltip{display:none}
+            .back-top{width:36px;height:36px;right:10px;bottom:10px;font-size:.9rem}
+            .share-row{flex-direction:column;align-items:center}
+            .share-btn{width:100%;max-width:240px}
+            .toc-grid{grid-template-columns:1fr 1fr;gap:.4rem}
+            .toc-grid a{font-size:.65rem;padding:.6rem .5rem;min-height:40px}
+            .faq-q{padding:1rem;min-height:56px;font-size:.8rem;gap:.7rem;}
+            .faq-q h3{font-size:.82rem;}
+            .faq-toggle{width:30px;height:30px;font-size:1rem;}
+            .faq-a.open{padding:0 1rem 1rem;}
+            .faq-a p{font-size:.78rem;}
+        }
+        @media(max-width:768px){.floating-toc{right:10px;bottom:130px;width:220px;max-height:50vh}}
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#type-system">Type System</a></li>
+                <li><a href="#numeric-types">Numbers</a></li>
+                <li><a href="#text-type">Strings</a></li>
+                <li><a href="#boolean-type">Booleans</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#none-type">None</a></li>
+                <li><a href="#conversion">Conversion</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose" aria-label="Close navigation"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><button data-href="#type-system"><i class="fas fa-cube"></i> Type System</button></li>
+                <li><button data-href="#numeric-types"><i class="fas fa-hashtag"></i> Numbers</button></li>
+                <li><button data-href="#text-type"><i class="fas fa-font"></i> Strings</button></li>
+                <li><button data-href="#boolean-type"><i class="fas fa-check-circle"></i> Booleans</button></li>
+                <li><button data-href="#collections"><i class="fas fa-layer-group"></i> Collections</button></li>
+                <li><button data-href="#none-type"><i class="fas fa-ban"></i> None</button></li>
+                <li><button data-href="#conversion"><i class="fas fa-exchange-alt"></i> Conversion</button></li>
+                <li><button data-href="#mutable-immutable"><i class="fas fa-lock"></i> Mutable vs Immutable</button></li>
+                <li><button data-href="#practice"><i class="fas fa-dumbbell"></i> Practice</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question-circle"></i> FAQ</button></li>
+                <li><button data-href="#cheat-table"><i class="fas fa-table"></i> Cheat Table</button></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header">
+            <span>📚 Jump to</span>
+            <button id="tocCloseBtn" aria-label="Close table of contents"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="toc-body" id="tocBody">
+            <a href="#type-system">🧬 What Is a Type?</a>
+            <a href="#numeric-types">🔢 int, float, complex</a>
+            <a href="#text-type">📝 str</a>
+            <a href="#boolean-type">✅ bool</a>
+            <a href="#collections">📦 list, tuple, dict, set</a>
+            <a href="#none-type">🚫 NoneType</a>
+            <a href="#conversion">🔁 Type Conversion</a>
+            <a href="#mutable-immutable">🔒 Mutable vs Immutable</a>
+            <a href="#practice">🏋️ Practice</a>
+            <a href="#faq">❓ FAQ</a>
+            <a href="#cheat-table">📋 Quick-Reference Table</a>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents" aria-expanded="false">
+            <i class="fas fa-list-ul"></i>
+            <span class="tooltip">Table of Contents</span>
+        </button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <main id="main-content" style="padding-top:56px;">
+
+        <!-- HERO -->
+        <section class="hero" aria-label="Hero — Python Data Types">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python 3.12+ · Updated November 2026 · Every program explained line by line</div>
+                <h1>Python Data Types<br><span style="color:var(--blue-lt)">Every type, every line explained</span></h1>
+                <p class="lead">A complete, runnable reference for Python's built-in data types. Every code block includes a numbered line-by-line breakdown so nothing feels like magic — and a Run button so you can test everything instantly in your browser. Includes three practice exercises and a full quick-reference table.</p>
+                <div class="hero-btns">
+                    <a href="#type-system" class="btn btn-primary"><i class="fas fa-cube"></i> Start with the type system</a>
+                    <a href="index.html" class="btn btn-outline"><i class="fas fa-home"></i> Back to curriculum home</a>
+                </div>
+                <div class="code-snippet" style="margin-top:1.5rem;">
+                    <pre><span class="cmt"># A first look at Python's built-in types</span>
+age: <span class="cl">int</span> = <span class="num">25</span>
+height: <span class="cl">float</span> = <span class="num">1.75</span>
+name: <span class="cl">str</span> = <span class="st">"Ana"</span>
+is_student: <span class="cl">bool</span> = <span class="kw">True</span>
+hobbies: <span class="cl">list</span> = [<span class="st">"reading"</span>, <span class="st">"coding"</span>]
+coordinates: <span class="cl">tuple</span> = (<span class="num">40.71</span>, <span class="num">-74.01</span>)
+scores: <span class="cl">dict</span> = {<span class="st">"math"</span>: <span class="num">95</span>, <span class="st">"science"</span>: <span class="num">88</span>}
+unique_tags: <span class="cl">set</span> = {<span class="st">"python"</span>, <span class="st">"tutorial"</span>}
+nothing_here: <span class="cl">NoneType</span> = <span class="kw">None</span>
+
+<span class="kw">for</span> value <span class="kw">in</span> (age, height, name, is_student, hobbies, coordinates, scores, unique_tags, nothing_here):
+    <span class="fn">print</span>(<span class="st">f"{value!r:&gt;24}  →  {type(value).__name__}"</span>)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST / METADATA BAR -->
+        <div class="page-col" style="padding:.8rem 1.25rem 0;">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.4rem;
+                        padding:.7rem .95rem;background:rgba(75,139,190,.06);
+                        border:1px solid rgba(75,139,190,.2);border-radius:8px;
+                        font-size:.68rem;color:var(--muted);">
+                <span><i class="fas fa-user-check" style="color:var(--green);"></i> Written &amp; reviewed by <strong style="color:var(--text);">Glenn Junsay Pansensoy</strong></span>
+                <span><i class="fas fa-calendar-check" style="color:var(--blue-lt);"></i> Last reviewed: <strong style="color:var(--text);">November 2026</strong></span>
+                <span><i class="fas fa-code-branch" style="color:var(--gold);"></i> Python 3.12+</span>
+                <span><i class="fas fa-clock" style="color:var(--teal);"></i> ~30 min read</span>
+            </div>
+        </div>
+
+        <!-- TOC -->
+        <section id="toc" aria-labelledby="toc-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="toc-heading">📚 What This Lesson Covers</h2>
+                    <p>Eleven sections, each with runnable code and a numbered explanation of every line</p>
+                </div>
+                <div class="toc-grid">
+                    <a href="#type-system">🧬 What Is a Type?</a>
+                    <a href="#numeric-types">🔢 Numeric Types</a>
+                    <a href="#text-type">📝 Text — str</a>
+                    <a href="#boolean-type">✅ Boolean — bool</a>
+                    <a href="#collections">📦 Collections</a>
+                    <a href="#none-type">🚫 NoneType</a>
+                    <a href="#conversion">🔁 Type Conversion</a>
+                    <a href="#mutable-immutable">🔒 Mutable vs Immutable</a>
+                    <a href="#practice">🏋️ Practice Exercises</a>
+                    <a href="#faq">❓ FAQ</a>
+                    <a href="#cheat-table">📋 Cheat Table</a>
+                    <a href="index.html">🏠 Curriculum Home</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. TYPE SYSTEM -->
+        <section id="type-system" aria-labelledby="type-system-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="type-system-heading">🧬 What Is a Type, Really?</h2>
+                    <p>Every value in Python has a type that determines what it can do</p>
+                </div>
+
+                <p style="margin-bottom:1rem;">A <strong style="color:var(--text)">type</strong> is the blueprint for a value. It answers three questions: what data does this value hold, what operations can I perform on it, and how much memory does it need? In Python you almost never declare a type explicitly — the interpreter infers it from the value you assign. But knowing exactly which type you're working with is what separates guessing from debugging.</p>
+
+                <div class="explain-block">
+                    <h3>🔍 Checking Any Value's Type</h3>
+                    <p>Use <code>type()</code> to get the exact type object, and <code>isinstance()</code> to test membership in a type hierarchy. The latter is safer when subclasses are involved.</p>
+                    <div class="code-snippet"><pre>values = [<span class="num">42</span>, <span class="num">3.14</span>, <span class="st">"hello"</span>, <span class="kw">True</span>, [<span class="num">1</span>, <span class="num">2</span>], (<span class="num">1</span>, <span class="num">2</span>), {<span class="st">"a"</span>: <span class="num">1</span>}, {<span class="num">1</span>, <span class="num">2</span>}, <span class="kw">None</span>]
+
+<span class="kw">for</span> v <span class="kw">in</span> values:
+    <span class="fn">print</span>(<span class="st">f"{str(v):&lt;14} type={type(v).__name__:&lt;10} isinstance(int)? {isinstance(v, int)}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>values = [...]</code> — a single list holding one example of each core built-in type: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>list</code>, <code>tuple</code>, <code>dict</code>, <code>set</code>, and <code>None</code>.</span></li>
+                            <li><span class="ln">2</span><span><code>for v in values:</code> — iterates over each value, binding the loop variable <code>v</code> to the current item. No index needed; Python's <code>for</code> is a for‑each loop.</span></li>
+                            <li><span class="ln">3</span><span><code>print(f"...")</code> — an f-string containing three expressions inside <code>{}</code> braces: <code>str(v)</code> renders the value as readable text, <code>type(v).__name__</code> extracts the type's name as a string (e.g. <code>"int"</code>, <code>"list"</code>), and <code>isinstance(v, int)</code> returns <code>True</code> only for integer values.</span></li>
+                            <li><span class="ln">4</span><span><code>&lt;14</code> and <code>:&lt;10</code> inside the f-string are format specifiers — left-align each field in 14 and 10 characters respectively so the columns line up.</span></li>
+                        </ol>
+                    </div>
+                    <div class="output-expected"><span class="out-label">Expected output</span>42             type=int        isinstance(int)? True
+3.14           type=float      isinstance(int)? False
+hello          type=str        isinstance(int)? False
+True           type=bool       isinstance(int)? True
+[1, 2]         type=list       isinstance(int)? False
+(1, 2)         type=tuple      isinstance(int)? False
+{'a': 1}       type=dict       isinstance(int)? False
+{1, 2}         type=set        isinstance(int)? False
+None           type=NoneType   isinstance(int)? False</div>
+                    <div class="insight">💡 Notice that <code>True</code> reports <code>isinstance(int)? True</code>. In Python, <code>bool</code> is a subclass of <code>int</code> — <code>True == 1</code> and <code>False == 0</code>. That's a deliberate design choice, not a bug.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. NUMERIC TYPES -->
+        <section id="numeric-types" aria-labelledby="numeric-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="numeric-heading">🔢 Numeric Types — int, float, complex</h2>
+                    <p>Whole numbers, decimal numbers, and complex numbers — each with different precision and range</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔢 Integers — Arbitrary Precision</h3>
+                    <p>Python integers have <strong style="color:var(--text)">no fixed size</strong>. They grow as large as your memory allows — no overflow, no wrapping. You can write them in decimal, binary, octal, or hexadecimal.</p>
+                    <div class="code-snippet"><pre>a = <span class="num">42</span>
+b = <span class="num">1_000_000</span>
+c = <span class="num">0b101010</span>
+d = <span class="num">0o52</span>
+e = <span class="num">0x2A</span>
+
+<span class="fn">print</span>(<span class="st">f"a={a}  b={b}  c={c}  d={d}  e={e}"</span>)
+<span class="fn">print</span>(<span class="st">f"Same value? {a == c == d == e}"</span>)
+
+big = <span class="num">2</span> ** <span class="num">1000</span>
+<span class="fn">print</span>(<span class="st">f"2^1000 has {len(str(big))} digits"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>a = 42</code> — a decimal integer literal. The variable <code>a</code> is bound to the <code>int</code> object representing forty-two.</span></li>
+                            <li><span class="ln">2</span><span><code>b = 1_000_000</code> — underscores are visual separators only. The value is exactly one million; Python ignores the underscores.</span></li>
+                            <li><span class="ln">3</span><span><code>c = 0b101010</code> — a binary literal. <code>0b</code> prefix means base 2. <code>101010₂ = 42₁₀</code>.</span></li>
+                            <li><span class="ln">4</span><span><code>d = 0o52</code> — an octal literal. <code>0o</code> prefix means base 8. <code>52₈ = 42₁₀</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>e = 0x2A</code> — a hexadecimal literal. <code>0x</code> prefix means base 16. <code>2A₁₆ = 42₁₀</code>.</span></li>
+                            <li><span class="ln">6</span><span><code>print(...)</code> prints all five values; each prints as <code>42</code> because Python normalises numeric literals to their numeric value regardless of how they were written.</span></li>
+                            <li><span class="ln">7</span><span><code>a == c == d == e</code> — a chained comparison. Python evaluates this as <code>a == c and c == d and d == e</code>, which is <code>True</code> because all four names refer to the same numeric value.</span></li>
+                            <li><span class="ln">8</span><span><code>big = 2 ** 1000</code> — exponentiation operator <code>**</code>. Computes 2 to the 1000th power — an enormous integer with over 300 digits. Python handles it without overflow.</span></li>
+                            <li><span class="ln">9</span><span><code>len(str(big))</code> converts the huge integer to its string representation, then counts the characters — revealing how many digits it has. The result: 302 digits.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Because <code>int</code> is arbitrary‑precision, <code>2 ** 1000</code> is computed exactly. In most other languages, this would overflow a fixed 64‑bit register.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔣 Floating-Point Numbers — Approximate, Not Exact</h3>
+                    <p>A <code>float</code> is a 64‑bit IEEE‑754 double-precision number. It can represent very large and very small numbers — but not every decimal fraction exactly. <strong style="color:var(--amber)">0.1 + 0.2 is not exactly 0.3</strong>. That's a property of the binary representation, not a Python bug.</p>
+                    <div class="code-snippet"><pre>price = <span class="num">19.99</span>
+tax_rate = <span class="num">0.08</span>
+total = price * (<span class="num">1</span> + tax_rate)
+
+<span class="fn">print</span>(<span class="st">f"Total: {total}"</span>)
+<span class="fn">print</span>(<span class="st">f"Rounded: {round(total, 2)}"</span>)
+<span class="fn">print</span>(<span class="st">f"0.1 + 0.2 = {0.1 + 0.2}"</span>)
+<span class="fn">print</span>(<span class="st">f"Equal to 0.3? {0.1 + 0.2 == 0.3}"</span>)
+
+<span class="kw">import</span> math
+<span class="fn">print</span>(<span class="st">f"Approx equal? {math.isclose(0.1 + 0.2, 0.3)}"</span>)
+
+<span class="kw">from</span> decimal <span class="kw">import</span> Decimal
+exact_total = Decimal(<span class="st">"19.99"</span>) * (Decimal(<span class="num">1</span>) + Decimal(<span class="st">"0.08"</span>))
+<span class="fn">print</span>(<span class="st">f"Exact with Decimal: {exact_total}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>price = 19.99</code> — a float literal. Stored in binary as the closest representable double to 19.99.</span></li>
+                            <li><span class="ln">2</span><span><code>tax_rate = 0.08</code> — another float. Like all decimal fractions, 0.08 cannot be represented exactly in binary.</span></li>
+                            <li><span class="ln">3</span><span><code>total = price * (1 + tax_rate)</code> — multiplication and addition. The result carries tiny floating-point error accumulated through both operations.</span></li>
+                            <li><span class="ln">4</span><span>The first <code>print</code> shows the raw float — likely <code>21.5892</code> with a long tail of unexpected digits.</span></li>
+                            <li><span class="ln">5</span><span><code>round(total, 2)</code> rounds to two decimal places. Useful for display, but don't rely on rounding to fix all floating-point issues in financial calculations.</span></li>
+                            <li><span class="ln">6</span><span><code>0.1 + 0.2</code> yields <code>0.30000000000000004</code> — the classic demonstration. Neither 0.1 nor 0.2 is exactly representable in binary.</span></li>
+                            <li><span class="ln">7</span><span><code>0.1 + 0.2 == 0.3</code> returns <code>False</code> because the two values differ by about 5.5e‑17 — small, but not zero.</span></li>
+                            <li><span class="ln">8</span><span><code>math.isclose()</code> is the correct way to compare floats. It checks whether the two numbers are within a small relative tolerance — default <code>1e‑09</code>.</span></li>
+                            <li><span class="ln">9</span><span><code>Decimal("19.99")</code> — the <code>decimal</code> module provides exact decimal arithmetic. Note the strings: <code>Decimal("19.99")</code> is exact, while <code>Decimal(19.99)</code> would inherit the float's imprecision.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 For money, use <code>Decimal</code> or store amounts as integer cents. Never use <code>float</code> for financial calculations you care about.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🌀 Complex Numbers — Real + Imaginary</h3>
+                    <p>Python has built-in support for complex numbers using <code>j</code> as the imaginary unit. Used in signal processing, electrical engineering, and some mathematical computations.</p>
+                    <div class="code-snippet"><pre>z = <span class="num">3</span> + <span class="num">4j</span>
+
+<span class="fn">print</span>(<span class="st">f"z = {z}"</span>)
+<span class="fn">print</span>(<span class="st">f"Real part: {z.real}"</span>)
+<span class="fn">print</span>(<span class="st">f"Imaginary part: {z.imag}"</span>)
+<span class="fn">print</span>(<span class="st">f"Magnitude: {abs(z)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Conjugate: {z.conjugate()}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>z = 3 + 4j</code> — a complex number literal. <code>j</code> is the imaginary unit (√‑1). Python writes it as <code>(3+4j)</code>.</span></li>
+                            <li><span class="ln">2</span><span><code>z.real</code> — the real component, <code>3.0</code> as a float.</span></li>
+                            <li><span class="ln">3</span><span><code>z.imag</code> — the imaginary component, <code>4.0</code>.</span></li>
+                            <li><span class="ln">4</span><span><code>abs(z)</code> — the magnitude (modulus) of the complex number: √(3² + 4²) = 5.0.</span></li>
+                            <li><span class="ln">5</span><span><code>z.conjugate()</code> — the complex conjugate: <code>3 - 4j</code>.</span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. STRINGS -->
+        <section id="text-type" aria-labelledby="text-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="text-heading">📝 Text — the str Type</h2>
+                    <p>Immutable sequences of Unicode characters — Python's most flexible and most used type</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>✍️ Creating and Inspecting Strings</h3>
+                    <p>Strings are created with single quotes, double quotes, or triple quotes (for multi-line). They are <strong style="color:var(--text)">immutable</strong> — every method returns a new string rather than modifying the original.</p>
+                    <div class="code-snippet"><pre>name = <span class="st">"Ana"</span>
+greeting = <span class="st">'Hello'</span>
+paragraph = <span class="st">"""Line one
+Line two"""</span>
+
+<span class="fn">print</span>(<span class="st">f"Length: {len(name)}"</span>)
+<span class="fn">print</span>(<span class="st">f"First char: {name[0]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Last char: {name[-1]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Reversed: {name[::-1]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Uppercase: {name.upper()}"</span>)
+<span class="fn">print</span>(<span class="st">f"Original unchanged: {name}"</span>)
+<span class="fn">print</span>(<span class="st">f"Split: {'Hello World'.split()}"</span>)
+<span class="fn">print</span>(<span class="st">f"Join: {', '.join(['a', 'b', 'c'])}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>name = "Ana"</code> — a string literal. The <code>str</code> object is created and bound to <code>name</code>.</span></li>
+                            <li><span class="ln">2</span><span><code>greeting = 'Hello'</code> — single quotes work exactly the same as double quotes. The choice is style, not substance.</span></li>
+                            <li><span class="ln">3</span><span><code>paragraph = """Line one\nLine two"""</code> — triple-quoted string spans multiple lines. The newline is included in the string.</span></li>
+                            <li><span class="ln">4</span><span><code>len(name)</code> returns 3 — the number of characters in the string.</span></li>
+                            <li><span class="ln">5</span><span><code>name[0]</code> — indexing. Python uses zero‑based indexing, so the first character is at index 0: <code>'A'</code>.</span></li>
+                            <li><span class="ln">6</span><span><code>name[-1]</code> — negative indexing counts from the end. The last character is at index ‑1: <code>'a'</code>.</span></li>
+                            <li><span class="ln">7</span><span><code>name[::-1]</code> — slicing with step ‑1 reverses the string: <code>'anA'</code>.</span></li>
+                            <li><span class="ln">8</span><span><code>name.upper()</code> returns <code>'ANA'</code> — a <em>new</em> string. The original <code>name</code> is untouched.</span></li>
+                            <li><span class="ln">9</span><span>The line <code>Original unchanged: Ana</code> confirms that string methods never mutate in place.</span></li>
+                            <li><span class="ln">10</span><span><code>"Hello World".split()</code> returns <code>['Hello', 'World']</code> — splitting on whitespace by default.</span></li>
+                            <li><span class="ln">11</span><span><code>", ".join(...)</code> joins a list of strings into one string with <code>", "</code> between each element.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Because strings are immutable, <code>s[0] = "B"</code> raises <code>TypeError</code>. To "change" a string, you must create a new one — like <code>s = "B" + s[1:]</code>.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🎨 f-strings — The Modern Way to Format</h3>
+                    <p>Introduced in Python 3.6, f-strings are the recommended way to embed values inside strings. They are evaluated at runtime, support any expression, and offer rich format specifications.</p>
+                    <div class="code-snippet"><pre>name = <span class="st">"Ana"</span>
+score = <span class="num">95.678</span>
+items = <span class="num">1234567</span>
+
+<span class="fn">print</span>(<span class="st">f"Hello, {name}!"</span>)
+<span class="fn">print</span>(<span class="st">f"Score: {score:.1f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Score: {score:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Padded: {name:&gt;8}|"</span>)
+<span class="fn">print</span>(<span class="st">f"Centred: {name:^8}|"</span>)
+<span class="fn">print</span>(<span class="st">f"Percent: {0.856:.1%}"</span>)
+<span class="fn">print</span>(<span class="st">f"Comma: {items:,}"</span>)
+<span class="fn">print</span>(<span class="st">f"Debug: {name=} {score=}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>f"Hello, {name}!"</code> — the <code>f</code> prefix marks an f-string. Anything inside <code>{}</code> is evaluated as a Python expression and inserted.</span></li>
+                            <li><span class="ln">2</span><span><code>{score:.1f}</code> — format spec <code>.1f</code> means "fixed-point, one decimal place". Result: <code>95.7</code>.</span></li>
+                            <li><span class="ln">3</span><span><code>{score:.2f}</code> — two decimal places: <code>95.68</code>.</span></li>
+                            <li><span class="ln">4</span><span><code>{name:&gt;8}</code> — right-aligns within 8 characters. With <code>"Ana"</code>, result is <code>"     Ana"</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>{name:^8}</code> — centres within 8 characters: <code>"  Ana   "</code>.</span></li>
+                            <li><span class="ln">6</span><span><code>{0.856:.1%}</code> — percentage format: <code>85.6%</code>.</span></li>
+                            <li><span class="ln">7</span><span><code>{items:,}</code> — comma as thousands separator: <code>1,234,567</code>.</span></li>
+                            <li><span class="ln">8</span><span><code>{name=}</code> — the <code>=</code> debug syntax (Python 3.8+) prints both the expression and its value: <code>name='Ana' score=95.678</code>.</span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. BOOLEANS -->
+        <section id="boolean-type" aria-labelledby="bool-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="bool-heading">✅ Boolean — True and False</h2>
+                    <p>The smallest type, but behind every comparison, condition, and logical expression</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🧠 Truthiness — What Counts as True?</h3>
+                    <p>Every Python value can be tested in a boolean context. Rather than memorising rules, think about which values are <em>empty</em> or <em>zero</em> — those are falsy. Everything else is truthy.</p>
+                    <div class="code-snippet"><pre>falsy_values = [<span class="kw">False</span>, <span class="kw">None</span>, <span class="num">0</span>, <span class="num">0.0</span>, <span class="st">""</span>, [], (), {}, <span class="kw">set</span>()]
+
+<span class="kw">for</span> v <span class="kw">in</span> falsy_values:
+    <span class="fn">print</span>(<span class="st">f"{v!r:&lt;10} → bool is {bool(v)}"</span>)
+
+truthy_values = [<span class="kw">True</span>, <span class="num">1</span>, <span class="num">-1</span>, <span class="num">3.14</span>, <span class="st">"0"</span>, [<span class="num">0</span>], (<span class="num">0</span>,), {<span class="st">"key"</span>: <span class="kw">None</span>}]
+
+<span class="kw">for</span> v <span class="kw">in</span> truthy_values:
+    <span class="fn">print</span>(<span class="st">f"{v!r:&lt;10} → bool is {bool(v)}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A list of values that Python considers <strong>falsy</strong> — <code>False</code>, <code>None</code>, zero of any numeric type, and any empty container.</span></li>
+                            <li><span class="ln">2–3</span><span>Loops over each falsy candidate and prints its <code>bool()</code> conversion. All print <code>False</code>.</span></li>
+                            <li><span class="ln">5</span><span>A list of values that Python considers <strong>truthy</strong> — even <code>"0"</code> (the non‑empty string) and <code>[0]</code> (a list containing zero).</span></li>
+                            <li><span class="ln">7–8</span><span>Loops and prints — all print <code>True</code>. A container is truthy if it contains <em>anything</em>, regardless of what that thing is.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Don't write <code>if len(my_list) &gt; 0:</code> — write <code>if my_list:</code>. Python's truthiness rules let you test for "non-empty" directly. It's idiomatic, readable, and works for every container type.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>⚡ Short-Circuit Evaluation</h3>
+                    <p>The operators <code>and</code> and <code>or</code> stop evaluating as soon as the outcome is determined. This is not just an optimisation — it's often a deliberate guard against errors.</p>
+                    <div class="code-snippet"><pre>a = <span class="num">0</span>
+b = <span class="num">5</span>
+
+<span class="fn">print</span>(a <span class="kw">and</span> b)
+<span class="fn">print</span>(a <span class="kw">or</span> b)
+<span class="fn">print</span>(<span class="kw">not</span> a)
+
+name = <span class="st">""</span>
+display = name <span class="kw">or</span> <span class="st">"Anonymous"</span>
+<span class="fn">print</span>(display)
+
+safe = b != <span class="num">0</span> <span class="kw">and</span> (<span class="num">100</span> / b)
+<span class="fn">print</span>(safe)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–2</span><span>Two integers: <code>a = 0</code> (falsy) and <code>b = 5</code> (truthy).</span></li>
+                            <li><span class="ln">4</span><span><code>a and b</code> — since <code>a</code> is falsy, <code>and</code> short‑circuits and returns <code>a</code> itself: <code>0</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>a or b</code> — since <code>a</code> is falsy, <code>or</code> returns <code>b</code>: <code>5</code>.</span></li>
+                            <li><span class="ln">6</span><span><code>not a</code> — <code>a</code> is <code>0</code>, so <code>not a</code> is <code>True</code>.</span></li>
+                            <li><span class="ln">8–9</span><span><code>name or "Anonymous"</code> — a standard Python idiom for supplying a default when a value is falsy. Since <code>name</code> is <code>""</code>, the result is <code>"Anonymous"</code>.</span></li>
+                            <li><span class="ln">11–12</span><span><code>b != 0 and (100 / b)</code> — if <code>b</code> were zero, <code>and</code> would short‑circuit and the division would never run. This pattern prevents <code>ZeroDivisionError</code>.</span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. COLLECTIONS -->
+        <section id="collections" aria-labelledby="collections-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="collections-heading">📦 Collection Types — list, tuple, dict, set</h2>
+                    <p>Four data structures for organising many values — each with different trade‑offs</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>📋 list — Ordered, Mutable, Allows Duplicates</h3>
+                    <div class="code-snippet"><pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+
+fruits.append(<span class="st">"date"</span>)
+fruits.insert(<span class="num">1</span>, <span class="st">"blueberry"</span>)
+fruits.remove(<span class="st">"banana"</span>)
+popped = fruits.pop()
+
+<span class="fn">print</span>(<span class="st">f"Final list: {fruits}"</span>)
+<span class="fn">print</span>(<span class="st">f"Popped: {popped}"</span>)
+<span class="fn">print</span>(<span class="st">f"First two: {fruits[:2]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Squares: {[x**2 for x in range(1, 6)]}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A list literal with three strings. Lists preserve insertion order and allow duplicate values.</span></li>
+                            <li><span class="ln">3</span><span><code>.append("date")</code> adds one element to the end — O(1) amortised.</span></li>
+                            <li><span class="ln">4</span><span><code>.insert(1, "blueberry")</code> inserts at index 1, shifting everything right — O(n).</span></li>
+                            <li><span class="ln">5</span><span><code>.remove("banana")</code> removes the first occurrence of that value.</span></li>
+                            <li><span class="ln">6</span><span><code>.pop()</code> removes and returns the last element — <code>"date"</code>.</span></li>
+                            <li><span class="ln">8–9</span><span>Prints the final list and the popped value.</span></li>
+                            <li><span class="ln">10</span><span><code>fruits[:2]</code> — slicing from start to (but not including) index 2.</span></li>
+                            <li><span class="ln">11</span><span>A list comprehension: <code>[x**2 for x in range(1, 6)]</code> creates <code>[1, 4, 9, 16, 25]</code>.</span></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🎯 tuple — Ordered, Immutable</h3>
+                    <div class="code-snippet"><pre>point = (<span class="num">3</span>, <span class="num">7</span>)
+rgb = (<span class="num">255</span>, <span class="num">128</span>, <span class="num">0</span>)
+
+x, y = point
+<span class="fn">print</span>(<span class="st">f"x={x}, y={y}"</span>)
+
+first, *middle, last = rgb
+<span class="fn">print</span>(<span class="st">f"first={first} middle={middle} last={last}"</span>)
+
+single = (<span class="num">42</span>,)
+<span class="fn">print</span>(<span class="st">f"Type: {type(single).__name__}, length: {len(single)}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>point = (3, 7)</code> — a tuple literal. Once created, its elements cannot be changed.</span></li>
+                            <li><span class="ln">2</span><span><code>rgb = (255, 128, 0)</code> — a three‑element tuple. Order is significant.</span></li>
+                            <li><span class="ln">4</span><span><code>x, y = point</code> — tuple unpacking. Values are assigned left‑to‑right from the tuple.</span></li>
+                            <li><span class="ln">7</span><span><code>first, *middle, last = rgb</code> — starred unpacking: <code>first = 255</code>, <code>middle = [128]</code>, <code>last = 0</code>.</span></li>
+                            <li><span class="ln">10</span><span><code>single = (42,)</code> — the trailing comma is crucial. Without it, <code>(42)</code> is just the integer 42, not a tuple.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Tuples are faster and lighter than lists. Use them for fixed collections like coordinates, RGB values, or database records — and when you need a hashable sequence for a dictionary key.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>📖 dict — Key-Value Pairs, O(1) Lookup</h3>
+                    <div class="code-snippet"><pre>student = {<span class="st">"name"</span>: <span class="st">"Ana"</span>, <span class="st">"age"</span>: <span class="num">25</span>, <span class="st">"scores"</span>: [<span class="num">95</span>, <span class="num">88</span>]}
+
+student[<span class="st">"grade"</span>] = <span class="st">"A"</span>
+<span class="fn">print</span>(student.get(<span class="st">"email"</span>, <span class="st">"not provided"</span>))
+
+<span class="kw">for</span> key, value <span class="kw">in</span> student.items():
+    <span class="fn">print</span>(<span class="st">f"{key}: {value}"</span>)
+
+keys = list(student.keys())
+values = list(student.values())
+<span class="fn">print</span>(<span class="st">f"Keys: {keys}"</span>)
+<span class="fn">print</span>(<span class="st">f"Values: {values}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A dict literal with three key‑value pairs. Keys must be hashable — strings, numbers, or tuples.</span></li>
+                            <li><span class="ln">3</span><span><code>student["grade"] = "A"</code> — assigns a new key‑value pair. If the key existed, it would be overwritten.</span></li>
+                            <li><span class="ln">4</span><span><code>.get("email", "not provided")</code> — returns <code>"not provided"</code> instead of raising <code>KeyError</code>. The second argument is the default.</span></li>
+                            <li><span class="ln">6–7</span><span><code>.items()</code> returns <code>(key, value)</code> tuples, unpacked into <code>key</code> and <code>value</code> for each iteration.</span></li>
+                            <li><span class="ln">9–10</span><span><code>.keys()</code> and <code>.values()</code> return view objects; <code>list()</code> materialises them into lists.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Never write <code>if "key" in d: v = d["key"]</code> when you can write <code>v = d.get("key", default)</code>. The second version is shorter, safer, and does a single lookup.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔵 set — Unordered, Unique</h3>
+                    <div class="code-snippet"><pre>a = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>}
+b = {<span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>}
+
+<span class="fn">print</span>(<span class="st">f"Union: {a | b}"</span>)
+<span class="fn">print</span>(<span class="st">f"Intersection: {a &amp; b}"</span>)
+<span class="fn">print</span>(<span class="st">f"Difference: {a - b}"</span>)
+<span class="fn">print</span>(<span class="st">f"Symmetric difference: {a ^ b}"</span>)
+<span class="fn">print</span>(<span class="st">f"Is 3 in a? {3 in a}"</span>)
+<span class="fn">print</span>(<span class="st">f"Deduplicated: {set([1, 2, 2, 3, 3, 3])}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–2</span><span>Two sets. Order is not guaranteed and duplicates are automatically removed.</span></li>
+                            <li><span class="ln">4</span><span><code>a | b</code> — union: all elements from either set. Result: <code>{1, 2, 3, 4, 5, 6}</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>a &amp; b</code> — intersection: elements present in both. Result: <code>{3, 4}</code>.</span></li>
+                            <li><span class="ln">6</span><span><code>a - b</code> — difference: elements in <code>a</code> but not <code>b</code>. Result: <code>{1, 2}</code>.</span></li>
+                            <li><span class="ln">7</span><span><code>a ^ b</code> — symmetric difference: elements in either set but not both. Result: <code>{1, 2, 5, 6}</code>.</span></li>
+                            <li><span class="ln">8</span><span><code>3 in a</code> — membership test. O(1) time regardless of set size.</span></li>
+                            <li><span class="ln">9</span><span><code>set([1, 2, 2, 3, 3, 3])</code> removes duplicates. The result is <code>{1, 2, 3}</code>.</span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. NONE -->
+        <section id="none-type" aria-labelledby="none-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="none-heading">🚫 None — The Absence of a Value</h2>
+                    <p>NoneType has exactly one value: <code>None</code>. It is not zero, not an empty string, not <code>False</code> — it's the absence of a value.</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🚫 <code>None</code> and <code>is None</code></h3>
+                    <div class="code-snippet"><pre>result = <span class="kw">None</span>
+
+<span class="kw">def</span> <span class="fn">find_user</span>(user_id):
+    users = {<span class="num">1</span>: <span class="st">"Ana"</span>, <span class="num">2</span>: <span class="st">"Bob"</span>}
+    <span class="kw">return</span> users.get(user_id)
+
+found = find_user(<span class="num">3</span>)
+<span class="fn">print</span>(<span class="st">f"Found: {found}"</span>)
+<span class="fn">print</span>(<span class="st">f"Is it None? {found is None}"</span>)
+<span class="fn">print</span>(<span class="st">f"Type: {type(None).__name__}"</span>)
+<span class="fn">print</span>(<span class="st">f"Bool of None: {bool(None)}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>result = None</code> — <code>None</code> is a keyword-like literal. <code>NoneType</code> is a singleton: only one <code>None</code> object exists.</span></li>
+                            <li><span class="ln">3–5</span><span><code>find_user</code> returns <code>users.get(user_id)</code>. Since key 3 doesn't exist, <code>.get()</code> returns <code>None</code>.</span></li>
+                            <li><span class="ln">7</span><span><code>found</code> receives <code>None</code>.</span></li>
+                            <li><span class="ln">8</span><span><code>found is None</code> — the recommended way to compare to <code>None</code>. Use <code>is</code>, not <code>==</code>; it's faster and not overridable.</span></li>
+                            <li><span class="ln">9</span><span><code>type(None).__name__</code> reports <code>"NoneType"</code>.</span></li>
+                            <li><span class="ln">10</span><span><code>bool(None)</code> is <code>False</code> — <code>None</code> is falsy in conditional contexts.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Use <code>x is None</code>, never <code>x == None</code>. Use <code>if x is not None:</code> to check for existence — not <code>if x:</code>, which is also <code>False</code> for <code>0</code>, <code>""</code>, and empty containers.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CONVERSION -->
+        <section id="conversion" aria-labelledby="conversion-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="conversion-heading">🔁 Type Conversion — Casting Between Types</h2>
+                    <p>Explicit conversions are almost always safer than implicit ones</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔁 Explicit Casting with int(), float(), str(), list()</h3>
+                    <div class="code-snippet"><pre><span class="fn">print</span>(int(<span class="st">"42"</span>))
+<span class="fn">print</span>(int(<span class="num">3.99</span>))
+<span class="fn">print</span>(float(<span class="num">7</span>))
+<span class="fn">print</span>(str(<span class="num">100</span>))
+<span class="fn">print</span>(list(<span class="st">"abc"</span>))
+<span class="fn">print</span>(tuple([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]))
+<span class="fn">print</span>(set([<span class="num">1</span>, <span class="num">2</span>, <span class="num">2</span>, <span class="num">3</span>]))
+
+<span class="kw">try</span>:
+    int(<span class="st">"hello"</span>)
+<span class="kw">except</span> <span class="cl">ValueError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">f"Cannot convert: {e}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span><code>int("42")</code> parses the string into the integer 42. Leading/trailing whitespace is ignored.</span></li>
+                            <li><span class="ln">2</span><span><code>int(3.99)</code> truncates the decimal portion — result is <code>3</code>, not <code>4</code>. It does not round.</span></li>
+                            <li><span class="ln">3</span><span><code>float(7)</code> converts the integer to <code>7.0</code>.</span></li>
+                            <li><span class="ln">4</span><span><code>str(100)</code> produces <code>"100"</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>list("abc")</code> iterates the string, producing <code>['a', 'b', 'c']</code>.</span></li>
+                            <li><span class="ln">6</span><span><code>tuple([1, 2, 3])</code> converts a list to a tuple.</span></li>
+                            <li><span class="ln">7</span><span><code>set(...)</code> removes duplicates — result is <code>{1, 2, 3}</code>.</span></li>
+                            <li><span class="ln">9–11</span><span><code>int("hello")</code> raises <code>ValueError</code> because the string is not a valid integer literal. Always wrap user input in try/except.</span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. MUTABLE VS IMMUTABLE -->
+        <section id="mutable-immutable" aria-labelledby="mutable-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="mutable-heading">🔒 Mutable vs Immutable — A Distinction That Matters</h2>
+                    <p>Some types can be changed in place; others cannot. This difference drives real bugs when misunderstood</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>⚡ The Assignment Trap</h3>
+                    <p>Assignment in Python binds a name to an object. It does <strong style="color:var(--text)">not</strong> copy the object. For mutable objects like lists, two names can point to the same data.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Immutable — reassignment creates a new object</span>
+a = <span class="num">10</span>
+b = a
+a = <span class="num">20</span>
+<span class="fn">print</span>(<span class="st">f"a={a}, b={b}"</span>)
+
+<span class="cmt"># Mutable — alias shares the same object</span>
+list_a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+list_b = list_a
+list_a.append(<span class="num">4</span>)
+<span class="fn">print</span>(<span class="st">f"list_a={list_a}, list_b={list_b}"</span>)
+
+<span class="cmt"># Safe copy — independent</span>
+list_c = list_a.copy()
+list_a.append(<span class="num">99</span>)
+<span class="fn">print</span>(<span class="st">f"list_a={list_a}, list_c={list_c}"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">2–5</span><span><code>a = 10; b = a</code> — <code>b</code> points to the same integer object. Then <code>a = 20</code> rebinds <code>a</code> to a new object; <code>b</code> still points to 10. Integers are immutable, so this is safe.</span></li>
+                            <li><span class="ln">8–11</span><span><code>list_b = list_a</code> — both names point to the <em>same</em> list. <code>list_a.append(4)</code> modifies the shared object, so <code>list_b</code> sees the change too.</span></li>
+                            <li><span class="ln">14–16</span><span><code>list_c = list_a.copy()</code> creates a new independent list. Appending to <code>list_a</code> has no effect on <code>list_c</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 The same trap applies to dictionaries and sets — they are mutable. When you pass a list to a function, the function receives a reference to the original object unless you copy it.</div>
+                </div>
+
+                <div class="card-grid" style="margin-top:1rem;">
+                    <div class="card" style="border-color:rgba(16,185,129,.3);">
+                        <h4 style="color:var(--green);">Immutable Types</h4>
+                        <p><code>int</code>, <code>float</code>, <code>complex</code>, <code>str</code>, <code>bool</code>, <code>tuple</code>, <code>frozenset</code>, <code>NoneType</code>, <code>bytes</code> — safe to share, usable as dict keys.</p>
+                    </div>
+                    <div class="card" style="border-color:rgba(245,158,11,.3);">
+                        <h4 style="color:var(--amber);">Mutable Types</h4>
+                        <p><code>list</code>, <code>dict</code>, <code>set</code>, <code>bytearray</code>, most custom class instances — changes propagate through every reference.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. PRACTICE -->
+        <section id="practice" aria-labelledby="practice-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="practice-heading">🏋️ Practice — Check Your Understanding</h2>
+                    <p>Three exercises with solutions. Try each before expanding the answer.</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>Exercise 1 — Identify the Types</h3>
+                    <p>What are the types of each value? Predict before running.</p>
+                    <div class="code-snippet"><pre>values = [<span class="num">42</span>, <span class="num">3.0</span>, <span class="st">"42"</span>, <span class="kw">True</span>, <span class="kw">None</span>, [<span class="num">42</span>], (<span class="num">42</span>,), {<span class="num">42</span>}, {<span class="st">"answer"</span>: <span class="num">42</span>}]
+
+<span class="kw">for</span> v <span class="kw">in</span> values:
+    <span class="fn">print</span>(<span class="st">f"{v!r:&lt;16} → {type(v).__name__}"</span>)</pre></div>
+                    <details class="practice-details">
+                        <summary>Show solution</summary>
+                        <p><code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>NoneType</code>, <code>list</code>, <code>tuple</code>, <code>set</code>, <code>dict</code> — in that order.</p>
+                    </details>
+                </div>
+
+                <div class="explain-block">
+                    <h3>Exercise 2 — Fix the Bug</h3>
+                    <p>Why does this loop skip the "banana"? Fix it without using a comprehension.</p>
+                    <div class="code-snippet"><pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    <span class="kw">if</span> fruit.startswith(<span class="st">"b"</span>):
+        fruits.remove(fruit)
+<span class="fn">print</span>(fruits)</pre></div>
+                    <details class="practice-details">
+                        <summary>Show solution</summary>
+                        <p>Removing from a list while iterating shifts indices, so the next element is skipped. Iterate over a copy: <code>for fruit in fruits[:]:</code> — or build a new list. The slice <code>fruits[:]</code> creates a shallow copy so the loop and the mutation don't interfere.</p>
+                    </details>
+                </div>
+
+                <div class="explain-block">
+                    <h3>Exercise 3 — Safe Type Conversion</h3>
+                    <p>Write a function <code>safe_int(value, default=0)</code> that returns an integer or a default if conversion fails. Test it with <code>"42"</code>, <code>"hello"</code>, and <code>3.99</code>.</p>
+                    <details class="practice-details">
+                        <summary>Show solution</summary>
+                        <div class="code-snippet" style="margin-top:.5rem;"><pre><span class="kw">def</span> <span class="fn">safe_int</span>(value, default=<span class="num">0</span>):
+    <span class="kw">try</span>:
+        <span class="kw">return</span> int(value)
+    <span class="kw">except</span> (<span class="cl">ValueError</span>, <span class="cl">TypeError</span>):
+        <span class="kw">return</span> default
+
+<span class="fn">print</span>(safe_int(<span class="st">"42"</span>))
+<span class="fn">print</span>(safe_int(<span class="st">"hello"</span>, <span class="num">-1</span>))
+<span class="fn">print</span>(safe_int(<span class="num">3.99</span>))</pre></div>
+                        <p>Catching both <code>ValueError</code> (bad string) and <code>TypeError</code> (unsupported type) makes the helper genuinely safe.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. FAQ -->
+        <section id="faq" aria-labelledby="faq-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="faq-heading">❓ Frequently Asked Questions</h2>
+                    <p>Common questions about Python's data types, answered directly</p>
+                </div>
+                <div class="faq-list" style="margin-top:1.2rem;">
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-dt-1">
+                            <h3>Why does <code>0.1 + 0.2</code> not equal <code>0.3</code> in Python?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-dt-1">
+                            <p>Because <code>float</code> values are stored in binary (IEEE 754 double precision), and the decimal fractions <code>0.1</code> and <code>0.2</code> have no exact binary representation — just as <code>1/3</code> has no exact decimal representation. The sum carries a tiny error (~5.5e‑17). For comparisons, use <code>math.isclose(a, b)</code>; for money, use <code>Decimal</code>. This is a property of floating-point arithmetic, not a Python bug.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-dt-2">
+                            <h3>When should I use a tuple instead of a list?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-dt-2">
+                            <p>Use a <strong style="color:var(--text)">tuple</strong> when the collection is fixed and should not change — coordinates, RGB values, database records, or anything you need to use as a dictionary key (tuples are hashable; lists are not). Use a <strong style="color:var(--text)">list</strong> when you need to add, remove, or reorder items. Tuples are also slightly faster and lighter in memory.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-dt-3">
+                            <h3>Is <code>bool</code> really a subclass of <code>int</code> in Python?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-dt-3">
+                            <p>Yes. <code>True</code> and <code>False</code> are instances of <code>bool</code>, and <code>bool</code> inherits from <code>int</code>. Numerically, <code>True == 1</code> and <code>False == 0</code>. This is why <code>isinstance(True, int)</code> returns <code>True</code>, and why you can use booleans in arithmetic (though doing so is rarely good style).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-dt-4">
+                            <h3>How do I check whether a value is <code>None</code>?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-dt-4">
+                            <p>Use <code>if x is None:</code> — not <code>if x == None:</code> and not <code>if not x:</code>. The <code>is</code> operator checks identity against the single <code>None</code> object and cannot be overridden by a custom <code>__eq__</code>. Writing <code>if not x:</code> also catches <code>0</code>, <code>""</code>, <code>[]</code>, and <code>False</code>, which is usually not what you mean when checking for <code>None</code>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. CHEAT TABLE -->
+        <section id="cheat-table" aria-labelledby="cheat-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="cheat-heading">📋 Quick-Reference Table</h2>
+                    <p>Every built-in type at a glance — bookmark this page for quick revision</p>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;font-size:.76rem;min-width:520px;">
+                        <thead>
+                            <tr style="background:var(--card);border-bottom:2px solid var(--blue);">
+                                <th style="padding:.75rem .8rem;text-align:left;color:var(--gold);">Type</th>
+                                <th style="padding:.75rem .8rem;text-align:left;color:var(--blue);">Example</th>
+                                <th style="padding:.75rem .8rem;text-align:left;">Mutable?</th>
+                                <th style="padding:.75rem .8rem;text-align:left;">Ordered?</th>
+                                <th style="padding:.75rem .8rem;text-align:left;">Duplicates?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>int</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>42</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">No</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>float</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>3.14</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">No</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>str</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>"hello"</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">No</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">Yes</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">Yes</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>bool</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>True</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">No</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>list</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>[1, 2, 3]</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--amber);">Yes</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);">Yes</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);">Yes</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>tuple</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>(1, 2, 3)</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">No</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);">Yes</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);">Yes</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>dict</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>{"a": 1}</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--amber);">Yes</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);">Yes</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--red);">No (keys)</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>set</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>{1, 2, 3}</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--amber);">Yes</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--red);">No</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--red);">No</td></tr>
+                            <tr><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);"><code>NoneType</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--green);"><code>None</code></td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">No</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td><td style="padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);">N/A</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:center;margin-top:1.5rem;">
+                    <a href="index.html" class="btn btn-primary" style="width:100%;max-width:320px;"><i class="fas fa-home"></i> Back to curriculum home</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATIONAL DISCLAIMER -->
+        <section id="educational-disclaimer" aria-labelledby="disclaimer-heading" style="background:rgba(245,158,11,.05);border-top:1px solid rgba(245,158,11,.2);border-bottom:1px solid rgba(245,158,11,.2);">
+            <div class="page-col" style="padding:1.5rem 1.25rem;">
+                <h3 id="disclaimer-heading" style="color:var(--amber);font-size:.85rem;display:flex;align-items:center;gap:.5rem;">
+                    <i class="fas fa-graduation-cap"></i> Educational Use Disclaimer
+                </h3>
+                <p style="font-size:.76rem;line-height:1.7;margin-top:.5rem;">
+                    This page is part of <strong style="color:var(--text);">Poetic Bytes</strong>, a free educational resource for learning Python programming.
+                    The code examples are provided for <strong style="color:var(--text);">instruction and demonstration</strong>.
+                    They are not production-audited and should not be used as-is in security-sensitive, financial, or safety-critical systems without independent review.
+                    See our <a href="disclaimer.html" style="color:var(--blue-lt);">full disclaimer</a> and <a href="terms.html" style="color:var(--blue-lt);">terms of use</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- AD SLOT -->
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="7847699765"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- SHARE -->
+        <section aria-label="Share this lesson">
+            <div class="page-col">
+                <div class="share-box">
+                    <h3>📤 Share this lesson</h3>
+                    <p style="margin-top:.3rem;">If this helped, passing it along helps other learners find it</p>
+                    <div class="share-row">
+                        <button class="share-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareEmailBottom"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUBSCRIBE -->
+        <section id="community" aria-label="Newsletter">
+            <div class="page-col">
+                <div class="subscribe-box">
+                    <h3>📬 Python, weekly</h3>
+                    <p>Short lessons, real code, and ecosystem news — sent about once a week</p>
+                    <form class="sub-form" id="subscribeForm" novalidate>
+                        <input type="email" id="subEmail" placeholder="your@email.dev" required autocomplete="email" aria-label="Email address">
+                        <button type="submit" id="subBtn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                        <div class="sub-message" id="subMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMENTS -->
+        <section aria-labelledby="comments-heading">
+            <div class="page-col">
+                <h2 id="comments-heading" style="margin-bottom:1.2rem;">🗣️ Learner Voices</h2>
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;margin-bottom:1rem;">
+                    <form class="comment-form" id="commentForm" novalidate>
+                        <input type="text" id="commentName" placeholder="Display name" required autocomplete="name">
+                        <textarea id="commentText" placeholder="Ask a question, share progress, or leave a tip for other learners …" rows="3" required></textarea>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Publish comment</button>
+                    </form>
+                </div>
+                <div class="empty-state" id="commentEmpty"><i class="fas fa-comments"></i><p>No comments yet — your voice starts the conversation.</p></div>
+                <div id="commentList"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="index.html#debugging-heading">Debugging Guide</a></li>
+                        <li><a href="index.html#testing-heading">Unit Testing</a></li>
+                        <li><a href="programming-history.html">History of Python</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Written and maintained by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a>.</p>
+                <p style="margin-top:.4rem;">Built with <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            function qs(sel, ctx) { return (ctx || document).querySelector(sel); }
+            function qsa(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+            function escapeHtml(str) { var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) { menuToggle.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); }
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            function openDrawer() {
+                if (menuToggle) { menuToggle.classList.add('active'); menuToggle.setAttribute('aria-expanded', 'true'); }
+                if (drawer) drawer.classList.add('active');
+                if (overlay) overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            if (menuToggle) menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                drawer.classList.contains('active') ? closeDrawer() : openDrawer();
+            });
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && drawer && drawer.classList.contains('active')) closeDrawer();
+            });
+
+            qsa('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' }); closeDrawer(); }
+                });
+            });
+
+            window.toggleFaq = function(btn) {
+                var item = btn.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var isOpen = answer.classList.contains('open');
+                qsa('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    var parentBtn = a.closest('.faq-item').querySelector('.faq-q');
+                    if (parentBtn) parentBtn.setAttribute('aria-expanded', 'false');
+                    var toggle = parentBtn ? parentBtn.querySelector('.faq-toggle') : null;
+                    if (toggle) toggle.textContent = '+';
+                });
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                    var toggle = btn.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '−';
+                }
+            };
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            var tocBody = document.getElementById('tocBody');
+            var tocLinks = tocBody ? qsa('a', tocBody) : [];
+
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    tocPanel.classList.toggle('open');
+                    tocToggle.setAttribute('aria-expanded', tocPanel.classList.contains('open') ? 'true' : 'false');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        if (!tocPanel.contains(e.target) && e.target !== tocToggle && !tocToggle.contains(e.target)) {
+                            tocPanel.classList.remove('open');
+                            tocToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                        tocToggle.setAttribute('aria-expanded', 'false');
+                        tocToggle.focus();
+                    }
+                });
+            }
+            if (tocClose) tocClose.addEventListener('click', function() {
+                if (tocPanel) { tocPanel.classList.remove('open'); tocToggle.setAttribute('aria-expanded', 'false'); }
+            });
+
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY + 120;
+                var currentId = null;
+                document.querySelectorAll('section[id], div[id]').forEach(function(el) {
+                    if (el.offsetTop <= scrollY) currentId = el.id;
+                });
+                tocLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    link.classList.toggle('toc-highlight', href === '#' + currentId);
+                });
+            }, { passive: true });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-data-types.html');
+            var PAGE_TITLE = encodeURIComponent('Python Data Types 2026 – Complete Guide with Line-by-Line Explanations');
+
+            function shareTo(url) { window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer'); }
+
+            qsa('#shareFb, #shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            qsa('#shareTw, #shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            qsa('#shareLi, #shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            var shareEmailB = document.getElementById('shareEmailBottom');
+            if (shareEmailB) shareEmailB.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'mailto:?subject=' + PAGE_TITLE + '&body=Check%20out%20this%20Python%20data%20types%20lesson%3A%20' + PAGE_URL;
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/python-data-types.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopy(url, btn); });
+                } else { fallbackCopy(url, btn); }
+            }
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            var subForm = document.getElementById('subscribeForm');
+            var subEmail = document.getElementById('subEmail');
+            var subMessage = document.getElementById('subMessage');
+            var subBtn = document.getElementById('subBtn');
+            if (subForm) subForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = subEmail.value.trim();
+                if (!email || !email.includes('@') || !email.includes('.')) {
+                    subMessage.textContent = 'Please enter a valid email address.';
+                    subMessage.className = 'sub-message error';
+                    return;
+                }
+                subBtn.disabled = true;
+                subBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing…';
+                subMessage.className = 'sub-message'; subMessage.textContent = '';
+                setTimeout(function() {
+                    subMessage.textContent = 'Subscribed — check your inbox for a confirmation email.';
+                    subMessage.className = 'sub-message success';
+                    subEmail.value = '';
+                    subBtn.disabled = false;
+                    subBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe';
+                }, 1200);
+            });
+
+            var comments = [];
+            try { var stored = localStorage.getItem('python_data_types_comments'); if (stored) comments = JSON.parse(stored); } catch (_) {}
+            var commentForm = document.getElementById('commentForm');
+            var commentName = document.getElementById('commentName');
+            var commentText = document.getElementById('commentText');
+            var commentList = document.getElementById('commentList');
+            var commentEmpty = document.getElementById('commentEmpty');
+            function renderComments() {
+                if (!commentList) return;
+                if (comments.length === 0) { commentList.innerHTML = ''; if (commentEmpty) commentEmpty.style.display = 'block'; return; }
+                if (commentEmpty) commentEmpty.style.display = 'none';
+                commentList.innerHTML = comments.map(function(c) {
+                    return '<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem 1.2rem;margin-bottom:.6rem;">' +
+                        '<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">' +
+                        '<span style="font-weight:700;color:var(--gold);font-size:.8rem;">' + escapeHtml(c.name) + '</span>' +
+                        '<span style="font-size:.6rem;color:var(--muted);">' + escapeHtml(c.time || 'just now') + '</span>' +
+                        '</div><p style="font-size:.78rem;color:var(--text);margin:0;">' + escapeHtml(c.text) + '</p></div>';
+                }).join('');
+            }
+            if (commentForm) commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var name = commentName.value.trim() || 'Anonymous';
+                var text = commentText.value.trim();
+                if (!text) return;
+                comments.unshift({ name: name, text: text, time: new Date().toLocaleString() });
+                try { localStorage.setItem('python_data_types_comments', JSON.stringify(comments)); } catch (_) {}
+                renderComments(); commentText.value = ''; commentName.value = '';
+            });
+            renderComments();
+
+            var pyodideReady = false, pyodideInstance = null, pyodideLoading = false;
+
+            function indentCode(code, spaces) {
+                spaces = spaces || 4;
+                var prefix = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return line ? prefix + line : ''; }).join('\n');
+            }
+            function hasFileOperations(code) {
+                var patterns = [/open\s*\(/, /Path\s*\(/, /with\s+open\s*\(/, /\.read\s*\(/, /\.write\s*\(/, /os\.path/, /shutil\./, /glob\s*\(/, /__file__/];
+                for (var i = 0; i < patterns.length; i++) { if (patterns[i].test(code)) return true; }
+                return false;
+            }
+            function loadPyodideOnce() {
+                return new Promise(function(resolve, reject) {
+                    if (pyodideReady) { resolve(pyodideInstance); return; }
+                    if (pyodideLoading) { var check = setInterval(function() { if (pyodideReady) { clearInterval(check); resolve(pyodideInstance); } }, 100); return; }
+                    pyodideLoading = true;
+                    if (typeof loadPyodide === 'undefined') {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js';
+                        script.onload = function() { loadPyodide().then(function(py) { pyodideInstance = py; pyodideReady = true; pyodideLoading = false; resolve(pyodideInstance); }).catch(reject); };
+                        script.onerror = function() { pyodideLoading = false; reject(new Error('Failed to load Pyodide script')); };
+                        document.head.appendChild(script);
+                    } else {
+                        loadPyodide().then(function(py) { pyodideInstance = py; pyodideReady = true; pyodideLoading = false; resolve(pyodideInstance); }).catch(reject);
+                    }
+                });
+            }
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+                try {
+                    var pyodide = await loadPyodideOnce();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+                    var hasWarning = false;
+                    if (hasFileOperations(code)) {
+                        hasWarning = true;
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent = '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+                    var indentedCode = indentCode(code, 4);
+                    var wrappedCode = 'import sys\nfrom io import StringIO\n_captured_output = StringIO()\n_old_stdout = sys.stdout\nsys.stdout = _captured_output\ntry:\n' + indentedCode + '\nfinally:\n    sys.stdout = _old_stdout\n_captured_output.getvalue()\n';
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+                    var resultText = result || '✓ Code executed successfully (no output).';
+                    if (hasWarning) { outputEl.textContent += resultText; }
+                    else { outputEl.textContent = resultText; outputEl.style.color = '#4ade80'; }
+                } catch (err) {
+                    if (outputEl.className === 'output-panel file-warning') { outputEl.textContent += '\n\nError:\n' + err.message; }
+                    else { outputEl.className = 'output-panel error'; outputEl.textContent = 'Error:\n' + err.message; outputEl.style.color = '#f87171'; }
+                } finally {
+                    runBtn.disabled = false; runBtn.innerHTML = originalText;
+                }
+            }
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopyCode(btn, code); });
+                } else { fallbackCopyCode(btn, code); }
+            }
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim(); ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            function enhanceCodeBlocks() {
+                var blocks = qsa('.code-snippet:not(.code-preview .code-snippet), .code-body:not(.code-preview .code-body)');
+                blocks.forEach(function(block) {
+                    if (block.closest('.code-container')) return;
+                    var pre = block.querySelector('pre'); if (!pre) return;
+                    var codeText = pre.textContent;
+                    var container = document.createElement('div');
+                    container.className = 'code-container';
+                    var header = document.createElement('div');
+                    header.className = 'code-header';
+                    header.innerHTML = '<span style="color:var(--muted);">python</span><div class="code-actions"><button class="code-btn copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button><button class="code-btn run-btn" type="button"><i class="fas fa-play"></i> Run</button></div>';
+                    var outputPanel = document.createElement('div');
+                    outputPanel.className = 'output-panel';
+                    block.parentNode.insertBefore(container, block);
+                    container.appendChild(header); container.appendChild(block); container.appendChild(outputPanel);
+                    var copyBtn = header.querySelector('.copy-btn');
+                    var runBtn = header.querySelector('.run-btn');
+                    copyBtn.addEventListener('click', function() { copyCode(copyBtn, codeText); });
+                    runBtn.addEventListener('click', function() { runCode(codeText, outputPanel, runBtn); });
+                });
+            }
+            if (document.readyState === 'complete' || document.readyState === 'interactive') { enhanceCodeBlocks(); }
+            else { document.addEventListener('DOMContentLoaded', enhanceCodeBlocks); }
+
+        })();
+    </script>
+</body>
+</html>
