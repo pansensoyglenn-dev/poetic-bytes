@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="QEVZypEFSBb2vnchFfNajL-Fme3ZFTP_KNJIC9R-2CY" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Comprehensions 2026 – List, Dict &amp; Set Comprehensions with Line-by-Line Explanations | Poetic Bytes</title>
+    <meta name="description" content="Master Python comprehensions in 2026: list, dict, set, and generator comprehensions. Every program explained line by line with runnable examples, performance notes, nested comprehensions, and practice exercises." />
+    <meta name="keywords" content="python comprehensions, python list comprehension, python dict comprehension, python set comprehension, python generator expression, nested comprehensions, python comprehension if else, python tutorial 2026" />
+    <meta name="author" content="Glenn Junsay Pansensoy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/python-comprehensions.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/python-comprehensions.html" />
+    <meta property="og:title" content="Python Comprehensions 2026 – List, Dict &amp; Set Comprehensions" />
+    <meta property="og:description" content="Every Python comprehension style explained with runnable code, line-by-line breakdowns, performance notes, and practice exercises." />
+    <meta property="og:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Python Comprehensions 2026 – Complete Guide by Poetic Bytes" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Comprehensions 2026 | Poetic Bytes" />
+    <meta name="twitter:description" content="Every Python comprehension style explained with line-by-line breakdowns, performance notes, and practice exercises." />
+    <meta name="twitter:image" content="https://pansensoyglenn-dev.github.io/poetic-bytes/og-python-image.png" />
+    <meta name="twitter:image:alt" content="Python Comprehensions 2026 – Complete Guide by Poetic Bytes" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python Comprehensions 2026 – List, Dict & Set Comprehensions with Line-by-Line Explanations",
+            "description": "Every Python comprehension style explained with runnable code, line-by-line breakdowns, performance notes, and practice exercises.",
+            "author": { "@type": "Person", "name": "Glenn Junsay Pansensoy", "url": "https://www.linkedin.com/in/glenn-pansensoy" },
+            "publisher": { "@type": "Organization", "name": "Poetic Bytes", "url": "https://poetic-bytes.vercel.app/" },
+            "datePublished": "2026-02-15",
+            "dateModified": "2026-11-04",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "educationalLevel": "Beginner to Intermediate",
+            "about": "Python comprehensions",
+            "teaches": ["Python list comprehensions", "Python dict comprehensions", "Python set comprehensions", "Python generator expressions", "Nested comprehensions", "Comprehension if/else", "Walrus operator in comprehensions", "Comprehension performance"]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://poetic-bytes.vercel.app/index.html" },
+                { "@type": "ListItem", "position": 2, "name": "Python Comprehensions", "item": "https://poetic-bytes.vercel.app/python-comprehensions.html" }
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "When should I use a list comprehension instead of a for loop?", "acceptedAnswer": { "@type": "Answer", "text": "Use a comprehension when the goal is to build a new list (or dict, set, or generator) from an iterable in a single readable expression. Use an explicit for loop when the body has side effects (printing, appending to multiple lists, writing files), contains complex branching, needs break/continue, or is more than one line of logic. A comprehension should read like a description of the result, not like a mini-program." } },
+                { "@type": "Question", "name": "Are comprehensions faster than for loops in Python?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, usually 20–40% faster for simple cases. Comprehensions run their loop in a specialised bytecode path that avoids the per-iteration overhead of name lookups and method calls in an explicit for loop. The .append() call in a manual loop is the biggest cost — comprehensions do not pay it. For very small collections the difference is negligible; for large ones it matters." } },
+                { "@type": "Question", "name": "Can I use if/else inside a comprehension?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, but placement matters. A filter if goes after the for: [x for x in nums if x > 0]. A ternary expression goes before the for: [('pos' if x > 0 else 'neg') for x in nums]. You cannot use an if that filters values in the expression position — only the ternary form is allowed there." } },
+                { "@type": "Question", "name": "What's the difference between a list comprehension and a generator expression?", "acceptedAnswer": { "@type": "Answer", "text": "A list comprehension [x for x in data] builds the entire list in memory eagerly. A generator expression (x for x in data) with parentheses produces values lazily on demand, using O(1) memory regardless of input size. Use a generator expression for large data or when you only need to iterate once (e.g. passing to sum, any, all, max)." } },
+                { "@type": "Question", "name": "Can I use the walrus operator in a comprehension?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — since Python 3.8. The walrus operator := inside a comprehension lets you name an intermediate result that would otherwise be computed twice: [y for x in data if (y := expensive(x)) > 0]. The name y is scoped to the comprehension in Python 3.12+ — accessible only inside the brackets." } },
+                { "@type": "Question", "name": "Should I use nested comprehensions?", "acceptedAnswer": { "@type": "Answer", "text": "Rarely. Nested comprehensions [x+y for x in a for y in b] are readable when short and the order of the fors matches the natural reading (outer loop first). Once you need three levels of nesting, or an if that references variables from more than one level, an explicit nested loop is almost always clearer. A good test: if you cannot read the comprehension out loud in one breath, it should be a for loop." } }
+            ]
+        }
+    </script>
+
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{overflow-x:hidden;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden}
+        .skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;padding:.6rem 1.2rem;border-radius:0 0 8px 8px;font-weight:700;z-index:9999;text-decoration:none;transition:top .2s}
+        .skip-link:focus{top:0}
+        :root{--bg:#0B121C;--panel:#0F1C2F;--card:#111e30;--border:#1F4060;--blue:#4B8BBE;--blue-deep:#306998;--blue-lt:#78B9E6;--gold:#FFD966;--text:#E2E8F0;--muted:#A8C0D8;--code-bg:#0A1A24;--green:#10B981;--amber:#F59E0B;--red:#EF4444;--purple:#c084fc;--teal:#2DD4BF;--orange:#FB923C;--btn-h:44px;--btn-r:8px;--card-r:12px;--gap:1rem}
+        @media print{
+            .nav-bar,.floating-share,.back-top,.floating-toc,.ad-slot,.subscribe-box,.share-box,#commentForm,.code-container .code-header .code-actions,.code-container .output-panel{display:none!important}
+            body{background:#fff;color:#000;font-size:12pt}
+            .page-col{max-width:100%;padding:0 .5in}
+            .card,.explain-block{break-inside:avoid;border-color:#ccc;background:#f9f9f9}
+            .code-snippet,.code-body{background:#f0f0f0;border:1px solid #ccc;color:#000}
+            .section-label::before,.section-label::after{background:#ccc}
+            a{color:#000;text-decoration:underline}
+            .page-footer{background:#f5f5f5;border-top:1px solid #ccc}
+        }
+        .page-col{width:100%;max-width:860px;margin:0 auto;padding:0 1.25rem}
+        section{padding:3rem 0;border-bottom:1px solid var(--border)}
+        section:last-child{border-bottom:none}
+        .progress-bar-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(31,64,96,.3);z-index:2000}
+        .progress-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-lt));width:0%;transition:width .2s}
+        .nav-bar{position:fixed;top:3px;left:0;right:0;background:rgba(11,18,28,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:1000}
+        .nav-inner{max-width:860px;margin:0 auto;padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.08em}
+        .brand-icon{width:2rem;height:2rem;border-radius:6px;background:linear-gradient(145deg,var(--blue),var(--blue-deep));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+        .nav-links{display:flex;gap:1.2rem;list-style:none;align-items:center}
+        .nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:color .2s;letter-spacing:.04em}
+        .nav-links a:hover{color:var(--gold)}
+        .nav-links a.nav-home{display:inline-flex;align-items:center;gap:.35rem;background:rgba(75,139,190,.14);border:1px solid var(--border);border-radius:6px;padding:.35rem .75rem;color:var(--text)}
+        .nav-links a.nav-home:hover{border-color:var(--blue);color:var(--gold);background:rgba(75,139,190,.22)}
+        @media(max-width:680px){.nav-links{display:none}}
+        .menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;background:rgba(75,139,190,.1);border:1px solid var(--border);border-radius:6px;width:40px;height:40px;cursor:pointer;gap:4px}
+        .menu-toggle span{width:18px;height:2px;background:#fff;border-radius:2px;transition:.25s}
+        .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .menu-toggle.active span:nth-child(2){opacity:0}
+        .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        @media(max-width:680px){.menu-toggle{display:flex}}
+        .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1050;opacity:0;visibility:hidden;transition:.2s;backdrop-filter:blur(4px)}
+        .drawer-overlay.active{opacity:1;visibility:visible}
+        .mobile-drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--panel);border-left:1px solid var(--border);z-index:1100;display:flex;flex-direction:column;transition:right .3s;box-shadow:-5px 0 30px rgba(0,0,0,.5)}
+        .mobile-drawer.active{right:0}
+        .drawer-hd{padding:.8rem;border-bottom:1px solid var(--border);display:flex;justify-content:flex-end}
+        .drawer-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
+        .drawer-body{flex:1;overflow-y:auto;padding:.8rem}
+        .drawer-body li{list-style:none;margin-bottom:.5rem}
+        .drawer-body a,.drawer-body button{display:flex;align-items:center;gap:.6rem;width:100%;padding:.7rem .9rem;background:rgba(75,139,190,.12);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s;min-height:44px}
+        .drawer-body a:active,.drawer-body button:active{background:rgba(75,139,190,.3)}
+        .drawer-body i{color:var(--gold);width:1.2rem}
+        h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.25;font-weight:700}
+        h1{font-size:1.6rem}
+        h2{font-size:1.25rem;margin-bottom:.5rem}
+        h3{font-size:.95rem}
+        h4{font-size:.85rem}
+        p{font-size:.82rem;color:var(--muted);line-height:1.7}
+        code{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#a5d6ff}
+        .section-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+        .section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+        .section-intro{max-width:640px;margin:0 auto .5rem;text-align:center}
+        .section-intro h2{color:var(--text)}
+        .section-intro p{font-size:.8rem}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:var(--btn-h);padding:0 1.4rem;border-radius:var(--btn-r);font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .2s;border:none;text-decoration:none;white-space:nowrap}
+        .btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;box-shadow:0 4px 14px rgba(75,139,190,.35)}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(75,139,190,.45)}
+        .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+        .btn-outline:hover{border-color:var(--blue);background:rgba(75,139,190,.08)}
+        @media(max-width:480px){.btn{width:100%}}
+        .hero{padding:5rem 0 3rem;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(75,139,190,.18) 0%,transparent 70%)}
+        .hero-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:40px;padding:.3rem .9rem;font-size:.68rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.2rem;background:var(--card)}
+        .live-dot{width:7px;height:7px;background:var(--blue-lt);border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+        .hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);margin-bottom:.8rem}
+        .hero p.lead{font-size:.88rem;color:var(--muted);max-width:560px;margin-bottom:1.6rem;line-height:1.75}
+        .hero-btns{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.25rem;display:flex;flex-direction:column;gap:.55rem;transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;color:inherit;min-height:140px}
+        .card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(75,139,190,.16)}
+        .card-icon{font-size:1.5rem;line-height:1}
+        .card h3,.card h4{font-size:.82rem;color:var(--text)}
+        .card p{font-size:.74rem;margin:0}
+        .card-grid{display:flex;flex-direction:column;gap:var(--gap)}
+        .badge{display:inline-block;padding:.12rem .55rem;border-radius:20px;font-size:.6rem;font-weight:700}
+        .badge-beg{background:rgba(16,185,129,.15);color:#10b981}
+        .badge-int{background:rgba(245,158,11,.15);color:#f59e0b}
+        .tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.3rem}
+        .tag{font-size:.6rem;background:rgba(75,139,190,.1);border:1px solid rgba(75,139,190,.2);border-radius:20px;padding:.1rem .45rem;color:var(--blue-lt)}
+        .explain-block{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.3rem;margin-bottom:1.4rem}
+        .explain-block h3{font-size:.9rem;color:var(--gold);margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+        .explain-block p{font-size:.78rem;margin-bottom:.8rem}
+        .code-snippet{background:var(--code-bg);border-radius:6px;border-left:3px solid var(--blue);padding:.9rem 1rem;overflow-x:auto;margin-bottom:.7rem;position:relative}
+        .code-snippet pre{font-family:'JetBrains Mono',monospace;font-size:.73rem;line-height:1.65;color:var(--text);margin:0;white-space:pre-wrap;word-break:break-word}
+        .code-snippet .kw{color:#ff7b72;font-weight:600}
+        .code-snippet .fn{color:#d2a8ff}
+        .code-snippet .st{color:#a5d6ff}
+        .code-snippet .cl{color:#FFD966;font-weight:600}
+        .code-snippet .cmt{color:#546e7a;font-style:italic}
+        .code-snippet .num{color:#f78c6c}
+        .code-snippet .ds{color:#7cac7c;font-style:italic}
+        .insight{background:rgba(75,139,190,.08);border:1px solid rgba(75,139,190,.25);border-radius:6px;padding:.6rem .9rem;font-size:.75rem;color:var(--blue-lt)}
+        .note-new{font-size:.74rem;color:var(--teal);font-style:italic;margin-top:.4rem}
+        .line-explain{display:grid;grid-template-columns:1fr;gap:.6rem;margin-top:.8rem;background:rgba(75,139,190,.04);border:1px dashed rgba(75,139,190,.3);border-radius:8px;padding:.9rem}
+        .line-explain .line-explain-title{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:.2rem}
+        .line-explain ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.35rem}
+        .line-explain li{display:flex;gap:.6rem;font-size:.75rem;color:var(--muted);line-height:1.55;align-items:flex-start}
+        .line-explain li .ln{flex-shrink:0;min-width:1.6rem;height:1.6rem;border-radius:6px;background:rgba(75,139,190,.15);border:1px solid rgba(75,139,190,.3);color:var(--blue-lt);font-family:'JetBrains Mono',monospace;font-size:.68rem;display:flex;align-items:center;justify-content:center;font-weight:700}
+        .line-explain li code{color:#a5d6ff;background:rgba(165,214,255,.08);padding:0 .25rem;border-radius:3px}
+        .output-expected{background:#0a1a24;border:1px solid var(--border);border-radius:6px;padding:.7rem .9rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#4ade80;margin-top:.6rem;white-space:pre-wrap;line-height:1.55}
+        .output-expected .out-label{display:block;color:var(--muted);font-family:'Syne',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+        .code-container{position:relative;margin:1rem 0}
+        .code-header{background:#0a1a24;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);border-radius:var(--card-r) var(--card-r) 0 0;font-size:.72rem;flex-wrap:wrap;gap:.5rem}
+        .code-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+        .code-btn{padding:.35rem .8rem;font-size:.7rem;font-weight:600;border-radius:6px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem;font-family:'Syne',sans-serif;border:none;min-height:34px}
+        .copy-btn{background:rgba(75,139,190,.15);color:var(--blue-lt);border:1px solid rgba(75,139,190,.3)}
+        .copy-btn:hover{background:rgba(75,139,190,.25)}
+        .run-btn{background:var(--green);color:#000;border:none;font-weight:700}
+        .run-btn:hover{background:#34d399;transform:translateY(-1px)}
+        .run-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+        .output-panel{background:#0a1a24;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--card-r) var(--card-r);padding:1rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#4ade80;max-height:300px;overflow-y:auto;display:none;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+        .output-panel.error{color:#f87171}
+        .output-panel.loading{color:var(--blue-lt)}
+        .output-panel.file-warning{color:var(--amber);border-left:3px solid var(--amber);padding-left:1rem}
+        .code-container .code-snippet{border-radius:0;border-left:none;margin-bottom:0;padding:1rem}
+        .code-container .code-body{padding:1rem;border-radius:0}
+        .info-box{background:rgba(75,139,190,.06);border:1px solid rgba(75,139,190,.22);border-radius:var(--card-r);padding:1.1rem 1.3rem}
+        .info-box h4{font-size:.8rem;color:var(--blue-lt);display:flex;align-items:center;gap:.4rem;margin-bottom:.4rem}
+        .info-box p{font-size:.76rem}
+        .ad-slot{text-align:center;padding:.8rem 0;background:var(--bg)}
+        .subscribe-box{background:linear-gradient(135deg,#1a2a3a,#0f1c2f);border:1px solid var(--border);border-radius:var(--card-r);padding:2rem 1.5rem;text-align:center}
+        .subscribe-box h3{font-size:.95rem;color:var(--text);margin-bottom:.3rem}
+        .sub-form{display:flex;flex-direction:column;gap:.7rem;max-width:340px;margin:1.2rem auto 0}
+        .sub-form input{height:var(--btn-h);padding:0 .9rem;background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);color:#fff;font-size:.8rem;width:100%;transition:border-color .2s}
+        .sub-form input:focus{border-color:var(--blue);outline:none}
+        .sub-form button{height:var(--btn-h);background:var(--blue);border:none;border-radius:var(--btn-r);color:#fff;font-weight:700;font-size:.8rem;cursor:pointer;transition:.2s}
+        .sub-form button:hover{background:var(--blue-deep)}
+        .sub-message{margin-top:.8rem;font-size:.78rem;display:none}
+        .sub-message.success{color:var(--green);display:block}
+        .sub-message.error{color:var(--red);display:block}
+        .share-box{text-align:center}
+        .share-row{display:flex;flex-direction:row;flex-wrap:wrap;gap:.6rem;margin-top:1rem;justify-content:center}
+        .share-btn{height:var(--btn-h);display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border:1px solid var(--border);border-radius:var(--btn-r);font-size:.74rem;color:var(--muted);text-decoration:none;transition:.2s;font-weight:600;background:var(--card);cursor:pointer;padding:0 1rem}
+        .share-btn:hover{border-color:var(--blue);color:var(--text);background:rgba(75,139,190,.1)}
+        .floating-share{position:fixed;right:20px;bottom:80px;display:flex;flex-direction:column;gap:10px;z-index:900}
+        .floating-share .fs-btn{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:1.1rem;transition:.2s;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.5);position:relative}
+        .floating-share .fs-btn:hover{border-color:var(--blue);color:var(--blue-lt);transform:scale(1.08)}
+        .floating-share .fs-btn .tooltip{position:absolute;right:56px;background:var(--panel);color:var(--text);padding:4px 12px;border-radius:6px;font-size:.65rem;font-weight:600;border:1px solid var(--border);opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}
+        .floating-share .fs-btn:hover .tooltip{opacity:1}
+        .back-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;transition:.2s;opacity:0;visibility:hidden;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+        .back-top.visible{opacity:1;visibility:visible}
+        .back-top:hover{border-color:var(--blue);color:var(--blue-lt);transform:translateY(-2px)}
+        .comment-form{display:flex;flex-direction:column;gap:.7rem}
+        .comment-form input,.comment-form textarea{background:var(--panel);border:1px solid var(--border);border-radius:var(--btn-r);color:#fff;font-size:.8rem;padding:.7rem .9rem;width:100%;transition:border-color .2s}
+        .comment-form input{height:var(--btn-h)}
+        .comment-form textarea{min-height:80px;resize:vertical}
+        .comment-form input:focus,.comment-form textarea:focus{border-color:var(--blue);outline:none}
+        .comment-form button{height:var(--btn-h);background:var(--blue);border:none;border-radius:var(--btn-r);color:#fff;font-weight:700;font-size:.78rem;cursor:pointer;transition:.2s}
+        .comment-form button:hover{background:var(--blue-deep)}
+        .empty-state{text-align:center;padding:2.5rem;background:var(--card);border-radius:var(--card-r);border:1px solid var(--border)}
+        .empty-state i{font-size:2rem;color:var(--muted);display:block;margin-bottom:.6rem}
+        .empty-state p{font-size:.78rem}
+        .page-footer{padding:3rem 0 1.5rem;background:#1a2535;border-top:1px solid var(--border)}
+        .footer-grid{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:1.5rem}
+        .footer-col h5{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem}
+        .footer-col ul{list-style:none}
+        .footer-col li{margin-bottom:.4rem}
+        .footer-col a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.74rem;transition:color .2s}
+        .footer-col a:hover{color:#fff}
+        .copyright{border-top:1px solid var(--border);padding-top:1.2rem;text-align:center;font-size:.72rem;color:var(--muted)}
+        .copyright a{color:rgba(255,255,255,.5);text-decoration:none}
+        ::-webkit-scrollbar{width:5px;height:5px}
+        ::-webkit-scrollbar-track{background:var(--border)}
+        ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+        .faq-list{display:flex;flex-direction:column;gap:.7rem}
+        .faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);overflow:hidden;transition:border-color .2s, box-shadow .2s, background .2s}
+        .faq-item:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(75,139,190,.12)}
+        .faq-item.open{border-color:var(--blue);background:rgba(75,139,190,.03)}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.15rem 1.25rem;cursor:pointer;gap:1rem;min-height:64px;background:transparent;border:none;width:100%;font-family:inherit;text-align:left;color:var(--text);font-weight:600;font-size:.85rem;line-height:1.45;transition:background .2s}
+        .faq-q:hover{background:rgba(75,139,190,.06)}
+        .faq-q:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+        .faq-item.open .faq-q{background:rgba(75,139,190,.08)}
+        .faq-q h3{font-size:.88rem;font-weight:700;color:var(--text);flex:1;margin:0;line-height:1.45}
+        .faq-toggle{font-size:1.15rem;font-weight:700;color:var(--blue-lt);width:34px;height:34px;border-radius:50%;background:rgba(75,139,190,.15);border:1px solid rgba(75,139,190,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s, background .2s, border-color .2s, color .2s;line-height:1}
+        .faq-q:hover .faq-toggle{background:rgba(75,139,190,.28);border-color:var(--blue)}
+        .faq-item.open .faq-toggle{transform:rotate(45deg);background:var(--blue);color:#fff;border-color:var(--blue)}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease, padding .3s ease}
+        .faq-a.open{max-height:420px;padding:0 1.25rem 1.25rem}
+        .faq-a p{font-size:.82rem;line-height:1.75;color:var(--muted)}
+        .floating-toc{position:fixed;right:80px;bottom:80px;width:280px;max-height:60vh;background:var(--panel);border:1px solid var(--border);border-radius:var(--card-r);box-shadow:0 8px 32px rgba(0,0,0,.7);z-index:950;overflow:hidden;display:none;flex-direction:column;transition:opacity .25s ease,transform .25s ease;opacity:0;transform:translateY(12px)}
+        .floating-toc.open{display:flex;opacity:1;transform:translateY(0)}
+        .floating-toc .toc-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:rgba(75,139,190,.08);border-bottom:1px solid var(--border);font-weight:700;font-size:.8rem;color:var(--text)}
+        .floating-toc .toc-header button{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.2rem .4rem}
+        .floating-toc .toc-body{overflow-y:auto;padding:.5rem 0;flex:1}
+        .floating-toc .toc-body a{display:block;padding:.4rem 1rem;font-size:.7rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:background .15s,border-color .15s,color .15s}
+        .floating-toc .toc-body a:hover{background:rgba(75,139,190,.08);border-color:var(--blue);color:var(--text)}
+        .floating-toc .toc-body a.toc-highlight{border-color:var(--gold);color:var(--gold);background:rgba(255,217,102,.05)}
+        .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.2rem}
+        .toc-grid a{display:flex;align-items:center;justify-content:center;text-align:center;padding:.7rem .8rem;background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:600;transition:border-color .2s,color .2s,background .2s,transform .15s;min-height:48px;width:100%;line-height:1.4;word-break:break-word}
+        .toc-grid a:hover{border-color:var(--blue);color:var(--text);background:rgba(75,139,190,.08);transform:translateY(-2px)}
+        details.practice-details{margin-top:.6rem;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:.7rem .9rem;transition:border-color .2s}
+        details.practice-details:hover{border-color:rgba(16,185,129,.5)}
+        details.practice-details summary{cursor:pointer;font-size:.78rem;font-weight:700;color:var(--green);list-style:none;display:flex;align-items:center;gap:.4rem;min-height:28px}
+        details.practice-details summary::-webkit-details-marker{display:none}
+        details.practice-details summary::after{content:"▸";margin-left:auto;transition:transform .2s;color:var(--green)}
+        details.practice-details[open] summary::after{transform:rotate(90deg)}
+        details.practice-details p, details.practice-details div{font-size:.76rem;margin-top:.5rem;line-height:1.8;color:var(--muted)}
+        .compare-table{width:100%;border-collapse:collapse;font-size:.76rem;min-width:520px}
+        .compare-table thead tr{background:var(--card);border-bottom:2px solid var(--blue)}
+        .compare-table th{padding:.75rem .8rem;text-align:left}
+        .compare-table th:first-child{color:var(--gold)}
+        .compare-table th:nth-child(2){color:var(--blue)}
+        .compare-table th:nth-child(3){color:var(--blue-lt)}
+        .compare-table td{padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top}
+        .compare-table tbody tr:nth-child(even){background:rgba(75,139,190,.03)}
+        .spec-table{width:100%;border-collapse:collapse;font-size:.74rem;min-width:520px}
+        .spec-table thead tr{background:var(--card);border-bottom:2px solid var(--blue)}
+        .spec-table th{padding:.65rem .7rem;text-align:left}
+        .spec-table th:first-child{color:var(--gold)}
+        .spec-table th:nth-child(2){color:var(--blue)}
+        .spec-table td{padding:.55rem .7rem;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top}
+        .spec-table td:first-child{color:#a5d6ff;font-family:'JetBrains Mono',monospace}
+        .spec-table td:nth-child(2){color:var(--green);font-family:'JetBrains Mono',monospace}
+        .spec-table tbody tr:nth-child(even){background:rgba(75,139,190,.03)}
+        @media(max-width:480px){
+            .page-col{padding:0 .8rem}
+            section{padding:2rem 0}
+            .hero{padding:3.5rem 0 2rem}
+            .hero h1{font-size:1.3rem}
+            .floating-share{right:10px;bottom:70px;gap:8px}
+            .floating-share .fs-btn{width:40px;height:40px;font-size:.9rem}
+            .floating-share .fs-btn .tooltip{display:none}
+            .back-top{width:36px;height:36px;right:10px;bottom:10px;font-size:.9rem}
+            .share-row{flex-direction:column;align-items:center}
+            .share-btn{width:100%;max-width:240px}
+            .toc-grid{grid-template-columns:1fr 1fr;gap:.4rem}
+            .toc-grid a{font-size:.65rem;padding:.6rem .5rem;min-height:40px}
+            .faq-q{padding:1rem;min-height:56px;font-size:.8rem;gap:.7rem}
+            .faq-q h3{font-size:.82rem}
+            .faq-toggle{width:30px;height:30px;font-size:1rem}
+            .faq-a.open{padding:0 1rem 1rem}
+            .faq-a p{font-size:.78rem}
+        }
+        @media(max-width:768px){.floating-toc{right:10px;bottom:130px;width:220px;max-height:50vh}}
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#list-comp">List</a></li>
+                <li><a href="#dict-comp">Dict</a></li>
+                <li><a href="#set-comp">Set</a></li>
+                <li><a href="#generator">Generator</a></li>
+                <li><a href="#conditions">Conditions</a></li>
+                <li><a href="#nested">Nested</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose" aria-label="Close navigation"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><button data-href="#why"><i class="fas fa-question-circle"></i> Why Comprehensions?</button></li>
+                <li><button data-href="#list-comp"><i class="fas fa-list"></i> List Comprehensions</button></li>
+                <li><button data-href="#dict-comp"><i class="fas fa-book"></i> Dict Comprehensions</button></li>
+                <li><button data-href="#set-comp"><i class="fas fa-circle"></i> Set Comprehensions</button></li>
+                <li><button data-href="#generator"><i class="fas fa-infinity"></i> Generator Expressions</button></li>
+                <li><button data-href="#conditions"><i class="fas fa-code-branch"></i> if/else Conditions</button></li>
+                <li><button data-href="#nested"><i class="fas fa-layer-group"></i> Nested Comprehensions</button></li>
+                <li><button data-href="#walrus"><i class="fas fa-equals"></i> Walrus Operator</button></li>
+                <li><button data-href="#performance"><i class="fas fa-tachometer-alt"></i> Performance</button></li>
+                <li><button data-href="#antipatterns"><i class="fas fa-ban"></i> Anti-patterns</button></li>
+                <li><button data-href="#practice"><i class="fas fa-dumbbell"></i> Practice</button></li>
+                <li><button data-href="#faq"><i class="fas fa-question"></i> FAQ</button></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-toc" id="floatingToc" role="navigation" aria-label="Quick table of contents">
+        <div class="toc-header">
+            <span>📚 Jump to</span>
+            <button id="tocCloseBtn" aria-label="Close table of contents"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="toc-body" id="tocBody">
+            <a href="#why">🎯 Why Comprehensions?</a>
+            <a href="#list-comp">📋 List Comprehensions</a>
+            <a href="#dict-comp">📖 Dict Comprehensions</a>
+            <a href="#set-comp">🔵 Set Comprehensions</a>
+            <a href="#generator">♾️ Generator Expressions</a>
+            <a href="#conditions">🔀 if/else Conditions</a>
+            <a href="#nested">🧩 Nested Comprehensions</a>
+            <a href="#walrus">🦭 Walrus Operator</a>
+            <a href="#performance">⚡ Performance</a>
+            <a href="#antipatterns">🚫 Anti-patterns</a>
+            <a href="#practice">🏋️ Practice</a>
+            <a href="#faq">❓ FAQ</a>
+        </div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-toc" id="tocToggleBtn" aria-label="Open table of contents" aria-expanded="false">
+            <i class="fas fa-list-ul"></i>
+            <span class="tooltip">Table of Contents</span>
+        </button>
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X"><i class="fab fa-twitter"></i><span class="tooltip">X</span></a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <main id="main-content" style="padding-top:56px;">
+
+        <section class="hero" aria-label="Hero — Python Comprehensions">
+            <div class="page-col">
+                <div class="hero-tag"><span class="live-dot"></span> Python 3.12+ · Updated November 2026 · Every program explained line by line</div>
+                <h1>Python Comprehensions<br><span style="color:var(--blue-lt)">Build collections in one readable line</span></h1>
+                <p class="lead">A complete, runnable reference for Python comprehensions. List, dict, set, and generator expressions — plus conditions, nesting, the walrus operator, and performance notes. Every code block includes a numbered line-by-line breakdown.</p>
+                <div class="hero-btns">
+                    <a href="#why" class="btn btn-primary"><i class="fas fa-play"></i> Start with the basics</a>
+                    <a href="python-range-enumerate-zip.html" class="btn btn-outline"><i class="fas fa-redo"></i> Review range, enumerate, zip</a>
+                </div>
+                <div class="code-snippet" style="margin-top:1.5rem;">
+                    <pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>]
+
+squares = [n * n <span class="kw">for</span> n <span class="kw">in</span> numbers]
+evens = [n <span class="kw">for</span> n <span class="kw">in</span> numbers <span class="kw">if</span> n % <span class="num">2</span> == <span class="num">0</span>]
+labels = [<span class="st">"even"</span> <span class="kw">if</span> n % <span class="num">2</span> == <span class="num">0</span> <span class="kw">else</span> <span class="st">"odd"</span> <span class="kw">for</span> n <span class="kw">in</span> numbers]
+
+square_map = {n: n * n <span class="kw">for</span> n <span class="kw">in</span> numbers}
+unique_mods = {n % <span class="num">3</span> <span class="kw">for</span> n <span class="kw">in</span> numbers}
+pair_sums = [(a, b, a + b) <span class="kw">for</span> a <span class="kw">in</span> numbers <span class="kw">for</span> b <span class="kw">in</span> numbers <span class="kw">if</span> a &lt; b]
+
+<span class="fn">print</span>(squares)
+<span class="fn">print</span>(evens)
+<span class="fn">print</span>(labels)
+<span class="fn">print</span>(square_map)
+<span class="fn">print</span>(unique_mods)
+<span class="fn">print</span>(pair_sums)</pre>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-col" style="padding:.8rem 1.25rem 0;">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.4rem;padding:.7rem .95rem;background:rgba(75,139,190,.06);border:1px solid rgba(75,139,190,.2);border-radius:8px;font-size:.68rem;color:var(--muted);">
+                <span><i class="fas fa-user-check" style="color:var(--green);"></i> Written &amp; reviewed by <strong style="color:var(--text);">Glenn Junsay Pansensoy</strong></span>
+                <span><i class="fas fa-calendar-check" style="color:var(--blue-lt);"></i> Last reviewed: <strong style="color:var(--text);">November 2026</strong></span>
+                <span><i class="fas fa-code-branch" style="color:var(--gold);"></i> Python 3.12+</span>
+                <span><i class="fas fa-clock" style="color:var(--teal);"></i> ~25 min read</span>
+            </div>
+        </div>
+
+        <section id="toc" aria-labelledby="toc-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="toc-heading">📚 What This Lesson Covers</h2>
+                    <p>Twelve sections, each with runnable code and a numbered explanation of every line</p>
+                </div>
+                <div class="toc-grid">
+                    <a href="#why">🎯 Why Comprehensions?</a>
+                    <a href="#list-comp">📋 List Comprehensions</a>
+                    <a href="#dict-comp">📖 Dict Comprehensions</a>
+                    <a href="#set-comp">🔵 Set Comprehensions</a>
+                    <a href="#generator">♾️ Generator Expressions</a>
+                    <a href="#conditions">🔀 if/else Conditions</a>
+                    <a href="#nested">🧩 Nested Comprehensions</a>
+                    <a href="#walrus">🦭 Walrus Operator</a>
+                    <a href="#performance">⚡ Performance</a>
+                    <a href="#antipatterns">🚫 Anti-patterns</a>
+                    <a href="#practice">🏋️ Practice Exercises</a>
+                    <a href="#faq">❓ FAQ</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="why" aria-labelledby="why-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="why-heading">🎯 Why Comprehensions?</h2>
+                    <p>A comprehension is an expression that builds a new collection from an existing iterable</p>
+                </div>
+
+                <p style="margin-bottom:1rem;">The classic way to build a list in a loop needs a manual accumulator, an explicit append call, and an extra variable that exists only to be filled. A comprehension rewrites all of that into a single expression that <em>reads like a description of the result</em>. Once you're used to them, the comprehension form is not just shorter — it's actually clearer, because the "input → transformation" relationship is visible at a glance.</p>
+
+                <div class="explain-block">
+                    <h3>📝 From for-loop to comprehension</h3>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+<span class="cmt"># The explicit-loop version</span>
+squares_loop = []
+<span class="kw">for</span> n <span class="kw">in</span> numbers:
+    squares_loop.append(n * n)
+
+<span class="cmt"># The comprehension version</span>
+squares_comp = [n * n <span class="kw">for</span> n <span class="kw">in</span> numbers]
+
+<span class="fn">print</span>(squares_loop)
+<span class="fn">print</span>(squares_comp)
+<span class="fn">print</span>(squares_loop == squares_comp)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A list of five numbers to work with.</span></li>
+                            <li><span class="ln">3–5</span><span>The explicit loop: create an empty list, iterate, square each value, append. Three lines, one of which is just a setup step.</span></li>
+                            <li><span class="ln">8</span><span>The comprehension: one expression that produces the same result. Read it as "n * n, for each n in numbers".</span></li>
+                            <li><span class="ln">10–11</span><span>Both print <code>[1, 4, 9, 16, 25]</code>.</span></li>
+                            <li><span class="ln">12</span><span>Prints <code>True</code> — the two lists are equal. The comprehension is a drop-in replacement, not a different result.</span></li>
+                        </ol>
+                    </div>
+                    <div class="output-expected"><span class="out-label">Expected output</span>[1, 4, 9, 16, 25]
+[1, 4, 9, 16, 25]
+True</div>
+                    <div class="insight">💡 A reasonable rule of thumb: if the goal of a loop is <em>"build a new list"</em>, reach for a comprehension. If the loop has side effects (printing, writing to a file, appending to multiple lists), keep the explicit loop.</div>
+                </div>
+
+                <div class="info-box" style="margin-bottom:1.5rem;">
+                    <h4><i class="fas fa-lightbulb"></i> The four comprehension types</h4>
+                    <p><strong style="color:var(--text);">List:</strong> <code>[expr for x in it]</code> — brackets.<br>
+                    <strong style="color:var(--text);">Dict:</strong> <code>{k: v for x in it}</code> — braces with a colon.<br>
+                    <strong style="color:var(--text);">Set:</strong> <code>{expr for x in it}</code> — braces, no colon.<br>
+                    <strong style="color:var(--text);">Generator expression:</strong> <code>(expr for x in it)</code> — parentheses, lazy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="list-comp" aria-labelledby="list-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="list-heading">📋 List Comprehensions</h2>
+                    <p>The most-used form — wrapped in square brackets, builds a list eagerly</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>📋 Basic List Comprehension</h3>
+                    <p>Syntax: <code>[expression for item in iterable]</code>. The expression is evaluated once per item and the results are collected into a new list.</p>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+doubles = [n * <span class="num">2</span> <span class="kw">for</span> n <span class="kw">in</span> numbers]
+squares = [n ** <span class="num">2</span> <span class="kw">for</span> n <span class="kw">in</span> numbers]
+names = [<span class="st">"ana"</span>, <span class="st">"bob"</span>, <span class="st">"cara"</span>]
+capitalized = [name.capitalize() <span class="kw">for</span> name <span class="kw">in</span> names]
+lengths = [len(name) <span class="kw">for</span> name <span class="kw">in</span> names]
+
+<span class="fn">print</span>(doubles)
+<span class="fn">print</span>(squares)
+<span class="fn">print</span>(capitalized)
+<span class="fn">print</span>(lengths)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>The input list — five integers.</span></li>
+                            <li><span class="ln">3</span><span><code>[n * 2 for n in numbers]</code> — the expression <code>n * 2</code> is applied to each element. Result: <code>[2, 4, 6, 8, 10]</code>.</span></li>
+                            <li><span class="ln">4</span><span><code>[n ** 2 ...]</code> — squaring. Result: <code>[1, 4, 9, 16, 25]</code>.</span></li>
+                            <li><span class="ln">5–6</span><span>A list of strings. The comprehension calls <code>.capitalize()</code> on each name. Result: <code>['Ana', 'Bob', 'Cara']</code>.</span></li>
+                            <li><span class="ln">7</span><span>Calls <code>len()</code> on each string. Result: <code>[3, 3, 4]</code>.</span></li>
+                            <li><span class="ln">9–12</span><span>Print all four results — each is an independent new list.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 The expression can be anything — an arithmetic operation, a method call, a conditional, a function call, even another comprehension. The one thing it cannot do is contain a statement (assignments, print, etc.).</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔁 List Comprehension over Other Iterables</h3>
+                    <p>Any iterable works — strings, tuples, dicts, sets, <code>range()</code>, files, generators. A comprehension doesn't care what's being iterated.</p>
+                    <div class="code-snippet"><pre>word = <span class="st">"hello"</span>
+scores = {<span class="st">"Ana"</span>: <span class="num">95</span>, <span class="st">"Bob"</span>: <span class="num">88</span>}
+values = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>}
+
+chars = [c <span class="kw">for</span> c <span class="kw">in</span> word]
+upper = [c.upper() <span class="kw">for</span> c <span class="kw">in</span> word]
+keys = [k <span class="kw">for</span> k <span class="kw">in</span> scores]
+tripled = [v * <span class="num">3</span> <span class="kw">for</span> v <span class="kw">in</span> values]
+range_sq = [n ** <span class="num">2</span> <span class="kw">for</span> n <span class="kw">in</span> range(<span class="num">5</span>)]
+
+<span class="fn">print</span>(chars)
+<span class="fn">print</span>(upper)
+<span class="fn">print</span>(keys)
+<span class="fn">print</span>(tripled)
+<span class="fn">print</span>(range_sq)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–3</span><span>Four different iterables: a string, a dict, and a set.</span></li>
+                            <li><span class="ln">5–6</span><span>Iterating a string yields characters one at a time. <code>chars</code> is <code>['h', 'e', 'l', 'l', 'o']</code>; <code>upper</code> is the uppercased version.</span></li>
+                            <li><span class="ln">7</span><span>Iterating a dict yields its keys, so <code>keys</code> is <code>['Ana', 'Bob']</code>.</span></li>
+                            <li><span class="ln">8</span><span>Iterating a set yields its elements (in undefined order). <code>tripled</code> might be <code>[3, 6, 9]</code> or <code>[6, 9, 3]</code>.</span></li>
+                            <li><span class="ln">9</span><span><code>range(5)</code> yields 0–4. Result: <code>[0, 1, 4, 9, 16]</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Because a comprehension works with any iterable, the same technique works on generators, file objects, and database cursors — which means you can process very large inputs without loading them into memory first.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dict-comp" aria-labelledby="dict-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="dict-heading">📖 Dict Comprehensions</h2>
+                    <p>Build dictionaries from any iterable in one expression — <code>{key: value for ...}</code></p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>📖 Basic Dict Comprehension</h3>
+                    <p>Syntax: <code>{key_expr: value_expr for item in iterable}</code>. Both key and value are expressions evaluated per item.</p>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+names = [<span class="st">"ana"</span>, <span class="st">"bob"</span>, <span class="st">"cara"</span>]
+
+square_map = {n: n * n <span class="kw">for</span> n <span class="kw">in</span> numbers}
+lengths = {name: len(name) <span class="kw">for</span> name <span class="kw">in</span> names}
+by_first = {name[<span class="num">0</span>]: name <span class="kw">for</span> name <span class="kw">in</span> names}
+
+<span class="fn">print</span>(square_map)
+<span class="fn">print</span>(lengths)
+<span class="fn">print</span>(by_first)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–2</span><span>Input lists: five numbers and three names.</span></li>
+                            <li><span class="ln">4</span><span><code>{n: n * n for n in numbers}</code> — the loop variable <code>n</code> appears on both sides. Result: <code>{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>{name: len(name) ...}</code> — key is the string, value is its length. Result: <code>{'ana': 3, 'bob': 3, 'cara': 4}</code>.</span></li>
+                            <li><span class="ln">6</span><span><code>{name[0]: name ...}</code> — key is the first letter. Result: <code>{'a': 'ana', 'b': 'bob', 'c': 'cara'}</code>. If two names started with the same letter, the later one wins.</span></li>
+                            <li><span class="ln">8–10</span><span>All three prints show dicts.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 If two items in the source produce the same key, the <strong>last</strong> one wins silently — no error, no warning. Check for uniqueness first if that matters (e.g. <code>Counter</code> or explicit length verification).</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔄 Transforming and Filtering Dicts</h3>
+                    <p>Dict comprehensions shine when you need to invert, filter, or reshape an existing dict.</p>
+                    <div class="code-snippet"><pre>scores = {<span class="st">"Ana"</span>: <span class="num">95</span>, <span class="st">"Bob"</span>: <span class="num">88</span>, <span class="st">"Cara"</span>: <span class="num">72</span>}
+
+inverted = {score: name <span class="kw">for</span> name, score <span class="kw">in</span> scores.items()}
+passing = {name: score <span class="kw">for</span> name, score <span class="kw">in</span> scores.items() <span class="kw">if</span> score &gt;= <span class="num">80</span>}
+uppercased = {name.upper(): score <span class="kw">for</span> name, score <span class="kw">in</span> scores.items()}
+scaled = {name: score * <span class="num">1.1</span> <span class="kw">for</span> name, score <span class="kw">in</span> scores.items()}
+
+<span class="fn">print</span>(inverted)
+<span class="fn">print</span>(passing)
+<span class="fn">print</span>(uppercased)
+<span class="fn">print</span>(scaled)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A dict with three entries.</span></li>
+                            <li><span class="ln">3</span><span>Invert the mapping: keys become values, values become keys. Result: <code>{95: 'Ana', 88: 'Bob', 72: 'Cara'}</code>.</span></li>
+                            <li><span class="ln">4</span><span>Filter by score — only Ana and Bob pass. Result: <code>{'Ana': 95, 'Bob': 88}</code>.</span></li>
+                            <li><span class="ln">5</span><span>Uppercase the keys. Result: <code>{'ANA': 95, 'BOB': 88, 'CARA': 72}</code>.</span></li>
+                            <li><span class="ln">6</span><span>Multiply each score by 1.1. Result: values are 104.50000000000001, 96.8, 79.2 (floating-point precision again).</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Inverting a dict is safe only if the values are unique. If two names had the same score, one would be silently lost. Check uniqueness first: <code>len(set(scores.values())) == len(scores)</code>.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="set-comp" aria-labelledby="set-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="set-heading">🔵 Set Comprehensions</h2>
+                    <p>Build sets — duplicates are removed automatically, order is not preserved</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔵 Basic Set Comprehension</h3>
+                    <p>Syntax: <code>{expression for item in iterable}</code>. Braces, but no colon — that's what distinguishes it from a dict comprehension.</p>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">3</span>, <span class="num">3</span>]
+words = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"avocado"</span>, <span class="st">"apple"</span>]
+
+unique_numbers = {n <span class="kw">for</span> n <span class="kw">in</span> numbers}
+unique_lengths = {len(w) <span class="kw">for</span> w <span class="kw">in</span> words}
+unique_firsts = {w[<span class="num">0</span>] <span class="kw">for</span> w <span class="kw">in</span> words}
+
+<span class="fn">print</span>(unique_numbers)
+<span class="fn">print</span>(unique_lengths)
+<span class="fn">print</span>(unique_firsts)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A list with duplicates.</span></li>
+                            <li><span class="ln">2</span><span>A list of words, with "apple" repeated.</span></li>
+                            <li><span class="ln">4</span><span><code>{n for n in numbers}</code> — the duplicates are automatically removed. Result: <code>{1, 2, 3}</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>{len(w) for w in words}</code> — different words with the same length produce the same value, and sets deduplicate. Result: <code>{5, 6, 7}</code> (apple=5, banana=6, avocado=7).</span></li>
+                            <li><span class="ln">6</span><span><code>{w[0] for w in words}</code> — first letters. Result: <code>{'a', 'b'}</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Set comprehensions are the fastest way to deduplicate while applying a transformation: <code>{normalize(s) for s in raw_strings}</code> gives you unique normalised forms in one pass. For unique values in a list with order preserved, use <code>dict.fromkeys()</code> instead.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🧮 Set Comprehensions — Real Use Case</h3>
+                    <p>Finding the set of tags used across a collection of documents — a common task in text processing.</p>
+                    <div class="code-snippet"><pre>articles = [
+    {<span class="st">"title"</span>: <span class="st">"A"</span>, <span class="st">"tags"</span>: [<span class="st">"python"</span>, <span class="st">"web"</span>]},
+    {<span class="st">"title"</span>: <span class="st">"B"</span>, <span class="st">"tags"</span>: [<span class="st">"python"</span>, <span class="st">"ai"</span>]},
+    {<span class="st">"title"</span>: <span class="st">"C"</span>, <span class="st">"tags"</span>: [<span class="st">"web"</span>, <span class="st">"ai"</span>, <span class="st">"python"</span>]},
+]
+
+all_tags = {tag <span class="kw">for</span> article <span class="kw">in</span> articles <span class="kw">for</span> tag <span class="kw">in</span> article[<span class="st">"tags"</span>]}
+
+<span class="fn">print</span>(<span class="kw">sorted</span>(all_tags))</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–5</span><span>A list of three article dicts, each with a <code>tags</code> list.</span></li>
+                            <li><span class="ln">7</span><span>Nested set comprehension: for each article, iterate over its tags. The set deduplicates automatically. Result: <code>{'python', 'web', 'ai'}</code> (in some order).</span></li>
+                            <li><span class="ln">9</span><span><code>sorted()</code> converts the set to a sorted list for predictable display. Result: <code>['ai', 'python', 'web']</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="output-expected"><span class="out-label">Expected output</span>['ai', 'python', 'web']</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="generator" aria-labelledby="generator-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="generator-heading">♾️ Generator Expressions</h2>
+                    <p>Same syntax as a list comprehension, but with parentheses — and lazy evaluation</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>♾️ List vs Generator — Memory and Laziness</h3>
+                    <p>A list comprehension builds the whole list in memory; a generator expression yields values on demand. This matters when the input is large or the result is only needed once.</p>
+                    <div class="code-snippet"><pre>numbers = range(<span class="num">1_000_000</span>)
+
+list_version = [n * n <span class="kw">for</span> n <span class="kw">in</span> numbers]
+gen_version = (n * n <span class="kw">for</span> n <span class="kw">in</span> numbers)
+
+<span class="fn">print</span>(<span class="kw">type</span>(list_version).__name__)
+<span class="fn">print</span>(<span class="kw">type</span>(gen_version).__name__)
+<span class="fn">print</span>(<span class="kw">sum</span>(gen_version))
+<span class="fn">print</span>(<span class="kw">next</span>((n * n <span class="kw">for</span> n <span class="kw">in</span> range(<span class="num">5</span>))))</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A <code>range</code> of one million numbers — cheap to construct because it's lazy.</span></li>
+                            <li><span class="ln">3</span><span><code>[...]</code> — a list comprehension that builds one million squared values immediately. Memory: several MB.</span></li>
+                            <li><span class="ln">4</span><span><code>(...)</code> — a generator expression. Nothing is computed yet. Memory: negligible.</span></li>
+                            <li><span class="ln">6–7</span><span>Types: <code>list</code> vs <code>generator</code>.</span></li>
+                            <li><span class="ln">8</span><span><code>sum(gen_version)</code> — consumes the generator, computing each square on demand. Constant memory. Returns the correct sum without ever building the full list.</span></li>
+                            <li><span class="ln">9</span><span><code>next(...)</code> pulls one value from a fresh generator. Result: <code>0</code> (the square of 0, the first value of <code>range(5)</code>).</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 A generator can only be iterated once. Once consumed by <code>sum()</code>, it's exhausted — <code>list(gen_version)</code> afterwards returns <code>[]</code>. If you need to iterate multiple times, use a list comprehension or materialise the generator.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔗 Generator Expressions Inside Function Calls</h3>
+                    <p>When the generator expression is the only argument to a function, the parentheses are optional. This is why <code>sum(x * x for x in data)</code> looks like it has only one set of parens.</p>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+total = <span class="kw">sum</span>(n * n <span class="kw">for</span> n <span class="kw">in</span> numbers)
+evens = <span class="kw">any</span>(n % <span class="num">2</span> == <span class="num">0</span> <span class="kw">for</span> n <span class="kw">in</span> numbers)
+all_pos = <span class="kw">all</span>(n &gt; <span class="num">0</span> <span class="kw">for</span> n <span class="kw">in</span> numbers)
+biggest = <span class="kw">max</span>(n * <span class="num">2</span> <span class="kw">for</span> n <span class="kw">in</span> numbers)
+
+<span class="fn">print</span>(total)
+<span class="fn">print</span>(evens)
+<span class="fn">print</span>(all_pos)
+<span class="fn">print</span>(biggest)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>A list of five numbers.</span></li>
+                            <li><span class="ln">3</span><span><code>sum(n * n for n in numbers)</code> — no extra parens around the generator; <code>sum</code> receives the generator expression directly. Result: 1 + 4 + 9 + 16 + 25 = <code>55</code>.</span></li>
+                            <li><span class="ln">4</span><span><code>any(...)</code> — returns <code>True</code> as soon as it finds a truthy value, short-circuiting the rest. <code>2</code> is even, so it returns quickly.</span></li>
+                            <li><span class="ln">5</span><span><code>all(...)</code> — returns <code>True</code> only if every value passes. All five are positive.</span></li>
+                            <li><span class="ln">6</span><span><code>max(...)</code> — finds the largest doubled value: <code>10</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Functions like <code>sum</code>, <code>any</code>, <code>all</code>, <code>max</code>, <code>min</code> are the ideal home for a generator expression — you compute each value once, in one pass, without building an intermediate list. This pattern is sometimes called the "feed-a-generator-to-a-reducer" style.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conditions" aria-labelledby="conditions-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="conditions-heading">🔀 if/else Conditions</h2>
+                    <p>Filter (if after the for) vs transform (if before the for) — two very different behaviours</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔍 Filter with <code>if</code> After the <code>for</code></h3>
+                    <p>An <code>if</code> placed after the <code>for</code> acts as a filter. Items that fail the condition are simply skipped.</p>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>]
+
+evens = [n <span class="kw">for</span> n <span class="kw">in</span> numbers <span class="kw">if</span> n % <span class="num">2</span> == <span class="num">0</span>]
+positives = [n <span class="kw">for</span> n <span class="kw">in</span> [-<span class="num">2</span>, -<span class="num">1</span>, <span class="num">0</span>, <span class="num">1</span>, <span class="num">2</span>] <span class="kw">if</span> n &gt; <span class="num">0</span>]
+with_b = [w <span class="kw">for</span> w <span class="kw">in</span> [<span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"blueberry"</span>] <span class="kw">if</span> <span class="st">"b"</span> <span class="kw">in</span> w]
+
+<span class="fn">print</span>(evens)
+<span class="fn">print</span>(positives)
+<span class="fn">print</span>(with_b)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>Numbers 1–6.</span></li>
+                            <li><span class="ln">3</span><span><code>if n % 2 == 0</code> filters for even values. Result: <code>[2, 4, 6]</code>.</span></li>
+                            <li><span class="ln">4</span><span><code>if n &gt; 0</code> filters out negatives and zero. Result: <code>[1, 2]</code>.</span></li>
+                            <li><span class="ln">5</span><span><code>if "b" in w</code> keeps only words containing the letter b. Result: <code>['banana', 'blueberry']</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 The <code>if</code> is evaluated once per item, and items that fail are dropped from the result entirely. The result list can be shorter than the input — even empty.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🎨 Ternary <code>if/else</code> Before the <code>for</code></h3>
+                    <p>A ternary expression placed before the <code>for</code> transforms every item — nothing is filtered out. The output length always equals the input length.</p>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+labels = [<span class="st">"even"</span> <span class="kw">if</span> n % <span class="num">2</span> == <span class="num">0</span> <span class="kw">else</span> <span class="st">"odd"</span> <span class="kw">for</span> n <span class="kw">in</span> numbers]
+clamped = [n <span class="kw">if</span> n &lt;= <span class="num">3</span> <span class="kw">else</span> <span class="num">3</span> <span class="kw">for</span> n <span class="kw">in</span> numbers]
+
+<span class="fn">print</span>(labels)
+<span class="fn">print</span>(clamped)
+
+<span class="cmt"># Both at once: filter AND transform</span>
+even_labels = [<span class="st">"even"</span> <span class="kw">if</span> n &lt; <span class="num">4</span> <span class="kw">else</span> <span class="st">"big even"</span> <span class="kw">for</span> n <span class="kw">in</span> numbers <span class="kw">if</span> n % <span class="num">2</span> == <span class="num">0</span>]
+<span class="fn">print</span>(even_labels)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>Numbers 1–5.</span></li>
+                            <li><span class="ln">3</span><span>A ternary <code>if/else</code> decides each value. Result: <code>['odd', 'even', 'odd', 'even', 'odd']</code> — same length as input.</span></li>
+                            <li><span class="ln">4</span><span>Clamp values at 3. Result: <code>[1, 2, 3, 3, 3]</code>.</span></li>
+                            <li><span class="ln">7</span><span>Combined form: the <code>if</code> after <code>for</code> filters to evens, then the ternary before <code>for</code> chooses "even" or "big even" based on the value.</span></li>
+                            <li><span class="ln">8</span><span>Only evens pass the filter; among them, 2 is labelled "even" and 4 is labelled "big even". Result: <code>['even', 'big even']</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 The rule to remember: <strong><code>if</code> after <code>for</code> filters; <code>if/else</code> before <code>for</code> transforms</strong>. If you write <code>if</code> before <code>for</code> without an <code>else</code>, Python raises a <code>SyntaxError</code>.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nested" aria-labelledby="nested-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="nested-heading">🧩 Nested Comprehensions</h2>
+                    <p>Multiple <code>for</code> clauses in one comprehension — powerful, but easy to over-use</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🔁 Cartesian Product — Two Loops</h3>
+                    <p>Two <code>for</code> clauses produce every combination. The order matters: read left-to-right like the nested loops they replace.</p>
+                    <div class="code-snippet"><pre>letters = [<span class="st">"a"</span>, <span class="st">"b"</span>]
+numbers = [<span class="num">1</span>, <span class="num">2</span>]
+
+pairs = [(l, n) <span class="kw">for</span> l <span class="kw">in</span> letters <span class="kw">for</span> n <span class="kw">in</span> numbers]
+
+<span class="fn">print</span>(pairs)
+
+<span class="cmt"># Equivalent explicit loops</span>
+result = []
+<span class="kw">for</span> l <span class="kw">in</span> letters:
+    <span class="kw">for</span> n <span class="kw">in</span> numbers:
+        result.append((l, n))
+
+<span class="fn">print</span>(result)
+<span class="fn">print</span>(pairs == result)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–2</span><span>Two short lists.</span></li>
+                            <li><span class="ln">4</span><span>The comprehension iterates <code>l</code> first (outer), then <code>n</code> (inner) — same order as the nested loops below. Result: <code>[('a', 1), ('a', 2), ('b', 1), ('b', 2)]</code>.</span></li>
+                            <li><span class="ln">7–10</span><span>The explicit loops produce the same output. Read the comprehension left-to-right; the outermost <code>for</code> comes first.</span></li>
+                            <li><span class="ln">12–13</span><span><code>True</code> confirms the comprehension is a drop-in replacement.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Two-loop comprehensions are fine when both loops are short. Three or more nested loops are almost always better as explicit code — the reader has to mentally un-nest them.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🎯 Nested with a Condition on the Inner Loop</h3>
+                    <p>A filter <code>if</code> after the inner <code>for</code> applies only to the inner iteration.</p>
+                    <div class="code-snippet"><pre>numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>]
+
+pairs_less = [(a, b) <span class="kw">for</span> a <span class="kw">in</span> numbers <span class="kw">for</span> b <span class="kw">in</span> numbers <span class="kw">if</span> a &lt; b]
+
+<span class="fn">print</span>(pairs_less)
+
+pairs_same_parity = [(a, b) <span class="kw">for</span> a <span class="kw">in</span> numbers <span class="kw">for</span> b <span class="kw">in</span> numbers <span class="kw">if</span> (a + b) % <span class="num">2</span> == <span class="num">0</span> <span class="kw">and</span> a &lt;= b]
+
+<span class="fn">print</span>(pairs_same_parity)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>Numbers 1–4.</span></li>
+                            <li><span class="ln">3</span><span>All ordered pairs <code>(a, b)</code> where <code>a &lt; b</code>. Result: <code>[(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]</code>.</span></li>
+                            <li><span class="ln">7</span><span>Pairs where the sum is even (same parity) and <code>a ≤ b</code>. Result includes <code>(1, 1)</code>, <code>(1, 3)</code>, <code>(2, 2)</code>, <code>(2, 4)</code>, <code>(3, 3)</code>, <code>(4, 4)</code>.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Conditions after the inner <code>for</code> can reference the outer loop variable — <code>a</code> is visible to <code>b</code>'s condition. This is what makes "all pairs where a &lt; b" expressible in one line.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🗺️ Nested Comprehensions for 2D Data</h3>
+                    <p>When the input is already nested (a list of lists), you'll often want one comprehension per level: an outer one for rows, an inner one for cells.</p>
+                    <div class="code-snippet"><pre>grid = [
+    [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>],
+    [<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>],
+    [<span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>],
+]
+
+doubled = [[cell * <span class="num">2</span> <span class="kw">for</span> cell <span class="kw">in</span> row] <span class="kw">for</span> row <span class="kw">in</span> grid]
+flattened = [cell <span class="kw">for</span> row <span class="kw">in</span> grid <span class="kw">for</span> cell <span class="kw">in</span> row]
+
+<span class="fn">print</span>(doubled)
+<span class="fn">print</span>(flattened)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–5</span><span>A 3×3 grid as a list of lists.</span></li>
+                            <li><span class="ln">7</span><span>Two separate comprehensions nested — the outer iterates rows, the inner iterates cells within each row. Result: a new 3×3 grid with every value doubled.</span></li>
+                            <li><span class="ln">8</span><span>One comprehension with two <code>for</code> clauses — this flattens the grid to a single list of 9 numbers.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 These are genuinely different shapes: <code>[[...] for row in grid]</code> produces a list of lists (same shape as input); <code>[... for row in grid for cell in row]</code> produces a flat list. Pick the one matching the output you actually want.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="walrus" aria-labelledby="walrus-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="walrus-heading">🦭 Walrus Operator in Comprehensions</h2>
+                    <p>Python 3.8+ — name an intermediate result once instead of computing it twice</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>🦭 Avoiding Double Computation</h3>
+                    <p>Without the walrus operator, a filter condition that uses an expensive value often forces you to compute that value twice — once for the condition, once in the expression. <code>:=</code> lets you name it once.</p>
+                    <div class="code-snippet"><pre><span class="kw">def</span> <span class="fn">expensive</span>(x):
+    <span class="kw">return</span> x ** <span class="num">2</span>
+
+data = range(<span class="num">10</span>)
+
+<span class="cmt"># Without walrus: expensive() is called twice per item</span>
+result_old = [expensive(x) <span class="kw">for</span> x <span class="kw">in</span> data <span class="kw">if</span> expensive(x) &gt; <span class="num">10</span>]
+
+<span class="cmt"># With walrus: expensive() is called once per item</span>
+result_new = [y <span class="kw">for</span> x <span class="kw">in</span> data <span class="kw">if</span> (y := expensive(x)) &gt; <span class="num">10</span>]
+
+<span class="fn">print</span>(result_old)
+<span class="fn">print</span>(result_new)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1–2</span><span>A simple function to simulate an expensive computation.</span></li>
+                            <li><span class="ln">4</span><span>Some data to iterate over.</span></li>
+                            <li><span class="ln">7</span><span><code>[expensive(x) for x in data if expensive(x) &gt; 10]</code> — <code>expensive(x)</code> runs twice for every item: once in the filter, once in the expression. Wasteful for genuinely expensive operations.</span></li>
+                            <li><span class="ln">10</span><span><code>[y for x in data if (y := expensive(x)) &gt; 10]</code> — <code>expensive(x)</code> runs once per item, and <code>y</code> is reused in the expression. Same result, half the work.</span></li>
+                            <li><span class="ln">12–13</span><span>Both lists are identical. The walrus version is semantically equivalent, just more efficient.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Python 3.12 scopes the walrus variable <code>y</code> to the comprehension — after the comprehension ends, <code>y</code> is not defined in the enclosing scope. In Python 3.8–3.11, <code>y</code> leaked out; the change was a bug fix, not a feature.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance" aria-labelledby="performance-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="performance-heading">⚡ Performance — Why Comprehensions Are Faster</h2>
+                    <p>Usually 20–40% faster than manual loops for simple transformations</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>⏱️ Comprehension vs for-loop</h3>
+                    <p>The main speedup comes from two things: comprehensions skip the repeated <code>.append()</code> method lookup, and they run their iteration in a specialised bytecode path.</p>
+                    <div class="code-snippet"><pre><span class="kw">import</span> timeit
+
+numbers = <span class="kw">list</span>(<span class="kw">range</span>(<span class="num">1000</span>))
+
+loop_time = timeit.timeit(
+    <span class="st">"[].extend([]) or [n * n for n in numbers]"</span>,
+    globals={},
+    setup=<span class="st">"numbers = list(range(1000))"</span>,
+    number=<span class="num">1000</span>,
+)
+
+comp_time = timeit.timeit(
+    <span class="st">"[n * n for n in numbers]"</span>,
+    setup=<span class="st">"numbers = list(range(1000))"</span>,
+    number=<span class="num">1000</span>,
+)
+
+<span class="fn">print</span>(<span class="st">f"comprehension: {comp_time:.4f}s"</span>)
+<span class="fn">print</span>(<span class="st">f"loop variant: {loop_time:.4f}s"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>Imports the standard-library <code>timeit</code> module.</span></li>
+                            <li><span class="ln">3</span><span>Test data — 1000 numbers.</span></li>
+                            <li><span class="ln">5–10</span><span><code>timeit.timeit(...)</code> runs the statement 1000 times and returns the total seconds. The <code>setup</code> creates the data fresh each run.</span></li>
+                            <li><span class="ln">12–17</span><span>The same for the comprehension — typically 20–40% faster for this workload.</span></li>
+                            <li><span class="ln">19–20</span><span>Print the comparison.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 Microbenchmarks can be misleading. The honest answer: for 100-item lists, the difference is negligible. For million-item lists, the comprehension wins clearly. Use <code>timeit</code> on real data before optimising.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>📊 Memory — the Bigger Difference</h3>
+                    <p>Speed is only half the story. The bigger gain from generator expressions is constant memory — useful when the input is large.</p>
+                    <div class="code-snippet"><pre><span class="kw">import</span> sys
+
+big_list = [n <span class="kw">for</span> n <span class="kw">in</span> <span class="kw">range</span>(<span class="num">100_000</span>)]
+big_gen = (n <span class="kw">for</span> n <span class="kw">in</span> <span class="kw">range</span>(<span class="num">100_000</span>))
+
+<span class="fn">print</span>(<span class="st">f"list: {sys.getsizeof(big_list):,} bytes"</span>)
+<span class="fn">print</span>(<span class="st">f"generator: {sys.getsizeof(big_gen):,} bytes"</span>)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">1</span><span>Imports <code>sys</code> to call <code>getsizeof</code>.</span></li>
+                            <li><span class="ln">3</span><span>A list of 100,000 numbers — everything held in memory at once.</span></li>
+                            <li><span class="ln">4</span><span>A generator of 100,000 numbers — nothing computed yet.</span></li>
+                            <li><span class="ln">6–7</span><span><code>sys.getsizeof()</code> returns the memory the object itself occupies. The list is roughly 800 KB; the generator is a few hundred bytes — regardless of how many values it will produce.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 When you only need to iterate once — for <code>sum</code>, <code>any</code>, <code>max</code>, or feeding a file — use a generator expression. When you need to iterate multiple times, index into the result, or pass it to something that expects a list, use a list comprehension.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="antipatterns" aria-labelledby="anti-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="anti-heading">🚫 Anti-patterns — When Not to Use a Comprehension</h2>
+                    <p>Comprehensions are elegant, but they have a boundary — past it, a loop is clearer</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>❌ Side Effects</h3>
+                    <p>A comprehension is meant to <em>build a value</em>, not to trigger effects. If the goal is to print, write, or mutate external state, use a loop.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Don't do this — it builds a useless list of None</span>
+[<span class="fn">print</span>(n) <span class="kw">for</span> n <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>)]
+
+<span class="cmt"># Do this</span>
+<span class="kw">for</span> n <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>):
+    <span class="fn">print</span>(n)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">2</span><span>The comprehension runs <code>print(3)</code> three times and also builds <code>[None, None, None]</code> — a list you didn't want and probably won't use.</span></li>
+                            <li><span class="ln">5–6</span><span>The loop is clearly about triggering side effects. Same output, no wasted list.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 If the comprehension's result is discarded (nothing is assigned to a variable), you almost certainly want a loop. The sole exception is interactive REPL exploration, where typing <code>[f(x) for x in data]</code> just to see the result is fine.</div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>❌ Deep Nesting</h3>
+                    <p>Three or more <code>for</code> clauses, or a mix of two <code>if</code> filters and two loops, becomes a puzzle to decode. Write the loop.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Hard to read</span>
+result = [(a, b, c) <span class="kw">for</span> a <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>) <span class="kw">for</span> b <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>) <span class="kw">for</span> c <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>) <span class="kw">if</span> a != b <span class="kw">and</span> b != c]
+
+<span class="cmt"># Easier to read</span>
+result2 = []
+<span class="kw">for</span> a <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>):
+    <span class="kw">for</span> b <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>):
+        <span class="kw">for</span> c <span class="kw">in</span> <span class="kw">range</span>(<span class="num">3</span>):
+            <span class="kw">if</span> a != b <span class="kw">and</span> b != c:
+                result2.append((a, b, c))
+
+<span class="fn">print</span>(result == result2)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">2</span><span>A three-deep comprehension with an <code>and</code> filter. It fits on one line, but reading it aloud takes real effort — and that's a sign.</span></li>
+                            <li><span class="ln">5–10</span><span>The nested-loop version: longer, but every piece is visible. Indentation makes the structure clear.</span></li>
+                            <li><span class="ln">12</span><span>Prints <code>True</code> — the two produce identical results.</span></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="explain-block">
+                    <h3>❌ Comprehension Inside Comprehension When One Would Do</h3>
+                    <p>Stacking comprehensions where a single one plus a flat loop would work is a common source of confusion.</p>
+                    <div class="code-snippet"><pre><span class="cmt"># Hard to read: two comprehensions, one inside the other's iterable</span>
+matrix = [[<span class="num">1</span>, <span class="num">2</span>], [<span class="num">3</span>, <span class="num">4</span>]]
+result_hard = [[cell * <span class="num">2</span> <span class="kw">for</span> cell <span class="kw">in</span> row] <span class="kw">for</span> row <span class="kw">in</span> [row + [row[<span class="num">0</span>] * <span class="num">2</span>] <span class="kw">for</span> row <span class="kw">in</span> matrix]]
+
+<span class="cmt"># Easier: two clear passes</span>
+augmented = [row + [row[<span class="num">0</span>] * <span class="num">2</span>] <span class="kw">for</span> row <span class="kw">in</span> matrix]
+result_easy = [[cell * <span class="num">2</span> <span class="kw">for</span> cell <span class="kw">in</span> row] <span class="kw">for</span> row <span class="kw">in</span> augmented]
+
+<span class="fn">print</span>(result_hard == result_easy)</pre></div>
+                    <div class="line-explain">
+                        <div class="line-explain-title">Line-by-line explanation</div>
+                        <ol>
+                            <li><span class="ln">3</span><span>Two comprehensions inline — the inner one generates the iterable for the outer one, and both are in the same source line. Correct, but costs a re-read.</span></li>
+                            <li><span class="ln">6–7</span><span>The same logic in two named steps: augment each row, then double every cell. Longer, but each step has a name and a purpose.</span></li>
+                            <li><span class="ln">9</span><span>Prints <code>True</code> — both approaches are equivalent.</span></li>
+                        </ol>
+                    </div>
+                    <div class="insight">💡 The general principle: comprehensions should read like a description of a result. When they read like a puzzle, split into named intermediate variables — even if that means an extra line.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice" aria-labelledby="practice-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="practice-heading">🏋️ Practice — Check Your Understanding</h2>
+                    <p>Three exercises with solutions. Try each before expanding the answer.</p>
+                </div>
+
+                <div class="explain-block">
+                    <h3>Exercise 1 — Predict the Output</h3>
+                    <p>What does each line print? Write your answers before expanding.</p>
+                    <div class="code-snippet"><pre>nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+<span class="fn">print</span>([n * <span class="num">2</span> <span class="kw">for</span> n <span class="kw">in</span> nums <span class="kw">if</span> n &gt; <span class="num">2</span>])
+<span class="fn">print</span>([<span class="st">"big"</span> <span class="kw">if</span> n &gt; <span class="num">3</span> <span class="kw">else</span> <span class="st">"small"</span> <span class="kw">for</span> n <span class="kw">in</span> nums])
+<span class="fn">print</span>({n: n * <span class="num">2</span> <span class="kw">for</span> n <span class="kw">in</span> nums <span class="kw">if</span> n % <span class="num">2</span> == <span class="num">0</span>})
+<span class="fn">print</span>(<span class="kw">len</span>([n <span class="kw">for</span> n <span class="kw">in</span> nums <span class="kw">for</span> _ <span class="kw">in</span> <span class="kw">range</span>(<span class="num">2</span>)]))</pre></div>
+                    <details class="practice-details">
+                        <summary>Show solution</summary>
+                        <p>
+                            Line 1: <code>[6, 8, 10]</code> — only 3, 4, 5 pass the filter; each is doubled.<br>
+                            Line 2: <code>['small', 'small', 'small', 'big', 'big']</code> — nothing is filtered; every value becomes a label.<br>
+                            Line 3: <code>{2: 4, 4: 8}</code> — only even numbers survive the filter.<br>
+                            Line 4: <code>10</code> — the comprehension's expression runs twice per element, so the output list has 10 items.
+                        </p>
+                    </details>
+                </div>
+
+                <div class="explain-block">
+                    <h3>Exercise 2 — Rewrite as a Comprehension</h3>
+                    <p>Rewrite this loop as a list comprehension.</p>
+                    <div class="code-snippet"><pre>words = [<span class="st">"hello"</span>, <span class="st">"world"</span>, <span class="st">"python"</span>]
+result = []
+<span class="kw">for</span> w <span class="kw">in</span> words:
+    <span class="kw">if</span> <span class="kw">len</span>(w) &gt; <span class="num">5</span>:
+        result.append(w.upper())</pre></div>
+                    <details class="practice-details">
+                        <summary>Show solution</summary>
+                        <div class="code-snippet" style="margin-top:.5rem;"><pre>result = [w.upper() <span class="kw">for</span> w <span class="kw">in</span> words <span class="kw">if</span> <span class="kw">len</span>(w) &gt; <span class="num">5</span>]</pre></div>
+                        <p>The filter goes after the <code>for</code> (only words longer than 5 characters pass). The transformation <code>w.upper()</code> goes before the <code>for</code> (every surviving word is uppercased). Result: <code>['PYTHON']</code> — "hello" and "world" are both 5 characters, so only "python" qualifies.</p>
+                    </details>
+                </div>
+
+                <div class="explain-block">
+                    <h3>Exercise 3 — Word Length Map</h3>
+                    <p>Given a list of words, build a dict mapping each unique word length to the list of words of that length. Use a comprehension (possibly more than one).</p>
+                    <div class="code-snippet"><pre>words = [<span class="st">"hi"</span>, <span class="st">"hello"</span>, <span class="st">"be"</span>, <span class="st">"world"</span>, <span class="st">"python"</span>, <span class="st">"yo"</span>]</pre></div>
+                    <details class="practice-details">
+                        <summary>Show solution</summary>
+                        <div class="code-snippet" style="margin-top:.5rem;"><pre>lengths = {<span class="kw">len</span>(w) <span class="kw">for</span> w <span class="kw">in</span> words}
+grouped = {
+    length: [w <span class="kw">for</span> w <span class="kw">in</span> words <span class="kw">if</span> <span class="kw">len</span>(w) == length]
+    <span class="kw">for</span> length <span class="kw">in</span> lengths
+}
+<span class="fn">print</span>(grouped)</pre></div>
+                        <p>The outer dict comprehension iterates over the unique lengths; the inner list comprehension collects matching words. Result: <code>{2: ['hi', 'be', 'yo'], 5: ['hello', 'world'], 6: ['python']}</code>.</p>
+                        <p>Note: this is a pattern where <code>itertools.groupby</code> or <code>collections.defaultdict</code> can be more efficient — the comprehension form re-scans the whole list once per unique length. For small inputs that's fine; for very large ones, prefer the specialised tools.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" aria-labelledby="faq-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="faq-heading">❓ Frequently Asked Questions</h2>
+                    <p>Common questions about comprehensions, answered directly</p>
+                </div>
+                <div class="faq-list" style="margin-top:1.2rem;">
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-comp-1">
+                            <h3>When should I use a list comprehension instead of a for loop?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-comp-1">
+                            <p>Use a comprehension when the goal is to <strong>build a new collection</strong> from an iterable in a single readable expression. Use an explicit <code>for</code> loop when the body has <strong>side effects</strong> (printing, appending to multiple lists, writing files), contains complex branching, needs <code>break</code>/<code>continue</code>, or is more than one line of logic. A comprehension should read like a description of the result, not like a mini-program.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-comp-2">
+                            <h3>Are comprehensions faster than for loops in Python?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-comp-2">
+                            <p>Yes, usually 20–40% faster for simple cases. Comprehensions run their loop in a specialised bytecode path that avoids the per-iteration overhead of name lookups and method calls in an explicit <code>for</code> loop. The <code>.append()</code> call in a manual loop is the biggest cost — comprehensions do not pay it. For very small collections the difference is negligible; for large ones it matters.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-comp-3">
+                            <h3>Can I use if/else inside a comprehension?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-comp-3">
+                            <p>Yes, but placement matters. A <strong>filter</strong> <code>if</code> goes <em>after</em> the <code>for</code>: <code>[x for x in nums if x &gt; 0]</code>. A <strong>ternary expression</strong> goes <em>before</em> the <code>for</code>: <code>[('pos' if x &gt; 0 else 'neg') for x in nums]</code>. You cannot use an <code>if</code> that filters values in the expression position — only the ternary form is allowed there.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-comp-4">
+                            <h3>What's the difference between a list comprehension and a generator expression?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-comp-4">
+                            <p>A list comprehension <code>[x for x in data]</code> builds the entire list in memory <strong>eagerly</strong>. A generator expression <code>(x for x in data)</code> with parentheses produces values <strong>lazily</strong> on demand, using O(1) memory regardless of input size. Use a generator expression for large data or when you only need to iterate once (e.g. passing to <code>sum</code>, <code>any</code>, <code>all</code>, <code>max</code>).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-comp-5">
+                            <h3>Can I use the walrus operator in a comprehension?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-comp-5">
+                            <p>Yes — since Python 3.8. The walrus operator <code>:=</code> inside a comprehension lets you name an intermediate result that would otherwise be computed twice: <code>[y for x in data if (y := expensive(x)) &gt; 0]</code>. The name <code>y</code> is scoped to the comprehension in Python 3.12+ — accessible only inside the brackets. In 3.8–3.11, it leaked out; the change was a bug fix.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-comp-6">
+                            <h3>Should I use nested comprehensions?</h3>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-a" id="faq-comp-6">
+                            <p>Rarely. Nested comprehensions <code>[x+y for x in a for y in b]</code> are readable when short and the order of the <code>for</code>s matches the natural reading (outer loop first). Once you need three levels of nesting, or an <code>if</code> that references variables from more than one level, an explicit nested loop is almost always clearer. A good test: if you cannot read the comprehension out loud in one breath, it should be a <code>for</code> loop.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="educational-disclaimer" aria-labelledby="disclaimer-heading" style="background:rgba(245,158,11,.05);border-top:1px solid rgba(245,158,11,.2);border-bottom:1px solid rgba(245,158,11,.2);">
+            <div class="page-col" style="padding:1.5rem 1.25rem;">
+                <h3 id="disclaimer-heading" style="color:var(--amber);font-size:.85rem;display:flex;align-items:center;gap:.5rem;">
+                    <i class="fas fa-graduation-cap"></i> Educational Use Disclaimer
+                </h3>
+                <p style="font-size:.76rem;line-height:1.7;margin-top:.5rem;">
+                    This page is part of <strong style="color:var(--text);">Poetic Bytes</strong>, a free educational resource for learning Python programming.
+                    The code examples are provided for <strong style="color:var(--text);">instruction and demonstration</strong>.
+                    They are not production-audited and should not be used as-is in security-sensitive, financial, or safety-critical systems without independent review.
+                    See our <a href="disclaimer.html" style="color:var(--blue-lt);">full disclaimer</a> and <a href="terms.html" style="color:var(--blue-lt);">terms of use</a>.
+                </p>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="7847699765"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <section aria-label="Share this lesson">
+            <div class="page-col">
+                <div class="share-box">
+                    <h3>📤 Share this lesson</h3>
+                    <p style="margin-top:.3rem;">If this helped, passing it along helps other learners find it</p>
+                    <div class="share-row">
+                        <button class="share-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareEmailBottom"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" aria-label="Newsletter">
+            <div class="page-col">
+                <div class="subscribe-box">
+                    <h3>📬 Python, weekly</h3>
+                    <p>Short lessons, real code, and ecosystem news — sent about once a week</p>
+                    <form class="sub-form" id="subscribeForm" novalidate>
+                        <input type="email" id="subEmail" placeholder="your@email.dev" required autocomplete="email" aria-label="Email address">
+                        <button type="submit" id="subBtn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                        <div class="sub-message" id="subMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="comments-ui-heading">
+            <div class="page-col">
+                <h2 id="comments-ui-heading" style="margin-bottom:1.2rem;">🗣️ Learner Voices</h2>
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1.2rem;margin-bottom:1rem;">
+                    <form class="comment-form" id="commentForm" novalidate>
+                        <input type="text" id="commentName" placeholder="Display name" required autocomplete="name">
+                        <textarea id="commentText" placeholder="Ask a question, share progress, or leave a tip for other learners …" rows="3" required></textarea>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Publish comment</button>
+                    </form>
+                </div>
+                <div class="empty-state" id="commentEmpty"><i class="fas fa-comments"></i><p>No comments yet — your voice starts the conversation.</p></div>
+                <div id="commentList"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="sample-programs.html">Sample Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="python-data-types.html">Data Types</a></li>
+                        <li><a href="python-type-casting.html">Type Casting</a></li>
+                        <li><a href="python-comments-docstrings.html">Comments &amp; Docstrings</a></li>
+                        <li><a href="python-string-formatting.html">String Formatting</a></li>
+                        <li><a href="python-range-enumerate-zip.html">range, enumerate, zip</a></li>
+                        <li><a href="python-comprehensions.html">Comprehensions</a></li>
+                        <li><a href="python-loops.html">Loops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Written and maintained by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a>.</p>
+                <p style="margin-top:.4rem;">Built with <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            function qs(sel, ctx) { return (ctx || document).querySelector(sel); }
+            function qsa(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+            function escapeHtml(str) { var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) { menuToggle.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); }
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            function openDrawer() {
+                if (menuToggle) { menuToggle.classList.add('active'); menuToggle.setAttribute('aria-expanded', 'true'); }
+                if (drawer) drawer.classList.add('active');
+                if (overlay) overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            if (menuToggle) menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                drawer.classList.contains('active') ? closeDrawer() : openDrawer();
+            });
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && drawer && drawer.classList.contains('active')) closeDrawer();
+            });
+
+            qsa('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' }); closeDrawer(); }
+                });
+            });
+
+            window.toggleFaq = function(btn) {
+                var item = btn.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var isOpen = answer.classList.contains('open');
+                qsa('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    var parentBtn = a.closest('.faq-item').querySelector('.faq-q');
+                    if (parentBtn) parentBtn.setAttribute('aria-expanded', 'false');
+                    var toggle = parentBtn ? parentBtn.querySelector('.faq-toggle') : null;
+                    if (toggle) toggle.textContent = '+';
+                });
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                    var toggle = btn.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '−';
+                }
+            };
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var tocToggle = document.getElementById('tocToggleBtn');
+            var tocPanel = document.getElementById('floatingToc');
+            var tocClose = document.getElementById('tocCloseBtn');
+            var tocBody = document.getElementById('tocBody');
+            var tocLinks = tocBody ? qsa('a', tocBody) : [];
+
+            if (tocToggle && tocPanel) {
+                tocToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    tocPanel.classList.toggle('open');
+                    tocToggle.setAttribute('aria-expanded', tocPanel.classList.contains('open') ? 'true' : 'false');
+                });
+                document.addEventListener('click', function(e) {
+                    if (tocPanel.classList.contains('open')) {
+                        if (!tocPanel.contains(e.target) && e.target !== tocToggle && !tocToggle.contains(e.target)) {
+                            tocPanel.classList.remove('open');
+                            tocToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && tocPanel.classList.contains('open')) {
+                        tocPanel.classList.remove('open');
+                        tocToggle.setAttribute('aria-expanded', 'false');
+                        tocToggle.focus();
+                    }
+                });
+            }
+            if (tocClose) tocClose.addEventListener('click', function() {
+                if (tocPanel) { tocPanel.classList.remove('open'); tocToggle.setAttribute('aria-expanded', 'false'); }
+            });
+
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY + 120;
+                var currentId = null;
+                document.querySelectorAll('section[id], div[id]').forEach(function(el) {
+                    if (el.offsetTop <= scrollY) currentId = el.id;
+                });
+                tocLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    link.classList.toggle('toc-highlight', href === '#' + currentId);
+                });
+            }, { passive: true });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-comprehensions.html');
+            var PAGE_TITLE = encodeURIComponent('Python Comprehensions 2026 – List, Dict & Set Comprehensions');
+
+            function shareTo(url) { window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer'); }
+
+            qsa('#shareFb, #shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            qsa('#shareTw, #shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+            qsa('#shareLi, #shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault(); shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            var shareEmailB = document.getElementById('shareEmailBottom');
+            if (shareEmailB) shareEmailB.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'mailto:?subject=' + PAGE_TITLE + '&body=Check%20out%20this%20Python%20comprehensions%20lesson%3A%20' + PAGE_URL;
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/python-comprehensions.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopy(url, btn); });
+                } else { fallbackCopy(url, btn); }
+            }
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            var copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            var subForm = document.getElementById('subscribeForm');
+            var subEmail = document.getElementById('subEmail');
+            var subMessage = document.getElementById('subMessage');
+            var subBtn = document.getElementById('subBtn');
+            if (subForm) subForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = subEmail.value.trim();
+                if (!email || !email.includes('@') || !email.includes('.')) {
+                    subMessage.textContent = 'Please enter a valid email address.';
+                    subMessage.className = 'sub-message error';
+                    return;
+                }
+                subBtn.disabled = true;
+                subBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing…';
+                subMessage.className = 'sub-message'; subMessage.textContent = '';
+                setTimeout(function() {
+                    subMessage.textContent = 'Subscribed — check your inbox for a confirmation email.';
+                    subMessage.className = 'sub-message success';
+                    subEmail.value = '';
+                    subBtn.disabled = false;
+                    subBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe';
+                }, 1200);
+            });
+
+            var comments = [];
+            try { var stored = localStorage.getItem('python_comprehensions_comments'); if (stored) comments = JSON.parse(stored); } catch (_) {}
+            var commentForm = document.getElementById('commentForm');
+            var commentName = document.getElementById('commentName');
+            var commentText = document.getElementById('commentText');
+            var commentList = document.getElementById('commentList');
+            var commentEmpty = document.getElementById('commentEmpty');
+            function renderComments() {
+                if (!commentList) return;
+                if (comments.length === 0) { commentList.innerHTML = ''; if (commentEmpty) commentEmpty.style.display = 'block'; return; }
+                if (commentEmpty) commentEmpty.style.display = 'none';
+                commentList.innerHTML = comments.map(function(c) {
+                    return '<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--card-r);padding:1rem 1.2rem;margin-bottom:.6rem;">' +
+                        '<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">' +
+                        '<span style="font-weight:700;color:var(--gold);font-size:.8rem;">' + escapeHtml(c.name) + '</span>' +
+                        '<span style="font-size:.6rem;color:var(--muted);">' + escapeHtml(c.time || 'just now') + '</span>' +
+                        '</div><p style="font-size:.78rem;color:var(--text);margin:0;">' + escapeHtml(c.text) + '</p></div>';
+                }).join('');
+            }
+            if (commentForm) commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var name = commentName.value.trim() || 'Anonymous';
+                var text = commentText.value.trim();
+                if (!text) return;
+                comments.unshift({ name: name, text: text, time: new Date().toLocaleString() });
+                try { localStorage.setItem('python_comprehensions_comments', JSON.stringify(comments)); } catch (_) {}
+                renderComments(); commentText.value = ''; commentName.value = '';
+            });
+            renderComments();
+
+            var pyodideReady = false, pyodideInstance = null, pyodideLoading = false;
+
+            function indentCode(code, spaces) {
+                spaces = spaces || 4;
+                var prefix = ' '.repeat(spaces);
+                return code.split('\n').map(function(line) { return line ? prefix + line : ''; }).join('\n');
+            }
+            function hasFileOperations(code) {
+                var patterns = [/open\s*\(/, /Path\s*\(/, /with\s+open\s*\(/, /\.read\s*\(/, /\.write\s*\(/, /os\.path/, /shutil\./, /glob\s*\(/, /__file__/];
+                for (var i = 0; i < patterns.length; i++) { if (patterns[i].test(code)) return true; }
+                return false;
+            }
+            function loadPyodideOnce() {
+                return new Promise(function(resolve, reject) {
+                    if (pyodideReady) { resolve(pyodideInstance); return; }
+                    if (pyodideLoading) { var check = setInterval(function() { if (pyodideReady) { clearInterval(check); resolve(pyodideInstance); } }, 100); return; }
+                    pyodideLoading = true;
+                    if (typeof loadPyodide === 'undefined') {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js';
+                        script.onload = function() { loadPyodide().then(function(py) { pyodideInstance = py; pyodideReady = true; pyodideLoading = false; resolve(pyodideInstance); }).catch(reject); };
+                        script.onerror = function() { pyodideLoading = false; reject(new Error('Failed to load Pyodide script')); };
+                        document.head.appendChild(script);
+                    } else {
+                        loadPyodide().then(function(py) { pyodideInstance = py; pyodideReady = true; pyodideLoading = false; resolve(pyodideInstance); }).catch(reject);
+                    }
+                });
+            }
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalText = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime... (first run may take 8–12s)\n\n';
+                try {
+                    var pyodide = await loadPyodideOnce();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+                    var hasWarning = false;
+                    if (hasFileOperations(code)) {
+                        hasWarning = true;
+                        outputEl.className = 'output-panel file-warning';
+                        outputEl.textContent = '⚠️ This code uses file operations. It will run in the browser\'s virtual filesystem — files won\'t persist. For real file work, copy the code and run it locally.\n\n';
+                    }
+                    var indentedCode = indentCode(code, 4);
+                    var wrappedCode = 'import sys\nfrom io import StringIO\n_captured_output = StringIO()\n_old_stdout = sys.stdout\nsys.stdout = _captured_output\ntry:\n' + indentedCode + '\nfinally:\n    sys.stdout = _old_stdout\n_captured_output.getvalue()\n';
+                    var result = await pyodide.runPythonAsync(wrappedCode);
+                    var resultText = result || '✓ Code executed successfully (no output).';
+                    if (hasWarning) { outputEl.textContent += resultText; }
+                    else { outputEl.textContent = resultText; outputEl.style.color = '#4ade80'; }
+                } catch (err) {
+                    if (outputEl.className === 'output-panel file-warning') { outputEl.textContent += '\n\nError:\n' + err.message; }
+                    else { outputEl.className = 'output-panel error'; outputEl.textContent = 'Error:\n' + err.message; outputEl.style.color = '#f87171'; }
+                } finally {
+                    runBtn.disabled = false; runBtn.innerHTML = originalText;
+                }
+            }
+            function copyCode(btn, code) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(code.trim()).then(function() {
+                        var orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopyCode(btn, code); });
+                } else { fallbackCopyCode(btn, code); }
+            }
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code.trim(); ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            function enhanceCodeBlocks() {
+                var blocks = qsa('.code-snippet:not(.code-preview .code-snippet), .code-body:not(.code-preview .code-body)');
+                blocks.forEach(function(block) {
+                    if (block.closest('.code-container')) return;
+                    var pre = block.querySelector('pre'); if (!pre) return;
+                    var codeText = pre.textContent;
+                    var container = document.createElement('div');
+                    container.className = 'code-container';
+                    var header = document.createElement('div');
+                    header.className = 'code-header';
+                    header.innerHTML = '<span style="color:var(--muted);">python</span><div class="code-actions"><button class="code-btn copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button><button class="code-btn run-btn" type="button"><i class="fas fa-play"></i> Run</button></div>';
+                    var outputPanel = document.createElement('div');
+                    outputPanel.className = 'output-panel';
+                    block.parentNode.insertBefore(container, block);
+                    container.appendChild(header); container.appendChild(block); container.appendChild(outputPanel);
+                    var copyBtn = header.querySelector('.copy-btn');
+                    var runBtn = header.querySelector('.run-btn');
+                    copyBtn.addEventListener('click', function() { copyCode(copyBtn, codeText); });
+                    runBtn.addEventListener('click', function() { runCode(codeText, outputPanel, runBtn); });
+                });
+            }
+            if (document.readyState === 'complete' || document.readyState === 'interactive') { enhanceCodeBlocks(); }
+            else { document.addEventListener('DOMContentLoaded', enhanceCodeBlocks); }
+
+        })();
+    </script>
+</body>
+</html>
