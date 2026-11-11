@@ -82,6 +82,11 @@ def build_sitemap(root: Path, site: str) -> str:
         if re.search(r'<meta[^>]+name=["\']robots["\'][^>]+noindex', p.read_text(encoding="utf-8", errors="ignore"), re.I):
             continue   # a page that says noindex must not be in the sitemap
         loc = url_for(site, root, p)
+        canon = re.findall(r'<link[^>]+rel=["\']canonical["\'][^>]*href=["\']([^"\']*)["\']',
+                           p.read_text(encoding="utf-8", errors="ignore"), re.I)
+        if canon and canon[0].rstrip("/") != loc.rstrip("/"):
+            print(f"left out of the sitemap (its canonical is another address): {p.relative_to(root).as_posix()}")
+            continue
         mtime = dt.date.fromtimestamp(p.stat().st_mtime).isoformat()
         prio = "1.0" if loc.rstrip("/") == site.rstrip("/") else "0.7"
         rows.append(f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{mtime or today}</lastmod>\n    <priority>{prio}</priority>\n  </url>")
