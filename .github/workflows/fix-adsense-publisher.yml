@@ -1,0 +1,34 @@
+name: Fix AdSense publisher ID
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "no = preview only, yes = really change the files"
+        type: choice
+        options: ["no", "yes"]
+        default: "no"
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run
+        run: |
+          ARGS="--root ."
+          if [ "${{ inputs.apply }}" = "yes" ]; then ARGS="$ARGS --apply"; fi
+          python scripts/fix_adsense_publisher.py $ARGS
+      - name: Commit
+        if: ${{ inputs.apply == 'yes' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "nothing to commit" || (git commit -m "Fix AdSense publisher ID code" && git push)
