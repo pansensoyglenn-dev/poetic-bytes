@@ -1,0 +1,43 @@
+name: Hide unfinished lessons
+
+on:
+  workflow_dispatch:
+    inputs:
+      min_words:
+        description: "A lesson page with fewer visible words than this counts as unfinished"
+        default: "300"
+      noindex_thin:
+        description: "Also mark short lesson pages noindex (removed again when they grow)"
+        type: choice
+        options: ["yes", "no"]
+        default: "yes"
+      apply:
+        description: "no = preview only, yes = really change the files"
+        type: choice
+        options: ["no", "yes"]
+        default: "no"
+
+permissions:
+  contents: write
+
+jobs:
+  hide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run
+        run: |
+          ARGS="--root . --min-words ${{ inputs.min_words }}"
+          if [ "${{ inputs.noindex_thin }}" = "yes" ]; then ARGS="$ARGS --noindex-thin"; fi
+          if [ "${{ inputs.apply }}" = "yes" ]; then ARGS="$ARGS --apply"; fi
+          python scripts/hide_unfinished_lessons.py $ARGS
+      - name: Commit
+        if: ${{ inputs.apply == 'yes' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "nothing to commit" || (git commit -m "Hide unfinished lessons from the home page" && git push)
