@@ -1,0 +1,73 @@
+name: SEO automation
+
+# Regenerates sitemap.xml + feed.xml, lints the pages, then pings IndexNow
+# once Vercel has actually deployed the new version.
+
+on:
+  push:
+    branches: [main]
+    paths: ["**.html"]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: show the report only. No commit, no ping."
+        type: boolean
+        default: true
+      ping_all:
+        description: "Submit ALL pages to IndexNow (ignored on dry run)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo-automation
+  cancel-in-progress: false
+
+env:
+  SITE: https://poetic-bytes.vercel.app
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history, so lastmod dates come from real commits
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate sitemap, feed, robots.txt and lint report
+        run: python scripts/seo_automation.py --base "$SITE" --report "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit generated files
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml feed.xml robots.txt
+          KEY=$(ls | grep -E '^[0-9a-f]{32}\.txt$' || true)
+          [ -n "$KEY" ] && git add "$KEY"
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "chore(seo): update sitemap, feed and robots"
+            git push || (git pull --rebase && git push)
+          fi
+
+      - name: Ping IndexNow (waits for the deploy to go live first)
+        if: ${{ !inputs.dry_run }}
+        env:
+          BEFORE: ${{ github.event.before }}
+          PING_ALL: ${{ inputs.ping_all }}
+        run: |
+          ARGS="--base $SITE --no-generate --indexnow"
+          if [ "$PING_ALL" = "true" ] || [ -z "$BEFORE" ]; then
+            ARGS="$ARGS --all"
+          else
+            ARGS="$ARGS --changed-from $BEFORE"
+          fi
+          python scripts/seo_automation.py $ARGS
