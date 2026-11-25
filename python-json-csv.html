@@ -1,0 +1,3058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python JSON &amp; CSV – Learn Data Serialization 2026 | Poetic Bytes</title>
+    <meta name="description" content="Master Python JSON and CSV: reading, writing, parsing, serialization, and data conversion. Interactive lessons with runnable code. By @PoeticGlenn." />
+    <meta name="keywords" content="python json, python csv, json tutorial, csv tutorial, python json parsing, python csv reader, data serialization python, json dumps loads, csv dictreader, PoeticGlenn" />
+    <meta name="author" content="Glenn Junsay Pansensoy (@PoeticGlenn)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/python-json-csv.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Python JSON &amp; CSV – Free Interactive Tutorial | Poetic Bytes" />
+    <meta property="og:description" content="Complete guide to Python JSON and CSV: reading, writing, parsing, serialization, and data conversion. Interactive lessons. By @PoeticGlenn." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/python-json-csv.html" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="article:published_time" content="2026-01-25" />
+    <meta property="article:modified_time" content="2026-06-30" />
+    <meta property="article:author" content="https://www.linkedin.com/in/glenn-pansensoy" />
+    <meta property="article:section" content="Programming" />
+    <meta property="article:tag" content="Python" />
+    <meta property="article:tag" content="JSON" />
+    <meta property="article:tag" content="CSV" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python JSON &amp; CSV – Free Interactive Tutorial | Poetic Bytes" />
+    <meta name="twitter:description" content="Complete guide to Python JSON and CSV: reading, writing, parsing, serialization, and data conversion. By @PoeticGlenn." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:image:alt" content="Python JSON &amp; CSV tutorial cover – Learn data serialization with Poetic Bytes" />
+
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python JSON & CSV – Complete Guide to Data Serialization",
+            "alternativeHeadline": "Master Python JSON and CSV: parsing, writing, and conversion",
+            "description": "Complete guide to Python JSON and CSV: json.dumps/loads, json.dump/load, csv.reader/writer, DictReader/DictWriter, and converting between formats. By @PoeticGlenn.",
+            "datePublished": "2026-01-25",
+            "dateModified": "2026-06-30",
+            "author": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "url": "https://www.linkedin.com/in/glenn-pansensoy",
+                "sameAs": [
+                    "https://twitter.com/PoeticGlenn",
+                    "https://github.com/pansensoyglenn-dev",
+                    "https://www.instagram.com/glennpansensoy",
+                    "https://www.facebook.com/Glenn-Pansensoy"
+                ]
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Poetic Bytes",
+                "url": "https://poetic-bytes.vercel.app",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://poetic-bytes.vercel.app/logo.png"
+                },
+                "sameAs": [
+                    "https://twitter.com/PoeticGlenn",
+                    "https://github.com/pansensoyglenn-dev/poetic-bytes"
+                ]
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://poetic-bytes.vercel.app/python-json-csv.html"
+            },
+            "about": {
+                "@type": "Thing",
+                "name": "Python JSON and CSV"
+            },
+            "educationalUse": "tutorial",
+            "inLanguage": "en-US",
+            "isAccessibleForFree": true,
+            "teaches": [
+                "JSON serialization with json.dumps and json.loads",
+                "Reading and writing JSON files",
+                "CSV parsing with csv.reader and csv.writer",
+                "DictReader and DictWriter",
+                "Converting between JSON and CSV",
+                "Handling nested data and edge cases"
+            ],
+            "learningResourceType": "Tutorial",
+            "timeRequired": "PT2H",
+            "keywords": "python json, python csv, json tutorial, csv tutorial, python json parsing, python csv reader, data serialization python, json dumps loads, csv dictreader, PoeticGlenn"
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://poetic-bytes.vercel.app/"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Python Tutorials",
+                "item": "https://poetic-bytes.vercel.app/#toc"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Python JSON & CSV",
+                "item": "https://poetic-bytes.vercel.app/python-json-csv.html"
+            }]
+        }
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .btn-home {
+            background: rgba(75, 139, 190, .15);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-home:hover {
+            border-color: var(--gold);
+            background: rgba(255, 217, 102, .12);
+            color: var(--gold);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        .hero {
+            padding: 4rem 0 2.5rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .6rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.2rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-bottom: 1.5rem;
+        }
+        .back-home-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1rem;
+            background: var(--card);
+            border-radius: var(--card-r);
+            border: 1px solid var(--border);
+        }
+        .back-home-row .btn-home {
+            flex-shrink: 0;
+        }
+        .lesson-counter {
+            font-size: 0.65rem;
+            color: var(--muted);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.25rem 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-left: auto;
+        }
+        @media(max-width:480px) {
+            .back-home-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.6rem;
+            }
+            .lesson-counter {
+                margin-left: 0;
+                justify-content: center;
+            }
+        }
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-new {
+            background: rgba(251, 146, 60, .15);
+            color: var(--orange);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+            border-radius: var(--card-r);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+            user-select: none;
+        }
+        .code-btn:active {
+            transform: scale(0.95);
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border-top: 1px solid var(--border);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            padding: 0.9rem 1rem;
+            overflow-x: auto;
+            margin: 0;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .code-snippet .cm {
+            color: #6A9955;
+            font-style: italic;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+            margin-top: .6rem;
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .checklist li {
+            display: flex;
+            gap: .55rem;
+            align-items: flex-start;
+            font-size: .78rem;
+            color: var(--muted);
+            padding: .5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        .checklist li span.check {
+            color: var(--blue);
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            margin: 0.8rem 0 1rem 0;
+            padding: 0;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            padding: 0.45rem 0.45rem 0.45rem 2.6rem;
+            position: relative;
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(31, 64, 96, 0.25);
+        }
+        .step-list li:last-child {
+            border-bottom: none;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0.2rem;
+            top: 0.45rem;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: rgba(75, 139, 190, 0.15);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: var(--gold);
+        }
+        .step-list li strong {
+            color: var(--text);
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .note-warn {
+            font-size: .74rem;
+            color: var(--amber);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 300px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child {
+            color: var(--gold);
+        }
+        th:nth-child(2) {
+            color: var(--blue);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        td:nth-child(2) {
+            color: var(--green);
+            font-weight: 600;
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(75, 139, 190, .03);
+        }
+        .share-box {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .share-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .share-btn {
+            height: var(--btn-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-size: .74rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .2s;
+            font-weight: 600;
+            background: var(--card);
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .share-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .1);
+        }
+        .share-btn.copy-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        .copyright a:hover {
+            color: #fff;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        .ad-slot {
+            text-align: center;
+            padding: 1rem 0;
+            background: var(--bg);
+            min-height: 60px;
+        }
+        .ad-slot ins {
+            display: block;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3rem 0 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .share-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 240px;
+            }
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+        }
+        @media(max-width:768px) {
+            .floating-share {
+                right: 14px;
+                bottom: 76px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
+        }
+        .toc-grid a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.7rem 0.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: border-color .2s, color .2s, background .2s, transform .15s;
+            min-height: 44px;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        .toc-grid a:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .08);
+            transform: translateY(-2px);
+        }
+        @media(max-width:480px) {
+            .toc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .toc-grid a {
+                font-size: 0.6rem;
+                padding: 0.5rem 0.4rem;
+                min-height: 38px;
+            }
+        }
+        .pyodide-status {
+            font-size: 0.65rem;
+            color: var(--muted);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .pyodide-status .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            display: inline-block;
+            animation: pulse-dot 1.5s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+        .intro-grid .intro-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1.1rem;
+            text-align: center;
+            transition: border-color .2s;
+        }
+        .intro-grid .intro-item:hover {
+            border-color: var(--blue);
+        }
+        .intro-grid .intro-item i {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .intro-grid .intro-item h4 {
+            font-size: 0.78rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .intro-grid .intro-item p {
+            font-size: 0.68rem;
+            margin: 0;
+        }
+        @media(max-width:600px) {
+            .intro-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:400px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .why-grid .why-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1.1rem;
+            border-left: 3px solid var(--blue);
+        }
+        .why-grid .why-item h4 {
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 0.2rem;
+        }
+        .why-grid .why-item p {
+            font-size: 0.72rem;
+            margin: 0;
+        }
+        @media(max-width:500px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sig-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .sig-grid .sig-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1rem;
+            text-align: center;
+            transition: transform .2s;
+        }
+        .sig-grid .sig-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--blue);
+        }
+        .sig-grid .sig-item .sig-icon {
+            font-size: 1.8rem;
+            color: var(--blue-lt);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .sig-grid .sig-item h4 {
+            font-size: 0.78rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .sig-grid .sig-item p {
+            font-size: 0.68rem;
+            margin: 0;
+        }
+        @media(max-width:600px) {
+            .sig-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:400px) {
+            .sig-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .outro-box {
+            background: radial-gradient(ellipse at 50% 100%, rgba(75, 139, 190, .12) 0%, transparent 70%);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2rem 1.8rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .outro-box h2 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+        .outro-box p {
+            font-size: 0.85rem;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+            line-height: 1.8;
+        }
+        .outro-box .outro-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-top: 1.2rem;
+        }
+    /* adsense-collapse-unfilled */
+.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
+.ad-slot:has(> .adsbygoogle[data-ad-status="unfilled"]){display:none!important}
+</style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html#toc">Curriculum</a></li>
+                <li><a href="index.html#new-lessons">New Lessons</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pathways">Pathways</a></li>
+                <li><a href="index.html#instructor">Instructor</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="programming-history.html">History</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+                <li><button data-href="#toc"><i class="fas fa-list"></i>Table of Contents</button></li>
+                <li><button data-href="#intro"><i class="fas fa-star"></i>Introduction</button></li>
+                <li><button data-href="#why-learn"><i class="fas fa-graduation-cap"></i>Why Learn This</button></li>
+                <li><button data-href="#significance"><i class="fas fa-globe"></i>Significance</button></li>
+                <li><button data-href="#json-basics"><i class="fas fa-code"></i>JSON Basics</button></li>
+                <li><button data-href="#json-files"><i class="fas fa-file-code"></i>JSON Files</button></li>
+                <li><button data-href="#csv-basics"><i class="fas fa-table"></i>CSV Basics</button></li>
+                <li><button data-href="#csv-dict"><i class="fas fa-list-alt"></i>DictReader &amp; DictWriter</button></li>
+                <li><button data-href="#conversion"><i class="fas fa-exchange-alt"></i>JSON ↔ CSV</button></li>
+                <li><button data-href="#best-practices"><i class="fas fa-shield-alt"></i>Best Practices</button></li>
+                <li><button data-href="#faq-json-csv"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#outro"><i class="fas fa-heart"></i>Outro</button></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X">
+            <i class="fab fa-twitter"></i>
+            <span class="tooltip">X</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip">LinkedIn</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="tooltip">Telegram</span>
+        </a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python JSON and CSV Tutorial">
+            <div class="page-col">
+                <div class="back-home-row">
+                    <a href="index.html" class="btn btn-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                    <span class="lesson-counter"><i class="fas fa-book-open"></i> 18 lessons</span>
+                    <span class="pyodide-status"><span class="dot"></span> Pyodide ready</span>
+                </div>
+                <h1>Python JSON &amp; CSV<br><span style="color:var(--blue-lt)">Data Serialization &amp; File Formats</span></h1>
+                <p class="lead">Master Python's <code>json</code> and <code>csv</code> modules: parsing, writing, converting between formats, and handling nested data. 18 interactive lessons with runnable code — crafted by <strong style="color:var(--gold);">@PoeticGlenn</strong>.</p>
+                <div class="hero-btns">
+                    <a href="#toc" class="btn btn-outline"><i class="fas fa-list"></i> Browse All Lessons</a>
+                    <a href="#intro" class="btn btn-primary"><i class="fas fa-play"></i> Start Learning</a>
+                </div>
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> What you will learn</h4>
+                    <p>Everything about Python's two most popular data formats — <strong>JSON</strong> (JavaScript Object Notation) for structured, nested data, and <strong>CSV</strong> (Comma-Separated Values) for tabular data. Learn <code>json.dumps()</code>, <code>json.loads()</code>, <code>json.dump()</code>, <code>json.load()</code>, <code>csv.reader()</code>, <code>csv.writer()</code>, <code>DictReader</code>, <code>DictWriter</code>, and how to convert between the two formats. Each concept is broken down step-by-step with interactive code examples from <strong>@PoeticGlenn</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="intro-heading">
+            <div class="page-col">
+                <div class="section-label"><span>📖 Introduction</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="intro-heading" style="font-size:1.35rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Why JSON and CSV Rule the Data World
+                    </h2>
+                    <p style="font-size:0.92rem;color:var(--text);line-height:1.85;margin-bottom:1rem;">
+                        Every program needs to store or exchange data. <strong>JSON</strong> is the lingua franca of
+                        web APIs, configuration files, and structured data — lightweight, human-readable, and
+                        universally supported. <strong>CSV</strong> is the workhorse of spreadsheets, data exports,
+                        and analytics pipelines — simple, tabular, and Excel-compatible. Together, they cover the
+                        vast majority of real-world data serialization tasks. This curriculum, designed by
+                        <strong style="color:var(--gold);">@PoeticGlenn</strong>, teaches you to read, write, parse,
+                        and convert between these formats with Python's built-in <code>json</code> and <code>csv</code>
+                        modules — no third-party libraries needed.
+                    </p>
+                    <div class="intro-grid">
+                        <div class="intro-item">
+                            <i class="fas fa-code"></i>
+                            <h4>Structured Data</h4>
+                            <p>JSON handles nested objects, arrays, and mixed types — perfect for APIs and configs.</p>
+                        </div>
+                        <div class="intro-item">
+                            <i class="fas fa-table"></i>
+                            <h4>Tabular Data</h4>
+                            <p>CSV is ideal for spreadsheets, logs, and any data that fits in rows and columns.</p>
+                        </div>
+                        <div class="intro-item">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h4>Interoperability</h4>
+                            <p>Both formats are universal — read and write with Python, Excel, databases, or any tool.</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem;color:var(--muted);">
+                        <i class="fas fa-quote-left" style="color:var(--gold);margin-right:0.3rem;"></i>
+                        "Data is the new oil. JSON and CSV are the pipelines that move it." — <strong style="color:var(--gold);">@PoeticGlenn</strong>
+                        <span style="color:var(--gold);">🐍</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498658"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <section id="why-learn" aria-labelledby="why-heading">
+            <div class="page-col">
+                <div class="section-label"><span>🚀 Why Learn This Curriculum</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="why-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Every Data Pipeline Starts Here
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        Whether you're building a web scraper, a data analysis pipeline, a configuration loader, or
+                        an API client, you'll work with JSON and CSV. These two formats are the foundation of data
+                        exchange in Python. This curriculum, curated by <strong style="color:var(--gold);">@PoeticGlenn</strong>,
+                        ensures you can handle them fluently — including edge cases like encoding, nested data, and
+                        type conversion.
+                    </p>
+                    <div class="why-grid">
+                        <div class="why-item">
+                            <h4>🌐 APIs &amp; Web</h4>
+                            <p>Every REST API returns JSON. Learn to parse it, navigate it, and save it to disk.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>📊 Data Analysis</h4>
+                            <p>CSV is the universal export format. Load datasets, filter rows, and write results back.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>⚙️ Configuration</h4>
+                            <p>JSON is the standard for config files. Load settings, validate, and merge with defaults.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>🔄 Format Conversion</h4>
+                            <p>Convert between JSON and CSV with a few lines — essential for data migration and ETL.</p>
+                        </div>
+                    </div>
+                    <div class="insight" style="margin-top:0.6rem;">
+                        <i class="fas fa-gem" style="color:var(--gold);margin-right:0.4rem;"></i>
+                        <strong>@PoeticGlenn</strong> says: <em>"If you can move data between JSON and CSV, you can connect almost any two systems."</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="significance" aria-labelledby="sig-heading">
+            <div class="page-col">
+                <div class="section-label"><span>🌍 Significance in the Programming World</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="sig-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        The Universal Data Exchange Formats
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        JSON and CSV aren't just Python concepts — they're universal. JSON is the native format of
+                        JavaScript, the default for REST APIs, and the backbone of tools like MongoDB, Firebase, and
+                        every modern web framework. CSV is the oldest and most widely supported tabular format,
+                        used by Excel, Google Sheets, pandas, and virtually every database export tool. Learning
+                        these formats in Python, as taught by <strong style="color:var(--gold);">@PoeticGlenn</strong>,
+                        gives you skills that transfer to every language and platform.
+                    </p>
+                    <div class="sig-grid">
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-globe"></i></span>
+                            <h4>Universal</h4>
+                            <p>Every language, every platform, every tool reads JSON and CSV. Learn once, use everywhere.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-database"></i></span>
+                            <h4>Data Foundation</h4>
+                            <p>ETL pipelines, data science workflows, and machine learning all start with these formats.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-plug"></i></span>
+                            <h4>Integration</h4>
+                            <p>APIs, databases, spreadsheets, configs — JSON and CSV are the glue between systems.</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem;color:var(--muted);text-align:center;margin-top:0.6rem;">
+                        <i class="fas fa-quote-right" style="color:var(--gold);margin-left:0.3rem;"></i>
+                        "The data doesn't care what language you speak — JSON and CSV are how it travels."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="toc" aria-labelledby="toc-heading" style="padding: 1.5rem 0;">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="toc-heading">📑 Table of Contents</h2>
+                    <p>Jump to any section — all entries are equal size</p>
+                </div>
+                <div class="toc-grid">
+                    <a href="#intro">📖 Introduction</a>
+                    <a href="#why-learn">🚀 Why Learn This</a>
+                    <a href="#significance">🌍 Significance</a>
+                    <a href="#json-basics">🔧 JSON Basics</a>
+                    <a href="#json-files">📁 JSON Files</a>
+                    <a href="#csv-basics">📊 CSV Basics</a>
+                    <a href="#csv-dict">📋 DictReader &amp; DictWriter</a>
+                    <a href="#conversion">🔄 JSON ↔ CSV</a>
+                    <a href="#best-practices">🛡️ Best Practices</a>
+                    <a href="#faq-json-csv">❓ FAQ</a>
+                    <a href="#outro">💛 Outro</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="json-basics" aria-labelledby="json-basics-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="json-basics-heading">🔧 JSON Basics — <code>dumps()</code> &amp; <code>loads()</code></h2>
+                    <p>Convert Python objects to JSON strings and back.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 1.1 <code>json.dumps()</code> — Python to JSON String</h3>
+                    <p>Serialize a Python object into a JSON-formatted string.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Import the <code>json</code> module.</li>
+                        <li><strong>Step 2:</strong> Create a Python dict with sample data.</li>
+                        <li><strong>Step 3:</strong> Call <code>json.dumps(data)</code> to get a JSON string.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import json
+
+data = {
+    "name": "Alice",
+    "age": 30,
+    "active": True,
+    "hobbies": ["reading", "coding"],
+    "address": {"city": "Tokyo", "zip": "100-0001"}
+}
+
+json_str = json.dumps(data)
+print(json_str)
+print("\ntype:", type(json_str))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+
+data = {
+    <span class="st">"name"</span>: <span class="st">"Alice"</span>,
+    <span class="st">"age"</span>: <span class="num">30</span>,
+    <span class="st">"active"</span>: <span class="kw">True</span>,
+    <span class="st">"hobbies"</span>: [<span class="st">"reading"</span>, <span class="st">"coding"</span>],
+    <span class="st">"address"</span>: {<span class="st">"city"</span>: <span class="st">"Tokyo"</span>, <span class="st">"zip"</span>: <span class="st">"100-0001"</span>}
+}
+
+json_str = json.dumps(data)
+<span class="fn">print</span>(json_str)
+<span class="fn">print</span>(<span class="st">"\ntype:"</span>, <span class="fn">type</span>(json_str))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>dumps</code> = "dump string". It returns a string; <code>dump</code> (without the "s") writes to a file.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 1.2 Pretty-Printing with <code>indent</code> and <code>sort_keys</code></h3>
+                    <p>Make JSON human-readable with indentation and sorted keys.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Pass <code>indent=2</code> for readable formatting.</li>
+                        <li><strong>Step 2:</strong> Pass <code>sort_keys=True</code> for alphabetical keys.</li>
+                        <li><strong>Step 3:</strong> Combine both for clean, deterministic output.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import json
+
+data = {"b": 2, "a": 1, "c": {"z": 26, "y": 25}}
+
+print("Compact:")
+print(json.dumps(data))
+
+print("\nIndented:")
+print(json.dumps(data, indent=2))
+
+print("\nSorted keys + indented:")
+print(json.dumps(data, indent=2, sort_keys=True))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+
+data = {<span class="st">"b"</span>: <span class="num">2</span>, <span class="st">"a"</span>: <span class="num">1</span>, <span class="st">"c"</span>: {<span class="st">"z"</span>: <span class="num">26</span>, <span class="st">"y"</span>: <span class="num">25</span>}}
+
+<span class="fn">print</span>(<span class="st">"Compact:"</span>)
+<span class="fn">print</span>(json.dumps(data))
+
+<span class="fn">print</span>(<span class="st">"\nIndented:"</span>)
+<span class="fn">print</span>(json.dumps(data, indent=<span class="num">2</span>))
+
+<span class="fn">print</span>(<span class="st">"\nSorted keys + indented:"</span>)
+<span class="fn">print</span>(json.dumps(data, indent=<span class="num">2</span>, sort_keys=<span class="kw">True</span>))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ <code>sort_keys=True</code> is great for diffing JSON files in version control.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 1.3 <code>json.loads()</code> — JSON String to Python</h3>
+                    <p>Parse a JSON string back into Python objects.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Have a JSON string ready.</li>
+                        <li><strong>Step 2:</strong> Call <code>json.loads(json_str)</code>.</li>
+                        <li><strong>Step 3:</strong> Access fields as dict keys.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import json
+
+json_str = &#39;{"name": "Bob", "scores": [90, 85, 92], "active": true}&#39;
+
+data = json.loads(json_str)
+print("Type:", type(data))
+print("Name:", data["name"])
+print("Scores:", data["scores"])
+print("Active:", data["active"])
+print("Average:", sum(data["scores"]) / len(data["scores"]))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+
+json_str = <span class="st">'{"name": "Bob", "scores": [90, 85, 92], "active": true}'</span>
+
+data = json.loads(json_str)
+<span class="fn">print</span>(<span class="st">"Type:"</span>, <span class="fn">type</span>(data))
+<span class="fn">print</span>(<span class="st">"Name:"</span>, data[<span class="st">"name"</span>])
+<span class="fn">print</span>(<span class="st">"Scores:"</span>, data[<span class="st">"scores"</span>])
+<span class="fn">print</span>(<span class="st">"Active:"</span>, data[<span class="st">"active"</span>])
+<span class="fn">print</span>(<span class="st">"Average:"</span>, <span class="fn">sum</span>(data[<span class="st">"scores"</span>]) / <span class="fn">len</span>(data[<span class="st">"scores"</span>]))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ JSON uses lowercase <code>true</code>/<code>false</code>/<code>null</code>, not Python's <code>True</code>/<code>False</code>/<code>None</code>. <code>json.loads()</code> converts them automatically.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 1.4 Type Mapping — What Converts to What</h3>
+                    <p>Understand how Python types map to JSON types and back.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Python Type</th><th>JSON Type</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>dict</code></td><td>object</td></tr>
+                                <tr><td><code>list</code>, <code>tuple</code></td><td>array</td></tr>
+                                <tr><td><code>str</code></td><td>string</td></tr>
+                                <tr><td><code>int</code>, <code>float</code></td><td>number</td></tr>
+                                <tr><td><code>True</code> / <code>False</code></td><td>true / false</td></tr>
+                                <tr><td><code>None</code></td><td>null</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-container" data-code='import json
+
+values = {
+    "int": 42,
+    "float": 3.14,
+    "bool": True,
+    "none": None,
+    "list": [1, 2, 3],
+    "nested": {"key": "value"}
+}
+
+s = json.dumps(values, indent=2)
+print(s)
+
+# Round-trip: string back to Python
+restored = json.loads(s)
+print("\nRestored types:")
+for k, v in restored.items():
+    print(f"  {k}: {type(v).__name__}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+
+values = {
+    <span class="st">"int"</span>: <span class="num">42</span>,
+    <span class="st">"float"</span>: <span class="num">3.14</span>,
+    <span class="st">"bool"</span>: <span class="kw">True</span>,
+    <span class="st">"none"</span>: <span class="kw">None</span>,
+    <span class="st">"list"</span>: [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>],
+    <span class="st">"nested"</span>: {<span class="st">"key"</span>: <span class="st">"value"</span>}
+}
+
+s = json.dumps(values, indent=<span class="num">2</span>)
+<span class="fn">print</span>(s)
+
+<span class="cm"># Round-trip: string back to Python</span>
+restored = json.loads(s)
+<span class="fn">print</span>(<span class="st">"\nRestored types:"</span>)
+<span class="kw">for</span> k, v <span class="kw">in</span> restored.items():
+    <span class="fn">print</span>(<span class="st">f"  {k}: {type(v).__name__}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Tuples become lists after a round-trip through JSON — JSON has no tuple type.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="json-files" aria-labelledby="json-files-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="json-files-heading">📁 JSON Files — <code>dump()</code> &amp; <code>load()</code></h2>
+                    <p>Read and write JSON files directly — no string intermediary.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 2.1 Writing JSON to a File</h3>
+                    <p>Use <code>json.dump()</code> to write directly to a file object.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Open a file in write mode with <code>"w"</code>.</li>
+                        <li><strong>Step 2:</strong> Call <code>json.dump(data, f, indent=2)</code>.</li>
+                        <li><strong>Step 3:</strong> The context manager closes the file automatically.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import json
+
+data = {
+    "app": "Poetic Bytes",
+    "version": "2.0",
+    "features": ["runnable code", "dark theme", "mobile-friendly"]
+}
+
+with open("config.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+
+print("File written!")
+with open("config.json", "r", encoding="utf-8") as f:
+    print(f.read())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+
+data = {
+    <span class="st">"app"</span>: <span class="st">"Poetic Bytes"</span>,
+    <span class="st">"version"</span>: <span class="st">"2.0"</span>,
+    <span class="st">"features"</span>: [<span class="st">"runnable code"</span>, <span class="st">"dark theme"</span>, <span class="st">"mobile-friendly"</span>]
+}
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"config.json"</span>, <span class="st">"w"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    json.dump(data, f, indent=<span class="num">2</span>, ensure_ascii=<span class="kw">False</span>)
+
+<span class="fn">print</span>(<span class="st">"File written!"</span>)
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"config.json"</span>, <span class="st">"r"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    <span class="fn">print</span>(f.read())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>ensure_ascii=False</code> preserves non-ASCII characters (like é or 日) instead of escaping them as <code>\uXXXX</code>.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 2.2 Reading JSON from a File</h3>
+                    <p>Use <code>json.load()</code> to parse directly from a file object.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Open the file in read mode with <code>"r"</code>.</li>
+                        <li><strong>Step 2:</strong> Call <code>json.load(f)</code> — returns a Python object.</li>
+                        <li><strong>Step 3:</strong> Access fields as dict keys.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import json
+
+# First create the file
+with open("user.json", "w", encoding="utf-8") as f:
+    json.dump({"name": "Carol", "score": 98, "tags": ["admin", "active"]}, f, indent=2)
+
+# Now read it back
+with open("user.json", "r", encoding="utf-8") as f:
+    user = json.load(f)
+
+print("Name: ", user["name"])
+print("Score:", user["score"])
+print("Tags: ", user["tags"])
+print("First tag:", user["tags"][0])'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+
+<span class="cm"># First create the file</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"user.json"</span>, <span class="st">"w"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    json.dump({<span class="st">"name"</span>: <span class="st">"Carol"</span>, <span class="st">"score"</span>: <span class="num">98</span>, <span class="st">"tags"</span>: [<span class="st">"admin"</span>, <span class="st">"active"</span>]}, f, indent=<span class="num">2</span>)
+
+<span class="cm"># Now read it back</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"user.json"</span>, <span class="st">"r"</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    user = json.load(f)
+
+<span class="fn">print</span>(<span class="st">"Name: "</span>, user[<span class="st">"name"</span>])
+<span class="fn">print</span>(<span class="st">"Score:"</span>, user[<span class="st">"score"</span>])
+<span class="fn">print</span>(<span class="st">"Tags: "</span>, user[<span class="st">"tags"</span>])
+<span class="fn">print</span>(<span class="st">"First tag:"</span>, user[<span class="st">"tags"</span>][<span class="num">0</span>])</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 2.3 Error Handling — Malformed JSON</h3>
+                    <p>Catch <code>json.JSONDecodeError</code> to handle invalid input gracefully.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Try to parse a malformed string.</li>
+                        <li><strong>Step 2:</strong> Catch <code>json.JSONDecodeError</code>.</li>
+                        <li><strong>Step 3:</strong> Print a helpful error message.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import json
+
+bad_json = &#39;{"name": "Dave", "score": 88,}&#39;
+
+try:
+    data = json.loads(bad_json)
+except json.JSONDecodeError as e:
+    print("Invalid JSON!")
+    print("Message:", e.msg)
+    print("Position:", e.pos)
+
+valid_json = &#39;{"name": "Dave", "score": 88}&#39;
+print("\nValid JSON parses fine:", json.loads(valid_json))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+
+bad_json = <span class="st">'{"name": "Dave", "score": 88,}'</span>
+
+<span class="kw">try</span>:
+    data = json.loads(bad_json)
+<span class="kw">except</span> json.<span class="cl">JSONDecodeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">"Invalid JSON!"</span>)
+    <span class="fn">print</span>(<span class="st">"Message:"</span>, e.msg)
+    <span class="fn">print</span>(<span class="st">"Position:"</span>, e.pos)
+
+valid_json = <span class="st">'{"name": "Dave", "score": 88}'</span>
+<span class="fn">print</span>(<span class="st">"\nValid JSON parses fine:"</span>, json.loads(valid_json))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ The trailing comma after <code>88</code> is invalid JSON — Python dicts allow trailing commas, but JSON does not.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="csv-basics" aria-labelledby="csv-basics-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="csv-basics-heading">📊 CSV Basics — <code>reader()</code> &amp; <code>writer()</code></h2>
+                    <p>Read and write comma-separated values with Python's built-in <code>csv</code> module.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 3.1 <code>csv.reader()</code> — Read Rows</h3>
+                    <p>Parse CSV data into lists of strings.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Import the <code>csv</code> module.</li>
+                        <li><strong>Step 2:</strong> Open a CSV file or use <code>io.StringIO</code> for demo data.</li>
+                        <li><strong>Step 3:</strong> Create a <code>csv.reader</code> and iterate over rows.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+import io
+
+csv_data = """name,age,city
+Alice,30,Tokyo
+Bob,25,Paris
+Carol,35,New York"""
+
+reader = csv.reader(io.StringIO(csv_data))
+
+for row in reader:
+    print(row)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+<span class="kw">import</span> io
+
+csv_data = <span class="st">"""name,age,city
+Alice,30,Tokyo
+Bob,25,Paris
+Carol,35,New York"""</span>
+
+reader = csv.reader(io.<span class="cl">StringIO</span>(csv_data))
+
+<span class="kw">for</span> row <span class="kw">in</span> reader:
+    <span class="fn">print</span>(row)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Each row is a <code>list</code> of strings — even numbers are returned as strings. Convert types manually.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 3.2 <code>csv.writer()</code> — Write Rows</h3>
+                    <p>Write lists of values as CSV rows.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Use <code>io.StringIO</code> for a demo writer.</li>
+                        <li><strong>Step 2:</strong> Call <code>writer.writerow()</code> for each row.</li>
+                        <li><strong>Step 3:</strong> Call <code>.getvalue()</code> to see the CSV output.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+import io
+
+output = io.StringIO()
+writer = csv.writer(output)
+
+writer.writerow(["name", "age", "city"])
+writer.writerow(["Alice", 30, "Tokyo"])
+writer.writerow(["Bob", 25, "Paris"])
+writer.writerow(["Carol", 35, "New York"])
+
+print(output.getvalue())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+<span class="kw">import</span> io
+
+output = io.<span class="cl">StringIO</span>()
+writer = csv.writer(output)
+
+writer.writerow([<span class="st">"name"</span>, <span class="st">"age"</span>, <span class="st">"city"</span>])
+writer.writerow([<span class="st">"Alice"</span>, <span class="num">30</span>, <span class="st">"Tokyo"</span>])
+writer.writerow([<span class="st">"Bob"</span>, <span class="num">25</span>, <span class="st">"Paris"</span>])
+writer.writerow([<span class="st">"Carol"</span>, <span class="num">35</span>, <span class="st">"New York"</span>])
+
+<span class="fn">print</span>(output.getvalue())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ Values with commas, quotes, or newlines are automatically quoted by <code>csv.writer</code>.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 3.3 CSV Files — Read &amp; Write on Disk</h3>
+                    <p>Use <code>open()</code> with <code>newline=""</code> to avoid double newlines on Windows.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Open the file with <code>newline=""</code>.</li>
+                        <li><strong>Step 2:</strong> Write rows with <code>csv.writer</code>.</li>
+                        <li><strong>Step 3:</strong> Read back with <code>csv.reader</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+
+# Write to a real file
+with open("people.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow(["name", "age"])
+    writer.writerow(["Alice", 30])
+    writer.writerow(["Bob", 25])
+
+print("File written!")
+
+# Read it back
+with open("people.csv", "r", newline="", encoding="utf-8") as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+
+<span class="cm"># Write to a real file</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"people.csv"</span>, <span class="st">"w"</span>, newline=<span class="st">""</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    writer = csv.writer(f)
+    writer.writerow([<span class="st">"name"</span>, <span class="st">"age"</span>])
+    writer.writerow([<span class="st">"Alice"</span>, <span class="num">30</span>])
+    writer.writerow([<span class="st">"Bob"</span>, <span class="num">25</span>])
+
+<span class="fn">print</span>(<span class="st">"File written!"</span>)
+
+<span class="cm"># Read it back</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"people.csv"</span>, <span class="st">"r"</span>, newline=<span class="st">""</span>, encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    reader = csv.reader(f)
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        <span class="fn">print</span>(row)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ Always pass <code>newline=""</code> when opening CSV files — otherwise you'll get blank lines between rows on Windows.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="csv-dict" aria-labelledby="csv-dict-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="csv-dict-heading">📋 <code>DictReader</code> &amp; <code>DictWriter</code> — Row Dicts</h2>
+                    <p>Access CSV rows as dictionaries — far more readable than index-based lists.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 4.1 <code>csv.DictReader</code></h3>
+                    <p>The first row becomes the header — each subsequent row becomes an <code>OrderedDict</code>.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a <code>DictReader</code> over file-like data.</li>
+                        <li><strong>Step 2:</strong> Iterate rows — each is a dict.</li>
+                        <li><strong>Step 3:</strong> Access values by header name.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+import io
+
+csv_data = """name,age,city
+Alice,30,Tokyo
+Bob,25,Paris
+Carol,35,New York"""
+
+reader = csv.DictReader(io.StringIO(csv_data))
+
+for row in reader:
+    print(row)
+    print(f"  {row[&#39;name&#39;]} is {row[&#39;age&#39;]} years old, lives in {row[&#39;city&#39;]}")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+<span class="kw">import</span> io
+
+csv_data = <span class="st">"""name,age,city
+Alice,30,Tokyo
+Bob,25,Paris
+Carol,35,New York"""</span>
+
+reader = csv.<span class="cl">DictReader</span>(io.<span class="cl">StringIO</span>(csv_data))
+
+<span class="kw">for</span> row <span class="kw">in</span> reader:
+    <span class="fn">print</span>(row)
+    <span class="fn">print</span>(<span class="st">f"  {row['name']} is {row['age']} years old, lives in {row['city']}"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>DictReader</code> accesses <code>reader.fieldnames</code> for the header row. If the file has no header, pass <code>fieldnames=[...]</code> manually.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 4.2 <code>csv.DictWriter</code></h3>
+                    <p>Write dictionaries as CSV rows using a declared set of field names.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a <code>DictWriter</code> with <code>fieldnames</code>.</li>
+                        <li><strong>Step 2:</strong> Call <code>writeheader()</code> to write the header row.</li>
+                        <li><strong>Step 3:</strong> Call <code>writerow()</code> with dicts.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+import io
+
+output = io.StringIO()
+fieldnames = ["name", "age", "city"]
+
+writer = csv.DictWriter(output, fieldnames=fieldnames)
+writer.writeheader()
+
+writer.writerow({"name": "Alice", "age": 30, "city": "Tokyo"})
+writer.writerow({"name": "Bob", "age": 25, "city": "Paris"})
+writer.writerow({"name": "Carol", "age": 35, "city": "New York"})
+
+print(output.getvalue())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+<span class="kw">import</span> io
+
+output = io.<span class="cl">StringIO</span>()
+fieldnames = [<span class="st">"name"</span>, <span class="st">"age"</span>, <span class="st">"city"</span>]
+
+writer = csv.<span class="cl">DictWriter</span>(output, fieldnames=fieldnames)
+writer.writeheader()
+
+writer.writerow({<span class="st">"name"</span>: <span class="st">"Alice"</span>, <span class="st">"age"</span>: <span class="num">30</span>, <span class="st">"city"</span>: <span class="st">"Tokyo"</span>})
+writer.writerow({<span class="st">"name"</span>: <span class="st">"Bob"</span>, <span class="st">"age"</span>: <span class="num">25</span>, <span class="st">"city"</span>: <span class="st">"Paris"</span>})
+writer.writerow({<span class="st">"name"</span>: <span class="st">"Carol"</span>, <span class="st">"age"</span>: <span class="num">35</span>, <span class="st">"city"</span>: <span class="st">"New York"</span>})
+
+<span class="fn">print</span>(output.getvalue())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ <code>DictWriter</code> writes keys in the order specified by <code>fieldnames</code> — extra keys are silently ignored (or raise if <code>extrasaction="raise"</code>).</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 4.3 Practical: Filter a CSV</h3>
+                    <p>Read a CSV, filter rows, and write the results to a new file.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Read rows with <code>DictReader</code>.</li>
+                        <li><strong>Step 2:</strong> Convert the age string to an int and filter.</li>
+                        <li><strong>Step 3:</strong> Write filtered rows with <code>DictWriter</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+import io
+
+csv_data = """name,age,city
+Alice,30,Tokyo
+Bob,17,Paris
+Carol,35,New York
+Dave,15,Berlin"""
+
+reader = csv.DictReader(io.StringIO(csv_data))
+adults = [row for row in reader if int(row["age"]) >= 18]
+
+output = io.StringIO()
+writer = csv.DictWriter(output, fieldnames=["name", "age", "city"])
+writer.writeheader()
+writer.writerows(adults)
+
+print("Adults only:")
+print(output.getvalue())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+<span class="kw">import</span> io
+
+csv_data = <span class="st">"""name,age,city
+Alice,30,Tokyo
+Bob,17,Paris
+Carol,35,New York
+Dave,15,Berlin"""</span>
+
+reader = csv.<span class="cl">DictReader</span>(io.<span class="cl">StringIO</span>(csv_data))
+adults = [row <span class="kw">for</span> row <span class="kw">in</span> reader <span class="kw">if</span> <span class="fn">int</span>(row[<span class="st">"age"</span>]) &gt;= <span class="num">18</span>]
+
+output = io.<span class="cl">StringIO</span>()
+writer = csv.<span class="cl">DictWriter</span>(output, fieldnames=[<span class="st">"name"</span>, <span class="st">"age"</span>, <span class="st">"city"</span>])
+writer.writeheader()
+writer.writerows(adults)
+
+<span class="fn">print</span>(<span class="st">"Adults only:"</span>)
+<span class="fn">print</span>(output.getvalue())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conversion" aria-labelledby="conversion-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="conversion-heading">🔄 JSON ↔ CSV — Converting Between Formats</h2>
+                    <p>Move data between structured JSON and tabular CSV seamlessly.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 5.1 JSON to CSV</h3>
+                    <p>Convert a list of JSON objects to CSV rows.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Parse JSON into a list of dicts.</li>
+                        <li><strong>Step 2:</strong> Extract field names from the first dict's keys.</li>
+                        <li><strong>Step 3:</strong> Write rows with <code>DictWriter</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import json
+import csv
+import io
+
+json_str = """[
+    {"name": "Alice", "age": 30, "city": "Tokyo"},
+    {"name": "Bob", "age": 25, "city": "Paris"},
+    {"name": "Carol", "age": 35, "city": "New York"}
+]"""
+
+records = json.loads(json_str)
+
+output = io.StringIO()
+writer = csv.DictWriter(output, fieldnames=["name", "age", "city"])
+writer.writeheader()
+writer.writerows(records)
+
+print(output.getvalue())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> json
+<span class="kw">import</span> csv
+<span class="kw">import</span> io
+
+json_str = <span class="st">"""[
+    {"name": "Alice", "age": 30, "city": "Tokyo"},
+    {"name": "Bob", "age": 25, "city": "Paris"},
+    {"name": "Carol", "age": 35, "city": "New York"}
+]"""</span>
+
+records = json.loads(json_str)
+
+output = io.<span class="cl">StringIO</span>()
+writer = csv.<span class="cl">DictWriter</span>(output, fieldnames=[<span class="st">"name"</span>, <span class="st">"age"</span>, <span class="st">"city"</span>])
+writer.writeheader()
+writer.writerows(records)
+
+<span class="fn">print</span>(output.getvalue())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 5.2 CSV to JSON</h3>
+                    <p>Convert CSV rows to a JSON array of objects.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Read CSV with <code>DictReader</code>.</li>
+                        <li><strong>Step 2:</strong> Convert to a list of dicts.</li>
+                        <li><strong>Step 3:</strong> Serialize with <code>json.dumps()</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+import json
+import io
+
+csv_data = """name,age,city
+Alice,30,Tokyo
+Bob,25,Paris
+Carol,35,New York"""
+
+reader = csv.DictReader(io.StringIO(csv_data))
+records = list(reader)
+
+json_str = json.dumps(records, indent=2)
+print(json_str)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+<span class="kw">import</span> json
+<span class="kw">import</span> io
+
+csv_data = <span class="st">"""name,age,city
+Alice,30,Tokyo
+Bob,25,Paris
+Carol,35,New York"""</span>
+
+reader = csv.<span class="cl">DictReader</span>(io.<span class="cl">StringIO</span>(csv_data))
+records = <span class="fn">list</span>(reader)
+
+json_str = json.dumps(records, indent=<span class="num">2</span>)
+<span class="fn">print</span>(json_str)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 Note that CSV values become strings in JSON. To preserve types (int, float, bool), cast them explicitly during conversion.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 5.3 Type-Safe Conversion</h3>
+                    <p>Preserve numeric types during CSV-to-JSON conversion.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Read CSV rows with <code>DictReader</code>.</li>
+                        <li><strong>Step 2:</strong> Define a schema mapping field names to types.</li>
+                        <li><strong>Step 3:</strong> Cast each value based on the schema.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='import csv
+import json
+import io
+
+csv_data = """name,age,score
+Alice,30,88.5
+Bob,25,92.0
+Carol,35,79.5"""
+
+schema = {"name": str, "age": int, "score": float}
+
+reader = csv.DictReader(io.StringIO(csv_data))
+records = []
+for row in reader:
+    typed = {k: schema[k](v) for k, v in row.items()}
+    records.append(typed)
+
+print(json.dumps(records, indent=2))
+print("\nage type:", type(records[0]["age"]).__name__)
+print("score type:", type(records[0]["score"]).__name__)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">import</span> csv
+<span class="kw">import</span> json
+<span class="kw">import</span> io
+
+csv_data = <span class="st">"""name,age,score
+Alice,30,88.5
+Bob,25,92.0
+Carol,35,79.5"""</span>
+
+schema = {<span class="st">"name"</span>: <span class="fn">str</span>, <span class="st">"age"</span>: <span class="fn">int</span>, <span class="st">"score"</span>: <span class="fn">float</span>}
+
+reader = csv.<span class="cl">DictReader</span>(io.<span class="cl">StringIO</span>(csv_data))
+records = []
+<span class="kw">for</span> row <span class="kw">in</span> reader:
+    typed = {k: schema[k](v) <span class="kw">for</span> k, v <span class="kw">in</span> row.items()}
+    records.append(typed)
+
+<span class="fn">print</span>(json.dumps(records, indent=<span class="num">2</span>))
+<span class="fn">print</span>(<span class="st">"\nage type:"</span>, <span class="fn">type</span>(records[<span class="num">0</span>][<span class="st">"age"</span>]).__name__)
+<span class="fn">print</span>(<span class="st">"score type:"</span>, <span class="fn">type</span>(records[<span class="num">0</span>][<span class="st">"score"</span>]).__name__)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ Using a schema dict keeps type conversion DRY and makes it easy to validate inputs.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="best-practices" aria-labelledby="best-practices-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="best-practices-heading">🛡️ Best Practices &amp; Common Pitfalls</h2>
+                    <p>Avoid the mistakes that trip up most developers.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 6.1 Checklist</h3>
+                    <ul class="checklist">
+                        <li><span class="check">✔</span> Always specify <code>encoding="utf-8"</code> when opening JSON or CSV files.</li>
+                        <li><span class="check">✔</span> Use <code>newline=""</code> when opening CSV files to avoid extra blank lines.</li>
+                        <li><span class="check">✔</span> Wrap <code>json.loads()</code> in <code>try/except json.JSONDecodeError</code> for user input.</li>
+                        <li><span class="check">✔</span> Use <code>ensure_ascii=False</code> if your data contains non-ASCII characters.</li>
+                        <li><span class="check">✔</span> Remember CSV values are strings — cast numbers and booleans explicitly.</li>
+                        <li><span class="check">✔</span> Use <code>DictReader</code>/<code>DictWriter</code> instead of index-based access for clarity.</li>
+                        <li><span class="check">✔</span> Use <code>indent=2</code> and <code>sort_keys=True</code> for human-readable JSON files.</li>
+                        <li><span class="check">✔</span> Don't embed JSON as a Python string literal — write it to a file or use <code>json.dumps()</code>.</li>
+                        <li><span class="check">✔</span> Be cautious with <code>csv.reader</code> on very large files — iterate instead of loading everything.</li>
+                        <li><span class="check">✔</span> For nested JSON, flatten with <code>json.dumps()</code> + a helper if you need CSV output.</li>
+                    </ul>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 6.2 Comparing JSON and CSV</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Aspect</th><th>JSON</th><th>CSV</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Structure</td><td>Nested</td><td>Tabular</td></tr>
+                                <tr><td>Types</td><td>Rich (numbers, bools, null)</td><td>Strings only</td></tr>
+                                <tr><td>Best for</td><td>APIs, configs, complex data</td><td>Spreadsheets, exports</td></tr>
+                                <tr><td>Human readable</td><td>Yes, if indented</td><td>Yes, in Excel/Sheets</td></tr>
+                                <tr><td>Size</td><td>Larger (verbose keys)</td><td>Smaller (compact)</td></tr>
+                                <tr><td>Tools</td><td>Every language, every API</td><td>Excel, pandas, databases</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq-json-csv" aria-labelledby="faq-json-csv-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="faq-json-csv-heading">❓ Frequently Asked Questions — Python JSON &amp; CSV</h2>
+                    <p>Common questions about data serialization in Python.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What's the difference between <code>json.dump</code> and <code>json.dumps</code>?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>json.dumps</code> returns a string, while <code>json.dump</code> writes directly to a file object. Similarly, <code>json.loads</code> parses a string, while <code>json.load</code> reads from a file. The "s" stands for "string".</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Why are all my CSV numbers returned as strings?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>CSV has no concept of types — everything is text. <code>csv.reader</code> returns strings, and you must convert them to <code>int</code>, <code>float</code>, or <code>bool</code> yourself. Use a schema dict or helper function to automate this.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I handle Unicode in JSON?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>By default, <code>json.dumps</code> escapes non-ASCII characters as <code>\uXXXX</code>. Pass <code>ensure_ascii=False</code> to preserve them. Also open files with <code>encoding="utf-8"</code> for both reading and writing.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What's the difference between <code>csv.reader</code> and <code>csv.DictReader</code>?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>csv.reader</code> returns rows as lists (index-based access). <code>csv.DictReader</code> uses the first row as headers and returns each row as a dict, so you can access values by column name. <code>DictReader</code> is more readable for CSVs with headers.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I convert a nested JSON object to CSV?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>CSV is flat — you can't represent nested structures directly. Either (1) flatten the JSON into dotted keys like <code>address.city</code>, (2) serialize nested values as JSON strings inside the cell, or (3) split into multiple related CSV files. Choose based on your downstream consumer.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Can I read a CSV with a custom delimiter?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Yes — pass <code>delimiter="\t"</code> for tab-separated, <code>delimiter="|"</code> for pipe-separated, etc. Both <code>csv.reader</code> and <code>csv.writer</code> accept the <code>delimiter</code> argument.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I pretty-print JSON in the terminal?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use <code>python -m json.tool file.json</code> from the command line, or <code>print(json.dumps(data, indent=2))</code> in code. The <code>json.tool</code> module also supports <code>--sort-keys</code> and <code>--compact</code> flags.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Is there a way to stream large JSON files?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>The standard <code>json</code> module loads the entire file into memory. For very large files, use <code>ijson</code> (streaming parser) or process JSON incrementally with <code>json.loads</code> on individual lines (JSON Lines format). CSV, by contrast, is already streamable row by row.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="outro" aria-labelledby="outro-heading">
+            <div class="page-col">
+                <div class="outro-box">
+                    <h2 id="outro-heading">💛 You've Mastered Python JSON &amp; CSV</h2>
+                    <p>
+                        From serializing Python dicts to JSON strings to converting between tabular CSV and
+                        nested JSON, you now have a complete toolkit for real-world data handling. You can
+                        parse APIs, load datasets, write configs, and transform data between formats with
+                        confidence.
+                    </p>
+                    <p>
+                        This curriculum, crafted by <strong style="color:var(--gold);">@PoeticGlenn</strong>,
+                        gives you the foundation for every data-driven Python project — whether you're building
+                        web scrapers, data pipelines, automation scripts, or full-stack applications. The patterns
+                        you've learned will serve you for years.
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin:1rem 0 0.6rem;">
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-check-circle" style="color:var(--green);"></i> 18 lessons
+                        </span>
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-code" style="color:var(--blue-lt);"></i> 20+ code examples
+                        </span>
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-users" style="color:var(--gold);"></i> 1.0k+ learners
+                        </span>
+                    </div>
+                    <div class="outro-cta">
+                        <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Explore More</a>
+                        <a href="https://twitter.com/PoeticGlenn" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-twitter"></i> Follow @PoeticGlenn</a>
+                        <a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i> Star on GitHub</a>
+                    </div>
+                    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.2rem;">
+                        <i class="fas fa-quote-left" style="color:var(--gold);margin-right:0.3rem;"></i>
+                        "Data is only as valuable as the format you can move it in. JSON and CSV are the bridges you'll cross every day."
+                        <span style="display:block;color:var(--gold);font-weight:600;margin-top:0.2rem;">— Glenn Junsay Pansensoy <span style="font-weight:400;color:var(--muted);">(@PoeticGlenn)</span></span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498659"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <section aria-label="Share this resource">
+            <div class="page-col">
+                <div class="share-box" id="shareSection">
+                    <h3>📤 Share this guide</h3>
+                    <p style="margin-top:.3rem;">Help other developers master JSON and CSV — share this resource!</p>
+                    <div class="share-row" id="shareRowBottom">
+                        <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                        <li><a href="python-pathlib.html">Pathlib &amp; File Paths</a></li>
+                        <li><a href="python-json-csv.html">JSON &amp; CSV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning. · <a href="https://twitter.com/PoeticGlenn" rel="noopener">@PoeticGlenn</a></p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            window.toggleFaq = function(qEl) {
+                var item = qEl.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var toggle = qEl.querySelector('.faq-toggle');
+                var isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    a.closest('.faq-item').querySelector('.faq-toggle').textContent = '+';
+                });
+                if (!isOpen) { answer.classList.add('open');
+                    toggle.textContent = '−'; }
+            };
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-json-csv.html');
+            var PAGE_TITLE = encodeURIComponent('Python JSON & CSV – Free Interactive Tutorial | Poetic Bytes');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+            document.querySelectorAll('#shareFb,#shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTw,#shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE +
+                        '&via=PoeticGlenn'); });
+            });
+            document.querySelectorAll('#shareLi,#shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareWa,#shareWaBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTg,#shareTgBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/python-json-csv.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopy(url, btn); });
+                } else { fallbackCopy(url, btn); }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            var copyBtn = document.getElementById('copyLinkBtn');
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            function dedent(code) {
+                var lines = code.split('\n');
+                var minIndent = Infinity;
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i];
+                    if (line.trim().length === 0) continue;
+                    var match = line.match(/^(\s+)/);
+                    if (match) { if (match[1].length < minIndent) minIndent = match[1].length; } else { minIndent = 0;
+                        break; }
+                }
+                if (!isFinite(minIndent) || minIndent === 0) return code;
+                return lines.map(function(l) { return l.trim().length === 0 ? l : l.slice(minIndent); }).join('\n');
+            }
+
+            var BROWSER_PREAMBLE = `
+import sys as _sys, types as _types, builtins as _builtins
+import os as _os
+
+# Provide a writable working directory for file I/O demos
+_os.chdir('/home/pyodide')
+
+try:
+    with open('sample.txt', 'w', encoding='utf-8') as _f:
+        _f.write('Hello from Poetic Bytes!\\nThis is a sample text file.\\nLine 3 of content.\\n')
+except Exception:
+    pass
+
+_sys.argv = ['script.py', 'Alice', '28']
+`;
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide({
+                        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/'
+                    });
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function makePrintFn(outputRef) {
+                return function(text) {
+                    outputRef.text += text;
+                };
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalHTML = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime… (first run may take 8–12 s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var clean = dedent(code).trim();
+                    var outputRef = { text: '' };
+                    var printFn = makePrintFn(outputRef);
+
+                    pyodide.globals.set('_js_print', printFn);
+                    pyodide.globals.set('_js_input', function(promptText) {
+                        var result = prompt(promptText != null ? String(promptText) : '');
+                        return result !== null ? result : '';
+                    });
+
+                    await pyodide.runPythonAsync(`
+import builtins
+
+def _print(*args, sep=' ', end='\\n', file=None, flush=False):
+    _js_print(sep.join(str(x) for x in args) + (end if end != '\\n' else ''))
+
+def _input(prompt=''):
+    return _js_input(str(prompt) if prompt else '')
+
+builtins.print = _print
+builtins.input = _input
+`);
+
+                    await pyodide.runPythonAsync(BROWSER_PREAMBLE);
+
+                    try {
+                        await pyodide.runPythonAsync(clean);
+                    } catch (innerErr) {
+                        var innerMsg = innerErr && innerErr.message ? innerErr.message : String(innerErr);
+                        if (innerMsg.indexOf('SystemExit') !== -1) {
+                            outputRef.text += '\n[Program exited via SystemExit]\n';
+                            outputEl.textContent = outputRef.text;
+                            outputEl.style.color = '#f59e0b';
+                            return;
+                        }
+                        throw innerErr;
+                    }
+
+                    var finalOutput = outputRef.text;
+                    outputEl.textContent = finalOutput || '✓ Code executed successfully (no output).';
+                    outputEl.style.color = '#4ade80';
+
+                } catch (err) {
+                    outputEl.className = 'output-panel error';
+                    var msg = err && err.message ? err.message : String(err);
+                    outputEl.textContent = 'Error:\n' + msg;
+                    outputEl.style.color = '#f87171';
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalHTML;
+                }
+            }
+
+            function copyCode(btn, code) {
+                var clean = dedent(code).trim();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(clean).then(function() { flashCopied(btn); })
+                        .catch(function() { fallbackCopyCode(btn, clean); });
+                } else { fallbackCopyCode(btn, clean); }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code;
+                ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                flashCopied(btn);
+            }
+
+            function flashCopied(btn) {
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.classList.add('copied');
+                setTimeout(function() { btn.innerHTML = orig;
+                    btn.classList.remove('copied'); }, 2000);
+            }
+
+            function initCodeContainers() {
+                document.querySelectorAll('.code-container').forEach(function(container) {
+                    if (container.classList.contains('no-run')) return;
+
+                    var codeAttr = container.getAttribute('data-code');
+                    if (!codeAttr) {
+                        var pre = container.querySelector('.code-snippet pre');
+                        if (pre) codeAttr = pre.textContent;
+                    }
+                    if (!codeAttr) return;
+
+                    var cpBtn = container.querySelector('.copy-btn');
+                    var rnBtn = container.querySelector('.run-btn');
+                    var outEl = container.querySelector('.output-panel');
+
+                    if (cpBtn) {
+                        cpBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            copyCode(cpBtn, codeAttr);
+                        });
+                    }
+                    if (rnBtn && outEl) {
+                        rnBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            runCode(codeAttr, outEl, rnBtn);
+                        });
+                    }
+                });
+            }
+
+            if (document.readyState === 'complete') { initCodeContainers(); } else { window.addEventListener('load',
+                    initCodeContainers); }
+
+        })();
+    </script>
+
+</body>
+</html>
