@@ -1,0 +1,3093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Python Datetime – Learn Dates &amp; Times 2026 | Poetic Bytes</title>
+    <meta name="description" content="Master Python datetime: date, time, datetime, timedelta, timezone, strftime, strptime, and formatting. Interactive lessons with runnable code. By @PoeticGlenn." />
+    <meta name="keywords" content="python datetime, datetime tutorial, python date time, python strftime, python strptime, python timedelta, python timezone, python date formatting, python datetime examples, PoeticGlenn" />
+    <meta name="author" content="Glenn Junsay Pansensoy (@PoeticGlenn)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://poetic-bytes.vercel.app/python-datetime.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Python Datetime – Free Interactive Python Tutorial | Poetic Bytes" />
+    <meta property="og:description" content="Complete guide to Python datetime: date, time, datetime, timedelta, timezone, strftime, strptime, and formatting. Interactive lessons. By @PoeticGlenn." />
+    <meta property="og:url" content="https://poetic-bytes.vercel.app/python-datetime.html" />
+    <meta property="og:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Poetic Bytes" />
+    <meta property="article:published_time" content="2026-02-01" />
+    <meta property="article:modified_time" content="2026-06-30" />
+    <meta property="article:author" content="https://www.linkedin.com/in/glenn-pansensoy" />
+    <meta property="article:section" content="Programming" />
+    <meta property="article:tag" content="Python" />
+    <meta property="article:tag" content="Datetime" />
+    <meta property="article:tag" content="Dates and Times" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PoeticGlenn" />
+    <meta name="twitter:creator" content="@PoeticGlenn" />
+    <meta name="twitter:title" content="Python Datetime – Free Interactive Tutorial | Poetic Bytes" />
+    <meta name="twitter:description" content="Complete guide to Python datetime: date, time, datetime, timedelta, timezone, strftime, strptime, and formatting. By @PoeticGlenn." />
+    <meta name="twitter:image" content="https://poetic-bytes.vercel.app/og-python-image.png" />
+    <meta name="twitter:image:alt" content="Python Datetime tutorial cover – Learn dates and times with Poetic Bytes" />
+
+    <meta name="theme-color" content="#0B121C" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Python Datetime – Complete Guide to Dates and Times",
+            "alternativeHeadline": "Master Python datetime: date, time, timedelta, and timezones",
+            "description": "Complete guide to Python datetime: date, time, datetime, timedelta, timezone, strftime, strptime, ISO formats, and arithmetic. By @PoeticGlenn.",
+            "datePublished": "2026-02-01",
+            "dateModified": "2026-06-30",
+            "author": {
+                "@type": "Person",
+                "name": "Glenn Junsay Pansensoy",
+                "url": "https://www.linkedin.com/in/glenn-pansensoy",
+                "sameAs": [
+                    "https://twitter.com/PoeticGlenn",
+                    "https://github.com/pansensoyglenn-dev",
+                    "https://www.instagram.com/glennpansensoy",
+                    "https://www.facebook.com/Glenn-Pansensoy"
+                ]
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Poetic Bytes",
+                "url": "https://poetic-bytes.vercel.app",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://poetic-bytes.vercel.app/logo.png"
+                },
+                "sameAs": [
+                    "https://twitter.com/PoeticGlenn",
+                    "https://github.com/pansensoyglenn-dev/poetic-bytes"
+                ]
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://poetic-bytes.vercel.app/python-datetime.html"
+            },
+            "about": {
+                "@type": "Thing",
+                "name": "Python Datetime"
+            },
+            "educationalUse": "tutorial",
+            "inLanguage": "en-US",
+            "isAccessibleForFree": true,
+            "teaches": [
+                "Working with date objects",
+                "Working with time objects",
+                "Working with datetime objects",
+                "Date arithmetic with timedelta",
+                "Formatting with strftime",
+                "Parsing with strptime",
+                "ISO 8601 formats",
+                "Timezones and UTC"
+            ],
+            "learningResourceType": "Tutorial",
+            "timeRequired": "PT2H",
+            "keywords": "python datetime, datetime tutorial, python date time, python strftime, python strptime, python timedelta, python timezone, python date formatting, python datetime examples, PoeticGlenn"
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://poetic-bytes.vercel.app/"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Python Tutorials",
+                "item": "https://poetic-bytes.vercel.app/#toc"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Python Datetime",
+                "item": "https://poetic-bytes.vercel.app/python-datetime.html"
+            }]
+        }
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428799122405621" crossorigin="anonymous">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0B121C;
+            --panel: #0F1C2F;
+            --card: #111e30;
+            --border: #1F4060;
+            --blue: #4B8BBE;
+            --blue-deep: #306998;
+            --blue-lt: #78B9E6;
+            --gold: #FFD966;
+            --text: #E2E8F0;
+            --muted: #8BA3BF;
+            --code-bg: #0A1A24;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --purple: #c084fc;
+            --teal: #2DD4BF;
+            --orange: #FB923C;
+            --btn-h: 44px;
+            --btn-r: 8px;
+            --card-r: 12px;
+            --gap: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .page-col {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(31, 64, 96, .3);
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+            width: 0%;
+            transition: width .2s;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 18, 28, .97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: .6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            letter-spacing: .08em;
+        }
+        .brand-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 6px;
+            background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .72rem;
+            font-weight: 600;
+            transition: color .2s;
+            letter-spacing: .04em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        @media(max-width:680px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            gap: 4px;
+        }
+        .menu-toggle span {
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: .25s;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media(max-width:680px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--panel);
+            border-left: 1px solid var(--border);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, .5);
+        }
+        .mobile-drawer.active {
+            right: 0;
+        }
+        .drawer-hd {
+            padding: .8rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: .8rem;
+        }
+        .drawer-body li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+        .drawer-body a,
+        .drawer-body button {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .7rem .9rem;
+            background: rgba(75, 139, 190, .12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .drawer-body a:active,
+        .drawer-body button:active {
+            background: rgba(75, 139, 190, .3);
+        }
+        .drawer-body i {
+            color: var(--gold);
+            width: 1.2rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+        }
+        h3 {
+            font-size: .95rem;
+        }
+        h4 {
+            font-size: .85rem;
+        }
+        p {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            color: #a5d6ff;
+        }
+        .section-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-intro {
+            max-width: 640px;
+            margin: 0 auto .5rem;
+            text-align: center;
+        }
+        .section-intro h2 {
+            color: var(--text);
+        }
+        .section-intro p {
+            font-size: .8rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            height: var(--btn-h);
+            padding: 0 1.4rem;
+            border-radius: var(--btn-r);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(75, 139, 190, .35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 139, 190, .45);
+        }
+        .btn-primary:active {
+            transform: scale(.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue);
+            background: rgba(75, 139, 190, .08);
+        }
+        .btn-home {
+            background: rgba(75, 139, 190, .15);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-home:hover {
+            border-color: var(--gold);
+            background: rgba(255, 217, 102, .12);
+            color: var(--gold);
+        }
+        @media(max-width:480px) {
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        .hero {
+            padding: 4rem 0 2.5rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75, 139, 190, .18) 0%, transparent 70%);
+        }
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--gold);
+            margin-bottom: .6rem;
+        }
+        .hero p.lead {
+            font-size: .88rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 1.2rem;
+            line-height: 1.75;
+        }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-bottom: 1.5rem;
+        }
+        .back-home-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1rem;
+            background: var(--card);
+            border-radius: var(--card-r);
+            border: 1px solid var(--border);
+        }
+        .back-home-row .btn-home {
+            flex-shrink: 0;
+        }
+        .lesson-counter {
+            font-size: 0.65rem;
+            color: var(--muted);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.25rem 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-left: auto;
+        }
+        @media(max-width:480px) {
+            .back-home-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.6rem;
+            }
+            .lesson-counter {
+                margin-left: 0;
+                justify-content: center;
+            }
+        }
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(75, 139, 190, .16);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .card h3,
+        .card h4 {
+            font-size: .82rem;
+            color: var(--text);
+        }
+        .card p {
+            font-size: .74rem;
+            margin: 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: .12rem .55rem;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+        }
+        .badge-beg {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+        .badge-int {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+        .badge-adv {
+            background: rgba(139, 92, 246, .15);
+            color: #a78bfa;
+        }
+        .badge-new {
+            background: rgba(251, 146, 60, .15);
+            color: var(--orange);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .3rem;
+        }
+        .tag {
+            font-size: .6rem;
+            background: rgba(75, 139, 190, .1);
+            border: 1px solid rgba(75, 139, 190, .2);
+            border-radius: 20px;
+            padding: .1rem .45rem;
+            color: var(--blue-lt);
+        }
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+            border-radius: var(--card-r);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .code-header {
+            background: #0a1a24;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .code-btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Syne', sans-serif;
+            border: none;
+            user-select: none;
+        }
+        .code-btn:active {
+            transform: scale(0.95);
+        }
+        .copy-btn {
+            background: rgba(75, 139, 190, 0.15);
+            color: var(--blue-lt);
+            border: 1px solid rgba(75, 139, 190, 0.3);
+        }
+        .copy-btn:hover {
+            background: rgba(75, 139, 190, 0.25);
+        }
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .run-btn {
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+        .run-btn:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+        }
+        .run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .output-panel {
+            background: #0a1a24;
+            border-top: 1px solid var(--border);
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #4ade80;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+        .output-panel.error {
+            color: #f87171;
+        }
+        .output-panel.loading {
+            color: var(--blue-lt);
+        }
+        .code-snippet {
+            background: var(--code-bg);
+            padding: 0.9rem 1rem;
+            overflow-x: auto;
+            margin: 0;
+        }
+        .code-snippet pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .code-snippet .kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
+        .code-snippet .fn {
+            color: #d2a8ff;
+        }
+        .code-snippet .st {
+            color: #a5d6ff;
+        }
+        .code-snippet .cl {
+            color: #FFD966;
+            font-weight: 600;
+        }
+        .code-snippet .num {
+            color: #f78c6c;
+        }
+        .code-snippet .op {
+            color: #89ddff;
+        }
+        .code-snippet .cm {
+            color: #6A9955;
+            font-style: italic;
+        }
+        .insight {
+            background: rgba(75, 139, 190, .08);
+            border: 1px solid rgba(75, 139, 190, .25);
+            border-radius: 6px;
+            padding: .6rem .9rem;
+            font-size: .75rem;
+            color: var(--blue-lt);
+            margin-top: .6rem;
+        }
+        .info-box {
+            background: rgba(75, 139, 190, .06);
+            border: 1px solid rgba(75, 139, 190, .22);
+            border-radius: var(--card-r);
+            padding: 1.1rem 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .info-box h4 {
+            font-size: .8rem;
+            color: var(--blue-lt);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .4rem;
+        }
+        .info-box p {
+            font-size: .76rem;
+        }
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .checklist li {
+            display: flex;
+            gap: .55rem;
+            align-items: flex-start;
+            font-size: .78rem;
+            color: var(--muted);
+            padding: .5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        .checklist li span.check {
+            color: var(--blue);
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+        .oop-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+        .oop-block h3 {
+            font-size: .88rem;
+            color: var(--gold);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .oop-block p {
+            font-size: .78rem;
+            margin-bottom: .8rem;
+        }
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            margin: 0.8rem 0 1rem 0;
+            padding: 0;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            padding: 0.45rem 0.45rem 0.45rem 2.6rem;
+            position: relative;
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(31, 64, 96, 0.25);
+        }
+        .step-list li:last-child {
+            border-bottom: none;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0.2rem;
+            top: 0.45rem;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: rgba(75, 139, 190, 0.15);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: var(--gold);
+        }
+        .step-list li strong {
+            color: var(--text);
+        }
+        .note-new {
+            font-size: .74rem;
+            color: var(--teal);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .note-warn {
+            font-size: .74rem;
+            color: var(--amber);
+            font-style: italic;
+            margin-top: .4rem;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            gap: .8rem;
+            min-height: var(--btn-h);
+        }
+        .faq-q h3 {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+        .faq-toggle {
+            font-size: .9rem;
+            color: var(--blue);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s;
+        }
+        .faq-a.open {
+            max-height: 300px;
+            padding: 0 1.1rem 1rem;
+        }
+        .faq-a p {
+            font-size: .78rem;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+            min-width: 480px;
+        }
+        thead tr {
+            background: var(--card);
+            border-bottom: 2px solid var(--blue);
+        }
+        th {
+            padding: .75rem .8rem;
+            text-align: left;
+        }
+        th:first-child {
+            color: var(--gold);
+        }
+        th:nth-child(2) {
+            color: var(--blue);
+        }
+        td {
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+        td:nth-child(2) {
+            color: var(--green);
+            font-weight: 600;
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(75, 139, 190, .03);
+        }
+        .share-box {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .share-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .share-btn {
+            height: var(--btn-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--btn-r);
+            font-size: .74rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: .2s;
+            font-weight: 600;
+            background: var(--card);
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .share-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .1);
+        }
+        .share-btn.copy-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .floating-share {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        .floating-share .fs-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: .2s;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+            position: relative;
+        }
+        .floating-share .fs-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: scale(1.08);
+        }
+        .floating-share .fs-btn .tooltip {
+            position: absolute;
+            right: 56px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .65rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .floating-share .fs-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 900;
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+        }
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            border-color: var(--blue);
+            color: var(--blue-lt);
+            transform: translateY(-2px);
+        }
+        .page-footer {
+            padding: 3rem 0 1.5rem;
+            background: #1a2535;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h5 {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .7rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: .4rem;
+        }
+        .footer-col a {
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            font-size: .74rem;
+            transition: color .2s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+        .copyright a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+        }
+        .copyright a:hover {
+            color: #fff;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--border);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+        .ad-slot {
+            text-align: center;
+            padding: 1rem 0;
+            background: var(--bg);
+            min-height: 60px;
+        }
+        .ad-slot ins {
+            display: block;
+        }
+        @media(max-width:480px) {
+            .page-col {
+                padding: 0 .8rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            .hero {
+                padding: 3rem 0 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .floating-share {
+                right: 10px;
+                bottom: 70px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+            .back-top {
+                width: 36px;
+                height: 36px;
+                right: 10px;
+                bottom: 10px;
+                font-size: .9rem;
+            }
+            .share-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 240px;
+            }
+            .code-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+            }
+            .code-actions {
+                justify-content: flex-start;
+            }
+            .code-btn {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .output-panel {
+                font-size: 0.7rem;
+                padding: 0.7rem;
+            }
+        }
+        @media(max-width:768px) {
+            .floating-share {
+                right: 14px;
+                bottom: 76px;
+                gap: 8px;
+            }
+            .floating-share .fs-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            .floating-share .fs-btn .tooltip {
+                display: none;
+            }
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
+        }
+        .toc-grid a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.7rem 0.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: border-color .2s, color .2s, background .2s, transform .15s;
+            min-height: 44px;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        .toc-grid a:hover {
+            border-color: var(--blue);
+            color: var(--text);
+            background: rgba(75, 139, 190, .08);
+            transform: translateY(-2px);
+        }
+        @media(max-width:480px) {
+            .toc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .toc-grid a {
+                font-size: 0.6rem;
+                padding: 0.5rem 0.4rem;
+                min-height: 38px;
+            }
+        }
+        .pyodide-status {
+            font-size: 0.65rem;
+            color: var(--muted);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .pyodide-status .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            display: inline-block;
+            animation: pulse-dot 1.5s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+        .intro-grid .intro-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1.1rem;
+            text-align: center;
+            transition: border-color .2s;
+        }
+        .intro-grid .intro-item:hover {
+            border-color: var(--blue);
+        }
+        .intro-grid .intro-item i {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .intro-grid .intro-item h4 {
+            font-size: 0.78rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .intro-grid .intro-item p {
+            font-size: 0.68rem;
+            margin: 0;
+        }
+        @media(max-width:600px) {
+            .intro-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:400px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .why-grid .why-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1.1rem;
+            border-left: 3px solid var(--blue);
+        }
+        .why-grid .why-item h4 {
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 0.2rem;
+        }
+        .why-grid .why-item p {
+            font-size: 0.72rem;
+            margin: 0;
+        }
+        @media(max-width:500px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sig-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .sig-grid .sig-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 1rem 1rem;
+            text-align: center;
+            transition: transform .2s;
+        }
+        .sig-grid .sig-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--blue);
+        }
+        .sig-grid .sig-item .sig-icon {
+            font-size: 1.8rem;
+            color: var(--blue-lt);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .sig-grid .sig-item h4 {
+            font-size: 0.78rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .sig-grid .sig-item p {
+            font-size: 0.68rem;
+            margin: 0;
+        }
+        @media(max-width:600px) {
+            .sig-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:400px) {
+            .sig-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .outro-box {
+            background: radial-gradient(ellipse at 50% 100%, rgba(75, 139, 190, .12) 0%, transparent 70%);
+            border: 1px solid var(--border);
+            border-radius: var(--card-r);
+            padding: 2rem 1.8rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .outro-box h2 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+        .outro-box p {
+            font-size: 0.85rem;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+            line-height: 1.8;
+        }
+        .outro-box .outro-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-top: 1.2rem;
+        }
+    /* adsense-collapse-unfilled */
+.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
+.ad-slot:has(> .adsbygoogle[data-ad-status="unfilled"]){display:none!important}
+</style>
+</head>
+<body>
+
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pbar"></div></div>
+
+    <nav class="nav-bar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="brand" aria-label="Poetic Bytes Home"><div class="brand-icon">🐍</div>POETIC BYTES</a>
+            <ul class="nav-links">
+                <li><a href="index.html#toc">Curriculum</a></li>
+                <li><a href="index.html#new-lessons">New Lessons</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pathways">Pathways</a></li>
+                <li><a href="index.html#instructor">Instructor</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="programming-history.html">History</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-hd"><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+        <div class="drawer-body"><ul>
+                <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+                <li><button data-href="#toc"><i class="fas fa-list"></i>Table of Contents</button></li>
+                <li><button data-href="#intro"><i class="fas fa-star"></i>Introduction</button></li>
+                <li><button data-href="#why-learn"><i class="fas fa-graduation-cap"></i>Why Learn This</button></li>
+                <li><button data-href="#significance"><i class="fas fa-globe"></i>Significance</button></li>
+                <li><button data-href="#date-objects"><i class="fas fa-calendar"></i>Date Objects</button></li>
+                <li><button data-href="#time-objects"><i class="fas fa-clock"></i>Time Objects</button></li>
+                <li><button data-href="#datetime-objects"><i class="fas fa-calendar-day"></i>Datetime Objects</button></li>
+                <li><button data-href="#timedelta"><i class="fas fa-plus-minus"></i>Timedelta</button></li>
+                <li><button data-href="#formatting"><i class="fas fa-font"></i>Formatting</button></li>
+                <li><button data-href="#timezones"><i class="fas fa-globe-americas"></i>Timezones</button></li>
+                <li><button data-href="#faq-datetime"><i class="fas fa-question-circle"></i>FAQ</button></li>
+                <li><button data-href="#outro"><i class="fas fa-heart"></i>Outro</button></li>
+            </ul></div>
+    </div>
+
+    <div class="floating-share" id="floatingShare" role="toolbar" aria-label="Share options">
+        <button class="fs-btn fs-copy" id="copyLinkBtn" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span class="tooltip">Copy link</span>
+        </button>
+        <a href="#" class="fs-btn" id="shareFb" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTw" target="_blank" rel="noopener" aria-label="Share on X">
+            <i class="fab fa-twitter"></i>
+            <span class="tooltip">X</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip">LinkedIn</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+        <a href="#" class="fs-btn" id="shareTg" target="_blank" rel="noopener" aria-label="Share on Telegram">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="tooltip">Telegram</span>
+        </a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <main style="padding-top:56px;">
+
+        <section class="hero" aria-label="Python Datetime Tutorial">
+            <div class="page-col">
+                <div class="back-home-row">
+                    <a href="index.html" class="btn btn-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                    <span class="lesson-counter"><i class="fas fa-book-open"></i> 20 lessons</span>
+                    <span class="pyodide-status"><span class="dot"></span> Pyodide ready</span>
+                </div>
+                <h1>Python Datetime<br><span style="color:var(--blue-lt)">Dates, Times &amp; Timezones</span></h1>
+                <p class="lead">Master Python's <code>datetime</code> module: date and time objects, arithmetic with <code>timedelta</code>, formatting with <code>strftime</code>, parsing with <code>strptime</code>, and timezone-aware code. 20 interactive lessons with runnable code — crafted by <strong style="color:var(--gold);">@PoeticGlenn</strong>.</p>
+                <div class="hero-btns">
+                    <a href="#toc" class="btn btn-outline"><i class="fas fa-list"></i> Browse All Lessons</a>
+                    <a href="#intro" class="btn btn-primary"><i class="fas fa-play"></i> Start Learning</a>
+                </div>
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> What you will learn</h4>
+                    <p>Everything about Python's <code>datetime</code> module — the standard way to represent and manipulate dates and times. Learn <code>date</code>, <code>time</code>, <code>datetime</code>, and <code>timedelta</code> objects; date arithmetic; formatting with <code>strftime()</code> and parsing with <code>strptime()</code>; ISO 8601 strings; working with timezones and UTC; and the differences between naive and aware datetimes. Each concept is broken down step-by-step with interactive code examples from <strong>@PoeticGlenn</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" aria-labelledby="intro-heading">
+            <div class="page-col">
+                <div class="section-label"><span>📖 Introduction</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="intro-heading" style="font-size:1.35rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Why Dates and Times Are Deceptively Hard
+                    </h2>
+                    <p style="font-size:0.92rem;color:var(--text);line-height:1.85;margin-bottom:1rem;">
+                        Dates and times seem simple — until you hit timezones, daylight saving time, leap years, and
+                        ambiguous parsing. Python's <code>datetime</code> module (part of the standard library)
+                        provides a clean, powerful toolkit for handling all of this correctly. Whether you're
+                        logging events, calculating ages, scheduling tasks, or displaying timestamps to users,
+                        mastering <code>datetime</code> is essential. This curriculum, designed by
+                        <strong style="color:var(--gold);">@PoeticGlenn</strong>, walks you through every
+                        component of the module — from basic objects to timezone-aware arithmetic — with
+                        hands-on, runnable code.
+                    </p>
+                    <div class="intro-grid">
+                        <div class="intro-item">
+                            <i class="fas fa-calendar"></i>
+                            <h4>Date &amp; Time</h4>
+                            <p>Represent points in time with <code>date</code>, <code>time</code>, and <code>datetime</code> objects.</p>
+                        </div>
+                        <div class="intro-item">
+                            <i class="fas fa-plus-minus"></i>
+                            <h4>Arithmetic</h4>
+                            <p>Add or subtract days, hours, and seconds with <code>timedelta</code> — no manual math.</p>
+                        </div>
+                        <div class="intro-item">
+                            <i class="fas fa-globe"></i>
+                            <h4>Timezones</h4>
+                            <p>Work with UTC and local timezones safely using <code>timezone.utc</code> and <code>zoneinfo</code>.</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem;color:var(--muted);">
+                        <i class="fas fa-quote-left" style="color:var(--gold);margin-right:0.3rem;"></i>
+                        "Time is the only currency that never refunds. Python's datetime helps you spend it wisely." — <strong style="color:var(--gold);">@PoeticGlenn</strong>
+                        <span style="color:var(--gold);">🐍</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498658"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <section id="why-learn" aria-labelledby="why-heading">
+            <div class="page-col">
+                <div class="section-label"><span>🚀 Why Learn This Curriculum</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="why-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        Every Application Has a Clock
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        Timestamps appear in every log file, every database row, every user session. Whether you're
+                        building a scheduler, a chat app, a data pipeline, or a simple report, you'll work with dates
+                        and times. This curriculum, curated by <strong style="color:var(--gold);">@PoeticGlenn</strong>,
+                        ensures you handle them correctly — including the tricky edge cases that cause bugs in
+                        production.
+                    </p>
+                    <div class="why-grid">
+                        <div class="why-item">
+                            <h4>📅 Logging &amp; Monitoring</h4>
+                            <p>Record when events happen. Compare timestamps to measure durations and detect anomalies.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>🛒 E-commerce</h4>
+                            <p>Calculate shipping dates, expiration times, and user ages. Handle timezone differences.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>🌍 Global Apps</h4>
+                            <p>Show local times to users worldwide. Convert between timezones safely.</p>
+                        </div>
+                        <div class="why-item">
+                            <h4>📊 Data Analysis</h4>
+                            <p>Resample time series, bucket events by date, and compute rolling windows.</p>
+                        </div>
+                    </div>
+                    <div class="insight" style="margin-top:0.6rem;">
+                        <i class="fas fa-gem" style="color:var(--gold);margin-right:0.4rem;"></i>
+                        <strong>@PoeticGlenn</strong> says: <em>"Master datetime once, save hours debugging timestamps forever."</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="significance" aria-labelledby="sig-heading">
+            <div class="page-col">
+                <div class="section-label"><span>🌍 Significance in the Programming World</span></div>
+                <div style="max-width:720px;margin:0 auto;">
+                    <h2 id="sig-heading" style="font-size:1.25rem;color:var(--gold);text-align:center;margin-bottom:0.6rem;">
+                        The Standard for Time in Python
+                    </h2>
+                    <p style="font-size:0.88rem;color:var(--text);line-height:1.8;margin-bottom:1rem;">
+                        Python's <code>datetime</code> module is the foundation for time handling across the
+                        ecosystem. Django's ORM uses it for all model fields. Pandas builds its powerful
+                        <code>DatetimeIndex</code> on top of it. <code>dateutil</code>, <code>pytz</code>, and
+                        <code>zoneinfo</code> extend it. Web frameworks, logging libraries, and schedulers all
+                        rely on it. Learning <code>datetime</code> as taught by
+                        <strong style="color:var(--gold);">@PoeticGlenn</strong> gives you a skill that's used
+                        in literally every Python project.
+                    </p>
+                    <div class="sig-grid">
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-star"></i></span>
+                            <h4>Standard Library</h4>
+                            <p>No install needed. Part of Python since 2.3, refined in Python 3.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-cubes"></i></span>
+                            <h4>Ecosystem Standard</h4>
+                            <p>Django, pandas, FastAPI, SQLAlchemy, and every major library uses it.</p>
+                        </div>
+                        <div class="sig-item">
+                            <span class="sig-icon"><i class="fas fa-shield-alt"></i></span>
+                            <h4>Correct by Default</h4>
+                            <p>Handles leap years, month lengths, and DST transitions correctly.</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem;color:var(--muted);text-align:center;margin-top:0.6rem;">
+                        <i class="fas fa-quote-right" style="color:var(--gold);margin-left:0.3rem;"></i>
+                        "Every moment is a timestamp waiting to be formatted — learn to do it right."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="toc" aria-labelledby="toc-heading" style="padding: 1.5rem 0;">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="toc-heading">📑 Table of Contents</h2>
+                    <p>Jump to any section — all entries are equal size</p>
+                </div>
+                <div class="toc-grid">
+                    <a href="#intro">📖 Introduction</a>
+                    <a href="#why-learn">🚀 Why Learn This</a>
+                    <a href="#significance">🌍 Significance</a>
+                    <a href="#date-objects">📅 Date Objects</a>
+                    <a href="#time-objects">⏰ Time Objects</a>
+                    <a href="#datetime-objects">📆 Datetime Objects</a>
+                    <a href="#timedelta">➕ Timedelta</a>
+                    <a href="#formatting">🔤 Formatting</a>
+                    <a href="#timezones">🌐 Timezones</a>
+                    <a href="#faq-datetime">❓ FAQ</a>
+                    <a href="#outro">💛 Outro</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="date-objects" aria-labelledby="date-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="date-heading">📅 Date Objects — Working with Years, Months, Days</h2>
+                    <p>Represent calendar dates without a time component.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 1.1 Creating a <code>date</code></h3>
+                    <p>The <code>date</code> class represents a calendar date (year, month, day).</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Import <code>date</code> from <code>datetime</code>.</li>
+                        <li><strong>Step 2:</strong> Create with <code>date(2026, 6, 30)</code>.</li>
+                        <li><strong>Step 3:</strong> Access <code>.year</code>, <code>.month</code>, <code>.day</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import date
+
+d = date(2026, 6, 30)
+print("Date:", d)
+print("Year: ", d.year)
+print("Month:", d.month)
+print("Day:  ", d.day)
+
+# Today&#39;s date
+today = date.today()
+print("\nToday:", today)
+print("Weekday (0=Mon):", today.weekday())
+print("ISO weekday (1=Mon):", today.isoweekday())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> date
+
+d = date(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>)
+<span class="fn">print</span>(<span class="st">"Date:"</span>, d)
+<span class="fn">print</span>(<span class="st">"Year: "</span>, d.year)
+<span class="fn">print</span>(<span class="st">"Month:"</span>, d.month)
+<span class="fn">print</span>(<span class="st">"Day:  "</span>, d.day)
+
+<span class="cm"># Today's date</span>
+today = date.today()
+<span class="fn">print</span>(<span class="st">"\nToday:"</span>, today)
+<span class="fn">print</span>(<span class="st">"Weekday (0=Mon):"</span>, today.weekday())
+<span class="fn">print</span>(<span class="st">"ISO weekday (1=Mon):"</span>, today.isoweekday())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>weekday()</code> returns 0 for Monday; <code>isoweekday()</code> returns 1 for Monday. Use whichever fits your logic.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 1.2 Date Arithmetic with <code>timedelta</code></h3>
+                    <p>Add or subtract days, weeks, or months (via <code>timedelta</code>) from dates.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a <code>date</code>.</li>
+                        <li><strong>Step 2:</strong> Add a <code>timedelta(days=7)</code> for next week.</li>
+                        <li><strong>Step 3:</strong> Subtract to go backwards.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import date, timedelta
+
+start = date(2026, 1, 15)
+print("Start:", start)
+
+next_week = start + timedelta(days=7)
+print("+7 days:", next_week)
+
+prev_week = start - timedelta(days=7)
+print("-7 days:", prev_week)
+
+# Difference between dates gives timedelta
+diff = next_week - start
+print("Difference:", diff)
+print("Days:", diff.days)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> date, timedelta
+
+start = date(<span class="num">2026</span>, <span class="num">1</span>, <span class="num">15</span>)
+<span class="fn">print</span>(<span class="st">"Start:"</span>, start)
+
+next_week = start + timedelta(days=<span class="num">7</span>)
+<span class="fn">print</span>(<span class="st">"+7 days:"</span>, next_week)
+
+prev_week = start - timedelta(days=<span class="num">7</span>)
+<span class="fn">print</span>(<span class="st">"-7 days:"</span>, prev_week)
+
+<span class="cm"># Difference between dates gives timedelta</span>
+diff = next_week - start
+<span class="fn">print</span>(<span class="st">"Difference:"</span>, diff)
+<span class="fn">print</span>(<span class="st">"Days:"</span>, diff.days)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ <code>date</code> arithmetic is calendar-aware — it handles month lengths and leap years automatically.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 1.3 Parsing from ISO String</h3>
+                    <p>Use <code>date.fromisoformat()</code> to parse <code>YYYY-MM-DD</code> strings.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Pass an ISO 8601 string.</li>
+                        <li><strong>Step 2:</strong> Get a <code>date</code> object back.</li>
+                        <li><strong>Step 3:</strong> Use <code>.isoformat()</code> to go the other way.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import date
+
+# Parse ISO 8601 string
+d = date.fromisoformat("2026-06-30")
+print("Parsed:", d)
+print("Type:  ", type(d).__name__)
+
+# Serialize back
+print("ISO:   ", d.isoformat())
+
+# Invalid strings raise ValueError
+try:
+    date.fromisoformat("30/06/2026")
+except ValueError as e:
+    print("\nError:", e)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> date
+
+<span class="cm"># Parse ISO 8601 string</span>
+d = date.fromisoformat(<span class="st">"2026-06-30"</span>)
+<span class="fn">print</span>(<span class="st">"Parsed:"</span>, d)
+<span class="fn">print</span>(<span class="st">"Type:  "</span>, <span class="fn">type</span>(d).__name__)
+
+<span class="cm"># Serialize back</span>
+<span class="fn">print</span>(<span class="st">"ISO:   "</span>, d.isoformat())
+
+<span class="cm"># Invalid strings raise ValueError</span>
+<span class="kw">try</span>:
+    date.fromisoformat(<span class="st">"30/06/2026"</span>)
+<span class="kw">except</span> <span class="cl">ValueError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">"\nError:"</span>, e)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ <code>fromisoformat()</code> only accepts the exact format <code>YYYY-MM-DD</code>. For other formats, use <code>strptime()</code>.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="time-objects" aria-labelledby="time-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="time-heading">⏰ Time Objects — Hours, Minutes, Seconds</h2>
+                    <p>Represent a time-of-day without a date.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 2.1 Creating a <code>time</code></h3>
+                    <p>The <code>time</code> class stores hour, minute, second, microsecond, and optional timezone.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Import <code>time</code> from <code>datetime</code>.</li>
+                        <li><strong>Step 2:</strong> Create with <code>time(14, 30, 15)</code>.</li>
+                        <li><strong>Step 3:</strong> Access fields individually.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import time
+
+t = time(14, 30, 15, 500000)
+print("Time:", t)
+print("Hour:       ", t.hour)
+print("Minute:     ", t.minute)
+print("Second:     ", t.second)
+print("Microsecond:", t.microsecond)
+
+# Different constructors
+print("\nDefault:", time())
+print("Hourly: ", time(hour=9))
+print("Full:   ", time(23, 59, 59))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> time
+
+t = time(<span class="num">14</span>, <span class="num">30</span>, <span class="num">15</span>, <span class="num">500000</span>)
+<span class="fn">print</span>(<span class="st">"Time:"</span>, t)
+<span class="fn">print</span>(<span class="st">"Hour:       "</span>, t.hour)
+<span class="fn">print</span>(<span class="st">"Minute:     "</span>, t.minute)
+<span class="fn">print</span>(<span class="st">"Second:     "</span>, t.second)
+<span class="fn">print</span>(<span class="st">"Microsecond:"</span>, t.microsecond)
+
+<span class="cm"># Different constructors</span>
+<span class="fn">print</span>(<span class="st">"\nDefault:"</span>, time())
+<span class="fn">print</span>(<span class="st">"Hourly: "</span>, time(hour=<span class="num">9</span>))
+<span class="fn">print</span>(<span class="st">"Full:   "</span>, time(<span class="num">23</span>, <span class="num">59</span>, <span class="num">59</span>))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 2.2 Comparing Times</h3>
+                    <p>Times can be compared directly with <code>&lt;</code>, <code>&gt;</code>, <code>==</code>.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create two time objects.</li>
+                        <li><strong>Step 2:</strong> Use comparison operators.</li>
+                        <li><strong>Step 3:</strong> Note that comparison is lexicographic (hour → minute → second).</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import time
+
+morning = time(9, 0)
+noon = time(12, 0)
+evening = time(18, 30)
+
+print("morning < noon:  ", morning < noon)
+print("noon < evening:  ", noon < evening)
+print("morning == 9:00: ", morning == time(9, 0))
+
+# Sort times
+times = [evening, morning, noon]
+print("\nSorted:", sorted(times))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> time
+
+morning = time(<span class="num">9</span>, <span class="num">0</span>)
+noon = time(<span class="num">12</span>, <span class="num">0</span>)
+evening = time(<span class="num">18</span>, <span class="num">30</span>)
+
+<span class="fn">print</span>(<span class="st">"morning < noon:  "</span>, morning &lt; noon)
+<span class="fn">print</span>(<span class="st">"noon < evening:  "</span>, noon &lt; evening)
+<span class="fn">print</span>(<span class="st">"morning == 9:00: "</span>, morning == time(<span class="num">9</span>, <span class="num">0</span>))
+
+<span class="cm"># Sort times</span>
+times = [evening, morning, noon]
+<span class="fn">print</span>(<span class="st">"\nSorted:"</span>, <span class="fn">sorted</span>(times))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="datetime-objects" aria-labelledby="datetime-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="datetime-heading">📆 Datetime Objects — The Full Package</h2>
+                    <p>Combine date and time into a single <code>datetime</code> object.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 3.1 Creating a <code>datetime</code></h3>
+                    <p>The most-used class in the module — holds both date and time.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Import <code>datetime</code> from the <code>datetime</code> module.</li>
+                        <li><strong>Step 2:</strong> Create with year, month, day, hour, minute, second.</li>
+                        <li><strong>Step 3:</strong> Use <code>now()</code> for the current local datetime.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime
+
+# Explicit constructor
+dt = datetime(2026, 6, 30, 14, 30, 45)
+print("Datetime:", dt)
+print("Date part:", dt.date())
+print("Time part:", dt.time())
+
+# Current local time
+now = datetime.now()
+print("\nNow:", now)
+
+# Current UTC time
+utc_now = datetime.utcnow()
+print("UTC now:", utc_now, "(naive, no tz info)")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+<span class="cm"># Explicit constructor</span>
+dt = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">14</span>, <span class="num">30</span>, <span class="num">45</span>)
+<span class="fn">print</span>(<span class="st">"Datetime:"</span>, dt)
+<span class="fn">print</span>(<span class="st">"Date part:"</span>, dt.date())
+<span class="fn">print</span>(<span class="st">"Time part:"</span>, dt.time())
+
+<span class="cm"># Current local time</span>
+now = datetime.now()
+<span class="fn">print</span>(<span class="st">"\nNow:"</span>, now)
+
+<span class="cm"># Current UTC time</span>
+utc_now = datetime.utcnow()
+<span class="fn">print</span>(<span class="st">"UTC now:"</span>, utc_now, <span class="st">"(naive, no tz info)"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ <code>utcnow()</code> is deprecated in Python 3.12+. Use <code>datetime.now(timezone.utc)</code> instead — see Section 6.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 3.2 Extracting Components</h3>
+                    <p>A <code>datetime</code> exposes all date and time fields.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a <code>datetime</code>.</li>
+                        <li><strong>Step 2:</strong> Access fields via attributes.</li>
+                        <li><strong>Step 3:</strong> Use <code>isocalendar()</code> for ISO year/week/day.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime
+
+dt = datetime(2026, 6, 30, 14, 30, 45, 123456)
+
+print("Year:        ", dt.year)
+print("Month:       ", dt.month)
+print("Day:         ", dt.day)
+print("Hour:        ", dt.hour)
+print("Minute:      ", dt.minute)
+print("Second:      ", dt.second)
+print("Microsecond: ", dt.microsecond)
+
+print("\nISO calendar:", dt.isocalendar())
+print("Weekday:     ", dt.weekday())
+print("ISO format:  ", dt.isoformat())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+dt = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">14</span>, <span class="num">30</span>, <span class="num">45</span>, <span class="num">123456</span>)
+
+<span class="fn">print</span>(<span class="st">"Year:        "</span>, dt.year)
+<span class="fn">print</span>(<span class="st">"Month:       "</span>, dt.month)
+<span class="fn">print</span>(<span class="st">"Day:         "</span>, dt.day)
+<span class="fn">print</span>(<span class="st">"Hour:        "</span>, dt.hour)
+<span class="fn">print</span>(<span class="st">"Minute:      "</span>, dt.minute)
+<span class="fn">print</span>(<span class="st">"Second:      "</span>, dt.second)
+<span class="fn">print</span>(<span class="st">"Microsecond: "</span>, dt.microsecond)
+
+<span class="fn">print</span>(<span class="st">"\nISO calendar:"</span>, dt.isocalendar())
+<span class="fn">print</span>(<span class="st">"Weekday:     "</span>, dt.weekday())
+<span class="fn">print</span>(<span class="st">"ISO format:  "</span>, dt.isoformat())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 3.3 Comparing Datetimes</h3>
+                    <p>Datetimes compare naturally — earlier is "less than" later.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create two datetimes.</li>
+                        <li><strong>Step 2:</strong> Compare with standard operators.</li>
+                        <li><strong>Step 3:</strong> Subtract to get a <code>timedelta</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime
+
+a = datetime(2026, 1, 1, 9, 0)
+b = datetime(2026, 6, 30, 14, 30)
+
+print("a < b:   ", a < b)
+print("a == b:  ", a == b)
+print("a > b:   ", a > b)
+
+diff = b - a
+print("\nDifference:", diff)
+print("Days:      ", diff.days)
+print("Seconds:   ", diff.seconds)
+print("Total secs:", diff.total_seconds())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+a = datetime(<span class="num">2026</span>, <span class="num">1</span>, <span class="num">1</span>, <span class="num">9</span>, <span class="num">0</span>)
+b = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">14</span>, <span class="num">30</span>)
+
+<span class="fn">print</span>(<span class="st">"a < b:   "</span>, a &lt; b)
+<span class="fn">print</span>(<span class="st">"a == b:  "</span>, a == b)
+<span class="fn">print</span>(<span class="st">"a > b:   "</span>, a &gt; b)
+
+diff = b - a
+<span class="fn">print</span>(<span class="st">"\nDifference:"</span>, diff)
+<span class="fn">print</span>(<span class="st">"Days:      "</span>, diff.days)
+<span class="fn">print</span>(<span class="st">"Seconds:   "</span>, diff.seconds)
+<span class="fn">print</span>(<span class="st">"Total secs:"</span>, diff.total_seconds())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>diff.seconds</code> is only the leftover seconds (0–86399). Use <code>total_seconds()</code> for the full duration in seconds.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timedelta" aria-labelledby="timedelta-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="timedelta-heading">➕ <code>timedelta</code> — Durations &amp; Arithmetic</h2>
+                    <p>Represent a span of time and use it to shift dates.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 4.1 Creating a <code>timedelta</code></h3>
+                    <p>Pass days, seconds, microseconds, milliseconds, minutes, hours, or weeks.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Import <code>timedelta</code>.</li>
+                        <li><strong>Step 2:</strong> Create with keyword arguments.</li>
+                        <li><strong>Step 3:</strong> Inspect <code>.days</code> and <code>.seconds</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import timedelta
+
+# Common durations
+one_day = timedelta(days=1)
+one_week = timedelta(weeks=1)
+two_hours = timedelta(hours=2)
+ninety_mins = timedelta(minutes=90)
+
+print("1 day:      ", one_day)
+print("1 week:     ", one_week)
+print("2 hours:    ", two_hours)
+print("90 minutes: ", ninety_mins)
+
+# Access components
+td = timedelta(days=5, hours=3, minutes=45, seconds=30)
+print("\nComponents:")
+print("  days:   ", td.days)
+print("  seconds:", td.seconds)
+print("  total_seconds:", td.total_seconds())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> timedelta
+
+<span class="cm"># Common durations</span>
+one_day = timedelta(days=<span class="num">1</span>)
+one_week = timedelta(weeks=<span class="num">1</span>)
+two_hours = timedelta(hours=<span class="num">2</span>)
+ninety_mins = timedelta(minutes=<span class="num">90</span>)
+
+<span class="fn">print</span>(<span class="st">"1 day:      "</span>, one_day)
+<span class="fn">print</span>(<span class="st">"1 week:     "</span>, one_week)
+<span class="fn">print</span>(<span class="st">"2 hours:    "</span>, two_hours)
+<span class="fn">print</span>(<span class="st">"90 minutes: "</span>, ninety_mins)
+
+<span class="cm"># Access components</span>
+td = timedelta(days=<span class="num">5</span>, hours=<span class="num">3</span>, minutes=<span class="num">45</span>, seconds=<span class="num">30</span>)
+<span class="fn">print</span>(<span class="st">"\nComponents:"</span>)
+<span class="fn">print</span>(<span class="st">"  days:   "</span>, td.days)
+<span class="fn">print</span>(<span class="st">"  seconds:"</span>, td.seconds)
+<span class="fn">print</span>(<span class="st">"  total_seconds:"</span>, td.total_seconds())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>timedelta</code> stores only days, seconds, and microseconds internally — hours and minutes are normalized into those.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 4.2 Datetime Arithmetic</h3>
+                    <p>Add or subtract <code>timedelta</code> from any datetime to shift it in time.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Start with a <code>datetime</code>.</li>
+                        <li><strong>Step 2:</strong> Add or subtract a <code>timedelta</code>.</li>
+                        <li><strong>Step 3:</strong> Chain multiple operations.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime, timedelta
+
+now = datetime(2026, 6, 30, 12, 0, 0)
+print("Now:          ", now)
+
+# Add time
+in_2_hours = now + timedelta(hours=2)
+print("+2 hours:     ", in_2_hours)
+
+# Subtract time
+yesterday = now - timedelta(days=1)
+print("-1 day:       ", yesterday)
+
+# Combine offsets
+later = now + timedelta(days=7, hours=3, minutes=30)
+print("+7d 3h 30m:   ", later)
+
+# Chained
+deadline = now + timedelta(weeks=2) - timedelta(days=1)
+print("Deadline:     ", deadline)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime, timedelta
+
+now = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">12</span>, <span class="num">0</span>, <span class="num">0</span>)
+<span class="fn">print</span>(<span class="st">"Now:          "</span>, now)
+
+<span class="cm"># Add time</span>
+in_2_hours = now + timedelta(hours=<span class="num">2</span>)
+<span class="fn">print</span>(<span class="st">"+2 hours:     "</span>, in_2_hours)
+
+<span class="cm"># Subtract time</span>
+yesterday = now - timedelta(days=<span class="num">1</span>)
+<span class="fn">print</span>(<span class="st">"-1 day:       "</span>, yesterday)
+
+<span class="cm"># Combine offsets</span>
+later = now + timedelta(days=<span class="num">7</span>, hours=<span class="num">3</span>, minutes=<span class="num">30</span>)
+<span class="fn">print</span>(<span class="st">"+7d 3h 30m:   "</span>, later)
+
+<span class="cm"># Chained</span>
+deadline = now + timedelta(weeks=<span class="num">2</span>) - timedelta(days=<span class="num">1</span>)
+<span class="fn">print</span>(<span class="st">"Deadline:     "</span>, deadline)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 4.3 Practical: Age Calculator</h3>
+                    <p>Compute age in years, months, and days from a birthdate.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Set the birthdate.</li>
+                        <li><strong>Step 2:</strong> Compute today's date.</li>
+                        <li><strong>Step 3:</strong> Calculate days and years elapsed.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import date
+
+birthday = date(1995, 8, 15)
+today = date(2026, 6, 30)
+
+age_days = (today - birthday).days
+age_years = age_days // 365
+
+print(f"Birthday: {birthday}")
+print(f"Today:    {today}")
+print(f"Age:      {age_days} days")
+print(f"Approx:   {age_years} years")
+
+# Exact age with leap-year correction
+years = today.year - birthday.year
+if (today.month, today.day) < (birthday.month, birthday.day):
+    years -= 1
+print(f"Exact:    {years} years")'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> date
+
+birthday = date(<span class="num">1995</span>, <span class="num">8</span>, <span class="num">15</span>)
+today = date(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>)
+
+age_days = (today - birthday).days
+age_years = age_days // <span class="num">365</span>
+
+<span class="fn">print</span>(<span class="st">f"Birthday: {birthday}"</span>)
+<span class="fn">print</span>(<span class="st">f"Today:    {today}"</span>)
+<span class="fn">print</span>(<span class="st">f"Age:      {age_days} days"</span>)
+<span class="fn">print</span>(<span class="st">f"Approx:   {age_years} years"</span>)
+
+<span class="cm"># Exact age with leap-year correction</span>
+years = today.year - birthday.year
+<span class="kw">if</span> (today.month, today.day) &lt; (birthday.month, birthday.day):
+    years -= <span class="num">1</span>
+<span class="fn">print</span>(<span class="st">f"Exact:    {years} years"</span>)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ The exact-year calculation uses tuple comparison — neat and readable. No leap-year bugs.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="formatting" aria-labelledby="formatting-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="formatting-heading">🔤 Formatting &amp; Parsing — <code>strftime</code> &amp; <code>strptime</code></h2>
+                    <p>Convert datetimes to strings and back with format codes.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 5.1 <code>strftime()</code> — Datetime to String</h3>
+                    <p>Format a datetime using format codes like <code>%Y</code>, <code>%m</code>, <code>%d</code>.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Create a <code>datetime</code>.</li>
+                        <li><strong>Step 2:</strong> Call <code>.strftime(pattern)</code>.</li>
+                        <li><strong>Step 3:</strong> Use popular codes to build readable strings.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime
+
+dt = datetime(2026, 6, 30, 14, 30, 45)
+
+print("ISO:        ", dt.strftime("%Y-%m-%d"))
+print("US date:    ", dt.strftime("%m/%d/%Y"))
+print("EU date:    ", dt.strftime("%d/%m/%Y"))
+print("Long:       ", dt.strftime("%B %d, %Y"))
+print("Abbrev:     ", dt.strftime("%b %d, %Y"))
+print("Time 24h:   ", dt.strftime("%H:%M:%S"))
+print("Time 12h:   ", dt.strftime("%I:%M %p"))
+print("Weekday:    ", dt.strftime("%A"))
+print("Full:       ", dt.strftime("%A, %B %d, %Y at %I:%M %p"))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+dt = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">14</span>, <span class="num">30</span>, <span class="num">45</span>)
+
+<span class="fn">print</span>(<span class="st">"ISO:        "</span>, dt.strftime(<span class="st">"%Y-%m-%d"</span>))
+<span class="fn">print</span>(<span class="st">"US date:    "</span>, dt.strftime(<span class="st">"%m/%d/%Y"</span>))
+<span class="fn">print</span>(<span class="st">"EU date:    "</span>, dt.strftime(<span class="st">"%d/%m/%Y"</span>))
+<span class="fn">print</span>(<span class="st">"Long:       "</span>, dt.strftime(<span class="st">"%B %d, %Y"</span>))
+<span class="fn">print</span>(<span class="st">"Abbrev:     "</span>, dt.strftime(<span class="st">"%b %d, %Y"</span>))
+<span class="fn">print</span>(<span class="st">"Time 24h:   "</span>, dt.strftime(<span class="st">"%H:%M:%S"</span>))
+<span class="fn">print</span>(<span class="st">"Time 12h:   "</span>, dt.strftime(<span class="st">"%I:%M %p"</span>))
+<span class="fn">print</span>(<span class="st">"Weekday:    "</span>, dt.strftime(<span class="st">"%A"</span>))
+<span class="fn">print</span>(<span class="st">"Full:       "</span>, dt.strftime(<span class="st">"%A, %B %d, %Y at %I:%M %p"</span>))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 5.2 Common Format Codes</h3>
+                    <p>The cheat sheet of <code>strftime</code> / <code>strptime</code> codes you'll actually use.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Code</th><th>Meaning</th><th>Example</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>%Y</code></td><td>4-digit year</td><td>2026</td></tr>
+                                <tr><td><code>%y</code></td><td>2-digit year</td><td>26</td></tr>
+                                <tr><td><code>%m</code></td><td>Month (01–12)</td><td>06</td></tr>
+                                <tr><td><code>%d</code></td><td>Day (01–31)</td><td>30</td></tr>
+                                <tr><td><code>%H</code></td><td>Hour, 24h (00–23)</td><td>14</td></tr>
+                                <tr><td><code>%I</code></td><td>Hour, 12h (01–12)</td><td>02</td></tr>
+                                <tr><td><code>%M</code></td><td>Minute (00–59)</td><td>30</td></tr>
+                                <tr><td><code>%S</code></td><td>Second (00–59)</td><td>45</td></tr>
+                                <tr><td><code>%f</code></td><td>Microsecond</td><td>123456</td></tr>
+                                <tr><td><code>%A</code></td><td>Weekday (full)</td><td>Tuesday</td></tr>
+                                <tr><td><code>%a</code></td><td>Weekday (abbr)</td><td>Tue</td></tr>
+                                <tr><td><code>%B</code></td><td>Month name (full)</td><td>June</td></tr>
+                                <tr><td><code>%b</code></td><td>Month name (abbr)</td><td>Jun</td></tr>
+                                <tr><td><code>%p</code></td><td>AM/PM</td><td>PM</td></tr>
+                                <tr><td><code>%j</code></td><td>Day of year</td><td>181</td></tr>
+                                <tr><td><code>%z</code></td><td>UTC offset</td><td>+0000</td></tr>
+                                <tr><td><code>%Z</code></td><td>Timezone name</td><td>UTC</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 5.3 <code>strptime()</code> — String to Datetime</h3>
+                    <p>Parse a string into a datetime by specifying its format.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Take a string like <code>"2026-06-30 14:30"</code>.</li>
+                        <li><strong>Step 2:</strong> Call <code>datetime.strptime(text, format)</code>.</li>
+                        <li><strong>Step 3:</strong> Handle <code>ValueError</code> for bad input.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime
+
+# Parse a custom format
+text = "2026-06-30 14:30:45"
+dt = datetime.strptime(text, "%Y-%m-%d %H:%M:%S")
+print("Parsed:", dt)
+print("Type:  ", type(dt).__name__)
+
+# US date format
+us = datetime.strptime("06/30/2026", "%m/%d/%Y")
+print("US:    ", us)
+
+# With AM/PM
+ampm = datetime.strptime("June 30, 2026 02:30 PM", "%B %d, %Y %I:%M %p")
+print("AM/PM: ", ampm)
+
+# Handle parse errors
+try:
+    datetime.strptime("not a date", "%Y-%m-%d")
+except ValueError as e:
+    print("\nError:", e)'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+<span class="cm"># Parse a custom format</span>
+text = <span class="st">"2026-06-30 14:30:45"</span>
+dt = datetime.strptime(text, <span class="st">"%Y-%m-%d %H:%M:%S"</span>)
+<span class="fn">print</span>(<span class="st">"Parsed:"</span>, dt)
+<span class="fn">print</span>(<span class="st">"Type:  "</span>, <span class="fn">type</span>(dt).__name__)
+
+<span class="cm"># US date format</span>
+us = datetime.strptime(<span class="st">"06/30/2026"</span>, <span class="st">"%m/%d/%Y"</span>)
+<span class="fn">print</span>(<span class="st">"US:    "</span>, us)
+
+<span class="cm"># With AM/PM</span>
+ampm = datetime.strptime(<span class="st">"June 30, 2026 02:30 PM"</span>, <span class="st">"%B %d, %Y %I:%M %p"</span>)
+<span class="fn">print</span>(<span class="st">"AM/PM: "</span>, ampm)
+
+<span class="cm"># Handle parse errors</span>
+<span class="kw">try</span>:
+    datetime.strptime(<span class="st">"not a date"</span>, <span class="st">"%Y-%m-%d"</span>)
+<span class="kw">except</span> <span class="cl">ValueError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">"\nError:"</span>, e)</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 <code>strptime</code> = "string parse time". <code>strftime</code> = "string format time". Same letters, opposite directions — a common source of confusion.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timezones" aria-labelledby="timezones-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="timezones-heading">🌐 Timezones — UTC, Aware &amp; Naive</h2>
+                    <p>Handle time zones correctly — the source of most datetime bugs.</p>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 6.1 Naive vs Aware Datetimes</h3>
+                    <p>A "naive" datetime has no timezone info; an "aware" one does.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> A datetime without <code>tzinfo</code> is naive.</li>
+                        <li><strong>Step 2:</strong> A datetime with <code>tzinfo</code> is aware.</li>
+                        <li><strong>Step 3:</strong> Never compare naive with aware — it raises <code>TypeError</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime, timezone
+
+naive = datetime(2026, 6, 30, 14, 30)
+print("Naive:", naive)
+print("tzinfo:", naive.tzinfo)
+
+aware = datetime(2026, 6, 30, 14, 30, tzinfo=timezone.utc)
+print("\nAware:", aware)
+print("tzinfo:", aware.tzinfo)
+
+# Compare safely
+try:
+    print(naive < aware)
+except TypeError as e:
+    print("\nError:", e)
+
+# Always compare within the same awareness
+print("\nAware vs aware:", aware < datetime(2026, 7, 1, tzinfo=timezone.utc))'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime, timezone
+
+naive = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">14</span>, <span class="num">30</span>)
+<span class="fn">print</span>(<span class="st">"Naive:"</span>, naive)
+<span class="fn">print</span>(<span class="st">"tzinfo:"</span>, naive.tzinfo)
+
+aware = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">14</span>, <span class="num">30</span>, tzinfo=timezone.utc)
+<span class="fn">print</span>(<span class="st">"\nAware:"</span>, aware)
+<span class="fn">print</span>(<span class="st">"tzinfo:"</span>, aware.tzinfo)
+
+<span class="cm"># Compare safely</span>
+<span class="kw">try</span>:
+    <span class="fn">print</span>(naive &lt; aware)
+<span class="kw">except</span> <span class="cl">TypeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">"\nError:"</span>, e)
+
+<span class="cm"># Always compare within the same awareness</span>
+<span class="fn">print</span>(<span class="st">"\nAware vs aware:"</span>, aware &lt; datetime(<span class="num">2026</span>, <span class="num">7</span>, <span class="num">1</span>, tzinfo=timezone.utc))</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-warn">⚠️ "Naive vs aware" comparison raises <code>TypeError</code>. This is a feature, not a bug — it prevents silent timezone bugs.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 6.2 UTC — The Right Default</h3>
+                    <p>Store and compute in UTC. Convert to local time only for display.</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Get current UTC time with <code>datetime.now(timezone.utc)</code>.</li>
+                        <li><strong>Step 2:</strong> Convert naive → aware with <code>.replace(tzinfo=timezone.utc)</code>.</li>
+                        <li><strong>Step 3:</strong> Convert aware → local with <code>.astimezone()</code>.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime, timezone
+
+# Recommended: current UTC time
+now_utc = datetime.now(timezone.utc)
+print("UTC now:", now_utc)
+
+# Making a naive datetime aware
+naive = datetime(2026, 6, 30, 12, 0)
+aware = naive.replace(tzinfo=timezone.utc)
+print("\nNaive → aware:", aware)
+
+# Convert to local time (works in any timezone)
+local = aware.astimezone()
+print("Local:        ", local)
+
+# Extract UTC components
+print("\nUTC year:  ", aware.year)
+print("UTC hour:  ", aware.hour)
+print("UTC offset:", aware.utcoffset())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime, timezone
+
+<span class="cm"># Recommended: current UTC time</span>
+now_utc = datetime.now(timezone.utc)
+<span class="fn">print</span>(<span class="st">"UTC now:"</span>, now_utc)
+
+<span class="cm"># Making a naive datetime aware</span>
+naive = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">12</span>, <span class="num">0</span>)
+aware = naive.replace(tzinfo=timezone.utc)
+<span class="fn">print</span>(<span class="st">"\nNaive → aware:"</span>, aware)
+
+<span class="cm"># Convert to local time (works in any timezone)</span>
+local = aware.astimezone()
+<span class="fn">print</span>(<span class="st">"Local:        "</span>, local)
+
+<span class="cm"># Extract UTC components</span>
+<span class="fn">print</span>(<span class="st">"\nUTC year:  "</span>, aware.year)
+<span class="fn">print</span>(<span class="st">"UTC hour:  "</span>, aware.hour)
+<span class="fn">print</span>(<span class="st">"UTC offset:"</span>, aware.utcoffset())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="insight">💡 The rule of thumb: <strong>store UTC, display local</strong>. It eliminates a whole class of bugs.</div>
+                </div>
+
+                <div class="oop-block">
+                    <h3>📝 6.3 Custom Offsets with <code>timezone()</code></h3>
+                    <p>Create fixed-offset timezones like UTC+9 (Tokyo) or UTC-5 (New York standard).</p>
+
+                    <h4 style="color:var(--blue-lt);font-size:0.8rem;margin-top:0.8rem;margin-bottom:0.4rem;">Step-by-step explanation:</h4>
+                    <ul class="step-list">
+                        <li><strong>Step 1:</strong> Import <code>timezone</code> and <code>timedelta</code>.</li>
+                        <li><strong>Step 2:</strong> Create a timezone with <code>timezone(timedelta(hours=9))</code>.</li>
+                        <li><strong>Step 3:</strong> Attach it to a datetime.</li>
+                    </ul>
+
+                    <div class="code-container" data-code='from datetime import datetime, timezone, timedelta
+
+tokyo = timezone(timedelta(hours=9))
+ny = timezone(timedelta(hours=-5))
+utc = timezone.utc
+
+dt = datetime(2026, 6, 30, 15, 0, tzinfo=utc)
+print("UTC:   ", dt)
+print("Tokyo: ", dt.astimezone(tokyo))
+print("NY:    ", dt.astimezone(ny))
+
+# Offsets are accessible
+print("\nTokyo offset:", dt.astimezone(tokyo).utcoffset())
+print("NY offset:   ", dt.astimezone(ny).utcoffset())'>
+                        <div class="code-header">
+                            <span style="color:var(--muted);">python</span>
+                            <div class="code-actions">
+                                <button class="code-btn copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                                <button class="code-btn run-btn"><i class="fas fa-play"></i> Run</button>
+                            </div>
+                        </div>
+                        <div class="code-snippet"><pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime, timezone, timedelta
+
+tokyo = timezone(timedelta(hours=<span class="num">9</span>))
+ny = timezone(timedelta(hours=-<span class="num">5</span>))
+utc = timezone.utc
+
+dt = datetime(<span class="num">2026</span>, <span class="num">6</span>, <span class="num">30</span>, <span class="num">15</span>, <span class="num">0</span>, tzinfo=utc)
+<span class="fn">print</span>(<span class="st">"UTC:   "</span>, dt)
+<span class="fn">print</span>(<span class="st">"Tokyo: "</span>, dt.astimezone(tokyo))
+<span class="fn">print</span>(<span class="st">"NY:    "</span>, dt.astimezone(ny))
+
+<span class="cm"># Offsets are accessible</span>
+<span class="fn">print</span>(<span class="st">"\nTokyo offset:"</span>, dt.astimezone(tokyo).utcoffset())
+<span class="fn">print</span>(<span class="st">"NY offset:   "</span>, dt.astimezone(ny).utcoffset())</pre></div>
+                        <div class="output-panel"></div>
+                    </div>
+                    <div class="note-new">✨ For named zones like "America/New_York" (which handle DST), use Python 3.9+'s <code>zoneinfo</code> module.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq-datetime" aria-labelledby="faq-datetime-heading">
+            <div class="page-col">
+                <div class="section-intro">
+                    <h2 id="faq-datetime-heading">❓ Frequently Asked Questions — Python Datetime</h2>
+                    <p>Common questions about dates and times in Python.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What's the difference between <code>date</code>, <code>time</code>, and <code>datetime</code>?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>date</code> stores only year, month, day. <code>time</code> stores only hour, minute, second, microsecond. <code>datetime</code> combines both. Use the smallest type you need — it makes your intent clearer.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>Why is <code>utcnow()</code> deprecated?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>It returns a <em>naive</em> datetime even though it represents UTC time — misleading and error-prone. In Python 3.12+, use <code>datetime.now(timezone.utc)</code> instead. It returns an <em>aware</em> datetime with explicit UTC info.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I add months or years to a date?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>timedelta</code> doesn't support months or years (they vary in length). Use <code>dateutil.relativedelta</code> (from the <code>python-dateutil</code> package) for calendar-aware arithmetic, or compute manually.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What's the difference between <code>strftime</code> and <code>strptime</code>?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p><code>strftime</code> = "string format time" — datetime → string. <code>strptime</code> = "string parse time" — string → datetime. Same letters, opposite directions.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I compute the difference between two dates in days?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Subtract one from the other: <code>(date2 - date1).days</code>. The result is a <code>timedelta</code>, and its <code>.days</code> attribute gives whole days. Use <code>.total_seconds() / 86400</code> for fractional days.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>What's a "naive" vs "aware" datetime?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>A <strong>naive</strong> datetime has no <code>tzinfo</code> — it's ambiguous. An <strong>aware</strong> datetime knows its timezone. Python raises <code>TypeError</code> when you compare or subtract them because the result would be wrong.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I get the current timestamp as a float?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use <code>datetime.now().timestamp()</code> for local, or <code>datetime.now(timezone.utc).timestamp()</code> for UTC. The result is seconds since the Unix epoch (1970-01-01 00:00 UTC). For milliseconds, multiply by 1000.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I handle DST (daylight saving time)?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use <code>zoneinfo</code> (Python 3.9+) with a named zone like <code>"America/New_York"</code>. Named zones know their DST rules automatically. Avoid fixed-offset <code>timezone(timedelta(...))</code> for zones that observe DST.</p></div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do I format a datetime in ISO 8601?</h3><span class="faq-toggle">+</span></div><div class="faq-a"><p>Use <code>dt.isoformat()</code> — it produces <code>2026-06-30T14:30:45</code>. For UTC, include the offset: <code>dt.isoformat()</code> on an aware datetime produces <code>2026-06-30T14:30:45+00:00</code>.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="outro" aria-labelledby="outro-heading">
+            <div class="page-col">
+                <div class="outro-box">
+                    <h2 id="outro-heading">💛 You've Mastered Python Datetime</h2>
+                    <p>
+                        From basic <code>date</code>, <code>time</code>, and <code>datetime</code> objects to
+                        timezone-aware arithmetic and custom formatting, you now have a complete toolkit for
+                        handling dates and times in Python. You can compute durations, format for display,
+                        parse user input, and reason about timezones correctly.
+                    </p>
+                    <p>
+                        This curriculum, crafted by <strong style="color:var(--gold);">@PoeticGlenn</strong>,
+                        gives you the foundation to work with time in any Python project — from logs and
+                        analytics to scheduling and user-facing displays. The patterns you've learned will
+                        keep your code correct for years.
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin:1rem 0 0.6rem;">
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-check-circle" style="color:var(--green);"></i> 20 lessons
+                        </span>
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-code" style="color:var(--blue-lt);"></i> 22+ code examples
+                        </span>
+                        <span style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 1rem;font-size:0.7rem;color:var(--muted);">
+                            <i class="fas fa-users" style="color:var(--gold);"></i> 1.0k+ learners
+                        </span>
+                    </div>
+                    <div class="outro-cta">
+                        <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Explore More</a>
+                        <a href="https://twitter.com/PoeticGlenn" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-twitter"></i> Follow @PoeticGlenn</a>
+                        <a href="https://github.com/pansensoyglenn-dev/poetic-bytes" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i> Star on GitHub</a>
+                    </div>
+                    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.2rem;">
+                        <i class="fas fa-quote-left" style="color:var(--gold);margin-right:0.3rem;"></i>
+                        "Time is the one resource no debugger can give back. Handle it with care."
+                        <span style="display:block;color:var(--gold);font-weight:600;margin-top:0.2rem;">— Glenn Junsay Pansensoy <span style="font-weight:400;color:var(--muted);">(@PoeticGlenn)</span></span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-slot page-col">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6428799122405621"
+                 data-ad-slot="8844498659"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <section aria-label="Share this resource">
+            <div class="page-col">
+                <div class="share-box" id="shareSection">
+                    <h3>📤 Share this guide</h3>
+                    <p style="margin-top:.3rem;">Help other developers master dates and times — share this resource!</p>
+                    <div class="share-row" id="shareRowBottom">
+                        <button class="share-btn copy-btn" id="copyLinkBottom"><i class="fas fa-link"></i> Copy link</button>
+                        <a href="#" class="share-btn" id="shareFbBottom" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="share-btn" id="shareTwBottom" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X</a>
+                        <a href="#" class="share-btn" id="shareLiBottom" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="#" class="share-btn" id="shareWaBottom" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="share-btn" id="shareTgBottom" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer" aria-label="Site footer">
+        <div class="page-col">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Guided Tracks</h5>
+                    <ul>
+                        <li><a href="beginners.html">First-time dev</a></li>
+                        <li><a href="data-science.html">Data &amp; statistics</a></li>
+                        <li><a href="backend.html">Backend / Django</a></li>
+                        <li><a href="aiml.html">ML fundamentals</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="automation.html">Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>New Modules</h5>
+                    <ul>
+                        <li><a href="python-sets.html">Python Sets</a></li>
+                        <li><a href="python-modules.html">Modules &amp; Packages</a></li>
+                        <li><a href="python-exceptions.html">Exception Handling</a></li>
+                        <li><a href="python-iterators.html">Iterators &amp; Generators</a></li>
+                        <li><a href="python-async.html">Async &amp; Concurrency</a></li>
+                        <li><a href="python-decorators.html">Decorators In Depth</a></li>
+                        <li><a href="python-type-hints.html">Type Hints &amp; mypy</a></li>
+                        <li><a href="python-pathlib.html">Pathlib &amp; File Paths</a></li>
+                        <li><a href="python-json-csv.html">JSON &amp; CSV</a></li>
+                        <li><a href="python-datetime.html">Datetime &amp; Timezones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Toolkit</h5>
+                    <ul>
+                        <li><a href="algorithm-history.html">History of Algorithm</a></li>
+                        <li><a href="cheat-sheet.html">Cheatsheets</a></li>
+                        <li><a href="snippet-library.html">Snippet library</a></li>
+                        <li><a href="code-runner.html">Code runner</a></li>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="coding-concepts.html">Coding Concepts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/Glenn-Pansensoy" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/glenn-pansensoy" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/PoeticGlenn" rel="noopener">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/glennpansensoy" rel="noopener">Instagram</a></li>
+                        <li><a href="https://pansensoyglenn-dev.github.io/poetic-bytes" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy.html">Data privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="disclaimer.html">Disclaimers</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Poetic Bytes · Created by <a href="https://www.linkedin.com/in/glenn-pansensoy">Glenn Junsay Pansensoy</a> · Dedicated to pragmatic learning. · <a href="https://twitter.com/PoeticGlenn" rel="noopener">@PoeticGlenn</a></p>
+                <p style="margin-top:.4rem;">Made with <i class="fas fa-heart" style="color:#EF4444;"></i> and <i class="fab fa-python" style="color:#4B8BBE;"></i> | <a href="contact.html">Contact Support</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var pbar = document.getElementById('pbar');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+                if (pbar) pbar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+
+            var menuToggle = document.getElementById('menuToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+            var drawerClose = document.getElementById('drawerClose');
+
+            function closeDrawer() {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (drawer) drawer.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var open = drawer.classList.toggle('active');
+                    menuToggle.classList.toggle('active', open);
+                    overlay.classList.toggle('active', open);
+                    document.body.style.overflow = open ? 'hidden' : '';
+                });
+            }
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawer(); });
+
+            document.querySelectorAll('.drawer-body button[data-href]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var target = document.querySelector(btn.dataset.href);
+                    if (target) { target.scrollIntoView({ behavior: 'smooth' });
+                        closeDrawer(); }
+                });
+            });
+
+            window.toggleFaq = function(qEl) {
+                var item = qEl.closest('.faq-item');
+                var answer = item.querySelector('.faq-a');
+                var toggle = qEl.querySelector('.faq-toggle');
+                var isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-a.open').forEach(function(a) {
+                    a.classList.remove('open');
+                    a.closest('.faq-item').querySelector('.faq-toggle').textContent = '+';
+                });
+                if (!isOpen) { answer.classList.add('open');
+                    toggle.textContent = '−'; }
+            };
+
+            var backTop = document.getElementById('backTop');
+            window.addEventListener('scroll', function() {
+                backTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            var PAGE_URL = encodeURIComponent('https://poetic-bytes.vercel.app/python-datetime.html');
+            var PAGE_TITLE = encodeURIComponent('Python Datetime – Free Interactive Tutorial | Poetic Bytes');
+
+            function shareTo(url) {
+                window.open(url, '_blank', 'width=600,height=500,noopener,noreferrer');
+            }
+            document.querySelectorAll('#shareFb,#shareFbBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTw,#shareTwBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://twitter.com/intent/tweet?url=' + PAGE_URL + '&text=' + PAGE_TITLE +
+                        '&via=PoeticGlenn'); });
+            });
+            document.querySelectorAll('#shareLi,#shareLiBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://www.linkedin.com/sharing/share-offsite/?url=' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareWa,#shareWaBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://api.whatsapp.com/send?text=' + PAGE_TITLE + '%20' + PAGE_URL); });
+            });
+            document.querySelectorAll('#shareTg,#shareTgBottom').forEach(function(el) {
+                if (el) el.addEventListener('click', function(e) { e.preventDefault();
+                    shareTo('https://t.me/share/url?url=' + PAGE_URL + '&text=' + PAGE_TITLE); });
+            });
+
+            function copyLink(btn) {
+                var url = 'https://poetic-bytes.vercel.app/python-datetime.html';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                    }).catch(function() { fallbackCopy(url, btn); });
+                } else { fallbackCopy(url, btn); }
+            }
+
+            function fallbackCopy(text, btn) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { btn.innerHTML = orig; }, 2000);
+            }
+            var copyBtn = document.getElementById('copyLinkBtn');
+            var copyBottom = document.getElementById('copyLinkBottom');
+            if (copyBtn) copyBtn.addEventListener('click', function() { copyLink(this); });
+            if (copyBottom) copyBottom.addEventListener('click', function() { copyLink(this); });
+
+            function dedent(code) {
+                var lines = code.split('\n');
+                var minIndent = Infinity;
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i];
+                    if (line.trim().length === 0) continue;
+                    var match = line.match(/^(\s+)/);
+                    if (match) { if (match[1].length < minIndent) minIndent = match[1].length; } else { minIndent = 0;
+                        break; }
+                }
+                if (!isFinite(minIndent) || minIndent === 0) return code;
+                return lines.map(function(l) { return l.trim().length === 0 ? l : l.slice(minIndent); }).join('\n');
+            }
+
+            var BROWSER_PREAMBLE = `
+import sys as _sys, types as _types, builtins as _builtins
+import os as _os
+
+# Provide a writable working directory
+_os.chdir('/home/pyodide')
+
+try:
+    with open('sample.txt', 'w', encoding='utf-8') as _f:
+        _f.write('Hello from Poetic Bytes!\\nThis is a sample text file.\\nLine 3 of content.\\n')
+except Exception:
+    pass
+
+_sys.argv = ['script.py', 'Alice', '28']
+`;
+
+            var pyodideReady = false;
+            var pyodideInstance = null;
+
+            async function loadPyodideAndPackages() {
+                if (!pyodideReady) {
+                    pyodideInstance = await loadPyodide({
+                        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.1/full/'
+                    });
+                    pyodideReady = true;
+                }
+                return pyodideInstance;
+            }
+
+            function makePrintFn(outputRef) {
+                return function(text) {
+                    outputRef.text += text;
+                };
+            }
+
+            async function runCode(code, outputEl, runBtn) {
+                runBtn.disabled = true;
+                var originalHTML = runBtn.innerHTML;
+                runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading…';
+
+                outputEl.style.display = 'block';
+                outputEl.className = 'output-panel loading';
+                outputEl.textContent = 'Loading Python runtime… (first run may take 8–12 s)\n\n';
+
+                try {
+                    var pyodide = await loadPyodideAndPackages();
+                    outputEl.textContent = '';
+                    outputEl.className = 'output-panel';
+
+                    var clean = dedent(code).trim();
+                    var outputRef = { text: '' };
+                    var printFn = makePrintFn(outputRef);
+
+                    pyodide.globals.set('_js_print', printFn);
+                    pyodide.globals.set('_js_input', function(promptText) {
+                        var result = prompt(promptText != null ? String(promptText) : '');
+                        return result !== null ? result : '';
+                    });
+
+                    await pyodide.runPythonAsync(`
+import builtins
+
+def _print(*args, sep=' ', end='\\n', file=None, flush=False):
+    _js_print(sep.join(str(x) for x in args) + (end if end != '\\n' else ''))
+
+def _input(prompt=''):
+    return _js_input(str(prompt) if prompt else '')
+
+builtins.print = _print
+builtins.input = _input
+`);
+
+                    await pyodide.runPythonAsync(BROWSER_PREAMBLE);
+
+                    try {
+                        await pyodide.runPythonAsync(clean);
+                    } catch (innerErr) {
+                        var innerMsg = innerErr && innerErr.message ? innerErr.message : String(innerErr);
+                        if (innerMsg.indexOf('SystemExit') !== -1) {
+                            outputRef.text += '\n[Program exited via SystemExit]\n';
+                            outputEl.textContent = outputRef.text;
+                            outputEl.style.color = '#f59e0b';
+                            return;
+                        }
+                        throw innerErr;
+                    }
+
+                    var finalOutput = outputRef.text;
+                    outputEl.textContent = finalOutput || '✓ Code executed successfully (no output).';
+                    outputEl.style.color = '#4ade80';
+
+                } catch (err) {
+                    outputEl.className = 'output-panel error';
+                    var msg = err && err.message ? err.message : String(err);
+                    outputEl.textContent = 'Error:\n' + msg;
+                    outputEl.style.color = '#f87171';
+                } finally {
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = originalHTML;
+                }
+            }
+
+            function copyCode(btn, code) {
+                var clean = dedent(code).trim();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(clean).then(function() { flashCopied(btn); })
+                        .catch(function() { fallbackCopyCode(btn, clean); });
+                } else { fallbackCopyCode(btn, clean); }
+            }
+
+            function fallbackCopyCode(btn, code) {
+                var ta = document.createElement('textarea');
+                ta.value = code;
+                ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                flashCopied(btn);
+            }
+
+            function flashCopied(btn) {
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.classList.add('copied');
+                setTimeout(function() { btn.innerHTML = orig;
+                    btn.classList.remove('copied'); }, 2000);
+            }
+
+            function initCodeContainers() {
+                document.querySelectorAll('.code-container').forEach(function(container) {
+                    if (container.classList.contains('no-run')) return;
+
+                    var codeAttr = container.getAttribute('data-code');
+                    if (!codeAttr) {
+                        var pre = container.querySelector('.code-snippet pre');
+                        if (pre) codeAttr = pre.textContent;
+                    }
+                    if (!codeAttr) return;
+
+                    var cpBtn = container.querySelector('.copy-btn');
+                    var rnBtn = container.querySelector('.run-btn');
+                    var outEl = container.querySelector('.output-panel');
+
+                    if (cpBtn) {
+                        cpBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            copyCode(cpBtn, codeAttr);
+                        });
+                    }
+                    if (rnBtn && outEl) {
+                        rnBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            runCode(codeAttr, outEl, rnBtn);
+                        });
+                    }
+                });
+            }
+
+            if (document.readyState === 'complete') { initCodeContainers(); } else { window.addEventListener('load',
+                    initCodeContainers); }
+
+        })();
+    </script>
+
+</body>
+</html>
